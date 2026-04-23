@@ -13,7 +13,7 @@
 <body>
 
     <!-- MEGA NAVIGATION -->
-    <nav class="lesson-mega-nav">
+<nav class="lesson-mega-nav">
         <div class="lesson-nav-container">
             <a href="../index.html" class="lesson-nav-logo">Code <span>Tutorium</span></a>
             
@@ -40,6 +40,14 @@
                 
                 <a href="../index.html#courses" class="lesson-mega-link-plain">All Courses</a>
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
@@ -1064,6 +1072,29 @@ assets/
             document.getElementById('sidebar').classList.toggle('open');
         }
     </script>
+
+    <!-- Search Modal -->
 </body>
 
 </html>
+<div id="search-overlay" class="search-overlay"></div>
+<div id="search-box" class="search-box">
+    <div class="search-header">
+        <div class="search-input-wrap">
+            <svg class="search-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="search-input" class="search-input" placeholder="Search tutorials, lessons, topics..." autocomplete="off">
+            <span class="search-esc">ESC</span>
+        </div>
+    </div>
+    <div id="search-results" class="search-results"></div>
+    <div class="search-hint">
+        <div class="search-hint-row"><span class="sh-icon">↓</span> Navigate</div>
+        <div class="search-hint-row"><span class="sh-icon">↵</span> Select</div>
+        <div class="search-hint-row"><span class="sh-icon">ESC</span> Close</div>
+    </div>
+</div>
+
+<script src="../search.js"></script>
