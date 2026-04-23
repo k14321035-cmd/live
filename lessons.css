@@ -1030,3 +1030,188 @@ body {
     font-size: 1rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LESSON MEGA NAVIGATION
+   ═══════════════════════════════════════════════════════════════════════ */
+.lesson-mega-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 250;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  height: 60px;
+}
+
+.lesson-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.lesson-nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  text-decoration: none;
+}
+.lesson-nav-logo span { color: var(--gfg-green); }
+
+.lesson-mega-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lesson-mega-item {
+  position: relative;
+}
+
+.lesson-mega-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.lesson-mega-trigger:hover {
+  background: rgba(30, 58, 95, 0.05);
+  color: var(--text);
+}
+.lesson-mega-trigger svg {
+  transition: transform 0.2s;
+}
+.lesson-mega-item:hover .lesson-mega-trigger svg {
+  transform: rotate(180deg);
+}
+
+.lesson-mega-link-plain {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.lesson-mega-link-plain:hover {
+  background: rgba(30, 58, 95, 0.05);
+  color: var(--text);
+}
+
+/* Search Button */
+.lesson-nav-search {
+  margin-left: 0.5rem;
+}
+.lesson-nav-search .search-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.lesson-nav-search .search-btn:hover {
+  background: rgba(30, 58, 95, 0.05);
+  color: var(--text);
+}
+
+/* Dropdown */
+.lesson-mega-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  padding: 1rem;
+  min-width: 400px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 300;
+}
+.lesson-mega-item:hover .lesson-mega-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.lesson-mega-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.lesson-mega-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+.lesson-mega-link:hover {
+  background: rgba(30, 58, 95, 0.05);
+  color: var(--gfg-green);
+}
+.lesson-mega-link.active {
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--gfg-green);
+  font-weight: 600;
+}
+
+.lesson-mega-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Adjust menu button position for mega nav */
+#menu-toggle {
+  top: 75px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .lesson-mega-nav {
+    height: 50px;
+  }
+  .lesson-nav-logo {
+    font-size: 1.1rem;
+  }
+  .lesson-mega-menu {
+    display: none;
+  }
+  #menu-toggle {
+    top: 65px;
+  }
+}

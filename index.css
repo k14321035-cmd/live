@@ -522,27 +522,47 @@
     margin-bottom: 4rem;
   }
 
-  /* ─── COURSES GRID ─── */
+  /* ─── COURSES GRID - Compact Cards ─── */
   .courses-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
   .course-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.2s ease;
     cursor: pointer;
     animation: fadeUp 0.5s ease both;
+    min-height: 140px;
   }
   .course-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255,255,255,0.15);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(37,99,235,0.15);
+  }
+
+  .course-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .course-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    text-align: center;
   }
 
   .course-header {
@@ -922,13 +942,17 @@
     .hero-actions .btn-ghost { width: 100%; justify-content: center; }
     
     .courses-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
     }
     
-    .course-card { border-radius: 12px; }
-    .course-header { padding: 1.5rem 1.5rem 1rem; }
-    .course-body { padding: 1rem 1.5rem 1.5rem; }
+    .course-card {
+      padding: 1.2rem 0.8rem;
+      min-height: 120px;
+    }
+    
+    .course-icon { font-size: 2rem; }
+    .course-name { font-size: 0.9rem; }
     
     .features-inner { flex-direction: column; }
     .feature-item {
