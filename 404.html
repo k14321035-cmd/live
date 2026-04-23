@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Code Tutorium</title>
+    <meta name="description" content="The page you are looking for could not be found. Return to Code Tutorium's free programming courses.">
+    <meta name="robots" content="noindex, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-dark: #0f1f33;
+            --primary-light: #e8f1f8;
+            --bg: #ffffff;
+            --text: #212121;
+            --text-secondary: #424242;
+            --text-muted: #757575;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --text: #f1f5f9;
+                --text-secondary: #cbd5e1;
+                --text-muted: #94a3b8;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        .error-code {
+            font-family: 'Syne', sans-serif;
+            font-size: 8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 var(--primary-light);
+        }
+        
+        .error-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .error-message {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .error-illustration {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 14px 28px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-light);
+        }
+        
+        .logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .popular-links {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .popular-links h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .popular-links ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .popular-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .popular-links a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 1.5rem;
+            }
+            
+            .error-message {
+                font-size: 1rem;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .logo {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="logo">Code <span>Tutorium</span></a>
+    
+    <div class="error-container">
+        <div class="error-illustration">💻❓</div>
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Page Not Found</h2>
+        <p class="error-message">
+            Oops! The page you're looking for seems to have gone on vacation. 
+            It might have been moved, deleted, or never existed in the first place.
+        </p>
+        
+        <div class="btn-group">
+            <a href="index.html" class="btn">
+                <span>←</span> Back to Home
+            </a>
+            <a href="index.html#courses" class="btn btn-secondary">
+                Browse Courses
+            </a>
+        </div>
+        
+        <div class="popular-links">
+            <h3>Popular Destinations</h3>
+            <ul>
+                <li><a href="lessons/python.html">Python</a></li>
+                <li><a href="lessons/javascript.html">JavaScript</a></li>
+                <li><a href="lessons/html.html">HTML</a></li>
+                <li><a href="lessons/css.html">CSS</a></li>
+                <li><a href="lessons/c++.html">C++</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

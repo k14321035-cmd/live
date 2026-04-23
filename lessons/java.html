@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Mastery — Complete Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+</head>
+
+<body>
+
+    <button id="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><span>&lt;/&gt;</span> Java Mastery</div>
+            <p>// Complete Course — 12 Lectures</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Foundations</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span
+                    class="dot"></span>What is Java?</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span
+                    class="dot"></span>Setting up the JDK</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span
+                    class="dot"></span>Variables &amp; Data Types</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span
+                    class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span
+                    class="dot"></span>Methods</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Core Concepts</div>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span
+                    class="dot"></span>Object‑Oriented Programming</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span
+                    class="dot"></span>Collections Framework</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span
+                    class="dot"></span>Generics</button>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
+                    class="dot"></span>Streams &amp; Lambdas (Java 8+)</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced</div>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span
+                    class="dot"></span>Exception Handling</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span
+                    class="dot"></span>Concurrency</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
+                    class="dot"></span>Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>Java Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">What is Java?</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:8%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 1 ===================== -->
+        <div class="lecture active" id="lec-0">
+            <div class="lecture-tag">Lecture 01 · Foundations</div>
+            <h1>What is Java?</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~30 min</span>
+                <span class="meta-badge">No prerequisites</span>
+            </div>
+
+            <h2>Introduction</h2>
+            <p><strong>Java</strong> is a high‑level, class‑based, object‑oriented programming language
+                that is designed to have as few implementation dependencies as possible.
+                The slogan <em>“Write Once, Run Anywhere”</em> reflects its capability to run on any device that
+                has a Java Virtual Machine (<code>JVM</code>).</p>
+
+            <h2>Why Learn Java?</h2>
+            <ul>
+                <li>Ubiquitous – used in Android, enterprise back‑ends, desktop apps and big‑data ecosystems.</li>
+                <li>Strong static typing helps catch many bugs at compile time.</li>
+                <li>Rich standard library and a huge ecosystem of third‑party libraries.</li>
+                <li>Excellent tooling (IDEA, Eclipse, VS Code, Maven/Gradle, JUnit).</li>
+            </ul>
+
+            <div class="box tip">
+                <div class="box-title">✅ Quick fact</div>
+                The first public release of Java (JDK 1.0) appeared in 1996.
+            </div>
+
+            <h2>Hello World – Your First Java Program</h2>
+            <p>Save the following as <code>HelloWorld.java</code> and run it from the command line:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">HelloWorld.java</span>
+                </div>
+                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">HelloWorld</span> {
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Hello, World!"</span>);
+    }
+}</pre>
+            </div>
+
+            <p>Compile and run:</p>
+            <pre><code>javac HelloWorld.java   # produces HelloWorld.class
+java HelloWorld         # prints “Hello, World!”</code></pre>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 1.1</div>
+                <p>Install the latest JDK, create the <code>HelloWorld.java</code> file, compile it and run it.
+                    Verify the output in your terminal.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 2 ===================== -->
+        <div class="lecture" id="lec-1">
+            <div class="lecture-tag">Lecture 02 · Foundations</div>
+            <h1>Setting up the JDK</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~35 min</span>
+                <span class="meta-badge">Requires: Lecture 01</span>
+            </div>
+
+            <h2>Download & Install</h2>
+            <p>Head to <a href="https://adoptium.net/" target="_blank" rel="noopener noreferrer">Eclipse Adoptium</a>
+                or <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank"
+                    rel="noopener noreferrer">Oracle JDK</a> and download the appropriate bundle for your OS.</p>
+
+            <h3>Verify Installation</h3>
+            <pre><code>java -version
+javac -version</code></pre>
+
+            <div class="box info">
+                <div class="box-title">ℹ️ Expected output</div>
+                <p>Both commands should print the version number (e.g. <code>java 21.0.1</code>) and indicate that the
+                    JDK is correctly on your <code>PATH</code>.</p>
+            </div>
+
+            <h2>IDE Recommendation</h2>
+            <p>For a smoother learning experience pick an IDE:</p>
+            <ul>
+                <li><strong>IntelliJ IDEA Community</strong> – rich refactoring, debugger, and Maven/Gradle integration.
+                </li>
+                <li><strong>Eclipse</strong> – classic, plugin‑heavy.</li>
+                <li><strong>VS Code</strong> with the <code>Java Extension Pack</code>.</li>
+            </ul>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 2.1</div>
+                <p>Install your favourite IDE, open a new project, create a <code>Main.java</code> file with a
+                    <code>main</code> method,
+                    and run the “Hello World” program inside the IDE.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 3 ===================== -->
+        <div class="lecture" id="lec-2">
+            <div class="lecture-tag">Lecture 03 · Foundations</div>
+            <h1>Variables &amp; Data Types</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">Requires: Lecture 02</span>
+            </div>
+
+            <h2>Primitive Types</h2>
+            <p>Java has 8 primitive types:</p>
+            <table class="tbl-wrap">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Size</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>byte</code></td>
+                        <td>8 bit</td>
+                        <td><code>byte b = 100;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>short</code></td>
+                        <td>16 bit</td>
+                        <td><code>short s = 20000;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>int</code></td>
+                        <td>32 bit</td>
+                        <td><code>int i = 123456;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>long</code></td>
+                        <td>64 bit</td>
+                        <td><code>long l = 123456789L;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>float</code></td>
+                        <td>32 bit</td>
+                        <td><code>float f = 3.14f;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>double</code></td>
+                        <td>64 bit</td>
+                        <td><code>double d = 3.14159;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>char</code></td>
+                        <td>16 bit (Unicode)</td>
+                        <td><code>char c = 'A';</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>boolean</code></td>
+                        <td>1 bit (logical)</td>
+                        <td><code>boolean ok = true;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Reference Types</h2>
+            <p>Anything that isn’t a primitive is a *reference* type: <code>String</code>, arrays, objects, etc.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">VariablesDemo.java</span>
+                </div>
+                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">VariablesDemo</span> {
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        <span class="kw">int</span> age = <span class="nm">30</span>;
+        <span class="kw">double</span> price = <span class="nm">19.99</span>;
+        <span class="kw">boolean</span> isMember = <span class="kw">true</span>;
+        <span class="kw">String</span> name = <span class="val">"Alice"</span>;
+
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(name + <span class="val">", age "</span> + age);
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 3.1</div>
+                <p>Create a program that declares one variable of each primitive type, prints them, then swaps two
+                    integer values without using a third temporary variable.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 4 ===================== -->
+        <div class="lecture" id="lec-3">
+            <div class="lecture-tag">Lecture 04 · Foundations</div>
+            <h1>Control Flow</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">Requires: Lecture 03</span>
+            </div>
+
+            <h2>If / else</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">IfDemo.java</span>
+                </div>
+                <pre><span class="kw">int</span> score = <span class="nm">85</span>;
+<span class="kw">if</span> (score &gt;= <span class="nm">90</span>) {
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Grade A"</span>);
+} <span class="kw">else</span> <span class="kw">if</span> (score &gt;= <span class="nm">80</span>) {
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Grade B"</span>);
+} <span class="kw">else</span> {
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Needs improvement"</span>);
+}</pre>
+            </div>
+
+            <h2>Switch (Java 17+ enhanced switch)</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">SwitchDemo.java</span>
+                </div>
+                <pre><span class="kw">String</span> day = <span class="val">"MONDAY"</span>;
+
+<span class="kw">String</span> result = <span class="kw">switch</span> (day) {
+    <span class="kw">case</span> <span class="val">"MONDAY"</span>, <span class="val">"TUESDAY"</span>, <span class="val">"WEDNESDAY"</span> -> <span class="val">"Mid‑week"</span>;
+    <span class="kw">case</span> <span class="val">"THURSDAY"</span>, <span class="val">"FRIDAY"</span> -> <span class="val">"Almost weekend"</span>;
+    <span class="kw">case</span> <span class="val">"SATURDAY"</span>, <span class="val">"SUNDAY"</span> -> <span class="val">"Weekend"</span>;
+    <span class="kw">default</span> -> <span class="val">"Invalid day"</span>;
+};
+
+<span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(result);</pre>
+            </div>
+
+            <h2>Loops</h2>
+            <ul>
+                <li><strong>for (int i=0; i&lt;n; i++)</strong> – classic counting loop.</li>
+                <li><strong>enhanced for</strong> – iterate over arrays/collections
+                    (<code>for (String s : list)</code>).</li>
+                <li><strong>while / do‑while</strong> – condition‑driven loops.</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">LoopDemo.java</span>
+                </div>
+                <pre><span class="kw">int</span>[] numbers = { <span class="nm">2</span>, <span class="nm">4</span>, <span class="nm">6</span>, <span class="nm">8</span> };
+<span class="kw">int</span> sum = <span class="nm">0</span>;
+
+<span class="kw">for</span> (<span class="kw">int</span> n : numbers) {
+    sum += n;
+}
+<span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Sum = "</span> + sum);</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 4.1</div>
+                <p>Write a program that prints the first 20 Fibonacci numbers using a <code>while</code> loop.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 5 ===================== -->
+        <div class="lecture" id="lec-4">
+            <div class="lecture-tag">Lecture 05 · Foundations</div>
+            <h1>Methods</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~40 min</span>
+                <span class="meta-badge">Requires: Lecture 04</span>
+            </div>
+
+            <h2>Method Syntax</h2>
+            <p>A method in Java consists of: <code>modifiers returnType name(parameters) { body }</code></p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">MathUtils.java</span>
+                </div>
+                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">MathUtils</span> {
+
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+        <span class="kw">return</span> a + b;
+    }
+
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">double</span> <span class="fn">average</span>(<span class="kw">int</span>[] values) {
+        <span class="kw">int</span> sum = <span class="nm">0</span>;
+        <span class="kw">for</span> (<span class="kw">int</span> v : values) {
+            sum += v;
+        }
+        <span class="kw">return</span> ( <span class="kw">double</span> ) sum / values.<span class="fn">length</span>;
+    }
+}</pre>
+            </div>
+
+            <h2>Parameter Passing</h2>
+            <ul>
+                <li>Primitives are passed **by value** – the method receives a copy.</li>
+                <li>Objects are passed **by reference value** – the method receives a copy of the reference, allowing it
+                    to mutate the object.</li>
+            </ul>
+
+            <h2>Method Overloading</h2>
+            <p>Same name, different parameter list.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">OverloadDemo.java</span>
+                </div>
+                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">OverloadDemo</span> {
+
+    <span class="kw">static</span> <span class="kw">int</span> <span class="fn">max</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+        <span class="kw">return</span> (a &gt; b) ? a : b;
+    }
+
+    <span class="kw">static</span> <span class="kw">double</span> <span class="fn">max</span>(<span class="kw">double</span> a, <span class="kw">double</span> b) {
+        <span class="kw">return</span> (a &gt; b) ? a : b;
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 5.1</div>
+                <p>Write a utility class that provides overloaded <code>factorial</code> methods for <code>int</code>
+                    and <code>long</code>. Add a simple <code>main</code> method that demonstrates both.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 6 ===================== -->
+        <div class="lecture" id="lec-5">
+            <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+            <h1>Object‑Oriented Programming</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~60 min</span>
+                <span class="meta-badge">Requires: Lecture 05</span>
+            </div>
+
+            <h2>Core Pillars</h2>
+            <ul>
+                <li><strong>Encapsulation</strong> – hide internal state behind private fields and expose behaviour via
+                    methods.</li>
+                <li><strong>Inheritance</strong> – reuse code with <code>extends</code>.</li>
+                <li><strong>Polymorphism</strong> – treat objects of different subclasses uniformly, often via
+                    interfaces.</li>
+                <li><strong>Abstraction</strong> – define contracts with abstract classes or interfaces.</li>
+            </ul>
+
+            <h3>Class definition</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">Person.java</span>
+                </div>
+                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Person</span> {
+    <span class="kw">private</span> <span class="kw">String</span> <span class="nm">name</span>;
+    <span class="kw">private</span> <span class="kw">int</span> <span class="nm">age</span>;
+
+    <span class="kw">public</span> <span class="tag">Person</span>(<span class="kw">String</span> name, <span class="kw">int</span> age) {
+        <span class="kw">this</span>.<span class="nm">name</span> = name;
+        <span class="kw">this</span>.<span class="nm">age</span> = age;
+    }
+
+    <span class="kw">public</span> <span class="kw">String</span> <span class="fn">getName</span>() { <span class="kw">return</span> name; }
+    <span class="kw">public</span> <span class="kw">int</span> <span class="fn">getAge</span>() { <span class="kw">return</span> age; }
+
+    <span class="kw">public</span> <span class="kw">void</span> <span class="fn">birthday</span>() { <span class="nm">age</span>++; }
+}</pre>
+            </div>
+
+            <h3>Inheritance example</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">Employee.java</span>
+                </div>
+                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Employee</span> <span class="kw">extends</span> <span class="tag">Person</span> {
+    <span class="kw">private</span> <span class="kw">String</span> <span class="nm">department</span>;
+
+    <span class="kw">public</span> <span class="tag">Employee</span>(<span class="kw">String</span> name, <span class="kw">int</span> age, <span class="kw">String</span> dept) {
+        <span class="kw">super</span>(name, age);
+        <span class="nm">department</span> = dept;
+    }
+
+    <span class="kw">public</span> <span class="kw">String</span> <span class="fn">getDepartment</span>() { <span class="kw">return</span> department; }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 6.1</div>
+                <p>Model a simple library system: create a base class <code>Item</code> (with id, title) and subclasses
+                    <code>Book</code> and <code>Magazine</code>. Add a method <code>printInfo()</code> that is
+                    overridden in each subclass.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 7 ===================== -->
+        <div class="lecture" id="lec-6">
+            <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+            <h1>Collections Framework</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~55 min</span>
+                <span class="meta-badge">Requires: Lecture 06</span>
+            </div>
+
+            <h2>Why Collections?</h2>
+            <p>They provide well‑tested, efficient implementations of common data structures (lists, sets, maps)
+                plus a rich set of utility methods.</p>
+
+            <h3>List – ordered, duplicates allowed</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">ListDemo.java</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// List, ArrayList</span>
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="tag">ListDemo</span> {
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        List&lt;<span class="kw">String</span>&gt; names = <span class="kw">new</span> <span class="tag">ArrayList</span>&lt;&gt;();
+        names.<span class="fn">add</span>(<span class="val">"Alice"</span>);
+        names.<span class="fn">add</span>(<span class="val">"Bob"</span>);
+        names.<span class="fn">add</span>(<span class="val">"Alice"</span>);   <span class="cm">// duplicate allowed</span>
+
+        <span class="kw">for</span> (<span class="kw">String</span> n : names) {
+            <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(n);
+        }
+    }
+}</pre>
+            </div>
+
+            <h3>Set – unique elements</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">SetDemo.java</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// HashSet</span>
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="tag">SetDemo</span> {
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        Set&lt;<span class="kw">Integer</span>&gt; primes = <span class="kw">new</span> <span class="tag">HashSet</span>&lt;&gt;();
+        primes.<span class="fn">add</span>(<span class="nm">2</span>);
+        primes.<span class="fn">add</span>(<span class="nm">3</span>);
+        primes.<span class="fn">add</span>(<span class="nm">2</span>);  <span class="cm">// ignored – duplicate</span>
+
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(primes);
+    }
+}</pre>
+            </div>
+
+            <h3>Map – key/value pairs</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">MapDemo.java</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// Map, HashMap</span>
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="tag">MapDemo</span> {
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        Map&lt;<span class="kw">String</span>, <span class="kw">Integer</span>&gt; scores = <span class="kw">new</span> <span class="tag">HashMap</span>&lt;&gt;();
+        scores.<span class="fn">put</span>(<span class="val">"Alice"</span>, <span class="nm">90</span>);
+        scores.<span class="fn">put</span>(<span class="val">"Bob"</span>, <span class="nm">85</span>);
+        scores.<span class="fn">put</span>(<span class="val">"Alice"</span>, <span class="nm">95</span>); <span class="cm">// overwrites previous</span>
+
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(scores);
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 7.1</div>
+                <p>Implement a simple phone‑book using a <code>HashMap&lt;String, String&gt;</code> where the key is a
+                    person’s name and the value is a phone number. Add methods to add, lookup and remove entries.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 8 ===================== -->
+        <div class="lecture" id="lec-7">
+            <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+            <h1>Generics</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">Requires: Lecture 07</span>
+            </div>
+
+            <h2>Why Generics?</h2>
+            <p>They let you write **type‑safe** collections and APIs without casting.</p>
+
+            <h3>Simple generic class</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">Box.java</span>
+                </div>
+                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Box</span>&lt;<span class="kw">T</span>&gt; {
+    <span class="kw">private</span> <span class="kw">T</span> <span class="nm">value</span>;
+
+    <span class="kw">public</span> <span class="tag">Box</span>(<span class="kw">T</span> value) {
+        <span class="kw">this</span>.<span class="nm">value</span> = value;
+    }
+
+    <span class="kw">public</span> <span class="kw">T</span> <span class="fn">get</span>() { <span class="kw">return</span> <span class="nm">value</span>; }
+    <span class="kw">public</span> <span class="kw">void</span> <span class="fn">set</span>(<span class="kw">T</span> value) { <span class="kw">this</span>.<span class="nm">value</span> = value; }
+}</pre>
+            </div>
+
+            <h3>Using bounded type parameters</h3>
+            <p>Restrict a type to subclasses of a given class or interface.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">NumberUtils.java</span>
+                </div>
+                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">NumberUtils</span> {
+    <span class="kw">public static</span> &lt;<span class="kw">T</span> <span class="kw">extends</span> <span class="kw">Number</span>&gt;
+    <span class="kw">double</span> <span class="fn">sum</span>(List&lt;<span class="kw">T</span>&gt; list) {
+        <span class="kw">double</span> total = <span class="nm">0</span>;
+        <span class="kw">for</span> (T n : list) {
+            total += n.<span class="fn">doubleValue</span>();
+        }
+        <span class="kw">return</span> total;
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 8.1</div>
+                <p>Create a generic <code>Pair&lt;K,V&gt;</code> class that stores two values. Write a short demo that
+                    creates a <code>Pair&lt;String,Integer&gt;</code> and prints both elements.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 9 ===================== -->
+        <div class="lecture" id="lec-8">
+            <div class="lecture-tag">Lecture 09 · Advanced</div>
+            <h1>Streams &amp; Lambdas (Java 8+)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~55 min</span>
+                <span class="meta-badge">Requires: Lecture 08</span>
+            </div>
+
+            <h2>Lambda syntax</h2>
+            <p>A lambda expression is an anonymous function that can be treated as an instance of a functional
+                interface.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">LambdaDemo.java</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="kw">java.util</span>.function.*;
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="tag">LambdaDemo</span> {
+    <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        <span class="kw">Predicate</span>&lt;<span class="kw">Integer</span>&gt; isEven = n -&gt; n % <span class="nm">2</span> == <span class="nm">0</span>;
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(isEven.<span class="fn">test</span>(<span class="nm">42</span>)); <span class="cm">// true</span>
+    }
+}</pre>
+            </div>
+
+            <h2>Stream pipeline</h2>
+            <p>Streams enable functional‑style processing of sequences of elements.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">StreamDemo.java</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="kw">java.util</span>.stream.*;
+<span class="kw">import</span> <span class="kw">java.util</span>.*;
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="tag">StreamDemo</span> {
+    <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        List&lt;<span class="kw">Integer</span>&gt; numbers = Arrays.<span class="fn">asList</span>(<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">3</span>,<span class="nm">4</span>,<span class="nm">5</span>);
+        <span class="kw">int</span> sum = numbers.<span class="fn">stream</span>()
+                               .<span class="fn">filter</span>(n -&gt; n % <span class="nm">2</span> == <span class="nm">0</span>)   <span class="cm">// keep evens</span>
+                               .<span class="fn">mapToInt</span>(n -&gt; n * n)       <span class="cm">// square them</span>
+                               .<span class="fn">sum</span>();                 <span class="cm">// sum</span>
+
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Result = "</span> + sum);
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 9.1</div>
+                <p>Read a list of words from an array, convert them to uppercase, filter those longer than 5 characters,
+                    sort them alphabetically and print each on its own line – all using the Stream API.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 10 ===================== -->
+        <div class="lecture" id="lec-9">
+            <div class="lecture-tag">Lecture 10 · Advanced</div>
+            <h1>Exception Handling</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">Requires: Lecture 09</span>
+            </div>
+
+            <h2>Checked vs Unchecked</h2>
+            <ul>
+                <li><strong>Checked</strong> – compiler forces you to handle or declare (<code>IOException</code>,
+                    <code>SQLException</code>).</li>
+                <li><strong>Unchecked</strong> – subclasses of <code>RuntimeException</code> (e.g.
+                    <code>NullPointerException</code>) need not be declared.</li>
+            </ul>
+
+            <h3>Try‑catch‑finally</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">ExceptionDemo.java</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="kw">java.io</span>.*;
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="tag">ExceptionDemo</span> {
+    <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        <span class="kw">try</span> {
+            BufferedReader br = <span class="kw">new</span> <span class="tag">BufferedReader</span>(<span class="kw">new</span> <span class="tag">FileReader</span>(<span class="val">"missing.txt"</span>));
+            <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(br.<span class="fn">readLine</span>());
+        } <span class="kw">catch</span> (FileNotFoundException e) {
+            <span class="kw">System</span>.<span class="fn">err</span>.<span class="fn">println</span>(<span class="val">"File not found!"</span>);
+        } <span class="kw">catch</span> (IOException e) {
+            <span class="kw">e</span>.<span class="fn">printStackTrace</span>();
+        } <span class="kw">finally</span> {
+            <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Cleanup if necessary"</span>);
+        }
+    }
+}</pre>
+            </div>
+
+            <h3>Custom exception</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">InvalidAgeException.java</span>
+                </div>
+                <pre><span class="kw">public class</span> <span class="tag">InvalidAgeException</span> <span class="kw">extends</span> <span class="kw">Exception</span> {
+    <span class="kw">public</span> <span class="tag">InvalidAgeException</span>(<span class="kw">String</span> message) {
+        <span class="kw">super</span>(message);
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 10.1</div>
+                <p>Create a <code>BankAccount</code> class with a <code>withdraw(double amount)</code> method.
+                    Throw a custom <code>InsufficientFundsException</code> when the balance would become negative,
+                    and write a driver program that catches and reports the error.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 11 ===================== -->
+        <div class="lecture" id="lec-10">
+            <div class="lecture-tag">Lecture 11 · Advanced</div>
+            <h1>Concurrency</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~60 min</span>
+                <span class="meta-badge">Requires: Lecture 10</span>
+            </div>
+
+            <h2>Threads basics</h2>
+            <p>Two ways to create a thread:</p>
+            <ol>
+                <li>Extend <code>Thread</code> and override <code>run()</code>.</li>
+                <li>Implement <code>Runnable</code> (or <code>Callable</code>) and pass it to a <code>Thread</code> or
+                    an <code>ExecutorService</code>.</li>
+            </ol>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">ThreadDemo.java</span>
+                </div>
+                <pre><span class="kw">class</span> <span class="tag">MyTask</span> <span class="kw">implements</span> <span class="kw">Runnable</span> {
+    <span class="kw">public</span> <span class="kw">void</span> <span class="fn">run</span>() {
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i &lt; <span class="nm">5</span>; i++) {
+            <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Thread "</span> + <span class="kw">Thread</span>.<span class="fn">currentThread</span>().<span class="fn">getName</span>() + <span class="val">": "</span> + i);
+            <span class="kw">try</span> { <span class="kw">Thread</span>.<span class="fn">sleep</span>(<span class="nm">500</span>); } <span class="kw">catch</span> (InterruptedException e) { }
+        }
+    }
+}
+
+<span class="kw">public class</span> <span class="tag">ThreadDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="kw">String</span>[] args) {
+        Thread t1 = <span class="kw">new</span> <span class="tag">Thread</span>(<span class="kw">new</span> <span class="tag">MyTask</span>(), <span class="val">"Worker‑1"</span>);
+        Thread t2 = <span class="kw">new</span> <span class="tag">Thread</span>(<span class="kw">new</span> <span class="tag">MyTask</span>(), <span class="val">"Worker‑2"</span>);
+        t1.<span class="fn">start</span>();
+        t2.<span class="fn">start</span>();
+    }
+}</pre>
+            </div>
+
+            <h2>Executor framework</h2>
+            <p>Higher‑level API for managing thread pools.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">ExecutorDemo.java</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="kw">java.util.concurrent</span>.*;
+
+<span class="kw">public class</span> <span class="tag">ExecutorDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="kw">String</span>[] args) {
+        ExecutorService pool = Executors.<span class="fn">newFixedThreadPool</span>(<span class="nm">3</span>);
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i &lt; <span class="nm">10</span>; i++) {
+            <span class="kw">int</span> id = i;
+            pool.<span class="fn">submit</span>(() -&gt; {
+                <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Task "</span> + id + <span class="val">" executed by "</span> + Thread.<span class="fn">currentThread</span>().<span class="fn">getName</span>());
+            });
+        }
+        pool.<span class="fn">shutdown</span>();
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 11.1</div>
+                <p>Implement a simple producer‑consumer pipeline using a <code>BlockingQueue</code> and two threads
+                    (one producing numbers, the other consuming and printing them). Use an <code>ExecutorService</code>
+                    to run both.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 12 ===================== -->
+        <div class="lecture" id="lec-11">
+            <div class="lecture-tag">Lecture 12 · Capstone</div>
+            <h1>Capstone Project – Console To‑Do List</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-advanced">Advanced</span>
+                <span class="meta-badge">~90 min</span>
+                <span class="meta-badge">Requires: All Lectures</span>
+            </div>
+
+            <p>Build a **single‑file** console application that lets the user manage a to‑do list. The program should
+                let you:</p>
+            <ul>
+                <li>Add a task (string description).</li>
+                <li>Mark a task as completed.</li>
+                <li>Delete a task.</li>
+                <li>Display all tasks with status.</li>
+                <li>Persist tasks to a plain‑text file on exit and reload them on start.</li>
+            </ul>
+
+            <h2>Suggested Architecture</h2>
+            <ol>
+                <li><strong>Model</strong> – a <code>Task</code> class with <code>id</code>, <code>description</code>
+                    and <code>completed</code> flag.</li>
+                <li><strong>Repository</strong> – a <code>List&lt;Task&gt;</code> stored in memory; use
+                    <code>Files</code> API for persistence.</li>
+                <li><strong>Service</strong> – static methods for add/save/load/delete.</li>
+                <li><strong>UI loop</strong> – a <code>while(true)</code> menu that reads user input with
+                    <code>Scanner</code>.</li>
+            </ol>
+
+            <h2>Starter Code (you’ll flesh it out)</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">TodoApp.java</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="kw">java.util</span>.*;
+<span class="kw">import</span> <span class="kw">java.nio.file</span>.*;
+
+<span class="kw">class</span> <span class="tag">Task</span> {
+    <span class="kw">private static int</span> <span class="nm">counter</span> = <span class="nm">1</span>;
+    <span class="kw">private final int</span> <span class="nm">id</span>;
+    <span class="kw">private String</span> <span class="nm">description</span>;
+    <span class="kw">private boolean</span> <span class="nm">done</span>;
+
+    <span class="kw">public Task</span>(<span class="kw">String</span> description) {
+        <span class="kw">this</span>.<span class="nm">id</span> = <span class="nm">counter</span>++;
+        <span class="kw">this</span>.<span class="nm">description</span> = description;
+        <span class="kw">this</span>.<span class="nm">done</span> = <span class="kw">false</span>;
+    }
+
+    <span class="kw">public int</span> <span class="fn">getId</span>() { <span class="kw">return</span> <span class="nm">id</span>; }
+    <span class="kw">public String</span> <span class="fn">getDescription</span>() { <span class="kw">return</span> <span class="nm">description</span>; }
+    <span class="kw">public boolean</span> <span class="fn">isDone</span>() { <span class="kw">return</span> <span class="nm">done</span>; }
+    <span class="kw">public void</span> <span class="fn">toggle</span>() { <span class="nm">done</span> = !<span class="nm">done</span>; }
+
+    <span class="kw">public String</span> <span class="fn">serialize</span>() {
+        <span class="kw">return</span> id + <span class="val">","</span> + description.replaceAll(<span class="val">","</span>, <span class="val">"\\,"</span>) + <span class="val">","</span> + done;
+    }
+
+    <span class="kw">public static Task</span> <span class="fn">deserialize</span>(<span class="kw">String</span> line) {
+        <span class="kw">String</span>[] parts = line.split(<span class="val">","</span>, 3);
+        Task t = <span class="kw">new</span> <span class="tag">Task</span>(parts[<span class="nm">1</span>]);
+        t.<span class="nm">id</span> = Integer.parseInt(parts[<span class="nm">0</span>]);          <span class="cm">// reset id</span>
+        t.<span class="nm">done</span> = Boolean.parseBoolean(parts[<span class="nm">2</span>]);
+        <span class="kw">return</span> t;
+    }
+}
+
+<span class="kw">public class</span> <span class="tag">TodoApp</span> {
+    <span class="kw">private static final Path</span> FILE = Paths.<span class="fn">get</span>(<span class="val">"tasks.txt"</span>);
+    <span class="kw">private static final List&lt;Task&gt;</span> tasks = <span class="kw">new</span> <span class="tag">ArrayList</span>&lt;&gt;();
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="kw">String</span>[] args) <span class="kw">throws</span> Exception {
+        load();
+        Scanner sc = <span class="kw">new</span> <span class="tag">Scanner</span>(System.<span class="fn">in</span>);
+        <span class="kw">while</span> (<span class="kw">true</span>) {
+            System.out.println(<span class="val">"\n--- To‑Do List ---"</span>);
+            tasks.<span class="fn">forEach</span>(t -&gt; System.out.println(t.<span class="fn">getId</span>() + <span class="val">". ["</span> + (t.<span class="fn">isDone</span>() ? <span class="val">"x"</span> : <span class="val">" "</span>) + <span class="val">"] "</span> + t.<span class="fn">getDescription</span>()));
+            System.out.println(<span class="val">"\nChoose: (a)dd, (t)oggle, (d)elete, (q)uit"</span>);
+            String cmd = sc.<span class="fn">nextLine</span>().trim().toLowerCase();
+            <span class="kw">switch</span> (cmd) {
+                <span class="kw">case</span> <span class="val">"a"</span>:
+                    System.out.print(<span class="val">"Enter description: "</span>);
+                    String desc = sc.<span class="fn">nextLine</span>();
+                    tasks.<span class="fn">add</span>(<span class="kw">new</span> <span class="tag">Task</span>(desc));
+                    <span class="kw">break</span>;
+                <span class="kw">case</span> <span class="val">"t"</span>:
+                    System.out.print(<span class="val">"Id to toggle: "</span>);
+                    <span class="kw">int</span> id = Integer.<span class="fn">parseInt</span>(sc.<span class="fn">nextLine</span>());
+                    tasks.<span class="fn">stream</span>()
+                         .<span class="fn">filter</span>(t -&gt; t.<span class="fn">getId</span>() == id)
+                         .<span class="fn">findFirst</span>()
+                         .<span class="fn">ifPresent</span>(Task::<span class="fn">toggle</span>);
+                    <span class="kw">break</span>;
+                <span class="kw">case</span> <span class="val">"d"</span>:
+                    System.out.print(<span class="val">"Id to delete: "</span>);
+                    <span class="kw">int</span> delId = Integer.<span class="fn">parseInt</span>(sc.<span class="fn">nextLine</span>());
+                    tasks.<span class="fn">removeIf</span>(t -&gt; t.<span class="fn">getId</span>() == delId);
+                    <span class="kw">break</span>;
+                <span class="kw">case</span> <span class="val">"q"</span>:
+                    save();
+                    System.out.println(<span class="val">"Good‑bye!"</span>);
+                    <span class="kw">return</span>;
+                <span class="kw">default</span>:
+                    System.out.println(<span class="val">"Unknown command"</span>);
+            }
+        }
+    }
+
+    <span class="kw">private static void</span> <span class="fn">load</span>() <span class="kw">throws</span> Exception {
+        <span class="kw">if</span> (Files.<span class="fn">exists</span>(FILE)) {
+            Files.<span class="fn">lines</span>(FILE).forEach(l -&gt; tasks.<span class="fn">add</span>(Task.<span class="fn">deserialize</span>(l)));
+        }
+    }
+
+    <span class="kw">private static void</span> <span class="fn">save</span>() <span class="kw">throws</span> Exception {
+        List&lt;<span class="kw">String</span>&gt; lines = <span class="kw">new</span> <span class="tag">ArrayList</span>&lt;&gt;();
+        tasks.<span class="fn">forEach</span>(t -&gt; lines.<span class="fn">add</span>(t.<span class="fn">serialize</span>()));
+        Files.<span class="fn">write</span>(FILE, lines);
+    }
+}</pre>
+            </div>
+
+            <h2>What You’ll Demonstrate</h2>
+            <ul>
+                <li>Class design &amp; encapsulation.</li>
+                <li>Collections (ArrayList) and streaming operations.</li>
+                <li>File I/O with NIO.</li>
+                <li>Basic console UI handling.</li>
+                <li>Exception handling for I/O and parsing errors.</li>
+            </ul>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Final Challenge</div>
+                <p>Extend the app with:</p>
+                <ol>
+                    <li>A priority field (enum <code>LOW/MEDIUM/HIGH</code>) and sort the output by priority.</li>
+                    <li>Use <code>java.time.LocalDate</code> to add a due‑date, and display overdue tasks.</li>
+                    <li>Write JUnit tests for the <code>Task</code> class and the persistence logic.</li>
+                </ol>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+            </div>
+        </div>
+
+    </div><!-- /main -->
+
+    <script>
+        const titles = [
+            "What is Java?",
+            "Setting up the JDK",
+            "Variables & Data Types",
+            "Control Flow",
+            "Methods",
+            "Object‑Oriented Programming",
+            "Collections Framework",
+            "Generics",
+            "Streams & Lambdas (Java 8+)",
+            "Exception Handling",
+            "Concurrency",
+            "Capstone Project"
+        ];
+
+        function showLecture(index) {
+            document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+            document.getElementById('lec-' + index).classList.add('active');
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+
+            document.getElementById('breadcrumb-current').textContent = titles[index];
+            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
+            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('sidebar').classList.remove('open');
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

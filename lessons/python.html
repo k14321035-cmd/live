@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Mastery — Complete Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+</head>
+
+<body>
+
+    <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">🐍</span>
+                Python Mastery
+            </a>
+            <p>Complete Course — 42 Lessons</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Fundamentals</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span
+                    class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span
+                    class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span
+                    class="dot"></span>Operators & Expressions</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span
+                    class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span
+                    class="dot"></span>Loops</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Core Concepts</div>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span
+                    class="dot"></span>Functions</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Data
+                Structures</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span
+                    class="dot"></span>Strings In Depth</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced</div>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
+                    class="dot"></span>Object-Oriented Prog.</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>File
+                I/O & Exceptions</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span
+                    class="dot"></span>Modules & Libraries</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
+                    class="dot"></span>Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>Python Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">Introduction & Setup</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:8%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 1 ===================== -->
+        <div class="lecture active" id="lec-0">
+            <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+            <h1>Introduction to Python & Setup</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">No prerequisites</span>
+            </div>
+
+            <h2>What is Python?</h2>
+            <p>Python is a high-level, interpreted, general-purpose programming language created by Guido van Rossum and
+                first released in 1991. It emphasizes code readability and simplicity, using significant whitespace
+                (indentation) to define code blocks instead of curly braces.</p>
+            <p>Python is one of the most widely used programming languages in the world, powering everything from web
+                backends and data science pipelines to AI research and automation scripts.</p>
+
+            <h3>Why Python?</h3>
+            <ul>
+                <li><strong>Easy to learn:</strong> Clean, English-like syntax lowers the barrier to entry.</li>
+                <li><strong>Versatile:</strong> Web dev, data science, ML/AI, automation, scripting, games.</li>
+                <li><strong>Huge ecosystem:</strong> 400,000+ packages on PyPI.</li>
+                <li><strong>Strong community:</strong> Massive documentation, tutorials, and forums.</li>
+                <li><strong>Cross-platform:</strong> Runs on Windows, macOS, Linux identically.</li>
+            </ul>
+
+            <h2>Installing Python</h2>
+            <p>Download the latest version (3.x) from <strong>python.org</strong>. As of 2026, Python 3.12+ is
+                recommended.</p>
+
+            <div class="box info">
+                <div class="box-title">ℹ️ Version Note</div>
+                Always install Python 3. Python 2 reached end-of-life in 2020 and should not be used for new projects.
+            </div>
+
+            <h3>Windows</h3>
+            <p>Download the installer from python.org and check <strong>"Add Python to PATH"</strong> during
+                installation. Verify in Command Prompt:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cmd /
+                        terminal</span>
+                </div>
+                <pre>python --version
+<span class="cm"># Expected: Python 3.12.x</span></pre>
+            </div>
+
+            <h3>macOS / Linux</h3>
+            <p>macOS comes with Python 2 by default. Use Homebrew to install Python 3:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">terminal</span>
+                </div>
+                <pre>brew install python3
+python3 --version</pre>
+            </div>
+
+            <h2>Your First Python Program</h2>
+            <p>Open any text editor (VS Code is recommended) and create a file called <code>hello.py</code>:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">hello.py</span>
+                </div>
+                <pre><span class="cm"># This is a comment — Python ignores it</span>
+<span class="bi">print</span>(<span class="st">"Hello, World!"</span>)
+<span class="bi">print</span>(<span class="st">"Welcome to Python Mastery!"</span>)</pre>
+            </div>
+            <div class="output-block">
+                <div class="output-label">Output</div>Hello, World!<br>Welcome to Python Mastery!
+            </div>
+
+            <h2>The Python Interactive Shell (REPL)</h2>
+            <p>Python includes an interactive shell where you type code and see immediate results. Type
+                <code>python</code> (or <code>python3</code>) in your terminal:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Python
+                        REPL</span>
+                </div>
+                <pre>>>> <span class="bi">print</span>(<span class="st">"Hello"</span>)
+Hello
+>>> <span class="nm">2</span> + <span class="nm">3</span>
+5
+>>> <span class="nm">10</span> / <span class="nm">3</span>
+3.3333333333333335
+>>> <span class="bi">exit</span>()   <span class="cm"># exits the REPL</span></pre>
+            </div>
+
+            <h2>Using VS Code (Recommended IDE)</h2>
+            <p>VS Code is a free, powerful editor perfect for Python development. Install the <strong>Python extension
+                    by Microsoft</strong> from the Extensions panel. It provides:</p>
+            <ul>
+                <li>Syntax highlighting and IntelliSense (auto-complete)</li>
+                <li>Integrated debugger</li>
+                <li>Built-in terminal</li>
+                <li>Linting and formatting (via Pylint, Black)</li>
+            </ul>
+
+            <h2>Understanding Python Syntax Basics</h2>
+
+            <h3>Indentation is mandatory</h3>
+            <p>Python uses indentation (4 spaces per level by convention) instead of curly braces to define code
+                structure:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">indentation.py</span>
+                </div>
+                <pre><span class="kw">if</span> <span class="nm">True</span>:
+    <span class="bi">print</span>(<span class="st">"This is indented — it's inside the if block"</span>)
+    <span class="bi">print</span>(<span class="st">"So is this"</span>)
+<span class="bi">print</span>(<span class="st">"This is outside — runs regardless"</span>)</pre>
+            </div>
+
+            <h3>Comments</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">comments.py</span>
+                </div>
+                <pre><span class="cm"># Single-line comment — Python ignores this</span>
+
+<span class="cm">"""
+Multi-line string used as a docstring/comment block.
+Often used to document functions and classes.
+"""</span>
+
+x = <span class="nm">5</span>  <span class="cm"># Inline comment</span></pre>
+            </div>
+
+            <div class="box tip">
+                <div class="box-title">✅ Best Practice</div>
+                Write comments to explain <em>why</em>, not <em>what</em>. Code explains what it does; comments explain
+                the reasoning.
+            </div>
+
+            <h2>How Python Runs Code</h2>
+            <p>Python is an interpreted language. When you run <code>python script.py</code>, the Python interpreter
+                reads your source code line by line, converts it to bytecode (<code>.pyc</code> files in
+                <code>__pycache__</code>), and executes it via the Python Virtual Machine (PVM).</p>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 1.1</div>
+                <p>Create a file called <code>intro.py</code>. Write a program that prints your name, your age, and your
+                    country on three separate lines. Run it from the terminal.</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 1.2</div>
+                <p>Open the Python REPL and compute: what is 17 multiplied by 23? What is 2 to the power of 10? Use
+                    Python as a calculator.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 2 ===================== -->
+        <div class="lecture" id="lec-1">
+            <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+            <h1>Variables & Data Types</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~50 min</span>
+                <span class="meta-badge">Requires: Lecture 01</span>
+            </div>
+
+            <h2>Variables</h2>
+            <p>A variable is a named reference to a value stored in memory. In Python, you create variables simply by
+                assigning a value — no type declaration needed.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">variables.py</span>
+                </div>
+                <pre>name = <span class="st">"Alice"</span>
+age = <span class="nm">25</span>
+height = <span class="nm">5.6</span>
+is_student = <span class="nm">True</span>
+
+<span class="bi">print</span>(name, age, height, is_student)</pre>
+            </div>
+            <div class="output-block">
+                <div class="output-label">Output</div>Alice 25 5.6 True
+            </div>
+
+            <h3>Naming Rules</h3>
+            <ul>
+                <li>Must start with a letter or underscore (<code>_</code>)</li>
+                <li>Can contain letters, numbers, underscores — no spaces or special chars</li>
+                <li>Case-sensitive: <code>Name</code> ≠ <code>name</code></li>
+                <li>Cannot be a Python keyword (<code>if</code>, <code>for</code>, <code>class</code>, etc.)</li>
+            </ul>
+
+            <div class="box tip">
+                <div class="box-title">✅ Convention</div>
+                Use <strong>snake_case</strong> for variables and functions: <code>user_name</code>,
+                <code>total_price</code>. Use <strong>UPPER_CASE</strong> for constants: <code>MAX_SIZE = 100</code>.
+            </div>
+
+            <h2>Core Data Types</h2>
+            <div class="tbl-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Example</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>int</code></td>
+                            <td><code>42</code>, <code>-7</code>, <code>0</code></td>
+                            <td>Whole numbers (unlimited size)</td>
+                        </tr>
+                        <tr>
+                            <td><code>float</code></td>
+                            <td><code>3.14</code>, <code>-0.5</code></td>
+                            <td>Decimal / floating point numbers</td>
+                        </tr>
+                        <tr>
+                            <td><code>str</code></td>
+                            <td><code>"hello"</code>, <code>'world'</code></td>
+                            <td>Text (sequence of characters)</td>
+                        </tr>
+                        <tr>
+                            <td><code>bool</code></td>
+                            <td><code>True</code>, <code>False</code></td>
+                            <td>Boolean (logical True/False)</td>
+                        </tr>
+                        <tr>
+                            <td><code>NoneType</code></td>
+                            <td><code>None</code></td>
+                            <td>Represents the absence of a value</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Integers</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">integers.py</span>
+                </div>
+                <pre>x = <span class="nm">42</span>
+y = -<span class="nm">100</span>
+big = <span class="nm">1_000_000</span>   <span class="cm"># underscores for readability</span>
+binary = <span class="nm">0b1010</span>   <span class="cm"># binary literal → 10</span>
+hexval = <span class="nm">0xFF</span>    <span class="cm"># hexadecimal → 255</span>
+
+<span class="bi">print</span>(<span class="bi">type</span>(x))   <span class="cm"># &lt;class 'int'&gt;</span>
+<span class="bi">print</span>(big)        <span class="cm"># 1000000</span></pre>
+            </div>
+
+            <h2>Floats</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">floats.py</span>
+                </div>
+                <pre>pi = <span class="nm">3.14159</span>
+sci = <span class="nm">1.5e10</span>     <span class="cm"># scientific notation: 15000000000.0</span>
+neg = -<span class="nm">2.7</span>
+
+<span class="bi">print</span>(<span class="bi">type</span>(pi))  <span class="cm"># &lt;class 'float'&gt;</span>
+
+<span class="cm"># Floating point precision caveat:</span>
+<span class="bi">print</span>(<span class="nm">0.1</span> + <span class="nm">0.2</span>)   <span class="cm"># 0.30000000000000004 (IEEE 754)</span></pre>
+            </div>
+
+            <div class="box warning">
+                <div class="box-title">⚠️ Float Precision</div>
+                Floats have limited precision due to binary representation. For exact decimal arithmetic (e.g., money),
+                use Python's <code>decimal</code> module.
+            </div>
+
+            <h2>Strings</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">strings.py</span>
+                </div>
+                <pre>s1 = <span class="st">"Hello, World!"</span>
+s2 = <span class="st">'Single quotes work too'</span>
+s3 = <span class="st">"""Triple-quoted strings
+span multiple lines"""</span>
+
+<span class="cm"># Escape sequences</span>
+s4 = <span class="st">"Line 1\nLine 2"</span>     <span class="cm"># \n = newline</span>
+s5 = <span class="st">"Tab\there"</span>         <span class="cm"># \t = tab</span>
+s6 = <span class="st">"Quote: \"hi\""</span>      <span class="cm"># \" = literal quote</span>
+
+<span class="cm"># f-strings (Python 3.6+) — the preferred way</span>
+name = <span class="st">"Bob"</span>
+age = <span class="nm">30</span>
+msg = <span class="st">f"My name is {name} and I am {age} years old"</span>
+<span class="bi">print</span>(msg)</pre>
+            </div>
+            <div class="output-block">
+                <div class="output-label">Output</div>My name is Bob and I am 30 years old
+            </div>
+
+            <h2>Booleans</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">booleans.py</span>
+                </div>
+                <pre>t = <span class="nm">True</span>
+f = <span class="nm">False</span>
+
+<span class="bi">print</span>(<span class="bi">type</span>(t))   <span class="cm"># &lt;class 'bool'&gt;</span>
+<span class="bi">print</span>(<span class="nm">True</span> + <span class="nm">True</span>)  <span class="cm"># 2 — bools are ints (True=1, False=0)</span>
+
+<span class="cm"># Truthiness — these evaluate as False:</span>
+<span class="cm"># 0, 0.0, "", [], {}, None</span>
+<span class="bi">print</span>(<span class="bi">bool</span>(<span class="nm">0</span>))    <span class="cm"># False</span>
+<span class="bi">print</span>(<span class="bi">bool</span>(<span class="st">""</span>))   <span class="cm"># False</span>
+<span class="bi">print</span>(<span class="bi">bool</span>(<span class="nm">42</span>))   <span class="cm"># True</span></pre>
+            </div>
+
+            <h2>Type Conversion</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">conversion.py</span>
+                </div>
+                <pre><span class="cm"># Explicit conversion (casting)</span>
+x = <span class="bi">int</span>(<span class="st">"42"</span>)        <span class="cm"># str → int: 42</span>
+y = <span class="bi">float</span>(<span class="st">"3.14"</span>)    <span class="cm"># str → float: 3.14</span>
+z = <span class="bi">str</span>(<span class="nm">100</span>)          <span class="cm"># int → str: "100"</span>
+b = <span class="bi">bool</span>(<span class="nm">1</span>)           <span class="cm"># int → bool: True</span>
+
+<span class="cm"># Getting user input (always returns str)</span>
+name = <span class="bi">input</span>(<span class="st">"Enter your name: "</span>)
+age  = <span class="bi">int</span>(<span class="bi">input</span>(<span class="st">"Enter your age: "</span>))  <span class="cm"># must cast!</span>
+<span class="bi">print</span>(<span class="st">f"Hello {name}, you are {age}"</span>)</pre>
+            </div>
+
+            <h2>Dynamic Typing & type()</h2>
+            <p>Python is dynamically typed — the same variable can hold different types over its lifetime:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">dynamic.py</span>
+                </div>
+                <pre>x = <span class="nm">10</span>
+<span class="bi">print</span>(<span class="bi">type</span>(x))   <span class="cm"># &lt;class 'int'&gt;</span>
+x = <span class="st">"hello"</span>
+<span class="bi">print</span>(<span class="bi">type</span>(x))   <span class="cm"># &lt;class 'str'&gt;</span>
+x = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>]
+<span class="bi">print</span>(<span class="bi">type</span>(x))   <span class="cm"># &lt;class 'list'&gt;</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 2.1</div>
+                <p>Write a program that asks the user for their name and birth year, then calculates and prints their
+                    approximate age with an f-string.</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 2.2</div>
+                <p>Create variables of each core type (int, float, str, bool, None). Use <code>type()</code> to print
+                    each one's type.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 3 ===================== -->
+        <div class="lecture" id="lec-2">
+            <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+            <h1>Operators & Expressions</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">Requires: Lecture 02</span>
+            </div>
+
+            <h2>Arithmetic Operators</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">arithmetic.py</span>
+                </div>
+                <pre>a, b = <span class="nm">17</span>, <span class="nm">5</span>
+
+<span class="bi">print</span>(a + b)    <span class="cm"># Addition:       22</span>
+<span class="bi">print</span>(a - b)    <span class="cm"># Subtraction:    12</span>
+<span class="bi">print</span>(a * b)    <span class="cm"># Multiplication: 85</span>
+<span class="bi">print</span>(a / b)    <span class="cm"># Division:       3.4   (always float!)</span>
+<span class="bi">print</span>(a // b)   <span class="cm"># Floor division: 3     (truncates decimal)</span>
+<span class="bi">print</span>(a % b)    <span class="cm"># Modulo:         2     (remainder)</span>
+<span class="bi">print</span>(a ** b)   <span class="cm"># Exponentiation: 1419857</span></pre>
+            </div>
+
+            <h2>Comparison Operators</h2>
+            <p>Comparison operators always return a boolean (<code>True</code> or <code>False</code>).</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">comparison.py</span>
+                </div>
+                <pre>x = <span class="nm">10</span>
+<span class="bi">print</span>(x == <span class="nm">10</span>)   <span class="cm"># Equal:              True</span>
+<span class="bi">print</span>(x != <span class="nm">5</span>)    <span class="cm"># Not equal:          True</span>
+<span class="bi">print</span>(x > <span class="nm">8</span>)     <span class="cm"># Greater than:       True</span>
+<span class="bi">print</span>(x < <span class="nm">8</span>)     <span class="cm"># Less than:          False</span>
+<span class="bi">print</span>(x >= <span class="nm">10</span>)   <span class="cm"># Greater or equal:   True</span>
+<span class="bi">print</span>(x <= <span class="nm">9</span>)    <span class="cm"># Less or equal:      False</span>
+
+<span class="cm"># Chained comparisons (Pythonic)</span>
+age = <span class="nm">20</span>
+<span class="bi">print</span>(<span class="nm">18</span> <= age <= <span class="nm">65</span>)    <span class="cm"># True — very readable!</span></pre>
+            </div>
+
+            <h2>Logical Operators</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">logical.py</span>
+                </div>
+                <pre>a = <span class="nm">True</span>
+b = <span class="nm">False</span>
+
+<span class="bi">print</span>(a <span class="kw">and</span> b)   <span class="cm"># False — both must be True</span>
+<span class="bi">print</span>(a <span class="kw">or</span> b)    <span class="cm"># True  — at least one True</span>
+<span class="bi">print</span>(<span class="kw">not</span> a)     <span class="cm"># False — flips the boolean</span>
+
+<span class="cm"># Short-circuit evaluation</span>
+x = <span class="nm">0</span>
+result = x <span class="kw">or</span> <span class="st">"default"</span>
+<span class="bi">print</span>(result)    <span class="cm"># "default" — x is falsy, so "or" returns right side</span>
+
+name = <span class="st">"Alice"</span>
+greeting = name <span class="kw">and</span> <span class="st">f"Hello, {name}"</span>
+<span class="bi">print</span>(greeting)  <span class="cm"># "Hello, Alice" — name is truthy</span></pre>
+            </div>
+
+            <h2>Assignment Operators</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">assignment.py</span>
+                </div>
+                <pre>x = <span class="nm">10</span>
+x += <span class="nm">5</span>    <span class="cm"># x = x + 5  → 15</span>
+x -= <span class="nm">3</span>    <span class="cm"># x = x - 3  → 12</span>
+x *= <span class="nm">2</span>    <span class="cm"># x = x * 2  → 24</span>
+x //= <span class="nm">4</span>   <span class="cm"># x = x // 4 → 6</span>
+x **= <span class="nm">2</span>   <span class="cm"># x = x ** 2 → 36</span>
+<span class="bi">print</span>(x)  <span class="cm"># 36</span>
+
+<span class="cm"># Multiple assignment</span>
+a, b, c = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>
+x = y = z = <span class="nm">0</span>   <span class="cm"># all set to 0</span>
+
+<span class="cm"># Swap variables (Pythonic!)</span>
+a, b = b, a</pre>
+            </div>
+
+            <h2>Identity & Membership Operators</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">identity.py</span>
+                </div>
+                <pre><span class="cm"># Identity: is / is not (checks memory identity)</span>
+x = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>]
+y = x
+z = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>]
+
+<span class="bi">print</span>(x <span class="kw">is</span> y)      <span class="cm"># True  — same object in memory</span>
+<span class="bi">print</span>(x <span class="kw">is</span> z)      <span class="cm"># False — same values, different objects</span>
+<span class="bi">print</span>(x == z)      <span class="cm"># True  — same values</span>
+
+<span class="cm"># Membership: in / not in</span>
+fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+<span class="bi">print</span>(<span class="st">"banana"</span> <span class="kw">in</span> fruits)     <span class="cm"># True</span>
+<span class="bi">print</span>(<span class="st">"grape"</span> <span class="kw">not in</span> fruits)  <span class="cm"># True</span></pre>
+            </div>
+
+            <h2>Operator Precedence</h2>
+            <p>Operators follow a defined precedence order (highest first): <code>**</code> → unary <code>-/+</code> →
+                <code>* / // %</code> → <code>+ -</code> → comparisons → <code>not</code> → <code>and</code> →
+                <code>or</code>. Use parentheses to be explicit:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">precedence.py</span>
+                </div>
+                <pre><span class="bi">print</span>(<span class="nm">2</span> + <span class="nm">3</span> * <span class="nm">4</span>)      <span class="cm"># 14 (multiplication first)</span>
+<span class="bi">print</span>((<span class="nm">2</span> + <span class="nm">3</span>) * <span class="nm">4</span>)    <span class="cm"># 20 (parentheses override)</span>
+<span class="bi">print</span>(<span class="nm">2</span> ** <span class="nm">3</span> ** <span class="nm">2</span>)    <span class="cm"># 512 (** is right-associative: 2**(3**2))</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 3.1</div>
+                <p>Write a program that takes a number from the user and determines whether it is even or odd using the
+                    modulo operator. Print an appropriate message.</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 3.2</div>
+                <p>Calculate the area and circumference of a circle given a radius entered by the user. Use
+                    <code>pi = 3.14159</code>.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 4 ===================== -->
+        <div class="lecture" id="lec-3">
+            <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+            <h1>Control Flow: if / elif / else</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~50 min</span>
+                <span class="meta-badge">Requires: Lecture 03</span>
+            </div>
+
+            <h2>The if Statement</h2>
+            <p>Conditional statements allow your program to make decisions and execute different code based on
+                conditions.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">if_basic.py</span>
+                </div>
+                <pre>temperature = <span class="nm">35</span>
+
+<span class="kw">if</span> temperature > <span class="nm">30</span>:
+    <span class="bi">print</span>(<span class="st">"It's hot outside!"</span>)
+    <span class="bi">print</span>(<span class="st">"Stay hydrated."</span>)</pre>
+            </div>
+            <div class="output-block">
+                <div class="output-label">Output</div>It's hot outside!<br>Stay hydrated.
+            </div>
+
+            <h2>if / else</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">if_else.py</span>
+                </div>
+                <pre>age = <span class="nm">16</span>
+
+<span class="kw">if</span> age >= <span class="nm">18</span>:
+    <span class="bi">print</span>(<span class="st">"You can vote."</span>)
+<span class="kw">else</span>:
+    years_left = <span class="nm">18</span> - age
+    <span class="bi">print</span>(<span class="st">f"You need to wait {years_left} more years."</span>)</pre>
+            </div>
+
+            <h2>if / elif / else</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">grades.py</span>
+                </div>
+                <pre>score = <span class="nm">78</span>
+
+<span class="kw">if</span> score >= <span class="nm">90</span>:
+    grade = <span class="st">"A"</span>
+<span class="kw">elif</span> score >= <span class="nm">80</span>:
+    grade = <span class="st">"B"</span>
+<span class="kw">elif</span> score >= <span class="nm">70</span>:
+    grade = <span class="st">"C"</span>
+<span class="kw">elif</span> score >= <span class="nm">60</span>:
+    grade = <span class="st">"D"</span>
+<span class="kw">else</span>:
+    grade = <span class="st">"F"</span>
+
+<span class="bi">print</span>(<span class="st">f"Score: {score} → Grade: {grade}"</span>)</pre>
+            </div>
+            <div class="output-block">
+                <div class="output-label">Output</div>Score: 78 → Grade: C
+            </div>
+
+            <h2>Nested if Statements</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">nested.py</span>
+                </div>
+                <pre>username = <span class="st">"admin"</span>
+password = <span class="st">"secret123"</span>
+
+<span class="kw">if</span> username == <span class="st">"admin"</span>:
+    <span class="kw">if</span> password == <span class="st">"secret123"</span>:
+        <span class="bi">print</span>(<span class="st">"Access granted!"</span>)
+    <span class="kw">else</span>:
+        <span class="bi">print</span>(<span class="st">"Wrong password."</span>)
+<span class="kw">else</span>:
+    <span class="bi">print</span>(<span class="st">"Unknown user."</span>)</pre>
+            </div>
+
+            <h2>Ternary (Conditional Expression)</h2>
+            <p>A one-line if/else for simple assignments:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">ternary.py</span>
+                </div>
+                <pre>age = <span class="nm">20</span>
+status = <span class="st">"adult"</span> <span class="kw">if</span> age >= <span class="nm">18</span> <span class="kw">else</span> <span class="st">"minor"</span>
+<span class="bi">print</span>(status)   <span class="cm"># adult</span>
+
+<span class="cm"># Equivalent to:</span>
+<span class="kw">if</span> age >= <span class="nm">18</span>:
+    status = <span class="st">"adult"</span>
+<span class="kw">else</span>:
+    status = <span class="st">"minor"</span></pre>
+            </div>
+
+            <h2>match / case (Python 3.10+)</h2>
+            <p>Python's structural pattern matching — similar to switch/case in other languages, but far more powerful:
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">match.py</span>
+                </div>
+                <pre>command = <span class="st">"quit"</span>
+
+<span class="kw">match</span> command:
+    <span class="kw">case</span> <span class="st">"start"</span>:
+        <span class="bi">print</span>(<span class="st">"Starting..."</span>)
+    <span class="kw">case</span> <span class="st">"stop"</span> | <span class="st">"quit"</span>:
+        <span class="bi">print</span>(<span class="st">"Stopping."</span>)
+    <span class="kw">case</span> _:
+        <span class="bi">print</span>(<span class="st">"Unknown command"</span>)</pre>
+            </div>
+            <div class="output-block">
+                <div class="output-label">Output</div>Stopping.
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 4.1 — BMI Calculator</div>
+                <p>Ask the user for their weight (kg) and height (m). Compute BMI = weight / height². Then categorize:
+                    Underweight (&lt;18.5), Normal (18.5–24.9), Overweight (25–29.9), Obese (≥30).</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 4.2 — Leap Year</div>
+                <p>Ask the user for a year. Determine if it's a leap year. A year is leap if: divisible by 4 AND (not
+                    divisible by 100 OR divisible by 400).</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 5 ===================== -->
+        <div class="lecture" id="lec-4">
+            <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+            <h1>Loops: for & while</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~55 min</span>
+                <span class="meta-badge">Requires: Lecture 04</span>
+            </div>
+
+            <h2>The for Loop</h2>
+            <p>Python's <code>for</code> loop iterates over any iterable (list, string, range, etc.).</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">for_basic.py</span>
+                </div>
+                <pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits:
+    <span class="bi">print</span>(<span class="st">f"I like {fruit}"</span>)
+
+<span class="cm"># Iterating a string</span>
+<span class="kw">for</span> char <span class="kw">in</span> <span class="st">"Python"</span>:
+    <span class="bi">print</span>(char, end=<span class="st">"-"</span>)   <span class="cm"># P-y-t-h-o-n-</span></pre>
+            </div>
+
+            <h2>range()</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">range_demo.py</span>
+                </div>
+                <pre><span class="cm"># range(stop)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">5</span>):
+    <span class="bi">print</span>(i, end=<span class="st">" "</span>)   <span class="cm"># 0 1 2 3 4</span>
+
+<span class="cm"># range(start, stop)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">1</span>, <span class="nm">6</span>):
+    <span class="bi">print</span>(i, end=<span class="st">" "</span>)   <span class="cm"># 1 2 3 4 5</span>
+
+<span class="cm"># range(start, stop, step)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">0</span>, <span class="nm">20</span>, <span class="nm">5</span>):
+    <span class="bi">print</span>(i, end=<span class="st">" "</span>)   <span class="cm"># 0 5 10 15</span>
+
+<span class="cm"># Counting backwards</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">10</span>, <span class="nm">0</span>, -<span class="nm">1</span>):
+    <span class="bi">print</span>(i, end=<span class="st">" "</span>)   <span class="cm"># 10 9 8 7 6 5 4 3 2 1</span></pre>
+            </div>
+
+            <h2>enumerate() and zip()</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">enumerate_zip.py</span>
+                </div>
+                <pre><span class="cm"># enumerate gives index + value</span>
+animals = [<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"bird"</span>]
+<span class="kw">for</span> i, animal <span class="kw">in</span> <span class="bi">enumerate</span>(animals, start=<span class="nm">1</span>):
+    <span class="bi">print</span>(<span class="st">f"{i}. {animal}"</span>)
+<span class="cm"># 1. cat  2. dog  3. bird</span>
+
+<span class="cm"># zip iterates multiple lists simultaneously</span>
+names   = [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Carol"</span>]
+scores  = [<span class="nm">95</span>, <span class="nm">87</span>, <span class="nm">92</span>]
+
+<span class="kw">for</span> name, score <span class="kw">in</span> <span class="bi">zip</span>(names, scores):
+    <span class="bi">print</span>(<span class="st">f"{name}: {score}"</span>)</pre>
+            </div>
+
+            <h2>The while Loop</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">while_basic.py</span>
+                </div>
+                <pre>count = <span class="nm">0</span>
+<span class="kw">while</span> count < <span class="nm">5</span>:
+    <span class="bi">print</span>(<span class="st">f"Count: {count}"</span>)
+    count += <span class="nm">1</span>
+
+<span class="cm"># Interactive while loop</span>
+<span class="kw">while</span> <span class="nm">True</span>:
+    answer = <span class="bi">input</span>(<span class="st">"Say 'quit' to exit: "</span>)
+    <span class="kw">if</span> answer == <span class="st">"quit"</span>:
+        <span class="kw">break</span>
+    <span class="bi">print</span>(<span class="st">f"You typed: {answer}"</span>)</pre>
+            </div>
+
+            <h2>break, continue, pass</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">loop_control.py</span>
+                </div>
+                <pre><span class="cm"># break — exits the loop immediately</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">10</span>):
+    <span class="kw">if</span> i == <span class="nm">5</span>:
+        <span class="kw">break</span>
+    <span class="bi">print</span>(i, end=<span class="st">" "</span>)  <span class="cm"># 0 1 2 3 4</span>
+
+<span class="cm"># continue — skips current iteration</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">10</span>):
+    <span class="kw">if</span> i % <span class="nm">2</span> == <span class="nm">0</span>:
+        <span class="kw">continue</span>   <span class="cm"># skip even numbers</span>
+    <span class="bi">print</span>(i, end=<span class="st">" "</span>)  <span class="cm"># 1 3 5 7 9</span>
+
+<span class="cm"># pass — does nothing, placeholder</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">3</span>):
+    <span class="kw">pass</span>   <span class="cm"># useful for empty loops/stubs</span></pre>
+            </div>
+
+            <h2>List Comprehensions (Preview)</h2>
+            <p>A concise way to create lists using a for loop in a single line:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">comprehension.py</span>
+                </div>
+                <pre><span class="cm"># Standard way</span>
+squares = []
+<span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">1</span>, <span class="nm">6</span>):
+    squares.append(i ** <span class="nm">2</span>)
+
+<span class="cm"># List comprehension — same thing, one line!</span>
+squares = [i ** <span class="nm">2</span> <span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">1</span>, <span class="nm">6</span>)]
+<span class="bi">print</span>(squares)   <span class="cm"># [1, 4, 9, 16, 25]</span>
+
+<span class="cm"># With a filter</span>
+evens = [x <span class="kw">for</span> x <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">20</span>) <span class="kw">if</span> x % <span class="nm">2</span> == <span class="nm">0</span>]
+<span class="bi">print</span>(evens)     <span class="cm"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 5.1 — Multiplication Table</div>
+                <p>Use nested for loops to print the multiplication table from 1×1 to 10×10.</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 5.2 — Number Guessing Game</div>
+                <p>Pick a secret number (e.g., 42). Use a while loop to keep asking the user to guess. Print "Too high",
+                    "Too low", or "Correct!" and track how many guesses they took.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 6 ===================== -->
+        <div class="lecture" id="lec-5">
+            <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+            <h1>Functions</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~60 min</span>
+                <span class="meta-badge">Requires: Lecture 05</span>
+            </div>
+
+            <h2>Defining and Calling Functions</h2>
+            <p>Functions are reusable blocks of code that perform a specific task. Use the <code>def</code> keyword:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">functions.py</span>
+                </div>
+                <pre><span class="kw">def</span> <span class="fn">greet</span>():
+    <span class="st">"""Prints a greeting message."""</span>
+    <span class="bi">print</span>(<span class="st">"Hello! Welcome to Python."</span>)
+
+greet()     <span class="cm"># Call the function</span>
+greet()     <span class="cm"># Can be called many times</span></pre>
+            </div>
+
+            <h2>Parameters and Arguments</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">params.py</span>
+                </div>
+                <pre><span class="kw">def</span> <span class="fn">greet</span>(name, greeting=<span class="st">"Hello"</span>):   <span class="cm"># default parameter</span>
+    <span class="bi">print</span>(<span class="st">f"{greeting}, {name}!"</span>)
+
+greet(<span class="st">"Alice"</span>)               <span class="cm"># Hello, Alice!</span>
+greet(<span class="st">"Bob"</span>, <span class="st">"Good morning"</span>) <span class="cm"># Good morning, Bob!</span>
+greet(greeting=<span class="st">"Hi"</span>, name=<span class="st">"Carol"</span>)  <span class="cm"># keyword args</span></pre>
+            </div>
+
+            <h2>Return Values</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">return.py</span>
+                </div>
+                <pre><span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="kw">return</span> a + b
+
+result = add(<span class="nm">3</span>, <span class="nm">5</span>)
+<span class="bi">print</span>(result)   <span class="cm"># 8</span>
+
+<span class="cm"># Return multiple values (as a tuple)</span>
+<span class="kw">def</span> <span class="fn">min_max</span>(numbers):
+    <span class="kw">return</span> <span class="bi">min</span>(numbers), <span class="bi">max</span>(numbers)
+
+lo, hi = min_max([<span class="nm">3</span>, <span class="nm">1</span>, <span class="nm">7</span>, <span class="nm">4</span>, <span class="nm">9</span>])
+<span class="bi">print</span>(<span class="st">f"Min: {lo}, Max: {hi}"</span>)   <span class="cm"># Min: 1, Max: 9</span></pre>
+            </div>
+
+            <h2>*args and **kwargs</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">args_kwargs.py</span>
+                </div>
+                <pre><span class="cm"># *args: variable positional arguments (tuple)</span>
+<span class="kw">def</span> <span class="fn">total</span>(*numbers):
+    <span class="kw">return</span> <span class="bi">sum</span>(numbers)
+
+<span class="bi">print</span>(total(<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>))          <span class="cm"># 6</span>
+<span class="bi">print</span>(total(<span class="nm">10</span>, <span class="nm">20</span>, <span class="nm">30</span>, <span class="nm">40</span>))   <span class="cm"># 100</span>
+
+<span class="cm"># **kwargs: variable keyword arguments (dict)</span>
+<span class="kw">def</span> <span class="fn">describe</span>(**info):
+    <span class="kw">for</span> key, value <span class="kw">in</span> info.items():
+        <span class="bi">print</span>(<span class="st">f"{key}: {value}"</span>)
+
+describe(name=<span class="st">"Alice"</span>, age=<span class="nm">30</span>, city=<span class="st">"Paris"</span>)</pre>
+            </div>
+
+            <h2>Scope: Local vs Global</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">scope.py</span>
+                </div>
+                <pre>x = <span class="nm">10</span>   <span class="cm"># global variable</span>
+
+<span class="kw">def</span> <span class="fn">my_func</span>():
+    y = <span class="nm">20</span>   <span class="cm"># local — only exists inside function</span>
+    <span class="bi">print</span>(x)  <span class="cm"># can READ global</span>
+    <span class="bi">print</span>(y)
+
+my_func()
+<span class="cm"># print(y)  # NameError — y doesn't exist here</span>
+
+<span class="cm"># To MODIFY a global inside a function:</span>
+count = <span class="nm">0</span>
+<span class="kw">def</span> <span class="fn">increment</span>():
+    <span class="kw">global</span> count
+    count += <span class="nm">1</span>
+
+increment()
+<span class="bi">print</span>(count)   <span class="cm"># 1</span></pre>
+            </div>
+
+            <h2>Lambda Functions</h2>
+            <p>Anonymous one-line functions using the <code>lambda</code> keyword:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">lambda.py</span>
+                </div>
+                <pre><span class="cm"># lambda arguments: expression</span>
+square = <span class="kw">lambda</span> x: x ** <span class="nm">2</span>
+<span class="bi">print</span>(square(<span class="nm">5</span>))   <span class="cm"># 25</span>
+
+add = <span class="kw">lambda</span> a, b: a + b
+<span class="bi">print</span>(add(<span class="nm">3</span>, <span class="nm">4</span>))   <span class="cm"># 7</span>
+
+<span class="cm"># Most useful with map(), filter(), sorted()</span>
+numbers = [<span class="nm">5</span>, <span class="nm">2</span>, <span class="nm">8</span>, <span class="nm">1</span>, <span class="nm">9</span>]
+sorted_nums = <span class="bi">sorted</span>(numbers, key=<span class="kw">lambda</span> x: -x)
+<span class="bi">print</span>(sorted_nums)   <span class="cm"># [9, 8, 5, 2, 1]</span></pre>
+            </div>
+
+            <h2>Recursion</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">recursion.py</span>
+                </div>
+                <pre><span class="kw">def</span> <span class="fn">factorial</span>(n):
+    <span class="st">"""Returns n! recursively."""</span>
+    <span class="kw">if</span> n <= <span class="nm">1</span>:
+        <span class="kw">return</span> <span class="nm">1</span>
+    <span class="kw">return</span> n * factorial(n - <span class="nm">1</span>)
+
+<span class="bi">print</span>(factorial(<span class="nm">5</span>))   <span class="cm"># 120 (5*4*3*2*1)</span>
+<span class="bi">print</span>(factorial(<span class="nm">10</span>))  <span class="cm"># 3628800</span></pre>
+            </div>
+
+            <div class="box warning">
+                <div class="box-title">⚠️ Recursion Depth</div>
+                Python has a default recursion limit of 1000. For very deep recursion, use iteration or
+                <code>sys.setrecursionlimit()</code>.
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 6.1</div>
+                <p>Write a function <code>is_palindrome(s)</code> that returns <code>True</code> if the string
+                    <code>s</code> reads the same forwards and backwards (e.g., "racecar" → True).</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 6.2</div>
+                <p>Write a recursive function <code>fibonacci(n)</code> that returns the nth Fibonacci number. Then
+                    optimise it with a cache (hint: look up <code>functools.lru_cache</code>).</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 7 ===================== -->
+        <div class="lecture" id="lec-6">
+            <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+            <h1>Data Structures</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~70 min</span>
+                <span class="meta-badge">Requires: Lecture 06</span>
+            </div>
+
+            <h2>Lists</h2>
+            <p>Lists are ordered, mutable, allow duplicates. Defined with square brackets.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">lists.py</span>
+                </div>
+                <pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+
+<span class="cm"># Indexing (0-based, negative counts from end)</span>
+<span class="bi">print</span>(fruits[<span class="nm">0</span>])    <span class="cm"># apple</span>
+<span class="bi">print</span>(fruits[-<span class="nm">1</span>])   <span class="cm"># cherry</span>
+
+<span class="cm"># Slicing [start:stop:step]</span>
+<span class="bi">print</span>(fruits[<span class="nm">0</span>:<span class="nm">2</span>])  <span class="cm"># ['apple', 'banana']</span>
+<span class="bi">print</span>(fruits[::-<span class="nm">1</span>]) <span class="cm"># reversed: ['cherry', 'banana', 'apple']</span>
+
+<span class="cm"># Modifying</span>
+fruits.append(<span class="st">"date"</span>)       <span class="cm"># add to end</span>
+fruits.insert(<span class="nm">1</span>, <span class="st">"avocado"</span>) <span class="cm"># insert at index 1</span>
+fruits.remove(<span class="st">"banana"</span>)    <span class="cm"># remove first occurrence</span>
+popped = fruits.pop()        <span class="cm"># remove and return last item</span>
+
+<span class="cm"># Useful methods</span>
+nums = [<span class="nm">3</span>, <span class="nm">1</span>, <span class="nm">4</span>, <span class="nm">1</span>, <span class="nm">5</span>, <span class="nm">9</span>]
+nums.sort()                  <span class="cm"># in-place sort</span>
+<span class="bi">print</span>(<span class="bi">sorted</span>(nums))         <span class="cm"># returns new sorted list</span>
+<span class="bi">print</span>(<span class="bi">len</span>(nums))            <span class="cm"># 6</span>
+<span class="bi">print</span>(nums.count(<span class="nm">1</span>))       <span class="cm"># 2</span></pre>
+            </div>
+
+            <h2>Tuples</h2>
+            <p>Tuples are ordered, <strong>immutable</strong>. Use parentheses. Great for fixed data like coordinates.
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">tuples.py</span>
+                </div>
+                <pre>point = (<span class="nm">3</span>, <span class="nm">7</span>)
+rgb   = (<span class="nm">255</span>, <span class="nm">128</span>, <span class="nm">0</span>)
+
+x, y = point         <span class="cm"># tuple unpacking</span>
+r, g, b = rgb
+
+<span class="cm"># Tuples are faster and use less memory than lists</span>
+<span class="cm"># Use tuples for data that shouldn't change</span>
+<span class="cm"># point[0] = 5  # TypeError: tuple is immutable</span>
+
+single = (<span class="nm">42</span>,)      <span class="cm"># single-element tuple needs trailing comma</span></pre>
+            </div>
+
+            <h2>Dictionaries</h2>
+            <p>Dictionaries store key-value pairs. Keys must be unique and hashable. Python 3.7+ preserves insertion
+                order.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">dicts.py</span>
+                </div>
+                <pre>person = {
+    <span class="st">"name"</span>: <span class="st">"Alice"</span>,
+    <span class="st">"age"</span>: <span class="nm">30</span>,
+    <span class="st">"city"</span>: <span class="st">"London"</span>
+}
+
+<span class="cm"># Access</span>
+<span class="bi">print</span>(person[<span class="st">"name"</span>])           <span class="cm"># Alice</span>
+<span class="bi">print</span>(person.get(<span class="st">"phone"</span>, <span class="st">"N/A"</span>)) <span class="cm"># N/A (safe get)</span>
+
+<span class="cm"># Modify</span>
+person[<span class="st">"age"</span>] = <span class="nm">31</span>
+person[<span class="st">"email"</span>] = <span class="st">"alice@example.com"</span>
+<span class="kw">del</span> person[<span class="st">"city"</span>]
+
+<span class="cm"># Iterate</span>
+<span class="kw">for</span> key, value <span class="kw">in</span> person.items():
+    <span class="bi">print</span>(<span class="st">f"{key}: {value}"</span>)
+
+<span class="cm"># Dictionary comprehension</span>
+squares = {x: x**<span class="nm">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">1</span>, <span class="nm">6</span>)}
+<span class="cm"># {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</span></pre>
+            </div>
+
+            <h2>Sets</h2>
+            <p>Sets are unordered collections of <strong>unique</strong> elements. Perfect for deduplication and set
+                math.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">sets.py</span>
+                </div>
+                <pre>a = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>}
+b = {<span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>, <span class="nm">6</span>}
+
+<span class="bi">print</span>(a | b)   <span class="cm"># Union:        {1, 2, 3, 4, 5, 6}</span>
+<span class="bi">print</span>(a & b)   <span class="cm"># Intersection: {3, 4}</span>
+<span class="bi">print</span>(a - b)   <span class="cm"># Difference:   {1, 2}</span>
+<span class="bi">print</span>(a ^ b)   <span class="cm"># Sym. diff:    {1, 2, 5, 6}</span>
+
+<span class="cm"># Deduplicate a list</span>
+nums = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">3</span>, <span class="nm">3</span>]
+unique = <span class="bi">list</span>(<span class="bi">set</span>(nums))   <span class="cm"># [1, 2, 3]</span>
+
+s = <span class="bi">set</span>()   <span class="cm"># empty set (NOT {} — that's a dict!)</span>
+s.add(<span class="nm">42</span>)</pre>
+            </div>
+
+            <h2>Choosing the Right Structure</h2>
+            <div class="tbl-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Structure</th>
+                            <th>Ordered</th>
+                            <th>Mutable</th>
+                            <th>Duplicates</th>
+                            <th>Use When</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>list</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>Ordered, changeable collection</td>
+                        </tr>
+                        <tr>
+                            <td>tuple</td>
+                            <td>✅</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                            <td>Fixed data, dict keys, unpacking</td>
+                        </tr>
+                        <tr>
+                            <td>dict</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>keys: ❌</td>
+                            <td>Key-value lookup</td>
+                        </tr>
+                        <tr>
+                            <td>set</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                            <td>❌</td>
+                            <td>Uniqueness, set operations</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 7.1 — Word Frequency Counter</div>
+                <p>Write a program that takes a sentence from the user and prints how many times each word appears,
+                    sorted by frequency (most common first).</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 7.2 — Phone Book</div>
+                <p>Build a simple phone book using a dictionary. Allow the user to: add a contact, look up a number,
+                    delete a contact, and list all contacts.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 8 ===================== -->
+        <div class="lecture" id="lec-7">
+            <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+            <h1>Strings In Depth</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~55 min</span>
+                <span class="meta-badge">Requires: Lecture 07</span>
+            </div>
+
+            <h2>String Indexing & Slicing</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">str_index.py</span>
+                </div>
+                <pre>s = <span class="st">"Hello, World!"</span>
+
+<span class="bi">print</span>(s[<span class="nm">0</span>])       <span class="cm"># H</span>
+<span class="bi">print</span>(s[-<span class="nm">1</span>])      <span class="cm"># !</span>
+<span class="bi">print</span>(s[<span class="nm">7</span>:<span class="nm">12</span>])    <span class="cm"># World</span>
+<span class="bi">print</span>(s[::<span class="nm">2</span>])     <span class="cm"># Hlo ol!</span>
+<span class="bi">print</span>(s[::-<span class="nm">1</span>])    <span class="cm"># !dlroW ,olleH  (reversed)</span>
+<span class="bi">print</span>(<span class="bi">len</span>(s))     <span class="cm"># 13</span></pre>
+            </div>
+
+            <h2>Essential String Methods</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">str_methods.py</span>
+                </div>
+                <pre>s = <span class="st">"  Hello, World!  "</span>
+
+<span class="bi">print</span>(s.strip())         <span class="cm"># "Hello, World!" (removes whitespace)</span>
+<span class="bi">print</span>(s.upper())         <span class="cm"># "  HELLO, WORLD!  "</span>
+<span class="bi">print</span>(s.lower())         <span class="cm"># "  hello, world!  "</span>
+<span class="bi">print</span>(s.title())         <span class="cm"># "  Hello, World!  "</span>
+
+t = <span class="st">"Hello, World!"</span>
+<span class="bi">print</span>(t.replace(<span class="st">"World"</span>, <span class="st">"Python"</span>))  <span class="cm"># Hello, Python!</span>
+<span class="bi">print</span>(t.split(<span class="st">", "</span>))               <span class="cm"># ['Hello', 'World!']</span>
+<span class="bi">print</span>(t.startswith(<span class="st">"Hello"</span>))       <span class="cm"># True</span>
+<span class="bi">print</span>(t.endswith(<span class="st">"!"</span>))             <span class="cm"># True</span>
+<span class="bi">print</span>(t.find(<span class="st">"World"</span>))             <span class="cm"># 7</span>
+<span class="bi">print</span>(t.count(<span class="st">"l"</span>))                <span class="cm"># 3</span>
+
+words = [<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>]
+<span class="bi">print</span>(<span class="st">" | "</span>.join(words))            <span class="cm"># one | two | three</span></pre>
+            </div>
+
+            <h2>f-Strings (Formatted String Literals)</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">fstrings.py</span>
+                </div>
+                <pre>name = <span class="st">"Alice"</span>
+score = <span class="nm">98.5678</span>
+items = <span class="nm">1000000</span>
+
+<span class="cm"># Basic</span>
+<span class="bi">print</span>(<span class="st">f"Name: {name}"</span>)
+
+<span class="cm"># Number formatting</span>
+<span class="bi">print</span>(<span class="st">f"Score: {score:.2f}"</span>)     <span class="cm"># 2 decimal places</span>
+<span class="bi">print</span>(<span class="st">f"Items: {items:,}"</span>)       <span class="cm"># thousands separator</span>
+<span class="bi">print</span>(<span class="st">f"Score: {score:10.2f}"</span>)  <span class="cm"># width 10, right-aligned</span>
+
+<span class="cm"># Padding and alignment</span>
+<span class="bi">print</span>(<span class="st">f"{'Left':<10}"</span>)           <span class="cm"># left-align in 10 chars</span>
+<span class="bi">print</span>(<span class="st">f"{'Right':>10}"</span>)          <span class="cm"># right-align</span>
+<span class="bi">print</span>(<span class="st">f"{'Center':^10}"</span>)         <span class="cm"># center</span>
+
+<span class="cm"># Expressions in f-strings</span>
+<span class="bi">print</span>(<span class="st">f"2 + 2 = {2 + 2}"</span>)
+<span class="bi">print</span>(<span class="st">f"Upper: {name.upper()}"</span>)</pre>
+            </div>
+
+            <h2>Raw Strings & Bytes</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">raw_bytes.py</span>
+                </div>
+                <pre><span class="cm"># Raw strings: backslash is literal (useful for regex and paths)</span>
+path = <span class="st">r"C:\Users\Alice\Documents"</span>
+<span class="bi">print</span>(path)   <span class="cm"># C:\Users\Alice\Documents</span>
+
+<span class="cm"># Bytes: prefix b""</span>
+b = <span class="st">b"Hello"</span>
+<span class="bi">print</span>(<span class="bi">type</span>(b))        <span class="cm"># &lt;class 'bytes'&gt;</span>
+<span class="bi">print</span>(b.decode())     <span class="cm"># "Hello" — bytes to str</span>
+<span class="bi">print</span>(<span class="st">"Hello"</span>.encode()) <span class="cm"># b'Hello' — str to bytes</span></pre>
+            </div>
+
+            <h2>Regular Expressions (Intro)</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">regex.py</span>
+                </div>
+                <pre><span class="kw">import</span> re
+
+text = <span class="st">"My email is alice@example.com and bob@test.org"</span>
+
+<span class="cm"># Find all email addresses</span>
+emails = re.findall(<span class="st">r'\b[\w.+-]+@[\w-]+\.\w+\b'</span>, text)
+<span class="bi">print</span>(emails)   <span class="cm"># ['alice@example.com', 'bob@test.org']</span>
+
+<span class="cm"># Check if a string is a valid phone number</span>
+phone = <span class="st">"123-456-7890"</span>
+match = re.match(<span class="st">r'^\d{3}-\d{3}-\d{4}$'</span>, phone)
+<span class="bi">print</span>(<span class="bi">bool</span>(match))   <span class="cm"># True</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 8.1 — Sentence Analyser</div>
+                <p>Write a function that takes a sentence and returns: word count, character count (no spaces), most
+                    common letter, and whether it's a palindrome (ignoring spaces and case).</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 9 ===================== -->
+        <div class="lecture" id="lec-8">
+            <div class="lecture-tag">Lecture 09 · Advanced</div>
+            <h1>Object-Oriented Programming</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~75 min</span>
+                <span class="meta-badge">Requires: Lecture 08</span>
+            </div>
+
+            <h2>Classes and Objects</h2>
+            <p>OOP is a programming paradigm that organises code around objects — bundles of data (attributes) and
+                behaviour (methods).</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">classes.py</span>
+                </div>
+                <pre><span class="kw">class</span> <span class="fn">Dog</span>:
+    <span class="st">"""A simple Dog class."""</span>
+
+    species = <span class="st">"Canis lupus familiaris"</span>   <span class="cm"># class variable</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, age):     <span class="cm"># constructor</span>
+        <span class="kw">self</span>.name = name               <span class="cm"># instance variable</span>
+        <span class="kw">self</span>.age  = age
+
+    <span class="kw">def</span> <span class="fn">bark</span>(<span class="kw">self</span>):
+        <span class="bi">print</span>(<span class="st">f"{self.name} says: Woof!"</span>)
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>):                 <span class="cm"># string representation</span>
+        <span class="kw">return</span> <span class="st">f"Dog({self.name}, {self.age})"</span>
+
+<span class="cm"># Creating instances</span>
+rex  = Dog(<span class="st">"Rex"</span>, <span class="nm">3</span>)
+luna = Dog(<span class="st">"Luna"</span>, <span class="nm">5</span>)
+
+rex.bark()          <span class="cm"># Rex says: Woof!</span>
+<span class="bi">print</span>(luna)         <span class="cm"># Dog(Luna, 5)</span>
+<span class="bi">print</span>(rex.species)  <span class="cm"># Canis lupus familiaris</span></pre>
+            </div>
+
+            <h2>Inheritance</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">inheritance.py</span>
+                </div>
+                <pre><span class="kw">class</span> <span class="fn">Animal</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name):
+        <span class="kw">self</span>.name = name
+
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>):
+        <span class="kw">raise</span> NotImplementedError
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">f"{self.__class__.__name__}({self.name})"</span>
+
+
+<span class="kw">class</span> <span class="fn">Cat</span>(Animal):   <span class="cm"># inherits from Animal</span>
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">f"{self.name} says: Meow!"</span>
+
+
+<span class="kw">class</span> <span class="fn">Dog</span>(Animal):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, breed):
+        <span class="bi">super</span>().__init__(name)   <span class="cm"># call parent __init__</span>
+        <span class="kw">self</span>.breed = breed
+
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">f"{self.name} ({self.breed}) says: Woof!"</span>
+
+
+animals = [Cat(<span class="st">"Whiskers"</span>), Dog(<span class="st">"Rex"</span>, <span class="st">"Labrador"</span>)]
+<span class="kw">for</span> animal <span class="kw">in</span> animals:
+    <span class="bi">print</span>(animal.speak())   <span class="cm"># polymorphism!</span></pre>
+            </div>
+
+            <h2>Encapsulation & Properties</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">encapsulation.py</span>
+                </div>
+                <pre><span class="kw">class</span> <span class="fn">BankAccount</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, owner, balance=<span class="nm">0</span>):
+        <span class="kw">self</span>.owner    = owner
+        <span class="kw">self</span>._balance = balance   <span class="cm"># _ = convention: "private"</span>
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">balance</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="kw">self</span>._balance
+
+    <span class="kw">@balance.setter</span>
+    <span class="kw">def</span> <span class="fn">balance</span>(<span class="kw">self</span>, amount):
+        <span class="kw">if</span> amount < <span class="nm">0</span>:
+            <span class="kw">raise</span> ValueError(<span class="st">"Balance cannot be negative"</span>)
+        <span class="kw">self</span>._balance = amount
+
+    <span class="kw">def</span> <span class="fn">deposit</span>(<span class="kw">self</span>, amount):
+        <span class="kw">self</span>._balance += amount
+
+    <span class="kw">def</span> <span class="fn">withdraw</span>(<span class="kw">self</span>, amount):
+        <span class="kw">if</span> amount > <span class="kw">self</span>._balance:
+            <span class="kw">raise</span> ValueError(<span class="st">"Insufficient funds"</span>)
+        <span class="kw">self</span>._balance -= amount
+
+acc = BankAccount(<span class="st">"Alice"</span>, <span class="nm">1000</span>)
+acc.deposit(<span class="nm">500</span>)
+<span class="bi">print</span>(acc.balance)   <span class="cm"># 1500</span></pre>
+            </div>
+
+            <h2>Dunder (Magic) Methods</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">dunder.py</span>
+                </div>
+                <pre><span class="kw">class</span> <span class="fn">Vector</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, x, y):
+        <span class="kw">self</span>.x, <span class="kw">self</span>.y = x, y
+
+    <span class="kw">def</span> <span class="fn">__add__</span>(<span class="kw">self</span>, other):    <span class="cm"># +</span>
+        <span class="kw">return</span> Vector(<span class="kw">self</span>.x + other.x, <span class="kw">self</span>.y + other.y)
+
+    <span class="kw">def</span> <span class="fn">__len__</span>(<span class="kw">self</span>):           <span class="cm"># len()</span>
+        <span class="kw">return</span> <span class="nm">2</span>
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="kw">self</span>):          <span class="cm"># repr()</span>
+        <span class="kw">return</span> <span class="st">f"Vector({self.x}, {self.y})"</span>
+
+v1 = Vector(<span class="nm">1</span>, <span class="nm">2</span>)
+v2 = Vector(<span class="nm">3</span>, <span class="nm">4</span>)
+<span class="bi">print</span>(v1 + v2)     <span class="cm"># Vector(4, 6)</span>
+<span class="bi">print</span>(<span class="bi">len</span>(v1))     <span class="cm"># 2</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 9.1 — Library System</div>
+                <p>Create a <code>Book</code> class with title, author, and year. Create a <code>Library</code> class
+                    that holds a list of books, with methods: <code>add_book()</code>, <code>remove_book()</code>,
+                    <code>search_by_author()</code>, and <code>list_all()</code>.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 10 ===================== -->
+        <div class="lecture" id="lec-9">
+            <div class="lecture-tag">Lecture 10 · Advanced</div>
+            <h1>File I/O & Exception Handling</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~60 min</span>
+                <span class="meta-badge">Requires: Lecture 09</span>
+            </div>
+
+            <h2>Reading & Writing Files</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">files.py</span>
+                </div>
+                <pre><span class="cm"># Writing a file</span>
+<span class="kw">with</span> <span class="bi">open</span>(<span class="st">"greetings.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"Hello, World!\n"</span>)
+    f.write(<span class="st">"Python is awesome!\n"</span>)
+
+<span class="cm"># Reading entire file</span>
+<span class="kw">with</span> <span class="bi">open</span>(<span class="st">"greetings.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    content = f.read()
+    <span class="bi">print</span>(content)
+
+<span class="cm"># Reading line by line</span>
+<span class="kw">with</span> <span class="bi">open</span>(<span class="st">"greetings.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    <span class="kw">for</span> line <span class="kw">in</span> f:
+        <span class="bi">print</span>(line.strip())
+
+<span class="cm"># Appending to a file</span>
+<span class="kw">with</span> <span class="bi">open</span>(<span class="st">"greetings.txt"</span>, <span class="st">"a"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"Added a new line!\n"</span>)</pre>
+            </div>
+
+            <div class="box tip">
+                <div class="box-title">✅ Always use with</div>
+                The <code>with</code> statement (context manager) automatically closes the file even if an error occurs.
+                Never use <code>f = open(...)</code> without closing it.
+            </div>
+
+            <h2>Working with CSV and JSON</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">csv_json.py</span>
+                </div>
+                <pre><span class="kw">import</span> csv
+<span class="kw">import</span> json
+
+<span class="cm"># CSV writing</span>
+<span class="kw">with</span> <span class="bi">open</span>(<span class="st">"data.csv"</span>, <span class="st">"w"</span>, newline=<span class="st">""</span>) <span class="kw">as</span> f:
+    writer = csv.writer(f)
+    writer.writerow([<span class="st">"Name"</span>, <span class="st">"Score"</span>])
+    writer.writerow([<span class="st">"Alice"</span>, <span class="nm">95</span>])
+
+<span class="cm"># CSV reading</span>
+<span class="kw">with</span> <span class="bi">open</span>(<span class="st">"data.csv"</span>) <span class="kw">as</span> f:
+    <span class="kw">for</span> row <span class="kw">in</span> csv.DictReader(f):
+        <span class="bi">print</span>(row)  <span class="cm"># {'Name': 'Alice', 'Score': '95'}</span>
+
+<span class="cm"># JSON serialization</span>
+data = {<span class="st">"name"</span>: <span class="st">"Alice"</span>, <span class="st">"scores"</span>: [<span class="nm">95</span>, <span class="nm">87</span>, <span class="nm">92</span>]}
+
+<span class="kw">with</span> <span class="bi">open</span>(<span class="st">"data.json"</span>, <span class="st">"w"</span>) <span class="kw">as</span> f:
+    json.dump(data, f, indent=<span class="nm">2</span>)
+
+<span class="kw">with</span> <span class="bi">open</span>(<span class="st">"data.json"</span>) <span class="kw">as</span> f:
+    loaded = json.load(f)
+    <span class="bi">print</span>(loaded[<span class="st">"name"</span>])   <span class="cm"># Alice</span></pre>
+            </div>
+
+            <h2>Exception Handling</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">exceptions.py</span>
+                </div>
+                <pre><span class="cm"># try / except / else / finally</span>
+<span class="kw">try</span>:
+    num = <span class="bi">int</span>(<span class="bi">input</span>(<span class="st">"Enter a number: "</span>))
+    result = <span class="nm">100</span> / num
+<span class="kw">except</span> ValueError:
+    <span class="bi">print</span>(<span class="st">"That's not a valid number!"</span>)
+<span class="kw">except</span> ZeroDivisionError:
+    <span class="bi">print</span>(<span class="st">"Can't divide by zero!"</span>)
+<span class="kw">except</span> Exception <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="st">f"Unexpected error: {e}"</span>)
+<span class="kw">else</span>:
+    <span class="bi">print</span>(<span class="st">f"Result: {result}"</span>)   <span class="cm"># runs only if no exception</span>
+<span class="kw">finally</span>:
+    <span class="bi">print</span>(<span class="st">"This always runs"</span>)    <span class="cm"># cleanup code</span></pre>
+            </div>
+
+            <h2>Raising Exceptions & Custom Exceptions</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">custom_exc.py</span>
+                </div>
+                <pre><span class="kw">class</span> <span class="fn">InsufficientFundsError</span>(Exception):
+    <span class="st">"""Raised when a withdrawal exceeds the balance."""</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, amount, balance):
+        <span class="kw">self</span>.amount  = amount
+        <span class="kw">self</span>.balance = balance
+        <span class="bi">super</span>().__init__(
+            <span class="st">f"Cannot withdraw {amount}; balance is {balance}"</span>
+        )
+
+<span class="kw">def</span> <span class="fn">withdraw</span>(balance, amount):
+    <span class="kw">if</span> amount > balance:
+        <span class="kw">raise</span> InsufficientFundsError(amount, balance)
+    <span class="kw">return</span> balance - amount
+
+<span class="kw">try</span>:
+    withdraw(<span class="nm">100</span>, <span class="nm">200</span>)
+<span class="kw">except</span> InsufficientFundsError <span class="kw">as</span> e:
+    <span class="bi">print</span>(e)   <span class="cm"># Cannot withdraw 200; balance is 100</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 10.1 — Safe File Reader</div>
+                <p>Write a function <code>read_file(path)</code> that reads a file and returns its contents. Handle
+                    <code>FileNotFoundError</code> and <code>PermissionError</code> gracefully with informative
+                    messages. Test it with valid and invalid paths.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 11 ===================== -->
+        <div class="lecture" id="lec-10">
+            <div class="lecture-tag">Lecture 11 · Advanced</div>
+            <h1>Modules, Packages & Popular Libraries</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~65 min</span>
+                <span class="meta-badge">Requires: Lecture 10</span>
+            </div>
+
+            <h2>Importing Modules</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">imports.py</span>
+                </div>
+                <pre><span class="kw">import</span> math
+<span class="kw">import</span> os
+<span class="kw">import</span> sys
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime, timedelta
+<span class="kw">from</span> random <span class="kw">import</span> randint, choice
+<span class="kw">import</span> json <span class="kw">as</span> j   <span class="cm"># alias</span>
+
+<span class="bi">print</span>(math.pi)          <span class="cm"># 3.141592...</span>
+<span class="bi">print</span>(math.sqrt(<span class="nm">16</span>))   <span class="cm"># 4.0</span>
+<span class="bi">print</span>(math.floor(<span class="nm">3.9</span>)) <span class="cm"># 3</span>
+
+now = datetime.now()
+<span class="bi">print</span>(now.strftime(<span class="st">"%Y-%m-%d %H:%M"</span>))
+
+tomorrow = now + timedelta(days=<span class="nm">1</span>)
+<span class="bi">print</span>(tomorrow)</pre>
+            </div>
+
+            <h2>Creating Your Own Module</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">mathutils.py</span>
+                </div>
+                <pre><span class="st">"""Custom math utilities module."""</span>
+
+<span class="kw">def</span> <span class="fn">is_prime</span>(n):
+    <span class="kw">if</span> n < <span class="nm">2</span>: <span class="kw">return</span> <span class="nm">False</span>
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">2</span>, <span class="bi">int</span>(n**<span class="nm">0.5</span>) + <span class="nm">1</span>):
+        <span class="kw">if</span> n % i == <span class="nm">0</span>: <span class="kw">return</span> <span class="nm">False</span>
+    <span class="kw">return</span> <span class="nm">True</span>
+
+<span class="kw">def</span> <span class="fn">celsius_to_fahrenheit</span>(c):
+    <span class="kw">return</span> c * <span class="nm">9</span>/<span class="nm">5</span> + <span class="nm">32</span>
+
+PI = <span class="nm">3.14159265358979</span></pre>
+            </div>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">main.py</span>
+                </div>
+                <pre><span class="kw">from</span> mathutils <span class="kw">import</span> is_prime, celsius_to_fahrenheit
+
+<span class="bi">print</span>(is_prime(<span class="nm">17</span>))              <span class="cm"># True</span>
+<span class="bi">print</span>(celsius_to_fahrenheit(<span class="nm">100</span>))  <span class="cm"># 212.0</span></pre>
+            </div>
+
+            <h2>Installing Packages with pip</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">terminal</span>
+                </div>
+                <pre>pip install requests          <span class="cm"># HTTP requests</span>
+pip install numpy             <span class="cm"># numerical computing</span>
+pip install pandas            <span class="cm"># data analysis</span>
+pip install matplotlib        <span class="cm"># plotting</span>
+pip install flask             <span class="cm"># web framework</span>
+pip install pytest            <span class="cm"># testing</span>
+
+pip list                      <span class="cm"># see installed packages</span>
+pip freeze > requirements.txt <span class="cm"># export dependencies</span>
+pip install -r requirements.txt  <span class="cm"># install from file</span></pre>
+            </div>
+
+            <h2>Key Standard Library Modules</h2>
+            <div class="tbl-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Purpose</th>
+                            <th>Key Functions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>os</code></td>
+                            <td>OS interaction</td>
+                            <td>getcwd, listdir, path.join, mkdir</td>
+                        </tr>
+                        <tr>
+                            <td><code>sys</code></td>
+                            <td>System-specific</td>
+                            <td>argv, exit, path, version</td>
+                        </tr>
+                        <tr>
+                            <td><code>math</code></td>
+                            <td>Math functions</td>
+                            <td>sqrt, ceil, floor, log, sin</td>
+                        </tr>
+                        <tr>
+                            <td><code>random</code></td>
+                            <td>Randomness</td>
+                            <td>randint, choice, shuffle, sample</td>
+                        </tr>
+                        <tr>
+                            <td><code>datetime</code></td>
+                            <td>Date/time</td>
+                            <td>now, strftime, timedelta</td>
+                        </tr>
+                        <tr>
+                            <td><code>collections</code></td>
+                            <td>Advanced containers</td>
+                            <td>Counter, defaultdict, deque</td>
+                        </tr>
+                        <tr>
+                            <td><code>itertools</code></td>
+                            <td>Iterators</td>
+                            <td>chain, product, combinations</td>
+                        </tr>
+                        <tr>
+                            <td><code>pathlib</code></td>
+                            <td>File paths</td>
+                            <td>Path, glob, mkdir, read_text</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Virtual Environments</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">terminal</span>
+                </div>
+                <pre><span class="cm"># Create a virtual environment</span>
+python -m venv venv
+
+<span class="cm"># Activate (macOS/Linux)</span>
+source venv/bin/activate
+
+<span class="cm"># Activate (Windows)</span>
+venv\Scripts\activate
+
+<span class="cm"># Deactivate</span>
+deactivate</pre>
+            </div>
+
+            <div class="box tip">
+                <div class="box-title">✅ Best Practice</div>
+                Always create a virtual environment per project. This isolates dependencies and avoids conflicts between
+                different projects.
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 11.1 — Random Quiz</div>
+                <p>Use the <code>random</code> module to build a quiz that picks 5 random questions from a list of 10
+                    Q&A pairs, shuffles the answer options, and keeps score.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 12 ===================== -->
+        <div class="lecture" id="lec-11">
+            <div class="lecture-tag">Lecture 12 · Capstone</div>
+            <h1>Capstone Project: Task Manager CLI</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-advanced">Advanced</span>
+                <span class="meta-badge">~90 min</span>
+                <span class="meta-badge">Requires: All Lectures</span>
+            </div>
+
+            <p>Congratulations on reaching the final lecture! We'll now build a <strong>fully functional command-line
+                    task manager</strong> that ties together everything covered in this course.</p>
+
+            <h2>Project Features</h2>
+            <ul>
+                <li>Add, view, complete, and delete tasks</li>
+                <li>Persist tasks to a JSON file (survives program restarts)</li>
+                <li>Filter tasks by status (all / pending / done)</li>
+                <li>OOP design with a <code>Task</code> class and <code>TaskManager</code> class</li>
+                <li>Input validation and exception handling</li>
+                <li>Colorized CLI output</li>
+            </ul>
+
+            <h2>Project Structure</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">project
+                        layout</span>
+                </div>
+                <pre>task_manager/
+├── main.py          <span class="cm"># entry point & CLI loop</span>
+├── task.py          <span class="cm"># Task and TaskManager classes</span>
+├── storage.py       <span class="cm"># JSON file persistence</span>
+└── tasks.json       <span class="cm"># auto-created data file</span></pre>
+            </div>
+
+            <h2>task.py — Core Classes</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">task.py</span>
+                </div>
+                <pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+<span class="kw">import</span> uuid
+
+<span class="kw">class</span> <span class="fn">Task</span>:
+    <span class="st">"""Represents a single task."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title, priority=<span class="st">"medium"</span>):
+        <span class="kw">self</span>.id        = <span class="bi">str</span>(uuid.uuid4())[:<span class="nm">8</span>]
+        <span class="kw">self</span>.title     = title
+        <span class="kw">self</span>.priority  = priority
+        <span class="kw">self</span>.done      = <span class="nm">False</span>
+        <span class="kw">self</span>.created   = datetime.now().isoformat()
+
+    <span class="kw">def</span> <span class="fn">complete</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.done = <span class="nm">True</span>
+
+    <span class="kw">def</span> <span class="fn">to_dict</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="bi">vars</span>(<span class="kw">self</span>)
+
+    <span class="kw">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">from_dict</span>(cls, data):
+        t = cls(data[<span class="st">"title"</span>], data[<span class="st">"priority"</span>])
+        t.id      = data[<span class="st">"id"</span>]
+        t.done    = data[<span class="st">"done"</span>]
+        t.created = data[<span class="st">"created"</span>]
+        <span class="kw">return</span> t
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>):
+        status = <span class="st">"✓"</span> <span class="kw">if</span> <span class="kw">self</span>.done <span class="kw">else</span> <span class="st">"○"</span>
+        <span class="kw">return</span> <span class="st">f"[{status}] {self.id} | {self.title} ({self.priority})"</span>
+
+
+<span class="kw">class</span> <span class="fn">TaskManager</span>:
+    <span class="st">"""Manages a collection of tasks."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.tasks = []
+
+    <span class="kw">def</span> <span class="fn">add</span>(<span class="kw">self</span>, title, priority=<span class="st">"medium"</span>):
+        task = Task(title, priority)
+        <span class="kw">self</span>.tasks.append(task)
+        <span class="kw">return</span> task
+
+    <span class="kw">def</span> <span class="fn">complete</span>(<span class="kw">self</span>, task_id):
+        task = <span class="kw">self</span>._find(task_id)
+        <span class="kw">if</span> task:
+            task.complete()
+            <span class="kw">return</span> task
+        <span class="kw">raise</span> ValueError(<span class="st">f"Task {task_id} not found"</span>)
+
+    <span class="kw">def</span> <span class="fn">delete</span>(<span class="kw">self</span>, task_id):
+        task = <span class="kw">self</span>._find(task_id)
+        <span class="kw">if</span> task:
+            <span class="kw">self</span>.tasks.remove(task)
+        <span class="kw">else</span>:
+            <span class="kw">raise</span> ValueError(<span class="st">f"Task {task_id} not found"</span>)
+
+    <span class="kw">def</span> <span class="fn">filter</span>(<span class="kw">self</span>, status=<span class="st">"all"</span>):
+        <span class="kw">if</span> status == <span class="st">"done"</span>:
+            <span class="kw">return</span> [t <span class="kw">for</span> t <span class="kw">in</span> <span class="kw">self</span>.tasks <span class="kw">if</span> t.done]
+        <span class="kw">elif</span> status == <span class="st">"pending"</span>:
+            <span class="kw">return</span> [t <span class="kw">for</span> t <span class="kw">in</span> <span class="kw">self</span>.tasks <span class="kw">if</span> <span class="kw">not</span> t.done]
+        <span class="kw">return</span> <span class="kw">self</span>.tasks
+
+    <span class="kw">def</span> <span class="fn">_find</span>(<span class="kw">self</span>, task_id):
+        <span class="kw">return</span> <span class="bi">next</span>((t <span class="kw">for</span> t <span class="kw">in</span> <span class="kw">self</span>.tasks <span class="kw">if</span> t.id == task_id), <span class="nm">None</span>)</pre>
+            </div>
+
+            <h2>storage.py — JSON Persistence</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">storage.py</span>
+                </div>
+                <pre><span class="kw">import</span> json
+<span class="kw">from</span> pathlib <span class="kw">import</span> Path
+<span class="kw">from</span> task <span class="kw">import</span> Task
+
+FILE = Path(<span class="st">"tasks.json"</span>)
+
+<span class="kw">def</span> <span class="fn">load</span>():
+    <span class="kw">if</span> <span class="kw">not</span> FILE.exists():
+        <span class="kw">return</span> []
+    <span class="kw">with</span> FILE.open() <span class="kw">as</span> f:
+        <span class="kw">return</span> [Task.from_dict(d) <span class="kw">for</span> d <span class="kw">in</span> json.load(f)]
+
+<span class="kw">def</span> <span class="fn">save</span>(tasks):
+    <span class="kw">with</span> FILE.open(<span class="st">"w"</span>) <span class="kw">as</span> f:
+        json.dump([t.to_dict() <span class="kw">for</span> t <span class="kw">in</span> tasks], f, indent=<span class="nm">2</span>)</pre>
+            </div>
+
+            <h2>main.py — CLI Entry Point</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">main.py</span>
+                </div>
+                <pre><span class="kw">from</span> task <span class="kw">import</span> TaskManager
+<span class="kw">import</span> storage
+
+<span class="kw">def</span> <span class="fn">show_menu</span>():
+    <span class="bi">print</span>(<span class="st">"\n── Task Manager ──────────────"</span>)
+    <span class="bi">print</span>(<span class="st">"  1. Add task"</span>)
+    <span class="bi">print</span>(<span class="st">"  2. List tasks"</span>)
+    <span class="bi">print</span>(<span class="st">"  3. Complete task"</span>)
+    <span class="bi">print</span>(<span class="st">"  4. Delete task"</span>)
+    <span class="bi">print</span>(<span class="st">"  5. Quit"</span>)
+    <span class="bi">print</span>(<span class="st">"──────────────────────────────"</span>)
+
+<span class="kw">def</span> <span class="fn">main</span>():
+    mgr = TaskManager()
+    mgr.tasks = storage.load()
+
+    <span class="kw">while</span> <span class="nm">True</span>:
+        show_menu()
+        choice = <span class="bi">input</span>(<span class="st">"Choice: "</span>).strip()
+
+        <span class="kw">if</span> choice == <span class="st">"1"</span>:
+            title    = <span class="bi">input</span>(<span class="st">"Task title: "</span>)
+            priority = <span class="bi">input</span>(<span class="st">"Priority (low/medium/high): "</span>) <span class="kw">or</span> <span class="st">"medium"</span>
+            task = mgr.add(title, priority)
+            <span class="bi">print</span>(<span class="st">f"Added: {task}"</span>)
+
+        <span class="kw">elif</span> choice == <span class="st">"2"</span>:
+            filt = <span class="bi">input</span>(<span class="st">"Filter (all/pending/done): "</span>) <span class="kw">or</span> <span class="st">"all"</span>
+            tasks = mgr.filter(filt)
+            <span class="kw">if</span> <span class="kw">not</span> tasks:
+                <span class="bi">print</span>(<span class="st">"No tasks found."</span>)
+            <span class="kw">else</span>:
+                <span class="kw">for</span> t <span class="kw">in</span> tasks:
+                    <span class="bi">print</span>(<span class="st">" "</span>, t)
+
+        <span class="kw">elif</span> choice == <span class="st">"3"</span>:
+            tid = <span class="bi">input</span>(<span class="st">"Task ID to complete: "</span>)
+            <span class="kw">try</span>:
+                t = mgr.complete(tid)
+                <span class="bi">print</span>(<span class="st">f"Completed: {t}"</span>)
+            <span class="kw">except</span> ValueError <span class="kw">as</span> e:
+                <span class="bi">print</span>(<span class="st">f"Error: {e}"</span>)
+
+        <span class="kw">elif</span> choice == <span class="st">"4"</span>:
+            tid = <span class="bi">input</span>(<span class="st">"Task ID to delete: "</span>)
+            <span class="kw">try</span>:
+                mgr.delete(tid)
+                <span class="bi">print</span>(<span class="st">"Deleted."</span>)
+            <span class="kw">except</span> ValueError <span class="kw">as</span> e:
+                <span class="bi">print</span>(<span class="st">f"Error: {e}"</span>)
+
+        <span class="kw">elif</span> choice == <span class="st">"5"</span>:
+            storage.save(mgr.tasks)
+            <span class="bi">print</span>(<span class="st">"Goodbye! Tasks saved."</span>)
+            <span class="kw">break</span>
+
+        storage.save(mgr.tasks)   <span class="cm"># auto-save after every action</span>
+
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    main()</pre>
+            </div>
+
+            <h2>What You've Learned</h2>
+            <p>This capstone project applied every major concept from the course:</p>
+            <ul>
+                <li><strong>Variables & types</strong> — task attributes, status flags</li>
+                <li><strong>Control flow</strong> — if/elif menu dispatch</li>
+                <li><strong>Loops</strong> — <code>while True</code> CLI loop, list comprehensions</li>
+                <li><strong>Functions</strong> — helper functions, class methods</li>
+                <li><strong>Data structures</strong> — list of Task objects, dict serialization</li>
+                <li><strong>OOP</strong> — Task and TaskManager classes, class methods</li>
+                <li><strong>File I/O & JSON</strong> — persistent storage</li>
+                <li><strong>Exception handling</strong> — try/except for user errors</li>
+                <li><strong>Modules</strong> — splitting code across files</li>
+            </ul>
+
+            <div class="box tip">
+                <div class="box-title">🚀 What's Next?</div>
+                <p>You've completed the core Python curriculum! Consider exploring:</p>
+                <ul style="margin-top:8px">
+                    <li><strong>Web development</strong> — Flask or FastAPI</li>
+                    <li><strong>Data science</strong> — NumPy, Pandas, Matplotlib</li>
+                    <li><strong>Machine learning</strong> — scikit-learn, TensorFlow, PyTorch</li>
+                    <li><strong>Automation</strong> — Selenium, requests, BeautifulSoup</li>
+                    <li><strong>Testing</strong> — pytest, unittest</li>
+                    <li><strong>Async programming</strong> — asyncio, aiohttp</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Final Challenge — Extend the Task Manager</div>
+                <p>Add these features to the task manager: (1) due dates for tasks, (2) search tasks by keyword, (3)
+                    export tasks to a CSV report, (4) a statistics command showing counts per priority and completion
+                    rate.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+            </div>
+        </div>
+
+    </div><!-- /main -->
+
+    <script>
+        const titles = [
+            "Introduction & Setup",
+            "Variables & Data Types",
+            "Operators & Expressions",
+            "Control Flow",
+            "Loops",
+            "Functions",
+            "Data Structures",
+            "Strings In Depth",
+            "Object-Oriented Programming",
+            "File I/O & Exceptions",
+            "Modules & Libraries",
+            "Capstone Project"
+        ];
+
+        let current = 0;
+
+        function showLecture(index) {
+            document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+            document.getElementById('lec-' + index).classList.add('active');
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+
+            document.getElementById('breadcrumb-current').textContent = titles[index];
+            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
+            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+
+            current = index;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('sidebar').classList.remove('open');
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

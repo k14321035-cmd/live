@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Mastery — Complete Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+</head>
+
+<body>
+
+    <button id="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><span>JS</span> JS Mastery</div>
+            <p>// Complete Course — 12 Lectures</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Foundations</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span
+                    class="dot"></span>Intro to JavaScript</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span
+                    class="dot"></span>Environment Setup</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span
+                    class="dot"></span>Variables &amp; Data Types</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span
+                    class="dot"></span>Operators &amp; Expressions</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span
+                    class="dot"></span>Control Flow</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Core Concepts</div>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span
+                    class="dot"></span>Functions</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span
+                    class="dot"></span>Objects &amp; Prototypes</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Arrays
+                &amp; Higher‑Order Functions</button>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
+                    class="dot"></span>Asynchronous JavaScript</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>DOM
+                Manipulation &amp; Events</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced</div>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span
+                    class="dot"></span>Modules &amp; Build Tools</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
+                    class="dot"></span>Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>JS Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">Intro to JavaScript</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:8%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 1 ===================== -->
+        <div class="lecture active" id="lec-0">
+            <div class="lecture-tag">Lecture 01 · Foundations</div>
+            <h1>Introduction to JavaScript</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~30 min</span>
+                <span class="meta-badge">No prerequisites</span>
+            </div>
+
+            <h2>What is JavaScript?</h2>
+            <p><strong>JavaScript (JS)</strong> is a high‑level, interpreted, multi‑paradigm language that powers the
+                web. It was created in 1995 by Brendan Eich at Netscape and has since become the de‑facto language for
+                client‑side scripting, server‑side development (Node.js), desktop apps (Electron), and much more.</p>
+
+            <ul>
+                <li>1995 – First appeared as “LiveScript” in Netscape Navigator.</li>
+                <li>1997 – Standardised as <code>ECMAScript 1</code>.</li>
+                <li>2009 – <code>Node.js</code> brings JS to the server.</li>
+                <li>2015 – <code>ES6 (ES2015)</code> introduces classes, modules, arrow functions, etc.</li>
+                <li>2023 – <code>ES2023</code> continues to evolve the language.</li>
+            </ul>
+
+            <div class="box tip">
+                <div class="box-title">✅ Why learn JavaScript?</div>
+                JS runs everywhere – browsers, servers, mobile, IoT – and mastering it unlocks a huge ecosystem of
+                libraries, frameworks and career opportunities.
+            </div>
+
+            <h2>Hello World – Your First JS Program</h2>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">hello.js</span>
+                </div>
+                <pre><span class="kw">console</span>.<span class="fn">log</span>(<span class="st">"Hello, World!"</span>);</pre>
+            </div>
+
+            <p>Run it with Node.js (or open the file in a browser console):</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">terminal</span>
+                </div>
+                <pre><span class="cm"># Run</span>
+node hello.js</pre>
+            </div>
+
+            <div class="output-block">
+                <div class="output-header">▶ Output</div>
+                <pre>Hello, World!</pre>
+            </div>
+
+            <h2>How JavaScript Executes</h2>
+            <ul>
+                <li>Engine (V8, SpiderMonkey, JavaScriptCore) parses source code into an <strong>AST</strong>.</li>
+                <li>Just‑In‑Time (JIT) compilation turns hot code paths into native machine code.</li>
+                <li>Event‑loop handles asynchronous callbacks and promises.</li>
+            </ul>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 1.1</div>
+                <p>Install Node.js, create <code>hello.js</code> with the snippet above, run it, and verify the output.
+                </p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 2 ===================== -->
+        <div class="lecture" id="lec-1">
+            <div class="lecture-tag">Lecture 02 · Foundations</div>
+            <h1>Environment Setup</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~40 min</span>
+                <span class="meta-badge">Requires: Lecture 01</span>
+            </div>
+
+            <h2>Running JavaScript in the Browser</h2>
+            <p>All modern browsers have a built‑in JavaScript engine. Open the developer console (<kbd>F12</kbd> →
+                “Console”) and type code directly.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">browser
+                        console</span>
+                </div>
+                <pre><span class="kw">console</span>.<span class="fn">log</span>(<span class="st">'Hello from the browser!'</span>);</pre>
+            </div>
+
+            <h2>Node.js – JavaScript on the Server</h2>
+            <p>Node.js bundles the V8 engine with a set of core modules (file system, networking, etc.). After
+                installing from <a href="https://nodejs.org/" target="_blank">nodejs.org</a> you can run any
+                <code>.js</code> file with the <code>node</code> command.</p>
+
+            <pre><code># Install (macOS/Linux)
+brew install node
+
+# Verify version
+node -v
+npm -v</code></pre>
+
+            <h2>Package Management with npm</h2>
+            <p>npm (Node Package Manager) lets you install third‑party libraries.</p>
+
+            <pre><code># Initialise a new project
+npm init -y
+
+# Install a library (e.g., lodash)
+npm install lodash
+
+# Run a script defined in package.json
+npm run start</code></pre>
+
+            <div class="box info">
+                <div class="box-title">ℹ️ npx</div>
+                <p>Run package binaries without installing them globally: <code>npx create-react-app my-app</code>.</p>
+            </div>
+
+            <h2>Editor Recommendations</h2>
+            <ul>
+                <li>VS Code + <strong>ESLint</strong> + <strong>Prettier</strong> – great for JS.</li>
+                <li>WebStorm – full‑featured IDE, paid.</li>
+                <li>Vim/Neovim – lightweight, with <code>coc.nvim</code>.</li>
+            </ul>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 2.1</div>
+                <p>Initialise a new npm project, install <code>lodash</code>, and write a script <code>index.js</code>
+                    that imports <code>lodash</code> and logs <code>_.shuffle([1,2,3,4,5])</code> to the console.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 3 ===================== -->
+        <div class="lecture" id="lec-2">
+            <div class="lecture-tag">Lecture 03 · Foundations</div>
+            <h1>Variables &amp; Data Types</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">Requires: Lecture 02</span>
+            </div>
+
+            <h2>Declaring Variables</h2>
+            <p>Three main keywords:</p>
+            <ul>
+                <li><code>var</code> – function scoped, hoisted.</li>
+                <li><code>let</code> – block scoped, no hoisting.</li>
+                <li><code>const</code> – block scoped, read‑only binding.</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">variables.js</span>
+                </div>
+                <pre><span class="kw">var</span> legacy = <span class="nm">10</span>;
+<span class="kw">let</span> mutable = <span class="nm">20</span>;
+<span class="kw">const</span> immutable = <span class="nm">30</span>;
+
+<span class="kw">console</span>.<span class="fn">log</span>(legacy, mutable, immutable);</pre>
+            </div>
+
+            <h2>Primitive Types</h2>
+            <ul>
+                <li><strong>Number</strong> – double‑precision floating point (<code>42</code>, <code>3.14</code>).</li>
+                <li><strong>BigInt</strong> – arbitrary‑length integers (<code>123n</code>).</li>
+                <li><strong>String</strong> – textual data (<code>"Hello"</code>).</li>
+                <li><strong>Boolean</strong> – <code>true</code> / <code>false</code>.</li>
+                <li><strong>Symbol</strong> – unique identifiers.</li>
+                <li><strong>undefined</strong> – declared but uninitialised.</li>
+                <li><strong>null</strong> – intentional empty value.</li>
+            </ul>
+
+            <h2>Type Checking</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">typecheck.js</span>
+                </div>
+                <pre><span class="kw">let</span> val = <span class="st">'123'</span>;
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="kw">typeof</span> val);     <span class="cm">// "string"</span>
+
+<span class="kw">val</span> = <span class="nm">123</span>;
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="kw">typeof</span> val);     <span class="cm">// "number"</span>
+
+<span class="kw">val</span> = <span class="kw">null</span>;
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="kw">typeof</span> val);     <span class="cm">// "object" (quirk)</span></pre>
+            </div>
+
+            <h2>Constants and Immutability</h2>
+            <p>Only the binding of a <code>const</code> cannot change. For objects/arrays the contents are still mutable
+                unless you freeze them:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">freeze.js</span>
+                </div>
+                <pre><span class="kw">const</span> arr = [<span class="nm">1</span>, <span class="nm">2</span>];
+<span class="kw">arr</span>.<span class="fn">push</span>(<span class="nm">3</span>);               <span class="cm">// works</span>
+
+<span class="kw">Object</span>.<span class="fn">freeze</span>(arr);
+<span class="kw">arr</span>.<span class="fn">push</span>(<span class="nm">4</span>);               <span class="cm">// TypeError: Cannot add property 3, object is not extensible</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 3.1</div>
+                <p>Create a script that declares variables of each primitive type, prints their type using
+                    <code>typeof</code>, then attempts to reassign a <code>const</code> and observes the error.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 4 ===================== -->
+        <div class="lecture" id="lec-3">
+            <div class="lecture-tag">Lecture 04 · Foundations</div>
+            <h1>Operators &amp; Expressions</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~40 min</span>
+                <span class="meta-badge">Requires: Lecture 03</span>
+            </div>
+
+            <h2>Arithmetic Operators</h2>
+            <table class="tbl-wrap">
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>+</code></td>
+                        <td>Addition / concatenation</td>
+                        <td><code>5 + 3</code></td>
+                        <td><code>8</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-</code></td>
+                        <td>Subtraction</td>
+                        <td><code>5 - 3</code></td>
+                        <td><code>2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>Multiplication</td>
+                        <td><code>5 * 3</code></td>
+                        <td><code>15</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Division</td>
+                        <td><code>7 / 2</code></td>
+                        <td><code>3.5</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>%</code></td>
+                        <td>Remainder</td>
+                        <td><code>7 % 2</code></td>
+                        <td><code>1</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>String Concatenation & Template Literals</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">concat.js</span>
+                </div>
+                <pre><span class="kw">let</span> a = <span class="st">"Hello"</span>;
+<span class="kw">let</span> b = <span class="st">"World"</span>;
+
+<span class="kw">console</span>.<span class="fn">log</span>(a + <span class="st">", "</span> + b);                   <span class="cm">// Hello, World</span>
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="st">`\${a}, \${b}!`</span>);            <span class="cm">// Hello, World!</span></pre>
+            </div>
+
+            <h2>Comparison & Logical Operators</h2>
+            <table class="tbl-wrap">
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>===</code></td>
+                        <td>Strict equality (no coercion)</td>
+                        <td><code>5 === "5"</code></td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>!==</code></td>
+                        <td>Strict inequality</td>
+                        <td><code>5 !== 5</code></td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>==</code></td>
+                        <td>Loose equality (type coercion)</td>
+                        <td><code>5 == "5"</code></td>
+                        <td><code>true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>!=</code></td>
+                        <td>Loose inequality</td>
+                        <td><code>5 != "5"</code></td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&amp;&amp;</code></td>
+                        <td>Logical AND</td>
+                        <td><code>true && false</code></td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>||</code></td>
+                        <td>Logical OR</td>
+                        <td><code>true || false</code></td>
+                        <td><code>true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>!</code></td>
+                        <td>Logical NOT</td>
+                        <td><code>!true</code></td>
+                        <td><code>false</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Assignment Operators</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">assign.js</span>
+                </div>
+                <pre><span class="kw">let</span> x = <span class="nm">5</span>;
+x <span class="op">+=</span> <span class="nm">3</span>;   <span class="cm">// x = 8</span>
+x <span class="op">*=</span> <span class="nm">2</span>;   <span class="cm">// x = 16</span>
+x <span class="op">%=</span> <span class="nm">5</span>;   <span class="cm">// x = 1</span></pre>
+            </div>
+
+            <h2>Type Coercion Gotchas</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">coercion.js</span>
+                </div>
+                <pre><span class="kw">console</span>.<span class="fn">log</span>(<span class="nm">1</span> + <span class="nm">2</span> + <span class="st">"3"</span>);     <span class="cm">// "33"</span>
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="st">"3"</span> - <span class="nm">2</span>);            <span class="cm">// 1 (string converted to number)</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 4.1</div>
+                <p>Write a program that reads two numbers with <code>prompt()</code> (or <code>readline-sync</code> on
+                    Node) and prints the sum, difference, product, quotient, remainder and a truthy/falsy test of the
+                    result.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 5 ===================== -->
+        <div class="lecture" id="lec-4">
+            <div class="lecture-tag">Lecture 05 · Foundations</div>
+            <h1>Control Flow</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">Requires: Lecture 04</span>
+            </div>
+
+            <h2>If / else if / else</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">ifelse.js</span>
+                </div>
+                <pre><span class="kw">let</span> score = <span class="nm">85</span>;
+
+<span class="kw">if</span> (score <span class="op">&gt;=</span> <span class="nm">90</span>) {
+    <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">"Grade A"</span>);
+} <span class="kw">else</span> <span class="kw">if</span> (score <span class="op">&gt;=</span> <span class="nm">80</span>) {
+    <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">"Grade B"</span>);
+} <span class="kw">else</span> {
+    <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">"Needs improvement"</span>);
+}</pre>
+            </div>
+
+            <h2>Switch Statement</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">switch.js</span>
+                </div>
+                <pre><span class="kw">let</span> day = <span class="st">'Monday'</span>;
+
+<span class="kw">switch</span> (day) {
+    <span class="kw">case</span> <span class="st">'Monday'</span>:
+        <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">'Start of the week'</span>);
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="st">'Friday'</span>:
+        <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">'Almost weekend'</span>);
+        <span class="kw">break</span>;
+    <span class="kw">default</span>:
+        <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">'Just another day'</span>);
+}</pre>
+            </div>
+
+            <h2>Loops</h2>
+            <h3>for loop</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">for_loop.js</span>
+                </div>
+                <pre><span class="kw">for</span> (<span class="kw">let</span> i = <span class="nm">1</span>; i &lt;= <span class="nm">5</span>; i++) {
+    <span class="kw">console</span>.<span class="fn">log</span>(i);
+}</pre>
+            </div>
+
+            <h3>while loop</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">while_loop.js</span>
+                </div>
+                <pre><span class="kw">let</span> n = <span class="nm">1</span>;
+<span class="kw">while</span> (n &lt;= <span class="nm">100</span>) {
+    <span class="kw">console</span>.<span class="fn">log</span>(n);
+    n *= <span class="nm">2</span>;
+}</pre>
+            </div>
+
+            <h3>do…while loop</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">do_while.js</span>
+                </div>
+                <pre><span class="kw">let</span> password;
+<span class="kw">do</span> {
+    password = <span class="kw">prompt</span>(<span class="st">'Enter password (type 1234 to quit):'</span>);
+} <span class="kw">while</span> (password !== <span class="st">'1234'</span>);</pre>
+            </div>
+
+            <h2>break &amp; continue</h2>
+            <ul>
+                <li><code>break</code> exits the nearest loop immediately.</li>
+                <li><code>continue</code> skips the remainder of the current iteration.</li>
+            </ul>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 5.1</div>
+                <p>Write a program that prints the multiplication table of a number entered by the user (1‑12). Then
+                    create a <code>do…while</code> loop that repeatedly asks for a secret word until the user enters
+                    <code>open-sesame</code>.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 6 ===================== -->
+        <div class="lecture" id="lec-5">
+            <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+            <h1>Functions</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~55 min</span>
+                <span class="meta-badge">Requires: Lecture 05</span>
+            </div>
+
+            <h2>Function Declarations &amp; Expressions</h2>
+            <p>Two common syntaxes:</p>
+            <ul>
+                <li>Function Declaration (hoisted): <code>function add(a, b) { … }</code></li>
+                <li>Function Expression (not hoisted): <code>const add = function(a, b) { … };</code></li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">functions.js</span>
+                </div>
+                <pre><span class="kw">function</span> <span class="fn">add</span>(a, b) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="kw">const</span> <span class="fn">multiply</span> = (a, b) =&gt; a * b;          <span class="cm">// arrow function</span>
+
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="fn">add</span>(<span class="nm">3</span>, <span class="nm">4</span>));          <span class="cm">// 7</span>
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="fn">multiply</span>(<span class="nm">5</span>, <span class="nm">6</span>));   <span class="cm">// 30</span></pre>
+            </div>
+
+            <h2>Default Parameters &amp; Rest Parameters</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">params.js</span>
+                </div>
+                <pre><span class="kw">function</span> <span class="fn">greet</span>(name = <span class="st">'World'</span>) {
+    <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">`Hello, \${name}!`</span>);
+}
+<span class="fn">greet</span>();                <span class="cm">// Hello, World!</span>
+<span class="fn">greet</span>(<span class="st">'Alice'</span>);       <span class="cm">// Hello, Alice!</span>
+
+<span class="kw">function</span> <span class="fn">sumAll</span>(...nums) {
+    <span class="kw">return</span> nums.<span class="fn">reduce</span>((a, b) =&gt; a + b, <span class="nm">0</span>);
+}
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="fn">sumAll</span>(<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>)); <span class="cm">// 6</span></pre>
+            </div>
+
+            <h2>Higher‑Order Functions &amp; Callbacks</h2>
+            <p>A function can receive another function as an argument or return one.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">callback.js</span>
+                </div>
+                <pre><span class="kw">function</span> <span class="fn">fetchData</span>(url, callback) {
+    <span class="kw">setTimeout</span>(() =&gt; {
+        <span class="kw">const</span> data = <span class="st">`Data from \${url}`</span>;
+        <span class="fn">callback</span>(data);
+    }, <span class="nm">1000</span>);
+}
+
+<span class="fn">fetchData</span>(<span class="st">'/api'</span>, result =&gt; {
+    <span class="kw">console</span>.<span class="fn">log</span>(result);
+});</pre>
+            </div>
+
+            <div class="box tip">
+                <div class="box-title">✅ Arrow functions vs regular functions</div>
+                Arrow functions inherit <code>this</code> from the surrounding scope, while regular functions have their
+                own <code>this</code> binding depending on how they are called.
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 6.1</div>
+                <p>Implement a recursive <code>factorial(n)</code> function (using both a function declaration and an
+                    arrow function). Then write a higher‑order function <code>applyTwice(fn, x)</code> that returns
+                    <code>fn(fn(x))</code> and test it with the factorial function.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 7 ===================== -->
+        <div class="lecture" id="lec-6">
+            <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+            <h1>Objects &amp; Prototypes</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~55 min</span>
+                <span class="meta-badge">Requires: Lecture 06</span>
+            </div>
+
+            <h2>Object Literals</h2>
+            <p>Key/value pairs enclosed in <code>{}</code>. Property names can be strings or identifiers.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">object.js</span>
+                </div>
+                <pre><span class="kw">const</span> user = {
+    <span class="nm">name</span>: <span class="st">"Bob"</span>,
+    <span class="nm">age</span>: <span class="nm">30</span>,
+    <span class="nm">isAdmin</span>: <span class="kw">true</span>,
+    <span class="nm">greet</span>() {
+        <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">`Hi, I&#39;m \${this.name}`</span>);
+    }
+};
+
+<span class="kw">console</span>.<span class="fn">log</span>(user.name);    <span class="cm">// Bob</span>
+user.<span class="fn">greet</span>();           <span class="cm">// Hi, I’m Bob</span></pre>
+            </div>
+
+            <h2>Constructor Functions &amp; Classes</h2>
+            <p>Before ES6, objects were created via constructor functions and the <code>new</code> keyword. ES6
+                introduced <code>class</code> syntax which is syntactic sugar over the prototype chain.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">class.js</span>
+                </div>
+                <pre><span class="kw">class</span> <span class="fn">Person</span> {
+    <span class="kw">constructor</span>(name, age) {
+        <span class="kw">this</span>.<span class="nm">name</span> = name;
+        <span class="kw">this</span>.<span class="nm">age</span> = age;
+    }
+
+    <span class="fn">greet</span>() {
+        <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">`\${this.name} says hello!`</span>);
+    }
+}
+
+<span class="kw">const</span> alice = <span class="kw">new</span> <span class="fn">Person</span>(<span class="st">'Alice'</span>, <span class="nm">28</span>);
+alice.<span class="fn">greet</span>();    <span class="cm">// Alice says hello!</span></pre>
+            </div>
+
+            <h2>Prototypal Inheritance</h2>
+            <p>Every object has an internal <code>[[Prototype]]</code> (accessible via
+                <code>Object.getPrototypeOf</code> or <code>__proto__</code>). Adding properties to the prototype makes
+                them shared.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">prototype.js</span>
+                </div>
+                <pre><span class="kw">function</span> <span class="fn">Animal</span>(type) {
+    <span class="kw">this</span>.<span class="nm">type</span> = type;
+}
+
+<span class="fn">Animal</span>.<span class="nm">prototype</span>.<span class="fn">speak</span> = <span class="kw">function</span>() {
+    <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">`\${this.type} makes a sound`</span>);
+};
+
+<span class="kw">const</span> dog = <span class="kw">new</span> <span class="fn">Animal</span>(<span class="st">'Dog'</span>);
+dog.<span class="fn">speak</span>();   <span class="cm">// Dog makes a sound</span></pre>
+            </div>
+
+            <div class="box warning">
+                <div class="box-title">⚠️ Beware of shared mutable properties</div>
+                If you put an object or array on a prototype, all instances will share the same reference, leading to
+                unexpected side‑effects.
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 7.1</div>
+                <p>Create a <code>Vehicle</code> class with <code>make</code>, <code>model</code> and a method
+                    <code>info()</code>. Extend it with an <code>ElectricVehicle</code> subclass that adds a
+                    <code>batteryLevel</code> property and overrides <code>info()</code> to also show the battery.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 8 ===================== -->
+        <div class="lecture" id="lec-7">
+            <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+            <h1>Arrays &amp; Higher‑Order Functions</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~55 min</span>
+                <span class="meta-badge">Requires: Lecture 07</span>
+            </div>
+
+            <h2>Array Basics</h2>
+            <p>Arrays are ordered collections, created with <code>[]</code> or <code>new Array()</code>.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">array.js</span>
+                </div>
+                <pre><span class="kw">const</span> numbers = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>];
+<span class="kw">console</span>.<span class="fn">log</span>(numbers.<span class="fn">length</span>);       <span class="cm">// 5</span>
+<span class="kw">console</span>.<span class="fn">log</span>(numbers[<span class="nm">0</span>]);         <span class="cm">// 1</span></pre>
+            </div>
+
+            <h2>Common Array Methods</h2>
+            <ul>
+                <li><code>push / pop</code> – add/remove at end.</li>
+                <li><code>shift / unshift</code> – add/remove at start.</li>
+                <li><code>forEach</code> – iterate (no return).</li>
+                <li><code>map</code> – transform to new array.</li>
+                <li><code>filter</code> – select elements.</li>
+                <li><code>reduce</code> – accumulate a single value.</li>
+                <li><code>find / findIndex</code> – locate element.</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">higher_order.js</span>
+                </div>
+                <pre><span class="kw">const</span> nums = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>];
+
+// map – double each number
+<span class="kw">const</span> doubled = nums.<span class="fn">map</span>(n =&gt; n * <span class="nm">2</span>);
+<span class="kw">console</span>.<span class="fn">log</span>(doubled);               <span class="cm">// [2,4,6,8,10]</span>
+
+// filter – keep evens
+<span class="kw">const</span> evens = nums.<span class="fn">filter</span>(n =&gt; n % <span class="nm">2</span> === <span class="nm">0</span>);
+<span class="kw">console</span>.<span class="fn">log</span>(evens);                <span class="cm">// [2,4]</span>
+
+// reduce – sum
+<span class="kw">const</span> sum = nums.<span class="fn">reduce</span>((acc, cur) =&gt; acc + cur, <span class="nm">0</span>);
+<span class="kw">console</span>.<span class="fn">log</span>(sum);                 <span class="cm">// 15</span></pre>
+            </div>
+
+            <h2>Spread &amp; Rest Operators</h2>
+            <p>Use <code>...</code> to expand or collect elements.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">spread.js</span>
+                </div>
+                <pre><span class="kw">const</span> a = [<span class="nm">1</span>, <span class="nm">2</span>];
+<span class="kw">const</span> b = [<span class="nm">3</span>, <span class="nm">4</span>];
+<span class="kw">const</span> combined = [...a, ...b];  <span class="cm">// [1,2,3,4]</span>
+
+<span class="kw">function</span> <span class="fn">logAll</span>(...values) {
+    <span class="kw">console</span>.<span class="fn">log</span>(values);
+}
+<span class="fn">logAll</span>(<span class="nm">5</span>, <span class="nm">6</span>, <span class="nm">7</span>);   <span class="cm">// [5,6,7]</span></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 8.1</div>
+                <p>Write a function <code>unique(arr)</code> that returns a new array with duplicate values removed (use
+                    <code>Set</code> or <code>filter</code>). Then write a <code>groupBy(arr, keyFn)</code> that groups
+                    objects by a derived key and returns an object of arrays.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 9 ===================== -->
+        <div class="lecture" id="lec-8">
+            <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+            <h1>Asynchronous JavaScript</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~60 min</span>
+                <span class="meta-badge">Requires: Lecture 08</span>
+            </div>
+
+            <h2>Callbacks</h2>
+            <p>Functions passed to async APIs that run once the operation completes.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">callback_async.js</span>
+                </div>
+                <pre><span class="kw">function</span> <span class="fn">delayedLog</span>(msg, delay, cb) {
+    <span class="kw">setTimeout</span>(() =&gt; {
+        <span class="kw">console</span>.<span class="fn">log</span>(msg);
+        <span class="kw">if</span> (cb) cb();
+    }, delay);
+}
+
+<span class="fn">delayedLog</span>(<span class="st">'First'</span>, <span class="nm">1000</span>, () =&gt; {
+    <span class="fn">delayedLog</span>(<span class="st">'Second'</span>, <span class="nm">500</span>);
+});</pre>
+            </div>
+
+            <h2>Promises</h2>
+            <p>Represent a value that may become available in the future. They can be chained and handle errors with
+                <code>catch</code>.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">promise.js</span>
+                </div>
+                <pre><span class="kw">function</span> <span class="fn">fetchNumber</span>() {
+    <span class="kw">return</span> <span class="kw">new</span> <span class="fn">Promise</span>((resolve, reject) =&gt; {
+        <span class="kw">setTimeout</span>(() =&gt; {
+            <span class="kw">const</span> n = <span class="nm">42</span>;
+            <span class="kw">if</span> (n) resolve(n);
+            <span class="kw">else</span> reject(<span class="st">'No number'</span>);
+        }, <span class="nm">800</span>);
+    });
+}
+
+<span class="fn">fetchNumber</span>()
+    .<span class="fn">then</span>(value =&gt; <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">'Got'</span>, value))
+    .<span class="fn">catch</span>(err =&gt; <span class="kw">console</span>.<span class="fn">error</span>(err));</pre>
+            </div>
+
+            <h2>Async / Await</h2>
+            <p>Syntactic sugar over promises; makes asynchronous code look synchronous.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">async_await.js</span>
+                </div>
+                <pre><span class="kw">async</span> <span class="fn">getData</span>() {
+    <span class="kw">try</span> {
+        <span class="kw">const</span> res = <span class="kw">await</span> <span class="kw">fetch</span>(<span class="st">'https://api.github.com/users/octocat'</span>);
+        <span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>();
+        <span class="kw">console</span>.<span class="fn">log</span>(data);
+    } <span class="kw">catch</span> (e) {
+        <span class="kw">console</span>.<span class="fn">error</span>(e);
+    }
+}
+<span class="fn">getData</span>();</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 9.1</div>
+                <p>Write a function <code>fetchJson(url)</code> that returns a promise resolving to parsed JSON (use
+                    <code>fetch</code>). Then consume it with both <code>.then/.catch</code> and with
+                    <code>async/await</code> to display the result.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 10 ===================== -->
+        <div class="lecture" id="lec-9">
+            <div class="lecture-tag">Lecture 10 · Advanced</div>
+            <h1>DOM Manipulation &amp; Events</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~55 min</span>
+                <span class="meta-badge">Requires: Lecture 09</span>
+            </div>
+
+            <h2>The Document Object Model</h2>
+            <p>The DOM is a tree‑like representation of the HTML page. You can query and modify nodes with the
+                <code>document</code> API.</p>
+
+            <h3>Selecting Elements</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">select.js</span>
+                </div>
+                <pre><span class="kw">const</span> header = <span class="kw">document</span>.<span class="fn">querySelector</span>(<span class="st">'h1'</span>);
+<span class="kw">const</span> items = <span class="kw">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'.item'</span>);
+<span class="kw">const</span> byId = <span class="kw">document</span>.<span class="fn">getElementById</span>(<span class="st">'main'</span>);</pre>
+            </div>
+
+            <h3>Modifying Content</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">modify.js</span>
+                </div>
+                <pre><span class="kw">header</span>.<span class="fn">textContent</span> = <span class="st">'New Title'</span>;
+<span class="kw">header</span>.<span class="fn">style</span>.<span class="nm">color</span> = <span class="st">'rebeccapurple'</span>;
+
+<span class="kw">const</span> newDiv = <span class="kw">document</span>.<span class="fn">createElement</span>(<span class="st">'div'</span>);
+newDiv.<span class="fn">classList</span>.<span class="fn">add</span>(<span class="st">'card'</span>);
+newDiv.<span class="fn">innerHTML</span> = <span class="st">`&lt;p&gt;Hello&lt;/p&gt;`</span>;
+<span class="kw">document</span>.<span class="fn">body</span>.<span class="fn">appendChild</span>(newDiv);</pre>
+            </div>
+
+            <h3>Event Handling</h3>
+            <p>Attach listeners with <code>addEventListener</code>. Event objects provide details (type, target, etc.).
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">events.js</span>
+                </div>
+                <pre><span class="kw">document</span>.<span class="fn">querySelector</span>(<span class="st">'button'</span>).<span class="fn">addEventListener</span>(<span class="st">'click'</span>, e =&gt; {
+    <span class="kw">alert</span>(<span class="st">`Clicked! X: \${e.clientX}`</span>);
+});
+
+<span class="kw">window</span>.<span class="fn">addEventListener</span>(<span class="st">'resize'</span>, () =&gt; {
+    <span class="kw">console</span>.<span class="fn">log</span>(<span class="st">'Window resized. New size:'</span>, <span class="kw">window</span>.<span class="nm">innerWidth</span>);
+});</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 10.1</div>
+                <p>Build a simple counter app: an HTML page with a number display and two buttons “+” and “‑”. Clicking
+                    the buttons updates the number and stores the current value in <code>localStorage</code> so the
+                    count persists across reloads.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 11 ===================== -->
+        <div class="lecture" id="lec-10">
+            <div class="lecture-tag">Lecture 11 · Advanced</div>
+            <h1>Modules &amp; Build Tools</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-advanced">Advanced</span>
+                <span class="meta-badge">~60 min</span>
+                <span class="meta-badge">Requires: Lecture 10</span>
+            </div>
+
+            <h2>ES6 Modules</h2>
+            <p>Use <code>export</code> and <code>import</code>. Native support in browsers (with
+                <code>type="module"</code>) and in Node.js (with <code>.mjs</code> or <code>"type":"module"</code> in
+                <code>package.json</code>).</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">math.mjs</span>
+                </div>
+                <pre><span class="kw">export</span> <span class="kw">function</span> <span class="fn">add</span>(a, b) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="kw">export</span> <span class="kw">const</span> PI = <span class="nm">3.1415926535</span>;</pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">main.mjs</span>
+                </div>
+                <pre><span class="kw">import</span> { add, PI } <span class="kw">from</span> <span class="st">'./math.mjs'</span>;
+
+<span class="kw">console</span>.<span class="fn">log</span>(add(<span class="nm">2</span>, <span class="nm">3</span>));    <span class="cm">// 5</span>
+<span class="kw">console</span>.<span class="fn">log</span>(PI);            <span class="cm">// 3.14159...</span></pre>
+            </div>
+
+            <h2>CommonJS (Node.js legacy)</h2>
+            <p>Uses <code>module.exports</code> and <code>require()</code>. Still works alongside ES6 modules.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">math.cjs</span>
+                </div>
+                <pre><span class="kw">function</span> <span class="fn">multiply</span>(a, b) {
+    <span class="kw">return</span> a * b;
+}
+<span class="kw">module</span>.<span class="nm">exports</span> = { multiply };</pre>
+            </div>
+
+            <h2>Bundlers (Webpack, Vite, Parcel)</h2>
+            <p>Combine multiple modules, transpile with Babel, and generate production‑ready assets.</p>
+
+            <pre><code># Example with Vite (fast dev server)
+npm create vite@latest my-app -- --template vanilla
+cd my-app
+npm install
+npm run dev</code></pre>
+
+            <h2>Transpiling Modern JS (Babel)</h2>
+            <p>Convert ES2023+ syntax to older JavaScript that runs on older browsers.</p>
+
+            <pre><code># Install Babel
+npm install --save-dev @babel/core @babel/cli @babel/preset-env
+
+# .babelrc
+{
+  "presets": ["@babel/preset-env"]
+}</code></pre>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 11.1</div>
+                <p>Set up a tiny project with Vite (or Webpack) using ES modules. Create two modules
+                    (<code>utils.js</code> exporting a helper, and <code>app.js</code> importing it) and run the
+                    development server to see the live reload.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 12 ===================== -->
+        <div class="lecture" id="lec-11">
+            <div class="lecture-tag">Lecture 12 · Capstone</div>
+            <h1>Capstone Project – Interactive To‑Do List</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-advanced">Advanced</span>
+                <span class="meta-badge">~90 min</span>
+                <span class="meta-badge">Requires: All Lectures</span>
+            </div>
+
+            <p>In this project you will build a **single‑page** JavaScript application that lets the user manage a to‑do
+                list. The app will demonstrate everything you’ve learned: modules, DOM manipulation, event handling,
+                local storage, async operations, and modern JavaScript syntax.</p>
+
+            <h2>Feature Checklist</h2>
+            <ul>
+                <li>Persist tasks in <code>localStorage</code> (load on start, save on change).</li>
+                <li>Task object: <code>{id, text, done, createdAt}</code>.</li>
+                <li>Add, toggle (complete/incomplete), delete, and edit tasks.</li>
+                <li>Filter view: All / Active / Completed.</li>
+                <li>Responsive UI with minimal CSS.</li>
+                <li>Split code into ES modules: <code>store.js</code>, <code>ui.js</code>, <code>app.js</code>.</li>
+                <li>Optional: use the Fetch API to load a remote JSON of sample tasks (demonstrates async).</li>
+            </ul>
+
+            <h2>Project Skeleton</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">project
+                        layout</span>
+                </div>
+                <pre>todo-app/
+├── index.html
+├── styles.css
+├── src/
+│   ├── app.js          <span class="cm">/* entry point */</span>
+│   ├── store.js        <span class="cm">/* localStorage handling */</span>
+│   └── ui.js           <span class="cm">/* DOM rendering & events */</span>
+└── package.json        <span class="cm">/* optional – for build tools */</span></pre>
+            </div>
+
+            <h2>Starter Code – index.html</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">index.html</span>
+                </div>
+                <pre><span class="cm">&lt;!DOCTYPE html&gt;</span>
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Todo List&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="app"&gt;
+        &lt;h1&gt;Todo List&lt;/h1&gt;
+        &lt;input id="new-task" type="text" placeholder="What needs to be done?"&gt;
+        &lt;ul id="task-list"&gt;&lt;/ul&gt;
+        &lt;div class="filters"&gt;
+            &lt;button data-filter="all"&gt;All&lt;/button&gt;
+            &lt;button data-filter="active"&gt;Active&lt;/button&gt;
+            &lt;button data-filter="completed"&gt;Completed&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type="module" src="src/app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+            </div>
+
+            <h2>Basic UI Module (ui.js)</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">ui.js</span>
+                </div>
+                <pre><span class="kw">import</span> { getTasks, addTask, toggleTask, deleteTask, setFilter } <span class="kw">from</span> <span class="st">'./store.js'</span>;
+
+<span class="kw">const</span> taskList = <span class="kw">document</span>.<span class="fn">getElementById</span>(<span class="st">'task-list'</span>);
+<span class="kw">const</span> newTaskInput = <span class="kw">document</span>.<span class="fn">getElementById</span>(<span class="st">'new-task'</span>);
+<span class="kw">const</span> filterButtons = <span class="kw">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'.filters button'</span>);
+
+<span class="kw">function</span> <span class="fn">render</span>() {
+    <span class="kw">const</span> tasks = <span class="fn">getTasks</span>();
+    taskList.<span class="fn">innerHTML</span> = <span class="st">''</span>;
+    tasks.<span class="fn">forEach</span>(t =&gt; {
+        <span class="kw">const</span> li = <span class="kw">document</span>.<span class="fn">createElement</span>(<span class="st">'li'</span>);
+        li.<span class="fn">className</span> = t.done ? <span class="st">'done'</span> : <span class="st">''</span>;
+        li.<span class="fn">innerHTML</span> = <span class="st">`\${t.text}
+            &lt;button class="toggle"&gt;\${t.done ? '↩' : '✓'}&lt;/button&gt;
+            &lt;button class="del"&gt;✕&lt;/button&gt;`</span>;
+
+        li.<span class="fn">querySelector</span>(<span class="st">'.toggle'</span>).<span class="fn">addEventListener</span>(<span class="st">'click'</span>, () =&gt; {
+            <span class="fn">toggleTask</span>(t.id);
+            <span class="fn">render</span>();
+        });
+        li.<span class="fn">querySelector</span>(<span class="st">'.del'</span>).<span class="fn">addEventListener</span>(<span class="st">'click'</span>, () =&gt; {
+            <span class="fn">deleteTask</span>(t.id);
+            <span class="fn">render</span>();
+        });
+
+        taskList.<span class="fn">appendChild</span>(li);
+    });
+}
+
+<span class="kw">newTaskInput</span>.<span class="fn">addEventListener</span>(<span class="st">'keydown'</span>, e =&gt; {
+    <span class="kw">if</span> (e.<span class="nm">key</span> === <span class="st">'Enter'</span> &amp;&amp; newTaskInput.<span class="nm">value</span>.trim()) {
+        <span class="fn">addTask</span>(newTaskInput.<span class="nm">value</span>.trim());
+        newTaskInput.<span class="nm">value</span> = <span class="st">''</span>;
+        <span class="fn">render</span>();
+    }
+});
+
+<span class="kw">filterButtons</span>.<span class="fn">forEach</span>(btn =&gt; {
+    btn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, () =&gt; {
+        <span class="fn">setFilter</span>(btn.<span class="nm">dataset</span>.<span class="nm">filter</span>);
+        <span class="fn">render</span>();
+    });
+});
+
+<span class="fn">render</span>();</pre>
+            </div>
+
+            <h2>Store Module (store.js) – persists in localStorage</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">store.js</span>
+                </div>
+                <pre><span class="kw">let</span> tasks = <span class="kw">JSON</span>.<span class="fn">parse</span>(localStorage.<span class="fn">getItem</span>(<span class="st">'tasks'</span>)) <span class="kw">||</span> [];
+<span class="kw">let</span> filter = <span class="st">'all'</span>;
+
+<span class="kw">function</span> <span class="fn">save</span>() {
+    localStorage.<span class="fn">setItem</span>(<span class="st">'tasks'</span>, <span class="kw">JSON</span>.<span class="fn">stringify</span>(tasks));
+}
+
+<span class="kw">export</span> <span class="kw">function</span> <span class="fn">getTasks</span>() {
+    <span class="kw">if</span> (filter === <span class="st">'active'</span>) <span class="kw">return</span> tasks.<span class="fn">filter</span>(t =&gt; !t.done);
+    <span class="kw">if</span> (filter === <span class="st">'completed'</span>) <span class="kw">return</span> tasks.<span class="fn">filter</span>(t =&gt; t.done);
+    <span class="kw">return</span> tasks;
+}
+
+<span class="kw">export</span> <span class="kw">function</span> <span class="fn">addTask</span>(text) {
+    <span class="kw">const</span> id = <span class="kw">Date</span>.<span class="fn">now</span>();
+    tasks.<span class="fn">push</span>({id, text, done: <span class="kw">false</span>, createdAt: <span class="kw">new</span> <span class="kw">Date</span>()});
+    <span class="fn">save</span>();
+}
+
+<span class="kw">export</span> <span class="kw">function</span> <span class="fn">toggleTask</span>(id) {
+    <span class="kw">const</span> t = tasks.<span class="fn">find</span>(x =&gt; x.id === id);
+    <span class="kw">if</span> (t) t.done = !t.done;
+    <span class="fn">save</span>();
+}
+
+<span class="kw">export</span> <span class="kw">function</span> <span class="fn">deleteTask</span>(id) {
+    tasks = tasks.<span class="fn">filter</span>(x =&gt; x.id !== id);
+    <span class="fn">save</span>();
+}
+
+<span class="kw">export</span> <span class="kw">function</span> <span class="fn">setFilter</span>(mode) {
+    filter = mode;
+}</pre>
+            </div>
+
+            <h2>Application Entry (app.js)</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="filename">app.js</span>
+                </div>
+                <pre><span class="kw">import</span> <span class="st">'./ui.js'</span>;   <span class="cm">// UI module runs immediately and wires everything up</span></pre>
+            </div>
+
+            <div class="box tip">
+                <div class="box-title">🚀 Extensions</div>
+                <ul style="margin-top:8px">
+                    <li>Add a simple backend (Node Express) that stores tasks in a JSON file and syncs via HTTP.</li>
+                    <li>Use a CSS framework (Tailwind, Bulma) for a prettier UI.</li>
+                    <li>Write unit tests for <code>store.js</code> using <a href="https://jestjs.io/"
+                            target="_blank">Jest</a>.</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Final Challenge</div>
+                <p>Extend the app with a “Due Date” field on each task. Show a visual indicator (e.g., red background)
+                    for tasks that are overdue. Store the date in ISO format, and format it nicely using
+                    <code>Intl.DateTimeFormat</code>.</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+            </div>
+        </div>
+
+    </div><!-- /main -->
+
+    <script>
+        const titles = [
+            "Intro to JavaScript",
+            "Environment Setup",
+            "Variables & Data Types",
+            "Operators & Expressions",
+            "Control Flow",
+            "Functions",
+            "Objects & Prototypes",
+            "Arrays & Higher‑Order Functions",
+            "Asynchronous JavaScript",
+            "DOM Manipulation & Events",
+            "Modules & Build Tools",
+            "Capstone Project"
+        ];
+
+        function showLecture(index) {
+            document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+            document.getElementById('lec-' + index).classList.add('active');
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+
+            document.getElementById('breadcrumb-current').textContent = titles[index];
+            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
+            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('sidebar').classList.remove('open');
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>
