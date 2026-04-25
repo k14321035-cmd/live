@@ -12,45 +12,36 @@
 
 <!-- MEGA NAVIGATION -->
 <nav class="lesson-mega-nav">
-        <div class="lesson-nav-container">
-            <a href="../index.html" class="lesson-nav-logo">Code <span>Tutorium</span></a>
-            
-            <div class="lesson-mega-menu">
-                <div class="lesson-mega-item">
-                    <button class="lesson-mega-trigger">
-                        Courses
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6,9 12,15 18,9"/>
-                        </svg>
-                    </button>
-                    <div class="lesson-mega-dropdown">
-                        <div class="lesson-mega-grid">
-                            <a href="python.html" class="lesson-mega-link"><span class="lesson-mega-icon">🐍</span>Python</a>
-                            <a href="c++.html" class="lesson-mega-link"><span class="lesson-mega-icon">⚙️</span>C++</a>
-                            <a href="html.html" class="lesson-mega-link active"><span class="lesson-mega-icon">🌐</span>HTML</a>
-                            <a href="css.html" class="lesson-mega-link"><span class="lesson-mega-icon">🎨</span>CSS</a>
-                            <a href="java.html" class="lesson-mega-link"><span class="lesson-mega-icon">☕</span>Java</a>
-                            <a href="javascript.html" class="lesson-mega-link"><span class="lesson-mega-icon">✨</span>JavaScript</a>
-                            <a href="c.html" class="lesson-mega-link"><span class="lesson-mega-icon">🧭</span>C Language</a>
-                        </div>
+    <div class="lesson-nav-container">
+        <div class="lesson-nav-left">
+            <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
+            <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+        </div>
+        <div class="lesson-mega-menu">
+            <div class="lesson-mega-item">
+                <button class="lesson-mega-trigger">Courses<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></button>
+                <div class="lesson-mega-dropdown">
+                    <div class="lesson-mega-grid">
+                        <a href="python.html" class="lesson-mega-link"><span class="lesson-mega-icon">🐍</span>Python</a>
+                        <a href="c++.html" class="lesson-mega-link"><span class="lesson-mega-icon">⚙️</span>C++</a>
+                        <a href="html.html" class="lesson-mega-link active"><span class="lesson-mega-icon">🌐</span>HTML</a>
+                        <a href="css.html" class="lesson-mega-link"><span class="lesson-mega-icon">🎨</span>CSS</a>
+                        <a href="java.html" class="lesson-mega-link"><span class="lesson-mega-icon">☕</span>Java</a>
+                        <a href="javascript.html" class="lesson-mega-link"><span class="lesson-mega-icon">✨</span>JavaScript</a>
+                        <a href="c.html" class="lesson-mega-link"><span class="lesson-mega-icon">🧭</span>C</a>
                     </div>
                 </div>
-                
-                <a href="../index.html#courses" class="lesson-mega-link-plain">All Courses</a>
-                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
-            <div class="lesson-nav-search">
-                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                    </svg>
-                </button>
-            </div>
+            <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+            <a href="../index.html" class="lesson-mega-link-plain">Home</a>
         </div>
-    </nav>
-
-<button id="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="lesson-nav-search">
+            <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+        </div>
+    </div>
+</nav>
 
 <!-- SIDEBAR -->
 <nav id="sidebar">
@@ -97,7 +88,7 @@
         </div>
     </div>
 
-    <!-- ===================== LECTURE 1 ===================== -->
+    <!-- LECTURE 1 -->
     <div class="lecture active" id="lec-0">
         <div class="lecture-tag">Lecture 01 · Foundations</div>
         <h1>What is HTML?</h1>
@@ -108,126 +99,34 @@
         </div>
 
         <h2>Introduction to HTML</h2>
-        <p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It is the standard language used to create and structure content on the web. Every webpage you visit — from Google to Wikipedia — is built on HTML at its core.</p>
-        <p>HTML is not a programming language. It is a <em>markup language</em>: it uses tags to annotate and describe the meaning of content, telling the browser how to display text, images, links, and other elements.</p>
-
-        <h3>A brief history</h3>
-        <ul>
-            <li><strong>1991</strong> — Tim Berners-Lee publishes the first HTML spec (18 tags)</li>
-            <li><strong>1995</strong> — HTML 2.0: first formal standard</li>
-            <li><strong>1997</strong> — HTML 4.01: widespread adoption</li>
-            <li><strong>2014</strong> — HTML5 becomes the W3C standard (current)</li>
-            <li><strong>Today</strong> — HTML is a "living standard" maintained by WHATWG</li>
-        </ul>
-
-        <h2>Your First HTML File</h2>
-        <p>Try it yourself! Edit the code on the left and click <strong>Run</strong> (or press <strong>Ctrl+Enter</strong>) to see it rendered live on the right.</p>
-
-        <div class="playground" data-id="pg-lec0-first">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Your First HTML Page
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec0-first"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec0-first')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec0-first')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec0-first" spellcheck="false"><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My First Page</title>
-</head>
-<body>
-  <h1>Hello, World!</h1>
-  <p>Welcome to <strong>HTML Mastery</strong>.</p>
-  <p>Edit this code and click <em>Run</em>!</p>
-</body>
-</html></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec0-first"></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Tip: <span class="kbd">Ctrl</span>+<span class="kbd">Enter</span> to run · Edit the code and see live output · Click Reset to restore original</div>
-        </div>
-
-        <h2>Anatomy of an HTML Tag</h2>
-        <p>HTML is built from <strong>elements</strong>. Most elements have an opening tag, content, and a closing tag:</p>
-        <div class="tag-diagram">
-            <div class="tag-example">
-                <span style="color:#f97316">&lt;</span><span style="color:#f97316">p</span> <span style="color:#ffcb6b">class</span><span style="color:#e2e8f0">=</span><span style="color:#c3e88d">"intro"</span><span style="color:#f97316">&gt;</span><span style="color:#38bdf8">Hello!</span><span style="color:#f97316">&lt;/p&gt;</span>
-            </div>
-            <div class="annotations">
-                <div class="ann"><div class="ann-value ann-tag">p</div><div class="ann-label">Tag name</div></div>
-                <div class="ann"><div class="ann-value ann-attr">class</div><div class="ann-label">Attribute</div></div>
-                <div class="ann"><div class="ann-value ann-val">"intro"</div><div class="ann-label">Value</div></div>
-                <div class="ann"><div class="ann-value ann-content">Hello!</div><div class="ann-label">Content</div></div>
-            </div>
-        </div>
-
-        <h3>Self-closing (void) elements</h3>
-        <p>Some elements have no content and don't need a closing tag. Try them below:</p>
-
-        <div class="playground" data-id="pg-lec0-void">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Void Elements
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec0-void"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec0-void')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec0-void')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec0-void" spellcheck="false"><p>Before the break</p>
-<br>
-<p>After a line break</p>
-
-<hr>
-
-<p>Text above the rule</p>
-
-<p>Try adding an image placeholder:</p>
-<img src="https://picsum.photos/200/100" 
-     alt="A random photo">
-
-<p>Input field: <input type="text" placeholder="Type here..."></p></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec0-void"></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 These are "void" elements — no closing tag needed!</div>
+        <p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It is the standard language used to create and structure content on the web.</p>
+        
+        <div class="code-block">
+            <div class="code-header"><span class="code-filename">hello.html</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;p&gt;Welcome to &lt;strong&gt;HTML&lt;/strong&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
         </div>
 
         <div class="exercise">
             <div class="exercise-title">🎯 Exercise 1.1</div>
-            <p>In the playground above, modify the code: add a heading with your name, a paragraph describing yourself, and at least one more void element. Hit Run to see your changes!</p>
+            <p>Create a simple HTML page with your name as the title, add a heading, and a paragraph.</p>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+            <button class="nav-btn primary" data-lecture="1">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 2 ===================== -->
+    <!-- LECTURE 2 -->
     <div class="lecture" id="lec-1">
         <div class="lecture-tag">Lecture 02 · Foundations</div>
         <h1>Document Structure</h1>
@@ -238,113 +137,28 @@
         </div>
 
         <h2>The HTML Boilerplate</h2>
-        <p>Every valid HTML5 document follows the same fundamental structure. Try editing the boilerplate below:</p>
-
-        <div class="playground" data-id="pg-lec1-boiler">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — HTML5 Boilerplate
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec1-boiler"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec1-boiler')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec1-boiler')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec1-boiler" spellcheck="false"><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" 
-        content="width=device-width, initial-scale=1.0">
-  <title>My Website — Change This!</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; }
-    h1   { color: #e25822; }
-  </style>
-</head>
-<body>
-  <h1>Page Heading</h1>
-  <p>This content lives in &lt;body&gt;.</p>
-  <p>The &lt;head&gt; metadata is not visible here,
-     but it controls the tab title above.</p>
-</body>
-</html></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec1-boiler"></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Notice the &lt;style&gt; tag — try changing the color value!</div>
-        </div>
-
-        <h2>Block vs Inline Elements</h2>
-        <p>HTML elements fall into two display categories. The playground below demonstrates both clearly:</p>
-
-        <div class="playground" data-id="pg-lec1-display">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Block vs Inline
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec1-display"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec1-display')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec1-display')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec1-display" spellcheck="false"><style>
-  div  { background:#fde8d8; border:2px solid #e25822;
-         margin:4px; padding:6px; }
-  span { background:#d8eafd; border:2px solid #2266e2;
-         padding:2px 6px; }
-  p    { background:#d8fde8; border:2px solid #22e257;
-         padding:6px; margin:4px; }
-</style>
-
-<p>I am a BLOCK element — full width.</p>
-<div>I am also BLOCK — starts new line.</div>
-
-<p>
-  Inside this paragraph,
-  <span>this span</span> is INLINE — it 
-  <span>flows with text</span> naturally.
-  <strong>Bold</strong> and <em>italic</em>
-  are also inline!
-</p></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec1-display"></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Orange border = block element · Blue border = inline element</div>
-        </div>
-
-        <div class="exercise">
-            <div class="exercise-title">🎯 Exercise 2.1</div>
-            <p>In the boilerplate playground above, change the <code>&lt;title&gt;</code> to your name, and add a linked stylesheet using <code>&lt;link rel="stylesheet" href="style.css"&gt;</code> in the head. What changes in the preview?</p>
+        <div class="code-block">
+            <div class="code-header"><span class="code-filename">boilerplate.html</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Content here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="0">← Previous</button>
+            <button class="nav-btn primary" data-lecture="2">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 3 ===================== -->
+    <!-- LECTURE 3 -->
     <div class="lecture" id="lec-2">
         <div class="lecture-tag">Lecture 03 · Foundations</div>
         <h1>Text & Typography</h1>
@@ -354,72 +168,21 @@
             <span class="meta-badge">Requires: Lecture 02</span>
         </div>
 
-        <h2>Headings</h2>
-        <p>HTML provides six heading levels. Play with all of them below:</p>
-
-        <div class="playground" data-id="pg-lec2-headings">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Headings & Typography
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec2-headings"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec2-headings')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec2-headings')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec2-headings" spellcheck="false"><h1>H1 — Main Page Title</h1>
-<h2>H2 — Section Heading</h2>
-<h3>H3 — Sub-section</h3>
-<h4>H4 — Sub-sub-section</h4>
-<h5>H5 — Rarely needed</h5>
-<h6>H6 — Almost never used</h6>
-
-<hr>
-
-<p>This is a <strong>bold/important</strong> word.</p>
-<p>This is an <em>italic/emphasised</em> word.</p>
-<p>This is <mark>highlighted</mark> text.</p>
-<p>H<sub>2</sub>O and E = mc<sup>2</sup></p>
-<p><s>Strikethrough</s> and <u>underline</u></p>
-<p>Inline code: <code>console.log("hi")</code></p>
-
-<blockquote>
-  "The best time to plant a tree was 20 years ago.
-   The second best time is now."
-</blockquote></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec2-headings" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Try removing &lt;strong&gt; and using &lt;b&gt; instead — visually the same but semantically different!</div>
-        </div>
-
-        <div class="box tip">
-            <div class="box-title">✅ Semantic vs Presentational</div>
-            Prefer <code>&lt;strong&gt;</code> over <code>&lt;b&gt;</code> and <code>&lt;em&gt;</code> over <code>&lt;i&gt;</code>. Semantic tags convey <em>meaning</em>, not just appearance — crucial for screen readers and SEO.
-        </div>
-
-        <div class="exercise">
-            <div class="exercise-title">🎯 Exercise 3.1 — Article Page</div>
-            <p>Use the playground above to create a mini blog post. Add an <code>&lt;h1&gt;</code> title, 2 paragraphs with <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code>, and a <code>&lt;blockquote&gt;</code>.</p>
+        <h2>Headings Hierarchy</h2>
+        <div class="code-block">
+            <pre><code>&lt;h1&gt;Main Page Title&lt;/h1&gt;
+&lt;h2&gt;Major Section&lt;/h2&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;
+&lt;h4&gt;Sub-subsection&lt;/h4&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="1">← Previous</button>
+            <button class="nav-btn primary" data-lecture="3">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 4 ===================== -->
+    <!-- LECTURE 4 -->
     <div class="lecture" id="lec-3">
         <div class="lecture-tag">Lecture 04 · Foundations</div>
         <h1>Links & Navigation</h1>
@@ -430,80 +193,28 @@
         </div>
 
         <h2>The Anchor Tag</h2>
-        <p>The <code>&lt;a&gt;</code> element creates hyperlinks. Try all the different link types below:</p>
+        <div class="code-block">
+            <pre><code>&lt;!-- External link --&gt;
+&lt;a href="https://example.com"&gt;Visit&lt;/a&gt;
 
-        <div class="playground" data-id="pg-lec3-links">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Links & Navigation
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec3-links"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec3-links')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec3-links')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec3-links" spellcheck="false"><nav>
-  <ul>
-    <li><a href="https://www.wikipedia.org" 
-           target="_blank" 
-           rel="noopener noreferrer">
-      External link (opens new tab)
-    </a></li>
-    <li><a href="#section2">
-      Jump to Section 2 (anchor)
-    </a></li>
-    <li><a href="mailto:hello@example.com">
-      Email link
-    </a></li>
-    <li><a href="tel:+1234567890">
-      Phone link
-    </a></li>
-  </ul>
-</nav>
+&lt;!-- New tab --&gt;
+&lt;a href="..." target="_blank" rel="noopener"&gt;Open New Tab&lt;/a&gt;
 
-<hr>
+&lt;!-- Email --&gt;
+&lt;a href="mailto:email@example.com"&gt;Email&lt;/a&gt;
 
-<h2 id="section2">Section 2</h2>
-<p>You jumped here using an anchor link!</p>
-
-<p>
-  <a href="https://example.com/file.pdf" download>
-    📄 Download a file
-  </a>
-</p></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec3-links" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 The "Jump to Section 2" link scrolls within the preview iframe!</div>
-        </div>
-
-        <div class="box warning">
-            <div class="box-title">⚠️ Security: rel="noopener noreferrer"</div>
-            Always add <code>rel="noopener noreferrer"</code> when using <code>target="_blank"</code>. Without it, the opened page can access your page via <code>window.opener</code> — a security risk.
-        </div>
-
-        <div class="exercise">
-            <div class="exercise-title">🎯 Exercise 4.1 — Navigation Menu</div>
-            <p>Build a styled navigation bar in the playground. Add 4 links, a mailto link, and a section that an anchor jumps to. Try adding basic CSS with <code>&lt;style&gt;</code> to make it look like a real nav bar!</p>
+&lt;!-- Anchor --&gt;
+&lt;a href="#section"&gt;Jump&lt;/a&gt;
+&lt;h2 id="section"&gt;Section&lt;/h2&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="2">← Previous</button>
+            <button class="nav-btn primary" data-lecture="4">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 5 ===================== -->
+    <!-- LECTURE 5 -->
     <div class="lecture" id="lec-4">
         <div class="lecture-tag">Lecture 05 · Foundations</div>
         <h1>Images & Media</h1>
@@ -513,77 +224,29 @@
             <span class="meta-badge">Requires: Lecture 04</span>
         </div>
 
-        <h2>The &lt;img&gt; Element</h2>
-        <p>Images are embedded with the self-closing <code>&lt;img&gt;</code> tag. The <code>alt</code> attribute is required for accessibility. Try different image URLs below:</p>
+        <h2>Adding Images</h2>
+        <div class="code-block">
+            <pre><code>&lt;!-- Basic image --&gt;
+&lt;img src="photo.jpg" alt="Description"&gt;
 
-        <div class="playground" data-id="pg-lec4-images">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Images & Media
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec4-images"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec4-images')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec4-images')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec4-images" spellcheck="false"><style>
-  img { max-width: 100%; border-radius: 8px; }
-  figure { margin: 12px 0; }
-  figcaption { font-size: 0.85em; color: #555;
-               text-align: center; margin-top: 6px; }
-</style>
+&lt;!-- With dimensions --&gt;
+&lt;img src="photo.jpg" alt="Description" 
+     width="600" height="400"&gt;
 
-<!-- Basic image from a public API -->
-<img src="https://picsum.photos/300/180?random=1" 
-     alt="A beautiful random landscape photo"
-     width="300" height="180">
-
-<hr>
-
-<!-- Figure with caption -->
-<figure>
-  <img src="https://picsum.photos/300/180?random=2" 
-       alt="Another stunning photo"
-       width="300" height="180">
-  <figcaption>
-    Fig 1 — A beautiful photograph with a caption
-  </figcaption>
-</figure>
-
-<hr>
-
-<!-- Broken image (shows alt text) -->
-<img src="this-image-doesnt-exist.jpg" 
-     alt="A mountain landscape [IMAGE NOT FOUND]"
-     width="200" height="100"></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec4-images" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Change the number after ?random= to get a different image. Try ?random=42</div>
-        </div>
-
-        <div class="exercise">
-            <div class="exercise-title">🎯 Exercise 5.1 — Image Gallery</div>
-            <p>In the playground, build a mini gallery with 4 images using <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code>. Use <code>https://picsum.photos/200/150?random=N</code> (change N for each). Try adding CSS to display them side by side!</p>
+&lt;!-- Figure with caption --&gt;
+&lt;figure&gt;
+  &lt;img src="chart.png" alt="Chart"&gt;
+  &lt;figcaption&gt;Figure 1: Sales&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="3">← Previous</button>
+            <button class="nav-btn primary" data-lecture="5">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 6 ===================== -->
+    <!-- LECTURE 6 -->
     <div class="lecture" id="lec-5">
         <div class="lecture-tag">Lecture 06 · Core Concepts</div>
         <h1>Lists & Tables</h1>
@@ -593,141 +256,34 @@
             <span class="meta-badge">Requires: Lecture 05</span>
         </div>
 
-        <h2>All Three List Types</h2>
+        <h2>Three Types of Lists</h2>
+        <div class="code-block">
+            <pre><code>&lt;!-- Unordered --&gt;
+&lt;ul&gt;
+  &lt;li&gt;Apples&lt;/li&gt;
+  &lt;li&gt;Bananas&lt;/li&gt;
+&lt;/ul&gt;
 
-        <div class="playground" data-id="pg-lec5-lists">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Lists
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec5-lists"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec5-lists')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec5-lists')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec5-lists" spellcheck="false"><h3>Unordered List (ul)</h3>
-<ul>
-  <li>Apples</li>
-  <li>Bananas</li>
-  <li>Cherries
-    <ul>
-      <li>Sweet cherry</li>
-      <li>Sour cherry</li>
-    </ul>
-  </li>
-</ul>
+&lt;!-- Ordered --&gt;
+&lt;ol&gt;
+  &lt;li&gt;Step 1&lt;/li&gt;
+  &lt;li&gt;Step 2&lt;/li&gt;
+&lt;/ol&gt;
 
-<h3>Ordered List (ol)</h3>
-<ol start="3">
-  <li>Third item (starts at 3!)</li>
-  <li>Fourth item</li>
-  <li>Fifth item</li>
-</ol>
-
-<h3>Description List (dl)</h3>
-<dl>
-  <dt>HTML</dt>
-  <dd>HyperText Markup Language</dd>
-  <dt>CSS</dt>
-  <dd>Cascading Style Sheets</dd>
-  <dt>JS</dt>
-  <dd>JavaScript — the programming language of the web</dd>
-</dl></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec5-lists" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Try changing the ol type attribute: &lt;ol type="A"&gt; or &lt;ol type="i"&gt;</div>
-        </div>
-
-        <h2>Tables</h2>
-        <p>Use tables for tabular data — never for page layout.</p>
-
-        <div class="playground" data-id="pg-lec5-tables">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Tables
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec5-tables"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec5-tables')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec5-tables')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec5-tables" spellcheck="false"><style>
-  table  { border-collapse: collapse; width: 100%; }
-  th, td { border: 1px solid #ccc; padding: 8px 12px; }
-  th     { background: #f0f4ff; color: #333; }
-  tr:hover td { background: #f9f9f9; }
-  caption { font-weight: bold; margin-bottom: 8px;
-            font-size: 1.1em; }
-  tfoot td { font-weight: bold; background: #fff8f0; }
-</style>
-
-<table>
-  <caption>Monthly Sales Report</caption>
-  <thead>
-    <tr>
-      <th scope="col">Month</th>
-      <th scope="col">Revenue</th>
-      <th scope="col">Growth</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>January</td>
-      <td>$12,400</td>
-      <td>+8%</td>
-    </tr>
-    <tr>
-      <td>February</td>
-      <td colspan="2">Data unavailable</td>
-    </tr>
-    <tr>
-      <td>March</td>
-      <td>$15,200</td>
-      <td>+22%</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>Total</td>
-      <td>$27,600</td>
-      <td>+15% avg</td>
-    </tr>
-  </tfoot>
-</table></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec5-tables" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Try adding a new row for April. Notice how colspan="2" spans columns!</div>
+&lt;!-- Description --&gt;
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Markup&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="4">← Previous</button>
+            <button class="nav-btn primary" data-lecture="6">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 7 ===================== -->
+    <!-- LECTURE 7 -->
     <div class="lecture" id="lec-6">
         <div class="lecture-tag">Lecture 07 · Core Concepts</div>
         <h1>Forms & Inputs</h1>
@@ -737,105 +293,26 @@
             <span class="meta-badge">Requires: Lecture 06</span>
         </div>
 
-        <h2>Building a Complete Form</h2>
-        <p>Forms are how users interact with websites. Try filling out this form — it uses only HTML5 validation!</p>
+        <h2>Basic Form</h2>
+        <div class="code-block">
+            <pre><code>&lt;form action="/submit" method="POST"&gt;
+  &lt;label for="name"&gt;Name:&lt;/label&gt;
+  &lt;input type="text" id="name" name="name" required&gt;
 
-        <div class="playground" data-id="pg-lec6-forms">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Forms & Inputs
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec6-forms"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec6-forms')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec6-forms')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec6-forms" spellcheck="false"><style>
-  body  { font-family: sans-serif; padding: 16px; }
-  form  { max-width: 360px; }
-  label { display: block; font-weight: bold;
-          font-size: 13px; margin: 12px 0 4px; }
-  input, select, textarea {
-    width: 100%; padding: 8px 10px;
-    border: 1px solid #ccc; border-radius: 6px;
-    font-size: 14px; box-sizing: border-box; }
-  input:focus { outline: 2px solid #0066cc;
-                border-color: transparent; }
-  button { margin-top: 14px; padding: 10px 20px;
-           background: #0066cc; color: white;
-           border: none; border-radius: 6px;
-           cursor: pointer; font-size: 14px; }
-  button:hover { background: #0055aa; }
-  fieldset { border: 1px solid #ddd; border-radius: 8px;
-             padding: 12px; margin: 12px 0; }
-  legend { font-weight: bold; padding: 0 8px; }
-</style>
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
 
-<form action="#" method="POST">
-  <fieldset>
-    <legend>Personal Info</legend>
-    
-    <label for="name">Full Name *</label>
-    <input type="text" id="name" name="name"
-           placeholder="Alice Smith" required
-           minlength="2" maxlength="50">
-
-    <label for="email">Email *</label>
-    <input type="email" id="email" name="email"
-           placeholder="alice@example.com" required>
-
-    <label for="age">Age</label>
-    <input type="number" id="age" name="age"
-           min="13" max="120" placeholder="25">
-  </fieldset>
-
-  <fieldset>
-    <legend>Preferences</legend>
-
-    <label for="country">Country</label>
-    <select id="country" name="country">
-      <option value="">— Select —</option>
-      <option value="us">United States</option>
-      <option value="gb">United Kingdom</option>
-      <option value="in">India</option>
-    </select>
-
-    <label for="msg">Message *</label>
-    <textarea id="msg" name="msg" rows="3"
-              placeholder="Your message..." required></textarea>
-  </fieldset>
-
-  <label>
-    <input type="checkbox" name="newsletter">
-    Subscribe to newsletter
-  </label>
-
-  <br>
-  <button type="submit">Send Message</button>
-</form></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec6-forms" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Click "Send Message" without filling required fields to see HTML5 validation!</div>
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="5">← Previous</button>
+            <button class="nav-btn primary" data-lecture="7">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 8 ===================== -->
+    <!-- LECTURE 8 -->
     <div class="lecture" id="lec-7">
         <div class="lecture-tag">Lecture 08 · Core Concepts</div>
         <h1>Semantic HTML</h1>
@@ -845,905 +322,166 @@
             <span class="meta-badge">Requires: Lecture 07</span>
         </div>
 
-        <h2>Semantic vs Non-Semantic</h2>
-        <p>See the difference in the playground below — the layout looks identical but the meaning is completely different:</p>
-
-        <div class="playground" data-id="pg-lec7-semantic">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Semantic HTML5 Layout
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec7-semantic"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec7-semantic')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec7-semantic')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec7-semantic" spellcheck="false"><style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: sans-serif; font-size: 13px; }
-  header { background: #1a1a2e; color: white;
-           padding: 10px 16px;
-           display: flex; justify-content: space-between;
-           align-items: center; }
-  nav a  { color: #aac; text-decoration: none;
-           margin-left: 12px; }
-  nav a:hover { color: white; }
-  main   { display: grid;
-           grid-template-columns: 1fr 220px;
-           gap: 16px; padding: 16px; }
-  article { background: #f9f9f9; padding: 14px;
-            border-radius: 6px; }
-  aside  { background: #fff3e0; padding: 14px;
-           border-radius: 6px; }
-  footer { background: #333; color: #aaa;
-           text-align: center; padding: 10px;
-           font-size: 0.8em; }
-  time   { color: #888; font-size: 0.85em; }
-  h2     { margin-bottom: 8px; }
-</style>
-
-<header>
-  <strong>🌐 My Site</strong>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Blog</a>
-    <a href="#">About</a>
-  </nav>
-</header>
-
-<main>
-  <article>
-    <header>
-      <h2>Understanding Semantic HTML</h2>
-      <time datetime="2026-03-01">March 1, 2026</time>
-    </header>
-    <p>Semantic elements convey meaning to browsers,
-       search engines, and screen readers...</p>
-    <p>Unlike &lt;div&gt; soup, semantic HTML tells
-       <em>why</em> an element exists, not just 
-       what it looks like.</p>
-  </article>
-
-  <aside>
-    <h3>Related Posts</h3>
-    <ul>
-      <li><a href="#">CSS Grid Guide</a></li>
-      <li><a href="#">Accessibility Tips</a></li>
-      <li><a href="#">SEO Basics</a></li>
-    </ul>
-  </aside>
-</main>
-
-<footer>
-  <p>&copy; 2026 My Site · 
-    <address style="display:inline">
-      <a href="mailto:hi@mysite.com">hi@mysite.com</a>
-    </address>
-  </p>
-</footer></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec7-semantic" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Try replacing &lt;header&gt; with &lt;div&gt; — looks the same but loses meaning for screen readers!</div>
+        <h2>Semantic Elements</h2>
+        <div class="code-block">
+            <pre><code>&lt;header&gt;   &lt;!-- Site header --&gt;
+&lt;nav&gt;      &lt;!-- Navigation --&gt;
+&lt;main&gt;     &lt;!-- Primary content --&gt;
+&lt;article&gt;  &lt;!-- Self-contained --&gt;
+&lt;section&gt;  &lt;!-- Thematic group --&gt;
+&lt;aside&gt;    &lt;!-- Sidebar --&gt;
+&lt;footer&gt;   &lt;!-- Footer --&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="6">← Previous</button>
+            <button class="nav-btn primary" data-lecture="8">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 9 ===================== -->
+    <!-- LECTURE 9 -->
     <div class="lecture" id="lec-8">
         <div class="lecture-tag">Lecture 09 · Advanced</div>
-        <h1>HTML5 APIs & Features</h1>
+        <h1>HTML5 APIs</h1>
         <div class="lecture-meta">
             <span class="meta-badge level-intermediate">Intermediate</span>
             <span class="meta-badge">~60 min</span>
             <span class="meta-badge">Requires: Lecture 08</span>
         </div>
 
-        <h2>Interactive HTML5 Components</h2>
-        <p>Modern HTML5 comes with powerful built-in interactive elements — no JavaScript needed for many of them:</p>
-
-        <div class="playground" data-id="pg-lec8-html5">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — HTML5 APIs & Features
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec8-html5"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec8-html5')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec8-html5')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec8-html5" spellcheck="false"><style>
-  body { font-family: sans-serif; padding: 16px;
-         font-size: 14px; }
-  details { background: #f0f4ff; border: 1px solid #c0d0ff;
-            border-radius: 6px; padding: 10px 14px;
-            margin: 8px 0; }
-  summary { cursor: pointer; font-weight: bold;
-            color: #1a3faa; }
-  dialog  { border: none; border-radius: 10px;
-            padding: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            max-width: 300px; }
-  dialog::backdrop { background: rgba(0,0,0,0.4); }
-  button  { padding: 8px 16px; background: #1a3faa;
-            color: white; border: none; border-radius: 6px;
-            cursor: pointer; font-size: 13px; }
-  progress, meter { width: 100%; height: 18px; margin: 4px 0; }
-</style>
-
-<!-- details/summary accordion -->
-<h3>📋 FAQ (click to expand)</h3>
-<details>
-  <summary>What is HTML?</summary>
-  <p>HTML stands for HyperText Markup Language!</p>
-</details>
-<details>
-  <summary>Is HTML a programming language?</summary>
-  <p>No — it's a markup language. It describes structure,
-     not logic.</p>
-</details>
-
-<hr>
-
-<!-- dialog modal -->
-<h3>🪟 Dialog Modal</h3>
-<button onclick="document.getElementById('demo-modal').showModal()">
-  Open Modal
-</button>
-<dialog id="demo-modal">
-  <h3>Hello from &lt;dialog&gt;!</h3>
-  <p>This is a native HTML modal — no JS library needed!</p>
-  <button onclick="document.getElementById('demo-modal').close()">
-    Close ✕
-  </button>
-</dialog>
-
-<hr>
-
-<!-- progress and meter -->
-<h3>📊 Progress & Meter</h3>
-<label>Download: <progress value="65" max="100">65%</progress></label>
-<label>Battery: <meter value="0.8" min="0" max="1" 
-                       low="0.2" high="0.7">80%</meter></label>
-
-<hr>
-
-<!-- datalist autocomplete -->
-<h3>🔍 Datalist Autocomplete</h3>
-<input list="browsers" placeholder="Type a browser...">
-<datalist id="browsers">
-  <option value="Chrome">
-  <option value="Firefox">
-  <option value="Safari">
-  <option value="Edge">
-  <option value="Brave">
-</datalist></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec8-html5" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Click the FAQ items, open the modal, and type into the datalist input!</div>
+        <h2>Details & Summary</h2>
+        <div class="code-block">
+            <pre><code>&lt;details&gt;
+  &lt;summary&gt;What is HTML?&lt;/summary&gt;
+  &lt;p&gt;HTML is a markup language.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="7">← Previous</button>
+            <button class="nav-btn primary" data-lecture="9">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 10 ===================== -->
+    <!-- LECTURE 10 -->
     <div class="lecture" id="lec-9">
         <div class="lecture-tag">Lecture 10 · Advanced</div>
-        <h1>Accessibility (a11y)</h1>
+        <h1>Accessibility</h1>
         <div class="lecture-meta">
             <span class="meta-badge level-intermediate">Intermediate</span>
-            <span class="meta-badge">~60 min</span>
+            <span class="meta-badge">~50 min</span>
             <span class="meta-badge">Requires: Lecture 09</span>
         </div>
 
-        <h2>Why Accessibility Matters</h2>
-        <p>Over 1 billion people worldwide have some form of disability. Let's see accessible vs inaccessible patterns side by side:</p>
-
-        <div class="playground" data-id="pg-lec9-a11y">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — Accessibility
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec9-a11y"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec9-a11y')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec9-a11y')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec9-a11y" spellcheck="false"><style>
-  body { font-family: sans-serif; padding: 14px;
-         font-size: 13px; }
-  .bad  { background: #fff0f0; padding: 12px;
-          border-left: 3px solid #e44; margin: 10px 0; }
-  .good { background: #f0fff4; padding: 12px;
-          border-left: 3px solid #2a2; margin: 10px 0; }
-  label { display: block; margin-bottom: 4px;
-          font-weight: bold; }
-  input { padding: 6px; border: 1px solid #ccc;
-          border-radius: 4px; }
-  button { padding: 6px 12px; background: #333;
-           color: white; border: none; border-radius: 4px;
-           cursor: pointer; }
-  button:focus-visible { 
-    outline: 3px solid #0066cc;
-    outline-offset: 2px;
-  }
-  img { max-width: 80px; }
-  .sr-only { position: absolute; width: 1px;
-             height: 1px; overflow: hidden;
-             clip: rect(0,0,0,0); }
-</style>
-
-<h3>❌ Inaccessible Patterns</h3>
-<div class="bad">
-  <!-- No label -->
-  <input type="text" placeholder="Enter name">
-  <br><br>
-  <!-- Image without alt -->
-  <img src="https://picsum.photos/80/60">
-  <br><br>
-  <!-- Click target unclear -->
-  <span onclick="alert('clicked')">Click me</span>
-</div>
-
-<h3>✅ Accessible Patterns</h3>
-<div class="good">
-  <!-- Proper label association -->
-  <label for="a11y-name">Full Name</label>
-  <input type="text" id="a11y-name"
-         placeholder="Enter your name"
-         aria-required="true">
-  <br><br>
-  <!-- Meaningful alt text -->
-  <img src="https://picsum.photos/80/60" 
-       alt="A scenic landscape photograph">
-  <br><br>
-  <!-- Proper button -->
-  <button type="button"
-          aria-label="Submit the contact form">
-    Submit Form
-  </button>
-  <br><br>
-  <!-- ARIA live region -->
-  <div aria-live="polite" id="msg-area">
-    Screen readers announce changes here.
-  </div>
-  <button onclick="
-    document.getElementById('msg-area')
-      .textContent='✅ Form submitted!'">
-    Simulate Update
-  </button>
-</div></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec9-a11y" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Use Tab key to navigate — notice how the accessible button has a visible focus ring!</div>
+        <h2>ARIA Labels</h2>
+        <div class="code-block">
+            <pre><code>&lt;button aria-label="Close menu"&gt;X&lt;/button&gt;
+&lt;nav aria-label="Main navigation"&gt;...&lt;/nav&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="8">← Previous</button>
+            <button class="nav-btn primary" data-lecture="10">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 11 ===================== -->
+    <!-- LECTURE 11 -->
     <div class="lecture" id="lec-10">
         <div class="lecture-tag">Lecture 11 · Advanced</div>
         <h1>SEO & Meta Tags</h1>
         <div class="lecture-meta">
             <span class="meta-badge level-intermediate">Intermediate</span>
-            <span class="meta-badge">~50 min</span>
+            <span class="meta-badge">~40 min</span>
             <span class="meta-badge">Requires: Lecture 10</span>
         </div>
 
-        <h2>SEO Meta Tags in Action</h2>
-        <p>Meta tags live in the <code>&lt;head&gt;</code> — they're invisible to users but critical for search engines and social sharing. See how they work:</p>
-
-        <div class="playground" data-id="pg-lec10-seo">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — SEO Head & Social Cards
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec10-seo"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec10-seo')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec10-seo')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor</div>
-                    <textarea class="code-editor" id="editor-pg-lec10-seo" spellcheck="false"><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" 
-        content="width=device-width, initial-scale=1">
-  <title>My Recipe: Chocolate Cake — Bakes & More</title>
-  
-  <!-- SEO -->
-  <meta name="description" 
-        content="The best chocolate cake recipe, ready in 45 minutes. Rich, moist, and absolutely delicious!">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" 
-        href="https://bakesandmore.com/chocolate-cake">
-
-  <!-- Open Graph (Facebook, LinkedIn) -->
-  <meta property="og:type"        content="article">
-  <meta property="og:title"       
-        content="Best Chocolate Cake Recipe">
-  <meta property="og:description" 
-        content="Rich, moist, and delicious!">
-  <meta property="og:image"       
-        content="https://picsum.photos/600/300">
-  <meta property="og:url"         
-        content="https://bakesandmore.com/chocolate-cake">
-
-  <style>
-    body { font-family: sans-serif; padding: 16px;
-           max-width: 500px; }
-    .seo-card { background: #fff; border: 1px solid #ddd;
-               border-radius: 8px; overflow: hidden;
-               max-width: 400px; margin: 12px 0;
-               box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .seo-card img { width: 100%; height: 140px;
-                    object-fit: cover; display: block; }
-    .seo-card .card-body { padding: 10px 14px; }
-    .seo-card .site-name { font-size: 0.7em;
-                           color: #888; text-transform: uppercase; }
-    .seo-card .title { font-weight: bold; margin: 4px 0; }
-    .seo-card .desc  { font-size: 0.85em; color: #555; }
-    .google-result { background: #fff; padding: 12px;
-                    border-radius: 6px; max-width: 400px;
-                    margin: 10px 0; }
-    .google-url  { color: #1a0dab; font-size: 0.75em; }
-    .google-link { color: #1a0dab; font-size: 1.1em;
-                   font-weight: normal; cursor: pointer; }
-    .google-desc { color: #545454; font-size: 0.85em;
-                   margin-top: 2px; }
-  </style>
-</head>
-<body>
-  <h2>How Your Page Appears in Search & Social</h2>
-
-  <h3>🔍 Google Search Result Preview:</h3>
-  <div class="google-result">
-    <div class="google-url">
-      bakesandmore.com › chocolate-cake
-    </div>
-    <div class="google-link">
-      Best Chocolate Cake Recipe — Bakes & More
-    </div>
-    <div class="google-desc">
-      The best chocolate cake recipe, ready in 45 minutes. 
-      Rich, moist, and absolutely delicious!
-    </div>
-  </div>
-
-  <h3>📱 Social Media Card Preview:</h3>
-  <div class="seo-card">
-    <img src="https://picsum.photos/600/300" 
-         alt="Chocolate cake OG image">
-    <div class="card-body">
-      <div class="site-name">bakesandmore.com</div>
-      <div class="title">Best Chocolate Cake Recipe</div>
-      <div class="desc">Rich, moist, and delicious!</div>
-    </div>
-  </div>
-
-  <p><em>Edit the meta tags above to see how title, 
-  description, and og:image affect the previews!</em></p>
-</body>
-</html></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec10-seo" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">💡 Change the og:description and og:title meta tags — the cards below update when you hit Run!</div>
+        <h2>Essential Meta Tags</h2>
+        <div class="code-block">
+            <pre><code>&lt;meta name="description" content="Page description"&gt;
+&lt;meta name="keywords" content="html, css, javascript"&gt;
+&lt;meta name="author" content="Your Name"&gt;
+&lt;meta property="og:title" content="Page Title"&gt;</code></pre>
         </div>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+            <button class="nav-btn" data-lecture="9">← Previous</button>
+            <button class="nav-btn primary" data-lecture="11">Next Lecture →</button>
         </div>
     </div>
 
-    <!-- ===================== LECTURE 12 ===================== -->
+    <!-- LECTURE 12 -->
     <div class="lecture" id="lec-11">
-        <div class="lecture-tag">Lecture 12 · Capstone</div>
-        <h1>Capstone Project: Personal Portfolio</h1>
+        <div class="lecture-tag">Lecture 12 · Advanced</div>
+        <h1>Capstone Project</h1>
         <div class="lecture-meta">
             <span class="meta-badge level-advanced">Advanced</span>
             <span class="meta-badge">~90 min</span>
             <span class="meta-badge">Requires: All Lectures</span>
         </div>
 
-        <p>Congratulations on reaching the final lecture! Build a <strong>fully semantic, accessible, SEO-optimised personal portfolio</strong> — all in the live playground below. This applies every concept from the course.</p>
-
-        <div class="box info">
-            <div class="box-title">ℹ️ Your Sandbox</div>
-            The playground below is fully unlocked — edit everything. Try adding your real name, projects, and skills. This is your HTML Mastery graduation project!
-        </div>
-
-        <div class="playground" data-id="pg-lec11-capstone">
-            <div class="playground-header">
-                <div class="playground-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-                    Live Playground — 🎓 Capstone Portfolio
-                </div>
-                <div class="playground-actions">
-                    <span class="run-status" id="status-pg-lec11-capstone"><span class="run-status-dot"></span>Updated</span>
-                    <button class="reset-btn" onclick="resetPlayground('pg-lec11-capstone')">↺ Reset</button>
-                    <button class="run-btn" onclick="runPlayground('pg-lec11-capstone')">▶ Run</button>
-                </div>
-            </div>
-            <div class="playground-body" style="min-height: 500px;">
-                <div class="editor-pane">
-                    <div class="pane-label"><span class="dot dot-orange"></span>HTML Editor — Edit Everything!</div>
-                    <textarea class="code-editor" id="editor-pg-lec11-capstone" style="min-height:490px;" spellcheck="false"><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" 
-        content="width=device-width, initial-scale=1">
-  <title>Jane Smith — Front-End Developer</title>
-  <meta name="description" content="Jane Smith is a front-end developer specialising in accessible, performant web experiences.">
-  <meta property="og:title" content="Jane Smith — Front-End Developer">
-  <meta property="og:image" content="https://picsum.photos/600/300">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
-    body   { font-family: 'Segoe UI', sans-serif; color: #1a1a2e; }
-    a      { color: #e25822; }
-
-    /* Header */
-    header { background: #1a1a2e; color: white; padding: 14px 24px;
-             display: flex; justify-content: space-between; align-items: center; }
-    header a { color: #aac; text-decoration: none; }
-    nav a  { margin-left: 16px; font-size: 0.9em; }
-    nav a:hover { color: white; }
-
-    /* Hero */
-    .hero  { background: linear-gradient(135deg, #e8f0fe, #fce8d8);
-             padding: 48px 24px; text-align: center; }
-    .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
-    .hero p  { color: #555; max-width: 500px; margin: 0 auto 20px; }
-    .hero .cta { display: inline-block; background: #1a1a2e;
-                 color: white; padding: 10px 22px; border-radius: 6px;
-                 text-decoration: none; margin: 4px; font-size: 0.9em; }
-    .hero .cta:hover { background: #2a2a4e; }
-
-    /* Sections */
-    section { padding: 40px 24px; max-width: 800px; margin: 0 auto; }
-    h2     { font-size: 1.5rem; margin-bottom: 20px; color: #1a1a2e;
-             padding-bottom: 8px; border-bottom: 2px solid #e25822; }
-
-    /* Skills table */
-    table  { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px 12px; border: 1px solid #eee; text-align: left; }
-    th     { background: #f0f4ff; }
-    meter  { width: 120px; height: 14px; }
-
-    /* Projects */
-    .projects-grid { display: grid; 
-                     grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-                     gap: 16px; }
-    article { background: #f9f9fc; border: 1px solid #e0e0f0;
-              border-radius: 8px; padding: 16px; }
-    article h3 { margin-bottom: 8px; }
-    article p  { font-size: 0.87em; color: #555; margin-bottom: 10px; }
-    article a  { font-size: 0.85em; }
-
-    /* Timeline */
-    ol.timeline { list-style: none; padding: 0; }
-    ol.timeline li { padding: 10px 0 10px 24px; border-left: 2px solid #e25822;
-                     margin-left: 12px; position: relative; }
-    ol.timeline li::before { content: ''; position: absolute;
-                             left: -7px; top: 14px; width: 12px;
-                             height: 12px; border-radius: 50%;
-                             background: #e25822; }
-    .timeline time { font-size: 0.8em; color: #888; }
-
-    /* Contact */
-    form   { display: flex; flex-direction: column; gap: 12px; max-width: 400px; }
-    label  { font-weight: bold; font-size: 0.87em; }
-    input, textarea { padding: 8px; border: 1px solid #ccc;
-                      border-radius: 6px; font-size: 0.9em; }
-    button[type=submit] { background: #e25822; color: white; border: none;
-                          padding: 10px; border-radius: 6px; cursor: pointer;
-                          font-size: 0.9em; font-weight: bold; }
-    button[type=submit]:hover { background: #c94a18; }
-
-    /* Footer */
-    footer { background: #1a1a2e; color: #aaa; text-align: center;
-             padding: 20px; font-size: 0.85em; }
-    footer address { display: inline; font-style: normal; }
-    footer a { color: #88aaff; }
-  </style>
-</head>
-<body>
-
-<a href="#main" class="skip-link" 
-   style="position:absolute;transform:translateY(-100%);
-          background:#e25822;color:white;padding:8px 16px;">
-  Skip to main content
-</a>
-
-<header>
-  <strong>JS</strong>
-  <nav aria-label="Main navigation">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#timeline">Experience</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<div class="hero">
-  <h1>Hi, I'm Jane Smith 👋</h1>
-  <p>Front-End Developer building fast, accessible 
-     and beautiful web experiences.</p>
-  <a href="#projects" class="cta">See My Work</a>
-  <a href="resume.pdf" download class="cta" 
-     style="background:#e25822">Download CV</a>
-</div>
-
-<main id="main">
-
-  <section id="about" aria-labelledby="about-h">
-    <h2 id="about-h">About Me</h2>
-    <figure style="float:right;margin:0 0 12px 20px">
-      <img src="https://picsum.photos/120/120?random=5"
-           alt="Jane Smith smiling in her office"
-           width="120" height="120"
-           style="border-radius:50%;border:3px solid #e25822">
-    </figure>
-    <p>I'm a developer with 5 years of experience crafting 
-       modern web interfaces. I care deeply about 
-       <strong>accessibility</strong>, 
-       <strong>performance</strong>, and clean code.</p>
-    <p>When I'm not coding, I'm hiking or reading about 
-       design systems. Let's build something great!</p>
-  </section>
-
-  <section id="skills" aria-labelledby="skills-h">
-    <h2 id="skills-h">Skills</h2>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Skill</th>
-          <th scope="col">Level</th>
-          <th scope="col">Proficiency</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>HTML5</td>
-          <td>Expert</td>
-          <td><meter value="0.95" min="0" max="1" 
-                     title="95%">95%</meter></td>
-        </tr>
-        <tr>
-          <td>CSS / Tailwind</td>
-          <td>Advanced</td>
-          <td><meter value="0.85" min="0" max="1"
-                     title="85%">85%</meter></td>
-        </tr>
-        <tr>
-          <td>JavaScript</td>
-          <td>Intermediate</td>
-          <td><meter value="0.7" min="0" max="1"
-                     title="70%">70%</meter></td>
-        </tr>
-        <tr>
-          <td>React</td>
-          <td>Intermediate</td>
-          <td><meter value="0.65" min="0" max="1"
-                     title="65%">65%</meter></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section id="projects" aria-labelledby="projects-h">
-    <h2 id="projects-h">Projects</h2>
-    <div class="projects-grid">
-      <article>
-        <h3>Weather App</h3>
-        <p>A responsive weather dashboard using 
-           the Open-Meteo API. Accessible and 
-           mobile-first.</p>
-        <a href="https://github.com" target="_blank"
-           rel="noopener noreferrer"
-           aria-label="View Weather App on GitHub">
-          View on GitHub →
-        </a>
-      </article>
-      <article>
-        <h3>Portfolio Site</h3>
-        <p>This site! Built with semantic HTML5, 
-           CSS Grid, and zero frameworks.</p>
-        <a href="https://github.com" target="_blank"
-           rel="noopener noreferrer"
-           aria-label="View Portfolio on GitHub">
-          View Source →
-        </a>
-      </article>
-      <article>
-        <h3>Recipe Finder</h3>
-        <p>Search and save recipes using the 
-           Spoonacular API. Offline-capable PWA.</p>
-        <a href="https://github.com" target="_blank"
-           rel="noopener noreferrer"
-           aria-label="View Recipe Finder on GitHub">
-          Live Demo →
-        </a>
-      </article>
-    </div>
-  </section>
-
-  <section id="timeline" aria-labelledby="timeline-h">
-    <h2 id="timeline-h">Experience</h2>
-    <ol class="timeline">
-      <li>
-        <time datetime="2023">2023 – Present</time>
-        <strong>Senior Front-End Developer</strong>
-        at TechCorp Ltd
-        <p style="font-size:.87em;color:#555;margin-top:4px">
-          Building accessible design systems and 
-          performance-optimised interfaces.
-        </p>
-      </li>
-      <li>
-        <time datetime="2021">2021 – 2023</time>
-        <strong>Front-End Developer</strong>
-        at StartupXYZ
-        <p style="font-size:.87em;color:#555;margin-top:4px">
-          Built React apps and maintained a component library.
-        </p>
-      </li>
-      <li>
-        <time datetime="2019">2019 – 2021</time>
-        <strong>Junior Web Developer</strong>
-        at Agency ABC
-        <p style="font-size:.87em;color:#555;margin-top:4px">
-          Learned the ropes — HTML, CSS, JavaScript.
-        </p>
-      </li>
-    </ol>
-  </section>
-
-  <section id="contact" aria-labelledby="contact-h">
-    <h2 id="contact-h">Get In Touch</h2>
-    <form action="#" method="POST">
-      <label for="p-name">
-        Name <span aria-hidden="true">*</span>
-      </label>
-      <input type="text" id="p-name" name="name"
-             autocomplete="name" required
-             aria-required="true"
-             placeholder="Your name">
-
-      <label for="p-email">Email *</label>
-      <input type="email" id="p-email" name="email"
-             autocomplete="email" required
-             placeholder="you@example.com">
-
-      <label for="p-msg">Message *</label>
-      <textarea id="p-msg" name="message" rows="4"
-                required placeholder="Say hello!">
-      </textarea>
-
-      <button type="submit">Send Message 🚀</button>
-    </form>
-  </section>
-
-</main>
-
-<footer>
-  <p>
-    &copy; <time datetime="2026">2026</time> Jane Smith ·
-    <address>
-      <a href="mailto:jane@janesmith.dev">
-        jane@janesmith.dev
-      </a>
-    </address>
-  </p>
-</footer>
-
-</body>
-</html></textarea>
-                </div>
-                <div class="preview-pane">
-                    <div class="pane-label"><span class="dot dot-green"></span>Browser Preview</div>
-                    <div class="preview-iframe-wrap">
-                        <iframe id="preview-pg-lec11-capstone" ></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="playground-hint">🎓 This is your complete portfolio! Change "Jane Smith" to your name, add your real projects, and make it yours!</div>
-        </div>
-
-        <div class="box tip">
-            <div class="box-title">🚀 What's Next?</div>
-            <p>You've completed the HTML curriculum! Your natural next steps:</p>
-            <ul style="margin-top:8px">
-                <li><strong>CSS</strong> — Style with Flexbox, Grid, animations</li>
-                <li><strong>JavaScript</strong> — Add interactivity</li>
-                <li><strong>Tailwind CSS</strong> — Utility-first CSS framework</li>
-                <li><strong>Git & GitHub</strong> — Version control</li>
-                <li><strong>Deployment</strong> — Netlify, GitHub Pages, Vercel</li>
-            </ul>
-        </div>
+        <h2>Build a Portfolio</h2>
+        <p>Create a complete personal portfolio website using everything learned:</p>
+        <ul>
+            <li>Semantic HTML structure</li>
+            <li>Navigation with links</li>
+            <li>Image gallery</li>
+            <li>Contact form</li>
+            <li>Proper meta tags</li>
+        </ul>
 
         <div class="lecture-nav">
-            <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
-            <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+            <button class="nav-btn" data-lecture="10">← Previous</button>
+            <button class="nav-btn primary" data-lecture="0">↺ Back to Start</button>
         </div>
     </div>
 
 </div><!-- /main -->
 
 <script>
-const titles = ["What is HTML?","Document Structure","Text & Typography","Links & Navigation","Images & Media","Lists & Tables","Forms & Inputs","Semantic HTML","HTML5 APIs","Accessibility","SEO & Meta Tags","Capstone Project"];
-
-// Store default code for each playground
-const defaults = {};
-
-function initDefaults() {
-    document.querySelectorAll('.code-editor').forEach(ed => {
-        defaults[ed.id] = ed.value;
-    });
-}
-
-function runPlayground(id) {
-    const editor = document.getElementById('editor-' + id);
-    const iframe = document.getElementById('preview-' + id);
-    const status = document.getElementById('status-' + id);
-    if (!editor || !iframe) return;
-    
-    const code = editor.value;
-    const doc = iframe.contentDocument || iframe.contentWindow.document;
-    doc.open();
-    doc.write(code);
-    doc.close();
-
-    if (status) {
-        status.classList.add('visible');
-        setTimeout(() => status.classList.remove('visible'), 2000);
-    }
-}
-
-function resetPlayground(id) {
-    const editor = document.getElementById('editor-' + id);
-    if (editor && defaults[editor.id]) {
-        editor.value = defaults[editor.id];
-        runPlayground(id);
-    }
-}
-
-// Ctrl+Enter to run in any editor
-document.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-        const focused = document.activeElement;
-        if (focused && focused.classList.contains('code-editor')) {
-            const id = focused.id.replace('editor-', '');
-            runPlayground(id);
-            e.preventDefault();
-        }
-    }
-});
-
-// Tab indentation in textareas
-document.querySelectorAll('.code-editor').forEach(ta => {
-    ta.addEventListener('keydown', function(e) {
-        if (e.key === 'Tab') {
-            e.preventDefault();
-            const start = this.selectionStart;
-            const end = this.selectionEnd;
-            this.value = this.value.substring(0, start) + '  ' + this.value.substring(end);
-            this.selectionStart = this.selectionEnd = start + 2;
-        }
-    });
-});
+const titles = [
+    "What is HTML?", "Document Structure", "Text & Typography",
+    "Links & Navigation", "Images & Media", "Lists & Tables",
+    "Forms & Inputs", "Semantic HTML", "HTML5 APIs",
+    "Accessibility", "SEO & Meta Tags", "Capstone Project"
+];
+let current = 0;
 
 function showLecture(index) {
+    if (index < 0 || index >= titles.length) return;
+    
     document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    
     document.getElementById('lec-' + index).classList.add('active');
     document.querySelectorAll('.nav-item')[index].classList.add('active');
+    
     document.getElementById('breadcrumb-current').textContent = titles[index];
-    document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
-    document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+    document.getElementById('progress-label').textContent = `Lecture ${index + 1} / ${titles.length}`;
+    document.getElementById('progress-fill').style.width = `${((index + 1) / titles.length) * 100}%`;
+    
+    current = index;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById('sidebar').classList.remove('open');
-
-    // Run all playgrounds in the newly shown lecture
-    setTimeout(() => {
-        document.querySelectorAll('#lec-' + index + ' .playground').forEach(pg => {
-            const pgId = pg.dataset.id;
-            if (pgId) runPlayground(pgId);
-        });
-    }, 100);
 }
 
 function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('open');
 }
 
-// Init
-window.addEventListener('load', () => {
-    initDefaults();
-    // Auto-run all playgrounds on the first lecture
-    document.querySelectorAll('#lec-0 .playground').forEach(pg => {
-        if (pg.dataset.id) runPlayground(pg.dataset.id);
+function copyCode(btn) {
+    const code = btn.closest('.code-block').querySelector('code').textContent;
+    navigator.clipboard.writeText(code);
+    btn.textContent = '✓ Copied';
+    setTimeout(() => btn.textContent = '📋 Copy', 2000);
+}
+
+// Setup navigation buttons
+document.querySelectorAll('.nav-btn[data-lecture]').forEach(btn => {
+    btn.addEventListener('click', function() {
+        showLecture(parseInt(this.dataset.lecture));
     });
 });
 </script>
 
-
 </body>
 </html>
-
-<div id="search-overlay" class="search-overlay"></div>
-<div id="search-box" class="search-box">
-    <div class="search-header">
-        <div class="search-input-wrap">
-            <svg class="search-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <input type="text" id="search-input" class="search-input" placeholder="Search tutorials, lessons, topics..." autocomplete="off">
-            <span class="search-esc">ESC</span>
-        </div>
-    </div>
-    <div id="search-results" class="search-results"></div>
-    <div class="search-hint">
-        <div class="search-hint-row"><span class="sh-icon">↓</span> Navigate</div>
-        <div class="search-hint-row"><span class="sh-icon">↵</span> Select</div>
-        <div class="search-hint-row"><span class="sh-icon">ESC</span> Close</div>
-    </div>
-</div>
-
-<script src="../search.js"></script>

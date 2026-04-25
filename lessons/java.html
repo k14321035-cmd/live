@@ -13,9 +13,12 @@
 <body>
 
     <!-- MEGA NAVIGATION -->
-<nav class="lesson-mega-nav">
+    <nav class="lesson-mega-nav">
         <div class="lesson-nav-container">
-            <a href="../index.html" class="lesson-nav-logo">Code <span>Tutorium</span></a>
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
             
             <div class="lesson-mega-menu">
                 <div class="lesson-mega-item">
@@ -38,7 +41,7 @@
                     </div>
                 </div>
                 
-                <a href="../index.html#courses" class="lesson-mega-link-plain">All Courses</a>
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
             <div class="lesson-nav-search">
@@ -51,8 +54,6 @@
             </div>
         </div>
     </nav>
-
-    <button id="menu-toggle" onclick="toggleMenu()">☰</button>
 
     <!-- SIDEBAR -->
     <nav id="sidebar">
@@ -120,30 +121,30 @@
             <h1>What is Java?</h1>
             <div class="lecture-meta">
                 <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~30 min</span>
+                <span class="meta-badge">~30 min</span>
                 <span class="meta-badge">No prerequisites</span>
             </div>
 
             <h2>Introduction</h2>
-            <p><strong>Java</strong> is a high‑level, class‑based, object‑oriented programming language
+            <p><strong>Java</strong> is a high-level, class-based, object-oriented programming language
                 that is designed to have as few implementation dependencies as possible.
                 The slogan <em>“Write Once, Run Anywhere”</em> reflects its capability to run on any device that
                 has a Java Virtual Machine (<code>JVM</code>).</p>
 
             <h2>Why Learn Java?</h2>
             <ul>
-                <li>Ubiquitous – used in Android, enterprise back‑ends, desktop apps and big‑data ecosystems.</li>
+                <li>Ubiquitous – used in Android, enterprise back-ends, desktop apps and big-data ecosystems.</li>
                 <li>Strong static typing helps catch many bugs at compile time.</li>
-                <li>Rich standard library and a huge ecosystem of third‑party libraries.</li>
-                <li>Excellent tooling (IDEA, Eclipse, VS Code, Maven/Gradle, JUnit).</li>
+                <li>Rich standard library and a huge ecosystem of third-party libraries.</li>
+                <li>Excellent tooling (IDEA, Eclipse, VS Code, Maven/Gradle, JUnit).</li>
             </ul>
 
             <div class="box tip">
                 <div class="box-title">✅ Quick fact</div>
-                The first public release of Java (JDK 1.0) appeared in 1996.
+                The first public release of Java (JDK 1.0) appeared in 1996.
             </div>
 
-            <h2>Hello World – Your First Java Program</h2>
+            <h2>Hello World – Your First Java Program</h2>
             <p>Save the following as <code>HelloWorld.java</code> and run it from the command line:</p>
 
             <div class="code-block">
@@ -163,13 +164,177 @@
 java HelloWorld         # prints “Hello, World!”</code></pre>
 
             <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 1.1</div>
+                <div class="exercise-title">🎯 Exercise 1.1</div>
                 <p>Install the latest JDK, create the <code>HelloWorld.java</code> file, compile it and run it.
                     Verify the output in your terminal.</p>
             </div>
 
+            <!-- ===================== ADDED CONTENT ===================== -->
+
+            <h2>Key Features of Java</h2>
+            <ul>
+                <li><strong>Object-Oriented:</strong> Everything in Java revolves around objects and classes.</li>
+                <li><strong>Platform Independent:</strong> Java code is compiled into bytecode that runs on the JVM.</li>
+                <li><strong>Secure:</strong> No direct pointer access and includes built-in security features.</li>
+                <li><strong>Robust:</strong> Strong memory management and exception handling.</li>
+                <li><strong>Multithreaded:</strong> Supports concurrent execution of two or more threads.</li>
+            </ul>
+
+            <h2>How Java Works</h2>
+            <p>Java follows a two-step execution process:</p>
+            <ol>
+                <li><strong>Compilation:</strong> The Java source file (<code>.java</code>) is compiled into bytecode (<code>.class</code>) using the Java compiler (<code>javac</code>).</li>
+                <li><strong>Execution:</strong> The JVM interprets or compiles the bytecode into machine code that your system can execute.</li>
+            </ol>
+
+            <div class="box tip">
+                <div class="box-title">💡 Did you know?</div>
+                The JVM acts like a translator between Java bytecode and your operating system, making Java platform-independent.
+            </div>
+
+            <h2>Basic Structure of a Java Program</h2>
+            <ul>
+                <li><strong>Class:</strong> The main building block of a Java program.</li>
+                <li><strong>Main Method:</strong> Entry point where execution begins.</li>
+                <li><strong>Statements:</strong> Instructions executed by the program.</li>
+            </ul>
+
+            <h2>Common Errors Beginners Make</h2>
+            <ul>
+                <li>Forgetting to match the file name with the class name.</li>
+                <li>Missing semicolons (<code>;</code>) at the end of statements.</li>
+                <li>Incorrect capitalization (Java is case-sensitive).</li>
+                <li>Not installing or configuring the JDK properly.</li>
+            </ul>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 1.2</div>
+                <p>Modify the <code>HelloWorld</code> program to print your name instead of "Hello, World!".</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 1.3</div>
+                <p>Try printing multiple lines using <code>System.out.println()</code> and observe how output is displayed.</p>
+            </div>
+
+            <h2>Summary</h2>
+            <p>In this lecture, you learned what Java is, why it is widely used, and how to write and run your first Java program.
+               You also explored its key features and basic structure. In the next lecture, we will dive deeper into setting up
+               your development environment and understanding variables.</p>
+
+        <div class="lecture" id="lec-1">
+            <div class="lecture-tag">Lecture 02 · Foundations</div>
+            <h1>Setting up the JDK</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-beginner">Beginner</span>
+                <span class="meta-badge">~35 min</span>
+                <span class="meta-badge">Requires: Lecture 01</span>
+            </div>
+
+            <h2>Download & Install</h2>
+            <p>Head to <a href="https://adoptium.net/" target="_blank" rel="noopener noreferrer">Eclipse Adoptium</a>
+                or <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank"
+                    rel="noopener noreferrer">Oracle JDK</a> and download the appropriate bundle for your OS.</p>
+
+            <h3>Verify Installation</h3>
+            <pre><code>java -version
+javac -version</code></pre>
+
+            <div class="box info">
+                <div class="box-title">ℹ️ Expected output</div>
+                <p>Both commands should print the version number (e.g. <code>java 21.0.1</code>) and indicate that the
+                    JDK is correctly on your <code>PATH</code>.</p>
+            </div>
+
+            <h2>IDE Recommendation</h2>
+            <p>For a smoother learning experience pick an IDE:</p>
+            <ul>
+                <li><strong>IntelliJ IDEA Community</strong> – rich refactoring, debugger, and Maven/Gradle integration.
+                </li>
+                <li><strong>Eclipse</strong> – classic, plugin-heavy.</li>
+                <li><strong>VS Code</strong> with the <code>Java Extension Pack</code>.</li>
+            </ul>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 2.1</div>
+                <p>Install your favourite IDE, open a new project, create a <code>Main.java</code> file with a
+                    <code>main</code> method,
+                    and run the “Hello World” program inside the IDE.</p>
+            </div>
+
+            <!-- ===================== ADDED CONTENT ===================== -->
+
+            <h2>Understanding JDK, JRE, and JVM</h2>
+            <ul>
+                <li><strong>JDK (Java Development Kit):</strong> Full toolkit for developing Java applications.</li>
+                <li><strong>JRE (Java Runtime Environment):</strong> Provides libraries and JVM to run Java programs.</li>
+                <li><strong>JVM (Java Virtual Machine):</strong> Executes compiled Java bytecode.</li>
+            </ul>
+
+            <div class="box tip">
+                <div class="box-title">💡 Key Insight</div>
+                Installing the JDK automatically includes the JRE and JVM, so you don’t need to install them separately.
+            </div>
+
+            <h2>Setting Environment Variables (Important)</h2>
+            <p>To run Java from any directory, you need to configure system environment variables:</p>
+
+            <h3>Windows</h3>
+            <ul>
+                <li>Search for <strong>Environment Variables</strong> in system settings.</li>
+                <li>Add the JDK <code>bin</code> folder path to the <code>PATH</code> variable.</li>
+            </ul>
+
+            <h3>Linux / macOS</h3>
+            <pre><code>export JAVA_HOME=/path/to/jdk
+export PATH=$JAVA_HOME/bin:$PATH</code></pre>
+
+            <h2>Command Line vs IDE</h2>
+            <p>You can write and run Java programs using:</p>
+            <ul>
+                <li><strong>Command Line:</strong> More control, better for understanding fundamentals.</li>
+                <li><strong>IDE:</strong> Faster development with debugging and auto-completion.</li>
+            </ul>
+
+            <h2>Creating Your First Project Structure</h2>
+            <p>A typical Java project structure looks like this:</p>
+            <pre><code>MyProject/
+ ├── src/
+ │   └── Main.java
+ └── bin/</code></pre>
+
+            <div class="box info">
+                <div class="box-title">ℹ️ Note</div>
+                The <code>src</code> folder contains source code, while compiled files are often placed in a separate directory.
+            </div>
+
+            <h2>Troubleshooting Common Issues</h2>
+            <ul>
+                <li><strong>'java' is not recognized:</strong> PATH variable is not set correctly.</li>
+                <li><strong>Version mismatch:</strong> Multiple Java versions installed on your system.</li>
+                <li><strong>Permission errors:</strong> Try running terminal as administrator (Windows) or use <code>sudo</code> (Linux/macOS).</li>
+            </ul>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 2.2</div>
+                <p>Open your terminal and verify that both <code>java</code> and <code>javac</code> commands work from any directory.</p>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">🎯 Exercise 2.3</div>
+                <p>Create a simple project folder manually, write a Java file, compile it using terminal, and run it without using an IDE.</p>
+            </div>
+
+            <h2>Summary</h2>
+            <p>In this lecture, you installed the JDK, verified your setup, and explored development tools and environment configuration.
+               You also learned the difference between JDK, JRE, and JVM, and how to troubleshoot common setup issues.
+               In the next lecture, we will begin writing more structured Java programs using variables and data types.</p>
+
+            <!-- ===================== END ADDED CONTENT ===================== -->
+
             <div class="lecture-nav">
-                <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+                <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
             </div>
         </div>
 

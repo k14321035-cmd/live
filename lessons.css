@@ -79,20 +79,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 200;
   background: var(--primary);
   color: white;
   border: none;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
   font-size: 1.2rem;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
   transition: all 0.2s ease;
+  margin-right: 0.5rem;
 }
 
 #menu-toggle:hover,
@@ -263,6 +260,7 @@ body {
    ═══════════════════════════════════════════════════════════════════════ */
 #main {
   margin-left: 0;
+  margin-top: 60px;
   min-height: 100vh;
   background: var(--bg);
   display: flex;
@@ -1054,6 +1052,14 @@ body {
   height: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  gap: 1rem;
+}
+
+/* Left section: menu button + logo */
+.lesson-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .lesson-nav-logo {
@@ -1195,24 +1201,29 @@ body {
   line-height: 1;
 }
 
-/* Adjust menu button position for mega nav */
-#menu-toggle {
-  top: 75px;
-}
-
 /* Mobile responsive */
 @media (max-width: 768px) {
   .lesson-mega-nav {
-    height: 50px;
+    height: auto;
+    min-height: 50px;
+  }
+  .lesson-nav-container {
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+  #main {
+    margin-top: 50px;
   }
   .lesson-nav-logo {
     font-size: 1.1rem;
   }
-  .lesson-mega-menu {
-    display: none;
+  .lesson-mega-link-plain {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
   }
-  #menu-toggle {
-    top: 65px;
+  .lesson-nav-search {
+    margin-left: auto;
   }
 }
 
