@@ -142,7 +142,7 @@ function openModal(id) {
     'js': 'javascript.html'
   };
   const fileName = linkMap[id] || `${id}.html`;
-  document.getElementById('modal-btn').onclick = function() { window.location.href = `lessions/${fileName}`; };
+  document.getElementById('modal-btn').onclick = function() { window.location.href = `lessons/${fileName}`; };
 
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -157,7 +157,77 @@ function closeModalDirect() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 
-// Animate cards on scroll
+// ── Sign In Toast ──────────────────────────────────────────────────────────
+function showSignInToast() {
+  let toast = document.getElementById('signin-toast');
+  if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3200); return; }
+  toast = document.createElement('div');
+  toast.id = 'signin-toast';
+  toast.innerHTML = `<span style="font-size:1.1rem">🚧</span> Sign in is coming soon — stay tuned!`;
+  toast.style.cssText = [
+    'position:fixed','bottom:2rem','left:50%','transform:translateX(-50%) translateY(120%)',
+    'background:#1e293b','color:#f1f5f9','font-family:Outfit,sans-serif',
+    'font-size:0.92rem','padding:0.85rem 1.6rem','border-radius:12px',
+    'border:1px solid rgba(59,130,246,0.35)','box-shadow:0 8px 32px rgba(0,0,0,0.25)',
+    'z-index:9999','display:flex','align-items:center','gap:0.6rem',
+    'transition:transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.35s','opacity:0'
+  ].join(';');
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => {
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    toast.style.opacity = '1';
+    toast.classList.add('show');
+  });
+  setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(120%)'; toast.style.opacity = '0'; }, 3200);
+}
+
+// ── Coming-Soon handler for placeholder links ──────────────────────────────
+function showComingSoon(label) {
+  let toast = document.getElementById('cs-toast');
+  if (toast) { toast.querySelector('span.cs-label').textContent = label + ' is coming soon!'; toast.classList.add('show'); clearTimeout(toast._timer); toast._timer = setTimeout(() => toast.classList.remove('show'), 2800); return; }
+  toast = document.createElement('div');
+  toast.id = 'cs-toast';
+  toast.innerHTML = `<span style="font-size:1.1rem">⏳</span><span class="cs-label">${label} is coming soon!</span>`;
+  toast.style.cssText = [
+    'position:fixed','bottom:5rem','left:50%','transform:translateX(-50%) translateY(120%)',
+    'background:#1e293b','color:#f1f5f9','font-family:Outfit,sans-serif',
+    'font-size:0.92rem','padding:0.85rem 1.6rem','border-radius:12px',
+    'border:1px solid rgba(96,165,250,0.3)','box-shadow:0 8px 32px rgba(0,0,0,0.25)',
+    'z-index:9999','display:flex','align-items:center','gap:0.6rem',
+    'transition:transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.35s','opacity:0'
+  ].join(';');
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => { toast.style.transform = 'translateX(-50%) translateY(0)'; toast.style.opacity = '1'; });
+  toast._timer = setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(120%)'; toast.style.opacity = '0'; }, 2800);
+}
+
+// ── Mobile menu toggle (new lesson nav) ────────────────────────────────────
+function toggleMenu() {
+  const menu = document.getElementById('mobile-nav-overlay');
+  const btn  = document.getElementById('menu-toggle');
+  if (!menu) return;
+  const open = menu.classList.toggle('open');
+  if (btn) btn.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+// ── Mobile menu toggle (old - keep for compatibility) ────────────────────────
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-nav-overlay');
+  const btn  = document.getElementById('hamburger-btn');
+  if (!menu) return;
+  const open = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-nav-overlay');
+  const btn  = document.getElementById('hamburger-btn');
+  if (menu) { menu.classList.remove('open'); btn && btn.setAttribute('aria-expanded', 'false'); }
+  document.body.style.overflow = '';
+}
+
+// ── Animate cards on scroll ────────────────────────────────────────────────
 const observer = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -167,3 +237,19 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.course-card').forEach(card => observer.observe(card));
+
+// ── Course nav active state handling ────────────────────────────────────────
+document.querySelectorAll('.course-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    document.querySelectorAll('.course-link').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ── Sign In button handler ─────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  const signInBtn = document.querySelector('.btn-signin');
+  if (signInBtn) {
+    signInBtn.addEventListener('click', showSignInToast);
+  }
+});

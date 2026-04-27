@@ -35,6 +35,9 @@
   <link rel="canonical" href="https://codetutorium.com/index.html">
   <meta property="og:url" content="https://codetutorium.com/index.html">
 
+  <!-- Perf: preconnect so fonts load faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;600&display=swap"
     rel="stylesheet">
@@ -186,171 +189,41 @@
 
 <body>
 
-  <!-- MEGA NAVIGATION - GeeksforGeeks Style -->
-  <nav class="mega-nav">
-    <div class="nav-container">
-      <!-- Logo -->
-      <a href="index.html" class="nav-logo">Code <span>Tutorium</span></a>
-      
-      <!-- Search Bar -->
-      <div class="nav-search">
-        <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <span>Search...</span>
-        </button>
-      </div>
-      
-      <!-- Mega Menu Items -->
-      <div class="mega-menu">
-        <!-- Courses Dropdown -->
-        <div class="mega-item">
-          <button class="mega-trigger">
-            Courses
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6,9 12,15 18,9"/>
-            </svg>
-          </button>
-          <div class="mega-dropdown">
-            <div class="mega-grid">
-              <div class="mega-col">
-                <h4>🐍 Python</h4>
-                <a href="lessons/python.html">Python Tutorial</a>
-                <a href="lessons/python.html#lec-1">Data Types</a>
-                <a href="lessons/python.html#lec-5">Functions</a>
-                <a href="lessons/python.html#lec-7">OOP</a>
-                <a href="lessons/python.html#lec-10">File I/O</a>
-                <a href="lessons/python.html">Data Science</a>
-                <a href="lessons/python.html">NumPy & Pandas</a>
-              </div>
-              <div class="mega-col">
-                <h4>⚙️ C++</h4>
-                <a href="lessons/c++.html">C++ Tutorial</a>
-                <a href="lessons/c++.html#lec-3">Control Structures</a>
-                <a href="lessons/c++.html#lec-6">Pointers</a>
-                <a href="lessons/c++.html#lec-8">OOP</a>
-                <a href="lessons/c++.html#lec-10">STL</a>
-                <a href="lessons/c++.html">DSA in C++</a>
-              </div>
-              <div class="mega-col">
-                <h4>☕ Java</h4>
-                <a href="lessons/java.html">Java Tutorial</a>
-                <a href="lessons/java.html#lec-3">OOP Basics</a>
-                <a href="lessons/java.html#lec-5">Collections</a>
-                <a href="lessons/java.html#lec-7">Multithreading</a>
-                <a href="lessons/java.html">Spring Boot</a>
-              </div>
-              <div class="mega-col">
-                <h4>✨ JavaScript</h4>
-                <a href="lessons/javascript.html">JS Tutorial</a>
-                <a href="lessons/javascript.html#lec-3">Arrays & Objects</a>
-                <a href="lessons/javascript.html#lec-5">DOM & Events</a>
-                <a href="lessons/javascript.html#lec-7">Async JS</a>
-                <a href="lessons/javascript.html">React Basics</a>
-                <a href="lessons/javascript.html">Node.js</a>
-              </div>
-              <div class="mega-col">
-                <h4>🌐 Web Dev</h4>
-                <a href="lessons/html.html">HTML</a>
-                <a href="lessons/css.html">CSS</a>
-                <a href="lessons/css.html#lec-5">Flexbox & Grid</a>
-                <a href="lessons/javascript.html">JavaScript</a>
-                <a href="lessons/javascript.html">Responsive Design</a>
-              </div>
-              <div class="mega-col">
-                <h4>🧭 C Language</h4>
-                <a href="lessons/c.html">C Tutorial</a>
-                <a href="lessons/c.html#lec-5">Pointers</a>
-                <a href="lessons/c.html#lec-7">Structures</a>
-                <a href="lessons/c.html#lec-9">File I/O</a>
-                <a href="lessons/c.html">Memory Management</a>
-              </div>
+  <!-- MEGA NAVIGATION -->
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <a href="index.html" class="lesson-nav-logo">C <span>T</span></a>
             </div>
-          </div>
-        </div>
 
-        <!-- Tutorials Dropdown -->
-        <div class="mega-item">
-          <button class="mega-trigger">
-            Tutorials
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6,9 12,15 18,9"/>
-            </svg>
-          </button>
-          <div class="mega-dropdown">
-            <div class="mega-grid small">
-              <div class="mega-col">
-                <h4>📚 By Topic</h4>
-                <a href="lessons/python.html">Programming Fundamentals</a>
-                <a href="lessons/python.html#lec-7">Object Oriented</a>
-                <a href="lessons/python.html#lec-9">Data Structures</a>
-                <a href="lessons/javascript.html#lec-6">Web Development</a>
-                <a href="lessons/c.html#lec-5">Algorithms</a>
-              </div>
-              <div class="mega-col">
-                <h4>🎯 Interview Prep</h4>
-                <a href="#">Coding Interview Questions</a>
-                <a href="#">System Design</a>
-                <a href="#">Aptitude</a>
-                <a href="#">Puzzles</a>
-              </div>
-              <div class="mega-col">
-                <h4>💡 Examples</h4>
-                <a href="lessons/python.html">Python Examples</a>
-                <a href="lessons/c++.html">C++ Examples</a>
-                <a href="lessons/java.html">Java Examples</a>
-                <a href="lessons/javascript.html">JS Examples</a>
-              </div>
+            <div class="lesson-nav-right" style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="lesson-nav-search">
+                    <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </button>
+                </div>
+                <button class="btn-signin">Sign In</button>
             </div>
-          </div>
         </div>
+    </nav>
 
-        <!-- Practice Dropdown -->
-        <div class="mega-item">
-          <button class="mega-trigger">
-            Practice
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6,9 12,15 18,9"/>
-            </svg>
-          </button>
-          <div class="mega-dropdown">
-            <div class="mega-grid small">
-              <div class="mega-col">
-                <h4>📝 Quizzes</h4>
-                <a href="#">Python Quiz</a>
-                <a href="#">C++ Quiz</a>
-                <a href="#">Java Quiz</a>
-                <a href="#">JavaScript Quiz</a>
-                <a href="#">HTML/CSS Quiz</a>
-              </div>
-              <div class="mega-col">
-                <h4>🏆 Challenges</h4>
-                <a href="#">Weekly Coding Challenge</a>
-                <a href="#">Project Ideas</a>
-                <a href="#">Competitive Programming</a>
-              </div>
-              <div class="mega-col">
-                <h4>📖 Problems</h4>
-                <a href="#">Easy Problems</a>
-                <a href="#">Medium Problems</a>
-                <a href="#">Hard Problems</a>
-              </div>
-            </div>
-          </div>
+    <!-- COURSES SUBHEADER -->
+    <div class="courses-subheader">
+        <div class="courses-subheader-container">
+            <a class="course-link" href="lessons/python.html">Python</a>
+            <a class="course-link" href="lessons/c++.html">C++</a>
+            <a class="course-link" href="lessons/html.html">HTML</a>
+            <a class="course-link" href="lessons/css.html">CSS</a>
+            <a class="course-link" href="lessons/java.html">Java</a>
+            <a class="course-link" href="lessons/javascript.html">JavaScript</a>
+            <a class="course-link" href="lessons/c.html">C</a>
         </div>
-
-        <!-- Jobs -->
-        <a href="#" class="mega-link">Jobs</a>
-      </div>
-      
-      <!-- Right Side Actions -->
-      <div class="nav-actions">
-        <button class="btn-signin">Sign In</button>
-      </div>
     </div>
-  </nav>
+
+
 
   <!-- HERO -->
   <section class="hero">
@@ -368,7 +241,7 @@
     </div>
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-num">6</div>
+        <div class="stat-num">7</div>
         <div class="stat-label">Courses</div>
       </div>
       <div class="stat">
@@ -449,49 +322,98 @@
     <div class="courses-grid">
 
       <!-- PYTHON -->
-      <div class="course-card python" onclick="window.location.href='lessons/python.html'">
-        <div class="course-icon">🐍</div>
+      <a class="course-card python" href="lessons/python.html">
+        <div class="course-card-header">
+      
+        </div>
         <div class="course-name">Python</div>
-      </div>
+        <div class="course-desc">Beginner-friendly · Data Science · AI</div>
+        <div class="course-meta">12 Lessons · Free</div>
+      </a>
 
       <!-- C++ -->
-      <div class="course-card cpp" onclick="window.location.href='lessons/c++.html'">
-        <div class="course-icon">⚙️</div>
+      <a class="course-card cpp" href="lessons/c++.html">
+        <div class="course-card-header">
+         
+        </div>
         <div class="course-name">C++</div>
-      </div>
+        <div class="course-desc">Performance · Systems · Games</div>
+        <div class="course-meta">14 Lessons · Free</div>
+      </a>
 
       <!-- HTML -->
-      <div class="course-card html" onclick="window.location.href='lessons/html.html'">
-        <div class="course-icon">🌐</div>
+      <a class="course-card html" href="lessons/html.html">
+        <div class="course-card-header">
+    
+        </div>
         <div class="course-name">HTML</div>
-      </div>
+        <div class="course-desc">Web Structure · Semantic · SEO</div>
+        <div class="course-meta">10 Lessons · Free</div>
+      </a>
 
       <!-- CSS -->
-      <div class="course-card css" onclick="window.location.href='lessons/css.html'">
-        <div class="course-icon">🎨</div>
+      <a class="course-card css" href="lessons/css.html">
+        <div class="course-card-header">
+     
+        </div>
         <div class="course-name">CSS</div>
-      </div>
+        <div class="course-desc">Styling · Flexbox · Animations</div>
+        <div class="course-meta">12 Lessons · Free</div>
+      </a>
 
       <!-- JAVA -->
-      <div class="course-card java" onclick="window.location.href='lessons/java.html'">
-        <div class="course-icon">☕</div>
+      <a class="course-card java" href="lessons/java.html">
+        <div class="course-card-header">
+          
+        </div>
         <div class="course-name">Java</div>
-      </div>
+        <div class="course-desc">OOP · Enterprise · Android</div>
+        <div class="course-meta">15 Lessons · Free</div>
+      </a>
 
       <!-- JAVASCRIPT -->
-      <div class="course-card js" onclick="window.location.href='lessons/javascript.html'">
-        <div class="course-icon">✨</div>
+      <a class="course-card js" href="lessons/javascript.html">
+        <div class="course-card-header">
+      
+        </div>
         <div class="course-name">JavaScript</div>
-      </div>
+        <div class="course-desc">Web Dev · Node.js · Full Stack</div>
+        <div class="course-meta">16 Lessons · Free</div>
+      </a>
 
       <!-- C LANGUAGE -->
-      <div class="course-card c" onclick="window.location.href='lessons/c.html'">
-        <div class="course-icon">🧭</div>
+      <a class="course-card c" href="lessons/c.html">
+        <div class="course-card-header">
+      
+        </div>
         <div class="course-name">C</div>
-      </div>
+        <div class="course-desc">Systems · Embedded · Memory</div>
+        <div class="course-meta">13 Lessons · Free</div>
+      </a>
 
     </div>
   </section>
+
+  <!-- AD BANNER -->
+  <div class="ad-container">
+    <div class="ad-label">Advertisement</div>
+    <!-- Google AdSense - Replace with your ad code -->
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <!-- Placeholder for before AdSense approval -->
+    <div class="ad-placeholder">
+      <span>📢</span>
+      <p>Your Ad Here</p>
+      <small>Contact us for sponsorship opportunities</small>
+    </div>
+  </div>
 
   <!-- HOW IT WORKS -->
   <section id="how" style="background: rgba(255,255,255,0.01); border-top: 1px solid var(--border);">

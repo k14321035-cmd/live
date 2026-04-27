@@ -256,7 +256,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   MAIN CONTENT AREA - Centered (full width for ads)
+   MAIN CONTENT AREA - 3 Column Layout with Ads
    ═══════════════════════════════════════════════════════════════════════ */
 #main {
   margin-left: 0;
@@ -266,6 +266,101 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Content Wrapper - 3 Column Grid */
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 160px 1fr 160px;
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 20px;
+  align-items: start;
+}
+
+/* Ad Columns */
+.ad-column {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ad-column-left {
+  grid-column: 1;
+}
+
+.ad-column-right {
+  grid-column: 3;
+}
+
+/* Ad Units */
+.ad-unit {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+}
+
+.ad-unit-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.ad-placeholder-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+}
+
+.ad-placeholder-vertical span {
+  font-size: 1.5rem;
+}
+
+.ad-placeholder-vertical p {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.ad-placeholder-vertical small {
+  font-size: 0.6rem;
+}
+
+/* Center Content Column */
+.content-column {
+  grid-column: 2;
+  width: 100%;
+  max-width: 900px;
+  justify-self: center;
+}
+
+/* Hide ads on smaller screens */
+@media (max-width: 1200px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 900px;
+  }
+  .ad-column {
+    display: none;
+  }
+  .content-column {
+    grid-column: 1;
+  }
 }
 
 /* Top Bar with Breadcrumb and Progress */
