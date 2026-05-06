@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+    <title>R Mastery — Complete Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2970695859332311"
+         crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- MEGA NAVIGATION -->
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                        <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link "><span class="lesson-mega-icon">🐍</span>Python</a>
+                            <a href="c++" class="lesson-mega-link"><span class="lesson-mega-icon">⚙️</span>C++</a>
+                            <a href="html" class="lesson-mega-link"><span class="lesson-mega-icon">🌐</span>HTML</a>
+                            <a href="css" class="lesson-mega-link"><span class="lesson-mega-icon">🎨</span>CSS</a>
+                            <a href="java" class="lesson-mega-link"><span class="lesson-mega-icon">☕</span>Java</a>
+                            <a href="javascript" class="lesson-mega-link"><span class="lesson-mega-icon">✨</span>JavaScript</a>
+                            <a href="c" class="lesson-mega-link"><span class="lesson-mega-icon">🧭</span>C Language</a>
+                            <a href="cc" class="lesson-mega-link"><span class="lesson-mega-icon">♯</span>C#</a>
+                            <a href="typescript" class="lesson-mega-link"><span class="lesson-mega-icon">🔷</span>TypeScript</a>
+                            <a href="go" class="lesson-mega-link"><span class="lesson-mega-icon">🐹</span>Go</a>
+                            <a href="rust" class="lesson-mega-link"><span class="lesson-mega-icon">🦀</span>Rust</a>
+                            <a href="kotlin" class="lesson-mega-link"><span class="lesson-mega-icon">🟣</span>Kotlin</a>
+                            <a href="swift" class="lesson-mega-link"><span class="lesson-mega-icon">🟠</span>Swift</a>
+                            <a href="php" class="lesson-mega-link"><span class="lesson-mega-icon">🐘</span>PHP</a>
+                            <a href="sql" class="lesson-mega-link"><span class="lesson-mega-icon">🗄️</span>SQL</a>
+                            <a href="r" class="lesson-mega-link active"><span class="lesson-mega-icon">📊</span>R</a>
+                            <a href="bash" class="lesson-mega-link"><span class="lesson-mega-icon">🖥️</span>Bash</a>
+                            <a href="dart" class="lesson-mega-link"><span class="lesson-mega-icon">🎯</span>Dart</a>
+                            <a href="ruby" class="lesson-mega-link"><span class="lesson-mega-icon">💎</span>Ruby</a>
+                            <a href="matlab" class="lesson-mega-link"><span class="lesson-mega-icon">📐</span>MATLAB</a>
+                            <a href="visualbasic" class="lesson-mega-link"><span class="lesson-mega-icon">🔵</span>Visual Basic</a>
+                            <a href="shell" class="lesson-mega-link"><span class="lesson-mega-icon">🐚</span>Shell</a>
+                            <a href="ethicalhacking" class="lesson-mega-link"><span class="lesson-mega-icon">🛡️</span>Ethical Hacking</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="logo">
+                <span class="logo-icon">📊</span>
+                R Mastery
+            </a>
+            <p>Complete Course — 12 Lessons</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Fundamentals</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Operators & Expressions</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Loops & Functions</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Core Concepts</div>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Data Structures & Vectors</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Data Frames & dplyr</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Data Import & Cleaning</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced</div>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Visualization with ggplot2</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Statistical Analysis</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Advanced Data Manipulation</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>R Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">Introduction & Setup</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:8%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            
+            <!-- LEFT AD COLUMN -->
+            <aside class="ad-column ad-column-left">
+                <div class="ad-unit">
+                    <div class="ad-unit-label">Advertisement</div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-2970695859332311" data-ad-slot="LEFT_AD_SLOT"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
+
+            <!-- CENTER CONTENT COLUMN -->
+            <div class="content-column">
+
+                <!-- ===================== LECTURE 01 ===================== -->
+                <div class="lecture active" id="lec-0">
+                    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+                    <h1>Introduction to R & Setup</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~45 min</span>
+                    </div>
+
+                    <h2>What is R?</h2>
+                    <p>R is a powerful open-source language and environment for statistical computing, data analysis, and visualization. It is widely used in academia, data science, bioinformatics, and industry.</p>
+
+                    <h3>Why R?</h3>
+                    <ul>
+                        <li>Best-in-class tools for statistics and data visualization</li>
+                        <li>Thousands of specialized packages (CRAN)</li>
+                        <li>Excellent for exploratory data analysis</li>
+                        <li>Strong integration with Python (reticulate) and databases</li>
+                    </ul>
+
+                    <h2>Installation</h2>
+                    <p>Download R from <strong>cran.r-project.org</strong> and RStudio (recommended IDE) from <strong>posit.co</strong>.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">R Console</span>
+                        </div>
+                        <pre>> print("Hello, R Mastery!")
+[1] "Hello, R Mastery!"
+
+> version$version.string
+[1] "R version 4.4.1 (2024-...)"</pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 1.1</div>
+                        <p>Install R and RStudio. Create a new script and run code that prints your name, today's date, and the result of 17 * 23.</p>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 02 ===================== -->
+                <div class="lecture" id="lec-1">
+                    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+                    <h1>Variables & Data Types</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~45 min</span>
+                    </div>
+
+                    <h2>Assignment Operator</h2>
+                    <p>In R, we typically use <code>&lt;-</code> for assignment.</p>
+                    <div class="code-block">
+                        <pre><span class="kw">x</span> &lt;- 42
+<span class="kw">name</span> &lt;- <span class="st">"R Student"</span>
+<span class="kw">is_valid</span> &lt;- TRUE</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 03 ===================== -->
+                <div class="lecture" id="lec-2">
+                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+                    <h1>Operators & Expressions</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~40 min</span>
+                    </div>
+
+                    <h2>Basic Math</h2>
+                    <div class="code-block">
+                        <pre>5 + 10
+10 / 2
+2 ^ 3 <span class="cm"># Power</span></pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 04 ===================== -->
+                <div class="lecture" id="lec-3">
+                    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+                    <h1>Control Flow</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~45 min</span>
+                    </div>
+
+                    <h2>If Statements</h2>
+                    <div class="code-block">
+                        <pre><span class="kw">if</span> (x > 10) {
+    print(<span class="st">"Large"</span>)
+} <span class="kw">else</span> {
+    print(<span class="st">"Small"</span>)
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 05 ===================== -->
+                <div class="lecture" id="lec-4">
+                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+                    <h1>Loops & Functions</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <h2>For Loops</h2>
+                    <div class="code-block">
+                        <pre><span class="kw">for</span> (i <span class="kw">in</span> 1:5) {
+    print(i)
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 06 ===================== -->
+                <div class="lecture" id="lec-5">
+                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+                    <h1>Data Structures & Vectors</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~55 min</span>
+                    </div>
+
+                    <h2>Creating Vectors</h2>
+                    <div class="code-block">
+                        <pre><span class="kw">v</span> &lt;- c(1, 2, 3, 4, 5)
+<span class="kw">v</span> * 2 <span class="cm"># Vectorized operation</span></pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 07 ===================== -->
+                <div class="lecture" id="lec-6">
+                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+                    <h1>Data Frames & dplyr</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~65 min</span>
+                    </div>
+
+                    <h2>The Pipe Operator</h2>
+                    <div class="code-block">
+                        <pre>df %>%
+    filter(age > 18) %>%
+    select(name, salary)</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 08 ===================== -->
+                <div class="lecture" id="lec-7">
+                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+                    <h1>Data Import & Cleaning</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <p>Learn how to read CSV and Excel files and clean messy data using <code>tidyr</code>.</p>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 09 ===================== -->
+                <div class="lecture" id="lec-8">
+                    <div class="lecture-tag">Lecture 09 · Advanced</div>
+                    <h1>Visualization with ggplot2</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~70 min</span>
+                    </div>
+
+                    <h2>Grammar of Graphics</h2>
+                    <div class="code-block">
+                        <pre>ggplot(data = df, aes(x = age, y = height)) +
+    geom_point() +
+    geom_smooth(method = <span class="st">"lm"</span>)</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 10 ===================== -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · Advanced</div>
+                    <h1>Statistical Analysis</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <p>Performing hypothesis testing and correlation analysis in R.</p>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 11 ===================== -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · Advanced</div>
+                    <h1>Advanced Data Manipulation</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <p>Using <code>purrr</code> for functional programming and <code>stringr</code> for text processing.</p>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 12 ===================== -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · Capstone</div>
+                    <h1>Capstone Project: Data Analysis</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~180 min</span>
+                    </div>
+
+                    <p>Perform an end-to-end data analysis on a real-world dataset, from cleaning and exploration to modeling and visualization.</p>
+                    <div class="code-block">
+                        <pre><span class="cm"># Project goals:</span>
+<span class="cm"># 1. Load and clean a dataset</span>
+<span class="cm"># 2. Perform exploratory data analysis (EDA)</span>
+<span class="cm"># 3. Create publication-quality plots</span>
+<span class="cm"># 4. Build a predictive model</span></pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT AD COLUMN -->
+            <aside class="ad-column ad-column-right">
+                <div class="ad-unit">
+                    <div class="ad-unit-label">Advertisement</div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-2970695859332311" data-ad-slot="RIGHT_AD_SLOT"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script>
+        const titles = [
+            "Introduction & Setup",
+            "Variables & Data Types",
+            "Operators & Expressions",
+            "Control Flow",
+            "Loops & Functions",
+            "Data Structures & Vectors",
+            "Data Frames & dplyr",
+            "Data Import & Cleaning",
+            "Visualization with ggplot2",
+            "Statistical Analysis",
+            "Advanced Data Manipulation",
+            "Capstone Project: Data Analysis Report"
+        ];
+
+        let current = 0;
+
+        function showLecture(index) {
+            document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('lec-' + index).classList.add('active');
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+            document.getElementById('breadcrumb-current').textContent = titles[index];
+            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
+            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+            current = index;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

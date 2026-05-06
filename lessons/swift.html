@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+    <title>Swift Mastery — Complete Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2970695859332311"
+         crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- MEGA NAVIGATION -->
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                         <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link "><span class="lesson-mega-icon">🐍</span>Python</a>
+                            <a href="c++" class="lesson-mega-link"><span class="lesson-mega-icon">⚙️</span>C++</a>
+                            <a href="html" class="lesson-mega-link"><span class="lesson-mega-icon">🌐</span>HTML</a>
+                            <a href="css" class="lesson-mega-link"><span class="lesson-mega-icon">🎨</span>CSS</a>
+                            <a href="java" class="lesson-mega-link"><span class="lesson-mega-icon">☕</span>Java</a>
+                            <a href="javascript" class="lesson-mega-link"><span class="lesson-mega-icon">✨</span>JavaScript</a>
+                            <a href="c" class="lesson-mega-link"><span class="lesson-mega-icon">🧭</span>C Language</a>
+                            <a href="cc" class="lesson-mega-link"><span class="lesson-mega-icon">♯</span>C#</a>
+                            <a href="typescript" class="lesson-mega-link"><span class="lesson-mega-icon">🔷</span>TypeScript</a>
+                            <a href="go" class="lesson-mega-link"><span class="lesson-mega-icon">🐹</span>Go</a>
+                            <a href="rust" class="lesson-mega-link"><span class="lesson-mega-icon">🦀</span>Rust</a>
+                            <a href="kotlin" class="lesson-mega-link"><span class="lesson-mega-icon">🟣</span>Kotlin</a>
+                            <a href="swift" class="lesson-mega-link active"><span class="lesson-mega-icon">🟠</span>Swift</a>
+                            <a href="php" class="lesson-mega-link"><span class="lesson-mega-icon">🐘</span>PHP</a>
+                            <a href="sql" class="lesson-mega-link"><span class="lesson-mega-icon">🗄️</span>SQL</a>
+                            <a href="r" class="lesson-mega-link"><span class="lesson-mega-icon">📊</span>R</a>
+                            <a href="bash" class="lesson-mega-link"><span class="lesson-mega-icon">🖥️</span>Bash</a>
+                            <a href="dart" class="lesson-mega-link"><span class="lesson-mega-icon">🎯</span>Dart</a>
+                            <a href="ruby" class="lesson-mega-link"><span class="lesson-mega-icon">💎</span>Ruby</a>
+                            <a href="matlab" class="lesson-mega-link"><span class="lesson-mega-icon">📐</span>MATLAB</a>
+                            <a href="visualbasic" class="lesson-mega-link"><span class="lesson-mega-icon">🔵</span>Visual Basic</a>
+                            <a href="shell" class="lesson-mega-link"><span class="lesson-mega-icon">🐚</span>Shell</a>
+                            <a href="ethicalhacking" class="lesson-mega-link"><span class="lesson-mega-icon">🛡️</span>Ethical Hacking</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="logo">
+                <span class="logo-icon">🟠</span>
+                Swift Mastery
+            </a>
+            <p>Complete Course — 12 Lessons</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Fundamentals</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Operators & Control Flow</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Optionals & Unwrapping</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Loops & Collections</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Core Concepts</div>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Functions & Closures</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Structs, Classes & Enums</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Protocols & Extensions</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced</div>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Error Handling & Generics</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Property Wrappers & Concurrency</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>SwiftUI Basics</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>Swift Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">Introduction & Setup</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:8%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            
+            <!-- LEFT AD COLUMN -->
+            <aside class="ad-column ad-column-left">
+                <div class="ad-unit">
+                    <div class="ad-unit-label">Advertisement</div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-2970695859332311" data-ad-slot="LEFT_AD_SLOT"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
+
+            <!-- CENTER CONTENT COLUMN -->
+            <div class="content-column">
+
+                <!-- ===================== LECTURE 01 ===================== -->
+                <div class="lecture active" id="lec-0">
+                    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+                    <h1>Introduction to Swift & Setup</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <h2>What is Swift?</h2>
+                    <p>Swift is a powerful, intuitive programming language developed by Apple for building iOS, macOS, watchOS, tvOS, and server-side applications. It combines the performance of C/C++ with modern, safe language features.</p>
+
+                    <h3>Why Swift?</h3>
+                    <ul>
+                        <li>Clean, expressive syntax</li>
+                        <li>Memory safety and optionals</li>
+                        <li>Excellent performance</li>
+                        <li>Seamless integration with SwiftUI and UIKit</li>
+                    </ul>
+
+                    <h2>Installation & Setup</h2>
+                    <p>Download the latest Xcode from the Mac App Store (includes Swift). For Windows/Linux, use Swift.org toolchain.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Swift Playground / main.swift</span>
+                        </div>
+                        <pre><span class="kw">print</span>(<span class="st">"Hello, Swift Mastery!"</span>)
+<span class="kw">print</span>(<span class="st">"Ready to build amazing iOS apps!"</span>)</pre>
+                    </div>
+
+                    <div class="output-block">
+                        <div class="output-label">Output</div>Hello, Swift Mastery!<br>Ready to build amazing iOS apps!
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 1.1</div>
+                        <p>Open Xcode → Create a new macOS Command Line Tool project. Modify it to print your name and run it.</p>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 02 ===================== -->
+                <div class="lecture" id="lec-1">
+                    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+                    <h1>Variables & Data Types</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~45 min</span>
+                    </div>
+
+                    <h2>let vs var</h2>
+                    <p>Use <code>let</code> for constants and <code>var</code> for variables. Swift encourages the use of constants whenever possible.</p>
+                    <div class="code-block">
+                        <pre><span class="kw">let</span> pi = 3.14159
+<span class="kw">var</span> score = 0
+score += 10</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 03 ===================== -->
+                <div class="lecture" id="lec-2">
+                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+                    <h1>Operators & Control Flow</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <h2>Switch Statements</h2>
+                    <p>Swift's switch is extremely powerful and doesn't require <code>break</code>.</p>
+                    <div class="code-block">
+                        <pre><span class="kw">switch</span> grade {
+<span class="kw">case</span> <span class="st">"A"</span>: <span class="kw">print</span>(<span class="st">"Excellent"</span>)
+<span class="kw">case</span> <span class="st">"B"</span>...<span class="st">"C"</span>: <span class="kw">print</span>(<span class="st">"Good"</span>)
+<span class="kw">default</span>: <span class="kw">print</span>(<span class="st">"Keep trying"</span>)
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 04 ===================== -->
+                <div class="lecture" id="lec-3">
+                    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+                    <h1>Optionals & Unwrapping</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <h2>Dealing with Nil</h2>
+                    <p>Optionals are a type that can either hold a value or <code>nil</code>.</p>
+                    <div class="code-block">
+                        <pre><span class="kw">var</span> name: <span class="kw">String</span>? = <span class="st">"Tim"</span>
+<span class="kw">if let</span> actualName = name {
+    <span class="kw">print</span>(actualName)
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 05 ===================== -->
+                <div class="lecture" id="lec-4">
+                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+                    <h1>Loops & Collections</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~45 min</span>
+                    </div>
+
+                    <h2>Dictionaries</h2>
+                    <div class="code-block">
+                        <pre><span class="kw">var</span> heights = [<span class="st">"Taylor"</span>: 1.78, <span class="st">"Ed"</span>: 1.73]
+<span class="kw">for</span> (name, height) <span class="kw">in</span> heights {
+    <span class="kw">print</span>(<span class="st">"\(name) is \(height)m tall"</span>)
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 06 ===================== -->
+                <div class="lecture" id="lec-5">
+                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+                    <h1>Functions & Closures</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <div class="code-block">
+                        <pre><span class="kw">func</span> <span class="fn">greet</span>(person: <span class="kw">String</span>) -> <span class="kw">String</span> {
+    <span class="kw">return</span> <span class="st">"Hello, \(person)!"</span>
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 07 ===================== -->
+                <div class="lecture" id="lec-6">
+                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+                    <h1>Structs, Classes & Enums</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~70 min</span>
+                    </div>
+
+                    <h2>Structs vs Classes</h2>
+                    <p>Structs are value types (copied), Classes are reference types (shared).</p>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 08 ===================== -->
+                <div class="lecture" id="lec-7">
+                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+                    <h1>Protocols & Extensions</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <h2>Protocol-Oriented Programming</h2>
+                    <p>Protocols define a blueprint of methods or properties.</p>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 09 ===================== -->
+                <div class="lecture" id="lec-8">
+                    <div class="lecture-tag">Lecture 09 · Advanced</div>
+                    <h1>Error Handling & Generics</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <div class="code-block">
+                        <pre><span class="kw">do</span> {
+    <span class="kw">try</span> fetchData()
+} <span class="kw">catch</span> {
+    <span class="kw">print</span>(<span class="st">"Error: \(error)"</span>)
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 10 ===================== -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · Advanced</div>
+                    <h1>Property Wrappers & Concurrency</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~55 min</span>
+                    </div>
+
+                    <p>Modern Swift uses <code>async</code> and <code>await</code> for concurrent code.</p>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 11 ===================== -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · Advanced</div>
+                    <h1>SwiftUI Basics</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <h2>Declarative UI</h2>
+                    <div class="code-block">
+                        <pre><span class="kw">struct</span> ContentView: View {
+    <span class="kw">var</span> body: some View {
+        Text(<span class="st">"Hello SwiftUI"</span>)
+    }
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 12 ===================== -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · Capstone</div>
+                    <h1>Capstone Project: iOS App</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~180 min</span>
+                    </div>
+
+                    <p>Create a full SwiftUI application that fetches data from an API and displays it in a beautiful list with detailed views.</p>
+                    <div class="code-block">
+                        <pre><span class="cm">// Project goals:</span>
+<span class="cm">// 1. Model your data with Codable</span>
+<span class="cm">// 2. Use URLSession for networking</span>
+<span class="cm">// 3. Build a multi-view SwiftUI navigation</span>
+<span class="cm">// 4. Implement State and Binding</span></pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT AD COLUMN -->
+            <aside class="ad-column ad-column-right">
+                <div class="ad-unit">
+                    <div class="ad-unit-label">Advertisement</div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-2970695859332311" data-ad-slot="RIGHT_AD_SLOT"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script>
+        const titles = [
+            "Introduction & Setup",
+            "Variables & Data Types",
+            "Operators & Control Flow",
+            "Optionals & Unwrapping",
+            "Loops & Collections",
+            "Functions & Closures",
+            "Structs, Classes & Enums",
+            "Protocols & Extensions",
+            "Error Handling & Generics",
+            "Property Wrappers & Concurrency",
+            "SwiftUI Basics",
+            "Capstone Project: iOS App"
+        ];
+
+        let current = 0;
+
+        function showLecture(index) {
+            document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('lec-' + index).classList.add('active');
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+            document.getElementById('breadcrumb-current').textContent = titles[index];
+            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
+            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+            current = index;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

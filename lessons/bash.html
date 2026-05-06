@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+    <title>Bash/Shell Mastery — Complete Course</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2970695859332311"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- MEGA NAVIGATION -->
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
+                <a href="/index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6,9 12,15 18,9" />
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                         <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link "><span class="lesson-mega-icon">🐍</span>Python</a>
+                            <a href="c++" class="lesson-mega-link"><span class="lesson-mega-icon">⚙️</span>C++</a>
+                            <a href="html" class="lesson-mega-link"><span class="lesson-mega-icon">🌐</span>HTML</a>
+                            <a href="css" class="lesson-mega-link"><span class="lesson-mega-icon">🎨</span>CSS</a>
+                            <a href="java" class="lesson-mega-link"><span class="lesson-mega-icon">☕</span>Java</a>
+                            <a href="javascript" class="lesson-mega-link"><span class="lesson-mega-icon">✨</span>JavaScript</a>
+                            <a href="c" class="lesson-mega-link"><span class="lesson-mega-icon">🧭</span>C Language</a>
+                            <a href="cc" class="lesson-mega-link"><span class="lesson-mega-icon">♯</span>C#</a>
+                            <a href="typescript" class="lesson-mega-link"><span class="lesson-mega-icon">🔷</span>TypeScript</a>
+                            <a href="go" class="lesson-mega-link"><span class="lesson-mega-icon">🐹</span>Go</a>
+                            <a href="rust" class="lesson-mega-link"><span class="lesson-mega-icon">🦀</span>Rust</a>
+                            <a href="kotlin" class="lesson-mega-link"><span class="lesson-mega-icon">🟣</span>Kotlin</a>
+                            <a href="swift" class="lesson-mega-link"><span class="lesson-mega-icon">🟠</span>Swift</a>
+                            <a href="php" class="lesson-mega-link"><span class="lesson-mega-icon">🐘</span>PHP</a>
+                            <a href="sql" class="lesson-mega-link"><span class="lesson-mega-icon">🗄️</span>SQL</a>
+                            <a href="r" class="lesson-mega-link"><span class="lesson-mega-icon">📊</span>R</a>
+                            <a href="bash" class="lesson-mega-link active"><span class="lesson-mega-icon">🖥️</span>Bash</a>
+                            <a href="dart" class="lesson-mega-link"><span class="lesson-mega-icon">🎯</span>Dart</a>
+                            <a href="ruby" class="lesson-mega-link"><span class="lesson-mega-icon">💎</span>Ruby</a>
+                            <a href="matlab" class="lesson-mega-link"><span class="lesson-mega-icon">📐</span>MATLAB</a>
+                            <a href="visualbasic" class="lesson-mega-link"><span class="lesson-mega-icon">🔵</span>Visual Basic</a>
+                            <a href="shell" class="lesson-mega-link"><span class="lesson-mega-icon">🐚</span>Shell</a>
+                            <a href="ethicalhacking" class="lesson-mega-link"><span class="lesson-mega-icon">🛡️</span>Ethical Hacking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="../index.html/#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="logo">
+                <span class="logo-icon">🐚</span>
+                Bash/Shell Mastery
+            </a>
+            <p>Complete Course — 12 Lessons</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Fundamentals</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span
+                    class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span
+                    class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span
+                    class="dot"></span>Operators & Expressions</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span
+                    class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span
+                    class="dot"></span>Loops</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Core Concepts</div>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span
+                    class="dot"></span>Functions & Scripting</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Arrays
+                & String Manipulation</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>File
+                Operations & I/O</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced</div>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
+                    class="dot"></span>Process Management & Signals</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span
+                    class="dot"></span>Regular Expressions & grep</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span
+                    class="dot"></span>DevOps Tools & Automation</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
+                    class="dot"></span>Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>Bash/Shell Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">Introduction & Setup</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:8%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+
+            <!-- LEFT AD COLUMN -->
+            <aside class="ad-column ad-column-left">
+                <div class="ad-unit">
+                    <div class="ad-unit-label">Advertisement</div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+                        data-ad-client="ca-pub-2970695859332311" data-ad-slot="LEFT_AD_SLOT"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
+
+            <!-- CENTER CONTENT COLUMN -->
+            <div class="content-column">
+
+                <!-- ===================== LECTURE 01 ===================== -->
+                <div class="lecture active" id="lec-0">
+                    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+                    <h1>Introduction to Bash/Shell & Setup</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~45 min</span>
+                    </div>
+
+                    <h2>What is Bash/Shell?</h2>
+                    <p>Bash (Bourne Again SHell) is the most popular Unix shell and command-line interpreter. It is the
+                        default shell on Linux and macOS and is essential for automation, DevOps, system administration,
+                        and scripting.</p>
+
+                    <h3>Why Learn Bash?</h3>
+                    <ul>
+                        <li>Automate repetitive tasks</li>
+                        <li>Essential for DevOps, CI/CD, and cloud operations</li>
+                        <li>Powerful text processing with sed, awk, grep</li>
+                        <li>Works everywhere (Linux servers, macOS, WSL)</li>
+                    </ul>
+
+                    <h2>Setup & Installation</h2>
+                    <p>Bash is pre-installed on Linux and macOS. On Windows, you have several options:</p>
+                    <ul>
+                        <li><strong>WSL (Windows Subsystem for Linux)</strong> - Recommended for full Linux compatibility</li>
+                        <li><strong>Git Bash</strong> - Comes with Git for Windows</li>
+                        <li><strong>Cygwin</strong> - POSIX-compatible environment</li>
+                        <li><strong>Terminal (Windows 11)</strong> - Built-in support</li>
+                    </ul>
+
+                    <h3>Installing WSL on Windows</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">PowerShell (Admin)</span>
+                        </div>
+                        <pre>wsl --install</pre>
+                    </div>
+
+                    <h3>Checking Your Bash Version</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span>
+                        </div>
+                        <pre>bash --version
+echo $BASH_VERSION
+echo $SHELL</pre>
+                    </div>
+
+                    <div class="output-block">
+                        <div class="output-label">Output</div>GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+5.1.16(1)-release
+/bin/bash</div>
+
+                    <h3>Essential First Commands</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span>
+                        </div>
+                        <pre><span class="cm"># System information</span>
+uname -a              <span class="cm"># Kernel info</span>
+whoami                <span class="cm"># Current user</span>
+pwd                   <span class="cm"># Present working directory</span>
+date                  <span class="cm"># Current date/time</span>
+echo $HOME            <span class="cm"># Home directory</span>
+echo $PATH | tr ':' '\n'  <span class="cm"># PATH directories</span></pre>
+                    </div>
+
+                    <h3>Creating Your First Script</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">hello.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+<span class="cm"># My first Bash script</span>
+
+<span class="kw">echo</span> <span class="st">"========================================"</span>
+<span class="kw">echo</span> <span class="st">"  Welcome to Bash Scripting!"</span>
+<span class="kw">echo</span> <span class="st">"========================================"</span>
+<span class="kw">echo</span> <span class="st">"Date: </span>$(date)<span class="st">"</span>
+<span class="kw">echo</span> <span class="st">"User: </span>$(whoami)<span class="st">"</span>
+<span class="kw">echo</span> <span class="st">"Host: </span>$(uname -n)<span class="st">"</span>
+<span class="kw">echo</span> <span class="st">"OS:   </span>$(uname -o)<span class="st">"</span>
+<span class="kw">echo</span> <span class="st">"========================================"</span></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span>
+                        </div>
+                        <pre><span class="cm"># Make script executable and run</span>
+chmod +x hello.sh
+./hello.sh</pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 1.1: System Info Script</div>
+                        <p>Create a script called <code>system_info.sh</code> that displays:</p>
+                        <ul>
+                            <li>Current date and time</li>
+                            <li>Logged in user</li>
+                            <li>Hostname</li>
+                            <li>Current directory</li>
+                            <li>Bash version</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 1.2: Directory Navigator</div>
+                        <p>Write a script that:</p>
+                        <ul>
+                            <li>Creates a directory called <code>bash_practice</code></li>
+                            <li>Changes into it</li>
+                            <li>Creates 3 subdirectories: <code>scripts</code>, <code>logs</code>, <code>data</code></li>
+                            <li>Lists the structure</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 02 ===================== -->
+                <div class="lecture" id="lec-1">
+                    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+                    <h1>Variables & Data Types</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~55 min</span>
+                    </div>
+
+                    <h2>Understanding Bash Variables</h2>
+                    <p>In Bash, there are no strict data types. Everything is essentially a string, but can be treated as an integer in arithmetic contexts. Variable names are case-sensitive and can contain letters, numbers, and underscores (cannot start with a number).</p>
+
+                    <h3>Variable Declaration Rules</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">variables.sh</span>
+                        </div>
+                        <pre><span class="cm"># ✓ CORRECT - No spaces around =</span>
+NAME=<span class="st">"Alice"</span>
+AGE=25
+_PRICE=99.99
+
+<span class="cm"># ✗ WRONG - Spaces cause errors</span>
+<span class="cm"># NAME = "Alice"  # Error: command not found</span>
+<span class="cm"># AGE = 25        # Error: command not found</span>
+
+<span class="cm"># Accessing variables</span>
+echo <span class="st">"Hello $NAME, you are $AGE years old."</span>
+echo <span class="st">"Alternative syntax: ${NAME}"</span></pre>
+                    </div>
+
+                    <h3>Variable Types</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">variable_types.sh</span>
+                        </div>
+                        <pre><span class="cm"># String variables</span>
+USER=<span class="st">"john_doe"</span>
+QUOTE=<span class="st">'Single quotes prevent $expansion'</span>
+MESSAGE=<span class="st">"Double quotes allow $USER expansion"</span>
+
+<span class="cm"># Integer (treated as string until arithmetic)</span>
+COUNT=42
+YEAR=2024
+
+<span class="cm"># Readonly variables (constants)</span>
+readonly PI=3.14159
+readonly APP_NAME=<span class="st">"MyApplication"</span>
+<span class="cm"># PI=3.14  # Error: readonly variable</span>
+
+<span class="cm"># Unset variables</span>
+TEMP_VAR=<span class="st">"temporary"</span>
+unset TEMP_VAR
+<span class="cm"># echo $TEMP_VAR  # Empty, no error</span></pre>
+                    </div>
+
+                    <h3>Special Variables</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">special_vars.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+echo <span class="st">"Script name: </span>$0<span class="st">"</span>
+echo <span class="st">"First argument: </span>$1<span class="st">"</span>
+echo <span class="st">"Second argument: </span>$2<span class="st">"</span>
+echo <span class="st">"All arguments: </span>$@<span class="st">"</span>
+echo <span class="st">"Argument count: </span>$#<span class="st">"</span>
+echo <span class="st">"Process ID: </span>$$<span class="st">"</span>
+echo <span class="st">"Last exit code: </span>$?<span class="st">"</span></pre>
+                    </div>
+
+                    <h3>Command Substitution</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">command_sub.sh</span>
+                        </div>
+                        <pre><span class="cm"># Modern syntax: $()</span>
+CURRENT_DATE=$(date +%Y-%m-%d)
+FILES_COUNT=$(ls | wc -l)
+USER_NAME=$(whoami)
+
+<span class="cm"># Legacy syntax: `` (backticks) - avoid</span>
+<span class="cm"># OLD_WAY=`date +%Y`</span>
+
+echo <span class="st">"Today is: </span>$CURRENT_DATE<span class="st">"</span>
+echo <span class="st">"Files in directory: </span>$FILES_COUNT<span class="st">"</span>
+
+<span class="cm"># Nested command substitution</span>
+FILES_WITH_EXT=$(ls $(pwd)/*.sh 2>/dev/null | wc -l)
+echo <span class="st">"Shell scripts: </span>$FILES_WITH_EXT<span class="st">"</span></pre>
+                    </div>
+
+                    <h3>Environment & Export</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">environment.sh</span>
+                        </div>
+                        <pre><span class="cm"># Make variable available to child processes</span>
+export API_KEY=<span class="st">"sk-1234567890abcdef"</span>
+export DB_HOST=<span class="st">"localhost"</span>
+export DB_PORT=5432
+
+<span class="cm"># View all environment variables</span>
+env | grep <span class="st">"^API_"</span>
+printenv DB_HOST
+
+<span class="cm"># Add to PATH</span>
+export PATH=<span class="st">"$HOME/bin:$PATH"</span>
+
+<span class="cm"># Remove from environment</span>
+export -n API_KEY  <span class="cm"># Remove export property</span>
+unset API_KEY      <span class="cm"># Delete variable entirely</span></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 2.1: User Profile Script</div>
+                        <p>Create a script that stores and displays user information:</p>
+                        <ul>
+                            <li>Store username, home directory, and shell in variables</li>
+                            <li>Use command substitution to get current date/time</li>
+                            <li>Display a formatted profile card</li>
+                            <li>Export a custom variable called <code>MY_APP</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 2.2: Argument Processor</div>
+                        <p>Create a script that accepts two arguments (first name and last name) and outputs:</p>
+                        <ul>
+                            <li>Full name combining both arguments</li>
+                            <li>Total number of arguments passed</li>
+                            <li>Script name that was executed</li>
+                            <li>Exit code of the last command</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 03 ===================== -->
+                <div class="lecture" id="lec-2">
+                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+                    <h1>Operators & Expressions</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~45 min</span>
+                    </div>
+
+                    <h2>Arithmetic Operators</h2>
+                    <p>Bash supports integer arithmetic using multiple syntaxes:</p>
+
+                    <h3>Arithmetic Expansion $(( ))</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arithmetic.sh</span>
+                        </div>
+                        <pre><span class="cm"># Basic operations</span>
+RESULT=$(( 10 + 5 ))
+echo <span class="st">"10 + 5 = </span>$RESULT<span class="st">"</span>
+
+<span class="cm"># All arithmetic operators</span>
+echo <span class="st">"Addition: </span>$(( 20 + 10 ))<span class="st">"</span>
+echo <span class="st">"Subtraction: </span>$(( 20 - 10 ))<span class="st">"</span>
+echo <span class="st">"Multiplication: </span>$(( 20 * 10 ))<span class="st">"</span>
+echo <span class="st">"Division: </span>$(( 20 / 10 ))<span class="st">"</span>
+echo <span class="st">"Modulo: </span>$(( 20 % 7 ))<span class="st">"</span>
+echo <span class="st">"Exponent: </span>$(( 2 ** 10 ))<span class="st">"</span>
+
+<span class="cm"># Using variables</span>
+NUM=5
+echo <span class="st">"NUM squared: </span>$(( NUM * NUM ))<span class="st">"</span></pre>
+                    </div>
+
+                    <h3>let Command</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">let_demo.sh</span>
+                        </div>
+                        <pre><span class="cm"># 'let' for arithmetic - no $ needed</span>
+let <span class="st">"a = 5 + 3"</span>
+let <span class="st">"b = a * 2"</span>
+let <span class="st">"x += 5"</span>   <span class="cm"># compound: x = x + 5</span>
+let <span class="st">"x *= 2"</span>   <span class="cm"># compound: x = x * 2</span></pre>
+                    </div>
+
+                    <h2>Comparison Operators</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">comparisons.sh</span>
+                        </div>
+                        <pre><span class="cm"># Numeric comparisons</span>
+[ <span class="st">"$NUM1"</span> -eq <span class="st">"$NUM2"</span> ] <span class="cm"># Equal</span>
+[ <span class="st">"$NUM1"</span> -ne <span class="st">"$NUM2"</span> ] <span class="cm"># Not equal</span>
+[ <span class="st">"$NUM1"</span> -lt <span class="st">"$NUM2"</span> ] <span class="cm"># Less than</span>
+[ <span class="st">"$NUM1"</span> -le <span class="st">"$NUM2"</span> ] <span class="cm"># Less or equal</span>
+[ <span class="st">"$NUM1"</span> -gt <span class="st">"$NUM2"</span> ] <span class="cm"># Greater than</span>
+[ <span class="st">"$NUM1"</span> -ge <span class="st">"$NUM2"</span> ] <span class="cm"># Greater or equal</span>
+
+<span class="cm"># String comparisons</span>
+[ <span class="st">"$STR1"</span> = <span class="st">"$STR2"</span> ]   <span class="cm"># Equal</span>
+[ <span class="st">"$STR1"</span> != <span class="st">"$STR2"</span> ]  <span class="cm"># Not equal</span>
+[ -z <span class="st">"$STR"</span> ]        <span class="cm"># Empty (zero length)</span>
+[ -n <span class="st">"$STR"</span> ]        <span class="cm"># Not empty</span></pre>
+                    </div>
+
+                    <h2>File Test Operators</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">file_tests.sh</span>
+                        </div>
+                        <pre><span class="cm"># Existence and type</span>
+[ -e <span class="st">"file"</span> ]  <span class="cm"># Exists</span>
+[ -f <span class="st">"file"</span> ]  <span class="cm"># Regular file</span>
+[ -d <span class="st">"dir"</span> ]   <span class="cm"># Directory</span>
+[ -L <span class="st">"link"</span> ] <span class="cm"># Symbolic link</span>
+[ -p <span class="st">"pipe"</span> ] <span class="cm"># Named pipe</span>
+
+<span class="cm"># Permissions</span>
+[ -r <span class="st">"file"</span> ] <span class="cm"># Readable</span>
+[ -w <span class="st">"file"</span> ] <span class="cm"># Writable</span>
+[ -x <span class="st">"file"</span> ] <span class="cm"># Executable</span>
+[ -s <span class="st">"file"</span> ] <span class="cm"># Non-empty</span>
+
+<span class="cm"># File comparisons</span>
+[ <span class="st">"file1"</span> -nt <span class="st">"file2"</span> ] <span class="cm"># file1 newer than file2</span>
+[ <span class="st">"file1"</span> -ot <span class="st">"file2"</span> ] <span class="cm"># file1 older than file2</span></pre>
+                    </div>
+
+                    <h2>Logical Operators</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">logical.sh</span>
+                        </div>
+                        <pre><span class="cm"># AND (&& / -a)</span>
+[ -f <span class="st">"file"</span> ] && [ -r <span class="st">"file"</span> ]
+[ -f <span class="st">"file"</span> -a -r <span class="st">"file"</span> ]
+
+<span class="cm"># OR (|| / -o)</span>
+[ -f <span class="st">"file"</span> ] || [ -d <span class="st">"file"</span> ]
+
+<span class="cm"># NOT (!)</span>
+[ ! -f <span class="st">"file"</span> ] <span class="cm"># File does not exist</span></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 3.1: Calculator Script</div>
+                        <p>Create a script that accepts 3 arguments: two numbers and an operator (+, -, *, /), then performs the calculation and displays the result.</p>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 3.2: File Inspector</div>
+                        <p>Write a script that checks if a file (provided as argument) exists and reports:</p>
+                        <ul>
+                            <li>File type (regular, directory, link, etc.)</li>
+                            <li>Read/write/execute permissions</li>
+                            <li>File size (empty or not)</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 04 ===================== -->
+                <div class="lecture" id="lec-3">
+                    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+                    <h1>Control Flow: If & Case</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~65 min</span>
+                    </div>
+
+                    <h2>If Statements</h2>
+                    <p>Bash supports if/elif/else chains for complex decision making:</p>
+
+                    <h3>Basic If Structure</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">if_basic.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+AGE=25
+
+<span class="kw">if</span> [ <span class="st">"$AGE"</span> -ge 18 ]; <span class="kw">then</span>
+    echo <span class="st">"You are an adult"</span>
+<span class="kw">else</span>
+    echo <span class="st">"You are a minor"</span>
+<span class="kw">fi</span>
+
+<span class="cm"># One-liner with && and ||</span>
+[ <span class="st">"$AGE"</span> -ge 18 ] && echo <span class="st">"Adult"</span> || echo <span class="st">"Minor"</span></pre>
+                    </div>
+
+                    <h3>If-Elif-Else Chains</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">if_elif.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+SCORE=85
+
+<span class="kw">if</span> [ <span class="st">"$SCORE"</span> -ge 90 ]; <span class="kw">then</span>
+    echo <span class="st">"Grade: A"</span>
+    echo <span class="st">"Excellent work!"</span>
+<span class="kw">elif</span> [ <span class="st">"$SCORE"</span> -ge 80 ]; <span class="kw">then</span>
+    echo <span class="st">"Grade: B"</span>
+    echo <span class="st">"Good job!"</span>
+<span class="kw">elif</span> [ <span class="st">"$SCORE"</span> -ge 70 ]; <span class="kw">then</span>
+    echo <span class="st">"Grade: C"</span>
+    echo <span class="st">"Satisfactory"</span>
+<span class="kw">elif</span> [ <span class="st">"$SCORE"</span> -ge 60 ]; <span class="kw">then</span>
+    echo <span class="st">"Grade: D"</span>
+    echo <span class="st">"Needs improvement"</span>
+<span class="kw">else</span>
+    echo <span class="st">"Grade: F"</span>
+    echo <span class="st">"Failed - study more"</span>
+<span class="kw">fi</span></pre>
+                    </div>
+
+                    <h3>Nested If Statements</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">nested_if.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+USER_TYPE=<span class="st">"admin"</span>
+LOGGED_IN=<span class="st">"true"</span>
+
+<span class="kw">if</span> [ <span class="st">"$LOGGED_IN"</span> = <span class="st">"true"</span> ]; <span class="kw">then</span>
+    echo <span class="st">"User is logged in"</span>
+    
+    <span class="kw">if</span> [ <span class="st">"$USER_TYPE"</span> = <span class="st">"admin"</span> ]; <span class="kw">then</span>
+        echo <span class="st">"Admin access granted"</span>
+        echo <span class="st">"Showing admin dashboard..."</span>
+    <span class="kw">elif</span> [ <span class="st">"$USER_TYPE"</span> = <span class="st">"user"</span> ]; <span class="kw">then</span>
+        echo <span class="st">"User access granted"</span>
+        echo <span class="st">"Showing user dashboard..."</span>
+    <span class="kw">else</span>
+        echo <span class="st">"Unknown user type"</span>
+    <span class="kw">fi</span>
+<span class="kw">else</span>
+    echo <span class="st">"Please log in first"</span>
+<span class="kw">fi</span></pre>
+                    </div>
+
+                    <h2>Case Statements</h2>
+                    <p>Case is cleaner than multiple if/elif for matching patterns:</p>
+
+                    <h3>Basic Case</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">case_basic.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+DAY=<span class="st">"Monday"</span>
+
+<span class="kw">case</span> <span class="st">"$DAY"</span> <span class="kw">in</span>
+    <span class="st">"Monday"</span>)
+        echo <span class="st">"Start of work week"</span>
+        ;;
+    <span class="st">"Friday"</span>)
+        echo <span class="st">"Almost weekend!"</span>
+        ;;
+    <span class="st">"Saturday"</span>|<span class="st">"Sunday"</span>)
+        echo <span class="st">"Weekend!"</span>
+        ;;
+    *)
+        echo <span class="st">"Regular work day"</span>
+        ;;
+<span class="kw">esac</span></pre>
+                    </div>
+
+                    <h3>Case with Command Arguments</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">case_menu.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+<span class="cm"># Usage: ./script.sh [start|stop|restart|status]</span>
+
+COMMAND=$1
+
+<span class="kw">case</span> <span class="st">"$COMMAND"</span> <span class="kw">in</span>
+    start|s)
+        echo <span class="st">"Starting service..."</span>
+        <span class="cm"># start commands here</span>
+        ;;
+    stop|st)
+        echo <span class="st">"Stopping service..."</span>
+        <span class="cm"># stop commands here</span>
+        ;;
+    restart|r)
+        echo <span class="st">"Restarting service..."</span>
+        <span class="cm"># restart commands here</span>
+        ;;
+    status|stat)
+        echo <span class="st">"Checking status..."</span>
+        <span class="cm"># status commands here</span>
+        ;;
+    help|-h|--help)
+        echo <span class="st">"Usage: $0 {start|stop|restart|status}"</span>
+        ;;
+    *)
+        echo <span class="st">"Unknown command: $COMMAND"</span>
+        echo <span class="st">"Usage: $0 {start|stop|restart|status}"</span>
+        exit 1
+        ;;
+<span class="kw">esac</span></pre>
+                    </div>
+
+                    <h3>Pattern Matching in Case</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">case_patterns.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+FILENAME=$1
+
+<span class="kw">case</span> <span class="st">"$FILENAME"</span> <span class="kw">in</span>
+    *.txt)
+        echo <span class="st">"Text file"</span>
+        ;;
+    *.sh)
+        echo <span class="st">"Shell script"</span>
+        ;;
+    *.jpg|*.jpeg|*.png|*.gif)
+        echo <span class="st">"Image file"</span>
+        ;;
+    *.tar.gz|*.tgz|*.zip)
+        echo <span class="st">"Compressed archive"</span>
+        ;;
+    [0-9]*)
+        echo <span class="st">"Starts with a number"</span>
+        ;;
+    *)
+        echo <span class="st">"Unknown file type"</span>
+        ;;
+<span class="kw">esac</span></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 4.1: Number Classifier</div>
+                        <p>Write a script that takes a number and classifies it:</p>
+                        <ul>
+                            <li>Positive/Negative/Zero</li>
+                            <li>Even or Odd</li>
+                            <li>Range: small (1-10), medium (11-100), large (>100)</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 4.2: File Manager Menu</div>
+                        <p>Create a case-based menu script with options:</p>
+                        <ul>
+                            <li>List files in current directory</li>
+                            <li>Show disk usage</li>
+                            <li>Create a backup of specific file</li>
+                            <li>Exit</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 05 ===================== -->
+                <div class="lecture" id="lec-4">
+                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+                    <h1>Loops</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <h2>For Loops</h2>
+                    <p>Bash offers multiple ways to iterate - choose the right one for your use case:</p>
+
+                    <h3>C-style For Loop</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">for_cstyle.sh</span>
+                        </div>
+                        <pre><span class="cm"># Traditional C-style loop (Bash 2.04+)</span>
+<span class="kw">for</span> (( i=0; i<5; i++ )); <span class="kw">do</span>
+    echo <span class="st">"Iteration: </span>$i<span class="st">"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Countdown</span>
+<span class="kw">for</span> (( i=10; i>0; i-- )); <span class="kw">do</span>
+    echo <span class="st">"Countdown: </span>$i<span class="st">"</span>
+    sleep 1
+<span class="kw">done</span>
+echo <span class="st">"Blast off!"</span>
+
+<span class="cm"># Multiple variables</span>
+<span class="kw">for</span> (( i=0, j=10; i<=10; i++, j-- )); <span class="kw">do</span>
+    echo <span class="st">"i=</span>$i<span class="st">, j=</span>$j<span class="st">"</span>
+<span class="kw">done</span></pre>
+                    </div>
+
+                    <h3>Range-based For Loop</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">for_range.sh</span>
+                        </div>
+                        <pre><span class="cm"># Brace expansion {start..end}</span>
+<span class="kw">for</span> i <span class="kw">in</span> {1..5}; <span class="kw">do</span>
+    echo <span class="st">"Number: </span>$i<span class="st">"</span>
+<span class="kw">done</span>
+
+<span class="cm"># With step/increment (Bash 4.0+)</span>
+<span class="kw">for</span> i <span class="kw">in</span> {0..10..2}; <span class="kw">do</span>
+    echo <span class="st">"Even number: </span>$i<span class="st">"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Reverse order</span>
+<span class="kw">for</span> i <span class="kw">in</span> {10..1}; <span class="kw">do</span>
+    echo <span class="st">"Counting down: </span>$i<span class="st">"</span>
+<span class="kw">done</span></pre>
+                    </div>
+
+                    <h3>For Loop with Lists</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">for_list.sh</span>
+                        </div>
+                        <pre><span class="cm"># Iterate over list of strings</span>
+<span class="kw">for</span> color <span class="kw">in</span> red green blue yellow; <span class="kw">do</span>
+    echo <span class="st">"Color: </span>$color<span class="st">"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Iterate over array</span>
+FRUITS=(<span class="st">"apple"</span> <span class="st">"banana"</span> <span class="st">"cherry"</span>)
+<span class="kw">for</span> fruit <span class="kw">in</span> <span class="st">"${FRUITS[@]}"</span>; <span class="kw">do</span>
+    echo <span class="st">"Fruit: </span>$fruit<span class="st">"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Iterate over command output</span>
+<span class="kw">for</span> user <span class="kw">in</span> $(who | awk '{print $1}' | sort -u); <span class="kw">do</span>
+    echo <span class="st">"Logged in user: </span>$user<span class="st">"</span>
+<span class="kw">done</span></pre>
+                    </div>
+
+                    <h3>File Globbing in For Loops</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">for_files.sh</span>
+                        </div>
+                        <pre><span class="cm"># Process all text files</span>
+<span class="kw">for</span> file <span class="kw">in</span> *.txt; <span class="kw">do</span>
+    [ -f <span class="st">"$file"</span> ] || <span class="kw">continue</span>  <span class="cm"># Skip if no matches</span>
+    echo <span class="st">"Processing: </span>$file<span class="st">"</span>
+    wc -l <span class="st">"$file"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Recursive processing</span>
+<span class="kw">for</span> file <span class="kw">in</span> /var/log/*.log; <span class="kw">do</span>
+    [ -f <span class="st">"$file"</span> ] || <span class="kw">continue</span>
+    echo <span class="st">"$(basename "$file"): $(stat -c%s "$file") bytes"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Multiple patterns</span>
+<span class="kw">for</span> file <span class="kw">in</span> *.sh *.bash; <span class="kw">do</span>
+    [ -f <span class="st">"$file"</span> ] || <span class="kw">continue</span>
+    chmod +x <span class="st">"$file"</span>
+    echo <span class="st">"Made executable: </span>$file<span class="st">"</span>
+<span class="kw">done</span></pre>
+                    </div>
+
+                    <h2>While Loops</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">while_loops.sh</span>
+                        </div>
+                        <pre><span class="cm"># Basic while loop</span>
+COUNTER=0
+<span class="kw">while</span> [ <span class="st">"$COUNTER"</span> -lt 5 ]; <span class="kw">do</span>
+    echo <span class="st">"Counter: </span>$COUNTER<span class="st">"</span>
+    ((COUNTER++))
+<span class="kw">done</span>
+
+<span class="cm"># Reading file line by line</span>
+<span class="kw">while</span> IFS= read -r line; <span class="kw">do</span>
+    echo <span class="st">"Line: </span>$line<span class="st">"</span>
+<span class="kw">done</span> < file.txt
+
+<span class="cm"># Reading from command output</span>
+<span class="kw">while</span> read -r line; <span class="kw">do</span>
+    echo <span class="st">"User: </span>$line<span class="st">"</span>
+<span class="kw">done</span> < <(who)
+
+<span class="cm"># Infinite loop with break</span>
+<span class="kw">while</span> true; <span class="kw">do</span>
+    read -p <span class="st">"Enter command (or 'quit'): "</span> cmd
+    [ <span class="st">"$cmd"</span> = <span class="st">"quit"</span> ] && break
+    eval <span class="st">"$cmd"</span>
+<span class="kw">done</span></pre>
+                    </div>
+
+                    <h2>Until Loops</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">until_loop.sh</span>
+                        </div>
+                        <pre><span class="cm"># Until runs while condition is FALSE</span>
+<span class="cm"># Perfect for "wait until something happens"</span>
+
+COUNT=10
+<span class="kw">until</span> [ <span class="st">"$COUNT"</span> -eq 0 ]; <span class="kw">do</span>
+    echo <span class="st">"Count: </span>$COUNT<span class="st">"</span>
+    ((COUNT--))
+<span class="kw">done</span>
+
+<span class="cm"># Wait for file to exist</span>
+<span class="kw">until</span> [ -f <span class="st">"/tmp/ready.flag"</span> ]; <span class="kw">do</span>
+    echo <span class="st">"Waiting for file..."</span>
+    sleep 2
+<span class="kw">done</span>
+echo <span class="st">"File detected!"</span></pre>
+                    </div>
+
+                    <h2>Loop Control: break & continue</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">loop_control.sh</span>
+                        </div>
+                        <pre><span class="cm"># break - exit loop completely</span>
+<span class="kw">for</span> i <span class="kw">in</span> {1..100}; <span class="kw">do</span>
+    <span class="kw">if</span> [ <span class="st">"$i"</span> -eq 50 ]; <span class="kw">then</span>
+        echo <span class="st">"Found 50, stopping"</span>
+        break
+    <span class="kw">fi</span>
+<span class="kw">done</span>
+
+<span class="cm"># continue - skip to next iteration</span>
+<span class="kw">for</span> i <span class="kw">in</span> {1..20}; <span class="kw">do</span>
+    <span class="kw">if</span> (( i % 2 == 0 )); <span class="kw">then</span>
+        <span class="kw">continue</span>  <span class="cm"># Skip even numbers</span>
+    <span class="kw">fi</span>
+    echo <span class="st">"Odd: </span>$i<span class="st">"</span>
+<span class="kw">done</span>
+
+<span class="cm"># break N - break out of N nested loops</span>
+<span class="kw">for</span> i <span class="kw">in</span> {1..3}; <span class="kw">do</span>
+    <span class="kw">for</span> j <span class="kw">in</span> {a..c}; <span class="kw">do</span>
+        echo <span class="st">"i=</span>$i<span class="st">, j=</span>$j<span class="st">"</span>
+        [ <span class="st">"$j"</span> = <span class="st">"b"</span> ] && break 2  <span class="cm"># Break both loops</span>
+    <span class="kw">done</span>
+<span class="kw">done</span></pre>
+                    </div>
+
+                    <h2>Select Statement (Interactive Menus)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">select_menu.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+PS3=<span class="st">"Choose an option: "</span>  <span class="cm"># Prompt</span>
+
+<span class="kw">select</span> choice <span class="kw">in</span> <span class="st">"List Files"</span> <span class="st">"Show Date"</span> <span class="st">"Current User"</span> <span class="st">"Exit"</span>; <span class="kw">do</span>
+    <span class="kw">case</span> <span class="st">"$choice"</span> <span class="kw">in</span>
+        <span class="st">"List Files"</span>)
+            ls -la
+            ;;
+        <span class="st">"Show Date"</span>)
+            date
+            ;;
+        <span class="st">"Current User"</span>)
+            whoami
+            ;;
+        <span class="st">"Exit"</span>)
+            echo <span class="st">"Goodbye!"</span>
+            break
+            ;;
+        *)
+            echo <span class="st">"Invalid option"</span>
+            ;;
+    <span class="kw">esac</span>
+<span class="kw">done</span></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 5.1: Multiplication Table</div>
+                        <p>Create a script that generates a multiplication table. The user should input a number, and the script prints the table from 1 to 10.</p>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 5.2: Log File Analyzer</div>
+                        <p>Write a script that:</p>
+                        <ul>
+                            <li>Reads a log file line by line</li>
+                            <li>Counts ERROR, WARNING, and INFO messages</li>
+                            <li>Stops processing when it finds 5 ERROR entries</li>
+                            <li>Prints a summary report</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 06 ===================== -->
+                <div class="lecture" id="lec-5">
+                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+                    <h1>Functions & Scripting</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~75 min</span>
+                    </div>
+
+                    <h2>Function Basics</h2>
+                    <p>Functions are reusable blocks of code that make scripts modular and easier to maintain.</p>
+
+                    <h3>Defining Functions</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">functions.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+<span class="cm"># Style 1: function_name() { ... }</span>
+greet() {
+    echo <span class="st">"Hello, World!"</span>
+}
+
+<span class="cm"># Style 2: function function_name { ... }</span>
+<span class="kw">function</span> say_goodbye {
+    echo <span class="st">"Goodbye!"</span>
+}
+
+<span class="cm"># Call functions</span>
+greet
+say_goodbye</pre>
+                    </div>
+
+                    <h3>Function Arguments</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">function_args.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+<span class="cm"># Function with parameters</span>
+greet_user() {
+    echo <span class="st">"Hello, </span>$1<span class="st">!"</span>      <span class="cm"># $1 is first argument</span>
+    echo <span class="st">"You are </span>$2<span class="st"> years old."</span>  <span class="cm"># $2 is second argument</span>
+    echo <span class="st">"Total arguments: </span>$#<span class="st">"</span>   <span class="cm"># $# is argument count</span>
+    echo <span class="st">"All arguments: </span>$@<span class="st">"</span>      <span class="cm"># $@ is all arguments</span>
+}
+
+<span class="cm"># Call with arguments</span>
+greet_user <span class="st">"Alice"</span> 25
+greet_user <span class="st">"Bob"</span> 30 <span class="st">"extra"</span></pre>
+                    </div>
+
+                    <h3>Return Values</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">function_return.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+<span class="cm"># Return exit codes (0-255)</span>
+check_file() {
+    <span class="kw">if</span> [ -f <span class="st">"$1"</span> ]; <span class="kw">then</span>
+        return 0   <span class="cm"># Success</span>
+    <span class="kw">else</span>
+        return 1   <span class="cm"># Failure</span>
+    <span class="kw">fi</span>
+}
+
+<span class="cm"># Check return code with $?</span>
+check_file <span class="st">"existing.txt"</span>
+<span class="kw">if</span> [ $? -eq 0 ]; <span class="kw">then</span>
+    echo <span class="st">"File exists!"</span>
+<span class="kw">fi</span>
+
+<span class="cm"># Return string output using echo (command substitution)</span>
+get_full_name() {
+    echo <span class="st">"</span>$1<span class="st"> </span>$2<span class="st">"</span>
+}
+
+FULL_NAME=$(get_full_name <span class="st">"John"</span> <span class="st">"Doe"</span>)
+echo <span class="st">"Full name: </span>$FULL_NAME<span class="st">"</span></pre>
+                    </div>
+
+                    <h3>Variable Scope</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">scope.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+<span class="cm"># Global variable (default)</span>
+GLOBAL_VAR=<span class="st">"I am global"</span>
+
+<span class="cm"># Function with local variables</span>
+demo_scope() {
+    <span class="kw">local</span> LOCAL_VAR=<span class="st">"I am local"</span>
+    GLOBAL_MOD=<span class="st">"Modified in function"</span>
+    
+    echo <span class="st">"Inside function:"</span>
+    echo <span class="st">"  LOCAL_VAR: </span>$LOCAL_VAR<span class="st">"</span>
+    echo <span class="st">"  GLOBAL_VAR: </span>$GLOBAL_VAR<span class="st">"</span>
+}
+
+demo_scope
+
+echo <span class="st">"Outside function:"</span>
+echo <span class="st">"  LOCAL_VAR: '</span>$LOCAL_VAR<span class="st">' (empty - not accessible)"</span>
+echo <span class="st">"  GLOBAL_MOD: </span>$GLOBAL_MOD<span class="st">"</span></pre>
+                    </div>
+
+                    <h3>Function Libraries</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">utils.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+<span class="cm"># Library of utility functions</span>
+
+<span class="cm"># Logging functions</span>
+log_info() {
+    echo <span class="st">"[INFO] $(date '+%Y-%m-%d %H:%M:%S') - </span>$@<span class="st">"</span>
+}
+
+log_error() {
+    echo <span class="st">"[ERROR] $(date '+%Y-%m-%d %H:%M:%S') - </span>$@<span class="st">"</span> >&2
+}
+
+log_warn() {
+    echo <span class="st">"[WARN] $(date '+%Y-%m-%d %H:%M:%S') - </span>$@<span class="st">"</span>
+}
+
+<span class="cm"># File utilities</span>
+file_exists() {
+    [ -f <span class="st">"$1"</span> ]
+}
+
+dir_exists() {
+    [ -d <span class="st">"$1"</span> ]
+}
+
+<span class="cm"># Validation functions</span>
+is_number() {
+    [[ <span class="st">"$1"</span> =~ ^-?[0-9]+$ ]]
+}
+
+is_email() {
+    [[ <span class="st">"$1"</span> =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]
+}
+
+<span class="cm"># Usage in main script:</span>
+<span class="cm"># source ./utils.sh</span>
+<span class="cm"># log_info "Starting process"</span></pre>
+                    </div>
+
+                    <h3>Recursive Functions</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">recursive.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+<span class="cm"># Factorial calculation</span>
+factorial() {
+    <span class="kw">local</span> n=$1
+    <span class="kw">if</span> (( n <= 1 )); <span class="kw">then</span>
+        echo 1
+    <span class="kw">else</span>
+        <span class="kw">local</span> prev=$(factorial $((n - 1)))
+        echo $((n * prev))
+    <span class="kw">fi</span>
+}
+
+echo <span class="st">"5! = </span>$(factorial 5)<span class="st">"</span>
+echo <span class="st">"10! = </span>$(factorial 10)<span class="st">"</span>
+
+<span class="cm"># Directory tree listing (recursive)</span>
+list_tree() {
+    <span class="kw">local</span> dir=$1
+    <span class="kw">local</span> indent=$2
+    
+    <span class="kw">for</span> item <span class="kw">in</span> <span class="st">"$dir"</span>/*; <span class="kw">do</span>
+        [ -e <span class="st">"$item"</span> ] || <span class="kw">continue</span>
+        echo <span class="st">"${indent}$(basename "$item")"</span>
+        <span class="kw">if</span> [ -d <span class="st">"$item"</span> ]; <span class="kw">then</span>
+            list_tree <span class="st">"$item"</span> <span class="st">"  $indent"</span>
+        <span class="kw">fi</span>
+    <span class="kw">done</span>
+}</pre>
+                    </div>
+
+                    <h3>Error Handling in Functions</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">error_handling.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+
+<span class="cm"># Safe division with error checking</span>
+safe_divide() {
+    <span class="kw">local</span> dividend=$1
+    <span class="kw">local</span> divisor=$2
+    
+    <span class="cm"># Validate inputs</span>
+    <span class="kw">if</span> ! [[ <span class="st">"$dividend"</span> =~ ^-?[0-9]+$ ]]; <span class="kw">then</span>
+        echo <span class="st">"Error: First argument must be a number"</span> >&2
+        return 1
+    <span class="kw">fi</span>
+    
+    <span class="kw">if</span> ! [[ <span class="st">"$divisor"</span> =~ ^-?[0-9]+$ ]]; <span class="kw">then</span>
+        echo <span class="st">"Error: Second argument must be a number"</span> >&2
+        return 1
+    <span class="kw">fi</span>
+    
+    <span class="kw">if</span> [ <span class="st">"$divisor"</span> -eq 0 ]; <span class="kw">then</span>
+        echo <span class="st">"Error: Cannot divide by zero"</span> >&2
+        return 1
+    <span class="kw">fi</span>
+    
+    echo $((dividend / divisor))
+    return 0
+}
+
+<span class="cm"># Usage</span>
+result=$(safe_divide 100 5)
+<span class="kw">if</span> [ $? -eq 0 ]; <span class="kw">then</span>
+    echo <span class="st">"Result: </span>$result<span class="st">"</span>
+<span class="kw">else</span>
+    echo <span class="st">"Operation failed"</span>
+<span class="kw">fi</span></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 6.1: Math Library</div>
+                        <p>Create a library file with functions for:</p>
+                        <ul>
+                            <li><code>add()</code>, <code>subtract()</code>, <code>multiply()</code>, <code>divide()</code></li>
+                            <li><code>is_even()</code>, <code>is_prime()</code></li>
+                            <li><code>max()</code>, <code>min()</code> (variable arguments)</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 6.2: Backup Utility</div>
+                        <p>Write a script with functions that:</p>
+                        <ul>
+                            <li><code>create_backup()</code> - backs up a file with timestamp</li>
+                            <li><code>restore_backup()</code> - restores from backup</li>
+                            <li><code>list_backups()</code> - shows available backups</li>
+                            <li><code>cleanup_old_backups()</code> - removes backups older than 7 days</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 07 ===================== -->
+                <div class="lecture" id="lec-6">
+                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+                    <h1>Arrays & String Manipulation</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~70 min</span>
+                    </div>
+
+                    <h2>Indexed Arrays</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arrays.sh</span>
+                        </div>
+                        <pre><span class="cm"># Declare arrays</span>
+FRUITS=(<span class="st">"Apple"</span> <span class="st">"Banana"</span> <span class="st">"Cherry"</span> <span class="st">"Date"</span>)
+NUMBERS=(10 20 30 40 50)
+
+<span class="cm"># Access elements (0-indexed)</span>
+echo <span class="st">"${FRUITS[0]}"</span>     <span class="cm"># Apple (first element)</span>
+echo <span class="st">"${FRUITS[2]}"</span>     <span class="cm"># Cherry (third element)</span>
+echo <span class="st">"${FRUITS[-1]}"</span>    <span class="cm"># Date (last element - Bash 4.2+)</span>
+echo <span class="st">"${FRUITS[-2]}"</span>    <span class="cm"># Cherry (second to last)</span>
+
+<span class="cm"># Array length</span>
+echo <span class="st">"Total fruits: ${#FRUITS[@]}"</span>
+echo <span class="st">"Also: ${#FRUITS[*]}"</span>
+
+<span class="cm"># All elements</span>
+echo <span class="st">"All: ${FRUITS[@]}"</span>
+echo <span class="st">"Quoted: ${FRUITS[*]}"</span></pre>
+                    </div>
+
+                    <h3>Array Operations</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">array_ops.sh</span>
+                        </div>
+                        <pre><span class="cm"># Add elements</span>
+FRUITS+=(<span class="st">"Elderberry"</span>)    <span class="cm"># Append single</span>
+FRUITS+=(<span class="st">"Fig"</span> <span class="st">"Grape"</span>)   <span class="cm"># Append multiple</span>
+
+<span class="cm"># Insert at specific index</span>
+FRUITS[1]=<span class="st">"Blueberry"</span>      <span class="cm"># Replace index 1</span>
+
+<span class="cm"># Remove elements</span>
+unset FRUITS[2]           <span class="cm"># Remove element at index 2</span>
+
+<span class="cm"># Slice array (Bash 4.0+)</span>
+echo <span class="st">"${FRUITS[@]:1:3}"</span>    <span class="cm"># 3 elements starting from index 1</span>
+
+<span class="cm"># Iterate over array</span>
+<span class="kw">for</span> fruit <span class="kw">in</span> <span class="st">"${FRUITS[@]}"</span>; <span class="kw">do</span>
+    echo <span class="st">"Fruit: $fruit"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Iterate with index</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="st">"${!FRUITS[@]}"</span>; <span class="kw">do</span>
+    echo <span class="st">"Index $i: ${FRUITS[$i]}"</span>
+<span class="kw">done</span></pre>
+                    </div>
+
+                    <h2>Associative Arrays (Bash 4.0+)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">assoc_arrays.sh</span>
+                        </div>
+                        <pre><span class="cm"># Declare associative array</span>
+declare -A USER_INFO
+
+<span class="cm"># Set values</span>
+USER_INFO[name]=<span class="st">"Alice"</span>
+USER_INFO[age]=30
+USER_INFO[city]=<span class="st">"New York"</span>
+
+<span class="cm"># Alternative declaration</span>
+declare -A COLORS=(
+    [red]=<span class="st">"#FF0000"</span>
+    [green]=<span class="st">"#00FF00"</span>
+    [blue]=<span class="st">"#0000FF"</span>
+)
+
+<span class="cm"># Access</span>
+echo <span class="st">"Name: ${USER_INFO[name]}"</span>
+echo <span class="st">"Hex for red: ${COLORS[red]}"</span>
+
+<span class="cm"># All keys</span>
+echo <span class="st">"Keys: ${!USER_INFO[@]}"</span>
+
+<span class="cm"># All values</span>
+echo <span class="st">"Values: ${USER_INFO[@]}"</span>
+
+<span class="cm"># Iterate</span>
+<span class="kw">for</span> key <span class="kw">in</span> <span class="st">"${!USER_INFO[@]}"</span>; <span class="kw">do</span>
+    echo <span class="st">"$key -> ${USER_INFO[$key]}"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Check if key exists</span>
+<span class="kw">if</span> [[ -v USER_INFO[name] ]]; <span class="kw">then</span>
+    echo <span class="st">"Name key exists"</span>
+<span class="kw">fi</span></pre>
+                    </div>
+
+                    <h2>String Manipulation</h2>
+
+                    <h3>String Length & Extraction</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">string_ops.sh</span>
+                        </div>
+                        <pre>STR=<span class="st">"Hello, World!"</span>
+
+<span class="cm"># Length</span>
+echo <span class="st">"${#STR}"</span>           <span class="cm"># 13</span>
+
+<span class="cm"># Extract substring</span>
+echo <span class="st">"${STR:0:5}"</span>       <span class="cm"># Hello (start at 0, length 5)</span>
+echo <span class="st">"${STR:7}"</span>         <span class="cm"># World! (start at 7 to end)</span>
+echo <span class="st">"${STR: -6}"</span>        <span class="cm"># World! (last 6 chars - note space)</span>
+
+<span class="cm"># Remove from start/end</span>
+echo <span class="st">"${STR#Hello, }"</span>   <span class="cm"># World! (remove shortest match from start)</span>
+echo <span class="st">"${STR% World!}"</span>   <span class="cm"># Hello (remove shortest match from end)</span>
+
+<span class="cm"># Remove all occurrences</span>
+STR2=<span class="st">"aaabbbcccaaa"</span>
+echo <span class="st">"${STR2//a/}"</span>      <span class="cm"># bbbccc (remove all 'a')</span>
+echo <span class="st">"${STR2//a/X}"</span>     <span class="cm"># XXXbbbcccXXX (replace all 'a' with 'X')</span>
+
+<span class="cm"># Replace first occurrence only</span>
+echo <span class="st">"${STR2/a/X}"</span>      <span class="cm"># Xaabbbcccaaa</span></pre>
+                    </div>
+
+                    <h3>Case Conversion</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">case_convert.sh</span>
+                        </div>
+                        <pre>TEXT=<span class="st">"Hello World"</span>
+
+<span class="cm"># Uppercase</span>
+echo <span class="st">"${TEXT^^}"</span>        <span class="cm"># HELLO WORLD (Bash 4.0+)</span>
+echo <span class="st">"${TEXT^^[hw]}"</span>    <span class="cm"># HEllo World (only h,w to uppercase)</span>
+
+<span class="cm"># Lowercase</span>
+echo <span class="st">"${TEXT,,}"</span>        <span class="cm"># hello world</span>
+
+<span class="cm"># Toggle case</span>
+echo <span class="st">"${TEXT~~}"</span>        <span class="cm"># hELLO wORLD</span>
+
+<span class="cm"># Capitalize first character</span>
+echo <span class="st">"${TEXT^}"</span>         <span class="cm"># Hello world (first char only)</span>
+
+<span class="cm"># Using tr command</span>
+echo <span class="st">"$TEXT"</span> | tr '[:lower:]' '[:upper:]'
+echo <span class="st">"$TEXT"</span> | tr '[:upper:]' '[:lower:]'</pre>
+                    </div>
+
+                    <h3>Path Manipulation</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">path_ops.sh</span>
+                        </div>
+                        <pre>FILE=<span class="st">"/home/user/documents/report.txt"</span>
+
+<span class="cm"># Get filename</span>
+echo <span class="st">"${FILE##*/}"</span>      <span class="cm"># report.txt</span>
+
+<span class="cm"># Get directory</span>
+echo <span class="st">"${FILE%/*}"</span>       <span class="cm"># /home/user/documents</span>
+
+<span class="cm"># Get extension</span>
+echo <span class="st">"${FILE##*.}"</span>      <span class="cm"># txt</span>
+
+<span class="cm"># Remove extension</span>
+echo <span class="st">"${FILE%.*}"</span>       <span class="cm"># /home/user/documents/report</span>
+
+<span class="cm"># Default value if empty</span>
+UNSET_VAR=<span class="st">""</span>
+echo <span class="st">"${UNSET_VAR:-default}"</span>  <span class="cm"># default</span>
+echo <span class="st">"${UNSET_VAR:=default}"</span>  <span class="cm"># Sets AND returns default</span>
+
+<span class="cm"># Error if empty</span>
+<span class="cm"># echo "${UNSET_VAR:?Variable is required}"</span></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 7.1: Phone Book</div>
+                        <p>Create an associative array-based phone book script with functions to:</p>
+                        <ul>
+                            <li>Add contact (name → phone number)</li>
+                            <li>Lookup contact by name</li>
+                            <li>Delete contact</li>
+                            <li>List all contacts</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 7.2: Log Parser</div>
+                        <p>Write a script that processes web server logs:</p>
+                        <ul>
+                            <li>Extract IP addresses, timestamps, and URLs</li>
+                            <li>Count requests per IP using associative array</li>
+                            <li>Find most requested URLs</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 08 ===================== -->
+                <div class="lecture" id="lec-7">
+                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+                    <h1>File Operations & I/O</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~75 min</span>
+                    </div>
+
+                    <h2>Standard Streams</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">streams.sh</span>
+                        </div>
+                        <pre><span class="cm"># In Linux, everything is a file including I/O streams:</span>
+<span class="cm"># stdin  (0) - Standard Input  (keyboard by default)</span>
+<span class="cm"># stdout (1) - Standard Output (screen by default)</span>
+<span class="cm"># stderr (2) - Standard Error  (screen by default)</span>
+
+<span class="cm"># Redirect stdout to file</span>
+echo <span class="st">"Hello"</span> > output.txt      <span class="cm"># Overwrite</span>
+echo <span class="st">"World"</span> >> output.txt     <span class="cm"># Append</span>
+
+<span class="cm"># Redirect stderr</span>
+ls nonexistent 2> errors.log
+
+<span class="cm"># Redirect both stdout and stderr</span>
+command > output.log 2>&1
+command &> output.log        <span class="cm"># Bash 4+ shorthand</span>
+
+<span class="cm"># Redirect to /dev/null (discard)</span>
+command > /dev/null 2>&1     <span class="cm"># Silent execution</span></pre>
+                    </div>
+
+                    <h3>Advanced Redirects</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">advanced_io.sh</span>
+                        </div>
+                        <pre><span class="cm"># Separate stdout and stderr to different files</span>
+command > output.log 2> errors.log
+
+<span class="cm"># Redirect stderr to stdout</span>
+command 2>&1
+
+<span class="cm"># Redirect stdout to stderr</span>
+echo <span class="st">"Error message"</span> >&2
+
+<span class="cm"># Here documents (multi-line input)</span>
+cat << EOF
+This is a multi-line
+message that ends
+with the delimiter EOF
+EOF
+
+<span class="cm"># Here strings (single line input)</span>
+cat <<< <span class="st">"This is a single line"</span>
+
+<span class="cm"># Process substitution (treat command output as file)</span>
+diff <(sort file1.txt) <(sort file2.txt)
+</pre>
+                    </div>
+
+                    <h2>Pipes</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pipes.sh</span>
+                        </div>
+                        <pre><span class="cm"># Basic pipe: command1 | command2</span>
+cat file.txt | grep <span class="st">"error"</span> | wc -l
+
+<span class="cm"># Multiple pipes (pipeline)</span>
+ps aux | grep <span class="st">"apache"</span> | awk '{print $2}' | xargs kill
+
+<span class="cm"># Pipe to while loop</span>
+cat file.txt | <span class="kw">while</span> read line; <span class="kw">do</span>
+    echo <span class="st">"Processing: $line"</span>
+<span class="kw">done</span>
+
+<span class="cm"># Pipe with tee (split output)</span>
+command | tee output.log    <span class="cm"># Show on screen AND save to file</span>
+command | tee -a output.log <span class="cm"># Append instead of overwrite</span>
+
+<span class="cm"># Named pipes (FIFO)</span>
+mkfifo mypipe
+<span class="cm"># Terminal 1: echo "data" > mypipe</span>
+<span class="cm"># Terminal 2: cat < mypipe</span></pre>
+                    </div>
+
+                    <h2>File Operations</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">file_ops.sh</span>
+                        </div>
+                        <pre><span class="cm"># Create files</span>
+touch newfile.txt           <span class="cm"># Empty file</span>
+echo <span class="st">"content"</span> > file.txt    <span class="cm"># Create with content</span>
+
+<span class="cm"># Copy files</span>
+cp source.txt dest.txt
+cp -r dir1 dir2             <span class="cm"># Recursive copy</span>
+cp -v file1 file2 dir/      <span class="cm"># Verbose</span>
+
+<span class="cm"># Move/Rename files</span>
+mv old.txt new.txt
+mv file.txt /path/to/dest/
+
+<span class="cm"># Delete files</span>
+rm file.txt
+rm -i file.txt             <span class="cm"># Interactive (prompt)</span>
+rm -f file.txt             <span class="cm"># Force (no error if missing)</span>
+rm -r directory/           <span class="cm"># Recursive delete</span>
+
+<span class="cm"># Create directories</span>
+mkdir newdir
+mkdir -p path/to/nested/dir <span class="cm"># Create parent directories</span></pre>
+                    </div>
+
+                    <h2>Reading Files</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">read_files.sh</span>
+                        </div>
+                        <pre><span class="cm"># Read entire file</span>
+content=$(< file.txt)
+
+<span class="cm"># Read line by line</span>
+<span class="kw">while</span> IFS= read -r line; <span class="kw">do</span>
+    echo <span class="st">"Line: $line"</span>
+<span class="kw">done</span> < file.txt
+
+<span class="cm"># Read with line numbers</span>
+n=1
+<span class="kw">while</span> IFS= read -r line; <span class="kw">do</span>
+    printf <span class="st">"%5d: %s\n"</span> $n <span class="st">"$line"</span>
+    ((n++))
+<span class="kw">done</span> < file.txt
+
+<span class="cm"># Read first N lines</span>
+head -n 10 file.txt
+
+<span class="cm"># Read last N lines</span>
+tail -n 10 file.txt
+
+<span class="cm"># Read specific line (line 5)</span>
+sed -n '5p' file.txt
+awk 'NR==5' file.txt</pre>
+                    </div>
+
+                    <h2>Text Processing Tools</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">text_tools.sh</span>
+                        </div>
+                        <pre><span class="cm"># sort - sort lines</span>
+sort file.txt              <span class="cm"># Alphabetical</span>
+sort -n numbers.txt        <span class="cm"># Numerical</span>
+sort -r file.txt           <span class="cm"># Reverse</span>
+sort -k 2 file.txt         <span class="cm"># Sort by 2nd column</span>
+
+<span class="cm"># uniq - unique lines (input must be sorted)</span>
+uniq file.txt              <span class="cm"># Remove duplicates</span>
+uniq -c file.txt           <span class="cm"># Count occurrences</span>
+uniq -d file.txt           <span class="cm"># Show only duplicates</span>
+
+<span class="cm"># cut - extract columns</span>
+cut -d',' -f 1,3 file.csv  <span class="cm"># CSV, fields 1 and 3</ncut -c 1-10 file.txt       <span class="cm"># Characters 1-10</span>
+
+<span class="cm"># wc - word count</span>
+wc -l file.txt             <span class="cm"># Lines</span>
+wc -w file.txt             <span class="cm"># Words</span>
+wc -c file.txt             <span class="cm"># Bytes</span>
+
+<span class="cm"># tr - translate characters</span>
+cat file.txt | tr 'a-z' 'A-Z'  <span class="cm"># Uppercase</span>
+cat file.txt | tr -d '0-9'     <span class="cm"># Delete digits</span>
+cat file.txt | tr -s ' '       <span class="cm"># Squeeze spaces</span></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 8.1: Log Analyzer</div>
+                        <p>Write a script that analyzes system logs:</p>
+                        <ul>
+                            <li>Count errors vs warnings vs info messages</li>
+                            <li>Find most common error messages</li>
+                            <li>Generate hourly activity report</li>
+                            <li>Save report to file with timestamp</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 8.2: File Synchronizer</div>
+                        <p>Create a backup script that:</p>
+                        <ul>
+                            <li>Copies files from source to destination</li>
+                            <li>Only copies files that have changed (compare timestamps)</li>
+                            <li>Creates a log of all operations</li>
+                            <li>Reports total bytes transferred</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 09 ===================== -->
+                <div class="lecture" id="lec-8">
+                    <div class="lecture-tag">Lecture 09 · Advanced</div>
+                    <h1>Process Management & Signals</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~70 min</span>
+                    </div>
+
+                    <h2>Process Management</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">processes.sh</span>
+                        </div>
+                        <pre><span class="cm"># List all processes</span>
+ps aux                    <span class="cm"># BSD style (detailed)</span>
+ps -ef                    <span class="cm"># UNIX style</span>
+ps aux | grep <span class="st">"nginx"</span>   <span class="cm"># Filter for specific process</span>
+
+<span class="cm"># Get current shell PID</span>
+echo <span class="st">"My PID: $$"</span>
+
+<span class="cm"># Get parent PID</span>
+echo <span class="st">"Parent PID: $PPID"</span>
+
+<span class="cm"># Find process by name</span>
+pidof nginx              <span class="cm"># Get PID of nginx</span>
+pgrep nginx              <span class="cm"># List all nginx PIDs</span>
+pgrep -f <span class="st">"python script.py"</span>  <span class="cm"># Match full command line</span>
+
+<span class="cm"># Check if process is running</span>
+<span class="kw">if</span> pgrep -x <span class="st">"sshd"</span> > /dev/null; <span class="kw">then</span>
+    echo <span class="st">"SSH service is running"</span>
+<span class="kw">fi</span></pre>
+                    </div>
+
+                    <h2>Killing & Signaling Processes</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">signals.sh</span>
+                        </div>
+                        <pre><span class="cm"># Common signals</span>
+<span class="cm"># 1  (SIGHUP)   - Hang up (reload config)</span>
+<span class="cm"># 2  (SIGINT)   - Interrupt (Ctrl+C)</span>
+<span class="cm"># 9  (SIGKILL)  - Kill immediately (cannot be caught)</span>
+<span class="cm"># 15 (SIGTERM)  - Terminate gracefully (default)</span>
+<span class="cm"># 18 (SIGCONT)  - Continue (resume)</span>
+<span class="cm"># 19 (SIGSTOP)  - Stop (pause, Ctrl+Z)</span>
+
+<span class="cm"># Kill by PID</span>
+kill 1234                <span class="cm"># Send SIGTERM (15) to PID 1234</span>
+kill -9 1234             <span class="cm"># Force kill (SIGKILL)</span>
+kill -15 1234            <span class="cm"># Graceful termination</span>
+
+<span class="cm"># Kill by name</span>
+killall firefox          <span class="cm"># Kill all firefox processes</span>
+pkill nginx              <span class="cm"># Kill by pattern</span>
+
+<span class="cm"># Send custom signal</span>
+kill -HUP 1234           <span class="cm"># Reload config (SIGHUP)</span></pre>
+                    </div>
+
+                    <h2>Background & Foreground Jobs</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">jobs.sh</span>
+                        </div>
+                        <pre><span class="cm"># Run command in background</span>
+sleep 60 &              <span class="cm"># & runs in background</span>
+<span class="cm"># Output: [1] 12345    # Job number [1], PID 12345</span>
+
+<span class="cm"># List jobs</span>
+jobs                    <span class="cm"># Show all background jobs</span>
+jobs -l                 <span class="cm"># Include PIDs</span>
+jobs -r                 <span class="cm"># Running jobs only</span>
+jobs -s                 <span class="cm"># Stopped jobs only</span>
+
+<span class="cm"># Bring job to foreground</span>
+fg %1                   <span class="cm"># Bring job [1] to foreground</span>
+fg                      <span class="cm"># Most recent job</span>
+
+<span class="cm"># Send to background</span>
+Ctrl+Z                  <span class="cm"># Suspend current job</span>
+bg %1                   <span class="cm"># Resume job [1] in background</span>
+
+<span class="cm"># Wait for background job</span>
+wait %1                 <span class="cm"># Wait for job [1] to complete</span>
+wait                    <span class="cm"># Wait for all background jobs</span>
+
+<span class="cm"># Disown (prevent SIGHUP on logout)</span>
+disown %1               <span class="cm"># Job survives logout</span>
+nohup script.sh &       <span class="cm"># Run immune to hangups</span></pre>
+                    </div>
+
+                    <h2>Signal Handling in Scripts</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">trap.sh</span>
+                        </div>
+                        <pre><span class="cm">#!/bin/bash</span>
+<span class="cm"># trap - handle signals gracefully</span>
+
+<span class="cm"># Cleanup function</span>
+cleanup() {
+    echo <span class="st">"Cleaning up..."</span>
+    rm -f /tmp/tempfile_$$
+    echo <span class="st">"Goodbye!"</span>
+    exit 0
+}
+
+<span class="cm"># Set trap</span>
+trap cleanup EXIT       <span class="cm"># Run on script exit</span>
+trap cleanup SIGINT     <span class="cm"># Run on Ctrl+C</span>
+trap <span class="st">''</span> SIGTERM        <span class="cm"># Ignore SIGTERM</span>
+
+<span class="cm"># Reset trap</span>
+trap - EXIT             <span class="cm"># Remove EXIT trap</span>
+
+<span class="cm"># Example: temp file handler</span>
+TEMP_FILE=$(mktemp)
+trap <span class="st">"rm -f $TEMP_FILE; exit 1"</span> EXIT INT TERM
+
+<span class="cm"># Script continues here...</span>
+echo <span class="st">"Using temp file: $TEMP_FILE"</span>
+<span class="cm"># ... do work ...</span>
+
+<span class="cm"># Explicit cleanup (trap also runs on exit)</span>
+rm -f <span class="st">"$TEMP_FILE"</span></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 9.1: Process Monitor</div>
+                        <p>Write a script that:</p>
+                        <ul>
+                            <li>Monitors if a process (by name) is running</li>
+                            <li>Restarts it if it dies</li>
+                            <li>Logs restarts with timestamp</li>
+                            <li>Handles SIGTERM gracefully</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 9.2: Parallel Task Runner</div>
+                        <p>Create a script that:</p>
+                        <ul>
+                            <li>Runs multiple commands in parallel (background)</li>
+                            <li>Limits concurrent jobs to N at a time</li>
+                            <li>Collects exit codes</li>
+                            <li>Reports which succeeded/failed</li>
+                        </ul>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 10 ===================== -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · Advanced</div>
+                    <h1>RegEx & grep</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~65 min</span>
+                    </div>
+
+                    <h2>Powerful Text Processing</h2>
+                    <div class="code-block">
+                        <pre>grep -E <span class="st">"^[0-9]+"</span> data.txt <span class="cm"># Find lines starting with numbers</span>
+sed -i <span class="st">'s/old/new/g'</span> file.txt <span class="cm"># Replace in file</span>
+awk <span class="st">'{print $1}'</span> log.txt <span class="cm"># Print first column</span></pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 11 ===================== -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · Advanced</div>
+                    <h1>DevOps & Automation</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <h2>Cron Jobs</h2>
+                    <p>Schedule scripts to run automatically.</p>
+                    <div class="code-block">
+                        <pre><span class="cm"># Edit crontab</span>
+crontab -e
+<span class="cm"># Run every day at midnight</span>
+0 0 * * * /path/to/backup.sh</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 12 ===================== -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · Capstone</div>
+                    <h1>Capstone Project: System Monitor</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~120 min</span>
+                    </div>
+
+                    <p>Create a script that monitors disk usage, CPU, and memory, and sends an alert if limits are exceeded.</p>
+                    <div class="code-block">
+                        <pre><span class="cm"># Project requirements:</span>
+<span class="cm"># 1. Use df, top, and free commands</span>
+<span class="cm">// 2. Implement logic to check thresholds</span>
+<span class="cm">// 3. Write results to a log file</span>
+<span class="cm">// 4. (Optional) Send an email/webhook notification</span></pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT AD COLUMN -->
+            <aside class="ad-column ad-column-right">
+                <div class="ad-unit">
+                    <div class="ad-unit-label">Advertisement</div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+                        data-ad-client="ca-pub-2970695859332311" data-ad-slot="RIGHT_AD_SLOT"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script>
+        const titles = [
+            "Introduction & Setup",
+            "Variables & Data Types",
+            "Operators & Expressions",
+            "Control Flow",
+            "Loops",
+            "Functions & Scripting",
+            "Arrays & String Manipulation",
+            "File Operations & I/O",
+            "Process Management & Signals",
+            "Regular Expressions & grep",
+            "DevOps Tools & Automation",
+            "Capstone Project: Automation Scripts"
+        ];
+
+        let current = 0;
+
+        function showLecture(index) {
+            document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('lec-' + index).classList.add('active');
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+            document.getElementById('breadcrumb-current').textContent = titles[index];
+            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
+            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+            current = index;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

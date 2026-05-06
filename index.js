@@ -124,6 +124,294 @@ const courses = {
       'Capstone Project'
     ],
     btn: 'linear-gradient(135deg, #a8b9cc, #657b98)'
+  },
+  cc: {
+    emoji: '♯',
+    title: 'C# Programming',
+    desc: 'C# is Microsoft\'s flagship language for .NET development. Build Windows apps, web APIs, games with Unity, and enterprise software with this powerful, type-safe language.',
+    curriculum: [
+      'Introduction to C# and .NET',
+      'Variables, types, and operators',
+      'Control flow and methods',
+      'Object-Oriented Programming in C#',
+      'Inheritance and interfaces',
+      'Delegates, events, and LINQ',
+      'Asynchronous programming with async/await',
+      'Working with collections',
+      'File I/O and serialization',
+      'Capstone: Build a task management app'
+    ],
+    btn: 'linear-gradient(135deg, #9b59b6, #6a0dad)'
+  },
+  typescript: {
+    emoji: '🔷',
+    title: 'TypeScript',
+    desc: 'TypeScript adds static typing to JavaScript, making your code more reliable and maintainable. Essential for large-scale applications and modern frontend development.',
+    curriculum: [
+      'Introduction to TypeScript',
+      'Basic types and type inference',
+      'Interfaces and type aliases',
+      'Classes and OOP in TypeScript',
+      'Generics and advanced types',
+      'Modules and namespaces',
+      'Decorators and metadata',
+      'Working with React and TypeScript',
+      'Build tools and configuration',
+      'Capstone: Build a typed REST API client'
+    ],
+    btn: 'linear-gradient(135deg, #3178c6, #235a97)'
+  },
+  go: {
+    emoji: '🐹',
+    title: 'Go Programming',
+    desc: 'Go (Golang) is Google\'s language for building fast, reliable, and efficient software. Perfect for cloud services, microservices, and backend development with excellent concurrency support.',
+    curriculum: [
+      'Introduction to Go',
+      'Variables, types, and constants',
+      'Control structures and functions',
+      'Arrays, slices, and maps',
+      'Structs and methods',
+      'Interfaces and composition',
+      'Goroutines and channels',
+      'Error handling and testing',
+      'Building CLI tools',
+      'Capstone: Build a concurrent web server'
+    ],
+    btn: 'linear-gradient(135deg, #00add8, #007d9c)'
+  },
+  rust: {
+    emoji: '🦀',
+    title: 'Rust Programming',
+    desc: 'Rust provides memory safety without garbage collection, making it perfect for systems programming, web assembly, and high-performance applications. Loved by developers worldwide.',
+    curriculum: [
+      'Introduction to Rust and ownership',
+      'Borrowing and references',
+      'Structs and enums',
+      'Pattern matching',
+      'Traits and generics',
+      'Error handling with Result and Option',
+      'Collections and iterators',
+      'Concurrency with threads',
+      'Cargo and package management',
+      'Capstone: Build a command-line tool'
+    ],
+    btn: 'linear-gradient(135deg, #dea584, #b84a28)'
+  },
+  kotlin: {
+    emoji: '🟣',
+    title: 'Kotlin',
+    desc: 'Kotlin is the modern language for Android development and multiplatform apps. Concise, safe, and interoperable with Java — the preferred language for Android developers.',
+    curriculum: [
+      'Introduction to Kotlin',
+      'Variables and basic types',
+      'Control flow and functions',
+      'Null safety in Kotlin',
+      'Classes and inheritance',
+      'Interfaces and data classes',
+      'Collections and functional operations',
+      'Coroutines for async programming',
+      'Android basics with Kotlin',
+      'Capstone: Build a simple Android app'
+    ],
+    btn: 'linear-gradient(135deg, #7f52ff, #5b3bb5)'
+  },
+  swift: {
+    emoji: '🟠',
+    title: 'Swift',
+    desc: 'Swift is Apple\'s powerful and intuitive language for iOS, macOS, watchOS, and tvOS development. Modern syntax with performance that rivals C-based languages.',
+    curriculum: [
+      'Introduction to Swift',
+      'Variables, constants, and types',
+      'Operators and control flow',
+      'Functions and closures',
+      'Optionals and error handling',
+      'Structs, classes, and enums',
+      'Protocols and extensions',
+      'Generics in Swift',
+      'Memory management with ARC',
+      'Capstone: Build an iOS calculator app'
+    ],
+    btn: 'linear-gradient(135deg, #f05138, #b53522)'
+  },
+  php: {
+    emoji: '🐘',
+    title: 'PHP',
+    desc: 'PHP powers over 75% of the web including WordPress and Laravel. Learn server-side scripting, database integration, and modern PHP development practices.',
+    curriculum: [
+      'Introduction to PHP',
+      'Variables, types, and operators',
+      'Control structures and functions',
+      'Arrays and strings',
+      'Working with forms and GET/POST',
+      'MySQL database integration',
+      'Sessions and cookies',
+      'Object-Oriented PHP',
+      'Introduction to Laravel framework',
+      'Capstone: Build a blog system'
+    ],
+    btn: 'linear-gradient(135deg, #777bb4, #4f5b93)'
+  },
+  sql: {
+    emoji: '🗄️',
+    title: 'SQL',
+    desc: 'SQL is the standard language for managing relational databases. Essential for backend developers, data analysts, and anyone working with structured data.',
+    curriculum: [
+      'Introduction to databases and SQL',
+      'SELECT queries and filtering',
+      'Sorting and limiting results',
+      'Aggregate functions and GROUP BY',
+      'Joins: INNER, LEFT, RIGHT, FULL',
+      'Subqueries and CTEs',
+      'Inserting, updating, and deleting data',
+      'Creating tables and constraints',
+      'Indexes and query optimization',
+      'Capstone: Design a complete database schema'
+    ],
+    btn: 'linear-gradient(135deg, #f29111, #c46708)'
+  },
+  r: {
+    emoji: '📊',
+    title: 'R Programming',
+    desc: 'R is the leading language for statistical computing and data visualization. Essential for data scientists, statisticians, and researchers working with data analysis.',
+    curriculum: [
+      'Introduction to R and RStudio',
+      'Vectors, matrices, and data frames',
+      'Data manipulation with dplyr',
+      'Data visualization with ggplot2',
+      'Statistical analysis basics',
+      'Hypothesis testing in R',
+      'Working with real datasets',
+      'Creating functions and packages',
+      'R Markdown for reproducible research',
+      'Capstone: Analyze and visualize a dataset'
+    ],
+    btn: 'linear-gradient(135deg, #276dc3, #1b4f8f)'
+  },
+  dart: {
+    emoji: '🎯',
+    title: 'Dart',
+    desc: 'Dart is Google\'s language optimized for building fast apps on any platform. The language behind Flutter for beautiful cross-platform mobile, web, and desktop apps.',
+    curriculum: [
+      'Introduction to Dart',
+      'Variables and built-in types',
+      'Functions and operators',
+      'Control flow statements',
+      'Classes and objects',
+      'Inheritance and mixins',
+      'Asynchronous programming: Futures and Streams',
+      'Collections and generics',
+      'Error handling',
+      'Capstone: Build a console calculator'
+    ],
+    btn: 'linear-gradient(135deg, #00b4ab, #007a73)'
+  },
+  ruby: {
+    emoji: '💎',
+    title: 'Ruby',
+    desc: 'Ruby is a dynamic, elegant language focused on simplicity and productivity. Known for its beautiful syntax and the powerful Rails framework for web development.',
+    curriculum: [
+      'Introduction to Ruby',
+      'Variables, types, and operators',
+      'Control structures and methods',
+      'Arrays, hashes, and symbols',
+      'Object-Oriented Programming in Ruby',
+      'Modules and mixins',
+      'Blocks, procs, and lambdas',
+      'File I/O and regular expressions',
+      'Introduction to Ruby on Rails',
+      'Capstone: Build a simple web app'
+    ],
+    btn: 'linear-gradient(135deg, #cc342d, #9a2822)'
+  },
+  matlab: {
+    emoji: '📐',
+    title: 'MATLAB',
+    desc: 'MATLAB is the industry-standard platform for numerical computing, algorithm development, and data visualization. Essential for engineers, scientists, and researchers.',
+    curriculum: [
+      'Introduction to MATLAB environment',
+      'Variables, arrays, and matrices',
+      'Matrix operations and linear algebra',
+      'Plotting and visualization',
+      'Control flow and functions',
+      'Data import and export',
+      'Signal processing basics',
+      'Image processing fundamentals',
+      'Simulink introduction',
+      'Capstone: Analyze and visualize scientific data'
+    ],
+    btn: 'linear-gradient(135deg, #0076a8, #004e6e)'
+  },
+  visualbasic: {
+    emoji: '🔵',
+    title: 'Visual Basic .NET',
+    desc: 'VB.NET is Microsoft\'s approachable, object-oriented language. Perfect for Windows desktop applications, automation, and rapid application development with .NET.',
+    curriculum: [
+      'Introduction to VB.NET',
+      'Variables, types, and operators',
+      'Control structures and procedures',
+      'Arrays and collections',
+      'Object-Oriented Programming',
+      'Windows Forms and UI design',
+      'Event-driven programming',
+      'File I/O and database access',
+      'LINQ and data manipulation',
+      'Capstone: Build a Windows desktop app'
+    ],
+    btn: 'linear-gradient(135deg, #00539c, #003d75)'
+  },
+  shell: {
+    emoji: '🐚',
+    title: 'Shell Scripting',
+    desc: 'Shell scripting automates command-line tasks on Unix/Linux systems. Essential for system administrators, DevOps engineers, and developers working in Linux environments.',
+    curriculum: [
+      'Introduction to shell scripting',
+      'Variables and environment',
+      'Control structures: if, case, loops',
+      'Functions and parameters',
+      'Working with files and text',
+      'Process management',
+      'Regular expressions with sed and awk',
+      'System administration tasks',
+      'Creating robust scripts',
+      'Capstone: Build a system monitoring script'
+    ],
+    btn: 'linear-gradient(135deg, #4e9a06, #2d5a04)'
+  },
+  ethicalhacking: {
+    emoji: '🛡️',
+    title: 'Ethical Hacking',
+    desc: 'Learn the art of ethical hacking and penetration testing. Understand security vulnerabilities, network security, and how to protect systems from cyber threats.',
+    curriculum: [
+      'Introduction to ethical hacking',
+      'Footprinting and reconnaissance',
+      'Scanning networks and systems',
+      'Enumeration techniques',
+      'Vulnerability analysis',
+      'System hacking methodology',
+      'Malware threats and analysis',
+      'Social engineering',
+      'Web application security',
+      'Capstone: Conduct a penetration test'
+    ],
+    btn: 'linear-gradient(135deg, #2ecc71, #27ae60)'
+  },
+  bash: {
+    emoji: '🖥️',
+    title: 'Bash Scripting',
+    desc: 'Bash is the default shell on most Linux systems. Master Bash to automate workflows, manage systems, and write powerful command-line tools for daily tasks.',
+    curriculum: [
+      'Introduction to Bash and the shell',
+      'Variables and environment setup',
+      'Operators: arithmetic, comparison, file test',
+      'Control flow: if, case, loops',
+      'Functions and parameters',
+      'Arrays and string manipulation',
+      'File operations and redirection',
+      'Process management and signals',
+      'Regular expressions and text processing',
+      'Capstone: Build a system administration toolkit'
+    ],
+    btn: 'linear-gradient(135deg, #293137, #1a1f23)'
   }
 };
 
@@ -253,3 +541,4 @@ document.addEventListener('DOMContentLoaded', function() {
     signInBtn.addEventListener('click', showSignInToast);
   }
 });
+

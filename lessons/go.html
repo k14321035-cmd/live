@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+    <title>Go (Golang) Mastery — Complete Course</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2970695859332311"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- MEGA NAVIGATION -->
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6,9 12,15 18,9" />
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                          <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link "><span class="lesson-mega-icon">🐍</span>Python</a>
+                            <a href="c++" class="lesson-mega-link"><span class="lesson-mega-icon">⚙️</span>C++</a>
+                            <a href="html" class="lesson-mega-link"><span class="lesson-mega-icon">🌐</span>HTML</a>
+                            <a href="css" class="lesson-mega-link"><span class="lesson-mega-icon">🎨</span>CSS</a>
+                            <a href="java" class="lesson-mega-link"><span class="lesson-mega-icon">☕</span>Java</a>
+                            <a href="javascript" class="lesson-mega-link"><span class="lesson-mega-icon">✨</span>JavaScript</a>
+                            <a href="c" class="lesson-mega-link"><span class="lesson-mega-icon">🧭</span>C Language</a>
+                            <a href="cc" class="lesson-mega-link"><span class="lesson-mega-icon">♯</span>C#</a>
+                            <a href="typescript" class="lesson-mega-link"><span class="lesson-mega-icon">🔷</span>TypeScript</a>
+                            <a href="go" class="lesson-mega-link active"><span class="lesson-mega-icon">🐹</span>Go</a>
+                            <a href="rust" class="lesson-mega-link"><span class="lesson-mega-icon">🦀</span>Rust</a>
+                            <a href="kotlin" class="lesson-mega-link"><span class="lesson-mega-icon">🟣</span>Kotlin</a>
+                            <a href="swift" class="lesson-mega-link"><span class="lesson-mega-icon">🟠</span>Swift</a>
+                            <a href="php" class="lesson-mega-link"><span class="lesson-mega-icon">🐘</span>PHP</a>
+                            <a href="sql" class="lesson-mega-link"><span class="lesson-mega-icon">🗄️</span>SQL</a>
+                            <a href="r" class="lesson-mega-link"><span class="lesson-mega-icon">📊</span>R</a>
+                            <a href="bash" class="lesson-mega-link"><span class="lesson-mega-icon">🖥️</span>Bash</a>
+                            <a href="dart" class="lesson-mega-link"><span class="lesson-mega-icon">🎯</span>Dart</a>
+                            <a href="ruby" class="lesson-mega-link"><span class="lesson-mega-icon">💎</span>Ruby</a>
+                            <a href="matlab" class="lesson-mega-link"><span class="lesson-mega-icon">📐</span>MATLAB</a>
+                            <a href="visualbasic" class="lesson-mega-link"><span class="lesson-mega-icon">🔵</span>Visual Basic</a>
+                            <a href="shell" class="lesson-mega-link"><span class="lesson-mega-icon">🐚</span>Shell</a>
+                            <a href="ethicalhacking" class="lesson-mega-link"><span class="lesson-mega-icon">🛡️</span>Ethical Hacking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="logo">
+                <span class="logo-icon">🐹</span>
+                Go Mastery
+            </a>
+            <p>Complete Course — 12 Lessons</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Fundamentals</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span
+                    class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span
+                    class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span
+                    class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span
+                    class="dot"></span>Functions</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span
+                    class="dot"></span>Pointers & Structs</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Core Concepts</div>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span
+                    class="dot"></span>Arrays, Slices & Maps</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span
+                    class="dot"></span>Methods & Interfaces</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Error
+                Handling</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced</div>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
+                    class="dot"></span>Concurrency & Goroutines</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span
+                    class="dot"></span>Channels & Synchronization</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span
+                    class="dot"></span>Modules & Testing</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
+                    class="dot"></span>Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>Go Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">Introduction & Setup</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:8%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+
+            <!-- LEFT AD COLUMN -->
+            <aside class="ad-column ad-column-left">
+                <div class="ad-unit">
+                    <div class="ad-unit-label">Advertisement</div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+                        data-ad-client="ca-pub-2970695859332311" data-ad-slot="LEFT_AD_SLOT"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
+
+            <!-- CENTER CONTENT COLUMN -->
+            <div class="content-column">
+
+                <!-- ===================== LECTURE 01 ===================== -->
+                <div class="lecture active" id="lec-0">
+                    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+                    <h1>Introduction to Go & Setup</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <h2>What is Go?</h2>
+                    <p>Go (Golang) is a modern, statically typed, compiled programming language designed by Google. It
+                        is known for its simplicity, performance, and built-in support for concurrency.</p>
+
+                    <h3>Why Go?</h3>
+                    <ul>
+                        <li>Excellent performance and efficiency</li>
+                        <li>Built-in concurrency with goroutines</li>
+                        <li>Simple and clean syntax</li>
+                        <li>Ideal for cloud-native, microservices, CLI tools, and networking</li>
+                    </ul>
+
+                    <h2>Installation</h2>
+                    <p>Download from <strong>go.dev/dl</strong> or use package managers.</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span
+                                class="filename">terminal</span>
+                        </div>
+                        <pre>go version
+go version go1.22.3 linux/amd64</pre>
+                    </div>
+
+                    <h2>Your First Go Program</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div><span
+                                class="filename">main.go</span>
+                        </div>
+                        <pre><span class="kw">package</span> main
+
+<span class="kw">import</span> <span class="st">"fmt"</span>
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    fmt.Println(<span class="st">"Hello, Go Mastery!"</span>)
+    fmt.Println(<span class="st">"Fast, simple, and concurrent!"</span>)
+}</pre>
+                    </div>
+
+                    <div class="output-block">
+                        <div class="output-label">Output</div>Hello, Go Mastery!<br>Fast, simple, and concurrent!
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">🎯 Exercise 1.1</div>
+                        <p>Install Go, run <code>go version</code>, then create a new module with
+                            <code>go mod init hello</code> and run your first program with <code>go run main.go</code>.
+                        </p>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 02 ===================== -->
+                <div class="lecture" id="lec-1">
+                    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+                    <h1>Variables & Data Types</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~45 min</span>
+                    </div>
+
+                    <h2>Declaring Variables</h2>
+                    <p>Go offers multiple ways to declare variables. The short declaration <code>:=</code> is the most common inside functions.</p>
+                    <div class="code-block">
+                        <pre><span class="kw">var</span> name <span class="kw">string</span> = <span class="st">"Gopher"</span>
+age := 10 <span class="cm">// Type inferred as int</span></pre>
+                    </div>
+
+                    <h2>Zero Values</h2>
+                    <p>Variables declared without an initial value are given their <strong>zero value</strong> (0 for numeric, false for boolean, "" for strings).</p>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 03 ===================== -->
+                <div class="lecture" id="lec-2">
+                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+                    <h1>Control Flow</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~40 min</span>
+                    </div>
+
+                    <h2>The Only Loop: For</h2>
+                    <p>Go only has one looping construct: the <code>for</code> loop.</p>
+                    <div class="code-block">
+                        <pre><span class="kw">for</span> i := 0; i < 5; i++ {
+    fmt.Println(i)
+}
+
+<span class="cm">// while-style loop</span>
+<span class="kw">for</span> n < 100 {
+    n *= 2
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 04 ===================== -->
+                <div class="lecture" id="lec-3">
+                    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+                    <h1>Functions & Multiple Returns</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-beginner">Beginner</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <h2>Multiple Return Values</h2>
+                    <div class="code-block">
+                        <pre><span class="kw">func</span> divide(a, b <span class="kw">float64</span>) (<span class="kw">float64</span>, <span class="kw">error</span>) {
+    <span class="kw">if</span> b == 0 {
+        <span class="kw">return</span> 0, errors.New(<span class="st">"cannot divide by zero"</span>)
+    }
+    <span class="kw">return</span> a / b, <span class="kw">nil</span>
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 05 ===================== -->
+                <div class="lecture" id="lec-4">
+                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+                    <h1>Pointers & Structs</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~55 min</span>
+                    </div>
+
+                    <h2>Structs</h2>
+                    <div class="code-block">
+                        <pre><span class="kw">type</span> User <span class="kw">struct</span> {
+    ID   <span class="kw">int</span>
+    Name <span class="kw">string</span>
+}
+
+u := User{ID: 1, Name: <span class="st">"Alice"</span>}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 06 ===================== -->
+                <div class="lecture" id="lec-5">
+                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+                    <h1>Arrays, Slices & Maps</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <h2>Slices: Dynamic Arrays</h2>
+                    <div class="code-block">
+                        <pre>s := []<span class="kw">int</span>{1, 2, 3}
+s = append(s, 4)</pre>
+                    </div>
+
+                    <h2>Maps: Key-Value Pairs</h2>
+                    <div class="code-block">
+                        <pre>m := <span class="kw">make</span>(<span class="kw">map</span>[<span class="kw">string</span>]<span class="kw">int</span>)
+m[<span class="st">"apples"</span>] = 5</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 07 ===================== -->
+                <div class="lecture" id="lec-6">
+                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+                    <h1>Methods & Interfaces</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <h2>Interfaces</h2>
+                    <p>Go uses implicit interfaces. If a type implements the methods, it implements the interface.</p>
+                    <div class="code-block">
+                        <pre><span class="kw">type</span> Shape <span class="kw">interface</span> {
+    Area() <span class="kw">float64</span>
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 08 ===================== -->
+                <div class="lecture" id="lec-7">
+                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+                    <h1>Error Handling</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~40 min</span>
+                    </div>
+
+                    <h2>The Idiomatic Way</h2>
+                    <div class="code-block">
+                        <pre>val, err := doSomething()
+<span class="kw">if</span> err != <span class="kw">nil</span> {
+    <span class="cm">// Handle error</span>
+    <span class="kw">return</span> err
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 09 ===================== -->
+                <div class="lecture" id="lec-8">
+                    <div class="lecture-tag">Lecture 09 · Advanced</div>
+                    <h1>Concurrency & Goroutines</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~60 min</span>
+                    </div>
+
+                    <h2>Goroutines</h2>
+                    <p>Use the <code>go</code> keyword to run a function concurrently.</p>
+                    <div class="code-block">
+                        <pre><span class="kw">go</span> sayHello()</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 10 ===================== -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · Advanced</div>
+                    <h1>Channels & Synchronization</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~65 min</span>
+                    </div>
+
+                    <h2>Channels</h2>
+                    <p>Channels are the pipes that connect concurrent goroutines.</p>
+                    <div class="code-block">
+                        <pre>ch := <span class="kw">make</span>(<span class="kw">chan</span> <span class="kw">int</span>)
+ch <- 42 <span class="cm">// Send</span>
+val := <-ch <span class="cm">// Receive</span></pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 11 ===================== -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · Advanced</div>
+                    <h1>Modules & Testing</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~50 min</span>
+                    </div>
+
+                    <h2>Writing Tests</h2>
+                    <div class="code-block">
+                        <pre><span class="kw">func</span> TestAdd(t *testing.T) {
+    <span class="kw">if</span> Add(1, 2) != 3 {
+        t.Errorf(<span class="st">"Failed!"</span>)
+    }
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 12 ===================== -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · Capstone Project</div>
+                    <h1>Capstone: Concurrent CLI Tool</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~120 min</span>
+                    </div>
+
+                    <p>Build a tool that fetches data from multiple APIs concurrently using goroutines and channels.</p>
+                    <div class="code-block">
+                        <pre><span class="cm">// Requirements:</span>
+<span class="cm">// 1. Use net/http to fetch data</span>
+<span class="cm">// 2. Use goroutines for parallel requests</span>
+<span class="cm">// 3. Collect results via channels</span>
+<span class="cm">// 4. Use context for timeouts</span></pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT AD COLUMN -->
+            <aside class="ad-column ad-column-right">
+                <div class="ad-unit">
+                    <div class="ad-unit-label">Advertisement</div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+                        data-ad-client="ca-pub-2970695859332311" data-ad-slot="RIGHT_AD_SLOT"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script>
+        const titles = [
+            "Introduction & Setup",
+            "Variables & Data Types",
+            "Control Flow",
+            "Functions",
+            "Pointers & Structs",
+            "Arrays, Slices & Maps",
+            "Methods & Interfaces",
+            "Error Handling",
+            "Concurrency & Goroutines",
+            "Channels & Synchronization",
+            "Modules & Testing",
+            "Capstone Project: Concurrent Tool"
+        ];
+
+        let current = 0;
+
+        function showLecture(index) {
+            document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('lec-' + index).classList.add('active');
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+            document.getElementById('breadcrumb-current').textContent = titles[index];
+            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
+            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+            current = index;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>
