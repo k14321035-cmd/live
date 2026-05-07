@@ -97,6 +97,53 @@ function showLecture(index) {
 }
 
 /**
+ * Copy current lecture URL to clipboard
+ */
+function copyLectureLink() {
+    const url = window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+            showToast('Link copied to clipboard!');
+        }).catch(() => {
+            fallbackCopy(url);
+        });
+    } else {
+        fallbackCopy(url);
+    }
+}
+
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        showToast('Link copied to clipboard!');
+    } catch (err) {
+        showToast('Failed to copy link');
+    }
+    document.body.removeChild(textarea);
+}
+
+function showToast(message) {
+    let toast = document.getElementById('lecture-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'lecture-toast';
+        toast.className = 'lecture-toast';
+        document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2000);
+}
+
+/**
  * Toggle mobile sidebar
  */
 function toggleMenu() {
@@ -261,6 +308,12 @@ document.addEventListener('DOMContentLoaded', function() {
     backToTopBtn.setAttribute('aria-label', 'Back to top');
     backToTopBtn.setAttribute('title', 'Back to top');
     document.body.appendChild(backToTopBtn);
+    
+    // Inject toast element
+    const toast = document.createElement('div');
+    toast.id = 'lecture-toast';
+    toast.className = 'lecture-toast';
+    document.body.appendChild(toast);
     
     // Show/hide button based on scroll position
     function toggleBackToTop() {

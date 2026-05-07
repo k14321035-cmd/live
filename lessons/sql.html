@@ -62,29 +62,29 @@
                     </button>
                     <div class="lesson-mega-dropdown">
                        <div class="lesson-mega-grid">
-                            <a href="python" class="lesson-mega-link"><span class="lesson-mega-icon">🐍</span>Python</a>
-                            <a href="c++" class="lesson-mega-link"><span class="lesson-mega-icon">⚙️</span>C++</a>
-                            <a href="html" class="lesson-mega-link"><span class="lesson-mega-icon">🌐</span>HTML</a>
-                            <a href="css" class="lesson-mega-link"><span class="lesson-mega-icon">🎨</span>CSS</a>
-                            <a href="java" class="lesson-mega-link"><span class="lesson-mega-icon">☕</span>Java</a>
-                            <a href="javascript" class="lesson-mega-link"><span class="lesson-mega-icon">✨</span>JavaScript</a>
-                            <a href="c" class="lesson-mega-link"><span class="lesson-mega-icon">🧭</span>C Language</a>
-                            <a href="cc" class="lesson-mega-link"><span class="lesson-mega-icon">♯</span>C#</a>
-                            <a href="typescript" class="lesson-mega-link"><span class="lesson-mega-icon">🔷</span>TypeScript</a>
-                            <a href="go" class="lesson-mega-link"><span class="lesson-mega-icon">🐹</span>Go</a>
-                            <a href="rust" class="lesson-mega-link"><span class="lesson-mega-icon">🦀</span>Rust</a>
-                            <a href="kotlin" class="lesson-mega-link"><span class="lesson-mega-icon">🟣</span>Kotlin</a>
-                            <a href="swift" class="lesson-mega-link"><span class="lesson-mega-icon">🟠</span>Swift</a>
-                            <a href="php" class="lesson-mega-link"><span class="lesson-mega-icon">🐘</span>PHP</a>
-                            <a href="sql" class="lesson-mega-link active"><span class="lesson-mega-icon">🗄️</span>SQL</a>
-                            <a href="r" class="lesson-mega-link"><span class="lesson-mega-icon">📊</span>R</a>
-                            <a href="bash" class="lesson-mega-link"><span class="lesson-mega-icon">🖥️</span>Bash</a>
-                            <a href="dart" class="lesson-mega-link"><span class="lesson-mega-icon">🎯</span>Dart</a>
-                            <a href="ruby" class="lesson-mega-link"><span class="lesson-mega-icon">💎</span>Ruby</a>
-                            <a href="matlab" class="lesson-mega-link"><span class="lesson-mega-icon">📐</span>MATLAB</a>
-                            <a href="visualbasic" class="lesson-mega-link"><span class="lesson-mega-icon">🔵</span>Visual Basic</a>
-                            <a href="shell" class="lesson-mega-link"><span class="lesson-mega-icon">🐚</span>Shell</a>
-                            <a href="ethicalhacking" class="lesson-mega-link"><span class="lesson-mega-icon">🛡️</span>Ethical Hacking</a>
+                            <a href="python" class="lesson-mega-link ">Python</a>
+                            <a href="c++" class="lesson-mega-link active">C++</a>
+                            <a href="html" class="lesson-mega-link">HTML</a>
+                            <a href="css" class="lesson-mega-link">CSS</a>
+                            <a href="java" class="lesson-mega-link">Java</a>
+                            <a href="javascript" class="lesson-mega-link">JavaScript</a>
+                            <a href="c" class="lesson-mega-link">C Language</a>
+                            <a href="cc" class="lesson-mega-link">C#</a>
+                            <a href="typescript" class="lesson-mega-link">TypeScript</a>
+                            <a href="go" class="lesson-mega-link">Go</a>
+                            <a href="rust" class="lesson-mega-link">Rust</a>
+                            <a href="kotlin" class="lesson-mega-link">Kotlin</a>
+                            <a href="swift" class="lesson-mega-link">Swift</a>
+                            <a href="php" class="lesson-mega-link">PHP</a>
+                            <a href="sql" class="lesson-mega-link">SQL</a>
+                            <a href="r" class="lesson-mega-link">R</a>
+                            <a href="bash" class="lesson-mega-link">Bash</a>
+                            <a href="dart" class="lesson-mega-link">Dart</a>
+                            <a href="ruby" class="lesson-mega-link">Ruby</a>
+                            <a href="matlab" class="lesson-mega-link">MATLAB</a>
+                            <a href="visualbasic" class="lesson-mega-link">Visual Basic</a>
+                            <a href="shell" class="lesson-mega-link">Shell</a>
+                            <a href="ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
                         </div>
                     </div>
                 </div>
@@ -144,6 +144,13 @@
                     <div class="progress-fill" id="progress-fill" style="width:8%"></div>
                 </div>
             </div>
+            <button class="share-btn" onclick="copyLectureLink()" title="Copy link to this lecture">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Share
+            </button>
         </div>
 
         <div class="content-wrapper">
@@ -2520,24 +2527,7 @@ GROUP BY country;</code></pre>
             "Window Functions",
             "Capstone Project: Database System"
         ];
-
-        let current = 0;
-
-        function showLecture(index) {
-            document.querySelectorAll('.lecture').forEach(l => l.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            document.getElementById('lec-' + index).classList.add('active');
-            document.querySelectorAll('.nav-item')[index].classList.add('active');
-            document.getElementById('breadcrumb-current').textContent = titles[index];
-            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
-            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
-            current = index;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('open');
-        }
+        initLessons(titles);
     </script>
 </body>
 
