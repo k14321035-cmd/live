@@ -161,44 +161,77 @@
             <!-- CENTER CONTENT COLUMN -->
             <div class="content-column">
 
-                <!-- ===================== LECTURE 1 ===================== -->
-                <div class="lecture active" id="lec-0">
-                    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
-                    <h1>Introduction to C# & .NET Setup</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~50 min</span>
-                        <span class="meta-badge">No prerequisites</span>
-                    </div>
+          <!-- ===================== LECTURE 1 ===================== -->
+<div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+    <h1>Introduction to C# & .NET Setup</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~75 min</span>
+        <span class="meta-badge">No prerequisites</span>
+    </div>
 
-                    <h2>What is C#?</h2>
-                    <p>C# (pronounced "C-sharp") is a modern, object-oriented, type-safe programming language developed by Microsoft. It is part of the .NET ecosystem and is widely used for building Windows desktop applications, web services, games (Unity), cloud applications, and mobile apps.</p>
+    <section>
+        <h2>What is C#?</h2>
+        <p>C# (pronounced "C-sharp") is a modern, object-oriented, and type-safe programming language developed by Microsoft. It is designed to be simple, powerful, and versatile. While it shares roots with C and C++, it incorporates modern features that make it more productive and less prone to errors.</p>
+        
+        <p>C# is the primary language for the <strong>.NET ecosystem</strong>, meaning it can be used to build almost anything:</p>
+        <ul>
+            <li><strong>Enterprise Software:</strong> Robust backend systems for banks and corporations.</li>
+            <li><strong>Web Development:</strong> Using ASP.NET Core to build high-performance APIs and websites.</li>
+            <li><strong>Game Development:</strong> The industry standard for the <strong>Unity Engine</strong>.</li>
+            <li><strong>Cloud Services:</strong> Deep integration with Microsoft Azure for scalable cloud apps.</li>
+            <li><strong>Mobile Apps:</strong> Cross-platform development via .NET MAUI.</li>
+        </ul>
+    </section>
 
-                    <h3>Why C#?</h3>
-                    <ul>
-                        <li><strong>Strongly typed &amp; safe:</strong> Catches many errors at compile time.</li>
-                        <li><strong>Modern features:</strong> Async/await, LINQ, records, pattern matching.</li>
-                        <li><strong>Cross-platform:</strong> Runs on Windows, macOS, Linux via .NET 8+.</li>
-                        <li><strong>Excellent tooling:</strong> Visual Studio, VS Code, Rider.</li>
-                    </ul>
+    <section>
+        <h2>The .NET Ecosystem: How it Works</h2>
+        <p>To understand C#, you must understand <strong>.NET</strong>. C# is the language, but .NET is the <em>runtime</em> and <em>library</em> that executes the code.</p>
+        
+        <div class="info-box">
+            <strong>Professional Insight: The Compilation Process</strong>
+            <p>C# does not compile directly into machine code (binary). Instead, it follows a two-step process:</p>
+            <ol>
+                <li><strong>C# Source Code</strong> $\rightarrow$ Compiled into <strong>CIL (Common Intermediate Language)</strong>.</li>
+                <li><strong>CIL</strong> $\rightarrow$ Translated by the <strong>CLR (Common Language Runtime)</strong> using <strong>JIT (Just-In-Time) Compilation</strong> into machine code that your specific CPU understands.</li>
+            </ol>
+            <p><em>This is why C# is cross-platform; the CIL is the same regardless of whether you are on Windows, Linux, or macOS.</em></p>
+        </div>
+    </section>
 
-                    <h2>Installing .NET SDK</h2>
-                    <p>Download the latest .NET 8 SDK from <strong>dotnet.microsoft.com</strong>.</p>
+    <section>
+        <h2>Setting Up Your Environment</h2>
+        <p>To start developing, you need two main components: the <strong>SDK</strong> and an <strong>IDE</strong>.</p>
+        
+        <h3>1. The .NET SDK (Software Development Kit)</h3>
+        <p>The SDK contains the compilers, libraries, and tools (like the <code>dotnet</code> command) needed to build applications. Download the latest version from <strong style="color: #2196f3;">dotnet.microsoft.com</strong>.</p>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal / cmd</span>
-                        </div>
-                        <pre>dotnet --version
-<span class="cm"># Expected: 8.0.x or higher</span></pre>
-                    </div>
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal / cmd</span>
+            </div>
+            <pre>dotnet --version
+<span class="cm"># Expected Output: 8.0.x (or the latest stable version)</span></pre>
+        </div>
 
-                    <h2>Your First C# Program</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Program.cs</span>
-                        </div>
-                        <pre><span class="kw">using</span> System;
+        <h3>2. Choosing Your Editor (IDE)</h3>
+        <ul>
+            <li><strong>Visual Studio 2022:</strong> The "Full Power" IDE. Best for large enterprise projects and Windows desktop apps.</li>
+            <li><strong>VS Code:</strong> A lightweight, fast editor. Preferred by many professionals for web development and cross-platform work (requires the "C# Dev Kit" extension).</li>
+            <li><strong>JetBrains Rider:</strong> A premium, high-performance cross-platform IDE.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Anatomy of Your First Program</h2>
+        <p>Let's look at a standard C# program and break down exactly what each line is doing.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Program.cs</span>
+            </div>
+            <pre><span class="kw">using</span> System;
 
 <span class="kw">class</span> <span class="fn">Program</span>
 {
@@ -208,126 +241,657 @@
         Console.WriteLine(<span class="st">"Welcome to C# Mastery!"</span>);
     }
 }</pre>
-                    </div>
+        </div>
 
-                    <div class="output-block">
-                        <div class="output-label">Output</div>Hello, World!<br>Welcome to C# Mastery!
-                    </div>
+        <h3>Code Breakdown:</h3>
+        <ul>
+            <li><code>using System;</code>: This tells the program to use the <strong>System</strong> namespace, which contains fundamental classes like <code>Console</code>.</li>
+            <li><code>class Program</code>: C# is an Object-Oriented language. Every piece of code must live inside a <strong>class</strong>.</li>
+            <li><code>static void Main()</code>: This is the <strong>Entry Point</strong>. When you run your app, the .NET runtime looks for this exact method to start execution.</li>
+            <li><code>Console.WriteLine()</code>: A method used to print text to the terminal/console.</li>
+        </ul>
+    </section>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 1.1</div>
-                        <p>Create a new console project and modify it to print your name, age, and favorite programming language.</p>
-                    </div>
+    <section>
+        <h2>Interacting with the User</h2>
+        <p>Professional apps aren't just one-way; they interact with users. We use <code>Console.ReadLine()</code> to capture input.</p>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
-                    </div>
-                </div>
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Program.cs</span>
+            </div>
+            <pre><span class="kw">using</span> System;
+
+<span class="kw">class</span> <span class="fn">Program</span>
+{
+    <span class="kw">static void</span> <span class="fn">Main</span>()
+    {
+        Console.Write(<span class="st">"Enter your name: "</span>);
+        <span class="kw">string</span> userName = Console.ReadLine();
+        Console.WriteLine(<span class="st">"Hello, "</span> + userName + <span class="st">"! Welcome to the course."</span>);
+    }
+}</pre>
+        </div>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 1.1</div>
+        <p><strong>Objective:</strong> Create a "User Profile Generator".</p>
+        <p>Build a console application that asks the user for the following four pieces of information:</p>
+        <ul>
+            <li>Full Name</li>
+            <li>Age</li>
+            <li>Country of Residence</li>
+            <li>Favorite Programming Language</li>
+        </ul>
+        <p>Once the input is collected, the program should print a professional summary: <em>"User Profile: [Name], [Age] years old, from [Country], specializing in [Language]."</em></p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture: Variables & Data Types →</button>
+    </div>
+</div>
 
                 <!-- Additional lectures follow the same high-quality pattern as the Python course. Due to response length limits, the remaining 11 lectures are fully implemented in the actual saved file with accurate C# syntax, LINQ examples, OOP, async, etc. -->
+<!-- ===================== LECTURE 2 ===================== -->
+<div class="lecture" id="lec-1">
+    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+    <h1>Variables & Data Types</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~90 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 1</span>
+    </div>
+
+    <section>
+        <h2>Understanding Variables</h2>
+        <p>In programming, a <strong>variable</strong> is a named storage location in the computer's memory. Think of it as a labeled box where you can store a value, and then retrieve or change that value later in your program.</p>
+        
+        <div class="info-box">
+            <strong>Professional Concept: Strong Typing</strong>
+            <p>C# is a <strong>Strongly Typed</strong> language. This means that every variable must have a defined type. Once a variable is declared as an integer, you cannot store a string in it. This prevents a huge category of bugs that occur in "loosely typed" languages like JavaScript.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Primitive Data Types</h2>
+        <p>C# provides a variety of built-in types to handle different kinds of data. Choosing the right type is critical for <strong>performance</strong> and <strong>memory efficiency</strong>.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Storage Size</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>int</code></td>
+                    <td>4 bytes</td>
+                    <td>Whole numbers (Integers)</td>
+                    <td><code>int age = 25;</code></td>
+                </tr>
+                <tr>
+                    <td><code>double</code></td>
+                    <td>8 bytes</td>
+                    <td>Decimal numbers (Floating point)</td>
+                    <td><code>double price = 19.99;</code></td>
+                </tr>
+                <tr>
+                    <td><code>decimal</code></td>
+                    <td>16 bytes</td>
+                    <td>High-precision decimals (Financial)</td>
+                    <td><code>decimal tax = 15.50m;</code></td>
+                </tr>
+                <tr>
+                    <td><code>bool</code></td>
+                    <td>1 byte</td>
+                    <td>True or False values</td>
+                    <td><code>bool isComplete = true;</code></td>
+                </tr>
+                <tr>
+                    <td><code>char</code></td>
+                    <td>2 bytes</td>
+                    <td>Single character (Unicode)</td>
+                    <td><code>char grade = 'A';</code></td>
+                </tr>
+                <tr>
+                    <td><code>string</code></td>
+                    <td>Variable</td>
+                    <td>Sequence of characters (Text)</td>
+                    <td><code>string name = "Alice";</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box" style="border-left-color: #ff9800;">
+            <strong>⚠️ Critical Note: Double vs. Decimal</strong>
+            <p>Never use <code>double</code> or <code>float</code> for financial calculations. They use binary floating-point math which can cause tiny rounding errors (e.g., 0.1 + 0.2 = 0.30000000000000004). Always use <strong><code>decimal</code></strong> for money to ensure absolute precision.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>The <code>var</code> Keyword (Implicit Typing)</h2>
+        <p>C# allows you to use the <code>var</code> keyword. This tells the compiler to <strong>infer</strong> (guess) the type based on the value assigned to it.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Example.cs</span>
+            </div>
+            <pre><span class="kw">var</span> message = <span class="st">"Hello World"</span>; <span class="cm">// Compiler knows this is a string</span>
+<span class="kw">var</span> count = 10;            <span class="cm">// Compiler knows this is an int</span></pre>
+        </div>
+        <p><strong>Professional Tip:</strong> Use <code>var</code> when the type is obvious (e.g., <code>var list = new List&lt;string&gt;();</code>). Avoid using <code>var</code> if it makes the code harder for other developers to read.</p>
+    </section>
+
+    <section>
+        <h2>Type Casting</h2>
+        <p>Sometimes you need to convert a value from one type to another. This is called <strong>Casting</strong>.</p>
+
+        <h3>1. Implicit Casting (Automatic)</h3>
+        <p>Happens when you move a smaller type to a larger type. No data loss occurs.</p>
+        <div class="code-block">
+            <pre><span class="kw">int</span> myInt = 9;
+<span class="kw">double</span> myDouble = myInt; <span class="cm">// Automatic: int becomes double</span></pre>
+        </div>
+
+        <h3>2. Explicit Casting (Manual)</h3>
+        <p>Required when moving a larger type to a smaller type. This can lead to <strong>data loss</strong> (truncation).</p>
+        <div class="code-block">
+            <pre><span class="kw">double</span> myDouble = 9.78;
+<span class="kw">int</span> myInt = (<span class="kw">int</span>)myDouble; <span class="cm">// Manual: 9.78 becomes 9 (decimals are dropped)</span></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Constants and Read-Only Fields</h2>
+        <p>If a value should never change during the execution of the program, use the <code>const</code> keyword. This improves performance and prevents accidental bugs.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Constants.cs</span>
+            </div>
+            <pre><span class="kw">const double</span> Pi = 3.14159;
+<span class="kw">const <span class="st">string</span></span> CompanyName = <span class="st">"TechCorp Inc"</span>;
+
+<span class="cm">// Pi = 3.15; // ❌ This will cause a compile-time error</span></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Professional Naming Conventions</h2>
+        <p>In the professional world, following the <strong style="color: #2196f3;">Microsoft C# Coding Conventions</strong> is mandatory for teamwork.</p>
+        <ul>
+            <li><strong>camelCase:</strong> Used for local variables and method parameters. <br><em>Example: <code>int userAge = 25;</code></em></li>
+            <li><strong>PascalCase:</strong> Used for Classes, Methods, and Constants. <br><em>Example: <code>public class UserProfile { }</code></em></li>
+            <li><strong>Avoid:</strong> Single letter names like <code>a</code>, <code>b</code>, <code>x</code>. Use descriptive names like <code>totalInvoiceAmount</code>.</li>
+        </ul>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 2.1: The Financial Calculator</div>
+        <p><strong>Scenario:</strong> You are building a simple billing system for a client.</p>
+        <p><strong>Requirements:</strong> Create a program that does the following:</p>
+        <ol>
+            <li>Declare a <code>const decimal</code> for a <strong>Tax Rate</strong> (e.g., 0.15 for 15%).</li>
+            <li>Ask the user to input the <strong>Product Name</strong> (string).</li>
+            <li>Ask the user to input the <strong>Price</strong> of the product (decimal).</li>
+            <li>Ask the user for the <strong>Quantity</strong> (int).</li>
+            <li>Calculate the <strong>Subtotal</strong> (Price × Quantity).</li>
+            <li>Calculate the <strong>Tax Amount</strong> (Subtotal × Tax Rate).</li>
+            <li>Calculate the <strong>Final Total</strong> (Subtotal + Tax Amount).</li>
+            <li>Print a professional receipt including all the above values.</li>
+        </ol>
+        <p><em>Hint: Use <code>decimal.Parse(Console.ReadLine())</code> to convert user input to a decimal.</em></p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture: Operators & Expressions →</button>
+    </div>
+</div>
 
                 <!-- For brevity in this message, the full file contains all 12 lectures with rich content matching the Python course depth. -->
 
-                <!-- ===================== LECTURE 03 ===================== -->
-                <div class="lecture" id="lec-2">
-                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
-                    <h1>Operators & Expressions</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~45 min</span>
-                    </div>
+              
+<!-- ===================== LECTURE 3 ===================== -->
+<div class="lecture" id="lec-2">
+    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+    <h1>Operators & Expressions</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~80 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 2</span>
+    </div>
 
-                    <h2>Arithmetic Operators</h2>
-                    <p>C# supports standard arithmetic: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>%</code> (modulus).</p>
-                    <div class="code-block">
-                        <div class="code-header"><span class="filename">Math.cs</span></div>
-                        <pre><span class="kw">int</span> a = 10, b = 3;
-Console.WriteLine(a + b); <span class="cm">// 13</span>
-Console.WriteLine(a / b); <span class="cm">// 3 (Integer division)</span>
-Console.WriteLine(a % b); <span class="cm">// 1</span></pre>
-                    </div>
+    <section>
+        <h2>What are Operators & Expressions?</h2>
+        <p>An <strong class="highlight">expression</strong> is a combination of operators, variables, and values that are evaluated to produce a single result. An <strong class="highlight">operator</strong> is a symbol that tells the compiler to perform a specific mathematical or logical manipulation.</p>
+        
+        <div class="info-box">
+            <strong>Professional Concept: Evaluation</strong>
+            <p>Every expression in C# results in a value. For example, <code class="code-inline">5 + 2</code> is an expression that evaluates to the integer <code class="code-inline">7</code>. In professional software, we aim for "clean" expressions—avoiding overly complex one-liners that are hard for other developers to read.</p>
+        </div>
+    </section>
 
-                    <h2>Comparison & Logical Operators</h2>
-                    <ul>
-                        <li><strong>Comparison:</strong> <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
-                        <li><strong>Logical:</strong> <code>&amp;&amp;</code> (AND), <code>||</code> (OR), <code>!</code> (NOT)</li>
-                    </ul>
+    <section>
+        <h2>1. Arithmetic Operators</h2>
+        <p>Used to perform standard mathematical operations.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Operator</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Example (<code class="code-inline">int a=10, b=3</code>)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code class="code-inline">+</code></td>
+                    <td>Addition</td>
+                    <td>Adds two values</td>
+                    <td><code class="code-inline">a + b // 13</code></td>
+                </tr>
+                <tr>
+                    <td><code class="code-inline">-</code></td>
+                    <td>Subtraction</td>
+                    <td>Subtracts one value from another</td>
+                    <td><code class="code-inline">a - b // 7</code></td>
+                </tr>
+                <tr>
+                    <td><code class="code-inline">*</code></td>
+                    <td>Multiplication</td>
+                    <td>Multiplies two values</td>
+                    <td><code class="code-inline">a * b // 30</code></td>
+                </tr>
+                <tr>
+                    <td><code class="code-inline">/</code></td>
+                    <td>Division</td>
+                    <td>Divides one value by another</td>
+                    <td><code class="code-inline">a / b // 3</code></td>
+                </tr>
+                <tr>
+                    <td><code class="code-inline">%</code></td>
+                    <td>Modulus</td>
+                    <td>Returns the division remainder</td>
+                    <td><code class="code-inline">a % b // 1</code></td>
+                </tr>
+            </tbody>
+        </table>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 3.1</div>
-                        <p>Calculate the area of a circle using <code>Math.PI</code> and operators. Take the radius as an input.</p>
-                    </div>
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
-                    </div>
-                </div>
+        <div class="info-box" style="border-left-color: #f44336;">
+            <strong style="color: #f44336;">⚠️ The "Integer Division" Trap</strong>
+            <p>In C#, if you divide two integers, the result is <strong>always</strong> an integer. Any remainder is simply discarded (truncated).</p>
+            <p>Example: <code class="code-inline">int result = 5 / 2;</code> will give you <code class="code-inline">2</code>, not <code class="code-inline">2.5</code>. To get a decimal result, at least one number must be a <code class="code-inline">double</code> or <code class="code-inline">decimal</code>: <code class="code-inline">double result = 5.0 / 2; // 2.5</code>.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Comparison (Relational) Operators</h2>
+        <p>These operators compare two values and always return a <code class="code-inline">bool</code> (true or false). They are the foundation of logic in programming.</p>
+        <ul>
+            <li><code class="code-inline">==</code> Equal to</li>
+            <li><code class="code-inline">!=</code> Not equal to</li>
+            <li><code class="code-inline">&gt;</code> Greater than</li>
+            <li><code class="code-inline">&lt;</code> Less than</li>
+            <li><code class="code-inline">&gt;=</code> Greater than or equal to</li>
+            <li><code class="code-inline">&lt;=</code> Less than or equal to</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>3. Logical Operators</h2>
+        <p>Logical operators are used to combine multiple comparison expressions.</p>
+        <ul>
+            <li><strong class="highlight">AND (<code class="code-inline">&&</code>):</strong> Returns true only if <strong>both</strong> statements are true.</li>
+            <li><strong class="highlight">OR (<code class="code-inline">||</code>):</strong> Returns true if <strong>at least one</strong> statement is true.</li>
+            <li><strong class="highlight">NOT (<code class="code-inline">!</code>):</strong> Reverses the result (true becomes false, false becomes true).</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Professional Insight: Short-Circuit Evaluation</strong>
+            <p>C# uses "short-circuiting." In an <code class="code-inline">&&</code> operation, if the first condition is <strong class="highlight">false</strong>, C# doesn't even check the second condition because the whole thing is already guaranteed to be false. This is used by professionals to prevent crashes (e.g., checking if an object is not null before accessing its properties).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>4. Assignment & Compound Operators</h2>
+        <p>Instead of writing <code class="code-inline">x = x + 5</code>, professionals use compound assignments for brevity and clarity.</p>
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Shorthand.cs</span>
+            </div>
+            <pre><span class="kw">int</span> score = 100;
+
+score += 10; <span class="cm">// Same as: score = score + 10; (110)</span>
+score -= 5;   <span class="cm">// Same as: score = score - 5;   (105)</span>
+score *= 2;   <span class="cm">// Same as: score = score * 2;   (210)</span>
+score /= 10;  <span class="cm">// Same as: score = score / 10;  (21)</span></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>5. Professional "Syntactic Sugar"</h2>
+        <p>Modern C# provides shorthand operators that make code cleaner and more readable.</p>
+
+        <h3 class="sub-title">The Ternary Operator (<code class="code-inline">?:</code>)</h3>
+        <p>A compact way to write a simple If-Else statement.</p>
+        <div class="code-block">
+            <pre><span class="kw">int</span> age = 20;
+<span class="kw">string</span> status = (age >= 18) ? <span class="st">"Adult"</span> : <span class="st">"Minor"</span>;
+<span class="cm">// If age >= 18 is true, result is "Adult". Otherwise, "Minor".</span></pre>
+        </div>
+
+        <h3 class="sub-title">The Null-Coalescing Operator (<code class="code-inline">??</code>)</h3>
+        <p>Used to provide a default value if a variable is <code class="code-inline">null</code>.</p>
+        <div class="code-block">
+            <pre><span class="kw">string</span> input = null;
+<span class="kw">string</span> displayName = input ?? <span class="st">"Guest User"</span>;
+<span class="cm">// If input is null, displayName becomes "Guest User".</span></pre>
+        </div>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 3.1: E-Commerce Logic Engine</div>
+        <p><strong>Scenario:</strong> You are coding the checkout logic for an online store.</p>
+        <p><strong>Requirements:</strong> Build a program that calculates the final price based on these rules:</p>
+        <ol>
+            <li>Ask user for the <strong>Order Total</strong> (decimal).</li>
+            <li>Ask user if they have a <strong>Discount Coupon</strong> (bool/string).</li>
+            <li><strong>Rule 1:</strong> If the Order Total is over $100, they get a 10% discount.</li>
+            <li><strong>Rule 2:</strong> If they have a coupon AND the order is over $50, they get an additional $5 off.</li>
+            <li><strong>Rule 3:</strong> If the final total is under $20, add a $5 shipping fee. If it's $20 or more, shipping is free.</li>
+            <li><strong>Final Output:</strong> Display the Original Price, Total Discounts applied, and the Final Amount to pay.</li>
+        </ol>
+        <p><em>Challenge: Try using a Ternary operator to determine the shipping fee message (e.g., "Shipping: Free" or "Shipping: $5").</em></p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture: Control Flow (If/Else) →</button>
+    </div>
+</div>
+
+
 
                 <!-- ===================== LECTURE 04 ===================== -->
-                <div class="lecture" id="lec-3">
-                    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
-                    <h1>Control Flow: If & Switch</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+           <!-- ===================== LECTURE 4 ===================== -->
+<div class="lecture" id="lec-3">
+    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+    <h1>Control Flow: Decision Making</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~100 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 3</span>
+    </div>
 
-                    <h2>If-Else Statements</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">int</span> temp = 25;
-<span class="kw">if</span> (temp > 30) {
-    Console.WriteLine(<span class="st">"Hot"</span>);
-} <span class="kw">else if</span> (temp > 20) {
-    Console.WriteLine(<span class="st">"Warm"</span>);
-} <span class="kw">else</span> {
-    Console.WriteLine(<span class="st">"Cold"</span>);
+    <section>
+        <h2>What is Control Flow?</h2>
+        <p>By default, code executes line-by-line from top to bottom. <strong class="highlight">Control Flow</strong> allows us to break this linear path, skipping sections of code or executing specific blocks based on whether a condition is <strong class="highlight">true</strong> or <strong class="highlight">false</strong>.</p>
+        
+        <div class="info-box">
+            <strong>Professional Concept: Cyclomatic Complexity</strong>
+            <p>In the industry, we track "Cyclomatic Complexity"—a measure of how many independent paths there are through your code. The more nested <code class="code-inline">if</code> statements you have, the higher the complexity, and the harder the code is to test and maintain. Professional code aims for <strong class="highlight">low complexity</strong>.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>1. Conditional Branching (If, Else If, Else)</h2>
+        <p>The <code class="code-inline">if</code> statement is the most basic form of decision-making. It evaluates a boolean expression and executes a block of code if the result is true.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Logic.cs</span>
+            </div>
+            <pre><span class="kw">int</span> userAge = 20;
+
+<span class="kw">if</span> (userAge >= 21) 
+{
+    Console.WriteLine(<span class="st">"Access Granted: Full Access."</span>);
+} 
+<span class="kw">else if</span> (userAge >= 18) 
+{
+    Console.WriteLine(<span class="st">"Access Granted: Limited Access."</span>);
+} 
+<span class="kw">else</span> 
+{
+    Console.WriteLine(<span class="st">"Access Denied: Underage."</span>);
 }</pre>
-                    </div>
+        </div>
+        <p><strong>Professional Tip:</strong> Always use curly braces <code class="code-inline">{ }</code> even for single-line statements. It prevents bugs during future code edits.</p>
+    </section>
 
-                    <h2>Switch Expressions (Modern C#)</h2>
-                    <p>Modern C# uses a concise switch expression syntax.</p>
-                    <div class="code-block">
-                        <pre><span class="kw">string</span> result = day <span class="kw">switch</span> {
+    <section>
+        <h2>2. The Switch Statement</h2>
+        <p>When you have a single variable that could be one of many distinct values, a <code class="code-inline">switch</code> statement is cleaner and more performant than multiple <code class="code-inline">else if</code> blocks.</p>
+
+        <div class="code-block">
+            <pre><span class="kw">string</span> role = <span class="st">"Admin"</span>;
+
+<span class="kw">switch</span> (role)
+{
+    <span class="kw">case</span> <span class="st">"Admin"</span>:
+        Console.WriteLine(<span class="st">"Full System Access."</span>);
+        <span class="kw">break</span>; 
+    <span class="kw">case</span> <span class="st">"Editor"</span>:
+        Console.WriteLine(<span class="st">"Content Management Access."</span>);
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="st">"Guest"</span>:
+        Console.WriteLine(<span class="st">"Read-Only Access."</span>);
+        <span class="kw">break</span>;
+    <span class="kw">default</span>:
+        Console.WriteLine(<span class="st">"Unknown Role: Access Denied."</span>);
+        <span class="kw">break</span>;
+}</pre>
+        </div>
+        <p>The <code class="code-inline">break</code> keyword is mandatory. Without it, the code would "fall through" to the next case, which usually causes a compiler error in C#.</p>
+    </section>
+
+    <section>
+        <h2>3. Modern C#: Switch Expressions (C# 8.0+)</h2>
+        <p>Professional developers rarely use the old <code class="code-inline">switch</code> statement for simple assignments. They use <strong class="highlight">Switch Expressions</strong>, which are more concise and return a value directly.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ModernSwitch.cs</span>
+            </div>
+            <pre><span class="kw">int</span> dayNumber = 3;
+
+<span class="kw">string</span> dayName = dayNumber <span class="kw">switch</span>
+{
     1 => <span class="st">"Monday"</span>,
     2 => <span class="st">"Tuesday"</span>,
-    _ => <span class="st">"Unknown"</span>
-};</pre>
-                    </div>
+    3 => <span class="st">"Wednesday"</span>,
+    4 => <span class="st">"Thursday"</span>,
+    5 => <span class="st">"Friday"</span>,
+    _ => <span class="st">"Weekend"</span> <span class="cm">// The underscore (_) is the default case</span>
+};
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
-                    </div>
-                </div>
+Console.WriteLine($<span class="st">"Today is {dayName}"</span>);</pre>
+        </div>
+    </section>
 
-                <!-- ===================== LECTURE 05 ===================== -->
-                <div class="lecture" id="lec-4">
-                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
-                    <h1>Loops: for, while, foreach</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~45 min</span>
-                    </div>
+    <section>
+        <h2>4. Professional Pattern: The Guard Clause</h2>
+        <p>Beginners often write "nested" code that drifts to the right (Arrow Code). Professionals use <strong class="highlight">Guard Clauses</strong> to handle errors early and "flatten" the code.</p>
 
-                    <h2>Iterating with Loops</h2>
-                    <div class="code-block">
-                        <pre><span class="cm">// Standard for loop</span>
-<span class="kw">for</span> (<span class="kw">int</span> i = 0; i < 5; i++) {
-    Console.WriteLine(i);
-}
+        <div class="info-box" style="border-left-color: #2196f3;">
+            <strong>❌ The "Beginner" Way (Nested)</strong>
+            <pre><code>if (user != null) {
+    if (user.IsActive) {
+        if (user.HasPermission) {
+            // Do the actual work here...
+        }
+    }
+}</code></pre>
+            <br>
+            <strong>✅ The "Professional" Way (Guard Clauses)</strong>
+            <pre><code>if (user == null) return; 
+if (!user.IsActive) return;
+if (!user.HasPermission) return;
 
-<span class="cm">// Foreach loop (best for collections)</span>
-<span class="kw">string</span>[] names = { <span class="st">"Ana"</span>, <span class="st">"Felipe"</span>, <span class="st">"Emilia"</span> };
-<span class="kw">foreach</span> (<span class="kw">var</span> name <span class="kw">in</span> names) {
-    Console.WriteLine(<span class="st">$"Hello {name}"</span>);
+// Do the actual work here... (The code stays flat!)</code></pre>
+        </div>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 4.1: Advanced Access Control System</div>
+        <p><strong>Scenario:</strong> You are building a security module for a corporate building.</p>
+        <p><strong>Requirements:</strong> Create a program that asks for the user's <strong>Employee ID</strong> and <strong>Security Clearance Level</strong> (1 to 5).</p>
+        <ol>
+            <li><strong>Requirement 1:</strong> If the Employee ID is empty, print "Error: ID Required" and stop. (Use a Guard Clause).</li>
+            <li><strong>Requirement 2:</strong> Use a <strong>Switch Expression</strong> to determine the Access Level based on the Clearance Level:
+                <ul>
+                    <li>1 $\rightarrow$ "Public Area Only"</li>
+                    <li>2 $\rightarrow$ "Office Area"</li>
+                    <li>3 $\rightarrow$ "Server Room"</li>
+                    <li>4 $\rightarrow$ "Executive Suite"</li>
+                    <li>5 $\rightarrow$ "Top Secret Vault"</li>
+                    <li>Any other number $\rightarrow$ "Invalid Clearance Level"</li>
+                </ul>
+            </li>
+            <li><strong>Requirement 3:</strong> If the Clearance Level is 5 AND the Employee ID is "ADMIN-001", print "Welcome, Director." Otherwise, print the assigned Access Level.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture: Loops & Iteration →</button>
+    </div>
+</div>
+
+
+              <!-- ===================== LECTURE 5 ===================== -->
+<div class="lecture" id="lec-4">
+    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+    <h1>Loops: Mastering Iteration</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~90 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 4</span>
+    </div>
+
+    <section>
+        <h2>What is Iteration?</h2>
+        <p>Iteration is the process of executing a block of code repeatedly until a specific condition is met. In professional software, loops are used for processing data sets, polling for status changes, or repeating user prompts until valid input is received.</p>
+        
+        <div class="info-box">
+            <strong>Professional Concept: Time Complexity (Big O)</strong>
+            <p>When you write a loop, you are consuming CPU cycles. A single loop through a list of $n$ items has a time complexity of <code class="code-inline">O(n)</code>. However, if you put a loop <em>inside</em> another loop (nested loops), the complexity becomes <code class="code-inline">O(n²)</code>. Professionals always strive to minimize nested loops to prevent "performance bottlenecks" as data grows.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>1. The <code class="code-inline">for</code> Loop</h2>
+        <p>The <code class="code-inline">for</code> loop is best used when you know <strong>exactly how many times</strong> the code should run. It is a "counter-driven" loop.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ForLoop.cs</span>
+            </div>
+            <pre><span class="cm">// Structure: (Initialization; Condition; Iterator)</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = 0; i < 5; i++) 
+{
+    Console.WriteLine(<span class="st">$"Processing item number: {i}"</span>);
 }</pre>
-                    </div>
+        </div>
+        <p><strong>Breakdown:</strong><br>
+        1. <code class="code-inline">int i = 0</code>: Starts the counter.<br>
+        2. <code class="code-inline">i < 5</code>: The loop runs as long as this is true.<br>
+        3. <code class="code-inline">i++</code>: Increases the counter by 1 after each loop.</p>
+    </section>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
-                    </div>
-                </div>
+    <section>
+        <h2>2. The <code class="code-inline">while</code> and <code class="code-inline">do-while</code> Loops</h2>
+        <p>These are "condition-driven" loops. They are used when you <strong>don't know</strong> how many times the loop will run, but you know when it should stop.</p>
+
+        <h3>The <code class="code-inline">while</code> Loop (Check then Act)</h3>
+        <p>Checks the condition <em>before</em> executing the block. If the condition is false at the start, the code inside never runs.</p>
+        <div class="code-block">
+            <pre><span class="kw">bool</span> isRunning = <span class="kw">true</span>;
+<span class="kw">while</span> (isRunning) 
+{
+    Console.WriteLine(<span class="st">"System is scanning..."</span>);
+    <span class="cm">// Logic to eventually set isRunning = false;</span>
+}</pre>
+        </div>
+
+        <h3>The <code class="code-inline">do-while</code> Loop (Act then Check)</h3>
+        <p>Executes the block <em>once first</em>, then checks the condition. This guarantees the code runs <strong>at least once</strong>.</p>
+        <div class="code-block">
+            <pre><span class="kw">string</span> input;
+<span class="kw">do</span> 
+{
+    Console.WriteLine(<span class="st">"Please enter 'exit' to stop:"</span>);
+    input = Console.ReadLine();
+} <span class="kw">while</span> (input != <span class="st">"exit"</span>);</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. The <code class="code-inline">foreach</code> Loop (Industry Standard)</h2>
+        <p>The <code class="code-inline">foreach</code> loop is the most common loop in professional C# development. It is used to iterate through collections (Arrays, Lists, Dictionaries) without needing an index counter.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ForeachExample.cs</span>
+            </div>
+            <pre><span class="kw">string</span>[] employees = { <span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span> };
+
+<span class="kw">foreach</span> (<span class="kw">var</span> name <span class="kw">in</span> employees) 
+{
+    Console.WriteLine(<span class="st">$"Sending email to: {name}"</span>);
+}</pre>
+        </div>
+
+        <div class="info-box" style="border-left-color: #f44336;">
+            <strong>⚠️ Professional Warning: The Read-Only Nature</strong>
+            <p>You <strong>cannot modify</strong> a collection while iterating through it with a <code class="code-inline">foreach</code> loop. If you try to add or remove an item from the list inside a <code class="code-inline">foreach</code>, C# will throw a <code class="code-inline">InvalidOperationException</code>. To modify a list while looping, use a standard <code class="code-inline">for</code> loop and iterate backwards.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>4. Loop Control: <code class="code-inline">break</code> and <code class="code-inline">continue</code></h2>
+        <p>Professionals use these keywords to optimize loops and handle edge cases.</p>
+        <ul>
+            <li><strong class="highlight">break:</strong> Immediately terminates the loop and jumps to the code following the loop.</li>
+            <li><strong class="highlight">continue:</strong> Skips the <em>current iteration</em> and jumps immediately to the next cycle of the loop.</li>
+        </ul>
+
+        <div class="code-block">
+            <pre><span class="kw">for</span> (<span class="kw">int</span> i = 1; i <= 10; i++) 
+{
+    <span class="kw">if</span> (i == 3) <span class="kw">continue</span>; <span class="cm">// Skip 3</span>
+    <span class="kw">if</span> (i == 7) <span class="kw">break</span>;    <span class="cm">// Stop entirely at 7</span>
+    
+    Console.WriteLine(i); <span class="cm">// Output: 1, 2, 4, 5, 6</span>
+}</pre>
+        </div>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 5.1: Smart Data Processor</div>
+        <p><strong>Scenario:</strong> You are processing a list of server response times (in milliseconds). You need to analyze the data and filter out "noise".</p>
+        <p><strong>Requirements:</strong></p>
+        <ol>
+            <li>Create an array of integers representing response times: <code class="code-inline">{ 120, 450, 80, -10, 1100, 90, 300, -5, 150 }</code>.</li>
+            <li>Use a <code class="code-inline">foreach</code> loop to iterate through the times.</li>
+            <li><strong>Rule 1 (Data Cleaning):</strong> If a response time is negative, it's an error. Use <code class="code-inline">continue</code> to skip it.</li>
+            <li><strong>Rule 2 (Critical Failure):</strong> If a response time exceeds 1000ms, the server is considered "Crashed". Use <code class="code-inline">break</code> to stop processing immediately.</li>
+            <li><strong>Rule 3 (Analysis):</strong> Calculate the total sum of all valid response times processed.</li>
+            <li><strong>Final Output:</strong> Print the total sum and the number of valid servers processed before the crash (or end of list).</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture: Arrays & Lists →</button>
+    </div>
+</div>
+
 
                 <!-- ===================== LECTURE 06 ===================== -->
                 <div class="lecture" id="lec-5">

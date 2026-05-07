@@ -102,7 +102,7 @@
                 <span class="logo-icon">🔷</span>
                 TypeScript Mastery
             </a>
-            <p>Complete Course — 12 Lessons</p>
+            <p>Complete Course — 17 Lessons</p>
         </div>
 
         <div class="nav-section">
@@ -110,23 +110,36 @@
             <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>Introduction & Setup</button>
             <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Variables & Types</button>
             <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Functions & Interfaces</button>
-            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Control Flow & Arrays</button>
-            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Objects & Classes</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Arrays & Tuples</button>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Objects & Classes</button>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-label">Core Concepts</div>
-            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Generics & Utility Types</button>
-            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Modules & Namespaces</button>
-            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Type Guards & Assertions</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Generics & Utility Types</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Modules & Namespaces</button>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Type Guards & Assertions</button>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-label">Advanced</div>
-            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Advanced Types & Decorators</button>
-            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>DOM Manipulation & APIs</button>
-            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>React with TypeScript</button>
-            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Capstone Project</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Advanced Types & Decorators</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>DOM Manipulation & APIs</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>React with TypeScript</button>
+            <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>Capstone Project</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Backend & Production</div>
+            <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>Node.js & Express TS</button>
+            <button class="nav-item" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Testing & TDD</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Architecture</div>
+            <button class="nav-item" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Design Patterns</button>
+            <button class="nav-item" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Full-Stack Final Project</button>
         </div>
     </nav>
 
@@ -160,139 +173,661 @@
             <!-- CENTER CONTENT COLUMN -->
             <div class="content-column">
 
-                <!-- ===================== LECTURE 01 ===================== -->
-                <div class="lecture active" id="lec-0">
-                    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
-                    <h1>Introduction to TypeScript & Setup</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+  <!-- ===================== LECTURE 1 ===================== -->
+<div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+    <h1>Introduction to TypeScript & Setup</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~75 min</span>
+        <span class="meta-badge">Prerequisite: Basic JavaScript</span>
+    </div>
 
-                    <h2>What is TypeScript?</h2>
-                    <p>TypeScript is a strongly typed superset of JavaScript that compiles to plain JavaScript. It adds optional static typing, classes, interfaces, and modern features while maintaining full compatibility with existing JavaScript code.</p>
+    <section>
+        <h2>What is TypeScript?</h2>
+        <p>TypeScript is a <strong class="highlight">strongly typed superset of JavaScript</strong> developed by Microsoft. To say it is a "superset" means that any valid JavaScript code is also valid TypeScript code, but TypeScript adds powerful features on top of it.</p>
+        
+        <div class="info-box">
+            <strong>Professional Concept: Static vs. Dynamic Typing</strong>
+            <p>JavaScript is <strong>dynamically typed</strong>, meaning a variable can be a string one moment and a number the next. This often leads to "runtime errors" (crashes that happen while the user is using the app).</p>
+            <p>TypeScript introduces <strong>static typing</strong>. It checks your types <em>during development</em> (at compile time). If you try to pass a number into a function that expects a string, TypeScript will alert you immediately before the code ever reaches the browser.</p>
+        </div>
+    </section>
 
-                    <h3>Why TypeScript?</h3>
-                    <ul>
-                        <li>Catches errors at compile time</li>
-                        <li>Excellent tooling and IntelliSense</li>
-                        <li>Scales beautifully for large applications</li>
-                        <li>Industry standard for modern web development (React, Angular, Node.js)</li>
-                    </ul>
+    <section>
+        <h2>The Transpilation Pipeline</h2>
+        <p>A critical point for every professional developer: <strong class="highlight">Browsers cannot run TypeScript files (.ts).</strong> They only understand JavaScript (.js).</p>
+        
+        <div class="process-diagram" style="background: #f9f9f9; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed #ccc; margin: 15px 0;">
+            <code class="code-inline">YourCode.ts</code> $\rightarrow$ <strong style="color: #3178c6;">TSC (TypeScript Compiler)</strong> $\rightarrow$ <code class="code-inline">YourCode.js</code> $\rightarrow$ <strong style="color: #f7df1e;">Browser/Node.js</strong>
+        </div>
+        
+        <p>This process of converting one high-level language to another is called <strong class="highlight">Transpilation</strong>. The tool responsible for this is the TypeScript Compiler (<code class="code-inline">tsc</code>).</p>
+    </section>
 
-                    <h2>Installation & Setup</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span>
-                        </div>
-                        <pre>npm install -g typescript
-tsc --version</pre>
-                    </div>
+    <section>
+        <h2>Installation & Professional Environment Setup</h2>
+        <p>To get started, you need <strong class="highlight">Node.js</strong> installed on your machine, as TypeScript is distributed as an NPM package.</p>
 
-                    <h2>Your First TypeScript Program</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">hello.ts</span>
-                        </div>
-                        <pre><span class="kw">function</span> <span class="fn">greet</span>(name: <span class="st">string</span>): <span class="st">string</span> {
+        <h3 class="sub-title">1. Global Installation</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span>
+            </div>
+            <pre>npm install -g typescript
+tsc --version <span class="cm"># Check if installation was successful</span></pre>
+        </div>
+
+        <h3 class="sub-title">2. The Project Configuration (tsconfig.json)</h3>
+        <p>In professional projects, we don't compile files one by one. We use a configuration file to define how the compiler should behave. This is done by initializing a <code>tsconfig.json</code> file.</p>
+        <div class="code-block">
+            <pre>tsc --init</pre>
+        </div>
+        <div class="info-box">
+            <strong>Pro Tip: Strict Mode</strong>
+            <p>Inside your <code>tsconfig.json</code>, always ensure <code class="code-inline">"strict": true</code> is enabled. This forces you to write higher-quality, safer code and is the standard for enterprise-level TypeScript development.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Anatomy of a TypeScript Program</h2>
+        <p>Let's analyze a professional function implementation. Notice the <strong class="highlight">Type Annotations</strong>.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">hello.ts</span>
+            </div>
+            <pre><span class="kw">function</span> <span class="fn">greet</span>(name: <span class="st">string</span>): <span class="st">string</span> {
     <span class="kw">return</span> <span class="st">`Hello, ${name}! Welcome to TypeScript Mastery.`</span>;
 }
 
-console.log(greet(<span class="st">"Tinashe"</span>));</pre>
-                    </div>
+<span class="cm">// Correct usage</span>
+console.log(greet(<span class="st">"Tinashe"</span>)); 
 
-                    <div class="output-block">
-                        <div class="output-label">Output</div>Hello, Tinashe! Welcome to TypeScript Mastery.
-                    </div>
+<span class="cm">// ❌ Error: Argument of type 'number' is not assignable to parameter of type 'string'</span>
+<span class="cm">// console.log(greet(123)); </span></pre>
+        </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 1.1</div>
-                        <p>Install TypeScript globally, create a new file <code>intro.ts</code>, add type annotations, compile it with <code>tsc intro.ts</code>, and run the generated JavaScript.</p>
-                    </div>
+        <h3 class="sub-title">What is happening here?</h3>
+        <ul>
+            <li><code class="code-inline">name: string</code>: This tells TypeScript that the input <strong>must</strong> be a string.</li>
+            <li><code class="code-inline">): string {</code>: This tells TypeScript that the function <strong>must</strong> return a string.</li>
+            <li>If you try to return a number or pass a number as an argument, the <strong>TSC compiler</strong> will throw an error before you ever run the code.</li>
+        </ul>
+    </section>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
-                    </div>
-                </div>
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 1.1: Project Initialization</div>
+        <p><strong>Objective:</strong> Set up a professional TypeScript environment from scratch.</p>
+        <ol>
+            <li>Initialize a new folder for your project and run <code class="code-inline">npm init -y</code>.</li>
+            <li>Install TypeScript globally and initialize the compiler config using <code class="code-inline">tsc --init</code>.</li>
+            <li>Open <code class="code-inline">tsconfig.json</code> and ensure <code class="code-inline">"strict": true</code> is set.</li>
+            <li>Create a file named <code class="code-inline">app.ts</code>.</li>
+            <li>Write a function called <code class="code-inline">calculateVAT</code> that:
+                <ul>
+                    <li>Takes a <code class="code-inline">price</code> (number) and a <code class="code-inline">taxRate</code> (number).</li>
+                    <li>Returns the final price (number) as a string formatted as: <em>"Total: $[value]"</em>.</li>
+                </ul>
+            </li>
+            <li>Compile the project using <code class="code-inline">tsc</code> (without filenames, to use the config file) and run the resulting JS file using <code class="code-inline">node app.js</code>.</li>
+        </ol>
+    </div>
 
-                <!-- ===================== LECTURE 02 ===================== -->
-                <div class="lecture" id="lec-1">
-                    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
-                    <h1>Variables & Data Types</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~45 min</span>
-                    </div>
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture: Basic Types & Type Inference →</button>
+    </div>
+</div>
 
-                    <h2>Core Types</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">let</span> age: <span class="kw">number</span> = 30;
-<span class="kw">let</span> name: <span class="kw">string</span> = <span class="st">"Alice"</span>;
-<span class="kw">let</span> isDone: <span class="kw">boolean</span> = <span class="kw">false</span>;
-<span class="kw">let</span> list: <span class="kw">number</span>[] = [1, 2, 3];</pre>
-                    </div>
 
-                    <h2>The 'any' and 'unknown' Types</h2>
-                    <p>Use <code>unknown</code> for values where you don't know the type yet; it's safer than <code>any</code>.</p>
+              <!-- ===================== LECTURE 2 ===================== -->
+<div class="lecture" id="lec-1">
+    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+    <h1>Variables & Data Types</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~80 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 1</span>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
-                    </div>
-                </div>
+    <section>
+        <h2>Variable Declarations: The Professional Standard</h2>
+        <p>In modern TypeScript/JavaScript, we have three ways to declare variables. However, industry standards dictate a specific hierarchy of use:</p>
+        <ul>
+            <li><strong class="highlight">const:</strong> (Default) Use this for every variable. It prevents accidental reassignment and makes the code easier to reason about.</li>
+            <li><strong class="highlight">let:</strong> Use only when you know the value <em>must</em> change (e.g., in a loop or a mathematical counter).</li>
+            <li><strong class="highlight">var:</strong> <span style="color: #f44336;">Avoid entirely.</span> It is function-scoped and can lead to unpredictable bugs due to "hoisting."</li>
+        </ul>
+    </section>
 
-                <!-- ===================== LECTURE 03 ===================== -->
-                <div class="lecture" id="lec-2">
-                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
-                    <h1>Functions & Interfaces</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+    <section>
+        <h2>Core Primitive Types</h2>
+        <p>TypeScript provides several basic types that allow us to constrain what data a variable can hold.</p>
 
-                    <h2>Interfaces</h2>
-                    <p>Interfaces define the "shape" of an object.</p>
-                    <div class="code-block">
-                        <pre><span class="kw">interface</span> User {
-    id: <span class="kw">number</span>;
-    username: <span class="kw">string</span>;
-    email?: <span class="kw">string</span>; <span class="cm">// Optional</span>
+        <table class="type-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code class="code-inline">string</code></td>
+                    <td>Textual data</td>
+                    <td><code class="code-inline">let username: string = "Dev_User";</code></td>
+                </tr>
+                <tr>
+                    <td><code class="code-inline">number</code></td>
+                    <td>All numbers (integers, floats, hex, binary)</td>
+                    <td><code class="code-inline">let price: number = 99.99;</code></td>
+                </tr>
+                <tr>
+                    <td><code class="code-inline">boolean</code></td>
+                    <td>True or False</td>
+                    <td><code class="code-inline">let isOnline: boolean = true;</code></td>
+                </tr>
+                <tr>
+                    <td><code class="code-inline">string[]</code></td>
+                    <td>An array consisting only of strings</td>
+                    <td><code class="code-inline">let tags: string[] = ["TS", "JS"];</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <strong>Professional Concept: Type Inference</strong>
+            <p>You don't always have to write the type. If you assign a value immediately, TypeScript is smart enough to <strong>infer</strong> the type.</p>
+            <div class="code-block">
+                <pre><span class="kw">let</span> message = <span class="st">"Hello"</span>; <span class="cm">// TS automatically knows this is a string</span></pre>
+            </div>
+            <p><em>Industry Tip:</em> Use explicit type annotations for function parameters and return types, but rely on inference for local variables to keep the code clean.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Advanced Types: The "Danger Zone"</h2>
+        <p>Sometimes we deal with data where the type is unpredictable (e.g., API responses). This is where <code class="code-inline">any</code> and <code class="code-inline">unknown</code> come in.</p>
+
+        <h3 class="sub-title">1. The <code class="code-inline">any</code> Type (Avoid This)</h3>
+        <p>The <code class="code-inline">any</code> type disables all type checking. It essentially turns TypeScript back into JavaScript.</p>
+        <div class="code-block">
+            <pre><span class="kw">let</span> data: <span class="kw">any</span> = <span class="st">"This could be anything"</span>;
+data.doSomethingImpossible(); <span class="cm">// ❌ No compiler error, but will crash at runtime!</span></pre>
+        </div>
+        <p><strong style="color: #f44336;">Professional Warning:</strong> Overusing <code class="code-inline">any</code> is called "Any-Sickness." It defeats the purpose of using TypeScript. Avoid it at all costs in production code.</p>
+
+        <h3 class="sub-title">2. The <code class="code-inline">unknown</code> Type (The Safe Alternative)</h3>
+        <p><code class="code-inline">unknown</code> is the type-safe sibling of <code class="code-inline">any</code>. It says "we don't know the type yet," and <strong>forces</strong> you to check the type before performing any operations on it.</p>
+        <div class="code-block">
+            <pre><span class="kw">let</span> input: <span class="kw">unknown</span> = <span class="st">"Hello"</span>;
+
+<span class="cm">// console.log(input.toUpperCase()); // ❌ Error: Object is of type 'unknown'</span>
+
+<span class="kw">if</span> (typeof input === <span class="st">"string"</span>) {
+    console.log(input.toUpperCase()); <span class="cm">// ✅ Safe! TS now knows 'input' is a string</span>
+}</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Tuples and Type Aliases</h2>
+        <p>To represent more complex structures, professionals use Tuples and Type Aliases.</p>
+
+        <h3 class="sub-title">Tuples</h3>
+        <p>A Tuple is a fixed-length array where each element has a specific type. This is perfect for coordinates or key-value pairs.</p>
+        <div class="code-block">
+            <pre><span class="kw">let</span> user: [ <span class="kw">number</span>, <span class="kw">string</span> ] = [ 1, <span class="st">"Tinashe"</span> ];
+<span class="cm">// user = ["Tinashe", 1]; // ❌ Error: Wrong order of types</span></pre>
+        </div>
+
+        <h3 class="sub-title">Type Aliases</h3>
+        <p>Instead of repeating a complex type across your app, you can create a "nickname" for it using the <code class="code-inline">type</code> keyword.</p>
+        <div class="code-block">
+            <pre><span class="kw">type</span> UserID = <span class="kw">string</span> | <span class="kw">number</span>; <span class="cm">// The ID can be either a string OR a number</span>
+
+<span class="kw">let</span> currentId: UserID = 101;
+currentId = <span class="st">"USR_99"</span>; <span class="cm">// Both are valid</span></pre>
+        </div>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 2.1: The User Identity System</div>
+        <p><strong>Scenario:</strong> You are building a system to track user sessions. You need to ensure that data types are strictly enforced to prevent system crashes.</p>
+        <p><strong>Requirements:</strong></p>
+        <ol>
+            <li>Create a <strong class="highlight">Type Alias</strong> called <code class="code-inline">SessionStatus</code> that can only be one of three strings: <code class="st">"active"</code>, <code class="st">"idle"</code>, or <code class="st">"offline"</code>.</li>
+            <li>Create a <strong class="highlight">Tuple</strong> called <code class="code-inline">userSession</code> that stores a <code class="code-inline">userId</code> (number) and the <code class="code-inline">SessionStatus</code>.</li>
+            <li>Create a variable using the <code class="code-inline">unknown</code> type to simulate an API response. Write a logic block (using <code class="code-inline">typeof</code>) to check if that response is a string; if so, print it in uppercase.</li>
+            <li>Declare three variables: one using <code class="code-inline">const</code> (that never changes), one using <code class="code-inline">let</code> (that changes once), and prove why you cannot use <code class="code-inline">const</code> for the second one.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture: Functions & Optional Parameters →</button>
+    </div>
+</div>
+
+
+           <!-- ===================== LECTURE 3 ===================== -->
+<div class="lecture" id="lec-2">
+    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+    <h1>Functions & Interfaces: Designing Contracts</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~100 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 2</span>
+    </div>
+
+    <section>
+        <h2>Type-Safe Functions</h2>
+        <p>In JavaScript, you can pass any argument to any function, which often leads to <code class="code-inline">NaN</code> or <code class="code-inline">undefined</code> errors. In TypeScript, we define a strict contract for what goes <strong class="highlight">in</strong> (parameters) and what comes <strong class="highlight">out</strong> (return type).</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Calculator.ts</span>
+            </div>
+            <pre><span class="cm">// Professional Function Signature: (param: type): returnType</span>
+<span class="kw">function</span> <span class="fn">calculateTotal</span>(price: <span class="st">number</span>, quantity: <span class="st">number</span>): <span class="st">number</span> {
+    <span class="kw">return</span> price * quantity;
 }
 
-<span class="kw">const</span> user: User = { id: 1, username: <span class="st">"dev_01"</span> };</pre>
-                    </div>
+<span class="cm">// Arrow Function version (Industry Standard for callbacks/components)</span>
+<span class="kw">const</span> <span class="fn">formatCurrency</span> = (amount: <span class="st">number</span>, currency: <span class="st">string</span> = <span class="st">"USD"</span>): <span class="st">string</span> => {
+    <span class="kw">return</span> `${currency} ${amount.toFixed(2)}`;
+};</pre>
+        </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
-                    </div>
-                </div>
+        <div class="info-box">
+            <strong>Professional Insight: Optional vs. Default Parameters</strong>
+            <p>Professionals distinguish between "I might not provide this" and "Use this if I don't provide it."</p>
+            <ul>
+                <li><strong class="highlight">Optional (<code class="code-inline">?</code>):</strong> <code class="code-inline">logMessage(msg: string, userId?: string)</code>. The <code class="code-inline">userId</code> can be <code class="code-inline">string | undefined</code>.</li>
+                <li><strong class="highlight">Default:</strong> <code class="code-inline">logMessage(msg: string, level: string = "INFO")</code>. If no level is provided, it defaults to <code class="code-inline">"INFO"</code>.</li>
+            </ul>
+        </div>
+    </section>
 
-                <!-- ===================== LECTURE 04 ===================== -->
-                <div class="lecture" id="lec-3">
-                    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
-                    <h1>Control Flow & Arrays</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~45 min</span>
-                    </div>
+    <section>
+        <h2>Interfaces: The Architectural Blueprint</h2>
+        <p>An <strong class="highlight">Interface</strong> is a powerful way to define the "shape" of an object. Think of it as a <strong>Contract</strong>. Any object that claims to implement that interface <em>must</em> follow its rules.</p>
 
-                    <h2>Tuples</h2>
-                    <p>Tuples allow you to express an array with a fixed number of elements whose types are known.</p>
-                    <div class="code-block">
-                        <pre><span class="kw">let</span> x: [<span class="kw">string</span>, <span class="kw">number</span>];
-x = [<span class="st">"hello"</span>, 10]; <span class="cm">// OK</span></pre>
-                    </div>
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">UserTypes.ts</span>
+            </div>
+            <pre><span class="kw">interface</span> <span class="fn">User</span> {
+    <span class="kw">readonly</span> id: <span class="kw">number</span>;     <span class="cm">// Cannot be changed after creation</span>
+    username: <span class="kw">string</span>;
+    email: <span class="kw">string</span>;
+    phoneNumber?: <span class="kw">string</span>;    <span class="cm">// Optional: Not every user has a phone</span>
+    isAdmin: <span class="kw">boolean</span>;
+}</pre>
+        </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
-                    </div>
-                </div>
+        <h3 class="sub-title">The Power of <code class="code-inline">readonly</code></h3>
+        <p>In large applications, accidentally changing an ID or a database key can cause catastrophic bugs. The <code class="code-inline">readonly</code> modifier prevents this at the compiler level.</p>
+        <div class="code-block">
+            <pre><span class="kw">const</span> user: User = { id: 1, username: <span class="st">"Dev_Pro"</span>, email: <span class="st">"pro@dev.com"</span>, isAdmin: <span class="kw">false</span> };
+<span class="cm">// user.id = 2; // ❌ Error: Cannot assign to 'id' because it is a read-only property.</span></pre>
+        </div>
+    </section>
 
-                <!-- ===================== LECTURE 05 ===================== -->
-                <div class="lecture" id="lec-4">
-                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+    <section>
+        <h2>Interface Inheritance (Extending)</h2>
+        <p>To avoid repeating code (the <strong class="highlight">DRY</strong> principle—Don't Repeat Yourself), interfaces can inherit from other interfaces.</p>
+
+        <div class="code-block">
+            <pre><span class="kw">interface</span> <span class="fn">Employee</span> {
+    employeeId: <span class="kw">number</span>;
+    department: <span class="kw">string</span>;
+}
+
+<span class="cm">// Manager inherits everything from User AND Employee</span>
+<span class="kw">interface</span> <span class="fn">Manager</span> <span class="kw">extends</span> User, Employee {
+    teamSize: <span class="kw">number</span>;
+    officeNumber: <span class="kw">number</span>;
+}</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Interface vs. Type Alias</h2>
+        <p>You will see both <code class="code-inline">interface</code> and <code class="code-inline">type</code> in professional codebases. Here is how to choose:</p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Interface</th>
+                    <th>Type Alias</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Object Shapes</strong></td>
+                    <td>✅ Excellent</td>
+                    <td>✅ Good</td>
+                </tr>
+                <tr>
+                    <td><strong>Extensibility</strong></td>
+                    <td>✅ Via <code class="code-inline">extends</code></td>
+                    <td>✅ Via Intersections (<code class="code-inline">&amp;</code>)</td>
+                </tr>
+                <tr>
+                    <td><strong>Union Types</strong></td>
+                    <td>❌ Not possible</td>
+                    <td>✅ Excellent (<code class="code-inline">string | number</code>)</td>
+                </tr>
+                <tr>
+                    <td><strong>Declaration Merging</strong></td>
+                    <td>✅ Possible (Can add fields later)</td>
+                    <td>❌ Not possible</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong class="highlight">Professional Rule of Thumb:</strong> Use <code class="code-inline">interface</code> for public APIs and object blueprints. Use <code class="code-inline">type</code> for unions, primitives, and complex logic.</p>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 3.1: The E-Commerce Product Engine</div>
+        <p><strong>Scenario:</strong> You are designing the data layer for a global e-commerce platform. You need to ensure that products and orders are strictly typed to avoid pricing errors.</p>
+        <p><strong>Requirements:</strong></p>
+        <ol>
+            <li>Create a <strong class="highlight">BaseProduct</strong> interface with: <code class="code-inline">id (readonly)</code>, <code class="code-inline">name</code>, and <code class="code-inline">price</code>.</li>
+            <li>Create a <strong class="highlight">DigitalProduct</strong> interface that <code class="code-inline">extends BaseProduct</code> and adds <code class="code-inline">downloadUrl</code> and <code class="code-inline">fileSize</code>.</li>
+            <li>Create a <strong class="highlight">PhysicalProduct</strong> interface that <code class="code-inline">extends BaseProduct</code> and adds <code class="code-inline">weight</code> and <code class="code-inline">shippingCost</code>.</li>
+            <li>Write a function called <code class="code-inline">calculateFinalPrice</code> that:
+                <ul>
+                    <li>Takes a product (of type <code class="code-inline">BaseProduct</code>).</li>
+                    <li>Takes an optional <code class="code-inline">discount</code> (number) that defaults to <code class="code-inline">0</code>.</li>
+                    <li>Returns a <code class="code-inline">string</code> formatted as: <em>"The final price of [name] is $[total]"</em>.</li>
+                </ul>
+            </li>
+            <li>Test the function by passing both a Digital and Physical product to it.</p>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture: Generics & Advanced Types →</button>
+    </div>
+</div>
+
+
+
+<!-- ===================== LECTURE 4 ===================== -->
+<div class="lecture" id="lec-3">
+    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+    <h1>Control Flow Mastery</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~110 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 3</span>
+    </div>
+
+    <section>
+        <h2>Professional Control Flow</h2>
+        <p>Control flow in TypeScript is inherited from JavaScript, but we apply professional patterns to keep the code readable and maintainable.</p>
+
+        <h3 class="sub-title">1. The Truthy and Falsy Concept</h3>
+        <p>In TypeScript, every value has an inherent boolean value. Understanding this is critical for writing concise conditions.</p>
+        <div class="info-box">
+            <strong>Falsy values:</strong> <code class="code-inline">false</code>, <code class="code-inline">0</code>, <code class="code-inline">""</code> (empty string), <code class="code-inline">null</code>, <code class="code-inline">undefined</code>, and <code class="code-inline">NaN</code>. <br>
+            <strong>Truthy values:</strong> Everything else, including <code class="code-inline">[]</code> (empty array) and <code class="code-inline">{}</code> (empty object).
+        </div>
+
+        <h3 class="sub-title">2. The Ternary Operator & Guard Clauses</h3>
+        <p>Professionals avoid "Else-Hell" (deeply nested if-statements). Instead, we use ternaries for simple assignments and guard clauses for validation.</p>
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Logic.ts</span>
+            </div>
+            <pre><span class="cm">// Ternary for concise assignment</span>
+<span class="kw">const</span> status = (age >= 18) ? <span class="st">"Adult"</span> : <span class="st">"Minor"</span>;
+
+<span class="cm">// Guard Clause: Exit early to avoid nesting</span>
+<span class="kw">function</span> <span class="fn">processPayment</span>(amount: <span class="st">number</span>) {
+    <span class="kw">if</span> (amount <= 0) <span class="kw">return</span> <span class="st">"Invalid Amount"</span>; <span class="cm">// Guard</span>
+    
+    <span class="cm">// Proceed with complex logic knowing amount is positive</span>
+    <span class="kw">return</span> <span class="st">`Processing payment of ${amount}...`</span>;
+}</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Tuples: Fixed-Structure Arrays</h2>
+        <p>A <strong class="highlight">Tuple</strong> is a special type of array with a <strong>fixed number of elements</strong>, where each element has a <strong>known type</strong>. This is used in professional development for coordinates, HTTP responses, or key-value pairs.</p>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">TupleExample.ts</span>
+            </div>
+            <pre><span class="cm">// Defining a Tuple for an HTTP Response: [StatusCode, Message]</span>
+<span class="kw">type</span> HttpResponse = [ <span class="kw">number</span>, <span class="kw">string</span> ];
+
+<span class="kw">const</span> successResponse: HttpResponse = [ 200, <span class="st">"OK"</span> ];
+<span class="kw">const</span> errorResponse: HttpResponse = [ 404, <span class="st">"Not Found"</span> ];
+
+<span class="cm">// ❌ Error: Type [string, number] is not assignable to type [number, string]</span>
+<span class="cm">// const badResponse: HttpResponse = [ "Error", 500 ]; </pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Professional Array Manipulation</h2>
+        <p>While <code class="code-inline">for</code> loops work, professional TypeScript developers use <strong>Higher-Order Functions</strong>. These methods are more declarative, easier to test, and reduce the risk of "off-by-one" errors.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ArrayMethods.ts</span>
+            </div>
+            <pre><span class="kw">interface</span> Product { name: <span class="st">string</span>; price: <span class="st">number</span>; }
+
+<span class="kw">const</span> products: Product[] = [
+    { name: <span class="st">"Laptop"</span>, price: 1000 },
+    { name: <span class="st">"Mouse"</span>, price: 50 },
+    { name: <span class="st">"Keyboard"</span>, price: 80 },
+];
+
+<span class="cm">// 1. .filter() -> Create a new array with items that match a condition</span>
+<span class="kw">const</span> affordable = products.filter(p => p.price < 100); 
+<span class="cm">// Result: [{name: "Mouse"...}, {name: "Keyboard"...}]</span>
+
+<span class="cm">// 2. .map() -> Transform every item in the array into something else</span>
+<span class="kw">const</span> productNames = products.map(p => p.name.toUpperCase()); 
+<span class="cm">// Result: ["LAPTOP", "MOUSE", "KEYBOARD"]</span>
+
+<span class="cm">// 3. .reduce() -> Boil the entire array down to a single value (e.g., a sum)</span>
+<span class="kw">const</span> totalInventoryValue = products.reduce((sum, p) => sum + p.price, 0); 
+<span class="cm">// Result: 1130</pre>
+        </div>
+
+        <div class="info-box">
+            <strong>Professional Tip: Immutability</strong>
+            <p>Notice that <code class="code-inline">filter</code> and <code class="code-inline">map</code> do <strong>not</strong> change the original array; they return a <strong class="highlight">new</strong> array. This is called immutability. In modern frameworks like React, mutating your original data directly is a major source of bugs.</p>
+        </div>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 4.1: The Data Analytics Pipeline</div>
+        <p><strong>Scenario:</strong> You have received a raw list of transactions from a payment gateway. You need to process this data to generate a financial report.</p>
+        <p><strong>Requirements:</strong></p>
+        <ol>
+            <li>Create an <strong class="highlight">Interface</strong> <code class="code-inline">Transaction</code> with: <code class="code-inline">id (number)</code>, <code class="code-inline">amount (number)</code>, <code class="code-inline">category (string)</code>, and <code class="code-inline">status (string: "completed" | "pending" | "failed")</code>.</li>
+            <li>Create an array of at least 5 transactions.</li>
+            <li><strong>Step 1 (Filtering):</strong> Use <code class="code-inline">.filter()</code> to create a list of only <strong class="highlight">completed</strong> transactions.</li>
+            <li><strong>Step 2 (Transformation):</strong> Use <code class="code-inline">.map()</code> to create a list of strings that say <em>"Transaction [id] was for $[amount]"</em>.</li>
+            <li><strong>Step 3 (Aggregation):</strong> Use <code class="code-inline">.reduce()</code> to calculate the total sum of all completed transactions.</li>
+            <li><strong>Step 4 (Reporting):</strong> Use a <strong class="highlight">Ternary Operator</strong> to print a message: If the total sum is > 1000, print <em>"High Volume Day"</em>, otherwise print <em>"Standard Volume Day"</em>.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture: Arrays & Tuples →</button>
+    </div>
+</div>
+
+<!-- ===================== LECTURE 05 ===================== -->
+<div class="lecture" id="lec-4">
+    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+    <h1>Arrays & Tuples Mastery</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~65 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 4</span>
+    </div>
+
+    <section>
+        <h2>Typed Arrays in TypeScript</h2>
+        <p>Unlike JavaScript, TypeScript arrays are <strong>strictly typed</strong>. Once you define an array's type, it cannot hold elements of a different type. This prevents a whole class of runtime errors.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Arrays.ts</span>
+            </div>
+            <pre><span class="cm">// Basic typed arrays</span>
+<span class="kw">const</span> numbers: <span class="kw">number</span>[] = [1, 2, 3, 4, 5];
+<span class="kw">const</span> names: <span class="kw">string</span>[] = [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>];
+
+<span class="cm">// ❌ Error: Type 'boolean' is not assignable to type 'string'</span>
+<span class="cm">// names.push(true);</span>
+
+<span class="cm">// Array of objects using interfaces</span>
+<span class="kw">interface</span> User {
+  id: <span class="kw">number</span>;
+  name: <span class="kw">string</span>;
+  isActive: <span class="kw">boolean</span>;
+}
+
+<span class="kw">const</span> users: User[] = [
+  { id: 1, name: <span class="st">"Alice"</span>, isActive: <span class="kw">true</span> },
+  { id: 2, name: <span class="st">"Bob"</span>, isActive: <span class="kw">false</span> },
+];
+
+<span class="cm">// Multi-dimensional arrays</span>
+<span class="kw">const</span> matrix: <span class="kw">number</span>[][] = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Tuples: Fixed-Structure Arrays</h2>
+        <p>A <strong class="highlight">Tuple</strong> is a special type of array with a <strong>fixed number of elements</strong>, where each element has a <strong>known type</strong>. This is used in professional development for coordinates, HTTP responses, or key-value pairs.</p>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">TupleExample.ts</span>
+            </div>
+            <pre><span class="cm">// Defining a Tuple for an HTTP Response: [StatusCode, Message]</span>
+<span class="kw">type</span> HttpResponse = [ <span class="kw">number</span>, <span class="kw">string</span> ];
+
+<span class="kw">const</span> successResponse: HttpResponse = [ 200, <span class="st">"OK"</span> ];
+<span class="kw">const</span> errorResponse: HttpResponse = [ 404, <span class="st">"Not Found"</span> ];
+
+<span class="cm">// ❌ Error: Type [string, number] is not assignable to type [number, string]</span>
+<span class="cm">// const badResponse: HttpResponse = [ "Error", 500 ]; </span>
+
+<span class="cm">// Named tuples for clarity</span>
+<span class="kw">type</span> GeoCoordinate = [lat: <span class="kw">number</span>, lng: <span class="kw">number</span>];
+<span class="kw">const</span> nyc: GeoCoordinate = [40.7128, -74.0060];</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Professional Array Manipulation</h2>
+        <p>While <code class="code-inline">for</code> loops work, professional TypeScript developers use <strong>Higher-Order Functions</strong>. These methods are more declarative, easier to test, and reduce the risk of "off-by-one" errors.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ArrayMethods.ts</span>
+            </div>
+            <pre><span class="kw">interface</span> Product { name: <span class="kw">string</span>; price: <span class="kw">number</span>; category: <span class="kw">string</span>; }
+
+<span class="kw">const</span> products: Product[] = [
+    { name: <span class="st">"Laptop"</span>, price: 1000, category: <span class="st">"Electronics"</span> },
+    { name: <span class="st">"Mouse"</span>, price: 50, category: <span class="st">"Electronics"</span> },
+    { name: <span class="st">"Notebook"</span>, price: 12, category: <span class="st">"Stationery"</span> },
+    { name: <span class="st">"Keyboard"</span>, price: 80, category: <span class="st">"Electronics"</span> },
+];
+
+<span class="cm">// 1. .filter() -> Create a new array with items that match a condition</span>
+<span class="kw">const</span> electronics = products.filter(p => p.category === <span class="st">"Electronics"</span>); 
+
+<span class="cm">// 2. .map() -> Transform every item in the array into something else</span>
+<span class="kw">const</span> productNames = products.map(p => p.name.toUpperCase()); 
+
+<span class="cm">// 3. .reduce() -> Boil the entire array down to a single value (e.g., a sum)</span>
+<span class="kw">const</span> totalInventoryValue = products.reduce((sum, p) => sum + p.price, 0); 
+
+<span class="cm">// 4. .find() -> Get the first item matching a condition</span>
+<span class="kw">const</span> expensiveItem = products.find(p => p.price > 500);
+
+<span class="cm">// 5. .some() / .every() -> Boolean checks</span>
+<span class="kw">const</span> hasExpensiveItems = products.some(p => p.price > 500); <span class="cm">// true</span>
+<span class="kw">const</span> allHaveNames = products.every(p => p.name.length > 0); <span class="cm">// true</span></pre>
+        </div>
+
+        <div class="info-box">
+            <strong>Professional Tip: Immutability</strong>
+            <p>Notice that <code class="code-inline">filter</code> and <code class="code-inline">map</code> do <strong>not</strong> change the original array; they return a <strong class="highlight">new</strong> array. This is called immutability. In modern frameworks like React, mutating your original data directly is a major source of bugs.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Destructuring & Spread Operator</h2>
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Destructuring.ts</span>
+            </div>
+            <pre><span class="cm">// Array destructuring</span>
+<span class="kw">const</span> [first, second, ...rest] = [10, 20, 30, 40, 50];
+console.log(first);  <span class="cm">// 10</span>
+console.log(rest);   <span class="cm">// [30, 40, 50]</span>
+
+<span class="cm">// Tuple destructuring</span>
+<span class="kw">const</span> [statusCode, message]: HttpResponse = [200, <span class="st">"OK"</span>];
+
+<span class="cm">// Spread to copy/merge arrays (immutable)</span>
+<span class="kw">const</span> arr1 = [1, 2, 3];
+<span class="kw">const</span> arr2 = [4, 5, 6];
+<span class="kw">const</span> combined = [...arr1, ...arr2]; <span class="cm">// [1,2,3,4,5,6]</span>
+
+<span class="cm">// Add element immutably</span>
+<span class="kw">const</span> newArr = [...arr1, 4]; <span class="cm">// [1,2,3,4] — arr1 is unchanged</span></pre>
+        </div>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Professional Lab 5.1: The Data Analytics Pipeline</div>
+        <p><strong>Scenario:</strong> You have received a raw list of transactions from a payment gateway. You need to process this data to generate a financial report.</p>
+        <p><strong>Requirements:</strong></p>
+        <ol>
+            <li>Create an <strong class="highlight">Interface</strong> <code class="code-inline">Transaction</code> with: <code class="code-inline">id (number)</code>, <code class="code-inline">amount (number)</code>, <code class="code-inline">category (string)</code>, and <code class="code-inline">status ("completed" | "pending" | "failed")</code>.</li>
+            <li>Create an array of at least 5 transactions.</li>
+            <li><strong>Step 1 (Filtering):</strong> Use <code class="code-inline">.filter()</code> to create a list of only <strong class="highlight">completed</strong> transactions.</li>
+            <li><strong>Step 2 (Transformation):</strong> Use <code class="code-inline">.map()</code> to create a list of strings that say <em>"Transaction [id] was for $[amount]"</em>.</li>
+            <li><strong>Step 3 (Aggregation):</strong> Use <code class="code-inline">.reduce()</code> to calculate the total sum of all completed transactions.</li>
+            <li><strong>Step 4 (Reporting):</strong> Create a tuple <code class="code-inline">[totalCount: number, totalAmount: number]</code> representing the report summary.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture: Objects & Classes →</button>
+    </div>
+</div>
+
+                <!-- ===================== LECTURE 06 ===================== -->
+                <div class="lecture" id="lec-5">
+                    <div class="lecture-tag">Lecture 06 · Fundamentals</div>
                     <h1>Objects & Classes</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-beginner">Beginner</span>
@@ -309,14 +844,14 @@ x = [<span class="st">"hello"</span>, 10]; <span class="cm">// OK</span></pre>
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 06 ===================== -->
-                <div class="lecture" id="lec-5">
-                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+                <!-- ===================== LECTURE 07 ===================== -->
+                <div class="lecture" id="lec-6">
+                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
                     <h1>Generics</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-intermediate">Intermediate</span>
@@ -333,14 +868,14 @@ x = [<span class="st">"hello"</span>, 10]; <span class="cm">// OK</span></pre>
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+                <!-- ===================== LECTURE 08 ===================== -->
+                <div class="lecture" id="lec-7">
+                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
                     <h1>Modules & Namespaces</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-intermediate">Intermediate</span>
@@ -357,14 +892,14 @@ x = [<span class="st">"hello"</span>, 10]; <span class="cm">// OK</span></pre>
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+                <!-- ===================== LECTURE 09 ===================== -->
+                <div class="lecture" id="lec-8">
+                    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
                     <h1>Type Guards & Assertions</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-intermediate">Intermediate</span>
@@ -379,14 +914,14 @@ x = [<span class="st">"hello"</span>, 10]; <span class="cm">// OK</span></pre>
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 09 ===================== -->
-                <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Advanced</div>
+                <!-- ===================== LECTURE 10 ===================== -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · Advanced</div>
                     <h1>Advanced Types</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -401,14 +936,14 @@ x = [<span class="st">"hello"</span>, 10]; <span class="cm">// OK</span></pre>
                     </ul>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 10 ===================== -->
-                <div class="lecture" id="lec-9">
-                    <div class="lecture-tag">Lecture 10 · Advanced</div>
+                <!-- ===================== LECTURE 11 ===================== -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · Advanced</div>
                     <h1>DOM Manipulation</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -422,14 +957,14 @@ btn.addEventListener(<span class="st">"click"</span>, () => console.log(<span cl
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 11 ===================== -->
-                <div class="lecture" id="lec-10">
-                    <div class="lecture-tag">Lecture 11 · Advanced</div>
+                <!-- ===================== LECTURE 12 ===================== -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · Advanced</div>
                     <h1>React with TypeScript</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -443,14 +978,14 @@ btn.addEventListener(<span class="st">"click"</span>, () => console.log(<span cl
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 12 ===================== -->
-                <div class="lecture" id="lec-11">
-                    <div class="lecture-tag">Lecture 12 · Capstone</div>
+                <!-- ===================== LECTURE 13 ===================== -->
+                <div class="lecture" id="lec-12">
+                    <div class="lecture-tag">Lecture 13 · Capstone</div>
                     <h1>Capstone Project: Weather App</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -467,7 +1002,435 @@ btn.addEventListener(<span class="st">"click"</span>, () => console.log(<span cl
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture: Node.js with TypeScript →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 14 ===================== -->
+                <div class="lecture" id="lec-13">
+                    <div class="lecture-tag">Lecture 14 · Backend</div>
+                    <h1>Node.js & Express with TypeScript</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~120 min</span>
+                    </div>
+
+                    <p>Build production-grade REST APIs using TypeScript with Node.js and Express. Learn proper typing for request/response objects, middleware, and error handling.</p>
+
+                    <section>
+                        <h2>Setting Up a TS Node Project</h2>
+                        <div class="code-block">
+                            <pre><span class="cm">// Initialize project</span>
+npm init -y
+npm install express cors helmet
+npm install -D typescript @types/node @types/express ts-node nodemon
+
+<span class="cm">// tsconfig.json for Node</span>
+{
+  <span class="st">"compilerOptions"</span>: {
+    <span class="st">"target"</span>: <span class="st">"ES2020"</span>,
+    <span class="st">"module"</span>: <span class="st">"commonjs"</span>,
+    <span class="st">"outDir"</span>: <span class="st">"./dist"</span>,
+    <span class="st">"rootDir"</span>: <span class="st">"./src"</span>,
+    <span class="st">"strict"</span>: <span class="kw">true</span>,
+    <span class="st">"esModuleInterop"</span>: <span class="kw">true</span>,
+    <span class="st">"resolveJsonModule"</span>: <span class="kw">true</span>
+  }
+}</pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Typed Express Server</h2>
+                        <div class="code-block">
+                            <pre><span class="cm">// src/server.ts</span>
+<span class="kw">import</span> express, { Request, Response, NextFunction } <span class="kw">from</span> <span class="st">'express'</span>;
+
+<span class="kw">const</span> app = express();
+app.use(express.json());
+
+<span class="cm">// Typed request body</span>
+<span class="kw">interface</span> CreateUserRequest {
+  name: <span class="kw">string</span>;
+  email: <span class="kw">string</span>;
+  age?: <span class="kw">number</span>;
+}
+
+app.post(<span class="st">'/users'</span>, (req: Request&lt;{}, {}, CreateUserRequest&gt;, res: Response) =&gt; {
+  <span class="kw">const</span> { name, email, age } = req.body;
+  <span class="kw">if</span> (!name || !email) {
+    res.status(400).json({ error: <span class="st">'Name and email are required'</span> });
+    <span class="kw">return</span>;
+  }
+  res.status(201).json({ id: 1, name, email, age });
+});
+
+app.listen(3000, () =&gt; console.log(<span class="st">'Server running on port 3000'</span>));</pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Typed Middleware & Error Handling</h2>
+                        <div class="code-block">
+                            <pre><span class="cm">// Custom error class</span>
+<span class="kw">class</span> AppError <span class="kw">extends</span> Error {
+  <span class="kw">constructor</span>(
+    <span class="kw">public</span> statusCode: <span class="kw">number</span>,
+    message: <span class="kw">string</span>
+  ) {
+    <span class="kw">super</span>(message);
+  }
+}
+
+<span class="cm">// Error middleware</span>
+<span class="kw">const</span> errorHandler = (
+  err: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) =&gt; {
+  <span class="kw">if</span> (err <span class="kw">instanceof</span> AppError) {
+    res.status(err.statusCode).json({ error: err.message });
+    <span class="kw">return</span>;
+  }
+  res.status(500).json({ error: <span class="st">'Internal server error'</span> });
+};
+
+app.use(errorHandler);</pre>
+                        </div>
+                    </section>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture: Testing & TDD →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 15 ===================== -->
+                <div class="lecture" id="lec-14">
+                    <div class="lecture-tag">Lecture 15 · Quality</div>
+                    <h1>Testing & Test-Driven Development</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-intermediate">Intermediate</span>
+                        <span class="meta-badge">~100 min</span>
+                    </div>
+
+                    <p>Master testing TypeScript code with Jest and Vitest. Write unit tests, integration tests, and mocks with full type safety.</p>
+
+                    <section>
+                        <h2>Testing with Vitest (Recommended)</h2>
+                        <div class="code-block">
+                            <pre>npm install -D vitest @vitest/ui
+
+<span class="cm">// vitest.config.ts</span>
+<span class="kw">import</span> { defineConfig } <span class="kw">from</span> <span class="st">'vitest/config'</span>;
+
+<span class="kw">export default</span> defineConfig({
+  test: {
+    globals: <span class="kw">true</span>,
+    environment: <span class="st">'node'</span>,
+  },
+});
+
+<span class="cm">// src/utils/calculator.ts</span>
+<span class="kw">export function</span> add(a: <span class="kw">number</span>, b: <span class="kw">number</span>): <span class="kw">number</span> {
+  <span class="kw">return</span> a + b;
+}
+
+<span class="cm">// src/utils/calculator.test.ts</span>
+<span class="kw">import</span> { describe, it, expect } <span class="kw">from</span> <span class="st">'vitest'</span>;
+<span class="kw">import</span> { add } <span class="kw">from</span> <span class="st">'./calculator'</span>;
+
+describe(<span class="st">'Calculator'</span>, () =&gt; {
+  it(<span class="st">'adds two numbers correctly'</span>, () =&gt; {
+    expect(add(2, 3)).toBe(5);
+  });
+
+  it(<span class="st">'handles negative numbers'</span>, () =&gt; {
+    expect(add(-1, -2)).toBe(-3);
+  });
+});</pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Mocking & Testing Async Code</h2>
+                        <div class="code-block">
+                            <pre><span class="cm">// Testing API calls with mocks</span>
+<span class="kw">import</span> { vi } <span class="kw">from</span> <span class="st">'vitest'</span>;
+
+<span class="kw">interface</span> User {
+  id: <span class="kw">number</span>;
+  name: <span class="kw">string</span>;
+}
+
+<span class="kw">const</span> fetchUser = <span class="kw">async</span> (id: <span class="kw">number</span>): Promise&lt;User&gt; =&gt; {
+  <span class="kw">const</span> res = <span class="kw">await</span> fetch(<span class="st">`/api/users/</span>${id}<span class="st">`</span>);
+  <span class="kw">return</span> res.json();
+};
+
+it(<span class="st">'fetches user data'</span>, <span class="kw">async</span> () =&gt; {
+  <span class="kw">const</span> mockUser: User = { id: 1, name: <span class="st">'Alice'</span> };
+  
+  global.fetch = vi.fn().mockResolvedValue({
+    json: <span class="kw">async</span> () =&gt; mockUser,
+  } <span class="kw">as</span> Response);
+
+  <span class="kw">const</span> user = <span class="kw">await</span> fetchUser(1);
+  expect(user.name).toBe(<span class="st">'Alice'</span>);
+});</pre>
+                        </div>
+                    </section>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture: Design Patterns →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 16 ===================== -->
+                <div class="lecture" id="lec-15">
+                    <div class="lecture-tag">Lecture 16 · Architecture</div>
+                    <h1>TypeScript Design Patterns</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~110 min</span>
+                    </div>
+
+                    <p>Implement classic software design patterns in TypeScript. Build maintainable, scalable applications with proper architectural patterns.</p>
+
+                    <section>
+                        <h2>Singleton Pattern</h2>
+                        <div class="code-block">
+                            <pre><span class="kw">class</span> DatabaseConnection {
+  <span class="kw">private static</span> instance: DatabaseConnection;
+  <span class="kw">private</span> connected = <span class="kw">false</span>;
+
+  <span class="kw">private constructor</span>() {}
+
+  <span class="kw">static</span> getInstance(): DatabaseConnection {
+    <span class="kw">if</span> (!DatabaseConnection.instance) {
+      DatabaseConnection.instance = <span class="kw">new</span> DatabaseConnection();
+    }
+    <span class="kw">return</span> DatabaseConnection.instance;
+  }
+
+  connect(): <span class="kw">void</span> {
+    <span class="kw">if</span> (!<span class="kw">this</span>.connected) {
+      console.log(<span class="st">'Connecting to database...'</span>);
+      <span class="kw">this</span>.connected = <span class="kw">true</span>;
+    }
+  }
+}
+
+<span class="cm">// Usage</span>
+<span class="kw">const</span> db1 = DatabaseConnection.getInstance();
+<span class="kw">const</span> db2 = DatabaseConnection.getInstance();
+console.log(db1 === db2); <span class="cm">// true — same instance</span></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Factory Pattern with Generics</h2>
+                        <div class="code-block">
+                            <pre><span class="kw">interface</span> Vehicle {
+  start(): <span class="kw">void</span>;
+}
+
+<span class="kw">class</span> Car <span class="kw">implements</span> Vehicle {
+  start() { console.log(<span class="st">'Car engine starting...'</span>); }
+}
+
+<span class="kw">class</span> Motorcycle <span class="kw">implements</span> Vehicle {
+  start() { console.log(<span class="st">'Motorcycle engine starting...'</span>); }
+}
+
+<span class="cm">// Generic Factory</span>
+<span class="kw">class</span> VehicleFactory&lt;T <span class="kw">extends</span> Vehicle&gt; {
+  <span class="kw">constructor</span>(<span class="kw">private</span> VehicleClass: <span class="kw">new</span> () =&gt; T) {}
+
+  create(): T {
+    <span class="kw">return new</span> <span class="kw">this</span>.VehicleClass();
+  }
+}
+
+<span class="kw">const</span> carFactory = <span class="kw">new</span> VehicleFactory(Car);
+<span class="kw">const</span> car = carFactory.create();
+car.start();</pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Observer Pattern</h2>
+                        <div class="code-block">
+                            <pre><span class="kw">type</span> Listener&lt;T&gt; = (data: T) =&gt; <span class="kw">void</span>;
+
+<span class="kw">class</span> EventEmitter&lt;T&gt; {
+  <span class="kw">private</span> listeners: Map&lt;<span class="kw">string</span>, Listener&lt;T&gt;[]&gt; = <span class="kw">new</span> Map();
+
+  on(event: <span class="kw">string</span>, listener: Listener&lt;T&gt;): <span class="kw">void</span> {
+    <span class="kw">const</span> existing = <span class="kw">this</span>.listeners.get(event) || [];
+    <span class="kw">this</span>.listeners.set(event, [...existing, listener]);
+  }
+
+  emit(event: <span class="kw">string</span>, data: T): <span class="kw">void</span> {
+    <span class="kw">this</span>.listeners.get(event)?.forEach(l =&gt; l(data));
+  }
+}
+
+<span class="cm">// Usage</span>
+<span class="kw">const</span> emitter = <span class="kw">new</span> EventEmitter&lt;{ message: <span class="kw">string</span> }&gt;();
+emitter.on(<span class="st">'message'</span>, (data) =&gt; console.log(data.message));</pre>
+                        </div>
+                    </section>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture: Full-Stack Final Project →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 17 ===================== -->
+                <div class="lecture" id="lec-16">
+                    <div class="lecture-tag">Lecture 17 · Masterpiece</div>
+                    <h1>Full-Stack Final Project: Task Management App</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge level-advanced">Advanced</span>
+                        <span class="meta-badge">~180 min</span>
+                    </div>
+
+                    <p>Build a complete full-stack task management application with React frontend, Express backend, and SQLite database — all written in TypeScript.</p>
+
+                    <section>
+                        <h2>Project Architecture</h2>
+                        <div class="code-block">
+                            <pre>task-app/
+├── client/                 <span class="cm"># React + Vite + TypeScript</span>
+│   ├── src/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── types/
+│   │   └── api.ts          <span class="cm"># Typed API client</span>
+│   └── package.json
+├── server/                 <span class="cm"># Express + TypeScript</span>
+│   ├── src/
+│   │   ├── routes/
+│   │   ├── models/
+│   │   ├── middleware/
+│   │   └── types/
+│   └── package.json
+└── shared/
+    └── types.ts            <span class="cm"># Shared types between client & server</span></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Shared Types</h2>
+                        <div class="code-block">
+                            <pre><span class="cm">// shared/types.ts</span>
+<span class="kw">export interface</span> Task {
+  id: <span class="kw">number</span>;
+  title: <span class="kw">string</span>;
+  description: <span class="kw">string</span>;
+  status: <span class="st">'pending'</span> | <span class="st">'in-progress'</span> | <span class="st">'completed'</span>;
+  priority: <span class="st">'low'</span> | <span class="st">'medium'</span> | <span class="st">'high'</span>;
+  createdAt: <span class="kw">string</span>;
+  dueDate?: <span class="kw">string</span>;
+}
+
+<span class="kw">export interface</span> CreateTaskRequest {
+  title: <span class="kw">string</span>;
+  description: <span class="kw">string</span>;
+  priority?: <span class="st">'low'</span> | <span class="st">'medium'</span> | <span class="st">'high'</span>;
+  dueDate?: <span class="kw">string</span>;
+}
+
+<span class="kw">export type</span> ApiResponse&lt;T&gt; = {
+  success: <span class="kw">true</span>;
+  data: T;
+} | {
+  success: <span class="kw">false</span>;
+  error: <span class="kw">string</span>;
+};</pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Typed API Client</h2>
+                        <div class="code-block">
+                            <pre><span class="cm">// client/src/api.ts</span>
+<span class="kw">import</span> { Task, CreateTaskRequest, ApiResponse } <span class="kw">from</span> <span class="st">'../../shared/types'</span>;
+
+<span class="kw">const</span> API_URL = <span class="st">'http://localhost:3000/api'</span>;
+
+<span class="kw">async function</span> apiRequest&lt;T&gt;(
+  endpoint: <span class="kw">string</span>,
+  options?: RequestInit
+): Promise&lt;ApiResponse&lt;T&gt;&gt; {
+  <span class="kw">const</span> res = <span class="kw">await</span> fetch(`${API_URL}${endpoint}`, {
+    headers: { <span class="st">'Content-Type'</span>: <span class="st">'application/json'</span> },
+    ...options,
+  });
+  <span class="kw">return</span> res.json();
+}
+
+<span class="kw">export const</span> taskApi = {
+  getAll: () =&gt; apiRequest&lt;Task[]&gt;(<span class="st">'/tasks'</span>),
+  create: (data: CreateTaskRequest) =&gt;
+    apiRequest&lt;Task&gt;(<span class="st">'/tasks'</span>, {
+      method: <span class="st">'POST'</span>,
+      body: JSON.stringify(data),
+    }),
+  update: (id: <span class="kw">number</span>, data: Partial&lt;Task&gt;) =&gt;
+    apiRequest&lt;Task&gt;(<span class="st">`/tasks/</span>${id}<span class="st">`</span>, {
+      method: <span class="st">'PATCH'</span>,
+      body: JSON.stringify(data),
+    }),
+  delete: (id: <span class="kw">number</span>) =&gt;
+    apiRequest&lt;<span class="kw">void</span>&gt;(<span class="st">`/tasks/</span>${id}<span class="st">`</span>, { method: <span class="st">'DELETE'</span> }),
+};</pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Backend with Validation</h2>
+                        <div class="code-block">
+                            <pre><span class="cm">// server/src/routes/tasks.ts</span>
+<span class="kw">import</span> { Router, Request, Response } <span class="kw">from</span> <span class="st">'express'</span>;
+<span class="kw">import</span> { Task, CreateTaskRequest } <span class="kw">from</span> <span class="st">'../../shared/types'</span>;
+
+<span class="kw">const</span> router = Router();
+<span class="kw">let</span> tasks: Task[] = [];
+<span class="kw">let</span> nextId = 1;
+
+router.post(<span class="st">'/'</span>, (req: Request&lt;{}, {}, CreateTaskRequest&gt;, res) =&gt; {
+  <span class="kw">const</span> { title, description, priority = <span class="st">'medium'</span> } = req.body;
+
+  <span class="kw">if</span> (!title?.trim()) {
+    res.status(400).json({ success: <span class="kw">false</span>, error: <span class="st">'Title is required'</span> });
+    <span class="kw">return</span>;
+  }
+
+  <span class="kw">const</span> task: Task = {
+    id: nextId++,
+    title,
+    description: description || <span class="st">''</span>,
+    status: <span class="st">'pending'</span>,
+    priority,
+    createdAt: <span class="kw">new</span> Date().toISOString(),
+  };
+
+  tasks.push(task);
+  res.status(201).json({ success: <span class="kw">true</span>, data: task });
+});
+
+<span class="kw">export default</span> router;</pre>
+                        </div>
+                    </section>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
                         <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
                     </div>
                 </div>
@@ -491,7 +1454,8 @@ btn.addEventListener(<span class="st">"click"</span>, () => console.log(<span cl
             "Introduction & Setup",
             "Variables & Types",
             "Functions & Interfaces",
-            "Control Flow & Arrays",
+            "Control Flow",
+            "Arrays & Tuples",
             "Objects & Classes",
             "Generics & Utility Types",
             "Modules & Namespaces",
@@ -499,7 +1463,11 @@ btn.addEventListener(<span class="st">"click"</span>, () => console.log(<span cl
             "Advanced Types & Decorators",
             "DOM Manipulation & APIs",
             "React with TypeScript",
-            "Capstone Project: TypeScript Web App"
+            "Capstone Project: TypeScript Web App",
+            "Node.js & Express with TypeScript",
+            "Testing & Test-Driven Development",
+            "TypeScript Design Patterns",
+            "Full-Stack Final Project"
         ];
 
         let current = 0;
@@ -510,8 +1478,8 @@ btn.addEventListener(<span class="st">"click"</span>, () => console.log(<span cl
             document.getElementById('lec-' + index).classList.add('active');
             document.querySelectorAll('.nav-item')[index].classList.add('active');
             document.getElementById('breadcrumb-current').textContent = titles[index];
-            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 12`;
-            document.getElementById('progress-fill').style.width = `${((index + 1) / 12) * 100}%`;
+            document.getElementById('progress-label').textContent = `Lecture ${index + 1} / 17`;
+            document.getElementById('progress-fill').style.width = `${((index + 1) / 17) * 100}%`;
             current = index;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }

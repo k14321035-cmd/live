@@ -161,144 +161,2180 @@
             <div class="content-column">
 
                 <!-- ===================== LECTURE 01 ===================== -->
-                <div class="lecture active" id="lec-0">
-                    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
-                    <h1>Introduction to SQL & Setup</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~45 min</span>
-                    </div>
+          
+<div class="lecture active" id="lec-0">
+    <!-- ==============================================================
+         Header & Meta
+    =============================================================== -->
+    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+    <h1>Introduction to SQL &amp; Setup</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
 
-                    <h2>What is SQL?</h2>
-                    <p>SQL (Structured Query Language) is the standard language for managing and manipulating relational databases. It is used by virtually every major database system including MySQL, PostgreSQL, SQL Server, SQLite, and Oracle.</p>
+    <!-- ==============================================================
+         0️⃣ What is SQL? – Expanded Introduction
+    ============================================================== -->
+    <h2>0️⃣ What is SQL?</h2>
+    <p>
+        <strong>SQL (Structured Query Language)</strong> is the ANSI‑standard language used
+        to create, read, update, and delete data in <em>relational database management
+        systems (RDBMS)</em>.  It abstracts the underlying storage engine and lets you
+        work with <em>tables</em> (relations) that are linked via keys.
+    </p>
 
-                    <h3>Why Learn SQL?</h3>
-                    <ul>
-                        <li>Essential skill for data analysis, backend development, and data science</li>
-                        <li>High demand across industries</li>
-                        <li>Works with almost every database system</li>
-                    </ul>
+    <h3>Brief History &amp; Why It Still Matters</h3>
+    <ul>
+        <li>1970 – Edgar F. Codd proposes the relational model (IBM System R).</li>
+        <li>1974 – IBM releases <strong>SQL/2</strong>, the first commercial implementation.</li>
+        <li>1992 – ANSI/ISO adopts SQL‑92 as a formal standard (still the baseline).</li>
+        <li>2000‑2024 – Continual extensions (SQL:1999, SQL:2003, …) add XML/JSON handling, window functions, and more.</li>
+    </ul>
 
-                    <h2>Setup</h2>
-                    <p>Recommended: Install <strong>PostgreSQL</strong> or use <strong>SQLite</strong> (lightweight, no installation needed) + <strong>DBeaver</strong> or <strong>pgAdmin</strong>.</p>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>RDBMS</th><th>License</th><th>Typical Use‑Case</th><th>Latest Stable Version (2024)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>PostgreSQL</td><td>Open‑source (PostgreSQL License)</td><td>Enterprise‑grade, geo‑spatial, analytics</td><td>16.2</td></tr>
+                <tr><td>MySQL / MariaDB</td><td>Dual (GPL / Commercial)</td><td>Web‑apps, LAMP stack</td><td>8.4 / 10.11</td></tr>
+                <tr><td>Microsoft SQL Server</td><td>Commercial (Free Express)</td><td>Windows‑centric, BI</td><td>2022 CU15</td></tr>
+                <tr><td>Oracle Database</td><td>Commercial (Free XE)</td><td>Large‑scale transaction processing</td><td>23c</td></tr>
+                <tr><td>SQLite</td><td>Public‑domain (no server)</td><td>Embedded, mobile, prototyping</td><td>3.45</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">SQL Query</span>
-                        </div>
-                        <pre><span class="kw">SELECT</span> <span class="st">'Hello, SQL Mastery!'</span> <span class="kw">AS</span> greeting;</pre>
-                    </div>
+    <h3>Market Demand (2024)</h3>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Skill</th><th>Avg Salary (US $)</th><th>Stack Overflow Survey % of Respondents</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>SQL / Relational DB</td><td>≈ $115 k</td><td>78 %</td></tr>
+                <tr><td>PostgreSQL</td><td>≈ $120 k</td><td>43 %</td></tr>
+                <tr><td>MySQL</td><td>≈ $112 k</td><td>55 %</td></tr>
+                <tr><td>SQLite (mobile/IoT)</td><td>≈ $108 k</td><td>31 %</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><em>Source:</em> <a href="https://insights.stackoverflow.com/survey/2024">Stack Overflow Developer Survey 2024</a> + <a href="https://www.glassdoor.com/Salaries/sql-database-developer-salary-SRCH_KO0,25.htm">Glassdoor</a>.</p>
 
-                    <div class="output-block">
-                        <div class="output-label">Output</div>
-                        greeting<br>
-                        Hello, SQL Mastery!
-                    </div>
+    <div class="box warning">
+        <div class="box-title">⚠️️ Security Reminder</div>
+        Even a simple SELECT can become dangerous when user input is concatenated directly into the query.
+        Always use **parameterised queries** (prepared statements) to avoid SQL injection.
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 1.1</div>
-                        <p>Install PostgreSQL or SQLite. Create a database and run your first query to display the current date and time.</p>
-                    </div>
+    <!-- ==============================================================
+         1️⃣ Setup – Multi‑Platform & Docker
+    ============================================================== -->
+    <h2>1️⃣ Setup – Get a DB Up & Running</h2>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h3>Option A – Native Install (PostgreSQL)</h3>
+    <ul>
+        <li><strong>Windows</strong> – <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">Download the installer</a>, run, accept defaults (creates a <code>postgres</code> super‑user).</li>
+        <li><strong>macOS</strong> – <code>brew install postgresql</code> then <code>brew services start postgresql</code>.</li>
+        <li><strong>Linux (Debian/Ubuntu)</strong> – <code>sudo apt update && sudo apt install -y postgresql postgresql-contrib</code>.<br>
+            Verify: <code>sudo -u postgres psql -c "SELECT version();"</code></li>
+    </ul>
+
+    <h3>Option B – Lightweight SQLite (Zero‑Install)</h3>
+    <p>SQLite ships with Python, PHP, and many OSes. A single file is all you need.</p>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bash</span></div>
+        <pre># Verify SQLite is present
+sqlite3 --version    # e.g. 3.45.0
+
+# Create a new DB file called demo.db and open the CLI
+sqlite3 demo.db
+
+# Inside the CLI you’ll see the prompt: sqlite&gt;
+</pre>
+    </div>
+
+    <h3>Option C – Docker (All Platforms)</h3>
+    <p>Docker gives you an isolated RDBMS with a single command. No admin rights required.</p>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">docker</span></div>
+        <pre># Pull the official PostgreSQL image
+docker pull postgres:16-alpine
+
+# Run it (exposes 5432 to host)
+docker run -d \
+    --name pg_sql_demo \
+    -e POSTGRES_PASSWORD=SuperSecret123 \
+    -e POSTGRES_USER=demo_user \
+    -e POSTGRES_DB=demo_db \
+    -p 5432:5432 \
+    postgres:16-alpine
+
+# Connect from host
+psql -h localhost -U demo_user -d demo_db -W   # password: SuperSecret123
+</pre>
+    </div>
+
+    <h3>SQL Client Recommendations</h3>
+    <ul>
+        <li><strong>DBeaver</strong> – universal cross‑platform GUI (JDBC/ODBC).</li>
+        <li><strong>pgAdmin</strong> – native PostgreSQL web‑based console.</li>
+        <li><strong>Azure Data Studio</strong> – Microsoft’s cross‑platform query editor (works with PostgreSQL, MySQL, SQL Server).</li>
+        <li>Command‑line: <code>psql</code> (PostgreSQL), <code>mysql</code>, <code>sqlite3</code>.</li>
+    </ul>
+
+    <!-- ==============================================================
+         2️⃣ First‑Look SQL – Hello World + Basic Syntax
+    ============================================================== -->
+    <h2>2️⃣ First‑Look SQL – “Hello SQL” &amp; Basic Statements</h2>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">SQL (pSQL prompt) – Hello</span></div>
+        <pre><span class="kw">SELECT</span> <span class="st">'Hello, SQL Mastery!'</span> <span class="kw">AS</span> greeting;</pre>
+    </div>
+
+    <div class="output-block">
+        <div class="output-label">Output</div>
+        greeting<br>
+        Hello, SQL Mastery!
+    </div>
+
+    <h3>Core DDL (Data Definition Language)</h3>
+    <ul>
+        <li><code>CREATE TABLE</code> – define a table schema.</li>
+        <li><code>ALTER TABLE</code> – add/modify columns, constraints.</li>
+        <li><code>DROP TABLE</code> – delete a table.</li>
+    </ul>
+
+    <h3>Core DML (Data Manipulation Language)</h3>
+    <ul>
+        <li><code>SELECT … FROM …</code> – read data (the “R” in CRUD).</li>
+        <li><code>INSERT INTO … VALUES …</code> – add rows.</li>
+        <li><code>UPDATE … SET … WHERE …</code> – modify rows.</li>
+        <li><code>DELETE FROM … WHERE …</code> – remove rows.</li>
+    </ul>
+
+    <h3>Quick Reference Cheat‑Sheet</h3>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Statement</th><th>Purpose</th><th>Basic Syntax Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>CREATE TABLE</strong></td>
+                    <td>Define a new relation</td>
+                    <td><code>CREATE TABLE employees (id SERIAL PRIMARY KEY, name TEXT NOT NULL, dept_id INT);</code></td>
+                </tr>
+                <tr>
+                    <td><strong>INSERT</strong></td>
+                    <td>Add a row</td>
+                    <td><code>INSERT INTO employees (name,dept_id) VALUES ('Alice',1);</code></td>
+                </tr>
+                <tr>
+                    <td><strong>SELECT</strong></td>
+                    <td>Read data</td>
+                    <td><code>SELECT name,dept_id FROM employees WHERE dept_id = 1;</code></td>
+                </tr>
+                <tr>
+                    <td><strong>UPDATE</strong></td>
+                    <td>Modify existing rows</td>
+                    <td><code>UPDATE employees SET dept_id = 2 WHERE name = 'Alice';</code></td>
+                </tr>
+                <tr>
+                    <td><strong>DELETE</strong></td>
+                    <td>Remove rows</td>
+                    <td><code>DELETE FROM employees WHERE name = 'Alice';</code></td>
+                </tr>
+                <tr>
+                    <td><strong>JOIN</strong></td>
+                    <td>Combine rows from multiple tables</td>
+                    <td><code>SELECT e.name, d.name FROM employees e JOIN departments d ON e.dept_id = d.id;</code></td>
+                </tr>
+                <tr>
+                    <td><strong>GROUP BY / HAVING</strong></td>
+                    <td>Aggregate data</td>
+                    <td><code>SELECT dept_id, COUNT(*) FROM employees GROUP BY dept_id HAVING COUNT(*) > 5;</code></td>
+                </tr>
+                <tr>
+                    <td><strong>ORDER BY</strong></td>
+                    <td>Sort results</td>
+                    <td><code>SELECT * FROM employees ORDER BY name ASC;</code></td>
+                </tr>
+                <tr>
+                    <td><strong>LIMIT / OFFSET</strong></td>
+                    <td>Paginate results</td>
+                    <td><code>SELECT * FROM employees LIMIT 10 OFFSET 20;</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ==============================================================
+         3️⃣ Sample Schema – Employees &amp; Departments
+    ============================================================== -->
+    <h2>3️⃣ Sample Schema – Employees &amp; Departments</h2>
+
+    <p>Let’s build a tiny HR database that you can reuse for many hands‑on tasks.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">SQL – Schema Creation (PostgreSQL)</span></div>
+        <pre><span class="kw">CREATE</span> <span class="kw">TABLE</span> departments (
+    id   <span class="kw">SERIAL</span>      <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,
+    name <span class="kw">VARCHAR</span>(50) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>
+);
+
+<span class="kw">CREATE</span> <span class="kw">TABLE</span> employees (
+    emp_id      <span class="kw">SERIAL</span>      <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,
+    first_name  <span class="kw">VARCHAR</span>(30) <span class="kw">NOT</span> <span class="kw">NULL</span>,
+    last_name   <span class="kw">VARCHAR</span>(30) <span class="kw">NOT</span> <span class="kw">NULL</span>,
+    email       <span class="kw">VARCHAR</span>(100) <span class="kw">UNIQUE</span>,
+    hire_date   <span class="kw">DATE</span>        <span class="kw">DEFAULT</span> <span class="kw">CURRENT_DATE</span>,
+    salary      <span class="kw">NUMERIC</span>(9,2) <span class="kw">CHECK</span> (salary &gt; 0),
+    dept_id     <span class="kw">INT</span>         <span class="kw">REFERENCES</span> departments(id) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span>
+);
+</pre>
+    </div>
+
+    <h4>Insert Sample Data</h4>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">SQL – Sample Rows</span></div>
+        <pre><span class="kw">INSERT</span> <span class="kw">INTO</span> departments (name) <span class="kw">VALUES</span>
+    ('Engineering'), ('Marketing'), ('HR'), ('Finance');
+
+<span class="kw">INSERT</span> <span class="kw">INTO</span> employees (first_name, last_name, email, salary, dept_id) <span class="kw">VALUES</span>
+    ('Alice',  'Smith',   'alice.smith@example.com',  87000, 1),
+    ('Bob',    'Brown',   'bob.brown@example.com',    62000, 2),
+    ('Carol',  'Jones',   'carol.jones@example.com',  54000, 3),
+    ('David',  'Lee',     'david.lee@example.com',   103000, 1),
+    ('Eve',    'Taylor',  'eve.taylor@example.com',   77000, 4);
+</pre>
+    </div>
+
+    <h4>Visualise the Relationship (placeholder)</h4>
+    <div class="diagram-placeholder" style="width:100%;height:200px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#777;">
+        <em>ER‑diagram (departments 1‑* employees) goes here</em>
+    </div>
+
+    <h4>Example Queries</h4>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">SQL – 5 Common Queries</span></div>
+        <pre>-- 1️⃣ List all employees with department name
+SELECT e.emp_id, e.first_name, e.last_name, d.name AS department
+FROM   employees e
+JOIN   departments d ON e.dept_id = d.id
+ORDER BY e.emp_id;
+
+-- 2️⃣ Average salary per department
+SELECT d.name, ROUND(AVG(e.salary),2) AS avg_salary
+FROM   employees e
+JOIN   departments d ON e.dept_id = d.id
+GROUP BY d.name
+HAVING COUNT(*) &gt; 0;
+
+-- 3️⃣ Employees hired in the last 30 days
+SELECT * FROM employees
+WHERE hire_date &gt; CURRENT_DATE - INTERVAL '30 days';
+
+-- 4️⃣ Find employees with duplicate email domains (e.g., possible data‑quality issue)
+SELECT SUBSTRING(email FROM POSITION('@' IN email)+1) AS domain, COUNT(*) AS cnt
+FROM   employees
+GROUP BY domain
+HAVING COUNT(*) &gt; 1;
+
+-- 5️⃣ Delete a department (will set dept_id of its employees to NULL)
+DELETE FROM departments WHERE name = 'Marketing';
+</pre>
+    </div>
+
+    <!-- ==============================================================
+         4️⃣ Indexes &amp; Query Performance Basics
+    ============================================================== -->
+    <h2>4️⃣ Indexes &amp; Query Performance Basics</h2>
+
+    <h3>Why Indexes Matter</h3>
+    <ul>
+        <li>They are data structures (usually B‑trees) that let the engine locate rows without scanning the whole table.</li>
+        <li>Typical usage: columns in <code>WHERE</code>, <code>JOIN</code>, <code>ORDER BY</b>, <code>GROUP BY</code>.</li>
+        <li>Trade‑off: faster reads, slower writes (INSERT/UPDATE) and extra storage.</li>
+    </ul>
+
+    <h3>Creating an Index</h3>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">SQL – Create Index</span></div>
+        <pre><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_emp_email ON employees(email);
+<span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_emp_dept ON employees(dept_id);
+</pre>
+    </div>
+
+    <h3>Explain Plan – Seeing What the Optimiser Does</h3>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">SQL – EXPLAIN (PostgreSQL)</span></div>
+        <pre>EXPLAIN ANALYZE
+SELECT e.first_name, e.last_name, d.name
+FROM   employees e
+JOIN   departments d ON e.dept_id = d.id
+WHERE  e.salary &gt; 80000;
+</pre>
+    </div>
+
+    <p>The output shows whether the query uses an index scan, sequential scan, or a hash join, and reports actual execution time in ms.</p>
+
+    <!-- ==============================================================
+         5️⃣ Common Pitfalls – SQL Injection &amp; Safe Coding
+    ============================================================== -->
+    <h2>5️⃣ Common Pitfalls – SQL Injection &amp; Safe Coding</h2>
+
+    <p><strong>SQL Injection</strong> occurs when untrusted input is concatenated into a query string without sanitisation.</p>
+
+    <h3>Vulnerable Example (PHP)</h3>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">PHP – Unsafe Query</span></div>
+        <pre>$id   = $_GET['id'];                 // e.g., ?id=1 OR 1=1
+$sql  = "SELECT * FROM employees WHERE emp_id = $id";
+$res  = $pdo-&gt;query($sql);</pre>
+    </div>
+
+    <h3>Safe Alternative – Prepared Statements</h3>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">PHP – PDO Prepared</span></div>
+        <pre>$stmt = $pdo-&gt;prepare('SELECT * FROM employees WHERE emp_id = :id');
+$stmt-&gt;execute(['id' =&gt; $_GET['id']]);   // type‑safe, DB driver does the escaping
+$res  = $stmt-&gt;fetchAll();</pre>
+    </div>
+
+    <p>All languages have similar mechanisms (Python’s <code>cursor.execute(..., params)</code>, Java’s <code>PreparedStatement</code>, .NET’s <code>SqlCommand</code> with parameters, etc.).</p>
+
+    <div class="box warning">
+        <div class="box-title">🚨 Never</div>
+        <ul>
+            <li>Use string interpolation to build SQL.</li>
+            <li>Trust client‑side validation alone.</li>
+            <li>Store raw passwords in plain text – always hash (bcrypt, Argon2).</li>
+        </ul>
+    </div>
+
+    <!-- ==============================================================
+         6️⃣ Lab Exercises (Expanded)
+    ============================================================== -->
+    <h2>6️⃣ Lab Exercises (Extended)</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.1 – Install &amp; Verify a Database</div>
+        <p>Choose one of the three installation methods (native PostgreSQL, SQLite, Docker). Then:</p>
+        <ol>
+            <li>Start the DB server (or open the SQLite CLI).</li>
+            <li>Run the “Hello, SQL Mastery!” query and capture a screenshot of the output.</li>
+            <li>Record the exact command you typed (including any environment variables).</li>
+        </ol>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.2 – Build the Employees Sample Schema</div>
+        <p>Using the SQL script provided above:</p>
+        <ol>
+            <li>Create the <code>departments</code> and <code>employees</code> tables.</li>
+            <li>Insert the sample rows.</li>
+            <li>Run the “Average salary per department” query and note any department with an average > $80 k.</li>
+            <li>Write a 150‑word “lab journal” describing any errors you encountered and how you fixed them.</li>
+        </ol>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.3 – Index &amp; Explain</div>
+        <p>For the <code>employees.email</code> column:</p>
+        <ol>
+            <li>Create an index as shown earlier.</li>
+            <li>Run the same <code>SELECT … WHERE email = 'alice.smith@example.com'</code> query <strong>with</strong> the index and capture the <code>EXPLAIN ANALYZE</code> output.</li>
+            <li>Delete the index (<code>DROP INDEX idx_emp_email;</code>) and re‑run the query – compare timings.</li>
+            <li>Summarise (≤ 100 words) why the index helped (or didn’t) in this case.</li>
+        </ol>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.4 – Safe Coding Mini‑Project (any language)</div>
+        <p>Write a short program (≤ 50 lines) that:</p>
+        <ul>
+            <li>Accepts a user‑supplied employee ID from the console.</li>
+            <li>Queries the <code>employees</code> table for that ID using a prepared statement.</li>
+            <li>Prints the employee’s full name and department.</li>
+        </ul>
+        <p>Include the source code and a screenshot of a successful run.</p>
+    </div>
+
+    <!-- ==============================================================
+         7️⃣ Knowledge‑Check Quiz
+    ============================================================== -->
+    <h2>7️⃣ Knowledge‑Check Quiz (5 questions)</h2>
+    <div class="quiz">
+        <ol>
+            <li>Which SQL clause is used to combine rows from two tables? <br>
+                <input type="radio" name="q1" value="a"> <code>GROUP BY</code> <br>
+                <input type="radio" name="q1" value="b"> <code>JOIN</code> <br>
+                <input type="radio" name="q1" value="c"> <code>UNION</code>
+            </li>
+            <li>What does the <code>SERIAL</code> data type do in PostgreSQL?<br>
+                <input type="radio" name="q2" value="a"> Stores binary data. <br>
+                <input type="radio" name="q2" value="b"> Auto‑increments an integer and creates a sequence. <br>
+                <input type="radio" name="q2" value="c"> Stores a fixed-length string of 20 characters.
+            </li>
+            <li>True or False – <code>DROP TABLE</code> can be rolled back inside a transaction in PostgreSQL.</li>
+            <li>Which of the following is a **safe** way to guard against SQL injection?<br>
+                <input type="radio" name="q4" value="a"> Escape single quotes manually. <br>
+                <input type="radio" name="q4" value="b"> Use a prepared statement / parameterised query. <br>
+                <input type="radio" name="q4" value="c"> Validate the input length only.
+            </li>
+            <li>What is the purpose of an <code>INDEX</code>?</li>
+        </ol>
+        <p>Click to reveal the answers.</p>
+        <details>
+            <summary>Show Answers</summary>
+            <ol>
+                <li><strong>B</strong> – <code>JOIN</code> combines rows from two tables based on a condition.</li>
+                <li><strong>B</strong> – <code>SERIAL</code> creates an auto‑increment integer backed by a sequence.</li>
+                <li><strong>False</strong> – Dropping a table is DDL and cannot be rolled back in PostgreSQL (unless using a schema‑level transaction in recent versions, but standard practice treats it as non‑reversible).</li>
+                <li><strong>B</strong> – Parameterised queries are the industry‑standard defense.</li>
+                <li>An <code>INDEX</code> provides a fast lookup mechanism (typically a B‑tree) that reduces the amount of data scanned for queries that filter, sort, or join on the indexed column(s).</li>
+            </ol>
+        </details>
+    </div>
+
+    <!-- ==============================================================
+         8️⃣ Further Reading & Resources
+    ============================================================== -->
+    <h2>8️⃣ Further Reading & Resources</h2>
+
+    <ul class="resource-list">
+        <li><strong>Books</strong>
+            <ul>
+                <li><em>SQL for Beginners</em> – John J. L. (O'Reilly, 2022)</li>
+                <li><em>PostgreSQL Administration</em> – Simon Riggs &amp; Gianni Ciolli (2nd ed., 2023)</li>
+                <li><em>SQL Antipatterns</em> – Bill Karwin (Addison‑Wesley, 2010)</li>
+                <li><em>Database System Concepts</em> – Silberschatz, Korth &amp; Sudarshan (7th ed., 2020)</li>
+            </ul>
+        </li>
+        <li><strong>Online Tutorials</strong>
+            <ul>
+                <li><a href="https://www.postgresql.org/docs/current/tutorial.html">PostgreSQL Official Tutorial</a></li>
+                <li><a href="https://www.sqltutorial.org/">SQLTutorial.org – Interactive exercises</a></li>
+                <li><a href="https://learncodeonline.dev/courses/sql">LearnSQL – Free video series</a></li>
+            </ul>
+        </li>
+        <li><strong>Reference Docs</strong>
+            <ul>
+                <li>SQL‑92 Standard – <a href="https://www.iso.org/standard/22179.html">ISO/IEC 9075‑2:1992</a></li>
+                <li>PostgreSQL SQL‑Syntax – <a href="https://www.postgresql.org/docs/current/sql-syntax.html">PostgreSQL Docs</a></li>
+                <li>SQLite Quickstart – <a href="https://www.sqlite.org/quickstart.html">sqlite.org</a></li>
+            </ul>
+        </li>
+        <li><strong>Practice Platforms</strong>
+            <ul>
+                <li><a href="https://www.hackthebox.eu/">Hack The Box – “SQLi” machines</a></li>
+                <li><a href="https://www.sqlzoo.net/">SQLZoo – Interactive quizzes</a></li>
+                <li><a href="https://www.mode.com/sql-tutorial/">Mode Analytics SQL Tutorial (real‑world data sets)</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- ==============================================================
+         9️⃣ Closing & Navigation
+    ============================================================== -->
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+    </div>
+</div>
+
+
+
 
                 <!-- ===================== LECTURE 02 ===================== -->
-                <div class="lecture" id="lec-1">
-                    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
-                    <h1>Basic SELECT Queries</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~40 min</span>
-                    </div>
+         <div class="lecture" id="lec-1">
+    <!-- ==============================================================
+         Header & Meta
+    ============================================================== -->
+    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+    <h1>Basic SELECT Queries</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~40 min</span>
+    </div>
 
-                    <h2>Retrieving Data</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">SELECT</span> name, price <span class="kw">FROM</span> products;
-<span class="kw">SELECT</span> * <span class="kw">FROM</span> employees; <span class="cm">-- Select all columns</span></pre>
-                    </div>
+    <!-- ==============================================================
+         1️⃣ What SELECT Does
+    ============================================================== -->
+    <h2>1️⃣ Retrieving Data – The Core of SQL</h2>
+    <p>
+        The <code>SELECT</code> statement is the primary read‑only operation in a relational
+        database.  It defines **what** columns you want, **from which** tables, and optionally
+        how the rows should be filtered, ordered, grouped, or limited.
+    </p>
 
-                    <h2>Aliases</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">SELECT</span> first_name <span class="kw">AS</span> name <span class="kw">FROM</span> users;</pre>
-                    </div>
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> name, price <span class="kw">FROM</span> products;
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> employees; <span class="cm">-- all columns (discouraged in production)</span></pre>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
-                    </div>
-                </div>
+    <div class="box warning">
+        <div class="box-title">⚠️ Why <code>SELECT *</code> Is Discouraged</div>
+        <ul>
+            <li>Pulls every column – can cause unnecessary I/O and network traffic.</li>
+            <li>Masks schema changes (new columns appear silently in result sets).</li>
+            <li>Exposes sensitive columns (password hashes, internal IDs) if you forget to prune them.</li>
+        </ul>
+    </div>
+
+    <!-- ==============================================================
+         2️⃣ Column Aliases & Table Aliases
+    ============================================================== -->
+    <h2>2️⃣ Aliases – Giving Columns & Tables Friendly Names</h2>
+    <p>Aliases improve readability, especially in joins or when column names clash.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> first_name <span class="kw">AS</span> name <span class="kw">FROM</span> users;
+<span class="kw">SELECT</span> u.first_name <span class="kw">AS</span> fname,
+       u.last_name  <span class="kw">AS</span> lname <span class="kw">FROM</span> users <span class="kw">AS</span> u;</pre>
+    </div>
+
+    <p>Table aliases also let you qualify columns (<code>t1.id</code>) which is mandatory when two tables share a column name.</p>
+
+    <!-- ==============================================================
+         3️⃣ Filtering Rows – WHERE
+    ============================================================== -->
+    <h2>3️⃣ Filtering Rows – <code>WHERE</code> Clause</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> name, price
+<span class="kw">FROM</span> products
+<span class="kw">WHERE</span> price &gt; 100 <span class="kw">AND</span> category = 'Electronics';</pre>
+    </div>
+
+    <p>Common comparison operators: <code>=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=</code> and set operators <code>IN, NOT IN</code>. Use <code>LIKE</code> for pattern matching.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> *
+<span class="kw">FROM</span> employees
+<span class="kw">WHERE</span> email <span class="kw">LIKE</span> '%@example.com';   <span class="cm">-- ends with @example.com</span></pre>
+    </div>
+
+    <!-- ==============================================================
+         4️⃣ Ordering and Limiting Results
+    ============================================================== -->
+    <h2>4️⃣ Ordering &amp; Limiting – <code>ORDER BY</code>, <code>LIMIT</code>/<code>OFFSET</code></h2>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> name, price
+<span class="kw">FROM</span> products
+<span class="kw">WHERE</span> price &gt; 0
+<span class="kw">ORDER BY</span> price <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> 10 <span class="kw">OFFSET</span> 20;   <span class="cm">-- pagination: page 3 (0‑based)</span></pre>
+    </div>
+
+    <p>Use <code>ASC</code> (default) for ascending order. <code>OFFSET</code> is optional – without it, <code>LIMIT 10</code> simply returns the first ten rows.</p>
+
+    <!-- ==============================================================
+         5️⃣ Distinct Rows
+    ============================================================== -->
+    <h2>5️⃣ Removing Duplicates – <code>DISTINCT</code></h2>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> DISTINCT department_id <span class="kw">FROM</span> employees;</pre>
+    </div>
+
+    <p><code>DISTINCT</code> works on the whole projected row. If you need distinct on a single column but keep other columns, use a <code>GROUP BY</code> (see next section).</p>
+
+    <!-- ==============================================================
+         6️⃣ Aggregate Functions &amp; Grouping
+    ============================================================== -->
+    <h2>6️⃣ Aggregates &amp; Grouping – Summaries &amp; Statistics</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr><th>Function</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><code>COUNT(col)</code></td><td>Number of non‑NULL values</td><td><code>SELECT COUNT(*) FROM orders;</code></tr>
+            <tr><td><code>SUM(col)</code></td><td>Total of numeric column</td><td><code>SELECT SUM(amount) FROM sales;</code></tr>
+            <tr><td><code>AVG(col)</code></td><td>Mean value</td><td><code>SELECT AVG(salary) FROM employees;</code></tr>
+            <tr><td><code>MIN(col)</code></td><td>Smallest value</td><td><code>SELECT MIN(price) FROM products;</code></tr>
+            <tr><td><code>MAX(col)</code></td><td>Largest value</td><td><code>SELECT MAX(price) FROM products;</code></tr>
+        </tbody>
+    </table>
+
+    <p>To obtain aggregates **per group**, combine them with <code>GROUP BY</code>:</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> department_id,
+       COUNT(*)                <span class="kw">AS</span> employee_cnt,
+       AVG(salary)             <span class="kw">AS</span> avg_salary
+<span class="kw">FROM</span> employees
+<span class="kw">GROUP BY</span> department_id
+<span class="kw">HAVING</span> COUNT(*) &gt; 5;   <span class="cm">-- keep only large departments</span></pre>
+    </div>
+
+    <p><strong>HAVING</strong> filters groups after aggregation (equivalent to <code>WHERE</code> for rows).</p>
+
+    <!-- ==============================================================
+         7️⃣ Joins – Combining Multiple Tables
+    ============================================================== -->
+    <h2>7️⃣ Joins – Bringing Data Together</h2>
+
+    <p>Four basic join types (inner, left/right outer, full outer, cross). The most common is <strong>INNER JOIN</strong>.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> e.first_name,
+       e.last_name,
+       d.name <span class="kw">AS</span> department
+<span class="kw">FROM</span> employees <span class="kw">AS</span> e
+<span class="kw">JOIN</span> departments <span class="kw">AS</span> d <span class="kw">ON</span> e.department_id = d.id
+<span class="kw">WHERE</span> d.name = 'Engineering'
+<span class="kw">ORDER BY</span> e.last_name;</pre>
+    </div>
+
+    <p>For left/right outer join:</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> c.name <span class="kw">AS</span> customer,
+       o.id   <span class="kw">AS</span> order_id
+<span class="kw">FROM</span> customers c
+<span class="kw">LEFT</span> <span class="kw">JOIN</span> orders o <span class="kw">ON</span> c.id = o.customer_id
+<span class="kw">ORDER BY</span> c.name;</pre>
+    </div>
+
+    <p>Use <code>FULL OUTER JOIN</code> when you need rows that appear in *either* table (PostgreSQL supports it; MySQL does not natively).</p>
+
+    <!-- ==============================================================
+         8️⃣ Set Operators – UNION / INTERSECT / EXCEPT
+    ============================================================== -->
+    <h2>8️⃣ Set Operators – Combining Result Sets</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> email <span class="kw">FROM</span> customers
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> email <span class="kw">FROM</span> newsletter_subscribers;   <span class="cm">-- eliminates duplicates</span>
+
+<span class="kw">SELECT</span> email <span class="kw">FROM</span> customers
+<span class="kw">INTERSECT</span>
+<span class="kw">SELECT</span> email <span class="kw">FROM</span> newsletter_subscribers;   <span class="cm">-- only common emails</span>
+
+<span class="kw">SELECT</span> email <span class="kw">FROM</span> customers
+<span class="kw">EXCEPT</span>
+<span class="kw">SELECT</span> email <span class="kw">FROM</span> newsletter_subscribers;   <span class="cm">-- in customers but not in subscribers</span></pre>
+    </div>
+
+    <p>All participating SELECTs must have the **same column count** and **compatible data types**.</p>
+
+    <!-- ==============================================================
+         9️⃣ Sub‑queries (Inline &amp; Correlated)
+    ============================================================== -->
+    <h2>9️⃣ Sub‑queries – Nesting SELECTs</h2>
+
+    <h3>Inline (derived table)</h3>
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> dept_id, avg_salary
+<span class="kw">FROM</span> (
+    <span class="kw">SELECT</span> department_id <span class="kw">AS</span> dept_id,
+           <span class="kw">AVG</span>(salary)    <span class="kw">AS</span> avg_salary
+    <span class="kw">FROM</span> employees
+    <span class="kw">GROUP BY</span> department_id
+) AS dept_avg
+<span class="kw">WHERE</span> avg_salary &gt; 80000;</pre>
+    </div>
+
+    <h3>Correlated sub‑query (depends on outer row)</h3>
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> e.id, e.first_name, e.salary
+<span class="kw">FROM</span> employees e
+<span class="kw">WHERE</span> e.salary &gt; (
+    <span class="kw">SELECT</span> <span class="kw">AVG</span>(salary) <span class="kw">FROM</span> employees
+    <span class="kw">WHERE</span> department_id = e.department_id
+);</pre>
+    </div>
+
+    <p>Correlated sub‑queries can be slower; many RDBMS transform them into joins automatically.</p>
+
+    <!-- ==============================================================
+         10️⃣ Window Functions – Analytic Queries
+    ============================================================== -->
+    <h2>10️⃣ Window Functions – Row‑Level Analytics</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> employee_id,
+       salary,
+       <span class="kw">AVG</span>(salary) <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> department_id) <span class="kw">AS</span> dept_avg,
+       <span class="kw">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> salary <span class="kw">DESC</span>) <span class="kw">AS</span> salary_rank
+<span class="kw">FROM</span> employees
+<span class="kw">ORDER BY</span> department_id, salary DESC;</pre>
+    </div>
+
+    <p>Window functions keep the original row granularity while adding a calculated column (e.g., running total, moving average, rank).</p>
+
+    <!-- ==============================================================
+         11️⃣ Performance Tips – EXPLAIN & Indexes
+    ============================================================== -->
+    <h2>11️⃣ Performance Tips – <code>EXPLAIN</code> and Indexes</h2>
+
+    <p>Before writing a complex SELECT, inspect the execution plan:</p>
+
+    <div class="code-block">
+        <pre>EXPLAIN ANALYZE
+<span class="kw">SELECT</span> e.first_name, e.last_name, d.name
+<span class="kw">FROM</span> employees e
+<span class="kw">JOIN</span> departments d <span class="kw">ON</span> e.department_id = d.id
+<span class="kw">WHERE</span> d.name = 'Engineering'
+<span class="kw">ORDER BY</span> e.last_name
+<span class="kw">LIMIT</span> 50;</pre>
+    </div>
+
+    <p>The output tells you whether an **index scan**, **sequential scan**, or **hash join** is used.  If you see “Seq Scan” on a large table with a WHERE clause on an indexed column, create an index:</p>
+
+    <div class="code-block">
+        <pre><span class="kw">CREATE INDEX</span> idx_emp_dept ON employees(department_id);
+<span class="kw">CREATE INDEX</span> idx_dept_name ON departments(name);</pre>
+    </div>
+
+    <p>Remember: each index speeds reads but slows INSERT/UPDATE/DELETE and consumes storage.</p>
+
+    <!-- ==============================================================
+         12️⃣ Safety & SQL‑Injection Reminder
+    ============================================================== -->
+    <h2>12️⃣ Safety – Avoiding SQL Injection in SELECTs</h2>
+
+    <p>Even a read‑only query can be hijacked to return data you never intended.  Always use **parameterised queries** / **prepared statements** in application code.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Python (psycopg2) – Safe SELECT</span></div>
+        <pre>import psycopg2
+
+conn = psycopg2.connect(dsn='dbname=mydb user=app')
+cur  = conn.cursor()
+cur.execute(
+    "SELECT name, price FROM products WHERE price &gt; %s AND category = %s;",
+    (100, 'Electronics')
+)
+rows = cur.fetchall()
+for r in rows:
+    print(r)</pre>
+    </div>
+
+    <p>Never concatenate user‑input directly into the SQL string.</p>
+
+    <!-- ==============================================================
+         13️⃣ Cheat‑Sheet – Quick Reference
+    ============================================================== -->
+    <h2>13️⃣ Cheat‑Sheet – SELECT Syntax Overview</h2>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Clause</th><th>Purpose</th><th>Typical Syntax</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>SELECT</code></td><td>Columns / expressions to return</td><td><code>SELECT col1, col2, …</code></td></tr>
+                <tr><td><code>FROM</code></td><td>Source table(s) / subquery</td><td><code>FROM table_name [AS t]</code></td></tr>
+                <tr><td><code>WHERE</code></td><td>Row filter</td><td><code>WHERE condition</code></td></tr>
+                <tr><td><code>GROUP BY</code></td><td>Aggregate grouping</td><td><code>GROUP BY col1, col2</code></td></tr>
+                <tr><td><code>HAVING</code></td><td>Filter on aggregated groups</td><td><code>HAVING aggregate_condition</code></td></tr>
+                <tr><td><code>ORDER BY</code></td><td>Sort result set</td><td><code>ORDER BY col [ASC|DESC]</code></td></tr>
+                <tr><td><code>LIMIT / OFFSET</code></td><td>Pagination</td><td><code>LIMIT 10 OFFSET 20</code></td></tr>
+                <tr><td><code>DISTINCT</code></td><td>Remove duplicate rows</td><td><code>SELECT DISTINCT col FROM …</code></td></tr>
+                <tr><td><code>JOIN</code></td><td>Combine tables</td><td><code>JOIN other_table ON condition</code></td></tr>
+                <tr><td><code>UNION / INTERSECT / EXCEPT</code></td><td>Set algebra</td><td><code>SELECT … UNION SELECT …</code></td></tr>
+                <tr><td><code>WINDOW</code></td><td>Analytic functions</td><td><code>OVER (PARTITION BY … ORDER BY …)</code></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ==============================================================
+         14️⃣ Sample Schema Diagram (Placeholder)
+    ============================================================== -->
+    <h2>14️⃣ Sample Schema – Customers, Orders, Products</h2>
+    <div class="diagram-placeholder" style="width:100%;height:200px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#777;">
+        <em>ER‑diagram (Customers ←→ Orders → Products) placeholder</em>
+    </div>
+
+    <!-- ==============================================================
+         15️⃣ Lab Exercises (Extended)
+    ============================================================== -->
+    <h2>15️⃣ Lab Exercises (Extended)</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.1 – Build the Sample Schema</div>
+        <p>Using the diagram above, create three tables in PostgreSQL (or SQLite) with appropriate primary/foreign keys. Then insert at least 10 rows per table (use any fictional data you like).</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.2 – Basic Queries</div>
+        <ol>
+            <li>List all products cheaper than $50, ordered by price ascending.</li>
+            <li>Show the total amount each customer has spent (use <code>SUM</code> and <code>GROUP BY</code>).</li>
+            <li>Find customers who placed more than 3 orders (use <code>HAVING</code>).</li>
+            <li>Display the top 5 most‑expensive orders (use <code>ORDER BY</code> and <code>LIMIT</code>).</li>
+        </ol>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.3 – Joins &amp; Sub‑queries</div>
+        <ol>
+            <li>Show each order with the customer’s name and the product’s name (inner join across three tables).</li>
+            <li>Find products that have never been ordered (left join + <code>WHERE order_id IS NULL</code>).</li>
+            <li>Write a correlated sub‑query that returns customers whose total spend is above the **average** spend of all customers.</li>
+        </ol>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.4 – Window Functions</div>
+        <p>For each order, compute the running total per customer (order rows sorted by <code>order_date</code>) using <code>SUM() OVER (PARTITION BY … ORDER BY …)</code>. Capture the query and a screenshot of the result.</p>
+    </div>
+
+    <!-- ==============================================================
+         16️⃣ Knowledge‑Check Quiz
+    ============================================================== -->
+    <h2>16️⃣ Knowledge‑Check Quiz (7 questions)</h2>
+    <div class="quiz">
+        <ol>
+            <li>Which clause must appear **first** in a SELECT statement?<br>
+                <input type="radio" name="q1" value="a"> <code>FROM</code><br>
+                <input type="radio" name="q1" value="b"> <code>SELECT</code><br>
+                <input type="radio" name="q1" value="c"> <code>WHERE</code>
+            </li>
+            <li>What does the following query return?<br><pre>SELECT DISTINCT department_id FROM employees;</pre><br>
+                <input type="radio" name="q2" value="a"> All rows from <code>employees</code> (including duplicates).<br>
+                <input type="radio" name="q2" value="b"> A list of **unique** department IDs.<br>
+                <input type="radio" name="q2" value="c"> The number of employees per department.
+            </li>
+            <li>True or False – <code>HAVING</code> can be used without <code>GROUP BY</code>.<br>
+                <input type="radio" name="q3" value="a"> True<br>
+                <input type="radio" name="q3" value="b"> False
+            </li>
+            <li>Which of the following retrieves the 3rd page (page size = 20) of ordered results?<br>
+                <input type="radio" name="q4" value="a"> <code>LIMIT 20 OFFSET 40</code><br>
+                <input type="radio" name="q4" value="b"> <code>LIMIT 60 OFFSET 20</code><br>
+                <input type="radio" name="q4" value="c"> <code>OFFSET 40 LIMIT 20</code>
+            </li>
+            <li>In a <code>LEFT JOIN</code>, rows from the **left** table are returned even when there is no matching row on the right.  What value appears for right‑table columns in those cases?<br>
+                <input type="radio" name="q5" value="a"> 0<br>
+                <input type="radio" name="q5" value="b"> NULL<br>
+                <input type="radio" name="q5" value="c"> Empty string
+            </li>
+            <li>Which window function can be used to assign a **dense rank** (no gaps) to rows ordered by salary descending?<br>
+                <input type="radio" name="q6" value="a"> <code>ROW_NUMBER()</code><br>
+                <input type="radio" name="q6" value="b"> <code>DENSE_RANK()</code><br>
+                <input type="radio" name="q6" value="c"> <code>RANK()</code>
+            </li>
+            <li>What is the primary benefit of using a **prepared statement** for a SELECT that contains user input?<br>
+                <input type="radio" name="q7" value="a"> It makes the query run faster.<br>
+                <input type="radio" name="q7" value="b"> It automatically adds <code>LIMIT</code> to protect the DB.<br>
+                <input type="radio" name="q7" value="c"> It separates data from code, preventing SQL injection.
+            </li>
+        </ol>
+
+        <details>
+            <summary>Show Answers</summary>
+            <ol>
+                <li><strong>B</strong> – <code>SELECT</code> is always the first clause.</li>
+                <li><strong>B</strong> – Returns a list of distinct department IDs.</li>
+                <li><strong>False</strong> – <code>HAVING</code> filters groups, so a <code>GROUP BY</code> (or an implicit grouping) is required.</li>
+                <li><strong>A</strong> – <code>LIMIT 20 OFFSET 40</code> fetches rows 41‑60 → page 3 (0‑based offset).</li>
+                <li><strong>B</strong> – Missing right‑side rows are filled with <code>NULL</code>.</li>
+                <li><strong>B</strong> – <code>DENSE_RANK()</code> gives a consecutive rank without gaps.</li>
+                <li><strong>C</strong> – Parameters are bound separately from the SQL string, eliminating injection vectors.</li>
+            </ol>
+        </details>
+    </div>
+
+    <!-- ==============================================================
+         17️⃣ Further Reading & Resources
+    ============================================================== -->
+    <h2>17️⃣ Further Reading & Resources</h2>
+    <ul class="resource-list">
+        <li><strong>Books</strong>
+            <ul>
+                <li><em>SQL Fundamentals</em> – John J. L. (O'Reilly, 2022)</li>
+                <li><em>PostgreSQL Up and Running</em> – Regina O. Obe (3rd ed., 2023)</li>
+                <li><em>SQL Antipatterns</em> – Bill Karwin (Addison‑Wesley, 2010)</li>
+                <li><em>Mastering SQL Queries</em> – Mark S. (Packt, 2021)</li>
+            </ul>
+        </li>
+        <li><strong>Official Docs</strong>
+            <ul>
+                <li><a href="https://www.postgresql.org/docs/current/sql-select.html">PostgreSQL SELECT Documentation</a></li>
+                <li><a href="https://dev.mysql.com/doc/refman/8.0/en/select.html">MySQL SELECT Syntax</a></li>
+                <li><a href="https://sqlite.org/lang_select.html">SQLite SELECT Overview</a></li>
+            </ul>
+        </li>
+        <li><strong>Interactive Practice</strong>
+            <ul>
+                <li><a href="https://www.sqlzoo.net/">SQLZoo – hands‑on queries</a></li>
+                <li><a href="https://mode.com/sql-tutorial/">Mode Analytics SQL Tutorial (real‑world data sets)</a></li>
+                <li><a href="https://www.hackthebox.eu/">Hack The Box – “SQL Injection” machines</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- ==============================================================
+         Navigation
+    ============================================================== -->
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 03 ===================== -->
-                <div class="lecture" id="lec-2">
-                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
-                    <h1>Filtering & Sorting</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~45 min</span>
-                    </div>
+               <div class="lecture" id="lec-2">
+    <!-- ==============================================================
+         Header & Meta
+    ============================================================== -->
+    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+    <h1>Filtering &amp; Sorting</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
 
-                    <h2>The WHERE Clause</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> products <span class="kw">WHERE</span> price > 100;
-<span class="kw">SELECT</span> * <span class="kw">FROM</span> users <span class="kw">WHERE</span> country = <span class="st">'USA'</span> <span class="kw">AND</span> age >= 18;</pre>
-                    </div>
+    <!-- ==============================================================
+         1️⃣ What Is Filtering?
+    ============================================================== -->
+    <h2>1️⃣ The <code>WHERE</code> Clause – Selecting the Right Rows</h2>
+    <p>
+        <code>WHERE</code> is the gate‑keeper of a <code>SELECT</code> statement.  Every row that
+        satisfies the Boolean expression after <code>WHERE</code> is passed downstream
+        to <code>ORDER BY</code>, <code>LIMIT</code>, etc.
+    </p>
 
-                    <h2>Ordering Results</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> products <span class="kw">ORDER BY</span> price <span class="kw">DESC</span>;</pre>
-                    </div>
+    <!-- --------------------------------------------------------------
+         1.1 Comparison & Logical Operators
+    -------------------------------------------------------------- -->
+    <h3>1.1 Comparison & Logical Operators</h3>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
-                    </div>
-                </div>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Operator</th><th>Description</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>=</code></td><td>Equality</td><td><code>price = 199.99</code></tr>
+                <tr><td><code>&lt;&gt; or !=</code></td><td>Inequality</td><td><code>category <> 'Books'</code></tr>
+                <tr><td><code>&gt; &lt; &gt;= &lt;=</code></td><td>Numeric / date comparison</td><td><code>age &gt;= 21</code></tr>
+                <tr><td><code>BETWEEN … AND …</code></td><td>Inclusive range</td><td><code>price BETWEEN 50 AND 150</code></tr>
+                <tr><td><code>IN ( … )</code></td><td>Set membership</td><td><code>status IN ('active','pending')</code></tr>
+                <tr><td><code>LIKE / ILIKE</code></td><td>Pattern matching (wildcards <code>%</code> and <code>_</code>)</td><td><code>email LIKE '%@example.com'</code></tr>
+                <tr><td><code>IS NULL / IS NOT NULL</code></td><td>Null test (cannot use <code>= NULL</code>)</td><td><code>last_login IS NULL</code></tr>
+                <tr><td><code>AND / OR / NOT</code></td><td>Boolean combinators</td><td><code>country = 'USA' AND age &gt;= 18</code></tr>
+                <tr><td><code>EXISTS (sub‑query)</code></td><td>True if sub‑query returns at least one row</td><td><code>WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.id)</code></tr>
+                <tr><td><code>ANY / ALL</code></td><td>Compare to a set of values</td><td><code>salary &gt; ANY (SELECT salary FROM employees WHERE department = 'HR')</code></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>1.2 Practical <code>WHERE</code> Samples</h3>
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> *
+<span class="kw">FROM</span> products
+<span class="kw">WHERE</span> price &gt; 100
+  <span class="kw">AND</span> stock &gt;= 10
+  <span class="kw">AND</span> category <span class="kw">IN</span> ('Electronics','Appliances')
+  <span class="kw">AND</span> discontinued <span class="kw">IS</span> <span class="kw">NULL</span>;
+
+<span class="kw">SELECT</span> *
+<span class="kw">FROM</span> users
+<span class="kw">WHERE</span> country = <span class="st">'USA'</span>
+  <span class="kw">AND</span> age &gt;= 18
+  <span class="kw">AND</span> email <span class="kw">LIKE</span> <span class="st">'%@example.com'</span>;
+
+<span class="kw">SELECT</span> *
+<span class="kw">FROM</span> orders
+<span class="kw">WHERE</span> order_date <span class="kw">BETWEEN</span> <span class="st">'2024-01-01'</span> <span class="kw">AND</span> <span class="st">'2024-01-31'</span>;
+
+<span class="kw">SELECT</span> *
+<span class="kw">FROM</span> employees e
+<span class="kw">WHERE</span> EXISTS (
+    <span class="kw">SELECT</span> 1 <span class="kw">FROM</span> departments d <span class="kw">WHERE</span> d.id = e.department_id
+    <span class="kw">AND</span> d.name = <span class="st">'Engineering'</span>
+);</pre>
+    </div>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Performance Tip</div>
+        <p>
+            **Never** wrap an indexed column in a function in the <code>WHERE</code> clause
+            (e.g., <code>WHERE UPPER(name) = 'ALICE'</code>) – this defeats the index.
+            Use a functional index or a case‑insensitive collation instead.
+        </p>
+    </div>
+
+    <!-- ==============================================================
+         2️⃣ ORDER BY – Sorting the Result Set
+    ============================================================== -->
+    <h2>2️⃣ Ordering Results – <code>ORDER BY</code></h2>
+
+    <h3>2.1 Basic Syntax</h3>
+    <p>Sort by one or more columns, each optionally marked <code>ASC</code> (default) or <code>DESC</code>.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> *
+<span class="kw">FROM</span> products
+<span class="kw">ORDER BY</span> price <span class="kw">DESC</span>;   <span class="cm">-- expensive first</span>
+
+<span class="kw">SELECT</span> *
+<span class="kw">FROM</span> employees
+<span class="kw">ORDER BY</span> department_id <span class="kw">ASC</span>, last_name <span class="kw">ASC</span>;</pre>
+    </div>
+
+    <h3>2.2 Controlling NULL Placement</h3>
+    <p>Some engines put <code>NULL</code> values first, others last.  Use the explicit
+    <code>NULLS FIRST</code> or <code>NULLS LAST</code> clause.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> *
+<span class="kw">FROM</span> users
+<span class="kw">ORDER BY</span> last_login <span class="kw">DESC</span> <span class="kw">NULLS</span> <span class="kw">LAST</span>;</pre>
+    </div>
+
+    <h3>2.3 Case‑Insensitive / Locale‑Aware Sorting</h3>
+    <p>PostgreSQL lets you attach a collation directly in the <code>ORDER BY</code> clause:</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> name
+<span class="kw">FROM</span> customers
+<span class="kw">ORDER BY</span> name <span class="kw">COLLATE</span> \"C\";   <span class="cm">-- case‑insensitive, language‑aware</span></pre>
+    </div>
+
+    <h3>2.4 Ordering by an Expression (Custom Sort)</h3>
+    <p>Advanced use‑cases often need a derived value, e.g., sorting by the length of a string:</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> product_name, price
+<span class="kw">FROM</span> products
+<span class="kw">ORDER BY</span> LENGTH(product_name) <span class="kw">ASC</span>, price <span class="kw">DESC</span>;</pre>
+    </div>
+
+    <h3>2.5 Random Ordering (caution!)</h3>
+    <p>For testing or sampling you can randomise rows, but it forces a full‑table sort and is expensive on large tables.</p>
+
+    <div class="code-block">
+        <pre><!-- PostgreSQL -->
+<span class="kw">SELECT</span> *
+<span class="kw">FROM</span> quotes
+<span class="kw">ORDER BY</span> RANDOM()
+<span class="kw">LIMIT</span> 1;
+
+<!-- MySQL -->
+<span class="kw">SELECT</span> *
+<span class="kw">FROM</span> quotes
+<span class="kw">ORDER BY</span> RAND()
+<span class="kw">LIMIT</span> 1;</pre>
+    </div>
+
+    <!-- ==============================================================
+         3️⃣ Pagination – LIMIT & OFFSET
+    ============================================================== -->
+    <h2>3️⃣ Pagination – <code>LIMIT</code> &amp; <code>OFFSET</code></h2>
+
+    <p>Web applications often need “pages” of data.  The canonical pattern is:</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> *
+<span class="kw">FROM</span> products
+<span class="kw">ORDER BY</span> product_id
+<span class="kw">LIMIT</span> 20          <span class="cm">-- page size</span>
+<span class="kw">OFFSET</span> 40;        <span class="cm">-- skip first two pages (0‑based)</span></pre>
+    </div>
+
+    <p>
+        <strong>Tip:</strong> Combine pagination with a stable ordering column (e.g., primary key) to get deterministic results.
+    </p>
+
+    <h3>Keyset Pagination (Seek Method)</h3>
+    <p>When a table grows, <code>OFFSET</code> becomes slower.  Use “keyset pagination”:</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> *
+<span class="kw">FROM</span> products
+<span class="kw">WHERE</span> product_id &gt; 120   <span class="cm">-- last ID from previous page</span>
+<span class="kw">ORDER BY</span> product_id
+<span class="kw">LIMIT</span> 20;</pre>
+    </div>
+
+    <!-- ==============================================================
+         4️⃣ Performance & Indexes
+    ============================================================== -->
+    <h2>4️⃣ Performance – How Filtering & Sorting Interact with Indexes</h2>
+
+    <h3>4.1 Index Usage Basics</h3>
+    <ul>
+        <li>A <strong>B‑tree index</strong> can satisfy both <code>WHERE</code> predicates and <code>ORDER BY</code> if the sort order matches the index definition.</li>
+        <li>Example: <code>CREATE INDEX idx_price ON products(price DESC);</code> lets the engine fetch rows already sorted – eliminating a separate sort phase.</li>
+    </ul>
+
+    <h3>4.2 EXPLAIN – Visualising the Plan</h3>
+
+    <div class="code-block">
+        <pre>EXPLAIN ANALYZE
+<span class="kw">SELECT</span> *
+<span class="kw">FROM</span> products
+<span class="kw">WHERE</span> price &gt; 100
+<span class="kw">ORDER BY</span> price <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> 10;</pre>
+    </div>
+
+    <p>The output shows whether the planner uses an <em>Index Scan</em> (good) or a <em>Seq Scan + Sort</em> (costly).</p>
+
+    <h3>4.3 Common Pitfalls</h3>
+    <ul>
+        <li>Applying a function to an indexed column (<code>WHERE LOWER(email) = 'alice@example.com'</code>) disables index usage.  Instead create a functional index: <code>CREATE INDEX idx_email_lower ON users (LOWER(email));</code></li>
+        <li>Using <code>OR</code> across unrelated columns often prevents the optimizer from using indexes.  Split the query with <code>UNION ALL</code> if possible.</li>
+        <li>Sorting on a calculated column (e.g., <code>ORDER BY price * tax_rate</code>) forces a temporary file sort.</li>
+    </ul>
+
+    <!-- ==============================================================
+         5️⃣ Security – Avoiding SQL Injection in SELECTs
+    ============================================================== -->
+    <h2>5️⃣ Security – Safe Filtering &amp; Sorting</h2>
+
+    <p>Even read‑only queries can be abused for data exfiltration if user input is concatenated unchecked.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Node.js (pg) – Parameterised SELECT</span></div>
+        <pre>const { Client } = require('pg');
+const client = new Client(/* connection params */);
+
+async function getProducts(minPrice, maxPrice, sortCol, sortDir) {
+    // whitelist column names & sort direction to prevent injection
+    const allowedCols = ['price', 'name', 'created_at'];
+    const allowedDir = ['ASC', 'DESC'];
+
+    if (!allowedCols.includes(sortCol) || !allowedDir.includes(sortDir)) {
+        throw new Error('Invalid sort parameters');
+    }
+
+    const sql = `SELECT *
+                 FROM products
+                 WHERE price BETWEEN $1 AND $2
+                 ORDER BY ${sortCol} ${sortDir}
+                 LIMIT 20`;
+    const res = await client.query(sql, [minPrice, maxPrice]);
+    return res.rows;
+}`;
+    </pre>
+    </div>
+
+    <p>**Key take‑aways**:</p>
+    <ul>
+        <li>Never interpolate raw user input directly into SQL (even for <code>ORDER BY</code>).</li>
+        <li>Whitelist column names / directions, or map them to an enum.</li>
+        <li>Use prepared statements for values (<code>$1, $2</code> in PostgreSQL, <code>?</code> in MySQL).</li>
+    </ul>
+
+    <!-- ==============================================================
+         6️⃣ Cheat‑Sheet – Quick Reference
+    ============================================================== -->
+    <h2>6️⃣ Cheat‑Sheet – Filtering & Sorting Summary</h2>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Clause</th><th>Purpose</th><th>Typical Syntax</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>WHERE</code></td><td>Row filtering</td><td><code>WHERE col = 5 AND other < 10</code></td></tr>
+                <tr><td><code>BETWEEN … AND …</code></td><td>Inclusive range</td><td><code>WHERE price BETWEEN 20 AND 30</code></td></tr>
+                <tr><td><code>IN ( … )</code></td><td>Set membership</td><td><code>WHERE status IN ('open','closed')</code></td></tr>
+                <tr><td><code>LIKE / ILIKE</code></td><td>Pattern matching</td><td><code>WHERE name LIKE 'A%'</code></td></tr>
+                <tr><td><code>IS NULL / IS NOT NULL</code></td><td>Null test</td><td><code>WHERE deleted_at IS NULL</code></td></tr>
+                <tr><td><code>EXISTS (sub‑query)</code></td><td>True if sub‑query returns rows</td><td><code>WHERE EXISTS (SELECT 1 …)</code></td></tr>
+                <tr><td><code>ORDER BY</code></td><td>Sort result set</td><td><code>ORDER BY col1 DESC, col2 ASC</code></td></tr>
+                <tr><td><code>NULLS FIRST / LAST</code></td><td>Explicit null ordering</td><td><code>ORDER BY created_at DESC NULLS LAST</code></td></tr>
+                <tr><td><code>LIMIT / OFFSET</code></td><td>Pagination</td><td><code>LIMIT 20 OFFSET 40</code></td></tr>
+                <tr><td><code>CASE … END</code></td><td>Custom sort order</td><td><code>ORDER BY CASE status WHEN 'high' THEN 1 … END</code></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ==============================================================
+         7️⃣ Sample Schema Diagram (Placeholder)
+    ============================================================== -->
+    <h2>7️⃣ Sample Schema – Customers, Orders, Products</h2>
+    <div class="diagram-placeholder" style="width:100%;height:200px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#777;">
+        <em>ER‑diagram (Customers ←→ Orders ←→ Products) placeholder</em>
+    </div>
+
+    <!-- ==============================================================
+         8️⃣ Lab Exercises (Extended)
+    ============================================================== -->
+    <h2>8️⃣ Lab Exercises (Hands‑On)</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.1 – Filtering Challenge</div>
+        <p>Using the sample schema (create <code>customers</code>, <code>orders</code>, <code>products</code> tables with at least 20 rows each):</p>
+        <ol>
+            <li>Find all orders placed in the last 30 days with a total amount &gt; $200.</li>
+            <li>List customers whose email ends with <code>@example.org</code> **and** who have never placed an order.</li>
+            <li>Show products that have never been ordered (hint: <code>LEFT JOIN</code> + <code>WHERE order_id IS NULL</code>).</li>
+            <li>Retrieve the top 5 most‑expensive products, ordered by price descending.</li>
+        </ol>
+        <p>Capture the SQL statements and a screenshot of each query’s result.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.2 – Sorting & Pagination</div>
+        <ol>
+            <li>Write a query that sorts customers by <code>last_name</code> ascending, then <code>first_name</code> descending.</li>
+            <li>Implement keyset pagination for the <code>orders</code> table (use <code>order_id</code> as the cursor).</li>
+            <li>Compare the execution time of the same query using <code>OFFSET/LIMIT</code> vs. keyset pagination on a table with 10 000 rows.</li>
+            <li>Explain why the keyset method is faster on large offsets.</li>
+        </ol>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.3 – Index Impact</div>
+        <p>On the <code>products</code> table:</p>
+        <ol>
+            <li>Create a B‑tree index on <code>price DESC</code>.</li>
+            <li>Run the query <code>SELECT * FROM products WHERE price &gt; 500 ORDER BY price DESC LIMIT 20;</code> and capture the <code>EXPLAIN ANALYZE</code> output before and after the index.</li>
+            <li>Summarise (≤ 100 words) how the index changed the plan and execution time.</li>
+        </ol>
+    </div>
+
+    <!-- ==============================================================
+         9️⃣ Knowledge‑Check Quiz
+    ============================================================== -->
+    <h2>9️⃣ Knowledge‑Check Quiz (7 questions)</h2>
+    <div class="quiz">
+        <ol>
+            <li>Which operator correctly checks if a column <em>does not contain</em> a NULL value?<br>
+                <input type="radio" name="q1" value="a"> <code>= NULL</code><br>
+                <input type="radio" name="q1" value="b"> <code>IS NOT NULL</code><br>
+                <input type="radio" name="q1" value="c"> <code>!= NULL</code>
+            </li>
+            <li>What does the following query return?<br><pre>SELECT *
+FROM employees
+WHERE salary BETWEEN 50000 AND 60000;</pre><br>
+                <input type="radio" name="q2" value="a"> Employees whose salary is exactly $50,000 or $60,000.<br>
+                <input type="radio" name="q2" value="b"> Employees earning **inclusive** of $50k – $60k.<br>
+                <input type="radio" name="q2" value="c"> Employees whose salary is **outside** the range.
+            </li>
+            <li>True or False – <code>ORDER BY column DESC NULLS FIRST</code> puts the highest non‑null values first, then nulls.<br>
+                <input type="radio" name="q3" value="a"> True<br>
+                <input type="radio" name="q3" value="b"> False
+            </li>
+            <li>Which of the following is **not** a valid way to avoid SQL injection in an <code>ORDER BY</code> clause?<br>
+                <input type="radio" name="q4" value="a"> Whitelist allowed column names in application code.<br>
+                <input type="radio" name="q4" value="b"> Use a prepared statement and bind the column name as a parameter.<br>
+                <input type="radio" name="q4" value="c"> Validate that the sort direction is either “ASC” or “DESC”.</li>
+            <li>How would you retrieve the 3rd page of results (page size = 25) ordered by <code>created_at</code> descending?<br>
+                <input type="radio" name="q5" value="a"> <code>LIMIT 25 OFFSET 50</code><br>
+                <input type="radio" name="q5" value="b"> <code>LIMIT 75 OFFSET 0</code><br>
+                <input type="radio" name="q5" value="c"> <code>OFFSET 75 LIMIT 25</code>
+            </li>
+            <li>Which expression will correctly sort rows so that <code>NULL</code> values appear **last** regardless of ASC/DESC?<br>
+                <input type="radio" name="q6" value="a"> <code>ORDER BY col ASC NULLS FIRST</code><br>
+                <input type="radio" name="q6" value="b"> <code>ORDER BY col DESC NULLS LAST</code><br>
+                <input type="radio" name="q6" value="c"> <code>ORDER BY ISNULL(col) ASC, col ASC</code>
+            </li>
+            <li>What is the main performance advantage of a “keyset pagination” query over an <code>OFFSET/LIMIT</code> query on a large table?<br>
+                <input type="radio" name="q7" value="a"> It avoids scanning the entire table up to the offset.<br>
+                <input type="radio" name="q7" value="b"> It uses a hash index instead of a B‑tree.<br>
+                <input type="radio" name="q7" value="c"> It allows the DB to cache the whole result set.</li>
+        </ol>
+
+        <details>
+            <summary>Show Answers</summary>
+            <ol>
+                <li><strong>B</strong> – <code>IS NOT NULL</code> is the correct null‑check operator.</li>
+                <li><strong>B</strong> – <code>BETWEEN</code> is inclusive of both bounds.</li>
+                <li><strong>True</strong> – “NULLS FIRST” puts nulls before any non‑null values, regardless of ASC/DESC.</li>
+                <li><strong>B</strong> – Prepared statements cannot bind identifiers (column names); you must whitelist or map them.</li>
+                <li><strong>A</strong> – 3rd page (0‑based) => OFFSET = 25 × 2 = 50, LIMIT = 25.</li>
+                <li><strong>C</strong> – The trick <code>ORDER BY ISNULL(col) ASC, col ASC</code> forces nulls to the end for both directions.</li>
+                <li><strong>A</strong> – Keyset pagination reads from a known cursor, avoiding the cost of skipping rows.</li>
+            </ol>
+        </details>
+    </div>
+
+    <!-- ==============================================================
+         10️⃣ Further Reading & Resources
+    ============================================================== -->
+    <h2>10️⃣ Further Reading & Resources</h2>
+    <ul class="resource-list">
+        <li><strong>Books</strong>
+            <ul>
+                <li><em>SQL Performance Explained</em> – Markus Winand (2nd ed., 2021)</li>
+                <li><em>SQL Antipatterns</em> – Bill Karwin (Addison‑Wesley, 2010)</li>
+                <li><em>PostgreSQL Up and Running</em> – Regina O. Obe (3rd ed., 2023)</li>
+            </ul>
+        </li>
+        <li><strong>Official Docs</strong>
+            <ul>
+                <li><a href="https://www.postgresql.org/docs/current/sql-select.html">PostgreSQL SELECT reference</a></li>
+                <li><a href="https://dev.mysql.com/doc/refman/8.0/en/select.html">MySQL SELECT syntax</a></li>
+                <li><a href="https://sqlite.org/lang_select.html">SQLite SELECT documentation</a></li>
+            </ul>
+        </li>
+        <li><strong>Interactive Practice</strong>
+            <ul>
+                <li><a href="https://www.sqlzoo.net/">SQLZoo – hands‑on exercises</a></li>
+                <li><a href="https://mode.com/sql-tutorial/">Mode Analytics SQL Tutorial (real‑world data)</a></li>
+                <li><a href="https://www.hackthebox.eu/">Hack The Box – “SQL Injection” and “SQL Filtering” rooms</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- ==============================================================
+         Navigation
+    ============================================================== -->
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+    </div>
+</div>
+
 
                 <!-- ===================== LECTURE 04 ===================== -->
-                <div class="lecture" id="lec-3">
-                    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
-                    <h1>Joins</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~55 min</span>
-                    </div>
+               <div class="lecture" id="lec-3">
+    <!-- ==============================================================
+         Header & Meta
+    ============================================================== -->
+    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+    <h1>Joins – Combining Data From Multiple Tables</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~55 min</span>
+    </div>
 
-                    <h2>Combining Tables</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">SELECT</span> orders.id, users.name
-<span class="kw">FROM</span> orders
-<span class="kw">INNER JOIN</span> users <span class="kw">ON</span> orders.user_id = users.id;</pre>
-                    </div>
+    <!-- ==============================================================
+         0️⃣ Why Joins Matter
+    ============================================================== -->
+    <h2>0️⃣ Why Joins Matter</h2>
+    <p>
+        Real‑world databases are <strong>normalized</strong>: data is split across related tables to avoid
+        redundancy.  A join stitches those pieces back together so a security analyst (or any
+        data‑consumer) can answer questions such as:
+    </p>
+    <ul>
+        <li>Which user bought the most‑expensive product?</li>
+        <li>What is the total revenue per country?</li>
+        <li>Are there any “orphaned” orders without a matching user?</li>
+    </ul>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
-                    </div>
-                </div>
+    <!-- ==============================================================
+         1️⃣ Sample Schema (Illustrated)
+    ============================================================== -->
+    <h2>1️⃣ Sample Schema (Orders, Users, Products, Order_Items)</h2>
+
+    <div class="diagram-placeholder" style="width:100%;height:200px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#777;">
+        <em>ER diagram (Users ↔ Orders ↔ Order_Items ↔ Products) placeholder</em>
+    </div>
+
+    <p>Below is the DDL you can paste into any RDBMS (PostgreSQL/MySQL/SQLite) to create the demo data.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">schema.sql</span></div>
+        <pre class="language-sql"><span class="kw">CREATE TABLE</span> users (
+    id          <span class="kw">SERIAL</span>      <span class="kw">PRIMARY KEY</span>,
+    name        <span class="kw">VARCHAR</span>(50)   <span class="kw">NOT NULL</span>,
+    email       <span class="kw">VARCHAR</span>(100)  <span class="kw">UNIQUE</span>,
+    country     <span class="kw">VARCHAR</span>(50)
+);
+
+<span class="kw">CREATE TABLE</span> products (
+    id          <span class="kw">SERIAL</span>      <span class="kw">PRIMARY KEY</span>,
+    sku         <span class="kw">VARCHAR</span>(30)   <span class="kw">UNIQUE</span>,
+    name        <span class="kw">VARCHAR</span>(100)  <span class="kw">NOT NULL</span>,
+    price       <span class="kw">NUMERIC</span>(9,2) <span class="kw">NOT NULL</span>
+);
+
+<span class="kw">CREATE TABLE</span> orders (
+    id          <span class="kw">SERIAL</span>      <span class="kw">PRIMARY KEY</span>,
+    user_id     <span class="kw">INT</span>         <span class="kw">REFERENCES</span> users(id),
+    order_date  <span class="kw">TIMESTAMP</span>    <span class="kw">DEFAULT</span> <span class="kw">CURRENT_TIMESTAMP</span>
+);
+
+<span class="kw">CREATE TABLE</span> order_items (
+    id          <span class="kw">SERIAL</span>      <span class="kw">PRIMARY KEY</span>,
+    order_id    <span class="kw">INT</span>         <span class="kw">REFERENCES</span> orders(id),
+    product_id  <span class="kw">INT</span>         <span class="kw">REFERENCES</span> products(id),
+    quantity    <span class="kw">INT</span>         <span class="kw">DEFAULT</span> 1
+);</pre>
+    </div>
+
+    <!-- ==============================================================
+         2️⃣ Join Types – Theory + Venn Diagram
+    ============================================================== -->
+    <h2>2️⃣ Join Types – Theory (with Venn diagrams)</h2>
+
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Join Type</th><th>Result Set</th><th>Typical Syntax</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>INNER JOIN</strong></td>
+                    <td>Only rows that have matching keys in *both* tables.</td>
+                    <td><code>SELECT … FROM A <span class="kw">INNER JOIN</span> B <span class="kw">ON</span> A.id = B.fk</code></td>
+                </tr>
+                <tr>
+                    <td><strong>LEFT (OUTER) JOIN</strong></td>
+                    <td>All rows from the left table + matching rows from the right; NULL where no match.</td>
+                    <td><code>SELECT … FROM A <span class="kw">LEFT JOIN</span> B <span class="kw">ON</span> A.id = B.fk</code></td>
+                </tr>
+                <tr>
+                    <td><strong>RIGHT (OUTER) JOIN</strong></td>
+                    <td>All rows from the right table + matching rows from the left; NULL where no match.</td>
+                    <td><code>SELECT … FROM A <span class="kw">RIGHT JOIN</span> B <span class="kw">ON</span> A.id = B.fk</code></td>
+                </tr>
+                <tr>
+                    <td><strong>FULL (OUTER) JOIN</strong></td>
+                    <td>All rows from both tables; NULLs where one side is missing.</td>
+                    <td><code>SELECT … FROM A <span class="kw">FULL OUTER JOIN</span> B <span class="kw">ON</span> A.id = B.fk</code></td>
+                </tr>
+                <tr>
+                    <td><strong>CROSS JOIN</strong></td>
+                    <td>Cartesian product (every row of A paired with every row of B). Use with care!</td>
+                    <td><code>SELECT … FROM A <span class="kw">CROSS JOIN</span> B</code></td>
+                </tr>
+                <tr>
+                    <td><strong>NATURAL JOIN</strong></td>
+                    <td>Implicit join on all columns with the same name. <em>Rarely used in security reporting – can hide bugs.</em></td>
+                    <td><code>SELECT … FROM A <span class="kw">NATURAL JOIN</span> B</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>Below are simple Venn‑diagram placeholders for each join type.  Replace them with real SVG/PNG graphics in your LMS.</p>
+
+    <div class="tbl-wrap">
+        <table>
+            <thead><tr><th>Join</th><th>Diagram</th></tr></thead>
+            <tbody>
+                <tr><td>INNER</td><td><div class="diagram-placeholder" style="height:150px;background:#eef;"><em>Venn – overlapping area only</em></div></td></tr>
+                <tr><td>LEFT</td><td><div class="diagram-placeholder" style="height:150px;background:#eef;"><em>All of left + overlap</em></div></td></tr>
+                <tr><td>RIGHT</td><td><div class="diagram-placeholder" style="height:150px;background:#eef;"><em>All of right + overlap</em></div></td></tr>
+                <tr><td>FULL</td><td><div class="diagram-placeholder" style="height:150px;background:#eef;"><em>Entire left & right circles</em></div></td></tr>
+                <tr><td>CROSS</td><td><div class="diagram-placeholder" style="height:150px;background:#eef;"><em>Cartesian grid</em></div></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ==============================================================
+         3️⃣ Practical Join Syntaxs – Variations & Shortcuts
+    ============================================================== -->
+    <h2>3️⃣ Practical Join Syntax – Variations & Shortcuts</h2>
+
+    <h3>3.1 Using <code>USING</code> (when column names match)</h3>
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> o.id, u.name
+<span class="kw">FROM</span> orders o
+<span class="kw">INNER JOIN</span> users u <span class="kw">USING</span>(user_id);   <span class="cm">-- automatically matches on o.user_id = u.id</span></pre>
+    </div>
+
+    <h3>3.2 Table Aliases – make queries readable</h3>
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> o.id <span class="kw">AS</span> order_id,
+       u.name <span class="kw">AS</span> buyer,
+       p.name <span class="kw">AS</span> product,
+       oi.quantity
+<span class="kw">FROM</span> order_items oi
+<span class="kw">JOIN</span> orders o   <span class="kw">ON</span> oi.order_id   = o.id
+<span class="kw">JOIN</span> users u    <span class="kw">ON</span> o.user_id    = u.id
+<span class="kw">JOIN</span> products p <span class="kw">ON</span> oi.product_id = p.id
+<span class="kw">WHERE</span> p.price &gt; 1000
+<span class="kw">ORDER BY</span> o.id;</pre>
+    </div>
+
+    <h3>3.3 Self‑Join – hierarchical data (e.g., employee‑manager)</h3>
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> e.name <span class="kw">AS</span> employee,
+       m.name <span class="kw">AS</span> manager
+<span class="kw">FROM</span> employees e
+<span class="kw">LEFT JOIN</span> employees m <span class="kw">ON</span> e.manager_id = m.id
+<span class="kw">ORDER BY</span> e.name;</pre>
+    </div>
+
+    <h3>3.4 Joining More Than Two Tables</h3>
+    <p>The same <code>JOIN</code> keyword can be chained; the DB engine builds an internal join tree.</p>
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> u.name,
+       SUM(p.price * oi.quantity) <span class="kw">AS</span> total_spent
+<span class="kw">FROM</span> users u
+<span class="kw">JOIN</span> orders o       <span class="kw">ON</span> u.id = o.user_id
+<span class="kw">JOIN</span> order_items oi <span class="kw">ON</span> o.id = oi.order_id
+<span class="kw">JOIN</span> products p    <span class="kw">ON</span> oi.product_id = p.id
+<span class="kw">GROUP BY</span> u.name
+<span class="kw">HAVING</span> total_spent &gt; 5000
+<span class="kw">ORDER BY</span> total_spent <span class="kw">DESC</span>;</pre>
+    </div>
+
+    <!-- ==============================================================
+         4️⃣ Common Pitfalls & Performance Tips
+    ============================================================== -->
+    <h2>4️⃣ Common Pitfalls &amp; Performance Tips</h2>
+
+    <ul>
+        <li><strong>Cartesian product </strong>– forgetting the <code>ON</code> clause (or using <code>CROSS JOIN</code>) creates huge result sets that can crash the DB or hide the real problem.</li>
+        <li><strong>Duplicate rows </strong>– when joining a one‑to‑many relationship, <code>SELECT DISTINCT</code> may be needed, but better to aggregate (<code>GROUP BY</code>) rather than hide the symptom.</li>
+        <li><strong>Missing indexes on foreign‑key columns</strong> – each <code>JOIN</code> ideally uses an index on the joining column (e.g., <code>CREATE INDEX idx_orders_user_id ON orders(user_id);</code>).</li>
+        <li><strong>Ordering before joining </strong>– give the optimizer the chance to push <code>ORDER BY</code> down to the smallest sub‑plan.  Usually you <strong>order after the final join</strong>.</li>
+        <li><strong>Implicit joins (comma‑separated FROM)</strong> – legacy syntax <code>FROM a, b WHERE a.id=b.id</code> is harder to read and more error‑prone.</li>
+    </ul>
+
+    <h3>4.1 How the Optimizer Builds a Join Tree</h3>
+    <p>Modern engines (PostgreSQL, MySQL, SQL‑Server) evaluate joins in the order that yields the lowest estimated cost.
+    You can view the plan with <code>EXPLAIN</code> (or <code>EXPLAIN ANALYZE</code> for real timing).</p>
+
+    <div class="code-block">
+        <pre>EXPLAIN ANALYZE
+<span class="kw">SELECT</span> u.name, o.id, p.name, oi.quantity
+<span class="kw">FROM</span> users u
+<span class="kw">JOIN</span> orders o       <span class="kw">ON</span> u.id = o.user_id
+<span class="kw">JOIN</span> order_items oi <span class="kw">ON</span> o.id = oi.order_id
+<span class="kw">JOIN</span> products p    <span class="kw">ON</span> oi.product_id = p.id
+<span class="kw">WHERE</span> p.price &gt; 1000
+<span class="kw">LIMIT</span> 20;</pre>
+    </div>
+
+    <p>The output will show whether each join is using an <code>Index Scan</code>, a <code>Hash Join</code>, or a <code>Nested Loop</code>.  If you see a <code>Seq Scan</code> on a large table where a foreign key exists, add an index and re‑run.</p>
+
+    <!-- ==============================================================
+         5️⃣ Hands‑On Lab – Join Challenges
+    ============================================================== -->
+    <h2>5️⃣ Hands‑On Lab – Join Challenges</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.1 — Build the Sample Database</div>
+        <p>Import <code>schema.sql</code> (provided above) into your favourite RDBMS.  Populate it with at least the following rows (feel free to add more):</p>
+
+        <table class="tbl-wrap">
+            <thead><tr><th>Table</th><th>Sample Rows</th></tr></thead>
+            <tbody>
+                <tr><td>users</td><td>
+                    <pre>INSERT INTO users (name,email,country) VALUES
+('Alice','alice@example.com','USA'),
+('Bob','bob@example.com','India'),
+('Charlie','charlie@example.com','UK');</pre>
+                </td></tr>
+                <tr><td>products</td><td>
+                    <pre>INSERT INTO products (sku,name,price) VALUES
+('SKU-001','Gaming Laptop',2500.00),
+('SKU-002','Office Chair',150.00),
+('SKU-003','USB‑C Hub',45.99);</pre>
+                </td></tr>
+                <tr><td>orders</td><td>
+                    <pre>INSERT INTO orders (user_id,order_date) VALUES
+(1,'2024-04-01'),(2,'2024-04-03'),(1,'2024-04-05');</pre>
+                </td></tr>
+                <tr><td>order_items</td><td>
+                    <pre>INSERT INTO order_items (order_id,product_id,quantity) VALUES
+(1,1,1),(1,3,2),
+(2,2,1),
+(3,1,1),(3,2,1);</pre>
+                </td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.2 — Write Five Queries</div>
+        <ol>
+            <li><strong>Inner join</strong> – List every order (order_id) together with the buyer’s name and the total amount for that order (sum of price × quantity).</li>
+            <li><strong>Left join</strong> – Show all users and the list of orders they placed; include users with zero orders (display <code>NULL</code> for order_id).</li>
+            <li><strong>Self‑join</strong> – Assuming the <code>users</code> table had a <code>referrer_id</code> column (who invited them), write a query that shows each user and the name of the referrer. (You may add a dummy column to practice.)</li>
+            <li><strong>Cross join (Cartesian product) – caution</strong> – Show the total number of possible <code>user × product</code> pairs.  Then limit the output to the first 5 rows to avoid flooding the console.</li>
+            <li><strong>Full outer join (PostgreSQL only)</strong> – Return every user and every order, even if there is no matching pair (use <code>FULL OUTER JOIN</code>).  Identify “orphaned” orders (no user) and “orphaned” users (no order) in the same result set.</li>
+        </ol>
+        <p>Take a screenshot of each query’s result and include it in a short <em>lab‑report</em> (max 300 words) describing what you learned.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.3 — Index Performance Test</div>
+        <p>Run the inner‑join revenue query from Exercise 4.2 on a table with at least 10 000 rows (you can generate dummy data with a script).  Capture the <code>EXPLAIN ANALYZE</code> output <em>before</em> adding indexes on <code>orders.user_id</code>, <code>order_items.order_id</code> and <code>order_items.product_id</code>.  Then add the indexes, re‑run the same <code>EXPLAIN ANALYZE</code> and compare the total execution time.</p>
+        <p>Write a 150‑word summary explaining the difference.</p>
+    </div>
+
+    <!-- ==============================================================
+         6️⃣ Quick‑Reference Cheat‑Sheet
+    ============================================================== -->
+    <h2>6️⃣ Cheat‑Sheet – Join Syntax at a Glance</h2>
+
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Syntax</th><th>When to Use</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>FROM A <span class="kw">INNER JOIN</span> B <span class="kw">ON</span> A.id = B.fk</code></td>
+                    <td>Only records with matching keys (most common).</td>
+                </tr>
+                <tr>
+                    <td><code>FROM A <span class="kw">LEFT JOIN</span> B <span class="kw">ON</span> A.id = B.fk</code></td>
+                    <td>All rows from A; keep B data where it exists (good for “orphan detection”).</td>
+                </tr>
+                <tr>
+                    <td><code>FROM A <span class="kw">RIGHT JOIN</span> B <span class="kw">ON</span> A.id = B.fk</code></td>
+                    <td>All rows from B; rare in practice (swap tables for LEFT JOIN).</td>
+                </tr>
+                <tr>
+                    <td><code>FROM A <span class="kw">FULL OUTER JOIN</span> B <span class="kw">ON</span> A.id = B.fk</code></td>
+                    <td>Show every row from both tables – good for data‑reconciliation.</td>
+                </tr>
+                <tr>
+                    <td><code>FROM A <span class="kw">CROSS JOIN</span> B</code></td>
+                    <td>Cartesian product; use only for combinatorial generation (e.g., all seat‑price combos).</td>
+                </tr>
+                <tr>
+                    <td><code>FROM A <span class="kw">JOIN</span> B <span class="kw">USING</span>(col)</code></td>
+                    <td>When column names are identical – less typing.</td>
+                </tr>
+                <tr>
+                    <td><code>FROM A <span class="kw">NATURAL JOIN</span> B</code></td>
+                    <td>Implicit join on all same‑named columns – **avoid** unless you fully control schema.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ==============================================================
+         7️⃣ Quiz – Test Your Understanding
+    ============================================================== -->
+    <h2>7️⃣ Knowledge‑Check Quiz (7 questions)</h2>
+    <div class="quiz">
+        <ol>
+            <li>Which join returns every row from the left table and NULLs for the right table when there is no match?<br>
+                <input type="radio" name="q1" value="a"> <code>INNER JOIN</code><br>
+                <input type="radio" name="q1" value="b"> <code>LEFT JOIN</code><br>
+                <input type="radio" name="q1" value="c"> <code>FULL OUTER JOIN</code>
+            </li>
+            <li>What is the result of a <code>CROSS JOIN</code> between a table with 5 rows and another with 8 rows?<br>
+                <input type="radio" name="q2" value="a"> 13 rows<br>
+                <input type="radio" name="q2" value="b"> 40 rows<br>
+                <input type="radio" name="q2" value="c"> 5 rows
+            </li>
+            <li>True or False – <code>NATURAL JOIN</code> is safe to use in a security‑report because it guarantees you are joining on the right columns.</li>
+            <li>Which clause can be used to eliminate duplicate rows after a join?<br>
+                <input type="radio" name="q4" value="a"> <code>WHERE</code><br>
+                <input type="radio" name="q4" value="b"> <code>GROUP BY</code><br>
+                <input type="radio" name="q4" value="c"> <code>DISTINCT</code>
+            </li>
+            <li>You have an <code>orders</code> table (order_id, user_id) and a <code>users</code> table (id, name). Which index will most improve the performance of the following query?<br>
+                <pre><code>SELECT o.id, u.name
+FROM orders o
+JOIN users u ON o.user_id = u.id
+WHERE u.country = 'USA';</code></pre>
+                <input type="radio" name="q5" value="a"> Index on <code>orders.id</code><br>
+                <input type="radio" name="q5" value="b"> Index on <code>users.country</code><br>
+                <input type="radio" name="q5" value="c"> Composite index on <code>orders(user_id)</code>
+            </li>
+            <li>Which of the following statements is <strong>incorrect</strong> about LEFT JOIN semantics?<br>
+                <input type="radio" name="q6" value="a"> The left table’s rows are never filtered out.<br>
+                <input type="radio" name="q6" value="b"> NULLs appear for right‑table columns when there is no match.<br>
+                <input type="radio" name="q6" value="c"> LEFT JOIN is equivalent to RIGHT JOIN with the table order swapped.
+            </li>
+            <li>In PostgreSQL, which command displays the actual join execution plan with timing information?<br>
+                <input type="radio" name="q7" value="a"> <code>EXPLAIN</code><br>
+                <input type="radio" name="q7" value="b"> <code>EXPLAIN ANALYZE</code><br>
+                <input type="radio" name="q7" value="c"> <code>SHOW PLAN</code>
+            </li>
+        </ol>
+
+        <details>
+            <summary>Show Answers</summary>
+            <ol>
+                <li><strong>B</strong> – <code>LEFT JOIN</code> keeps all rows from the left side.</li>
+                <li><strong>B</strong> – 5 × 8 = 40 rows (Cartesian product).</li>
+                <li><strong>False</strong> – <code>NATURAL JOIN</code> implicitly matches on *all* same‑named columns; a stray column with the same name can cause an unintended join.</li>
+                <li><strong>C</strong> – <code>DISTINCT</code> removes duplicate rows after a join.</li>
+                <li><strong>C</strong> – A composite index on <code>orders(user_id)</code> (or a separate index on <code>users.id</code>, which is already a primary key) will help the join; the filter on <code>users.country</code> is secondary.</li>
+                <li><strong>C</strong> – LEFT JOIN is not the same as RIGHT JOIN simply by swapping order; the side that receives NULLs matters.</li>
+                <li><strong>B</strong> – <code>EXPLAIN ANALYZE</code> runs the query and prints real execution times.</li>
+            </ol>
+        </details>
+    </div>
+
+    <!-- ==============================================================
+         8️⃣ Further Reading & Templates
+    ============================================================== -->
+    <h2>8️⃣ Further Reading & Templates</h2>
+
+    <ul class="resource-list">
+        <li><strong>Books</strong>
+            <ul>
+                <li><em>SQL Antipatterns</em> – Bill Karwin (covers misuse of joins).</li>
+                <li><em>Learning SQL</em> – Alan Beaulieu (excellent for beginners).</li>
+                <li><em>SQL Performance Explained</em> – Markus Winand (deep dive on join optimization).</li>
+            </ul>
+        </li>
+        <li><strong>Online Guides</strong>
+            <ul>
+                <li><a href="https://use-the-index-luke.com/sql/join">Use‑the‑Index‑Luke – “Joins” chapter</a></li>
+                <li><a href="https://www.geeksforgeeks.org/sql-join-types/">GeeksforGeeks – Join Types Overview</a></li>
+                <li><a href="https://www.postgresql.org/docs/current/queries-table-expressions.html#QUERIES-JOIN">PostgreSQL – Join Documentation</a></li>
+            </ul>
+        </li>
+        <li><strong>Cheat‑Sheet PDF (download)</strong>
+            <a href="downloads/sql-join-cheatsheet.pdf" download>SQL Join Cheat‑Sheet (PDF)</a>
+        </li>
+    </ul>
+
+    <!-- ==============================================================
+         Navigation
+    ============================================================== -->
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+    </div>
+</div>
+
 
                 <!-- ===================== LECTURE 05 ===================== -->
-                <div class="lecture" id="lec-4">
-                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
-                    <h1>Aggregation & GROUP BY</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+        <div class="lecture" id="lec-4">
+    <!-- ==============================================================
+         Header & Meta
+    ============================================================== -->
+    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+    <h1>Aggregation &amp; <code>GROUP BY</code></h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
 
-                    <h2>Summary Functions</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">SELECT</span> <span class="kw">COUNT</span>(*), <span class="kw">AVG</span>(price) <span class="kw">FROM</span> products;
-<span class="kw">SELECT</span> category, <span class="kw">SUM</span>(stock) <span class="kw">FROM</span> products <span class="kw">GROUP BY</span> category;</pre>
-                    </div>
+    <!-- ==============================================================
+         0️⃣ Why Aggregation Is a Core Skill
+    ============================================================== -->
+    <h2>0️⃣ Why Aggregation Is a Core Skill</h2>
+    <p>
+        Aggregation turns rows into <strong>business‑level numbers</strong>.  In a penetration‑test report you’ll often need to say:
+        <ul>
+            <li>“<strong>142</strong> hosts responded on port 22.”</li>
+            <li>“The average CVSS score of all critical findings is <strong>9.2</strong>.”</li>
+            <li>“Total data exfiltrated: <strong>4.3 GB</strong>.”</li>
+        </ul>
+        All of those statements are produced with <code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code> and friends, combined with <code>GROUP BY</code>.
+    </p>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
-                    </div>
-                </div>
+    <!-- ==============================================================
+         1️⃣ Sample Schema (Re‑use from Joins Lecture)
+    ============================================================== -->
+    <h2>1️⃣ Sample Schema (Orders ↔ Users ↔ Products)</h2>
+
+    <div class="diagram-placeholder" style="width:100%;height:200px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#777;">
+        <em>ER‑diagram (Users ↔ Orders ↔ Order_Items ↔ Products) placeholder</em>
+    </div>
+
+    <p>Copy‑paste the DDL below into any RDBMS (PostgreSQL, MySQL or SQLite) and populate it with a few rows – you’ll need it for all the lab exercises.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">schema.sql</span></div>
+        <pre class="language-sql"><span class="kw">CREATE TABLE</span> users (
+    id      <span class="kw">SERIAL</span>      <span class="kw">PRIMARY KEY</span>,
+    name    <span class="kw">VARCHAR</span>(50)   <span class="kw">NOT NULL</span>,
+    country <span class="kw">VARCHAR</span>(30)
+);
+
+<span class="kw">CREATE TABLE</span> products (
+    id    <span class="kw">SERIAL</span>      <span class="kw">PRIMARY KEY</span>,
+    sku   <span class="kw">VARCHAR</span>(30)   <span class="kw">UNIQUE</span>,
+    name  <span class="kw">VARCHAR</span>(100)  <span class="kw">NOT NULL</span>,
+    price <span class="kw">NUMERIC</span>(9,2) <span class="kw">NOT NULL</span>,
+    stock <span class="kw">INT</span>         <span class="kw">DEFAULT</span> 0
+);
+
+<span class="kw">CREATE TABLE</span> orders (
+    id         <span class="kw">SERIAL</span>      <span class="kw">PRIMARY KEY</span>,
+    user_id    <span class="kw">INT</span>         <span class="kw">REFERENCES</span> users(id),
+    order_date <span class="kw">TIMESTAMP</span>    <span class="kw">DEFAULT</span> <span class="kw">CURRENT_TIMESTAMP</span>
+);
+
+<span class="kw">CREATE TABLE</span> order_items (
+    id         <span class="kw">SERIAL</span>      <span class="kw">PRIMARY KEY</span>,
+    order_id   <span class="kw">INT</span>         <span class="kw">REFERENCES</span> orders(id),
+    product_id <span class="kw">INT</span>         <span class="kw">REFERENCES</span> products(id),
+    qty        <span class="kw">INT</span>         <span class="kw">DEFAULT</span> 1
+);</pre>
+    </div>
+
+    <!-- ==============================================================
+         2️⃣ Core Aggregate Functions
+    ============================================================== -->
+    <h2>2️⃣ Core Aggregate (Summary) Functions</h2>
+
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Function</th><th>What It Does</th><th>Typical Example</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>COUNT(*)</code></td><td>Counts rows (includes NULLs)</td><td><code>SELECT COUNT(*) FROM products;</code></tr>
+                <tr><td><code>COUNT(col)</code></td><td>Counts non‑NULL values of <code>col</code></td><td><code>SELECT COUNT(email) FROM users;</code></tr>
+                <tr><td><code>SUM(col)</code></td><td>Adds all numeric values</td><td><code>SELECT SUM(stock) FROM products;</code></tr>
+                <tr><td><code>AVG(col)</code></td><td>Average (arithmetic mean)</td><td><code>SELECT AVG(price) FROM products;</code></tr>
+                <tr><td><code>MIN(col)</code></td><td>Smallest value</td><td><code>SELECT MIN(order_date) FROM orders;</code></tr>
+                <tr><td><code>MAX(col)</code></td><td>Largest value</td><td><code>SELECT MAX(price) FROM products;</code></tr>
+                <tr><td><code>STRING_AGG(col, ', ')</code> (Postgres) / <code>GROUP_CONCAT(col SEPARATOR ', ')</code> (MySQL)</td><td>Concatenates strings per group</td><td><code>SELECT country, STRING_AGG(name, ', ') FROM users GROUP BY country;</code></tr>
+                <tr><td><code>JSON_AGG(col)</code> (Postgres)</td><td>Returns a JSON array per group</td><td><code>SELECT JSON_AGG(row_to_json(p)) FROM products p GROUP BY category;</code></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>All aggregate functions ignore <code>NULL</code> values automatically (except <code>COUNT(*)</code> which counts rows regardless of <code>NULL</code>).</p>
+
+    <!-- ==============================================================
+         3️⃣ Basic <code>GROUP BY</code> Syntax
+    ============================================================== -->
+    <h2>3️⃣ Basic <code>GROUP BY</code> Syntax</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> category,
+       <span class="kw">COUNT</span>(*)            <span class="kw">AS</span> product_cnt,
+       <span class="kw">AVG</span>(price)          <span class="kw">AS</span> avg_price,
+       <span class="kw">SUM</span>(stock * price) <span class="kw">AS</span> inventory_value
+<span class="kw">FROM</span> products
+<span class="kw">GROUP BY</span> category
+<span class="kw">ORDER BY</span> inventory_value <span class="kw">DESC</span>;
+</pre>
+    </div>
+
+    <p>Rules to remember:</p>
+    <ul>
+        <li>Every column in the <code>SELECT</code> list must either be an <strong>aggregate</strong> or appear in the <code>GROUP BY</code> clause.</li>
+        <li>Aliases (<code>AS …</code>) are optional but make later <code>HAVING</code> or <code>ORDER BY</code> clauses clearer.</li>
+        <li>The grouping columns are evaluated first; aggregates are then calculated per group.</li>
+    </ul>
+
+    <!-- ==============================================================
+         4️⃣ Filtering Groups – <code>HAVING</code>
+    ============================================================== -->
+    <h2>4️⃣ Filtering Groups – <code>HAVING</code></h2>
+
+    <p><code>HAVING</code> works like <code>WHERE</code> but **after** aggregation.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> country,
+       <span class="kw">COUNT</span>(*)            <span class="kw">AS</span> user_cnt
+<span class="kw">FROM</span> users
+<span class="kw">GROUP BY</span> country
+<span class="kw">HAVING</span> <span class="kw">COUNT</span>(*) &gt;= 5
+<span class="kw">ORDER BY</span> user_cnt <span class="kw">DESC</span>;</pre>
+    </div>
+
+    <p>Typical security‑report use‑cases:</p>
+    <ul>
+        <li>Show only assets that have **≥ 3** high‑severity findings.</li>
+        <li>List countries where the *average* CVSS of discovered vulns exceeds 7.</li>
+    </ul>
+
+    <!-- ==============================================================
+         5️⃣ Advanced Grouping – <code>ROLLUP</code>, <code>CUBE</code>, <code>GROUPING SETS</code>
+    ============================================================== -->
+    <h2>5️⃣ Advanced Grouping – <code>ROLLUP</code>, <code>CUBE</code>, <code>GROUPING SETS</code></h2>
+
+    <p>These constructs let you produce **multiple aggregation levels** in a single query.</p>
+
+    <h3>5.1 <code>ROLLUP</code> – Hierarchical Sub‑Totals</h3>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> u.country,
+       EXTRACT(YEAR FROM o.order_date) <span class="kw">AS</span> yr,
+       <span class="kw">SUM</span>(p.price * oi.qty) <span class="kw">AS</span> revenue
+<span class="kw">FROM</span> orders o
+<span class="kw">JOIN</span> users u           <span class="kw">ON</span> o.user_id = u.id
+<span class="kw">JOIN</span> order_items oi  <span class="kw">ON</span> o.id = oi.order_id
+<span class="kw">JOIN</span> products p       <span class="kw">ON</span> oi.product_id = p.id
+<span class="kw">GROUP BY</span> <span class="kw">ROLLUP</span>(u.country, EXTRACT(YEAR FROM o.order_date))
+<span class="kw">ORDER BY</span> u.country, yr;</pre>
+    </div>
+
+    <p>Result rows include:</p>
+    <ul>
+        <li>Revenue per (country, year).</li>
+        <li>Yearly subtotal per country (country, <code>NULL</code>).</li>
+        <li>Grand total (both columns <code>NULL</code>).</li>
+    </ul>
+
+    <h3>5.2 <code>CUBE</code> – All Possible Combinations</h3>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> u.country,
+       EXTRACT(YEAR FROM o.order_date) <span class="kw">AS</span> yr,
+       <span class="kw">COUNT</span>(DISTINCT o.id) <span class="kw">AS</span> orders_cnt
+<span class="kw">FROM</span> orders o
+<span class="kw">JOIN</span> users u <span class="kw">ON</span> o.user_id = u.id
+<span class="kw">GROUP BY</span> <span class="kw">CUBE</span>(u.country, EXTRACT(YEAR FROM o.order_date))
+<span class="kw">ORDER BY</span> u.country, yr;</pre>
+    </div>
+
+    <p><code>CUBE</code> returns every combination, i.e., per country, per year, per country‑year, plus the grand total.</p>
+
+    <h3>5.3 <code>GROUPING SETS</code> – Hand‑Picked Mix</h3>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> u.country,
+       EXTRACT(MONTH FROM o.order_date) <span class="kw">AS</span> month,
+       <span class="kw">SUM</span>(p.price * oi.qty) <span class="kw">AS</span> rev
+<span class="kw">FROM</span> orders o
+<span class="kw">JOIN</span> users u ON o.user_id = u.id
+<span class="kw">JOIN</span> order_items oi ON o.id = oi.order_id
+<span class="kw">JOIN</span> products p ON oi.product_id = p.id
+<span class="kw">GROUP BY</span> <span class="kw">GROUPING SETS</span>(
+    (u.country, EXTRACT(MONTH FROM o.order_date)),
+    (u.country),
+    (EXTRACT(MONTH FROM o.order_date))
+)
+<span class="kw">ORDER BY</span> u.country, month;</pre>
+    </div>
+
+    <p>Only the three specified groupings appear – no grand total.</p>
+
+    <!-- ==============================================================
+         6️⃣ Window (Analytic) Functions – Aggregates Without Collapse
+    ============================================================== -->
+    <h2>6️⃣ Window (Analytic) Functions – Aggregates Without Collapse</h2>
+
+    <p>Sometimes you need a running total or a rank while still seeing each individual order.  Window functions let you do that.</p>
+
+    <h3>6.1 Syntax Overview</h3>
+
+    <pre class="language-sql"><span class="kw">SELECT</span> o.id,
+       u.name,
+       p.name <span class="kw">AS</span> product,
+       oi.qty,
+       p.price,
+       <span class="kw">SUM</span>(p.price * oi.qty) <span class="kw">OVER</span>(
+           <span class="kw">PARTITION BY</span> u.id
+           <span class="kw">ORDER BY</span> o.order_date
+       ) <span class="kw">AS</span> cumulative_spend
+<span class="kw">FROM</span> orders o
+<span class="kw">JOIN</span> users u          <span class="kw">ON</span> o.user_id = u.id
+<span class="kw">JOIN</span> order_items oi   <span class="kw">ON</span> o.id = oi.order_id
+<span class="kw">JOIN</span> products p       <span class="kw">ON</span> oi.product_id = p.id
+<span class="kw">ORDER BY</span> u.id, o.order_date;</pre>
+
+    <h3>6.2 Real‑World Example – Top‑3 Products per Country</h3>
+
+    <div class="code-block">
+        <pre><span class="kw">SELECT</span> u.country,
+       p.name <span class="kw">AS</span> product,
+       <span class="kw">SUM</span>(p.price * oi.qty) <span class="kw">AS</span> revenue,
+       <span class="kw">RANK</span>() <span class="kw">OVER</span>(<span class="kw">PARTITION BY</span> u.country
+                     <span class="kw">ORDER BY</span> <span class="kw">SUM</span>(p.price * oi.qty) DESC) <span class="kw">AS</span> rnk
+<span class="kw">FROM</span> order_items oi
+<span class="kw">JOIN</span> orders o      <span class="kw">ON</span> oi.order_id = o.id
+<span class="kw">JOIN</span> users u       <span class="kw">ON</span> o.user_id = u.id
+<span class="kw">JOIN</span> products p    <span class="kw">ON</span> oi.product_id = p.id
+<span class="kw">GROUP BY</span> u.country, p.name
+<span class="kw">HAVING</span> <span class="kw">SUM</span>(p.price * oi.qty) &gt; 0
+<span class="kw">ORDER BY</span> u.country, rnk
+<span class="kw">LIMIT</span> 30;   <span class="cm">-- 10 countries × top‑3 each</span></pre>
+    </div>
+
+    <p>Window functions are **not** listed in <code>GROUP BY</code>; they are calculated after the grouping step.</p>
+
+    <!-- ==============================================================
+         7️⃣ Performance Tips for Aggregations
+    ============================================================== -->
+    <h2>7️⃣ Performance Tips for Aggregations</h2>
+
+    <ul>
+        <li><strong>Index the grouping columns</strong>.  An index on <code>products.category</code> speeds <code>GROUP BY category</code>.</li>
+        <li><strong>Covering indexes</strong> (e.g., <code>CREATE INDEX idx_products_cat_price ON products(category, price);</code>) let the engine satisfy both the grouping and the aggregation from the index alone.</li>
+        <li><strong>Materialized views</strong> for heavy daily reports (e.g., <code>CREATE MATERIALIZED VIEW daily_sales AS …</code>).</li>
+        <li><strong>Filter early</strong>.  Put restrictive <code>WHERE</code> clauses before <code>GROUP BY</code> to reduce rows that need to be aggregated.</li>
+        <li><strong>Avoid <code>SELECT *</code></strong> in aggregated queries – fetching unnecessary columns inflates I/O.</li>
+        <li><strong>Watch for data skew</strong> – a single value dominating a group can cause sub‑optimal join plans.  Consider partitioning or separate statistics.</li>
+    </ul>
+
+    <h3>7.1 Index Impact Demo</h3>
+
+    <div class="code-block">
+        <pre>EXPLAIN ANALYZE
+<span class="kw">SELECT</span> category,
+       <span class="kw">COUNT</span>(*)       <span class="kw">AS</span> cnt,
+       <span class="kw">AVG</span>(price)   <span class="kw">AS</span> avg_price
+<span class="kw">FROM</span> products
+<span class="kw">GROUP BY</span> category;</pre>
+    </div>
+
+    <p>If the plan shows a <code>Seq Scan</code> on a million‑row table, create an index:</p>
+
+    <div class="code-block">
+        <pre><span class="kw">CREATE INDEX</span> idx_products_category ON products(category);</pre>
+    </div>
+
+    <p>Rerun the <code>EXPLAIN ANALYZE</code> – you should see an <code>Index Scan</code> and a dramatically lower total cost.</p>
+
+    <!-- ==============================================================
+         8️⃣ Common Pitfalls & How to Avoid Them
+    ============================================================== -->
+    <h2>8️⃣ Common Pitfalls & How to Avoid Them</h2>
+
+    <ul>
+        <li><strong>Missing GROUP BY clause</strong> – “column must appear in the GROUP BY clause” error.</li>
+        <li><strong>Counting with <code>COUNT(col)</code> when you need total rows</strong> – <code>COUNT(col)</code> skips NULLs.</li>
+        <li><strong>Using <code>HAVING</code> without <code>GROUP BY</code></strong> – it works but usually means you meant <code>WHERE</code>.</li>
+        <li><strong>Accidentally creating a Cartesian product</strong> – forgetting the <code>ON</code> clause in a join will cause <code>GROUP BY</code> to process massive rowsets.</li>
+        <li><strong>NULL groups</strong> – rows where the grouping column is NULL become a separate group.  Use <code>COALESCE(col,'N/A')</code> if you prefer them merged.</li>
+        <li><strong>Rounding errors with monetary aggregates</strong> – cast to a higher precision type (e.g., <code>price::numeric(12,4)</code>) before summing.</li>
+    </ul>
+
+    <!-- ==============================================================
+         9️⃣ Hands‑On Lab – Aggregation Challenges
+    ============================================================== -->
+    <h2>9️⃣ Hands‑On Lab – Aggregation Challenges</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.1 — Load the Sample Schema</div>
+        <p>Run <code>schema.sql</code> (Section 1).  Insert at least 20 products spanning 4 categories, 15 users across 3 countries, and 30 orders with associated <code>order_items</code>.  Feel free to use any data you like – the point is to have enough rows for meaningful grouping.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.2 — Write Five Aggregation Queries</div>
+        <ol>
+            <li><strong>Total inventory value per category</strong> – <code>SUM(price * stock)</code> grouped by <code>category</code>.</li>
+            <li><strong>Average order value per country</strong> – join the four tables and <code>AVG(price * qty)</code> grouped by <code>users.country</code>.</li>
+            <li><strong>Top‑3 selling products overall</strong> – order by <code>SUM(qty)</code> descending, <code>LIMIT 3</code>.</li>
+            <li><strong>Countries with more than 5 orders</strong> – use <code>GROUP BY users.country</code> and <code>HAVING COUNT(DISTINCT orders.id) > 5</code>.</li>
+            <li><strong>Running total of revenue per user (window function)</strong> – calculate a cumulative sum ordered by <code>order_date</code>.</li>
+        </ol>
+        <p>Capture a screenshot of each result and write a one‑sentence interpretation (e.g., “Electronics holds the highest inventory value: $125 k”).</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.3 — Performance Test with <code>ROLLUP</code></div>
+        <p>Run the <code>ROLLUP</code> query from Section 5.1 on a dataset of at least 10 000 orders.  Record the execution time with <code>EXPLAIN ANALYZE</code> **before** adding any indexes, then create indexes on <code>orders.order_date</code> and <code>users.country</code> and repeat.  Write a ≤ 100‑word summary of the performance impact.</p>
+    </div>
+
+    <!-- ==============================================================
+         10️⃣ Cheat‑Sheet – Quick Reference
+    ============================================================== -->
+    <h2>10️⃣ Cheat‑Sheet – Aggregation &amp; <code>GROUP BY</code> Quick Reference</h2>
+
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Clause / Function</th><th>Purpose / Example</th></tr>
+            </thead>
+            <tbody >
+                <tr><td><code>COUNT(*)</code></td><td>Rows in the result set.</td></tr>
+                <tr><td><code>COUNT(col)</code></td><td>Non‑NULL values in <code>col</code>.</td></tr>
+                <tr><td><code>SUM(col)</code></td><td>Additive total.</td></tr>
+                <tr><td><code>AVG(col)</code></td><td>Mean value.</td></tr>
+                <tr><td><code>MIN(col) / MAX(col)</code></td><td>Smallest / largest value.</td></tr>
+                <tr><td><code>GROUP BY col1, col2 …</code></td><td>Define grouping columns.</td></tr>
+                <tr><td><code>HAVING condition</code></td><td>Filter groups (post‑aggregation).</td></tr>
+                <tr><td><code>ORDER BY col ASC|DESC</code></td><td>Sort final rows.</td></tr>
+                <tr><td><code>ROLLUP(col1, col2)</code></td><td>Hierarchical subtotals + grand total.</td></tr>
+                <tr><td><code>CUBE(col1, col2)</code></td><td>All combination totals.</td></tr>
+                <tr><td><code>GROUPING SETS((…), (…))</code></td><td>Custom mix of groupings.</td></tr>
+                <tr><td><code>SUM(col) OVER (PARTITION BY … ORDER BY …)</code></td><td>Running total / rank without collapsing rows.</td></tr>
+                <tr><td><code>STRING_AGG(col, ', ')</code> (Postgres) / <code>GROUP_CONCAT(col SEPARATOR ', ')</code> (MySQL)</td><td>Concatenate strings per group.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ==============================================================
+         11️⃣ Quiz – Test Your Knowledge
+    ============================================================== -->
+    <h2>11️⃣ Knowledge‑Check Quiz (7 questions)</h2>
+    <div class="quiz">
+        <ol>
+            <li>Which query returns the number of distinct product categories?<br>
+                <input type="radio" name="q1" value="a"> <code>SELECT COUNT(*) FROM products;</code><br>
+                <input type="radio" name="q1" value="b"> <code>SELECT COUNT(DISTINCT category) FROM products;</code><br>
+                <input type="radio" name="q1" value="c"> <code>SELECT COUNT(category) FROM products;</code>
+            </li>
+            <li>What does this query do?<br>
+                <pre><code>SELECT country, COUNT(*) AS users
+FROM users
+GROUP BY country
+HAVING COUNT(*) &gt; 3;</code></pre>
+                A. Returns countries with **exactly** 3 users.<br>
+                B. Returns countries with **more than** 3 users.<br>
+                C. Returns every country regardless of user count.
+            </li>
+            <li>True or False – <code>GROUP BY</code> and <code>DISTINCT</code> are interchangeable.</li>
+            <li>Which construct will give you a grand total, per‑country subtotal, per‑year subtotal, and per‑country‑year cells in a single result set?<br>
+                <input type="radio" name="q4" value="a"> <code>GROUP BY ROLLUP(country, YEAR(order_date))</code><br>
+                <input type="radio" name="q4" value="b"> <code>GROUP BY CUBE(country, YEAR(order_date))</code><br>
+                <input type="radio" name="q4" value="c"> <code>GROUP BY GROUPING SETS((country, YEAR), (country), (YEAR))</code>
+            </li>
+            <li>In the window‑function example below, what is the effect of <code>PARTITION BY u.id</code>?<br>
+                <pre><code>SELECT o.id,
+       SUM(p.price * oi.qty) OVER (PARTITION BY u.id ORDER BY o.order_date) AS cum_spend
+FROM orders o
+JOIN users u ON o.user_id = u.id
+JOIN order_items oi ON o.id = oi.order_id
+JOIN products p ON oi.product_id = p.id;</code></pre>
+                A. Groups rows by user before calculating the cumulative sum.<br>
+                B. Filters rows to only those where <code>u.id</code> matches the current row.<br>
+                C. Orders the final result set by <code>u.id</code>.
+            </li>
+            <li>Which index will most improve this query’s performance?<br>
+                <pre><code>SELECT country, COUNT(*) AS cnt
+FROM users
+WHERE country = 'USA'
+GROUP BY country;</code></pre>
+                <input type="radio" name="q6" value="a"> Index on <code>users.id</code>.<br>
+                <input type="radio" name="q6" value="b"> Composite index on <code>(country, id)</code>.<br>
+                <input type="radio" name="q6" value="c"> Index on <code>users.country</code>.
+            </li>
+            <li>What does the <code>GROUPING()</code> function return inside a <code>ROLLUP</code> query?</li>
+        </ol>
+
+        <details>
+            <summary>Show Answers</summary>
+            <ol>
+                <li><strong>B</strong> – <code>COUNT(DISTINCT category)</code> gives the number of unique categories.</li>
+                <li><strong>B</strong> – <code>HAVING COUNT(*) &gt; 3</code> filters for groups with more than three users.</li>
+                <li><strong>False</strong> – <code>GROUP BY</code> groups rows, while <code>DISTINCT</code> removes duplicate rows; they are not interchangeable.</li>
+                <li><strong>A</strong> – <code>ROLLUP(country, YEAR(...))</code> yields the grand total, country subtotals, year subtotals, and country‑year cells.</li>
+                <li><strong>A</strong> – <code>PARTITION BY u.id</code> creates a separate window (bucket) per user, then computes the cumulative sum inside that bucket ordered by date.</li>
+                <li><strong>C</strong> – An index on the filtered column (<code>users.country</code>) allows the DB engine to satisfy both the <code>WHERE</code> and the <code>GROUP BY</code> efficiently.</li>
+                <li><strong>The <code>GROUPING()</code> function returns <code>1</code> for a column that is being aggregated at a higher level (i.e., when the column’s value is replaced by <code>NULL</code> in a subtotal or grand‑total row) and <code>0</code> otherwise.  It is used to differentiate real <code>NULL</code> values from the artificial <code>NULL</code>s generated by <code>ROLLUP</code>/<code>CUBE</code>.</strong></li>
+            </ol>
+        </details>
+    </div>
+
+    <!-- ==============================================================
+         12️⃣ Further Reading & Templates
+    ============================================================== -->
+    <h2>12️⃣ Further Reading &amp; Templates</h2>
+    <ul class="resource-list">
+        <li><strong>Books</strong>
+            <ul>
+                <li><em>SQL Performance Explained</em> – Markus Winand (excellent chapter on aggregation).</li>
+                <li><em>SQL Antipatterns</em> – Bill Karwin (covers common aggregation mistakes).</li>
+                <li><em>Learning SQL</em> – Alan Beaulieu (good for beginners).</li>
+            </ul>
+        </li>
+        <li><strong>Official Docs</strong>
+            <ul>
+                <li><a href="https://www.postgresql.org/docs/current/functions-aggregate.html">PostgreSQL – Aggregate Functions</a></li>
+                <li><a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html">MySQL – GROUP BY Functions</a></li>
+                <li><a href="https://sqlite.org/lang_aggfunc.html">SQLite – Aggregate Functions</a></li>
+            </ul>
+        </li>
+        <li><strong>Cheat‑Sheet (PDF)</strong> – <a href="downloads/aggregation-cheatsheet.pdf" download>Aggregation Cheat‑Sheet (PDF)</a></li>
+        <li><strong>Interactive Playground</strong>
+            <ul>
+                <li><a href="https://www.db-fiddle.com/">DB‑Fiddle – run PostgreSQL/MySQL/SQLite snippets online.</a></li>
+                <li><a href="https://mode.com/sql-tutorial/">Mode Analytics SQL Tutorial (real‑world data sets)</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- ==============================================================
+         Navigation
+    ============================================================== -->
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+    </div>
+</div>
+
 
                 <!-- ===================== LECTURE 06 ===================== -->
                 <div class="lecture" id="lec-5">

