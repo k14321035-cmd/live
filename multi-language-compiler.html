@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Language Online Compiler - Code Tutorium</title>
+    <link rel="stylesheet" href="lessons.css">
+    <style>
+        .multi-compiler-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .compiler-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .compiler-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .compiler-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .language-selector {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .compiler-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .compiler-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        
+        .compiler-btn.run {
+            background: #4ade80;
+            border-color: #4ade80;
+            color: #000;
+        }
+        
+        .compiler-btn.run:hover {
+            background: #22c55e;
+        }
+        
+        .compiler-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 600px;
+            border: 1px solid var(--border);
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+        }
+        
+        .editor-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+        }
+        
+        .output-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-header {
+            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .language-info {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .editor-textarea {
+            flex: 1;
+            border: none;
+            padding: 1rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: none;
+            outline: none;
+            background: var(--bg);
+            color: var(--text);
+            tab-size: 4;
+        }
+        
+        .output-content {
+            flex: 1;
+            padding: 1rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .output-content.error {
+            color: #f87171;
+        }
+        
+        .output-content.success {
+            color: #4ade80;
+        }
+        
+        .output-content.warning {
+            color: #fbbf24;
+        }
+        
+        .compiler-status {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+        }
+        
+        .status-dot.ready {
+            background: var(--success);
+        }
+        
+        .status-dot.running {
+            background: var(--warning);
+            animation: pulse 1s infinite;
+        }
+        
+        .status-dot.error {
+            background: var(--error);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .execution-info {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        @media (max-width: 968px) {
+            .compiler-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .editor-section {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                height: 400px;
+            }
+            
+            .output-section {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .compiler-header {
+                padding: 1rem;
+            }
+            
+            .compiler-title {
+                font-size: 1.2rem;
+            }
+            
+            .compiler-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .compiler-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .editor-section,
+            .output-section {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="multi-compiler-container">
+        <div class="compiler-header">
+            <div class="compiler-title">
+                💻 Multi-Language Compiler
+            </div>
+            <div class="compiler-actions">
+                <select id="language-select" class="language-selector" onchange="switchLanguage()">
+                    <option value="java">☕ Java</option>
+                    <option value="csharp">♯ C#</option>
+                    <option value="typescript">🔷 TypeScript</option>
+                    <option value="go">🐹 Go</option>
+                    <option value="rust">🦀 Rust</option>
+                    <option value="php">🐘 PHP</option>
+                    <option value="swift">🍎 Swift</option>
+                    <option value="kotlin">🎯 Kotlin</option>
+                    <option value="ruby">💎 Ruby</option>
+                    <option value="sql">🗄️ SQL</option>
+                    <option value="bash">🐚 Bash</option>
+                </select>
+                <button class="compiler-btn" onclick="clearCode()">
+                    🗑️ Clear
+                </button>
+                <button class="compiler-btn" onclick="loadExample()">
+                    📋 Load Example
+                </button>
+                <button class="compiler-btn run" onclick="runCode()">
+                    ▶ Run
+                </button>
+            </div>
+        </div>
+        
+        <div class="compiler-layout">
+            <!-- Editor Section -->
+            <div class="editor-section">
+                <div class="panel-header">
+                    <span>📝 Code Editor</span>
+                    <div class="language-info">
+                        <span id="current-language">Java</span>
+                        <span>|</span>
+                        <span id="language-version">Java 17</span>
+                    </div>
+                </div>
+                
+                <textarea id="code-editor" class="editor-textarea" placeholder="Write your code here...">// Java Example - Hello World
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+        System.out.println("Welcome to Java programming!");
+        
+        // Variables
+        String name = "Java Developer";
+        int year = 2026;
+        
+        System.out.println("Hello, " + name + "!");
+        System.out.println("Year: " + year);
+    }
+}</textarea>
+            </div>
+            
+            <!-- Output Section -->
+            <div class="output-section">
+                <div class="panel-header">
+                    <span>📊 Output</span>
+                    <div class="execution-info">
+                        <span id="execution-time">Exec: --</span>
+                        <span id="memory-usage">Memory: --</span>
+                    </div>
+                </div>
+                
+                <div id="output-content" class="output-content">Click "Run" to execute your code...</div>
+            </div>
+        </div>
+        
+        <div class="compiler-status">
+            <div class="status-left">
+                <div id="status-dot" class="status-dot ready"></div>
+                <span id="status-text">Ready to run</span>
+            </div>
+            <div id="last-run">Last run: Never</div>
+        </div>
+    </div>
+
+    <script>
+        const codeEditor = document.getElementById('code-editor');
+        const outputContent = document.getElementById('output-content');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const lastRunElement = document.getElementById('last-run');
+        const languageSelect = document.getElementById('language-select');
+        const currentLanguageSpan = document.getElementById('current-language');
+        const languageVersionSpan = document.getElementById('language-version');
+        const executionTimeElement = document.getElementById('execution-time');
+        const memoryUsageElement = document.getElementById('memory-usage');
+
+        const languageExamples = {
+            java: {
+                version: 'Java 17',
+                code: `// Java Example - Hello World
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+        System.out.println("Welcome to Java programming!");
+        
+        // Variables
+        String name = "Java Developer";
+        int year = 2026;
+        
+        System.out.println("Hello, " + name + "!");
+        System.out.println("Year: " + year);
+        
+        // Simple calculation
+        int a = 10, b = 5;
+        System.out.println(a + " + " + b + " = " + (a + b));
+    }
+}`,
+                simulate: () => javaSimulation()
+            },
+            csharp: {
+                version: 'C# 10',
+                code: `// C# Example - Hello World
+using System;
+
+class Program {
+    static void Main() {
+        Console.WriteLine("Hello, World!");
+        Console.WriteLine("Welcome to C# programming!");
+        
+        // Variables
+        string name = "C# Developer";
+        int year = 2026;
+        
+        Console.WriteLine($"Hello, {name}!");
+        Console.WriteLine($"Year: {year}");
+        
+        // Simple calculation
+        int a = 10, b = 5;
+        Console.WriteLine($"{a} + {b} = {a + b}");
+    }
+}`,
+                simulate: () => csharpSimulation()
+            },
+            typescript: {
+                version: 'TypeScript 5.0',
+                code: `// TypeScript Example - Hello World
+// This would be compiled to JavaScript and run in Node.js or browser
+
+function greet(name: string): string {
+    return \`Hello, \${name}!\`;
+}
+
+const year: number = 2026;
+const message: string = greet("TypeScript Developer");
+
+console.log("Hello, World!");
+console.log("Welcome to TypeScript programming!");
+console.log(message);
+console.log(\`Year: \${year}\`);
+
+// Simple calculation
+const a = 10, b = 5;
+console.log(\`\${a} + \${b} = \${a + b}\`);
+
+// Type-safe object
+interface Person {
+    name: string;
+    age: number;
+}
+
+const person: Person = {
+    name: "Alice",
+    age: 30
+};
+
+console.log(\`Person: \${person.name}, Age: \${person.age}\`);`,
+                simulate: () => typescriptSimulation()
+            },
+            go: {
+                version: 'Go 1.21',
+                code: `// Go Example - Hello World
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+    fmt.Println("Welcome to Go programming!")
+    
+    // Variables
+    name := "Go Developer"
+    year := 2026
+    
+    fmt.Printf("Hello, %s!\\n", name)
+    fmt.Printf("Year: %d\\n", year)
+    
+    // Simple calculation
+    a, b := 10, 5
+    fmt.Printf("%d + %d = %d\\n", a, b, a+b)
+    
+    // Slice example
+    numbers := []int{1, 2, 3, 4, 5}
+    fmt.Printf("Numbers: %v\\n", numbers)
+}`,
+                simulate: () => goSimulation()
+            },
+            rust: {
+                version: 'Rust 1.70',
+                code: `// Rust Example - Hello World
+fn main() {
+    println!("Hello, World!");
+    println!("Welcome to Rust programming!");
+    
+    // Variables
+    let name = "Rust Developer";
+    let year = 2026;
+    
+    println!("Hello, {}!", name);
+    println!("Year: {}", year);
+    
+    // Simple calculation
+    let a = 10;
+    let b = 5;
+    println!("{} + {} = {}", a, b, a + b);
+    
+    // Vector example
+    let numbers = vec![1, 2, 3, 4, 5];
+    println!("Numbers: {:?}", numbers);
+    
+    // String ownership example
+    let s1 = String::from("Hello");
+    let s2 = s1; // s1 is moved
+    println!("s2: {}", s2);
+}`,
+                simulate: () => rustSimulation()
+            },
+            php: {
+                version: 'PHP 8.2',
+                code: `<?php
+// PHP Example - Hello World
+echo "Hello, World!\\n";
+echo "Welcome to PHP programming!\\n";
+
+// Variables
+$name = "PHP Developer";
+$year = 2026;
+
+echo "Hello, $name!\\n";
+echo "Year: $year\\n";
+
+// Simple calculation
+$a = 10;
+$b = 5;
+echo "$a + $b = " . ($a + $b) . "\\n";
+
+// Array example
+$fruits = ["apple", "banana", "orange"];
+echo "Fruits: " . implode(", ", $fruits) . "\\n";
+
+// Function example
+function greet($name) {
+    return "Hello, $name!";
+}
+
+echo greet("PHP Programmer") . "\\n";
+?>`,
+                simulate: () => phpSimulation()
+            },
+            swift: {
+                version: 'Swift 5.8',
+                code: `// Swift Example - Hello World
+import Foundation
+
+print("Hello, World!")
+print("Welcome to Swift programming!")
+
+// Variables
+let name = "Swift Developer"
+var year = 2026
+
+print("Hello, \\(name)!")
+print("Year: \\(year)")
+
+// Simple calculation
+let a = 10
+let b = 5
+print("\\(a) + \\(b) = \\(a + b)")
+
+// Array example
+let fruits = ["apple", "banana", "orange"]
+print("Fruits: \\(fruits.joined(separator: ", "))")
+
+// Function example
+func greet(_ name: String) -> String {
+    return "Hello, \\(name)!"
+}
+
+print(greet("Swift Programmer"))`,
+                simulate: () => swiftSimulation()
+            },
+            kotlin: {
+                version: 'Kotlin 1.9',
+                code: `// Kotlin Example - Hello World
+fun main() {
+    println("Hello, World!")
+    println("Welcome to Kotlin programming!")
+    
+    // Variables
+    val name = "Kotlin Developer"
+    val year = 2026
+    
+    println("Hello, $name!")
+    println("Year: $year")
+    
+    // Simple calculation
+    val a = 10
+    val b = 5
+    println("$a + $b = ${a + b}")
+    
+    // List example
+    val fruits = listOf("apple", "banana", "orange")
+    println("Fruits: ${fruits.joinToString()}")
+    
+    // Function example
+    fun greet(name: String): String {
+        return "Hello, $name!"
+    }
+    
+    println(greet("Kotlin Programmer"))
+}`,
+                simulate: () => kotlinSimulation()
+            },
+            ruby: {
+                version: 'Ruby 3.2',
+                code: `# Ruby Example - Hello World
+puts "Hello, World!"
+puts "Welcome to Ruby programming!"
+
+# Variables
+name = "Ruby Developer"
+year = 2026
+
+puts "Hello, #{name}!"
+puts "Year: #{year}"
+
+# Simple calculation
+a = 10
+b = 5
+puts "#{a} + #{b} = #{a + b}"
+
+# Array example
+fruits = ["apple", "banana", "orange"]
+puts "Fruits: #{fruits.join(', ')}"
+
+# Function example
+def greet(name)
+  "Hello, #{name}!"
+end
+
+puts greet("Ruby Programmer")
+
+# Hash example
+person = { name: "Alice", age: 30 }
+puts "Person: #{person[:name]}, Age: #{person[:age]}"`,
+                simulate: () => rubySimulation()
+            },
+            sql: {
+                version: 'SQL',
+                code: `-- SQL Example - Basic Queries
+-- This would be executed against a database
+
+-- Create a simple table
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INTEGER,
+    email TEXT
+);
+
+-- Insert some sample data
+INSERT INTO users (name, age, email) VALUES 
+    ('Alice', 25, 'alice@example.com'),
+    ('Bob', 30, 'bob@example.com'),
+    ('Charlie', 35, 'charlie@example.com');
+
+-- Query all users
+SELECT * FROM users;
+
+-- Query with conditions
+SELECT name, age FROM users WHERE age > 25;
+
+-- Aggregate functions
+SELECT COUNT(*) as total_users, 
+       AVG(age) as average_age 
+FROM users;
+
+-- Update data
+UPDATE users SET age = 26 WHERE name = 'Alice';
+
+-- Delete data
+DELETE FROM users WHERE age < 20;`,
+                simulate: () => sqlSimulation()
+            },
+            bash: {
+                version: 'Bash 5.2',
+                code: `#!/bin/bash
+# Bash Script Example - Hello World
+
+echo "Hello, World!"
+echo "Welcome to Bash scripting!"
+
+# Variables
+name="Bash Developer"
+year=2026
+
+echo "Hello, $name!"
+echo "Year: $year"
+
+# Simple calculation
+a=10
+b=5
+result=$((a + b))
+echo "$a + $b = $result"
+
+# Array example
+fruits=("apple" "banana" "orange")
+echo "Fruits: ${fruits[*]}"
+
+# Function example
+greet() {
+    echo "Hello, $1!"
+}
+
+greet "Bash Programmer"
+
+# Conditional example
+if [ $year -gt 2020 ]; then
+    echo "We're in the future!"
+fi
+
+# Loop example
+for i in {1..3}; do
+    echo "Count: $i"
+done`,
+                simulate: () => bashSimulation()
+            }
+        };
+
+        function updateStatus(status, text) {
+            statusDot.className = `status-dot ${status}`;
+            statusText.textContent = text;
+        }
+
+        function switchLanguage() {
+            const selectedLanguage = languageSelect.value;
+            const langData = languageExamples[selectedLanguage];
+            
+            if (langData) {
+                currentLanguageSpan.textContent = selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
+                languageVersionSpan.textContent = langData.version;
+                codeEditor.value = langData.code;
+                updateStatus('ready', 'Ready to run');
+                clearOutput();
+            }
+        }
+
+        function clearCode() {
+            codeEditor.value = '';
+            clearOutput();
+            updateStatus('ready', 'Ready to run');
+        }
+
+        function clearOutput() {
+            outputContent.textContent = 'Click "Run" to execute your code...';
+            outputContent.className = 'output-content';
+            executionTimeElement.textContent = 'Exec: --';
+            memoryUsageElement.textContent = 'Memory: --';
+        }
+
+        function loadExample() {
+            const selectedLanguage = languageSelect.value;
+            const langData = languageExamples[selectedLanguage];
+            
+            if (langData) {
+                codeEditor.value = langData.code;
+                updateStatus('ready', 'Example loaded');
+            }
+        }
+
+        async function runCode() {
+            const code = codeEditor.value;
+            const selectedLanguage = languageSelect.value;
+            
+            if (!code.trim()) {
+                outputContent.textContent = 'Please write some code first!';
+                outputContent.className = 'output-content error';
+                return;
+            }
+
+            const startTime = performance.now();
+            updateStatus('running', 'Running...');
+            outputContent.textContent = 'Executing...';
+            outputContent.className = 'output-content';
+
+            try {
+                const langData = languageExamples[selectedLanguage];
+                if (langData && langData.simulate) {
+                    const result = await langData.simulate(code);
+                    const endTime = performance.now();
+                    
+                    outputContent.textContent = result.output;
+                    outputContent.className = result.error ? 'output-content error' : 'output-content success';
+                    updateStatus(result.error ? 'error' : 'ready', result.error ? 'Execution failed' : 'Code executed successfully');
+                    
+                    executionTimeElement.textContent = `Exec: ${(endTime - startTime).toFixed(0)}ms`;
+                    memoryUsageElement.textContent = `Memory: ${result.memory || 'N/A'}`;
+                }
+            } catch (error) {
+                outputContent.textContent = `Error: ${error.message}`;
+                outputContent.className = 'output-content error';
+                updateStatus('error', 'Execution failed');
+            }
+            
+            lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
+        }
+
+        // Language simulation functions
+        function javaSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to Java programming!
+Hello, Java Developer!
+Year: 2026
+10 + 5 = 15`,
+                        memory: '32MB'
+                    });
+                }, 800);
+            });
+        }
+
+        function csharpSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to C# programming!
+Hello, C# Developer!
+Year: 2026
+10 + 5 = 15`,
+                        memory: '28MB'
+                    });
+                }, 700);
+            });
+        }
+
+        function typescriptSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to TypeScript programming!
+Hello, TypeScript Developer!
+Year: 2026
+10 + 5 = 15
+Person: Alice, Age: 30`,
+                        memory: '24MB'
+                    });
+                }, 600);
+            });
+        }
+
+        function goSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to Go programming!
+Hello, Go Developer!
+Year: 2026
+10 + 5 = 15
+Numbers: [1 2 3 4 5]`,
+                        memory: '8MB'
+                    });
+                }, 500);
+            });
+        }
+
+        function rustSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to Rust programming!
+Hello, Rust Developer!
+Year: 2026
+10 + 5 = 15
+Numbers: [1, 2, 3, 4, 5]
+s2: Hello`,
+                        memory: '4MB'
+                    });
+                }, 600);
+            });
+        }
+
+        function phpSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to PHP programming!
+Hello, PHP Developer!
+Year: 2026
+10 + 5 = 15
+Fruits: apple, banana, orange
+Hello, PHP Programmer!`,
+                        memory: '16MB'
+                    });
+                }, 700);
+            });
+        }
+
+        function swiftSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to Swift programming!
+Hello, Swift Developer!
+Year: 2026
+10 + 5 = 15
+Fruits: apple, banana, orange
+Hello, Swift Programmer`,
+                        memory: '12MB'
+                    });
+                }, 650);
+            });
+        }
+
+        function kotlinSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to Kotlin programming!
+Hello, Kotlin Developer!
+Year: 2026
+10 + 5 = 15
+Fruits: apple, banana, orange
+Hello, Kotlin Programmer`,
+                        memory: '20MB'
+                    });
+                }, 750);
+            });
+        }
+
+        function rubySimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to Ruby programming!
+Hello, Ruby Developer!
+Year: 2026
+10 + 5 = 15
+Fruits: apple, banana, orange
+Hello, Ruby Programmer
+Person: Alice, Age: 30`,
+                        memory: '36MB'
+                    });
+                }, 800);
+            });
+        }
+
+        function sqlSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `SQL executed successfully:
+Table 'users' created
+3 rows inserted
+
+Query Results:
+id | name    | age | email
+---|---------|-----|------------------
+1  | Alice   | 25  | alice@example.com
+2  | Bob     | 30  | bob@example.com  
+3  | Charlie | 35  | charlie@example.com
+
+Filtered Results (age > 25):
+name    | age
+--------|-----
+Bob     | 30
+Charlie | 35
+
+Aggregates:
+total_users | average_age
+------------|-------------
+3           | 30.0
+
+1 row updated
+0 rows deleted`,
+                        memory: 'N/A'
+                    });
+                }, 900);
+            });
+        }
+
+        function bashSimulation() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        output: `Hello, World!
+Welcome to Bash scripting!
+Hello, Bash Developer!
+Year: 2026
+10 + 5 = 15
+Fruits: apple banana orange
+Hello, Bash Programmer
+We're in the future!
+Count: 1
+Count: 2
+Count: 3`,
+                        memory: '2MB'
+                    });
+                }, 400);
+                });
+            });
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                runCode();
+            }
+        });
+
+        // Auto-resize textarea
+        codeEditor.addEventListener('input', () => {
+            codeEditor.style.height = 'auto';
+            codeEditor.style.height = codeEditor.scrollHeight + 'px';
+        });
+
+        // Initialize
+        updateStatus('ready', 'Ready to run');
+    </script>
+</body>
+</html>

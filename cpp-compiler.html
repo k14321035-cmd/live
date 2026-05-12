@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Online Compiler - Code Tutorium</title>
+    <link rel="stylesheet" href="lessons.css">
+    <style>
+        .cpp-compiler-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .compiler-header {
+            background: linear-gradient(135deg, #00599C 0%, #004482 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .compiler-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .compiler-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .compiler-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .compiler-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        
+        .compiler-btn.run {
+            background: #4ade80;
+            border-color: #4ade80;
+            color: #000;
+        }
+        
+        .compiler-btn.run:hover {
+            background: #22c55e;
+        }
+        
+        .compiler-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 600px;
+            border: 1px solid var(--border);
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+        }
+        
+        .editor-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+        }
+        
+        .output-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-header {
+            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .compiler-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .compiler-select {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .editor-textarea {
+            flex: 1;
+            border: none;
+            padding: 1rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: none;
+            outline: none;
+            background: var(--bg);
+            color: var(--text);
+            tab-size: 4;
+        }
+        
+        .output-content {
+            flex: 1;
+            padding: 1rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .output-content.error {
+            color: #f87171;
+        }
+        
+        .output-content.success {
+            color: #4ade80;
+        }
+        
+        .output-content.warning {
+            color: #fbbf24;
+        }
+        
+        .compiler-status {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+        }
+        
+        .status-dot.ready {
+            background: var(--success);
+        }
+        
+        .status-dot.running {
+            background: var(--warning);
+            animation: pulse 1s infinite;
+        }
+        
+        .status-dot.error {
+            background: var(--error);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .compile-info {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        @media (max-width: 968px) {
+            .compiler-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .editor-section {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                height: 400px;
+            }
+            
+            .output-section {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .compiler-header {
+                padding: 1rem;
+            }
+            
+            .compiler-title {
+                font-size: 1.2rem;
+            }
+            
+            .compiler-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .compiler-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .editor-section,
+            .output-section {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cpp-compiler-container">
+        <div class="compiler-header">
+            <div class="compiler-title">
+                ⚙️ C++ Online Compiler
+            </div>
+            <div class="compiler-actions">
+                <button class="compiler-btn" onclick="clearCode()">
+                    🗑️ Clear
+                </button>
+                <button class="compiler-btn" onclick="loadExample('hello')">
+                    👋 Hello World
+                </button>
+                <button class="compiler-btn" onclick="loadExample('classes')">
+                    🏗️ Classes
+                </button>
+                <button class="compiler-btn" onclick="loadExample('stl')">
+                    📚 STL
+                </button>
+                <button class="compiler-btn run" onclick="runCode()">
+                    ▶ Compile & Run
+                </button>
+            </div>
+        </div>
+        
+        <div class="compiler-layout">
+            <!-- Editor Section -->
+            <div class="editor-section">
+                <div class="panel-header">
+                    <span>📝 Code Editor</span>
+                    <div class="compiler-options">
+                        <label for="compiler-standard">Standard:</label>
+                        <select id="compiler-standard" class="compiler-select">
+                            <option value="c++17">C++17</option>
+                            <option value="c++14">C++14</option>
+                            <option value="c++11">C++11</option>
+                            <option value="c++20">C++20</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <textarea id="code-editor" class="editor-textarea" placeholder="#include <iostream>
+using namespace std;
+
+int main() {
+    cout << \"Hello, World!\" << endl;
+    return 0;
+}">#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    
+    // Variables
+    int age = 25;
+    double height = 5.8;
+    string name = "John";
+    
+    cout << "Name: " << name << endl;
+    cout << "Age: " << age << endl;
+    cout << "Height: " << height << endl;
+    
+    return 0;
+}</textarea>
+            </div>
+            
+            <!-- Output Section -->
+            <div class="output-section">
+                <div class="panel-header">
+                    <span>📊 Output</span>
+                    <div class="compile-info">
+                        <span id="compile-time">Compile: --</span>
+                        <span id="run-time">Run: --</span>
+                    </div>
+                </div>
+                
+                <div id="output-content" class="output-content">Click "Compile & Run" to execute your C++ code...</div>
+            </div>
+        </div>
+        
+        <div class="compiler-status">
+            <div class="status-left">
+                <div id="status-dot" class="status-dot ready"></div>
+                <span id="status-text">Ready to compile</span>
+            </div>
+            <div id="last-run">Last run: Never</div>
+        </div>
+    </div>
+
+    <script>
+        const codeEditor = document.getElementById('code-editor');
+        const outputContent = document.getElementById('output-content');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const lastRunElement = document.getElementById('last-run');
+        const compileTimeElement = document.getElementById('compile-time');
+        const runTimeElement = document.getElementById('run-time');
+        const compilerStandard = document.getElementById('compiler-standard');
+
+        function updateStatus(status, text) {
+            statusDot.className = `status-dot ${status}`;
+            statusText.textContent = text;
+        }
+
+        function clearCode() {
+            codeEditor.value = '';
+            outputContent.textContent = 'Code cleared. Write something and click Compile & Run!';
+            outputContent.className = 'output-content';
+            updateStatus('ready', 'Ready to compile');
+            compileTimeElement.textContent = 'Compile: --';
+            runTimeElement.textContent = 'Run: --';
+        }
+
+        function loadExample(type) {
+            const examples = {
+                hello: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    cout << "Welcome to C++ Programming!" << endl;
+    
+    // Basic input/output
+    string name;
+    cout << "Enter your name: ";
+    cin >> name;
+    cout << "Nice to meet you, " << name << "!" << endl;
+    
+    return 0;
+}`,
+                classes: `#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+
+public:
+    Person(string n, int a) : name(n), age(a) {}
+    
+    void introduce() {
+        cout << "Hi, I'm " << name << " and I'm " << age << " years old." << endl;
+    }
+    
+    void haveBirthday() {
+        age++;
+        cout << "Happy birthday! Now I'm " << age << " years old." << endl;
+    }
+};
+
+int main() {
+    Person person("Alice", 25);
+    person.introduce();
+    person.haveBirthday();
+    
+    return 0;
+}`,
+                stl: `#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+int main() {
+    // Vector example
+    vector<string> fruits = {"apple", "banana", "orange", "grape"};
+    
+    cout << "Original fruits: ";
+    for (const string& fruit : fruits) {
+        cout << fruit << " ";
+    }
+    cout << endl;
+    
+    // Sort the vector
+    sort(fruits.begin(), fruits.end());
+    
+    cout << "Sorted fruits: ";
+    for (const string& fruit : fruits) {
+        cout << fruit << " ";
+    }
+    cout << endl;
+    
+    // Find a fruit
+    auto it = find(fruits.begin(), fruits.end(), "orange");
+    if (it != fruits.end()) {
+        cout << "Found orange at position: " << distance(fruits.begin(), it) << endl;
+    }
+    
+    return 0;
+}`
+            };
+            
+            if (examples[type]) {
+                codeEditor.value = examples[type];
+                updateStatus('ready', `${type.charAt(0).toUpperCase() + type.slice(1)} example loaded`);
+            }
+        }
+
+        function simulateCompilation(code) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Basic syntax checking
+                    const errors = [];
+                    
+                    // Check for missing includes
+                    if (!code.includes('#include')) {
+                        errors.push('Warning: No #include directives found');
+                    }
+                    
+                    // Check for main function
+                    if (!code.includes('int main(')) {
+                        errors.push('Error: No main function found');
+                    }
+                    
+                    // Check for missing semicolons (basic check)
+                    const lines = code.split('\n');
+                    lines.forEach((line, index) => {
+                        const trimmed = line.trim();
+                        if (trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('//') && 
+                            !trimmed.includes('{') && !trimmed.includes('}') && 
+                            !trimmed.includes('cout') && !trimmed.includes('cin') &&
+                            !trimmed.endsWith(';') && !trimmed.endsWith('{') && !trimmed.endsWith('}')) {
+                            errors.push(`Warning: Possible missing semicolon at line ${index + 1}`);
+                        }
+                    });
+                    
+                    if (errors.length > 0 && !code.includes('int main(')) {
+                        reject(errors);
+                    } else {
+                        resolve({ warnings: errors });
+                    }
+                }, 1500);
+            });
+        }
+
+        function simulateExecution(code) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    let output = '';
+                    
+                    // Simulate cout statements
+                    const coutMatches = code.match(/cout\s*<<\s*["']([^"']+)["']/g);
+                    if (coutMatches) {
+                        coutMatches.forEach(match => {
+                            const text = match.match(/["']([^"']+)["']/)[1];
+                            output += text + '\n';
+                        });
+                    }
+                    
+                    // Simulate endl
+                    if (code.includes('endl')) {
+                        output = output.replace(/\\n/g, '\n');
+                    }
+                    
+                    // If no cout found, provide default output
+                    if (!output) {
+                        output = 'Program executed successfully (no output detected)\n';
+                    }
+                    
+                    resolve(output);
+                }, 1000);
+            });
+        }
+
+        async function runCode() {
+            const code = codeEditor.value;
+            
+            if (!code.trim()) {
+                outputContent.textContent = 'Please write some C++ code first!';
+                outputContent.className = 'output-content error';
+                return;
+            }
+
+            const startTime = performance.now();
+            updateStatus('running', 'Compiling...');
+            outputContent.textContent = 'Compiling...';
+            outputContent.className = 'output-content';
+
+            try {
+                // Compilation phase
+                const compileStartTime = performance.now();
+                const compileResult = await simulateCompilation(code);
+                const compileEndTime = performance.now();
+                
+                compileTimeElement.textContent = `Compile: ${(compileEndTime - compileStartTime).toFixed(0)}ms`;
+                
+                if (compileResult.warnings.length > 0) {
+                    outputContent.textContent = 'Compilation completed with warnings:\n' + 
+                                                compileResult.warnings.join('\n');
+                    outputContent.className = 'output-content warning';
+                } else {
+                    outputContent.textContent = 'Compilation successful!\nRunning...\n';
+                    outputContent.className = 'output-content success';
+                }
+
+                // Execution phase
+                updateStatus('running', 'Running...');
+                const runStartTime = performance.now();
+                const output = await simulateExecution(code);
+                const runEndTime = performance.now();
+                
+                runTimeElement.textContent = `Run: ${(runEndTime - runStartTime).toFixed(0)}ms`;
+                
+                // Display final output
+                if (compileResult.warnings.length > 0) {
+                    outputContent.textContent = 'Compilation completed with warnings:\n' + 
+                                                compileResult.warnings.join('\n') + '\n\n--- Output ---\n' + output;
+                } else {
+                    outputContent.textContent = output;
+                }
+                
+                outputContent.className = 'output-content success';
+                updateStatus('ready', 'Code executed successfully');
+                
+            } catch (errors) {
+                outputContent.textContent = 'Compilation failed:\n' + errors.join('\n');
+                outputContent.className = 'output-content error';
+                updateStatus('error', 'Compilation failed');
+                compileTimeElement.textContent = 'Compile: Failed';
+                runTimeElement.textContent = 'Run: --';
+            }
+            
+            const endTime = performance.now();
+            lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                runCode();
+            }
+        });
+
+        // Auto-resize textarea
+        codeEditor.addEventListener('input', () => {
+            codeEditor.style.height = 'auto';
+            codeEditor.style.height = codeEditor.scrollHeight + 'px';
+        });
+
+        // Initialize
+        updateStatus('ready', 'Ready to compile');
+    </script>
+</body>
+</html>

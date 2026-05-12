@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Online Compiler - Code Tutorium</title>
+    <link rel="stylesheet" href="lessons.css">
+    <style>
+        .compiler-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .compiler-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .compiler-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .compiler-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .compiler-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .compiler-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .compiler-btn.run {
+            background: var(--success);
+            border-color: var(--success);
+        }
+        
+        .compiler-editor {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 500px;
+            border: 1px solid var(--border);
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        
+        .editor-panel, .output-panel {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-header {
+            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .editor-textarea {
+            flex: 1;
+            border: none;
+            padding: 1rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: none;
+            outline: none;
+            background: var(--bg);
+            color: var(--text);
+        }
+        
+        .output-content {
+            flex: 1;
+            padding: 1rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            background: var(--bg);
+            color: var(--text);
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .output-content.error {
+            color: var(--error);
+        }
+        
+        .output-content.success {
+            color: var(--success);
+        }
+        
+        .compiler-status {
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+        }
+        
+        .status-dot.ready {
+            background: var(--success);
+        }
+        
+        .status-dot.running {
+            background: var(--warning);
+            animation: pulse 1s infinite;
+        }
+        
+        .status-dot.error {
+            background: var(--error);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @media (max-width: 768px) {
+            .compiler-editor {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .editor-panel, .output-panel {
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="compiler-container">
+        <div class="compiler-header">
+            <div class="compiler-title">🐍 Python Online Compiler</div>
+            <div class="compiler-actions">
+                <button class="compiler-btn" onclick="clearCode()">Clear</button>
+                <button class="compiler-btn" onclick="loadExample()">Load Example</button>
+                <button class="compiler-btn run" onclick="runCode()">▶ Run</button>
+            </div>
+        </div>
+        
+        <div class="compiler-editor">
+            <div class="editor-panel">
+                <div class="panel-header">📝 Code Editor</div>
+                <textarea id="code-editor" class="editor-textarea" placeholder="# Write your Python code here
+print('Hello, World!')
+# Try running this code!"># Write your Python code here
+print("Hello, World!")
+name = input("What's your name? ")
+print(f"Nice to meet you, {name}!")
+
+# Try some math
+x = 10
+y = 5
+print(f"{x} + {y} = {x + y}")
+
+# List example
+fruits = ["apple", "banana", "orange"]
+for fruit in fruits:
+    print(f"I like {fruit}")</textarea>
+            </div>
+            
+            <div class="output-panel">
+                <div class="panel-header">📊 Output</div>
+                <div id="output-content" class="output-content">Click "Run" to execute your Python code...</div>
+            </div>
+        </div>
+        
+        <div class="compiler-status">
+            <div id="status-dot" class="status-dot ready"></div>
+            <span id="status-text">Ready to run</span>
+        </div>
+    </div>
+
+    <script>
+        const codeEditor = document.getElementById('code-editor');
+        const outputContent = document.getElementById('output-content');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+
+        function updateStatus(status, text) {
+            statusDot.className = `status-dot ${status}`;
+            statusText.textContent = text;
+        }
+
+        function clearCode() {
+            codeEditor.value = '';
+            outputContent.textContent = 'Code cleared. Write something and click Run!';
+            outputContent.className = 'output-content';
+            updateStatus('ready', 'Ready to run');
+        }
+
+        function loadExample() {
+            codeEditor.value = `# Python Example: Calculator
+def calculate(a, b, operation):
+    """Simple calculator function"""
+    if operation == '+':
+        return a + b
+    elif operation == '-':
+        return a - b
+    elif operation == '*':
+        return a * b
+    elif operation == '/':
+        return a / b if b != 0 else "Cannot divide by zero"
+    else:
+        return "Invalid operation"
+
+# Test the calculator
+print("=== Simple Calculator ===")
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+op = input("Enter operation (+, -, *, /): ")
+
+result = calculate(num1, num2, op)
+print(f"Result: {result}")`;
+            updateStatus('ready', 'Example loaded');
+        }
+
+        function runCode() {
+            const code = codeEditor.value;
+            
+            if (!code.trim()) {
+                outputContent.textContent = 'Please write some code first!';
+                outputContent.className = 'output-content error';
+                return;
+            }
+
+            updateStatus('running', 'Running code...');
+            outputContent.textContent = 'Executing...';
+            outputContent.className = 'output-content';
+
+            // Simulate Python execution (in real implementation, this would call a backend service)
+            setTimeout(() => {
+                try {
+                    // Capture console.log output
+                    const logs = [];
+                    const originalLog = console.log;
+                    const originalError = console.error;
+                    
+                    console.log = (...args) => {
+                        logs.push(args.map(arg => 
+                            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                        ).join(' '));
+                    };
+                    
+                    console.error = (...args) => {
+                        logs.push('ERROR: ' + args.join(' '));
+                    };
+
+                    // Create a safe execution environment
+                    const safeCode = `
+                        // Mock Python environment
+                        const print = (...args) => {
+                            console.log(...args.map(arg => 
+                                typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                            ));
+                        };
+                        
+                        const input = (prompt) => {
+                            // Mock input - in real implementation this would prompt user
+                            const mockInputs = {
+                                "What's your name? ": "Python Learner",
+                                "Enter first number: ": "10",
+                                "Enter second number: ": "5",
+                                "Enter operation (+, -, *, /): ": "+"
+                            };
+                            return mockInputs[prompt] || "user_input";
+                        };
+                        
+                        try {
+                            ${code}
+                        } catch (error) {
+                            console.error('Runtime Error:', error.message);
+                        }
+                    `;
+                    
+                    // Execute the code
+                    eval(safeCode);
+                    
+                    // Restore console
+                    console.log = originalLog;
+                    console.error = originalError;
+                    
+                    if (logs.length > 0) {
+                        outputContent.textContent = logs.join('\n');
+                        outputContent.className = 'output-content success';
+                        updateStatus('ready', 'Code executed successfully');
+                    } else {
+                        outputContent.textContent = 'Code executed (no output)';
+                        outputContent.className = 'output-content';
+                        updateStatus('ready', 'Code executed');
+                    }
+                    
+                } catch (error) {
+                    outputContent.textContent = `Error: ${error.message}`;
+                    outputContent.className = 'output-content error';
+                    updateStatus('error', 'Execution failed');
+                }
+            }, 1000);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                runCode();
+            }
+        });
+
+        // Auto-resize textarea
+        codeEditor.addEventListener('input', () => {
+            codeEditor.style.height = 'auto';
+            codeEditor.style.height = codeEditor.scrollHeight + 'px';
+        });
+    </script>
+</body>
+</html>

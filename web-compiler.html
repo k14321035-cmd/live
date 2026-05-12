@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Compiler - HTML, CSS, JavaScript | Code Tutorium</title>
+    <link rel="stylesheet" href="lessons.css">
+    <style>
+        :root {
+            --primary: #2558c8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --bg: #f5f7fb;
+            --bg-secondary: #ffffff;
+            --border: #dde3f0;
+            --text: #0d1f4e;
+            --text-muted: #7a8aab;
+        }
+
+        .web-compiler-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .compiler-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .compiler-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .compiler-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .compiler-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: inherit;
+        }
+        
+        .compiler-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        
+        .compiler-btn.run {
+            background: #4ade80;
+            border-color: #4ade80;
+            color: #000;
+        }
+        
+        .compiler-btn.run:hover {
+            background: #22c55e;
+        }
+        
+        .compiler-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 700px;
+            border: 1px solid var(--border);
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        
+        .editor-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+            background: var(--bg);
+        }
+        
+        .preview-section {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-secondary);
+        }
+        
+        .tabs {
+            display: flex;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+            font-family: inherit;
+        }
+        
+        .tab:hover {
+            color: var(--text);
+            background: rgba(37, 88, 200, 0.05);
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: rgba(37, 88, 200, 0.05);
+        }
+        
+        .editor-panels {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg);
+        }
+        
+        .editor-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .editor-panel.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .editor-textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            background: var(--bg);
+            color: var(--text);
+            tab-size: 2;
+            overflow: auto;
+        }
+        
+        .preview-content {
+            flex: 1;
+            background: white;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
+        }
+        
+        .console-output {
+            flex: 1;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: none;
+        }
+        
+        .console-output.active {
+            display: block;
+        }
+        
+        .console-line {
+            margin-bottom: 0.5rem;
+        }
+        
+        .console-line.log {
+            color: #d4d4d4;
+        }
+        
+        .console-line.error {
+            color: #f87171;
+        }
+        
+        .console-line.warn {
+            color: #fbbf24;
+        }
+        
+        .console-line.info {
+            color: #60a5fa;
+        }
+        
+        .console-line.success {
+            color: #4ade80;
+        }
+        
+        .compiler-status {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            transition: all 0.3s;
+        }
+        
+        .status-dot.ready {
+            background: var(--success);
+        }
+        
+        .status-dot.running {
+            background: var(--warning);
+            animation: pulse 1s infinite;
+        }
+        
+        .status-dot.error {
+            background: var(--error);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .preview-tabs {
+            display: flex;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .preview-tab {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+            font-family: inherit;
+        }
+        
+        .preview-tab:hover {
+            color: var(--text);
+            background: rgba(37, 88, 200, 0.05);
+        }
+        
+        .preview-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: rgba(37, 88, 200, 0.05);
+        }
+
+        .empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            flex-direction: column;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .compiler-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .editor-section {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                height: 400px;
+            }
+            
+            .preview-section {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .compiler-header {
+                padding: 1rem;
+                flex-direction: column;
+            }
+            
+            .compiler-title {
+                font-size: 1.2rem;
+                width: 100%;
+            }
+            
+            .compiler-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .compiler-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .editor-section,
+            .preview-section {
+                height: 300px;
+            }
+
+            .tabs,
+            .preview-tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab,
+            .preview-tab {
+                flex: 0 1 auto;
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="web-compiler-container">
+        <div class="compiler-header">
+            <div class="compiler-title">
+                🌐 Web Development Compiler
+            </div>
+            <div class="compiler-actions">
+                <button class="compiler-btn" onclick="clearAll()">
+                    🗑️ Clear
+                </button>
+                <button class="compiler-btn" onclick="loadExample('html')">
+                    📄 HTML
+                </button>
+                <button class="compiler-btn" onclick="loadExample('css')">
+                    🎨 CSS
+                </button>
+                <button class="compiler-btn" onclick="loadExample('js')">
+                    ⚡ JS
+                </button>
+                <button class="compiler-btn run" onclick="runCode()">
+                    ▶ Run (Ctrl+Enter)
+                </button>
+            </div>
+        </div>
+        
+        <div class="compiler-layout">
+            <!-- Editor Section -->
+            <div class="editor-section">
+                <div class="tabs">
+                    <button class="tab active" data-tab="html">HTML</button>
+                    <button class="tab" data-tab="css">CSS</button>
+                    <button class="tab" data-tab="js">JavaScript</button>
+                </div>
+                
+                <div class="editor-panels">
+                    <div class="editor-panel active" id="html-panel">
+                        <textarea id="html-editor" class="editor-textarea" placeholder="Write your HTML code here...">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to Web Development!&lt;/h1&gt;
+    &lt;p&gt;This is a simple HTML page.&lt;/p&gt;
+    &lt;button id="myButton"&gt;Click Me!&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                    </div>
+                    
+                    <div class="editor-panel" id="css-panel">
+                        <textarea id="css-editor" class="editor-textarea" placeholder="Write your CSS code here...">body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+button {
+    background: #4ade80;
+    color: #000;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: #22c55e;
+    transform: translateY(-2px);
+}</textarea>
+                    </div>
+                    
+                    <div class="editor-panel" id="js-panel">
+                        <textarea id="js-editor" class="editor-textarea" placeholder="Write your JavaScript code here...">// JavaScript code
+document.addEventListener('DOMContentLoaded', function() {
+    const button = document.getElementById('myButton');
+    let clickCount = 0;
+    
+    if (button) {
+        button.addEventListener('click', function() {
+            clickCount++;
+            alert('Button clicked ' + clickCount + ' time(s)!');
+            this.textContent = 'Clicked ' + clickCount + ' times';
+            
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+        });
+    }
+    
+    console.log('Page loaded successfully!');
+});</textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <div class="preview-tabs">
+                    <button class="preview-tab active" data-preview="preview">👁️ Preview</button>
+                    <button class="preview-tab" data-preview="console">📟 Console</button>
+                </div>
+                
+                <div class="preview-content" id="preview-panel">
+                    <iframe id="preview-iframe" class="preview-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+                </div>
+                
+                <div class="console-output" id="console-output">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📟</div>
+                        <p>Console output will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="compiler-status">
+            <div class="status-left">
+                <div id="status-dot" class="status-dot ready"></div>
+                <span id="status-text">Ready to run</span>
+            </div>
+            <div id="last-run">Last run: Never</div>
+        </div>
+    </div>
+
+    <script>
+        const htmlEditor = document.getElementById('html-editor');
+        const cssEditor = document.getElementById('css-editor');
+        const jsEditor = document.getElementById('js-editor');
+        const previewIframe = document.getElementById('preview-iframe');
+        const consoleOutput = document.getElementById('console-output');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const lastRunElement = document.getElementById('last-run');
+        
+        let consoleMessages = [];
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.editor-panel').forEach(p => p.classList.remove('active'));
+                document.getElementById(`${tabName}-panel`).classList.add('active');
+            });
+        });
+
+        // Preview tab switching
+        document.querySelectorAll('.preview-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const previewName = this.getAttribute('data-preview');
+                
+                document.querySelectorAll('.preview-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const previewPanel = document.getElementById('preview-panel');
+                const consolePanel = document.getElementById('console-output');
+                
+                if (previewName === 'preview') {
+                    previewPanel.style.display = 'flex';
+                    consolePanel.style.display = 'none';
+                } else {
+                    previewPanel.style.display = 'none';
+                    consolePanel.style.display = 'block';
+                }
+            });
+        });
+
+        function updateStatus(status, text) {
+            statusDot.className = `status-dot ${status}`;
+            statusText.textContent = text;
+        }
+
+        function clearAll() {
+            if (confirm('Clear all editors?')) {
+                htmlEditor.value = '';
+                cssEditor.value = '';
+                jsEditor.value = '';
+                consoleMessages = [];
+                updateConsole();
+                previewIframe.srcdoc = '';
+                updateStatus('ready', 'All editors cleared');
+            }
+        }
+
+        function loadExample(type) {
+            const examples = {
+                html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="1" max="120">
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <div id="result"></div>
+    </div>
+</body>
+</html>`,
+                css: `* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4ecdc4;
+}
+
+button {
+    width: 100%;
+    padding: 1rem;
+    background: #4ecdc4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #45b7b8;
+}
+
+#result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f0f8ff;
+    border-radius: 8px;
+    text-align: center;
+    color: #333;
+}`,
+                js: `document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registrationForm');
+    const resultDiv = document.getElementById('result');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const age = document.getElementById('age').value;
+            
+            if (!name || !email) {
+                resultDiv.textContent = 'Please fill in all required fields!';
+                resultDiv.style.background = '#fee';
+                resultDiv.style.color = '#c33';
+                return;
+            }
+            
+            const user = {
+                name: name,
+                email: email,
+                age: age || 'Not specified'
+            };
+            
+            resultDiv.textContent = 'Registration successful! Welcome, ' + user.name + '!';
+            resultDiv.style.background = '#efe';
+            resultDiv.style.color = '#3a3';
+            
+            console.log('User registered:', user);
+            
+            setTimeout(() => {
+                form.reset();
+            }, 2000);
+        });
+    }
+    
+    console.log('Form handler ready!');
+});`
+            };
+            
+            if (examples[type]) {
+                document.querySelectorAll('.tab').forEach(t => {
+                    if (t.getAttribute('data-tab') === type) {
+                        t.click();
+                    }
+                });
+                document.getElementById(`${type}-editor`).value = examples[type];
+                updateStatus('ready', `${type.toUpperCase()} example loaded`);
+            }
+        }
+
+        function updateConsole() {
+            if (consoleMessages.length === 0) {
+                consoleOutput.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📟</div><p>Console output will appear here</p></div>';
+                return;
+            }
+            
+            consoleOutput.innerHTML = consoleMessages.map(msg => 
+                `<div class="console-line ${msg.type}">${escapeHtml(msg.text)}</div>`
+            ).join('');
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function addConsoleMessage(type, text) {
+            consoleMessages.push({type, text});
+            updateConsole();
+        }
+
+        function runCode() {
+            updateStatus('running', 'Running code...');
+            consoleMessages = [];
+            
+            const html = htmlEditor.value || '<html><body><p>No HTML content</p></body></html>';
+            const css = cssEditor.value || '';
+            const js = jsEditor.value || '';
+            
+            // Create complete HTML document
+            const fullHtml = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Preview</title>
+                    <style>${css}</style>
+                </head>
+                <body>
+                    ${html}
+                    <script>
+                        (function() {
+                            const originalLog = console.log;
+                            const originalError = console.error;
+                            const originalWarn = console.warn;
+                            const originalInfo = console.info;
+                            
+                            const messages = [];
+                            
+                            console.log = function(...args) {
+                                const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+                                messages.push({type: 'log', text: text});
+                                originalLog.apply(console, args);
+                            };
+                            
+                            console.error = function(...args) {
+                                const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+                                messages.push({type: 'error', text: 'ERROR: ' + text});
+                                originalError.apply(console, args);
+                            };
+                            
+                            console.warn = function(...args) {
+                                const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+                                messages.push({type: 'warn', text: 'WARN: ' + text});
+                                originalWarn.apply(console, args);
+                            };
+                            
+                            console.info = function(...args) {
+                                const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+                                messages.push({type: 'info', text: 'INFO: ' + text});
+                                originalInfo.apply(console, args);
+                            };
+                            
+                            try {
+                                ${js}
+                            } catch (error) {
+                                console.error('Runtime Error: ' + error.message);
+                            }
+                            
+                            window.parent.postMessage({
+                                type: 'console-output',
+                                messages: messages
+                            }, '*');
+                        })();
+                    </script>
+                </body>
+                </html>
+            `;
+            
+            try {
+                previewIframe.srcdoc = fullHtml;
+                addConsoleMessage('success', 'Code compiled successfully');
+                updateStatus('ready', 'Code executed');
+                lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
+            } catch (error) {
+                addConsoleMessage('error', 'Compilation error: ' + error.message);
+                updateStatus('error', 'Error in code');
+            }
+        }
+
+        // Listen for console messages from iframe
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'console-output') {
+                consoleMessages = event.data.messages;
+                updateConsole();
+            }
+        });
+
+        // Keyboard shortcut: Ctrl+Enter to run
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                runCode();
+            }
+        });
+
+        // Initialize
+        updateStatus('ready', 'Ready to run');
+        console.log('Web Compiler initialized');
+    </script>
+</body>
+</html>
