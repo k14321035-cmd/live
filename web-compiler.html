@@ -3,412 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Development Compiler - HTML, CSS, JavaScript | Code Tutorium</title>
+    <title>Web Compiler — Code Tutorium</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:ital,wght@0,400;0,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="lessons.css">
+    <script src="theme.js"></script>
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* Editor-specific design tokens (dark IDE area) */
         :root {
-            --primary: #2558c8;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --bg: #f5f7fb;
-            --bg-secondary: #ffffff;
-            --border: #dde3f0;
-            --text: #0d1f4e;
-            --text-muted: #7a8aab;
+            --ed-bg:      #0d1117;
+            --ed-surface: #161b27;
+            --ed-surface2:#1e2336;
+            --ed-surface3:#252c42;
+            --ed-border:  rgba(255,255,255,.07);
+            --ed-border2: rgba(255,255,255,.13);
+            --ed-text:    #e2e6f0;
+            --ed-muted:   #7a8499;
+            --ed-accent:  #4f7eff;
+            --ed-accent2: #6b95ff;
+            --ed-green:   #22c55e;
+            --ed-green2:  #4ade80;
+            --ed-red:     #f87171;
+            --ed-yellow:  #fbbf24;
+            --ed-cyan:    #67e8f9;
+            --font-code:  'DM Mono', 'Fira Code', monospace;
         }
 
-        .web-compiler-container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .compiler-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 12px 12px 0 0;
+
+        /* ── Page layout — flex column fills viewport ── */
+        body { display: flex; flex-direction: column; padding-top: var(--topbar-h); }
+
+        .compiler-page {
+            flex: 1;
             display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        /* ── Sub-topbar (below site nav) ── */
+        .compiler-topbar {
+            display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            padding: .5rem 1.25rem;
+            min-height: 48px;
+            background: var(--ed-surface);
+            border-bottom: 1px solid var(--ed-border2);
+            flex-shrink: 0;
+            gap: .5rem;
         }
-        
-        .compiler-title {
-            font-size: 1.4rem;
-            font-weight: 700;
+
+        .compiler-topbar-left {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .75rem;
         }
-        
+
+        .compiler-page-title {
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--ed-text);
+            letter-spacing: -.01em;
+        }
+
+        .compiler-page-title::before {
+            content: '';
+            display: inline-block;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--ed-accent);
+            box-shadow: 0 0 7px var(--ed-accent);
+            margin-right: .45rem;
+            vertical-align: middle;
+        }
+
+        .compiler-hint {
+            font-size: .72rem;
+            color: var(--ed-muted);
+            font-family: var(--font-code);
+        }
+
         .compiler-actions {
             display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        
-        .compiler-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-family: inherit;
+            gap: .4rem;
         }
-        
-        .compiler-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-1px);
+
+        /* ── Buttons ── */
+        .compiler-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+            padding: .32rem .8rem;
+            background: var(--ed-surface2);
+            border: 1px solid var(--ed-border2);
+            border-radius: 6px;
+            color: var(--ed-muted);
+            font-size: .75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background .14s, color .14s, transform .12s;
+            font-family: var(--font-body, 'Outfit', sans-serif);
+            white-space: nowrap;
         }
-        
+        .compiler-btn:hover { background: var(--ed-surface3); color: var(--ed-text); }
         .compiler-btn.run {
-            background: #4ade80;
-            border-color: #4ade80;
-            color: #000;
+            background: var(--ed-green); border-color: var(--ed-green);
+            color: #000; font-weight: 700; padding: .32rem 1rem;
+            box-shadow: 0 0 12px rgba(34,197,94,.22);
         }
-        
         .compiler-btn.run:hover {
-            background: #22c55e;
+            background: var(--ed-green2); border-color: var(--ed-green2);
+            box-shadow: 0 0 18px rgba(74,222,128,.3); transform: translateY(-1px);
         }
-        
+
+        /* ── Editor / Preview grid ── */
         .compiler-layout {
+            flex: 1;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            height: 700px;
-            border: 1px solid var(--border);
-            border-radius: 0 0 12px 12px;
             overflow: hidden;
-            background: var(--bg-secondary);
+            min-height: 0;
         }
-        
+
         .editor-section {
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid var(--border);
-            background: var(--bg);
+            display: flex; flex-direction: column;
+            border-right: 1px solid var(--ed-border2);
+            background: var(--ed-surface);
+            min-height: 0;
         }
-        
+
         .preview-section {
-            display: flex;
-            flex-direction: column;
-            background: var(--bg-secondary);
+            display: flex; flex-direction: column;
+            background: #fff;
+            min-height: 0;
         }
-        
-        .tabs {
+
+        /* ── Tab bars ── */
+        .tabs, .preview-tabs {
             display: flex;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
+            background: var(--ed-bg);
+            border-bottom: 1px solid var(--ed-border2);
+            padding: 0 .25rem;
+            flex-shrink: 0;
         }
-        
-        .tab {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: all 0.2s;
+        .preview-tabs { background: var(--ed-surface); }
+
+        .tab, .preview-tab {
+            padding: .52rem .875rem;
+            background: none; border: none;
+            cursor: pointer; font-size: .75rem; font-weight: 500;
+            color: var(--ed-muted); transition: color .14s;
             border-bottom: 2px solid transparent;
-            font-family: inherit;
+            font-family: var(--font-body, 'Outfit', sans-serif);
+            margin-bottom: -1px; white-space: nowrap;
         }
-        
-        .tab:hover {
-            color: var(--text);
-            background: rgba(37, 88, 200, 0.05);
-        }
-        
-        .tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-            background: rgba(37, 88, 200, 0.05);
-        }
-        
-        .editor-panels {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-            background: var(--bg);
-        }
-        
-        .editor-panel {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        
-        .editor-panel.active {
-            display: block;
-            opacity: 1;
-        }
-        
+        .tab:hover, .preview-tab:hover { color: var(--ed-text); }
+        .tab.active       { color: var(--ed-accent2); border-bottom-color: var(--ed-accent); }
+        .preview-tab.active { color: var(--ed-cyan);   border-bottom-color: var(--ed-cyan); }
+
+        /* ── Editor panels ── */
+        .editor-panels { flex: 1; position: relative; overflow: hidden; min-height: 0; }
+        .editor-panel  { position: absolute; inset: 0; display: none; opacity: 0; transition: opacity .15s; }
+        .editor-panel.active { display: block; opacity: 1; }
+
         .editor-textarea {
-            width: 100%;
-            height: 100%;
-            border: none;
-            padding: 1rem;
-            font-family: 'Courier New', monospace;
-            font-size: 13px;
-            line-height: 1.6;
-            resize: none;
-            outline: none;
-            background: var(--bg);
-            color: var(--text);
-            tab-size: 2;
-            overflow: auto;
+            width: 100%; height: 100%; border: none;
+            padding: 1rem 1.2rem;
+            font-family: var(--font-code); font-size: 13px; line-height: 1.75;
+            resize: none; outline: none;
+            background: var(--ed-bg); color: #c9d2e8;
+            tab-size: 2; overflow: auto; -webkit-font-smoothing: antialiased;
         }
-        
-        .preview-content {
-            flex: 1;
-            background: white;
-            overflow: auto;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .preview-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: white;
-        }
-        
+        .editor-textarea::placeholder { color: rgba(122,132,153,.4); }
+        .editor-textarea:focus { box-shadow: inset 2px 0 0 var(--ed-accent); }
+
+        /* ── Preview pane ── */
+        .preview-content { flex: 1; background: #fff; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+        .preview-iframe  { width: 100%; height: 100%; border: none; }
+
+        /* ── Console ── */
         .console-output {
-            flex: 1;
-            padding: 1rem;
-            font-family: 'Courier New', monospace;
-            font-size: 13px;
-            line-height: 1.4;
-            background: #1e1e1e;
-            color: #d4d4d4;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            display: none;
+            flex: 1; padding: .9rem 1.2rem;
+            font-family: var(--font-code); font-size: 12.5px; line-height: 1.6;
+            background: var(--ed-bg); color: #c9d2e8;
+            overflow-y: auto; white-space: pre-wrap; word-wrap: break-word;
+            display: none; min-height: 0;
         }
-        
-        .console-output.active {
-            display: block;
-        }
-        
-        .console-line {
-            margin-bottom: 0.5rem;
-        }
-        
-        .console-line.log {
-            color: #d4d4d4;
-        }
-        
-        .console-line.error {
-            color: #f87171;
-        }
-        
-        .console-line.warn {
-            color: #fbbf24;
-        }
-        
-        .console-line.info {
-            color: #60a5fa;
-        }
-        
-        .console-line.success {
-            color: #4ade80;
-        }
-        
+        .console-output.active { display: block; }
+        .console-line           { margin-bottom: .3rem; }
+        .console-line.log       { color: #c9d2e8; }
+        .console-line.error     { color: var(--ed-red); }
+        .console-line.warn      { color: var(--ed-yellow); }
+        .console-line.info      { color: #60a5fa; }
+        .console-line.success   { color: var(--ed-green2); }
+
+        /* ── Status bar ── */
         .compiler-status {
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: .28rem 1.25rem;
+            background: var(--ed-surface2); border-top: 1px solid var(--ed-border);
+            font-size: .7rem; color: var(--ed-muted); font-family: var(--font-code);
+            flex-shrink: 0;
         }
-        
-        .status-left {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--text-muted);
-            transition: all 0.3s;
-        }
-        
-        .status-dot.ready {
-            background: var(--success);
-        }
-        
-        .status-dot.running {
-            background: var(--warning);
-            animation: pulse 1s infinite;
-        }
-        
-        .status-dot.error {
-            background: var(--error);
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .preview-tabs {
-            display: flex;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .preview-tab {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: all 0.2s;
-            border-bottom: 2px solid transparent;
-            font-family: inherit;
-        }
-        
-        .preview-tab:hover {
-            color: var(--text);
-            background: rgba(37, 88, 200, 0.05);
-        }
-        
-        .preview-tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-            background: rgba(37, 88, 200, 0.05);
-        }
+        .status-left { display: flex; align-items: center; gap: .5rem; }
+        .status-dot  { width: 7px; height: 7px; border-radius: 50%; background: var(--ed-muted); transition: background .25s, box-shadow .25s; }
+        .status-dot.ready   { background: var(--ed-green);  box-shadow: 0 0 6px rgba(34,197,94,.5); }
+        .status-dot.running { background: var(--ed-yellow); animation: blink 1s infinite; }
+        .status-dot.error   { background: var(--ed-red);    box-shadow: 0 0 6px rgba(248,113,113,.5); }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-        .empty-state {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            flex-direction: column;
-            color: var(--text-muted);
-            text-align: center;
+        /* ── Footer ── */
+        .compiler-footer {
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: .65rem 1.5rem;
+            background: #0a0f1a;
+            border-top: 1px solid var(--ed-border2);
+            gap: 1rem;
         }
+        .compiler-footer-copy { font-size: .72rem; color: var(--ed-muted); font-family: var(--font-code); }
+        .compiler-footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+        .compiler-footer-links a {
+            font-size: .72rem; color: rgba(255,255,255,.45); text-decoration: none;
+            font-family: var(--font-body, 'Outfit', sans-serif); transition: color .15s;
+        }
+        .compiler-footer-links a:hover { color: rgba(255,255,255,.9); }
 
-        .empty-state-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        @media (max-width: 1024px) {
+        /* ── Empty state ── */
+        .empty-state { display:flex; align-items:center; justify-content:center; height:100%; flex-direction:column; gap:.5rem; color:var(--ed-muted); text-align:center; background:var(--ed-bg); }
+        .empty-state-icon { font-size:2rem; opacity:.5; }
+        .empty-state p    { font-size:.77rem; }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar       { width:5px; height:5px; }
+        ::-webkit-scrollbar-track { background:transparent; }
+        ::-webkit-scrollbar-thumb { background:var(--ed-surface3); border-radius:99px; }
+        ::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,.22); }
+
+        /* ── Responsive ── */
+
+        /* Tablet: stack editor + preview */
+        @media (max-width:1024px) {
             .compiler-layout {
                 grid-template-columns: 1fr;
+                overflow-y: auto;
+            }
+            .editor-section  { height:48vh; min-height:260px; border-right:none; border-bottom:1px solid var(--ed-border2); }
+            .preview-section { height:52vh; min-height:280px; }
+        }
+
+        /* Mobile: scrollable page, touch-friendly controls */
+        @media (max-width:768px) {
+            html, body { height:auto; overflow:auto; }
+
+            .compiler-page  { overflow:visible; height:auto; }
+
+            .compiler-layout {
+                grid-template-columns: 1fr;
+                overflow: visible;
                 height: auto;
             }
-            
-            .editor-section {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                height: 400px;
+
+            .editor-section  { height:50vmax; min-height:280px; border-right:none; border-bottom:1px solid var(--ed-border2); }
+            .preview-section { height:55vmax; min-height:320px; }
+
+            /* Prevent iOS zoom on textarea focus */
+            .editor-textarea { font-size:16px; }
+
+            .compiler-topbar {
+                padding: .5rem .75rem;
+                gap: .4rem;
             }
-            
-            .preview-section {
-                height: 400px;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .compiler-header {
-                padding: 1rem;
-                flex-direction: column;
-            }
-            
-            .compiler-title {
-                font-size: 1.2rem;
-                width: 100%;
-            }
-            
-            .compiler-actions {
-                width: 100%;
-                justify-content: center;
-            }
-            
+            .compiler-hint { display:none; }
+
+            .compiler-actions { flex-wrap:wrap; gap:.35rem; }
             .compiler-btn {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.8rem;
+                padding: .42rem .7rem;
+                font-size: .78rem;
+                flex: 1;
+                justify-content: center;
+                min-width: 60px;
             }
-            
-            .editor-section,
-            .preview-section {
-                height: 300px;
-            }
+            .compiler-btn.run { flex: 2; }
 
-            .tabs,
-            .preview-tabs {
-                flex-wrap: wrap;
-            }
+            .tab, .preview-tab { padding:.5rem .75rem; font-size:.78rem; }
 
-            .tab,
-            .preview-tab {
-                flex: 0 1 auto;
-                min-width: 80px;
+            .compiler-status { padding:.3rem .75rem; font-size:.68rem; }
+
+            .compiler-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .5rem;
+                padding: .75rem;
             }
+            .compiler-footer-links { gap:.6rem; flex-wrap:wrap; }
+        }
+
+        /* Small phones */
+        @media (max-width:420px) {
+            .compiler-btn { font-size:.72rem; padding:.38rem .5rem; }
+            .compiler-page-title { font-size:.78rem; }
         }
     </style>
 </head>
 <body>
-    <div class="web-compiler-container">
-        <div class="compiler-header">
-            <div class="compiler-title">
-                🌐 Web Development Compiler
-            </div>
-            <div class="compiler-actions">
-                <button class="compiler-btn" onclick="clearAll()">
-                    🗑️ Clear
-                </button>
-                <button class="compiler-btn" onclick="loadExample('html')">
-                    📄 HTML
-                </button>
-                <button class="compiler-btn" onclick="loadExample('css')">
-                    🎨 CSS
-                </button>
-                <button class="compiler-btn" onclick="loadExample('js')">
-                    ⚡ JS
-                </button>
-                <button class="compiler-btn run" onclick="runCode()">
-                    ▶ Run (Ctrl+Enter)
-                </button>
-            </div>
+
+<!-- ═══════════════════════════════════════════
+     SITE-WIDE MEGA NAV (matches all lesson pages)
+════════════════════════════════════════════════ -->
+<nav class="lesson-mega-nav">
+    <div class="lesson-nav-container">
+        <div class="lesson-nav-left">
+            <a href="index.html" class="lesson-nav-logo">C <span>T</span></a>
         </div>
-        
-        <div class="compiler-layout">
-            <!-- Editor Section -->
-            <div class="editor-section">
-                <div class="tabs">
-                    <button class="tab active" data-tab="html">HTML</button>
-                    <button class="tab" data-tab="css">CSS</button>
-                    <button class="tab" data-tab="js">JavaScript</button>
+        <div class="lesson-mega-menu">
+            <div class="lesson-mega-item">
+                <button class="lesson-mega-trigger">
+                    Courses
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
+                </button>
+                <div class="lesson-mega-dropdown">
+                    <div class="lesson-mega-grid">
+                        <a href="lessons/python" class="lesson-mega-link">Python</a>
+                        <a href="lessons/html" class="lesson-mega-link">HTML</a>
+                        <a href="lessons/css" class="lesson-mega-link">CSS</a>
+                        <a href="lessons/javascript" class="lesson-mega-link">JavaScript</a>
+                        <a href="lessons/java" class="lesson-mega-link">Java</a>
+                        <a href="lessons/c++" class="lesson-mega-link">C++</a>
+                        <a href="lessons/c" class="lesson-mega-link">C Language</a>
+                        <a href="lessons/cc" class="lesson-mega-link">C#</a>
+                        <a href="lessons/typescript" class="lesson-mega-link">TypeScript</a>
+                        <a href="lessons/go" class="lesson-mega-link">Go</a>
+                        <a href="lessons/rust" class="lesson-mega-link">Rust</a>
+                        <a href="lessons/kotlin" class="lesson-mega-link">Kotlin</a>
+                        <a href="lessons/swift" class="lesson-mega-link">Swift</a>
+                        <a href="lessons/php" class="lesson-mega-link">PHP</a>
+                        <a href="lessons/sql" class="lesson-mega-link">SQL</a>
+                        <a href="lessons/r" class="lesson-mega-link">R</a>
+                        <a href="lessons/bash" class="lesson-mega-link">Bash</a>
+                        <a href="lessons/dart" class="lesson-mega-link">Dart</a>
+                        <a href="lessons/ruby" class="lesson-mega-link">Ruby</a>
+                        <a href="lessons/matlab" class="lesson-mega-link">MATLAB</a>
+                        <a href="lessons/visualbasic" class="lesson-mega-link">Visual Basic</a>
+                        <a href="lessons/shell" class="lesson-mega-link">Shell</a>
+                        <a href="lessons/ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
+                    </div>
                 </div>
+            </div>
+            <a href="index.html#courses" class="lesson-mega-link-plain">Courses</a>
+            <a href="index.html" class="lesson-mega-link-plain">Home</a>
+            <a href="multi-language-compiler.html" class="lesson-mega-link-plain">Multi-Lang Compiler</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     COMPILER PAGE
+════════════════════════════════════════════════ -->
+<div class="compiler-page">
+
+    <!-- Sub-topbar -->
+    <div class="compiler-topbar">
+        <div class="compiler-topbar-left">
+            <span class="compiler-page-title">Web Development Compiler</span>
+            <span class="compiler-hint">HTML · CSS · JavaScript</span>
+        </div>
+        <div class="compiler-actions">
+            <button class="compiler-btn" onclick="clearAll()">Clear</button>
+            <button class="compiler-btn" onclick="loadExample('html')">HTML eg.</button>
+            <button class="compiler-btn" onclick="loadExample('css')">CSS eg.</button>
+            <button class="compiler-btn" onclick="loadExample('js')">JS eg.</button>
+            <button class="compiler-btn run" onclick="runCode()">▶ Run</button>
+        </div>
+    </div>
+
+    <!-- Editor + Preview -->
+    <div class="compiler-layout">
+
+        <!-- Editor Section -->
+        <div class="editor-section">
+            <div class="tabs">
+                <button class="tab active" data-tab="html">HTML</button>
+                <button class="tab" data-tab="css">CSS</button>
+                <button class="tab" data-tab="js">JavaScript</button>
+            </div>
                 
                 <div class="editor-panels">
                     <div class="editor-panel active" id="html-panel">
@@ -515,14 +505,31 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
         
-        <div class="compiler-status">
-            <div class="status-left">
-                <div id="status-dot" class="status-dot ready"></div>
-                <span id="status-text">Ready to run</span>
-            </div>
-            <div id="last-run">Last run: Never</div>
+    <!-- Status bar -->
+    <div class="compiler-status">
+        <div class="status-left">
+            <div id="status-dot" class="status-dot ready"></div>
+            <span id="status-text">Ready to run</span>
         </div>
+        <div id="last-run">Last run: Never</div>
     </div>
+
+</div><!-- /.compiler-page -->
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer class="compiler-footer">
+    <span class="compiler-footer-copy">© 2025 Code Tutorium — Web Compiler</span>
+    <div class="compiler-footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#courses">Courses</a>
+        <a href="multi-language-compiler.html">Multi-Language Compiler</a>
+        <a href="lessons/html">HTML Course</a>
+        <a href="lessons/css">CSS Course</a>
+        <a href="lessons/javascript">JS Course</a>
+    </div>
+</footer>
 
     <script>
         const htmlEditor = document.getElementById('html-editor');
@@ -838,7 +845,7 @@ button:hover {
                                 messages: messages
                             }, '*');
                         })();
-                    </script>
+                    ${'</scr' + 'ipt>'}
                 </body>
                 </html>
             `;

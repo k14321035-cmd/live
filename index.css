@@ -29,6 +29,12 @@
   --font-display: 'Syne', system-ui, sans-serif;
   --nav-h: 60px;
   --sub-h: 44px;
+  --bg-2:        #0d0d12;
+  --bg-3:        #161620;
+  --text-2:      rgba(240,240,245,0.70);
+  --text-3:      #888896;
+  --border-2:    rgba(255,255,255,0.14);
+  --accent-glow: rgba(165,243,252,0.30);
 }
 
 html { scroll-behavior: smooth; }
@@ -294,6 +300,28 @@ ul { list-style: none; }
 }
 
 .btn-ghost:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.lesson-mega-link-plain {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.lesson-mega-link-plain:hover {
   color: var(--text);
   border-color: var(--accent);
   background: var(--accent-dim);
@@ -762,6 +790,32 @@ footer .container { max-width: 1200px; margin: 0 auto; }
   letter-spacing: 0.04em;
 }
 
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--text-3);
+  transition: color .18s, border-color .18s, background .18s, transform .18s;
+}
+.social-link svg { width: 17px; height: 17px; }
+.social-link:hover {
+  color: #fff;
+  border-color: var(--accent);
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
 
 
 /* ════════════════════════════════════════════════════════════
@@ -779,7 +833,7 @@ footer .container { max-width: 1200px; margin: 0 auto; }
   justify-content: center;
   padding: 1rem;
 }
-.modal-overlay.active { display: flex; }
+.modal-overlay.open { display: flex; }
 
 .modal {
   background: var(--surface);
@@ -1309,6 +1363,118 @@ footer .container { max-width: 1200px; margin: 0 auto; }
 
 
 /* ═══════════════════════════════════════════
+   MOBILE NAV
+   ═══════════════════════════════════════════ */
+
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.45rem 0.55rem;
+  align-items: center;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.hamburger-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+@media (max-width: 768px) {
+  .hamburger-btn { display: flex; }
+}
+
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.mobile-nav-overlay.open { display: block; }
+
+.mobile-nav-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(320px, 90vw);
+  height: 100%;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 1.25rem;
+  animation: mobileSlideIn 0.25s ease;
+}
+
+@keyframes mobileSlideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.mobile-nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.menu-close-btn {
+  background: none;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.menu-close-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.mobile-nav-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.mobile-nav-courses {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.mobile-nav-courses a {
+  font-size: 0.875rem;
+  color: var(--muted);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s, background 0.2s;
+}
+
+.mobile-nav-courses a:hover {
+  color: var(--text);
+  background: var(--surface2);
+}
+
+/* ═══════════════════════════════════════════
    SCROLLBAR
    ═══════════════════════════════════════════ */
 
@@ -1476,4 +1642,114 @@ footer .container { max-width: 1200px; margin: 0 auto; }
   .legal-container h1 {
     font-size: 1.8rem;
   }
+}
+
+/* ═══════════════════════════════════════════
+   THEME TOGGLE BUTTON (index / compiler pages)
+   ═══════════════════════════════════════════ */
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  background: #1e3a7a;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 50%;
+  color: rgba(255,255,255,.85);
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0,0,0,.45);
+  transition: background .18s, transform .18s, box-shadow .18s;
+}
+.theme-toggle-btn svg { width: 18px; height: 18px; pointer-events: none; }
+.theme-toggle-btn:hover {
+  background: #254d90;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(0,0,0,.55);
+}
+html[data-theme="light"] .theme-toggle-btn { background: #334155; }
+html[data-theme="light"] .theme-toggle-btn:hover { background: #1e293b; }
+
+/* ═══════════════════════════════════════════
+   LIGHT MODE — matches lecture page theme
+   ═══════════════════════════════════════════ */
+html[data-theme="light"] {
+  --bg:         #f5f7fb;
+  --surface:    #ffffff;
+  --surface2:   #eef1f8;
+  --border:     #dde3f0;
+  --border2:    #c4ceea;
+  --text:       #0d1f4e;
+  --muted:      #7a8aab;
+  --bg-2:       #eef1f8;
+  --bg-3:       #e4e9f5;
+  --text-2:     #3a4a6b;
+  --text-3:     #7a8aab;
+  --accent:     #60a5fa;
+  --accent-dim: rgba(37,88,200,.08);
+  --accent-glow: rgba(37,88,200,.18);
+}
+
+html[data-theme="light"] body {
+  background: #f5f7fb;
+  color: #0d1f4e;
+}
+
+/* Nav — keep the same deep blue as lecture nav */
+html[data-theme="light"] .lesson-mega-nav { background: #0d1f4e; }
+
+/* Hero */
+html[data-theme="light"] .hero {
+  background: linear-gradient(135deg, #eef1f8 0%, #dde8fc 100%);
+}
+html[data-theme="light"] .hero-title { color: #0d1f4e; }
+html[data-theme="light"] .hero-sub   { color: #3a4a6b; }
+html[data-theme="light"] .hero-cta-primary {
+  background: #2558c8;
+  color: #fff;
+}
+html[data-theme="light"] .hero-cta-secondary {
+  border-color: #c4ceea;
+  color: #0d1f4e;
+}
+
+/* Sections */
+html[data-theme="light"] .courses-section  { background: #ffffff; }
+html[data-theme="light"] .features-section { background: #f5f7fb; }
+html[data-theme="light"] .section-title    { color: #0d1f4e; }
+html[data-theme="light"] .section-sub      { color: #3a4a6b; }
+
+/* Course cards */
+html[data-theme="light"] .course-card {
+  background: #ffffff;
+  border-color: #dde3f0;
+  box-shadow: 0 2px 12px rgba(30,67,160,.06);
+}
+html[data-theme="light"] .course-card:hover {
+  border-color: #6090f0;
+  box-shadow: 0 6px 24px rgba(30,67,160,.12);
+}
+html[data-theme="light"] .course-name { color: #0d1f4e; }
+html[data-theme="light"] .course-desc { color: #3a4a6b; }
+html[data-theme="light"] .course-tag  { background: #eef1f8; color: #2558c8; border-color: #c4d6fc; }
+
+/* Feature items */
+html[data-theme="light"] .feature-item { background: #ffffff; border-color: #dde3f0; }
+html[data-theme="light"] .feature-title { color: #0d1f4e; }
+html[data-theme="light"] .feature-desc  { color: #3a4a6b; }
+
+/* Footer — keep dark like lecture footer */
+html[data-theme="light"] #footer-grid { background: #0d1f4e; }
+
+/* Scrollbar */
+html[data-theme="light"] ::-webkit-scrollbar-track { background: #eef1f8; }
+html[data-theme="light"] ::-webkit-scrollbar-thumb { background: #6090f0; }
+
+/* Theme button in light mode */
+html[data-theme="light"] .theme-toggle-btn {
+  border-color: rgba(255,255,255,.25);
+  color: rgba(255,255,255,.8);
 }
