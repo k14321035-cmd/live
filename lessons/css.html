@@ -169,48 +169,149 @@
         </div>
 
         <!-- 3-COLUMN CONTENT WRAPPER -->
-        <div class="content-wrapper">
+        <div class="content-wrapper">    
             
-            <!-- LEFT AD COLUMN -->
-            
-
-            <!-- CENTER CONTENT COLUMN -->
             <div class="content-column">
 
         <!-- ===================== LECTURE 1 ===================== -->
-        <div class="lecture active" id="lec-0">
-            <div class="lecture-tag">Lecture 01 · Foundations</div>
-            <h1>What is CSS?</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~30 min</span>
-                <span class="meta-badge">No prerequisites</span>
-            </div>
+       <div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Lecture 01 · Foundations</div>
+    <h1>What is CSS?</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~30 min</span>
+        <span class="meta-badge">No prerequisites</span>
+    </div>
 
-            <h2>Definition & History</h2>
-            <p><strong>CSS (Cascading Style Sheets)</strong> is the language used to describe the presentation of a
-                document written in HTML or XML. It defines how elements are rendered on screen, paper, or in other
-                media.</p>
-            <ul>
-                <li>1994 – First CSS 1 specification released.</li>
-                <li>1998 – CSS 2 added positioning, media queries, and more.</li>
-                <li>2011 – CSS 3 split into modular “levels” (Flexbox, Grid, Animations, etc.).</li>
-            </ul>
+    <h2>Definition & History</h2>
+    <p><strong>CSS (Cascading Style Sheets)</strong> is the language used to describe the presentation of a
+        document written in HTML or XML. It defines how elements are rendered on screen, paper, or in other
+        media.</p>
 
-            <div class="box tip">
-                <div class="box-title">✅ Quick fact</div>
-                The “cascading” part means that multiple style rules can apply to the same element, and the browser
-                decides which one wins based on specificity and source order.
-            </div>
+    <p>HTML provides the structure of a webpage, while CSS controls the appearance and layout. Without CSS,
+        websites would look plain and unstyled with only default browser formatting.</p>
 
-            <h2>Hello&nbsp;World – Minimal HTML + CSS</h2>
+    <ul>
+        <li>1994 – First CSS 1 specification released.</li>
+        <li>1998 – CSS 2 added positioning, media queries, and more.</li>
+        <li>2011 – CSS 3 split into modular “levels” (Flexbox, Grid, Animations, etc.).</li>
+        <li>Today – Modern CSS powers responsive websites, mobile apps, dashboards, and web applications.</li>
+    </ul>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">hello.html</span>
-                </div>
-                <pre><span class="tag">&lt;!DOCTYPE html&gt;</span>
+    <div class="box tip">
+        <div class="box-title">✅ Quick fact</div>
+        The “cascading” part means that multiple style rules can apply to the same element, and the browser
+        decides which one wins based on specificity and source order.
+    </div>
+
+    <h2>Why CSS is Important</h2>
+    <p>CSS is one of the three core technologies of the web:</p>
+
+    <ul>
+        <li><strong>HTML</strong> → Structure of the page</li>
+        <li><strong>CSS</strong> → Design and appearance</li>
+        <li><strong>JavaScript</strong> → Interactivity and behavior</li>
+    </ul>
+
+    <p>With CSS you can:</p>
+
+    <ul>
+        <li>Change colors, fonts, spacing, and layouts</li>
+        <li>Create responsive websites for mobile and desktop</li>
+        <li>Add animations and transitions</li>
+        <li>Design professional user interfaces</li>
+        <li>Control positioning and alignment of elements</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">🎨 Real-world usage</div>
+        Every modern website uses CSS — including YouTube, Instagram, Amazon, Netflix, and Google.
+    </div>
+
+    <h2>How CSS Works</h2>
+
+    <p>CSS works by selecting HTML elements and applying style rules to them.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">basic-syntax.css</span>
+        </div>
+<pre><span class="kw">h1</span> {
+    <span class="attr">color</span>: <span class="val">blue</span>;
+    <span class="attr">font-size</span>: <span class="val">40px</span>;
+}</pre>
+    </div>
+
+    <p>In the example above:</p>
+
+    <ul>
+        <li><code>h1</code> is the <strong>selector</strong></li>
+        <li><code>color</code> and <code>font-size</code> are <strong>properties</strong></li>
+        <li><code>blue</code> and <code>40px</code> are <strong>values</strong></li>
+    </ul>
+
+    <h2>Types of CSS</h2>
+
+    <p>There are three main ways to use CSS in a webpage:</p>
+
+    <h3>1. Inline CSS</h3>
+
+    <p>CSS is written directly inside an HTML element using the <code>style</code> attribute.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">inline.html</span>
+        </div>
+<pre><span class="tag">&lt;h1</span> <span class="attr">style</span>=<span class="val">"color: red;"</span><span class="tag">&gt;</span>Hello<span class="tag">&lt;/h1&gt;</span></pre>
+    </div>
+
+    <h3>2. Internal CSS</h3>
+
+    <p>CSS is placed inside a <code>&lt;style&gt;</code> tag in the HTML document.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">internal.html</span>
+        </div>
+<pre><span class="tag">&lt;style&gt;</span>
+    <span class="kw">h1</span> {
+        <span class="attr">color</span>: <span class="val">green</span>;
+    }
+<span class="tag">&lt;/style&gt;</span></pre>
+    </div>
+
+    <h3>3. External CSS</h3>
+
+    <p>CSS is stored in a separate <code>.css</code> file and linked to the HTML page.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">index.html</span>
+        </div>
+<pre><span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"style.css"</span><span class="tag">&gt;</span></pre>
+    </div>
+
+    <p>External CSS is the most commonly used approach because it keeps styling separate from content and makes
+        large projects easier to manage.</p>
+
+    <div class="box tip">
+        <div class="box-title">📌 Best Practice</div>
+        Professional developers usually prefer external CSS files because they improve organization, reusability,
+        and maintainability.
+    </div>
+
+    <h2>Hello&nbsp;World – Minimal HTML + CSS</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">hello.html</span>
+        </div>
+        <pre><span class="tag">&lt;!DOCTYPE html&gt;</span>
 <span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"en"</span><span class="tag">&gt;</span>
 <span class="tag">&lt;head&gt;</span>
     <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">&gt;</span>
@@ -234,71 +335,241 @@
     <span class="tag">&lt;p&gt;</span>This paragraph inherits the body's font and background.<span class="tag">&lt;/p&gt;</span>
 <span class="tag">&lt;/body&gt;</span>
 <span class="tag">&lt;/html&gt;</span></pre>
-            </div>
+    </div>
 
-            <!-- WEB COMPILER -->
-            <div class="compiler-section">
-                <h2>🌐 Try It Yourself - Web Compiler</h2>
-                <p>Practice CSS styling right here in your browser! Modify the code below and click "Run" to see your changes instantly.</p>
-                
-                <iframe src="../web-compiler.html" style="width: 100%; height: 650px; border: 1px solid var(--border); border-radius: 8px; margin: 1rem 0;" frameborder="0"></iframe>
-                
-                <div class="practice-tips">
-                    <h4>💡 Practice Tips:</h4>
-                    <ul>
-                        <li>Try changing colors, fonts, and spacing in the CSS tab</li>
-                        <li>Experiment with different CSS properties like <strong>margin</strong>, <strong>padding</strong>, <strong>border</strong></li>
-                        <li>Add hover effects and transitions</li>
-                        <li>Use the HTML tab to add more elements to style</li>
-                        <li>Use <strong>Ctrl+Enter</strong> to quickly run your code</li>
-                    </ul>
-                </div>
-            </div>
+    <h2>Understanding the Example</h2>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 1.1</div>
-                <p>Create a file called <code>index.html</code>, paste the snippet above, open it in a browser and
-                    verify the colours and fonts. Experiment by changing the <code>color</code> and
-                    <code>background</code> values.</p>
-            </div>
+    <ul>
+        <li><code>font-family</code> changes the text font</li>
+        <li><code>background</code> creates a gradient background</li>
+        <li><code>color</code> changes text color</li>
+        <li><code>text-align</code> centers the content</li>
+        <li><code>padding</code> adds spacing inside the page</li>
+        <li><code>font-size</code> controls text size</li>
+    </ul>
 
-            <div class="lecture-nav">
-                <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
-            </div>
-        </div>
+    <p>This small example already demonstrates how powerful CSS can be in transforming a simple HTML page into a
+        visually appealing design.</p>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.1</div>
+        <p>Create a file called <code>index.html</code>, paste the snippet above, open it in a browser and
+            verify the colours and fonts. Experiment by changing the <code>color</code> and
+            <code>background</code> values.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.2</div>
+        <p>Create your own styled webpage with:</p>
+
+        <ul>
+            <li>A heading</li>
+            <li>A paragraph</li>
+            <li>A custom background color</li>
+            <li>Different text colors</li>
+            <li>Centered content</li>
+        </ul>
+
+        <p>Try using at least three different CSS properties.</p>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 What You'll Learn Next</div>
+        In upcoming lectures, you’ll learn about selectors, colors, typography, spacing, the CSS box model,
+        Flexbox, Grid, responsive design, animations, and modern layouts.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 2 ===================== -->
         <div class="lecture" id="lec-1">
-            <div class="lecture-tag">Lecture 02 · Foundations</div>
-            <h1>Including CSS</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~35 min</span>
-                <span class="meta-badge">Requires: Lecture 01</span>
-            </div>
+    <div class="lecture-tag">Lecture 02 · Foundations</div>
+    <h1>Including CSS</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~35 min</span>
+        <span class="meta-badge">Requires: Lecture 01</span>
+    </div>
 
-            <h2>Three ways to add CSS</h2>
-            <ol>
-                <li><strong>Inline style</strong> – <code>&lt;h1 style="color:red;"&gt;…&lt;/h1&gt;</code></li>
-                <li><strong>Embedded style sheet</strong> – inside <code>&lt;style&gt;</code> tags in the
-                    <code>&lt;head&gt;</code>.</li>
-                <li><strong>External stylesheet</strong> – linked with
-                    <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code>.</li>
-            </ol>
+    <h2>Three ways to add CSS</h2>
 
-            <h3>External stylesheet best practice</h3>
-            <pre><code>&lt;head&gt;
-    &lt;link rel="stylesheet" href="styles.css"&gt;
-&lt;/head&gt;</code></pre>
+    <p>CSS can be added to a webpage in different ways depending on the size and purpose of the project.
+        Small examples may use inline or embedded CSS, while professional websites usually use external
+        stylesheets.</p>
 
-            <p>The external file keeps markup clean and enables caching across pages.</p>
+    <ol>
+        <li><strong>Inline style</strong> – <code>&lt;h1 style="color:red;"&gt;...&lt;/h1&gt;</code></li>
+        <li><strong>Embedded style sheet</strong> – inside <code>&lt;style&gt;</code> tags in the
+            <code>&lt;head&gt;</code>.</li>
+        <li><strong>External stylesheet</strong> – linked with
+            <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code>.</li>
+    </ol>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">styles.css</span>
-                </div>
-                <pre><span class="kw">/* Global reset */</span>
+    <div class="box tip">
+        <div class="box-title">📌 Important</div>
+        All three methods can work together, but external CSS is the preferred approach for modern web development.
+    </div>
+
+    <h2>1. Inline CSS</h2>
+
+    <p>Inline CSS is written directly inside an HTML element using the <code>style</code> attribute.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">inline-example.html</span>
+        </div>
+<pre><span class="tag">&lt;h1</span> <span class="attr">style</span>=<span class="val">"color: red; font-size: 40px;"</span><span class="tag">&gt;</span>
+    Welcome
+<span class="tag">&lt;/h1&gt;</span></pre>
+    </div>
+
+    <h3>Advantages</h3>
+
+    <ul>
+        <li>Quick and easy for testing</li>
+        <li>Useful for very small changes</li>
+        <li>No separate CSS file required</li>
+    </ul>
+
+    <h3>Disadvantages</h3>
+
+    <ul>
+        <li>Makes HTML messy and harder to read</li>
+        <li>Cannot reuse styles easily</li>
+        <li>Difficult to maintain large projects</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">⚠️ Avoid overusing inline CSS</div>
+        Inline styles are generally not recommended for full websites because they reduce code organization and
+        maintainability.
+    </div>
+
+    <h2>2. Embedded (Internal) CSS</h2>
+
+    <p>Embedded CSS is written inside a <code>&lt;style&gt;</code> tag within the HTML document.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">internal-example.html</span>
+        </div>
+<pre><span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;style&gt;</span>
+        <span class="kw">body</span> {
+            <span class="attr">background</span>: <span class="val">#222</span>;
+            <span class="attr">color</span>: <span class="val">white</span>;
+        }
+
+        <span class="kw">h1</span> {
+            <span class="attr">text-align</span>: <span class="val">center</span>;
+        }
+    <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span></pre>
+    </div>
+
+    <h3>Advantages</h3>
+
+    <ul>
+        <li>Better organization than inline CSS</li>
+        <li>Useful for single-page projects</li>
+        <li>No external file needed</li>
+    </ul>
+
+    <h3>Disadvantages</h3>
+
+    <ul>
+        <li>Styles cannot be reused across multiple pages easily</li>
+        <li>Larger HTML files become difficult to manage</li>
+    </ul>
+
+    <h2>3. External CSS</h2>
+
+    <p>External CSS stores styles in a separate <code>.css</code> file and connects it using the
+        <code>&lt;link&gt;</code> tag.</p>
+
+    <h3>External stylesheet best practice</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">index.html</span>
+        </div>
+<pre><span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"styles.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span></pre>
+    </div>
+
+    <p>The browser downloads the CSS file separately and applies the styles to the webpage.</p>
+
+    <h3>Advantages</h3>
+
+    <ul>
+        <li>Keeps HTML clean and organized</li>
+        <li>Reusable across multiple pages</li>
+        <li>Easier maintenance and updates</li>
+        <li>Better performance because browsers can cache CSS files</li>
+    </ul>
+
+    <h3>Disadvantages</h3>
+
+    <ul>
+        <li>Requires an additional file</li>
+        <li>Incorrect file paths may break styles</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">✅ Professional standard</div>
+        Most real-world websites use external stylesheets because they scale better for large applications and teams.
+    </div>
+
+    <h2>Understanding the <code>&lt;link&gt;</code> Tag</h2>
+
+    <p>The <code>&lt;link&gt;</code> tag connects the HTML file to the CSS file.</p>
+
+    <ul>
+        <li><code>rel="stylesheet"</code> tells the browser this is a CSS file</li>
+        <li><code>href="styles.css"</code> specifies the path to the stylesheet</li>
+    </ul>
+
+    <p>If the CSS file is inside another folder, the path changes accordingly.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">folder-structure.txt</span>
+        </div>
+<pre>project/
+│
+├── index.html
+└── css/
+    └── styles.css</pre>
+    </div>
+
+    <p>In this case, the correct link would be:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">index.html</span>
+        </div>
+<pre><span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"css/styles.css"</span><span class="tag">&gt;</span></pre>
+    </div>
+
+    <h2>Example External Stylesheet</h2>
+
+    <p>The following stylesheet demonstrates a simple global reset and basic page styling.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">styles.css</span>
+        </div>
+        <pre><span class="kw">/* Global reset */</span>
 <span class="kw">*</span>,
 <span class="kw">*</span>::<span class="kw">before</span>,
 <span class="kw">*</span>::<span class="kw">after</span> {
@@ -313,81 +584,333 @@
     <span class="attr">color</span>: <span class="val">#333</span>;
     <span class="attr">line-height</span>: <span class="val">1.6</span>;
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 2.1</div>
-                <p>Create an <code>index.html</code> that links to an external <code>styles.css</code> file. Add a few
-                    HTML elements (headings, paragraphs, a list) and style them globally (fonts, colours, spacing).</p>
-            </div>
+    <h2>Understanding the CSS Code</h2>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
-            </div>
-        </div>
+    <ul>
+        <li><code>*</code> is the universal selector that targets all elements</li>
+        <li><code>box-sizing: border-box</code> makes sizing calculations easier</li>
+        <li><code>margin: 0</code> removes default browser spacing</li>
+        <li><code>padding: 0</code> removes default inner spacing</li>
+        <li><code>font-family</code> changes the text font</li>
+        <li><code>line-height</code> improves readability</li>
+    </ul>
 
+    <div class="box tip">
+        <div class="box-title">💡 Why use a CSS reset?</div>
+        Different browsers apply different default styles. A reset helps create a consistent starting point across
+        browsers.
+    </div>
+
+    <h2>Best Practices for Including CSS</h2>
+
+    <ul>
+        <li>Use external CSS for most projects</li>
+        <li>Keep CSS organized and readable</li>
+        <li>Use meaningful file names like <code>style.css</code> or <code>main.css</code></li>
+        <li>Avoid repeating the same styles multiple times</li>
+        <li>Group related styles together</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.1</div>
+        <p>Create an <code>index.html</code> that links to an external <code>styles.css</code> file. Add a few
+            HTML elements (headings, paragraphs, a list) and style them globally (fonts, colours, spacing).</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.2</div>
+        <p>Create three versions of the same webpage:</p>
+
+        <ul>
+            <li>One using inline CSS</li>
+            <li>One using embedded CSS</li>
+            <li>One using external CSS</li>
+        </ul>
+
+        <p>Compare which method feels cleaner and easier to manage.</p>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Coming Up Next</div>
+        In the next lecture, you’ll learn about CSS selectors and how to target specific HTML elements with precision.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+    </div>
+</div>
         <!-- ===================== LECTURE 3 ===================== -->
-        <div class="lecture" id="lec-2">
-            <div class="lecture-tag">Lecture 03 · Foundations</div>
-            <h1>Selectors</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 02</span>
-            </div>
+<div class="lecture" id="lec-2">
+    <div class="lecture-tag">Lecture 03 · Foundations</div>
+    <h1>Selectors</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 02</span>
+    </div>
 
-            <h2>Basic selector types</h2>
-            <ul>
-                <li><strong>Element selector</strong> – <code>p { … }</code></li>
-                <li><strong>Class selector</strong> – <code>.card { … }</code></li>
-                <li><strong>ID selector</strong> – <code>#main { … }</code></li>
-                <li><strong>Universal selector</strong> – <code>* { … }</code></li>
-            </ul>
+    <h2>What are CSS Selectors?</h2>
 
-            <h2>Combinators &amp; hierarchy</h2>
-            <table class="tbl-wrap">
-                <thead>
-                    <tr>
-                        <th>Combinator</th>
-                        <th>Example</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Descendant (<code> </code>)</td>
-                        <td><code>ul li</code></td>
-                        <td>any <code>li</code> inside a <code>ul</code></td>
-                    </tr>
-                    <tr>
-                        <td>Child (<code>&gt;</code>)</td>
-                        <td><code>nav &gt; a</code></td>
-                        <td>direct children only</td>
-                    </tr>
-                    <tr>
-                        <td>Adjacent sibling (<code>+</code>)</td>
-                        <td><code>h2 + p</code></td>
-                        <td>the first <code>p</code> after an <code>h2</code></td>
-                    </tr>
-                    <tr>
-                        <td>General sibling (<code>~</code>)</td>
-                        <td><code>h2 ~ p</code></td>
-                        <td>any <code>p</code> after an <code>h2</code></td>
-                    </tr>
-                </tbody>
-            </table>
+    <p>Selectors are patterns used to target HTML elements so styles can be applied to them.</p>
 
-            <h2>Attribute selectors</h2>
-            <pre><code>a[href^="https"] { text-decoration: underline; }
-input[type="text"] { border: 1px solid #ccc; }</code></pre>
+    <p>Without selectors, CSS would not know which elements should receive specific styles. Selectors are one of
+        the most important concepts in CSS because they control how styles are applied throughout a webpage.</p>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">selector-demo.css</span>
-                </div>
-                <pre><span class="kw">/* Element + class */</span>
+    <div class="box tip">
+        <div class="box-title">💡 Simple idea</div>
+        A selector tells the browser: <strong>“Apply these styles to these elements.”</strong>
+    </div>
+
+    <h2>Basic selector types</h2>
+
+    <ul>
+        <li><strong>Element selector</strong> – <code>p { … }</code></li>
+        <li><strong>Class selector</strong> – <code>.card { … }</code></li>
+        <li><strong>ID selector</strong> – <code>#main { … }</code></li>
+        <li><strong>Universal selector</strong> – <code>* { … }</code></li>
+    </ul>
+
+    <h2>1. Element Selectors</h2>
+
+    <p>Element selectors target all HTML elements of a specific type.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">element-selector.css</span>
+        </div>
+<pre><span class="kw">p</span> {
+    <span class="attr">color</span>: <span class="val">#444</span>;
+    <span class="attr">font-size</span>: <span class="val">18px</span>;
+}</pre>
+    </div>
+
+    <p>This rule styles every <code>&lt;p&gt;</code> element on the page.</p>
+
+    <h3>Common examples</h3>
+
+    <ul>
+        <li><code>h1</code></li>
+        <li><code>button</code></li>
+        <li><code>img</code></li>
+        <li><code>section</code></li>
+    </ul>
+
+    <h2>2. Class Selectors</h2>
+
+    <p>Class selectors are used to style multiple elements with the same design.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">class-selector.html</span>
+        </div>
+<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span>
+    Product Card
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">class-selector.css</span>
+        </div>
+<pre><span class="kw">.card</span> {
+    <span class="attr">padding</span>: <span class="val">1rem</span>;
+    <span class="attr">background</span>: <span class="val">white</span>;
+    <span class="attr">border-radius</span>: <span class="val">8px</span>;
+}</pre>
+    </div>
+
+    <p>Class selectors start with a <code>.</code> (dot).</p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Best practice</div>
+        Classes are the most commonly used selectors in modern web development because they are reusable and flexible.
+    </div>
+
+    <h2>3. ID Selectors</h2>
+
+    <p>ID selectors target one unique element on a page.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">id-selector.html</span>
+        </div>
+<pre><span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"hero"</span><span class="tag">&gt;</span>
+    Welcome Section
+<span class="tag">&lt;/section&gt;</span></pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">id-selector.css</span>
+        </div>
+<pre><span class="kw">#hero</span> {
+    <span class="attr">background</span>: <span class="val">#222</span>;
+    <span class="attr">color</span>: <span class="val">white</span>;
+}</pre>
+    </div>
+
+    <p>ID selectors start with a <code>#</code> symbol.</p>
+
+    <div class="box tip">
+        <div class="box-title">⚠️ Important</div>
+        IDs should be unique. A webpage should not contain multiple elements with the same ID.
+    </div>
+
+    <h2>4. Universal Selector</h2>
+
+    <p>The universal selector targets every element on the page.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">universal-selector.css</span>
+        </div>
+<pre><span class="kw">*</span> {
+    <span class="attr">margin</span>: <span class="val">0</span>;
+    <span class="attr">padding</span>: <span class="val">0</span>;
+}</pre>
+    </div>
+
+    <p>This selector is commonly used for CSS resets and global styling.</p>
+
+    <h2>Combining Selectors</h2>
+
+    <p>Selectors can be combined to create more specific styling rules.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">combined-selectors.css</span>
+        </div>
+<pre><span class="kw">section</span> <span class="kw">p</span> {
+    <span class="attr">line-height</span>: <span class="val">1.8</span>;
+}</pre>
+    </div>
+
+    <p>This selector targets all paragraphs inside a <code>&lt;section&gt;</code>.</p>
+
+    <h2>Combinators &amp; hierarchy</h2>
+
+    <p>Combinators define relationships between elements.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Combinator</th>
+                <th>Example</th>
+                <th>Meaning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Descendant (<code> </code>)</td>
+                <td><code>ul li</code></td>
+                <td>any <code>li</code> inside a <code>ul</code></td>
+            </tr>
+            <tr>
+                <td>Child (<code>&gt;</code>)</td>
+                <td><code>nav &gt; a</code></td>
+                <td>direct children only</td>
+            </tr>
+            <tr>
+                <td>Adjacent sibling (<code>+</code>)</td>
+                <td><code>h2 + p</code></td>
+                <td>the first <code>p</code> after an <code>h2</code></td>
+            </tr>
+            <tr>
+                <td>General sibling (<code>~</code>)</td>
+                <td><code>h2 ~ p</code></td>
+                <td>any <code>p</code> after an <code>h2</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Understanding Descendant vs Child</h2>
+
+    <p>These two selectors are commonly confused by beginners.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">hierarchy-example.html</span>
+        </div>
+<pre><span class="tag">&lt;nav&gt;</span>
+    <span class="tag">&lt;a&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+
+    <span class="tag">&lt;div&gt;</span>
+        <span class="tag">&lt;a&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/nav&gt;</span></pre>
+    </div>
+
+    <ul>
+        <li><code>nav a</code> selects both links</li>
+        <li><code>nav &gt; a</code> selects only the direct child link</li>
+    </ul>
+
+    <h2>Attribute selectors</h2>
+
+    <p>Attribute selectors target elements based on their HTML attributes.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">attribute-selectors.css</span>
+        </div>
+<pre><span class="kw">a</span>[<span class="attr">href</span>^=<span class="val">"https"</span>] {
+    <span class="attr">text-decoration</span>: <span class="val">underline</span>;
+}
+
+<span class="kw">input</span>[<span class="attr">type</span>=<span class="val">"text"</span>] {
+    <span class="attr">border</span>: <span class="val">1px solid #ccc</span>;
+}</pre>
+    </div>
+
+    <h3>Common attribute selector symbols</h3>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Selector</th>
+                <th>Meaning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>[attr]</code></td>
+                <td>Element contains the attribute</td>
+            </tr>
+            <tr>
+                <td><code>[attr=value]</code></td>
+                <td>Exact match</td>
+            </tr>
+            <tr>
+                <td><code>[attr^=value]</code></td>
+                <td>Starts with value</td>
+            </tr>
+            <tr>
+                <td><code>[attr$=value]</code></td>
+                <td>Ends with value</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Practical Selector Demo</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">selector-demo.css</span>
+        </div>
+        <pre><span class="kw">/* Element + class */</span>
 <span class="kw">nav</span> <span class="kw">.nav-item</span> {
     <span class="attr">display</span>: <span class="val">block</span>;
     <span class="attr">padding</span>: <span class="val">0.5rem 1rem</span>;
@@ -406,195 +929,718 @@ input[type="text"] { border: 1px solid #ccc; }</code></pre>
 <span class="kw">a</span>[<span class="attr">target</span>=<span class="val">"_blank"</span>] {
     <span class="attr">position</span>: <span class="val">relative</span>;
 }
+
 <span class="kw">a</span>[<span class="attr">target</span>=<span class="val">"_blank"</span>]::after {
     <span class="attr">content</span>: <span class="val">"↗"</span>;
     <span class="attr">font-size</span>: <span class="val">0.8rem</span>;
     <span class="attr">margin-left</span>: <span class="val">0.2rem</span>;
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 3.1</div>
-                <p>Write a stylesheet that styles:</p>
-                <ul>
-                    <li>All <code>h2</code> elements with a bottom border.</li>
-                    <li>Any link that points to an external site (starts with <code>http</code>) with a small arrow
-                        after it.</li>
-                    <li>Paragraphs that are the first child of a section with a different text colour.</li>
-                </ul>
-            </div>
+    <h2>Selector Specificity</h2>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
-            </div>
+    <p>Sometimes multiple CSS rules target the same element. The browser decides which rule wins using
+        specificity.</p>
+
+    <ul>
+        <li>ID selectors have higher priority than classes</li>
+        <li>Class selectors have higher priority than element selectors</li>
+        <li>More specific selectors override general ones</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">specificity.css</span>
         </div>
+<pre><span class="kw">p</span> {
+    <span class="attr">color</span>: <span class="val">blue</span>;
+}
 
+<span class="kw">.text</span> {
+    <span class="attr">color</span>: <span class="val">green</span>;
+}
+
+<span class="kw">#main-text</span> {
+    <span class="attr">color</span>: <span class="val">red</span>;
+}</pre>
+    </div>
+
+    <p>If an element has all three selectors applied, the ID selector wins.</p>
+
+    <div class="box tip">
+        <div class="box-title">🎯 Best practice</div>
+        Avoid overusing ID selectors. Most modern projects rely mainly on classes for styling.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.1</div>
+        <p>Write a stylesheet that styles:</p>
+
+        <ul>
+            <li>All <code>h2</code> elements with a bottom border.</li>
+            <li>Any link that points to an external site (starts with <code>http</code>) with a small arrow
+                after it.</li>
+            <li>Paragraphs that are the first child of a section with a different text colour.</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.2</div>
+        <p>Create a webpage containing:</p>
+
+        <ul>
+            <li>A navigation menu</li>
+            <li>A hero section</li>
+            <li>Three cards with the same class</li>
+            <li>External links using <code>target="_blank"</code></li>
+        </ul>
+
+        <p>Use different selectors to style each section.</p>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Coming Up Next</div>
+        In the next lecture, you’ll learn about colors, units, typography, and how CSS controls visual design.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+    </div>
+</div>
         <!-- ===================== LECTURE 4 ===================== -->
-        <div class="lecture" id="lec-3">
-            <div class="lecture-tag">Lecture 04 · Foundations</div>
-            <h1>Box Model &amp; Positioning</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 03</span>
-            </div>
+       <div class="lecture" id="lec-3">
+    <div class="lecture-tag">Lecture 04 · Foundations</div>
+    <h1>Box Model &amp; Positioning</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 03</span>
+    </div>
 
-            <h2>CSS Box Model</h2>
-            <p>Every element is a rectangular box with four parts (from inside‑out):</p>
-            <ul>
-                <li><strong>Content</strong> – the actual text or image.</li>
-                <li><strong>Padding</strong> – space inside the border.</li>
-                <li><strong>Border</strong> – outlines the element.</li>
-                <li><strong>Margin</strong> – space outside the border.</li>
-            </ul>
+    <h2>Understanding the CSS Box Model</h2>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">box-model.css</span>
-                </div>
-                <pre><span class="kw">.box</span> {
+    <p>Every HTML element in CSS is treated as a rectangular box. The browser calculates the size and spacing of
+        elements using the <strong>CSS Box Model</strong>.</p>
+
+    <p>Understanding the box model is essential because nearly every layout in web design depends on it.</p>
+
+    <div class="box tip">
+        <div class="box-title">📦 Important Concept</div>
+        Everything in CSS is a box — buttons, images, cards, sections, navigation bars, and even text containers.
+    </div>
+
+    <h2>CSS Box Model</h2>
+
+    <p>Every element is a rectangular box with four parts (from inside-out):</p>
+
+    <ul>
+        <li><strong>Content</strong> – the actual text or image.</li>
+        <li><strong>Padding</strong> – space inside the border.</li>
+        <li><strong>Border</strong> – outlines the element.</li>
+        <li><strong>Margin</strong> – space outside the border.</li>
+    </ul>
+
+    <h2>Visualizing the Box Model</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">box-structure.txt</span>
+        </div>
+<pre>+---------------------------+
+|          Margin           |
+|   +-------------------+   |
+|   |      Border       |   |
+|   |  +-------------+  |   |
+|   |  |   Padding   |  |   |
+|   |  | +---------+ |  |   |
+|   |  | | Content | |  |   |
+|   |  | +---------+ |  |   |
+|   |  +-------------+  |   |
+|   +-------------------+   |
++---------------------------+</pre>
+    </div>
+
+    <h2>Example Box Model</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">box-model.css</span>
+        </div>
+        <pre><span class="kw">.box</span> {
     <span class="attr">width</span>: <span class="val">200px</span>;
     <span class="attr">padding</span>: <span class="val">20px</span>;
     <span class="attr">border</span>: <span class="val">2px solid #f97316</span>;
     <span class="attr">margin</span>: <span class="val">30px</span>;
     <span class="attr">background</span>: <span class="val">#fff</span>;
 }</pre>
-            </div>
+    </div>
 
-            <h2>Box‑sizing</h2>
-            <p>Set <code>box-sizing: border-box;</code> so <code>width</code> includes padding and border – easier
-                layout calculations.</p>
+    <h2>How the Total Width is Calculated</h2>
 
-            <h2>Positioning schemes</h2>
-            <table class="tbl-wrap">
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Key properties</th>
-                        <th>Behaviour</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>static</code></td>
-                        <td>—</td>
-                        <td>Normal flow (default).</td>
-                    </tr>
-                    <tr>
-                        <td><code>relative</code></td>
-                        <td><code>top / right / bottom / left</code></td>
-                        <td>Shifted relative to its original spot.</td>
-                    </tr>
-                    <tr>
-                        <td><code>absolute</code></td>
-                        <td><code>top / right / …</code></td>
-                        <td>Removed from flow; positioned against nearest positioned ancestor.</td>
-                    </tr>
-                    <tr>
-                        <td><code>fixed</code></td>
-                        <td><code>top / …</code></td>
-                        <td>Anchored to the viewport.</td>
-                    </tr>
-                    <tr>
-                        <td><code>sticky</code></td>
-                        <td><code>top / …</code></td>
-                        <td>Acts like <code>relative</code> until scroll reaches the threshold, then becomes
-                            <code>fixed</code>.</td>
-                    </tr>
-                </tbody>
-            </table>
+    <p>By default, CSS adds padding and borders to the element’s width.</p>
 
-            <h3>Example – sticky header</h3>
-            <pre><code>header {
-    position: sticky;
-    top: 0;
-    background: #111;
-    color: #fff;
-    padding: 1rem;
-    z-index: 10;
-}</code></pre>
+    <p>For the previous example:</p>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 4.1</div>
-                <p>Create a page with a header, a sidebar and a content area. Use <code>position: fixed</code> for the
-                    header,
-                    <code>position: sticky</code> for a sub‑navigation inside the sidebar, and practice padding/margin
-                    changes to see how the box model works.
-                </p>
-            </div>
+    <ul>
+        <li>Content width = <code>200px</code></li>
+        <li>Left + right padding = <code>40px</code></li>
+        <li>Left + right border = <code>4px</code></li>
+    </ul>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
-            </div>
+    <p><strong>Total width = 244px</strong> (excluding margins).</p>
+
+    <div class="box tip">
+        <div class="box-title">⚠️ Common beginner mistake</div>
+        Many beginners expect the element width to remain exactly 200px, but padding and borders increase the total
+        size unless <code>box-sizing: border-box</code> is used.
+    </div>
+
+    <h2>Padding</h2>
+
+    <p>Padding creates space inside the element between the content and border.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">padding.css</span>
         </div>
+<pre><span class="kw">.card</span> {
+    <span class="attr">padding</span>: <span class="val">20px</span>;
+}</pre>
+    </div>
 
-        <!-- Language Family Bridge -->
-        <div class="language-bridge">
-            <h3>🎨 Web Development Path</h3>
-            <p>CSS brings visual design to web pages. Complete your frontend journey with:</p>
-            <div class="bridge-cards">
-                <a href="html.html" class="bridge-card">
-                    <span class="bridge-icon">🌐</span>
-                    <div class="bridge-info">
-                        <strong>HTML</strong>
-                        <span>Structure & semantic markup</span>
-                        <div class="bridge-arrow">←</div>
-                    </div>
-                </a>
-                <a href="javascript.html" class="bridge-card">
-                    <span class="bridge-icon">✨</span>
-                    <div class="bridge-info">
-                        <strong>JavaScript</strong>
-                        <span>Interactivity & dynamic behavior</span>
-                        <div class="bridge-arrow">→</div>
-                    </div>
-                </a>
-                <a href="typescript.html" class="bridge-card">
-                    <span class="bridge-icon">🔷</span>
-                    <div class="bridge-info">
-                        <strong>TypeScript</strong>
-                        <span>Type-safe styling & logic</span>
-                        <div class="bridge-arrow">⭐</div>
-                    </div>
-                </a>
-            </div>
+    <p>You can also set padding individually:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">padding-sides.css</span>
         </div>
+<pre><span class="kw">.card</span> {
+    <span class="attr">padding-top</span>: <span class="val">10px</span>;
+    <span class="attr">padding-right</span>: <span class="val">20px</span>;
+    <span class="attr">padding-bottom</span>: <span class="val">10px</span>;
+    <span class="attr">padding-left</span>: <span class="val">20px</span>;
+}</pre>
+    </div>
+
+    <h2>Margin</h2>
+
+    <p>Margin creates space outside the border and separates elements from each other.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">margin.css</span>
+        </div>
+<pre><span class="kw">section</span> {
+    <span class="attr">margin-bottom</span>: <span class="val">40px</span>;
+}</pre>
+    </div>
+
+    <p>Margins are commonly used to create spacing between sections, cards, and layout components.</p>
+
+    <h2>Border</h2>
+
+    <p>Borders surround the padding and content of an element.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">border.css</span>
+        </div>
+<pre><span class="kw">button</span> {
+    <span class="attr">border</span>: <span class="val">2px solid black</span>;
+}</pre>
+    </div>
+
+    <p>Borders can have different styles such as:</p>
+
+    <ul>
+        <li><code>solid</code></li>
+        <li><code>dashed</code></li>
+        <li><code>dotted</code></li>
+        <li><code>double</code></li>
+    </ul>
+
+    <h2>Box-sizing</h2>
+
+    <p>Set <code>box-sizing: border-box;</code> so <code>width</code> includes padding and border – easier
+        layout calculations.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">box-sizing.css</span>
+        </div>
+<pre><span class="kw">*</span> {
+    <span class="attr">box-sizing</span>: <span class="val">border-box</span>;
+}</pre>
+    </div>
+
+    <p>With <code>border-box</code>, the declared width becomes the final visible width of the element.</p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Modern standard</div>
+        Most modern CSS projects apply <code>box-sizing: border-box</code> globally because it simplifies layouts.
+    </div>
+
+    <h2>Introduction to Positioning</h2>
+
+    <p>Positioning controls where elements appear on the page.</p>
+
+    <p>By default, elements follow the normal document flow, but CSS positioning allows developers to move elements
+        precisely.</p>
+
+    <h2>Positioning schemes</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Key properties</th>
+                <th>Behaviour</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>static</code></td>
+                <td>—</td>
+                <td>Normal flow (default).</td>
+            </tr>
+            <tr>
+                <td><code>relative</code></td>
+                <td><code>top / right / bottom / left</code></td>
+                <td>Shifted relative to its original spot.</td>
+            </tr>
+            <tr>
+                <td><code>absolute</code></td>
+                <td><code>top / right / …</code></td>
+                <td>Removed from flow; positioned against nearest positioned ancestor.</td>
+            </tr>
+            <tr>
+                <td><code>fixed</code></td>
+                <td><code>top / …</code></td>
+                <td>Anchored to the viewport.</td>
+            </tr>
+            <tr>
+                <td><code>sticky</code></td>
+                <td><code>top / …</code></td>
+                <td>Acts like <code>relative</code> until scroll reaches the threshold, then becomes
+                    <code>fixed</code>.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>1. Static Positioning</h2>
+
+    <p>This is the default positioning mode.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">static.css</span>
+        </div>
+<pre><span class="kw">div</span> {
+    <span class="attr">position</span>: <span class="val">static</span>;
+}</pre>
+    </div>
+
+    <p>Elements appear in normal document order.</p>
+
+    <h2>2. Relative Positioning</h2>
+
+    <p>Relative positioning moves an element relative to its original location.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">relative.css</span>
+        </div>
+<pre><span class="kw">.box</span> {
+    <span class="attr">position</span>: <span class="val">relative</span>;
+    <span class="attr">top</span>: <span class="val">20px</span>;
+    <span class="attr">left</span>: <span class="val">30px</span>;
+}</pre>
+    </div>
+
+    <h2>3. Absolute Positioning</h2>
+
+    <p>Absolute elements are removed from the normal flow and positioned relative to the nearest positioned parent.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">absolute.css</span>
+        </div>
+<pre><span class="kw">.parent</span> {
+    <span class="attr">position</span>: <span class="val">relative</span>;
+}
+
+<span class="kw">.child</span> {
+    <span class="attr">position</span>: <span class="val">absolute</span>;
+    <span class="attr">top</span>: <span class="val">10px</span>;
+    <span class="attr">right</span>: <span class="val">10px</span>;
+}</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Important rule</div>
+        Absolute elements position themselves relative to the nearest ancestor with a position other than
+        <code>static</code>.
+    </div>
+
+    <h2>4. Fixed Positioning</h2>
+
+    <p>Fixed elements stay attached to the browser viewport even while scrolling.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">fixed.css</span>
+        </div>
+<pre><span class="kw">header</span> {
+    <span class="attr">position</span>: <span class="val">fixed</span>;
+    <span class="attr">top</span>: <span class="val">0</span>;
+    <span class="attr">width</span>: <span class="val">100%</span>;
+}</pre>
+    </div>
+
+    <p>This technique is commonly used for navigation bars and floating buttons.</p>
+
+    <h2>5. Sticky Positioning</h2>
+
+    <p>Sticky positioning combines relative and fixed behavior.</p>
+
+    <h3>Example – sticky header</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">sticky-header.css</span>
+        </div>
+<pre><span class="kw">header</span> {
+    <span class="attr">position</span>: <span class="val">sticky</span>;
+    <span class="attr">top</span>: <span class="val">0</span>;
+    <span class="attr">background</span>: <span class="val">#111</span>;
+    <span class="attr">color</span>: <span class="val">#fff</span>;
+    <span class="attr">padding</span>: <span class="val">1rem</span>;
+    <span class="attr">z-index</span>: <span class="val">10</span>;
+}</pre>
+    </div>
+
+    <p>The header scrolls normally until it reaches the top of the viewport, then remains fixed.</p>
+
+    <h2>Z-Index</h2>
+
+    <p>The <code>z-index</code> property controls stacking order.</p>
+
+    <ul>
+        <li>Higher values appear above lower values</li>
+        <li>Works on positioned elements</li>
+        <li>Useful for modals, menus, and overlays</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">z-index.css</span>
+        </div>
+<pre><span class="kw">.modal</span> {
+    <span class="attr">position</span>: <span class="val">fixed</span>;
+    <span class="attr">z-index</span>: <span class="val">999</span>;
+}</pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.1</div>
+        <p>Create a page with a header, a sidebar and a content area. Use <code>position: fixed</code> for the
+            header,
+            <code>position: sticky</code> for a sub-navigation inside the sidebar, and practice padding/margin
+            changes to see how the box model works.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.2</div>
+        <p>Create three boxes with different colors and:</p>
+
+        <ul>
+            <li>Apply different padding and margin values</li>
+            <li>Add borders with different styles</li>
+            <li>Use <code>position: relative</code> on one box</li>
+            <li>Use <code>position: absolute</code> inside another box</li>
+        </ul>
+
+        <p>Observe how positioning changes the layout.</p>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Coming Up Next</div>
+        In the next lecture, you'll learn Flexbox — one of the most powerful layout systems in modern CSS.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 5 ===================== -->
-        <div class="lecture" id="lec-4">
-            <div class="lecture-tag">Lecture 05 · Foundations</div>
-            <h1>Flexbox</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 04</span>
-            </div>
+     <div class="lecture" id="lec-4">
+    <div class="lecture-tag">Lecture 05 · Foundations</div>
+    <h1>Flexbox</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 04</span>
+    </div>
 
-            <h2>Why Flexbox?</h2>
-            <p>Flexbox provides a one‑dimensional layout model (row or column) that makes aligning, spacing and
-                reordering items trivial.</p>
+    <h2>What is Flexbox?</h2>
 
-            <h3>Key properties</h3>
-            <ul>
-                <li><code>display: flex;</code> – establishes a flex container.</li>
-                <li><code>flex-direction</code> – <code>row</code> (default) or <code>column</code>.</li>
-                <li><code>justify-content</code> – alignment on the main axis (e.g. <code>center</code>,
-                    <code>space-between</code>).</li>
-                <li><code>align-items</code> – alignment on the cross axis.</li>
-                <li><code>flex</code>, <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code> –
-                    control item sizing.</li>
-                <li><code>gap</code> – space between flex items (modern browsers).</li>
-            </ul>
+    <p><strong>Flexbox</strong> (Flexible Box Layout) is a modern CSS layout system designed to arrange items in a
+        row or column efficiently.</p>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">flex-demo.css</span>
-                </div>
-                <pre><span class="kw">.nav</span> {
+    <p>Before Flexbox, developers often used floats, positioning hacks, or complicated CSS techniques to create
+        layouts. Flexbox made alignment and spacing dramatically easier.</p>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Why developers love Flexbox</div>
+        Flexbox simplifies alignment, spacing, centering, responsive layouts, and equal-height columns with very
+        little code.
+    </div>
+
+    <h2>Why Flexbox?</h2>
+
+    <p>Flexbox provides a one-dimensional layout model (row or column) that makes aligning, spacing and
+        reordering items trivial.</p>
+
+    <p>It is especially useful for:</p>
+
+    <ul>
+        <li>Navigation bars</li>
+        <li>Cards and dashboards</li>
+        <li>Centering elements</li>
+        <li>Responsive layouts</li>
+        <li>Menus and toolbars</li>
+    </ul>
+
+    <h2>Flex Container vs Flex Items</h2>
+
+    <p>Flexbox works using two important concepts:</p>
+
+    <ul>
+        <li><strong>Flex Container</strong> – the parent element with <code>display: flex</code></li>
+        <li><strong>Flex Items</strong> – the child elements inside the container</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">flex-structure.html</span>
+        </div>
+<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"container"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div&gt;</span>Item 1<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div&gt;</span>Item 2<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div&gt;</span>Item 3<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">flex-structure.css</span>
+        </div>
+<pre><span class="kw">.container</span> {
+    <span class="attr">display</span>: <span class="val">flex</span>;
+}</pre>
+    </div>
+
+    <p>Once <code>display: flex</code> is applied, the child elements become flex items automatically.</p>
+
+    <h2>Main Axis and Cross Axis</h2>
+
+    <p>Flexbox uses two axes for alignment:</p>
+
+    <ul>
+        <li><strong>Main axis</strong> – controlled by <code>flex-direction</code></li>
+        <li><strong>Cross axis</strong> – perpendicular to the main axis</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 Easy way to remember</div>
+        <code>justify-content</code> controls alignment on the main axis, while
+        <code>align-items</code> controls alignment on the cross axis.
+    </div>
+
+    <h2>Key properties</h2>
+
+    <ul>
+        <li><code>display: flex;</code> – establishes a flex container.</li>
+        <li><code>flex-direction</code> – <code>row</code> (default) or <code>column</code>.</li>
+        <li><code>justify-content</code> – alignment on the main axis (e.g. <code>center</code>,
+            <code>space-between</code>).</li>
+        <li><code>align-items</code> – alignment on the cross axis.</li>
+        <li><code>flex</code>, <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code> –
+            control item sizing.</li>
+        <li><code>gap</code> – space between flex items (modern browsers).</li>
+    </ul>
+
+    <h2>display: flex</h2>
+
+    <p>This property converts a normal container into a flex container.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">display-flex.css</span>
+        </div>
+<pre><span class="kw">.container</span> {
+    <span class="attr">display</span>: <span class="val">flex</span>;
+}</pre>
+    </div>
+
+    <p>By default, items appear in a horizontal row.</p>
+
+    <h2>flex-direction</h2>
+
+    <p>This property controls the direction of flex items.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">flex-direction.css</span>
+        </div>
+<pre><span class="kw">.container</span> {
+    <span class="attr">display</span>: <span class="val">flex</span>;
+    <span class="attr">flex-direction</span>: <span class="val">column</span>;
+}</pre>
+    </div>
+
+    <h3>Common values</h3>
+
+    <ul>
+        <li><code>row</code> → horizontal layout</li>
+        <li><code>column</code> → vertical layout</li>
+        <li><code>row-reverse</code></li>
+        <li><code>column-reverse</code></li>
+    </ul>
+
+    <h2>justify-content</h2>
+
+    <p>This property aligns items along the main axis.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">justify-content.css</span>
+        </div>
+<pre><span class="kw">.container</span> {
+    <span class="attr">display</span>: <span class="val">flex</span>;
+    <span class="attr">justify-content</span>: <span class="val">space-between</span>;
+}</pre>
+    </div>
+
+    <h3>Common values</h3>
+
+    <ul>
+        <li><code>flex-start</code></li>
+        <li><code>center</code></li>
+        <li><code>flex-end</code></li>
+        <li><code>space-between</code></li>
+        <li><code>space-around</code></li>
+        <li><code>space-evenly</code></li>
+    </ul>
+
+    <h2>align-items</h2>
+
+    <p>This property aligns items along the cross axis.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">align-items.css</span>
+        </div>
+<pre><span class="kw">.container</span> {
+    <span class="attr">display</span>: <span class="val">flex</span>;
+    <span class="attr">align-items</span>: <span class="val">center</span>;
+}</pre>
+    </div>
+
+    <p>This is commonly used for vertical centering.</p>
+
+    <h2>The gap Property</h2>
+
+    <p>The <code>gap</code> property creates spacing between flex items.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">gap.css</span>
+        </div>
+<pre><span class="kw">.container</span> {
+    <span class="attr">display</span>: <span class="val">flex</span>;
+    <span class="attr">gap</span>: <span class="val">20px</span>;
+}</pre>
+    </div>
+
+    <p>Using <code>gap</code> is cleaner than manually adding margins to every item.</p>
+
+    <h2>Flex Item Sizing</h2>
+
+    <p>Flexbox includes powerful sizing controls for items.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>flex-grow</code></td>
+                <td>Allows items to grow</td>
+            </tr>
+            <tr>
+                <td><code>flex-shrink</code></td>
+                <td>Allows items to shrink</td>
+            </tr>
+            <tr>
+                <td><code>flex-basis</code></td>
+                <td>Initial item size</td>
+            </tr>
+            <tr>
+                <td><code>flex</code></td>
+                <td>Shorthand property</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">flex-grow.css</span>
+        </div>
+<pre><span class="kw">.item</span> {
+    <span class="attr">flex-grow</span>: <span class="val">1</span>;
+}</pre>
+    </div>
+
+    <p>Items with larger <code>flex-grow</code> values occupy more available space.</p>
+
+    <h2>Practical Flexbox Example</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">flex-demo.css</span>
+        </div>
+        <pre><span class="kw">.nav</span> {
     <span class="attr">display</span>: <span class="val">flex</span>;
     <span class="attr">justify-content</span>: <span class="val">space-between</span>;
     <span class="attr">align-items</span>: <span class="val">center</span>;
@@ -602,71 +1648,309 @@ input[type="text"] { border: 1px solid #ccc; }</code></pre>
     <span class="attr">padding</span>: <span class="val">1rem 2rem</span>;
     <span class="attr">gap</span>: <span class="val">1.5rem</span>;
 }
+
 <span class="kw">.nav</span> <span class="kw">a</span> {
     <span class="attr">color</span>: <span class="val">#e2e8f0</span>;
     <span class="attr">text-decoration</span>: <span class="val">none</span>;
 }
+
 <span class="kw">.nav</span> <span class="kw">a</span>:<span class="kw">hover</span> {
     <span class="attr">color</span>: <span class="val">#38bdf8</span>;
 }</pre>
-            </div>
+    </div>
 
-            <h3>Simple responsive navigation bar</h3>
-            <pre><code>&lt;nav class="nav"&gt;
-    &lt;a href="#"&gt;Home&lt;/a&gt;
-    &lt;a href="#"&gt;About&lt;/a&gt;
-    &lt;a href="#"&gt;Contact&lt;/a&gt;
-&lt;/nav&gt;</code></pre>
+    <h3>Simple responsive navigation bar</h3>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 5.1</div>
-                <p>Build a three‑column layout using Flexbox that collapses into a single column on screens narrower
-                    than 600 px (use a media query to change <code>flex-direction</code>).</p>
-            </div>
-
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
-            </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">navbar.html</span>
         </div>
+<pre><span class="tag">&lt;nav</span> <span class="attr">class</span>=<span class="val">"nav"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/nav&gt;</span></pre>
+    </div>
 
+    <h2>Responsive Flexbox Layout</h2>
+
+    <p>Flexbox works extremely well with media queries for responsive design.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">responsive-flex.css</span>
+        </div>
+<pre><span class="kw">.container</span> {
+    <span class="attr">display</span>: <span class="val">flex</span>;
+    <span class="attr">gap</span>: <span class="val">1rem</span>;
+}
+
+@<span class="kw">media</span> (<span class="attr">max-width</span>: <span class="val">600px</span>) {
+    <span class="kw">.container</span> {
+        <span class="attr">flex-direction</span>: <span class="val">column</span>;
+    }
+}</pre>
+    </div>
+
+    <p>On smaller screens, the layout changes from horizontal to vertical.</p>
+
+    <div class="box tip">
+        <div class="box-title">📱 Mobile-first thinking</div>
+        Modern websites must work on phones, tablets, laptops, and desktops. Flexbox makes responsive design much
+        easier.
+    </div>
+
+    <h2>Common Flexbox Use Cases</h2>
+
+    <ul>
+        <li>Navigation bars</li>
+        <li>Card layouts</li>
+        <li>Centering content</li>
+        <li>Pricing tables</li>
+        <li>Dashboard layouts</li>
+        <li>Hero sections</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.1</div>
+        <p>Build a three-column layout using Flexbox that collapses into a single column on screens narrower
+            than 600 px (use a media query to change <code>flex-direction</code>).</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.2</div>
+        <p>Create a responsive navigation bar using Flexbox.</p>
+
+        <ul>
+            <li>Align links horizontally on desktop</li>
+            <li>Center items vertically</li>
+            <li>Add spacing using <code>gap</code></li>
+            <li>Change link colors on hover</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.3</div>
+        <p>Create a card layout with three cards:</p>
+
+        <ul>
+            <li>Use Flexbox for alignment</li>
+            <li>Add padding and borders</li>
+            <li>Center text inside each card</li>
+            <li>Make cards stack vertically on smaller screens</li>
+        </ul>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Coming Up Next</div>
+        In the next lecture, you'll learn CSS Grid — a powerful two-dimensional layout system for complex designs.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+    </div>
+</div>
         <!-- ===================== LECTURE 6 ===================== -->
-        <div class="lecture" id="lec-5">
-            <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-            <h1>CSS Grid</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~55 min</span>
-                <span class="meta-badge">Requires: Lecture 05</span>
-            </div>
+<div class="lecture" id="lec-5">
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+    <h1>CSS Grid</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+        <span class="meta-badge">Requires: Lecture 05</span>
+    </div>
 
-            <h2>Two‑dimensional layout</h2>
-            <p>CSS Grid lets you define rows and columns and place items precisely in that matrix.</p>
+    <h2>What is CSS Grid?</h2>
 
-            <h3>Defining a grid container</h3>
-            <pre><code>.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);   /* 4 equal columns */
-    grid-template-rows: auto 200px auto;     /* three rows */
-    gap: 1rem;
-}</code></pre>
+    <p><strong>CSS Grid</strong> is a powerful two-dimensional layout system that allows developers to create
+        complex layouts using rows and columns.</p>
 
-            <h3>Placing items</h3>
-            <pre><code>.item‑a { grid-column: 1 / 3; grid-row: 1; }
-.item‑b { grid-column: 3 / 5; grid-row: 1 / 3; }
-.item‑c { grid-column: 1;   grid-row: 2; }</code></pre>
+    <p>Unlike Flexbox, which mainly works in one direction (row or column), CSS Grid can control both rows and
+        columns at the same time.</p>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">grid-demo.css</span>
-                </div>
-                <pre><span class="kw">.grid</span> {
+    <div class="box tip">
+        <div class="box-title">📌 Flexbox vs Grid</div>
+        Flexbox is best for one-dimensional layouts, while CSS Grid is ideal for full-page layouts and
+        two-dimensional designs.
+    </div>
+
+    <h2>Two-dimensional layout</h2>
+
+    <p>CSS Grid lets you define rows and columns and place items precisely in that matrix.</p>
+
+    <p>Grid is commonly used for:</p>
+
+    <ul>
+        <li>Website layouts</li>
+        <li>Photo galleries</li>
+        <li>Dashboards</li>
+        <li>Admin panels</li>
+        <li>Complex responsive designs</li>
+    </ul>
+
+    <h2>Grid Container and Grid Items</h2>
+
+    <p>CSS Grid works using two important concepts:</p>
+
+    <ul>
+        <li><strong>Grid Container</strong> – the parent element with <code>display: grid</code></li>
+        <li><strong>Grid Items</strong> – the child elements inside the container</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">grid-structure.html</span>
+        </div>
+<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"grid"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div&gt;</span>1<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div&gt;</span>2<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div&gt;</span>3<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+
+    <h2>Defining a grid container</h2>
+
+    <p>The parent element becomes a grid container using <code>display: grid</code>.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">grid-container.css</span>
+        </div>
+<pre><span class="kw">.grid</span> {
+    <span class="attr">display</span>: <span class="val">grid</span>;
+    <span class="attr">grid-template-columns</span>: <span class="val">repeat(4, 1fr)</span>;
+    <span class="attr">grid-template-rows</span>: <span class="val">auto 200px auto</span>;
+    <span class="attr">gap</span>: <span class="val">1rem</span>;
+}</pre>
+    </div>
+
+    <h3>Understanding the properties</h3>
+
+    <ul>
+        <li><code>display: grid</code> → activates grid layout</li>
+        <li><code>grid-template-columns</code> → defines columns</li>
+        <li><code>grid-template-rows</code> → defines rows</li>
+        <li><code>gap</code> → spacing between grid items</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 What does 1fr mean?</div>
+        The <code>fr</code> unit means “fraction of available space.”  
+        <code>repeat(4, 1fr)</code> creates 4 equal-width columns.
+    </div>
+
+    <h2>Creating Columns</h2>
+
+    <p>You can define grid columns manually or using the <code>repeat()</code> function.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">columns.css</span>
+        </div>
+<pre><span class="kw">.grid</span> {
+    <span class="attr">display</span>: <span class="val">grid</span>;
+
+    <span class="kw">/* Three equal columns */</span>
+    <span class="attr">grid-template-columns</span>: <span class="val">1fr 1fr 1fr</span>;
+}</pre>
+    </div>
+
+    <p>Using <code>repeat()</code> makes code cleaner:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">repeat.css</span>
+        </div>
+<pre><span class="attr">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>;</pre>
+    </div>
+
+    <h2>Creating Rows</h2>
+
+    <p>Rows are controlled using <code>grid-template-rows</code>.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">rows.css</span>
+        </div>
+<pre><span class="kw">.grid</span> {
+    <span class="attr">grid-template-rows</span>: <span class="val">100px 200px 100px</span>;
+}</pre>
+    </div>
+
+    <p>Each value represents the height of a row.</p>
+
+    <h2>Gap Property</h2>
+
+    <p>The <code>gap</code> property creates spacing between grid items.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">gap.css</span>
+        </div>
+<pre><span class="kw">.grid</span> {
+    <span class="attr">gap</span>: <span class="val">20px</span>;
+}</pre>
+    </div>
+
+    <p>This is cleaner than adding margins to every item.</p>
+
+    <h2>Placing items</h2>
+
+    <p>Grid items can span across multiple rows and columns.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">item-placement.css</span>
+        </div>
+<pre><span class="kw">.item-a</span> {
+    <span class="attr">grid-column</span>: <span class="val">1 / 3</span>;
+    <span class="attr">grid-row</span>: <span class="val">1</span>;
+}
+
+<span class="kw">.item-b</span> {
+    <span class="attr">grid-column</span>: <span class="val">3 / 5</span>;
+    <span class="attr">grid-row</span>: <span class="val">1 / 3</span>;
+}
+
+<span class="kw">.item-c</span> {
+    <span class="attr">grid-column</span>: <span class="val">1</span>;
+    <span class="attr">grid-row</span>: <span class="val">2</span>;
+}</pre>
+    </div>
+
+    <h3>Understanding grid lines</h3>
+
+    <p>Grid layouts use numbered lines.</p>
+
+    <ul>
+        <li><code>grid-column: 1 / 3</code> means start at line 1 and end at line 3</li>
+        <li><code>span 2</code> means occupy 2 columns</li>
+    </ul>
+
+    <h2>Practical Grid Example</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">grid-demo.css</span>
+        </div>
+        <pre><span class="kw">.grid</span> {
     <span class="attr">display</span>: <span class="val">grid</span>;
     <span class="attr">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>;
     <span class="attr">grid-auto-rows</span>: <span class="val">150px</span>;
     <span class="attr">gap</span>: <span class="val">1rem</span>;
 }
+
 <span class="kw">.grid</span> <span class="kw">> div</span> {
     <span class="attr">background</span>: <span class="val">#38bdf8</span>;
     <span class="attr">color</span>: <span class="val">#fff</span>;
@@ -675,112 +1959,489 @@ input[type="text"] { border: 1px solid #ccc; }</code></pre>
     <span class="attr">justify-content</span>: <span class="val">center</span>;
     <span class="attr">font-size</span>: <span class="val">1.2rem</span>;
 }
-<span class="kw">.item‑large</span> {
+
+<span class="kw">.item-large</span> {
     <span class="attr">grid-column</span>: <span class="val">1 / span 2</span>;
     <span class="attr">background</span>: <span class="val">#f97316</span>;
 }</pre>
-            </div>
+    </div>
 
-            <h3>Responsive grid example</h3>
-            <pre><code>@media (max-width: 800px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 500px) {
-    .grid { grid-template-columns: 1fr; }
-}</code></pre>
+    <h2>Responsive Grid Layouts</h2>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 6.1</div>
-                <p>Design a simple photo‑gallery using CSS Grid: a 4‑column layout on desktop, 2‑column on tablets, and
-                    1‑column on mobile. Add a hover overlay that shows the image caption.</p>
-            </div>
+    <p>CSS Grid makes responsive layouts much easier using media queries.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-            </div>
+    <h3>Responsive grid example</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">responsive-grid.css</span>
         </div>
+<pre>@<span class="kw">media</span> (<span class="attr">max-width</span>: <span class="val">800px</span>) {
+    <span class="kw">.grid</span> {
+        <span class="attr">grid-template-columns</span>: <span class="val">repeat(2, 1fr)</span>;
+    }
+}
+
+@<span class="kw">media</span> (<span class="attr">max-width</span>: <span class="val">500px</span>) {
+    <span class="kw">.grid</span> {
+        <span class="attr">grid-template-columns</span>: <span class="val">1fr</span>;
+    }
+}</pre>
+    </div>
+
+    <p>The layout automatically adapts to different screen sizes.</p>
+
+    <div class="box tip">
+        <div class="box-title">📱 Responsive design</div>
+        Modern websites must adapt to mobile devices. CSS Grid makes responsive layouts far easier than older CSS
+        techniques.
+    </div>
+
+    <h2>Auto-fit and Minmax</h2>
+
+    <p>CSS Grid includes advanced responsive features like <code>auto-fit</code> and <code>minmax()</code>.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">auto-fit.css</span>
+        </div>
+<pre><span class="kw">.grid</span> {
+    <span class="attr">display</span>: <span class="val">grid</span>;
+
+    <span class="attr">grid-template-columns</span>:
+        <span class="val">repeat(auto-fit, minmax(200px, 1fr))</span>;
+
+    <span class="attr">gap</span>: <span class="val">1rem</span>;
+}</pre>
+    </div>
+
+    <p>This creates responsive columns automatically without media queries.</p>
+
+    <h2>Common CSS Grid Use Cases</h2>
+
+    <ul>
+        <li>Photo galleries</li>
+        <li>Website layouts</li>
+        <li>Dashboards</li>
+        <li>Pricing tables</li>
+        <li>Portfolio websites</li>
+        <li>Admin interfaces</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.1</div>
+        <p>Design a simple photo-gallery using CSS Grid: a 4-column layout on desktop, 2-column on tablets, and
+            1-column on mobile. Add a hover overlay that shows the image caption.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.2</div>
+        <p>Create a dashboard layout using CSS Grid:</p>
+
+        <ul>
+            <li>A sidebar on the left</li>
+            <li>A top navigation bar</li>
+            <li>A main content section</li>
+            <li>Responsive behavior for smaller screens</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.3</div>
+        <p>Create a card gallery layout:</p>
+
+        <ul>
+            <li>Use <code>repeat()</code> for columns</li>
+            <li>Add spacing with <code>gap</code></li>
+            <li>Make one featured card span two columns</li>
+            <li>Add hover effects to each card</li>
+        </ul>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Coming Up Next</div>
+        In the next lecture, you'll learn responsive design techniques, media queries, and mobile-first layouts.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 7 ===================== -->
-        <div class="lecture" id="lec-6">
-            <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-            <h1>Typography &amp; Fonts</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 06</span>
-            </div>
+  <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Typography &amp; Fonts</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 06</span>
+    </div>
 
-            <h2>Font‑family stacks</h2>
-            <pre><code>body {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-}</code></pre>
+    <h2>What is Typography?</h2>
 
-            <h2>Web‑safe vs web‑fonts</h2>
-            <ul>
-                <li><strong>Web‑safe</strong> – fonts that are pre‑installed on most OSes (Arial, Times, Verdana, …).
-                </li>
-                <li><strong>Web‑fonts</strong> – delivered via <code>@font-face</code> or services like Google Fonts.
-                </li>
-            </ul>
+    <p><strong>Typography</strong> is the art of styling and arranging text to make content readable,
+        visually appealing, and user-friendly.</p>
 
-            <h3>Google Fonts example</h3>
-            <pre><code>&lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"&gt;
+    <p>Good typography improves readability, user experience, accessibility, and the overall design of a website.</p>
 
-body {
-    font-family: 'Roboto', sans-serif;
-}</code></pre>
+    <div class="box tip">
+        <div class="box-title">📖 Why typography matters</div>
+        Users spend most of their time reading content on websites. Good typography helps users understand content
+        faster and reduces eye strain.
+    </div>
 
-            <h2>Text properties</h2>
-            <table class="tbl-wrap">
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Values</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>font-size</code></td>
-                        <td><code>16px</code>, <code>1rem</code>, <code>clamp(1rem,2vw,2rem)</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>font-weight</code></td>
-                        <td><code>400</code>, <code>700</code>, <code>bold</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>line-height</code></td>
-                        <td><code>1.5</code>, <code>150%</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>letter-spacing</code></td>
-                        <td><code>0.05em</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>text-align</code></td>
-                        <td><code>left</code>, <code>center</code>, <code>justify</code></td>
-                    </tr>
-                </tbody>
-            </table>
+    <h2>Font-family stacks</h2>
 
-            <h2>Responsive typography with <code>clamp()</code></h2>
-            <pre><code>h1 {
-    font-size: clamp(2rem, 5vw, 4rem);
-}</code></pre>
+    <p>The <code>font-family</code> property defines which fonts should be used.</p>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 7.1</div>
-                <p>Import a Google Font, set a typographic scale (h1‑h6) using <code>clamp()</code>, and create a
-                    paragraph with a custom line‑height and letter‑spacing. Verify the result at different viewport
-                    widths.</p>
-            </div>
+    <p>It is common to provide multiple fallback fonts in case the first font is unavailable.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-            </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">font-stack.css</span>
         </div>
+<pre><span class="kw">body</span> {
+    <span class="attr">font-family</span>: <span class="val">'Open Sans', Helvetica, Arial, sans-serif</span>;
+}</pre>
+    </div>
 
+    <h3>Understanding fallback fonts</h3>
+
+    <ul>
+        <li><code>'Open Sans'</code> → preferred font</li>
+        <li><code>Helvetica</code> → first fallback</li>
+        <li><code>Arial</code> → second fallback</li>
+        <li><code>sans-serif</code> → generic font family</li>
+    </ul>
+
+    <h2>Font Categories</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Example Fonts</th>
+                <th>Style</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Serif</td>
+                <td>Times New Roman, Georgia</td>
+                <td>Traditional and formal</td>
+            </tr>
+            <tr>
+                <td>Sans-serif</td>
+                <td>Arial, Roboto, Open Sans</td>
+                <td>Modern and clean</td>
+            </tr>
+            <tr>
+                <td>Monospace</td>
+                <td>Courier New, Consolas</td>
+                <td>Equal character width</td>
+            </tr>
+            <tr>
+                <td>Cursive</td>
+                <td>Brush Script</td>
+                <td>Handwriting style</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Web-safe vs Web-fonts</h2>
+
+    <ul>
+        <li><strong>Web-safe</strong> – fonts that are pre-installed on most operating systems (Arial, Times,
+            Verdana, etc.).</li>
+
+        <li><strong>Web-fonts</strong> – fonts loaded from external sources using
+            <code>@font-face</code> or services like Google Fonts.</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 Modern websites use web-fonts</div>
+        Web-fonts allow designers to use beautiful custom typography instead of being limited to default system
+        fonts.
+    </div>
+
+    <h2>Using Google Fonts</h2>
+
+    <p>Google Fonts is one of the most popular free font libraries for web development.</p>
+
+    <h3>Google Fonts example</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">google-fonts.html</span>
+        </div>
+<pre><span class="tag">&lt;link</span>
+    <span class="attr">href</span>=<span class="val">"https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap"</span>
+    <span class="attr">rel</span>=<span class="val">"stylesheet"</span>
+<span class="tag">&gt;</span></pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">styles.css</span>
+        </div>
+<pre><span class="kw">body</span> {
+    <span class="attr">font-family</span>: <span class="val">'Roboto', sans-serif</span>;
+}</pre>
+    </div>
+
+    <h2>Using @font-face</h2>
+
+    <p>The <code>@font-face</code> rule allows you to load custom fonts manually.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">custom-font.css</span>
+        </div>
+<pre>@<span class="kw">font-face</span> {
+    <span class="attr">font-family</span>: <span class="val">'MyFont'</span>;
+    <span class="attr">src</span>: <span class="val">url('fonts/myfont.woff2')</span>;
+}
+
+<span class="kw">body</span> {
+    <span class="attr">font-family</span>: <span class="val">'MyFont', sans-serif</span>;
+}</pre>
+    </div>
+
+    <h2>Text properties</h2>
+
+    <p>CSS provides many properties to control text appearance and readability.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>font-size</code></td>
+                <td><code>16px</code>, <code>1rem</code>, <code>clamp(1rem,2vw,2rem)</code></td>
+            </tr>
+            <tr>
+                <td><code>font-weight</code></td>
+                <td><code>400</code>, <code>700</code>, <code>bold</code></td>
+            </tr>
+            <tr>
+                <td><code>line-height</code></td>
+                <td><code>1.5</code>, <code>150%</code></td>
+            </tr>
+            <tr>
+                <td><code>letter-spacing</code></td>
+                <td><code>0.05em</code></td>
+            </tr>
+            <tr>
+                <td><code>text-align</code></td>
+                <td><code>left</code>, <code>center</code>, <code>justify</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>font-size</h2>
+
+    <p>The <code>font-size</code> property controls the size of text.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">font-size.css</span>
+        </div>
+<pre><span class="kw">p</span> {
+    <span class="attr">font-size</span>: <span class="val">18px</span>;
+}</pre>
+    </div>
+
+    <h3>Common units</h3>
+
+    <ul>
+        <li><code>px</code> → fixed pixels</li>
+        <li><code>rem</code> → relative to root font size</li>
+        <li><code>em</code> → relative to parent element</li>
+        <li><code>%</code> → percentage-based sizing</li>
+        <li><code>vw</code> → viewport width</li>
+    </ul>
+
+    <h2>font-weight</h2>
+
+    <p>The <code>font-weight</code> property controls text thickness.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">font-weight.css</span>
+        </div>
+<pre><span class="kw">h1</span> {
+    <span class="attr">font-weight</span>: <span class="val">700</span>;
+}</pre>
+    </div>
+
+    <p>Common values:</p>
+
+    <ul>
+        <li><code>400</code> → normal</li>
+        <li><code>700</code> → bold</li>
+        <li><code>900</code> → extra bold</li>
+    </ul>
+
+    <h2>line-height</h2>
+
+    <p>The <code>line-height</code> property controls spacing between lines of text.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">line-height.css</span>
+        </div>
+<pre><span class="kw">p</span> {
+    <span class="attr">line-height</span>: <span class="val">1.8</span>;
+}</pre>
+    </div>
+
+    <p>Proper line spacing improves readability significantly.</p>
+
+    <h2>letter-spacing</h2>
+
+    <p>The <code>letter-spacing</code> property adjusts spacing between characters.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">letter-spacing.css</span>
+        </div>
+<pre><span class="kw">h2</span> {
+    <span class="attr">letter-spacing</span>: <span class="val">0.1em</span>;
+}</pre>
+    </div>
+
+    <h2>text-align</h2>
+
+    <p>The <code>text-align</code> property controls horizontal alignment of text.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">text-align.css</span>
+        </div>
+<pre><span class="kw">h1</span> {
+    <span class="attr">text-align</span>: <span class="val">center</span>;
+}</pre>
+    </div>
+
+    <h3>Common values</h3>
+
+    <ul>
+        <li><code>left</code></li>
+        <li><code>center</code></li>
+        <li><code>right</code></li>
+        <li><code>justify</code></li>
+    </ul>
+
+    <h2>Responsive typography with <code>clamp()</code></h2>
+
+    <p>The <code>clamp()</code> function creates responsive font sizes that adapt automatically to screen size.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">responsive-typography.css</span>
+        </div>
+<pre><span class="kw">h1</span> {
+    <span class="attr">font-size</span>: <span class="val">clamp(2rem, 5vw, 4rem)</span>;
+}</pre>
+    </div>
+
+    <h3>How clamp() works</h3>
+
+    <ul>
+        <li>Minimum size → <code>2rem</code></li>
+        <li>Preferred scaling → <code>5vw</code></li>
+        <li>Maximum size → <code>4rem</code></li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">📱 Responsive text</div>
+        Responsive typography ensures text looks good on mobile phones, tablets, and desktop screens.
+    </div>
+
+    <h2>Building a Typographic Scale</h2>
+
+    <p>A typographic scale creates consistent heading sizes across a website.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">typography-scale.css</span>
+        </div>
+<pre><span class="kw">h1</span> { <span class="attr">font-size</span>: <span class="val">3rem</span>; }
+<span class="kw">h2</span> { <span class="attr">font-size</span>: <span class="val">2.5rem</span>; }
+<span class="kw">h3</span> { <span class="attr">font-size</span>: <span class="val">2rem</span>; }
+<span class="kw">h4</span> { <span class="attr">font-size</span>: <span class="val">1.5rem</span>; }</pre>
+    </div>
+
+    <h2>Best Practices for Typography</h2>
+
+    <ul>
+        <li>Use readable font sizes</li>
+        <li>Limit the number of font families</li>
+        <li>Maintain proper line spacing</li>
+        <li>Use responsive typography</li>
+        <li>Ensure sufficient contrast between text and background</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.1</div>
+        <p>Import a Google Font, set a typographic scale (h1-h6) using <code>clamp()</code>, and create a
+            paragraph with a custom line-height and letter-spacing. Verify the result at different viewport
+            widths.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.2</div>
+        <p>Create a blog article layout with:</p>
+
+        <ul>
+            <li>A large responsive heading</li>
+            <li>Readable paragraph spacing</li>
+            <li>Different font weights for headings and body text</li>
+            <li>Centered article title</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.3</div>
+        <p>Create a typography showcase page:</p>
+
+        <ul>
+            <li>Display different font families</li>
+            <li>Experiment with font sizes</li>
+            <li>Use letter spacing and line height</li>
+            <li>Add responsive text using <code>clamp()</code></li>
+        </ul>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Coming Up Next</div>
+        In the next lecture, you'll learn colors, gradients, backgrounds, and modern visual styling techniques in CSS.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
         <!-- ===================== LECTURE 8 ===================== -->
         <div class="lecture" id="lec-7">
             <div class="lecture-tag">Lecture 08 · Core Concepts</div>
@@ -1237,7 +2898,7 @@ assets/
       </div>
     </div>
   </footer></body>
-</html>
+
 <div id="search-overlay" class="search-overlay"></div>
 <div id="search-box" class="search-box">
     <div class="search-header">
@@ -1259,5 +2920,5 @@ assets/
 </div>
 
 <script src="../search.js"></script>
-
+</html>
 

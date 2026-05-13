@@ -178,367 +178,758 @@
             <div class="content-column">
 
         <!-- ===================== LECTURE 1 ===================== -->
-        <div class="lecture active" id="lec-0">
-            <div class="lecture-tag">Lecture 01 · Foundations</div>
-            <h1>What is Java?</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~30 min</span>
-                <span class="meta-badge">No prerequisites</span>
-            </div>
+<div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Lecture 01 · Foundations</div>
+    <h1>What is Java?</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~30 min</span>
+        <span class="meta-badge">No prerequisites</span>
+    </div>
 
-            <h2>Introduction</h2>
-            <p><strong>Java</strong> is a high-level, class-based, object-oriented programming language
-                that is designed to have as few implementation dependencies as possible.
-                The slogan <em>“Write Once, Run Anywhere”</em> reflects its capability to run on any device that
-                has a Java Virtual Machine (<code>JVM</code>).</p>
+    <h2>Introduction</h2>
+    <p><strong>Java</strong> is a high-level, class-based, object-oriented programming language
+        that is designed to have as few implementation dependencies as possible.
+        The slogan <em>“Write Once, Run Anywhere”</em> reflects its capability to run on any device that
+        has a Java Virtual Machine (<code>JVM</code>).</p>
 
-            <h2>Why Learn Java?</h2>
-            <ul>
-                <li>Ubiquitous – used in Android, enterprise back-ends, desktop apps and big-data ecosystems.</li>
-                <li>Strong static typing helps catch many bugs at compile time.</li>
-                <li>Rich standard library and a huge ecosystem of third-party libraries.</li>
-                <li>Excellent tooling (IDEA, Eclipse, VS Code, Maven/Gradle, JUnit).</li>
-            </ul>
+    <p>
+        Java was originally developed by <strong>Sun Microsystems</strong> and later acquired by
+        <strong>Oracle Corporation</strong>. Over the years, Java became one of the most trusted
+        programming languages for enterprise software, Android development, cloud applications,
+        and large-scale systems.
+    </p>
 
-            <div class="box tip">
-                <div class="box-title">✅ Quick fact</div>
-                The first public release of Java (JDK 1.0) appeared in 1996.
-            </div>
+    <p>
+        Today, Java powers millions of applications worldwide — from banking systems and e-commerce
+        platforms to desktop applications and backend APIs.
+    </p>
 
-            <h2>Hello World – Your First Java Program</h2>
-            <p>Save the following as <code>HelloWorld.java</code> and run it from the command line:</p>
+    <h2>Why Learn Java?</h2>
+    <ul>
+        <li>Ubiquitous – used in Android, enterprise back-ends, desktop apps and big-data ecosystems.</li>
+        <li>Strong static typing helps catch many bugs at compile time.</li>
+        <li>Rich standard library and a huge ecosystem of third-party libraries.</li>
+        <li>Excellent tooling (IDEA, Eclipse, VS Code, Maven/Gradle, JUnit).</li>
+    </ul>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">HelloWorld.java</span>
-                </div>
-                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">HelloWorld</span> {
+    <p>
+        Java is also considered one of the best languages for beginners because its syntax is clean,
+        structured, and widely documented. Learning Java builds a strong programming foundation that
+        makes it easier to learn other languages later.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Quick fact</div>
+        The first public release of Java (JDK 1.0) appeared in 1996.
+    </div>
+
+    <h2>Where is Java Used?</h2>
+    <ul>
+        <li><strong>Android Development:</strong> Many Android applications use Java.</li>
+        <li><strong>Web Applications:</strong> Large-scale backend systems often use Java frameworks like Spring.</li>
+        <li><strong>Desktop Software:</strong> Java can build cross-platform desktop applications.</li>
+        <li><strong>Enterprise Systems:</strong> Banking, insurance, and large corporations rely heavily on Java.</li>
+        <li><strong>Cloud & Big Data:</strong> Technologies like Hadoop and Apache Kafka are built using Java.</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🌍 Industry Insight</div>
+        Java consistently ranks among the world's most popular programming languages because of its stability,
+        scalability, and massive developer ecosystem.
+    </div>
+
+    <h2>Hello World – Your First Java Program</h2>
+    <p>Save the following as <code>HelloWorld.java</code> and run it from the command line:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">HelloWorld.java</span>
+        </div>
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">HelloWorld</span> {
     <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
         <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Hello, World!"</span>);
     }
 }</pre>
-            </div>
+    </div>
 
-            <p>Compile and run:</p>
-            <pre><code>javac HelloWorld.java   # produces HelloWorld.class
+    <p>Compile and run:</p>
+    <pre><code>javac HelloWorld.java   # produces HelloWorld.class
 java HelloWorld         # prints “Hello, World!”</code></pre>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 1.1</div>
-                <p>Install the latest JDK, create the <code>HelloWorld.java</code> file, compile it and run it.
-                    Verify the output in your terminal.</p>
-            </div>
+    <h2>Understanding the Program</h2>
+    <p>Let us break down the program line by line:</p>
 
-            <!-- MULTI-LANGUAGE COMPILER -->
-            <div class="compiler-section">
-                <h2>💻 Try It Yourself - Multi-Language Compiler</h2>
-                <p>Practice Java and many other programming languages right here in your browser! Switch between languages, modify the code, and click "Run" to see results instantly.</p>
-                
-                <iframe src="../multi-language-compiler.html" style="width: 100%; height: 650px; border: 1px solid var(--border); border-radius: 8px; margin: 1rem 0;" frameborder="0"></iframe>
-                
-                <div class="practice-tips">
-                    <h4>💡 Practice Tips:</h4>
-                    <ul>
-                        <li>Switch to Java in the language selector and try modifying the Hello World program</li>
-                        <li>Experiment with different data types and variables in Java</li>
-                        <li>Try other languages like C#, Python, or JavaScript to compare syntax</li>
-                        <li>Use the "Load Example" button to see language-specific code samples</li>
-                        <li>Use <strong>Ctrl+Enter</strong> to quickly run your code</li>
-                    </ul>
-                </div>
-            </div>
+    <ul>
+        <li><code>public class HelloWorld</code> → Defines a class named <code>HelloWorld</code>.</li>
+        <li><code>main()</code> → The entry point where program execution starts.</li>
+        <li><code>System.out.println()</code> → Prints output to the console.</li>
+        <li><code>String[] args</code> → Stores command-line arguments.</li>
+    </ul>
 
-            <!-- ===================== ADDED CONTENT ===================== -->
+    <div class="box tip">
+        <div class="box-title">💡 Important</div>
+        In Java, the file name must match the public class name exactly.
+        That is why the file is named <code>HelloWorld.java</code>.
+    </div>
 
-            <h2>Key Features of Java</h2>
-            <ul>
-                <li><strong>Object-Oriented:</strong> Everything in Java revolves around objects and classes.</li>
-                <li><strong>Platform Independent:</strong> Java code is compiled into bytecode that runs on the JVM.</li>
-                <li><strong>Secure:</strong> No direct pointer access and includes built-in security features.</li>
-                <li><strong>Robust:</strong> Strong memory management and exception handling.</li>
-                <li><strong>Multithreaded:</strong> Supports concurrent execution of two or more threads.</li>
-            </ul>
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.1</div>
+        <p>Install the latest JDK, create the <code>HelloWorld.java</code> file, compile it and run it.
+            Verify the output in your terminal.</p>
+    </div>
 
-            <h2>How Java Works</h2>
-            <p>Java follows a two-step execution process:</p>
-            <ol>
-                <li><strong>Compilation:</strong> The Java source file (<code>.java</code>) is compiled into bytecode (<code>.class</code>) using the Java compiler (<code>javac</code>).</li>
-                <li><strong>Execution:</strong> The JVM interprets or compiles the bytecode into machine code that your system can execute.</li>
-            </ol>
+    <h2>Key Features of Java</h2>
+    <ul>
+        <li><strong>Object-Oriented:</strong> Everything in Java revolves around objects and classes.</li>
+        <li><strong>Platform Independent:</strong> Java code is compiled into bytecode that runs on the JVM.</li>
+        <li><strong>Secure:</strong> No direct pointer access and includes built-in security features.</li>
+        <li><strong>Robust:</strong> Strong memory management and exception handling.</li>
+        <li><strong>Multithreaded:</strong> Supports concurrent execution of two or more threads.</li>
+    </ul>
 
-            <div class="box tip">
-                <div class="box-title">💡 Did you know?</div>
-                The JVM acts like a translator between Java bytecode and your operating system, making Java platform-independent.
-            </div>
+    <h2>Additional Advantages of Java</h2>
+    <ul>
+        <li><strong>Automatic Garbage Collection:</strong> Java automatically manages memory allocation and cleanup.</li>
+        <li><strong>Large Community:</strong> Millions of developers contribute tutorials, libraries, and tools.</li>
+        <li><strong>Backward Compatibility:</strong> Older Java applications often continue to work on newer JVM versions.</li>
+        <li><strong>Performance:</strong> Modern JVM optimizations make Java extremely fast.</li>
+    </ul>
 
-            <h2>Basic Structure of a Java Program</h2>
-            <ul>
-                <li><strong>Class:</strong> The main building block of a Java program.</li>
-                <li><strong>Main Method:</strong> Entry point where execution begins.</li>
-                <li><strong>Statements:</strong> Instructions executed by the program.</li>
-            </ul>
+    <h2>How Java Works</h2>
+    <p>Java follows a two-step execution process:</p>
+    <ol>
+        <li><strong>Compilation:</strong> The Java source file (<code>.java</code>) is compiled into bytecode (<code>.class</code>) using the Java compiler (<code>javac</code>).</li>
+        <li><strong>Execution:</strong> The JVM interprets or compiles the bytecode into machine code that your system can execute.</li>
+    </ol>
 
-            <h2>Common Errors Beginners Make</h2>
-            <ul>
-                <li>Forgetting to match the file name with the class name.</li>
-                <li>Missing semicolons (<code>;</code>) at the end of statements.</li>
-                <li>Incorrect capitalization (Java is case-sensitive).</li>
-                <li>Not installing or configuring the JDK properly.</li>
-            </ul>
+    <div class="box tip">
+        <div class="box-title">💡 Did you know?</div>
+        The JVM acts like a translator between Java bytecode and your operating system, making Java platform-independent.
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 1.2</div>
-                <p>Modify the <code>HelloWorld</code> program to print your name instead of "Hello, World!".</p>
-            </div>
+    <h2>JDK vs JRE vs JVM</h2>
+    <p>
+        Beginners often confuse these three important Java components. Understanding them early will help you later.
+    </p>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 1.3</div>
-                <p>Try printing multiple lines using <code>System.out.println()</code> and observe how output is displayed.</p>
-            </div>
+    <ul>
+        <li><strong>JVM (Java Virtual Machine)</strong> → Runs Java bytecode.</li>
+        <li><strong>JRE (Java Runtime Environment)</strong> → Contains the JVM and libraries needed to run Java programs.</li>
+        <li><strong>JDK (Java Development Kit)</strong> → Includes tools required to develop Java applications such as <code>javac</code>.</li>
+    </ul>
 
-            <h2>Summary</h2>
-            <p>In this lecture, you learned what Java is, why it is widely used, and how to write and run your first Java program.
-               You also explored its key features and basic structure. In the next lecture, we will dive deeper into setting up
-               your development environment and understanding variables.</p>
+    <div class="box info">
+        <div class="box-title">🧠 Easy Memory Trick</div>
+        JDK = Develop Java Programs<br>
+        JRE = Run Java Programs<br>
+        JVM = Execute Java Bytecode
+    </div>
 
-        <div class="lecture" id="lec-1">
-            <div class="lecture-tag">Lecture 02 · Foundations</div>
-            <h1>Setting up the JDK</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~35 min</span>
-                <span class="meta-badge">Requires: Lecture 01</span>
-            </div>
+    <h2>Basic Structure of a Java Program</h2>
+    <ul>
+        <li><strong>Class:</strong> The main building block of a Java program.</li>
+        <li><strong>Main Method:</strong> Entry point where execution begins.</li>
+        <li><strong>Statements:</strong> Instructions executed by the program.</li>
+    </ul>
 
-            <h2>Download & Install</h2>
-            <p>Head to <a href="https://adoptium.net/" target="_blank" rel="noopener noreferrer">Eclipse Adoptium</a>
-                or <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank"
-                    rel="noopener noreferrer">Oracle JDK</a> and download the appropriate bundle for your OS.</p>
+    <h2>Java Syntax Rules</h2>
+    <ul>
+        <li>Java is case-sensitive.</li>
+        <li>Every statement usually ends with a semicolon (<code>;</code>).</li>
+        <li>Curly braces <code>{ }</code> define blocks of code.</li>
+        <li>Program execution starts from the <code>main()</code> method.</li>
+    </ul>
 
-            <h3>Verify Installation</h3>
-            <pre><code>java -version
-javac -version</code></pre>
-
-            <div class="box info">
-                <div class="box-title">ℹ️ Expected output</div>
-                <p>Both commands should print the version number (e.g. <code>java 21.0.1</code>) and indicate that the
-                    JDK is correctly on your <code>PATH</code>.</p>
-            </div>
-
-            <h2>IDE Recommendation</h2>
-            <p>For a smoother learning experience pick an IDE:</p>
-            <ul>
-                <li><strong>IntelliJ IDEA Community</strong> – rich refactoring, debugger, and Maven/Gradle integration.
-                </li>
-                <li><strong>Eclipse</strong> – classic, plugin-heavy.</li>
-                <li><strong>VS Code</strong> with the <code>Java Extension Pack</code>.</li>
-            </ul>
-
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 2.1</div>
-                <p>Install your favourite IDE, open a new project, create a <code>Main.java</code> file with a
-                    <code>main</code> method,
-                    and run the “Hello World” program inside the IDE.</p>
-            </div>
-
-            <!-- ===================== ADDED CONTENT ===================== -->
-
-            <h2>Understanding JDK, JRE, and JVM</h2>
-            <ul>
-                <li><strong>JDK (Java Development Kit):</strong> Full toolkit for developing Java applications.</li>
-                <li><strong>JRE (Java Runtime Environment):</strong> Provides libraries and JVM to run Java programs.</li>
-                <li><strong>JVM (Java Virtual Machine):</strong> Executes compiled Java bytecode.</li>
-            </ul>
-
-            <div class="box tip">
-                <div class="box-title">💡 Key Insight</div>
-                Installing the JDK automatically includes the JRE and JVM, so you don’t need to install them separately.
-            </div>
-
-            <h2>Setting Environment Variables (Important)</h2>
-            <p>To run Java from any directory, you need to configure system environment variables:</p>
-
-            <h3>Windows</h3>
-            <ul>
-                <li>Search for <strong>Environment Variables</strong> in system settings.</li>
-                <li>Add the JDK <code>bin</code> folder path to the <code>PATH</code> variable.</li>
-            </ul>
-
-            <h3>Linux / macOS</h3>
-            <pre><code>export JAVA_HOME=/path/to/jdk
-export PATH=$JAVA_HOME/bin:$PATH</code></pre>
-
-            <h2>Command Line vs IDE</h2>
-            <p>You can write and run Java programs using:</p>
-            <ul>
-                <li><strong>Command Line:</strong> More control, better for understanding fundamentals.</li>
-                <li><strong>IDE:</strong> Faster development with debugging and auto-completion.</li>
-            </ul>
-
-            <h2>Creating Your First Project Structure</h2>
-            <p>A typical Java project structure looks like this:</p>
-            <pre><code>MyProject/
- ├── src/
- │   └── Main.java
- └── bin/</code></pre>
-
-            <div class="box info">
-                <div class="box-title">ℹ️ Note</div>
-                The <code>src</code> folder contains source code, while compiled files are often placed in a separate directory.
-            </div>
-
-            <h2>Troubleshooting Common Issues</h2>
-            <ul>
-                <li><strong>'java' is not recognized:</strong> PATH variable is not set correctly.</li>
-                <li><strong>Version mismatch:</strong> Multiple Java versions installed on your system.</li>
-                <li><strong>Permission errors:</strong> Try running terminal as administrator (Windows) or use <code>sudo</code> (Linux/macOS).</li>
-            </ul>
-
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 2.2</div>
-                <p>Open your terminal and verify that both <code>java</code> and <code>javac</code> commands work from any directory.</p>
-            </div>
-
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 2.3</div>
-                <p>Create a simple project folder manually, write a Java file, compile it using terminal, and run it without using an IDE.</p>
-            </div>
-
-            <h2>Summary</h2>
-            <p>In this lecture, you installed the JDK, verified your setup, and explored development tools and environment configuration.
-               You also learned the difference between JDK, JRE, and JVM, and how to troubleshoot common setup issues.
-               In the next lecture, we will begin writing more structured Java programs using variables and data types.</p>
-
-            <!-- ===================== END ADDED CONTENT ===================== -->
-
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
-            </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Example.java</span>
         </div>
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Example</span> {
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Learning Java"</span>);
+    }
+}</pre>
+    </div>
 
+    <h2>Common Errors Beginners Make</h2>
+    <ul>
+        <li>Forgetting to match the file name with the class name.</li>
+        <li>Missing semicolons (<code>;</code>) at the end of statements.</li>
+        <li>Incorrect capitalization (Java is case-sensitive).</li>
+        <li>Not installing or configuring the JDK properly.</li>
+    </ul>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Common Mistake</div>
+        Writing <code>system.out.println()</code> instead of
+        <code>System.out.println()</code> will produce an error because Java is case-sensitive.
+    </div>
+
+    <h2>Best Practices for Beginners</h2>
+    <ul>
+        <li>Practice writing code daily instead of only reading theory.</li>
+        <li>Use meaningful class and variable names.</li>
+        <li>Read compiler error messages carefully.</li>
+        <li>Experiment with small programs frequently.</li>
+        <li>Focus on understanding concepts instead of memorizing syntax.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.2</div>
+        <p>Modify the <code>HelloWorld</code> program to print your name instead of "Hello, World!".</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.3</div>
+        <p>Try printing multiple lines using <code>System.out.println()</code> and observe how output is displayed.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🚀 Challenge Exercise</div>
+        <p>
+            Create a program named <code>AboutMe.java</code> that prints:
+        </p>
+        <ul>
+            <li>Your name</li>
+            <li>Your city</li>
+            <li>Your favorite programming language</li>
+        </ul>
+    </div>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, you learned what Java is, why it is widely used, and how to write and run your first Java program.
+        You also explored its key features, execution process, Java components, and the basic structure of a Java application.
+    </p>
+
+    <p>
+        In the next lecture, we will dive deeper into setting up the development environment,
+        installing the JDK correctly, and preparing your system for Java development.
+    </p>
+</div>
         <!-- ===================== LECTURE 2 ===================== -->
-        <div class="lecture" id="lec-1">
-            <div class="lecture-tag">Lecture 02 · Foundations</div>
-            <h1>Setting up the JDK</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~35 min</span>
-                <span class="meta-badge">Requires: Lecture 01</span>
-            </div>
+       <div class="lecture" id="lec-1">
+    <div class="lecture-tag">Lecture 02 · Foundations</div>
+    <h1>Setting up the JDK</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~35 min</span>
+        <span class="meta-badge">Requires: Lecture 01</span>
+    </div>
 
-            <h2>Download & Install</h2>
-            <p>Head to <a href="https://adoptium.net/" target="_blank" rel="noopener noreferrer">Eclipse Adoptium</a>
-                or <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank"
-                    rel="noopener noreferrer">Oracle JDK</a> and download the appropriate bundle for your OS.</p>
+    <h2>Introduction</h2>
+    <p>
+        Before writing larger Java applications, you need a proper Java development environment.
+        This includes installing the <strong>JDK (Java Development Kit)</strong>, configuring your system,
+        and choosing a suitable code editor or IDE.
+    </p>
 
-            <h3>Verify Installation</h3>
-            <pre><code>java -version
+    <p>
+        In this lecture, you will learn how to install Java correctly, verify the installation,
+        and prepare your machine for Java development.
+    </p>
+
+    <h2>What is the JDK?</h2>
+    <p>
+        The <strong>Java Development Kit (JDK)</strong> is the complete package required to create,
+        compile, and run Java applications.
+    </p>
+
+    <p>The JDK includes:</p>
+
+    <ul>
+        <li><strong>JVM (Java Virtual Machine)</strong> → Executes Java bytecode.</li>
+        <li><strong>JRE (Java Runtime Environment)</strong> → Provides libraries required to run programs.</li>
+        <li><strong>Java Compiler (<code>javac</code>)</strong> → Converts Java source code into bytecode.</li>
+        <li><strong>Development Tools</strong> → Debuggers, documentation generators, and more.</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">💡 Important</div>
+        If you only install the JRE, you can run Java applications but cannot compile your own Java programs.
+    </div>
+
+    <h2>Download & Install</h2>
+    <p>
+        Head to
+        <a href="https://adoptium.net/" target="_blank" rel="noopener noreferrer">Eclipse Adoptium</a>
+        or
+        <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank"
+            rel="noopener noreferrer">Oracle JDK</a>
+        and download the appropriate bundle for your operating system.
+    </p>
+
+    <p>
+        Choose the installer version that matches your system architecture:
+    </p>
+
+    <ul>
+        <li><strong>Windows:</strong> Usually <code>.msi</code> or <code>.exe</code></li>
+        <li><strong>macOS:</strong> Usually <code>.pkg</code></li>
+        <li><strong>Linux:</strong> Usually <code>.tar.gz</code> or package manager installation</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">✅ Recommendation</div>
+        Beginners usually prefer Eclipse Adoptium because it provides free OpenJDK builds that are simple to install.
+    </div>
+
+    <h2>Installing on Windows</h2>
+    <ol>
+        <li>Download the JDK installer.</li>
+        <li>Run the installer and follow the setup wizard.</li>
+        <li>Allow the installer to configure environment variables if prompted.</li>
+        <li>Finish installation and restart your terminal.</li>
+    </ol>
+
+    <h2>Installing on macOS</h2>
+    <ol>
+        <li>Download the macOS package.</li>
+        <li>Open the installer package.</li>
+        <li>Follow the installation instructions.</li>
+        <li>Open Terminal and verify the installation.</li>
+    </ol>
+
+    <h2>Installing on Linux</h2>
+    <p>
+        Many Linux distributions provide OpenJDK through package managers.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Ubuntu / Debian</span>
+        </div>
+        <pre>sudo apt update
+sudo apt install openjdk-21-jdk</pre>
+    </div>
+
+    <h2>Verify Installation</h2>
+    <p>
+        After installation, open your terminal or command prompt and run:
+    </p>
+
+    <pre><code>java -version
 javac -version</code></pre>
 
-            <div class="box info">
-                <div class="box-title">ℹ️ Expected output</div>
-                <p>Both commands should print the version number (e.g. <code>java 21.0.1</code>) and indicate that the
-                    JDK is correctly on your <code>PATH</code>.</p>
-            </div>
+    <div class="box info">
+        <div class="box-title">ℹ️ Expected output</div>
+        <p>
+            Both commands should print the version number
+            (e.g. <code>java 21.0.1</code>) and indicate that the
+            JDK is correctly configured on your <code>PATH</code>.
+        </p>
+    </div>
 
-            <h2>IDE Recommendation</h2>
-            <p>For a smoother learning experience pick an IDE:</p>
-            <ul>
-                <li><strong>IntelliJ IDEA Community</strong> – rich refactoring, debugger, and Maven/Gradle integration.
-                </li>
-                <li><strong>Eclipse</strong> – classic, plugin‑heavy.</li>
-                <li><strong>VS Code</strong> with the <code>Java Extension Pack</code>.</li>
-            </ul>
+    <h2>Understanding PATH Variables</h2>
+    <p>
+        The <code>PATH</code> environment variable allows your operating system to locate Java commands
+        such as <code>java</code> and <code>javac</code> from any terminal window.
+    </p>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 2.1</div>
-                <p>Install your favourite IDE, open a new project, create a <code>Main.java</code> file with a
-                    <code>main</code> method,
-                    and run the “Hello World” program inside the IDE.</p>
-            </div>
+    <p>
+        If the terminal says:
+    </p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
-            </div>
+    <pre><code>'java' is not recognized as an internal or external command</code></pre>
+
+    <p>
+        then Java may not be correctly added to your system PATH.
+    </p>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Common Beginner Problem</div>
+        Installing Java successfully does not always mean the PATH variable is configured correctly.
+        This is one of the most common setup mistakes beginners face.
+    </div>
+
+    <h2>IDE Recommendation</h2>
+    <p>For a smoother learning experience, choose a Java IDE or code editor:</p>
+
+    <ul>
+        <li>
+            <strong>IntelliJ IDEA Community</strong> –
+            Rich refactoring, smart code completion, debugging, and Maven/Gradle integration.
+        </li>
+
+        <li>
+            <strong>Eclipse</strong> –
+            A classic Java IDE with extensive plugin support.
+        </li>
+
+        <li>
+            <strong>VS Code</strong> –
+            Lightweight editor with the <code>Java Extension Pack</code>.
+        </li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 Beginner Suggestion</div>
+        IntelliJ IDEA Community Edition is often considered the easiest and most beginner-friendly Java IDE.
+    </div>
+
+    <h2>Creating Your First Java Project</h2>
+    <p>
+        Once your IDE is installed:
+    </p>
+
+    <ol>
+        <li>Create a new Java project.</li>
+        <li>Create a new Java class named <code>Main</code>.</li>
+        <li>Add a <code>main()</code> method.</li>
+        <li>Run the program using the IDE's Run button.</li>
+    </ol>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Main.java</span>
         </div>
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Main</span> {
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Java setup successful!"</span>);
+    }
+}</pre>
+    </div>
+
+    <h2>Command Line vs IDE</h2>
+    <p>
+        Beginners often wonder whether they should use the terminal or an IDE.
+        Both are useful and important.
+    </p>
+
+    <ul>
+        <li><strong>Command Line:</strong> Helps understand how Java compilation works internally.</li>
+        <li><strong>IDE:</strong> Speeds up development with autocomplete, debugging, and project tools.</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🧠 Best Practice</div>
+        Learn both approaches. Professional developers frequently use IDEs,
+        but understanding terminal commands builds stronger fundamentals.
+    </div>
+
+    <h2>Common Installation Problems</h2>
+    <ul>
+        <li>Installing only the JRE instead of the full JDK</li>
+        <li>Incorrect PATH configuration</li>
+        <li>Using an outdated Java version</li>
+        <li>Multiple Java versions conflicting on the same system</li>
+        <li>Restarting neither the terminal nor the computer after installation</li>
+    </ul>
+
+    <h2>Useful Java Commands</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Terminal Commands</span>
+        </div>
+        <pre>java -version     # Shows installed Java version
+javac -version    # Shows Java compiler version
+java Main         # Runs a compiled Java class
+javac Main.java   # Compiles Java source code</pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.1</div>
+        <p>
+            Install your favourite IDE, open a new project, create a
+            <code>Main.java</code> file with a <code>main</code> method,
+            and run the “Hello World” program inside the IDE.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.2</div>
+        <p>
+            Open your terminal and run:
+        </p>
+
+        <pre><code>java -version
+javac -version</code></pre>
+
+        <p>
+            Verify that both commands display version information correctly.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🚀 Challenge Exercise</div>
+        <p>
+            Create a Java program named <code>EnvironmentCheck.java</code>
+            that prints:
+        </p>
+
+        <ul>
+            <li>Your Java version</li>
+            <li>Your operating system</li>
+            <li>Your user name</li>
+        </ul>
+
+        <p>
+            Research how to access system properties using <code>System.getProperty()</code>.
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, you learned how to install the Java Development Kit,
+        verify your installation, configure the PATH variable,
+        and choose an IDE for Java development.
+    </p>
+
+    <p>
+        You also explored the differences between JDK, JRE, and JVM,
+        along with common installation mistakes beginners encounter.
+    </p>
+
+    <p>
+        In the next lecture, we will begin working with variables,
+        data types, and user input in Java.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 3 ===================== -->
-        <div class="lecture" id="lec-2">
-            <div class="lecture-tag">Lecture 03 · Foundations</div>
-            <h1>Variables &amp; Data Types</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 02</span>
-            </div>
+     <div class="lecture" id="lec-2">
+    <div class="lecture-tag">Lecture 03 · Foundations</div>
+    <h1>Variables &amp; Data Types</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 02</span>
+    </div>
 
-            <h2>Primitive Types</h2>
-            <p>Java has 8 primitive types:</p>
-            <table class="tbl-wrap">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Size</th>
-                        <th>Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>byte</code></td>
-                        <td>8 bit</td>
-                        <td><code>byte b = 100;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>short</code></td>
-                        <td>16 bit</td>
-                        <td><code>short s = 20000;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>int</code></td>
-                        <td>32 bit</td>
-                        <td><code>int i = 123456;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>long</code></td>
-                        <td>64 bit</td>
-                        <td><code>long l = 123456789L;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>float</code></td>
-                        <td>32 bit</td>
-                        <td><code>float f = 3.14f;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>double</code></td>
-                        <td>64 bit</td>
-                        <td><code>double d = 3.14159;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>char</code></td>
-                        <td>16 bit (Unicode)</td>
-                        <td><code>char c = 'A';</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>boolean</code></td>
-                        <td>1 bit (logical)</td>
-                        <td><code>boolean ok = true;</code></td>
-                    </tr>
-                </tbody>
-            </table>
+    <h2>Introduction</h2>
+    <p>
+        Variables are one of the most fundamental concepts in programming.
+        A variable is simply a named storage location used to hold data in memory.
+    </p>
 
-            <h2>Reference Types</h2>
-            <p>Anything that isn’t a primitive is a *reference* type: <code>String</code>, arrays, objects, etc.</p>
+    <p>
+        In Java, every variable must have a specific data type. The data type determines:
+    </p>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">VariablesDemo.java</span>
-                </div>
-                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">VariablesDemo</span> {
+    <ul>
+        <li>What kind of data can be stored</li>
+        <li>How much memory is allocated</li>
+        <li>What operations can be performed on the value</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">💡 Real-World Analogy</div>
+        Think of variables as labeled containers.
+        Different containers store different types of things —
+        numbers, text, or true/false values.
+    </div>
+
+    <h2>Declaring Variables</h2>
+    <p>
+        In Java, variables are declared using the following syntax:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Syntax.java</span>
+        </div>
+        <pre><span class="kw">dataType</span> variableName = value;</pre>
+    </div>
+
+    <p>Example:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Example.java</span>
+        </div>
+        <pre><span class="kw">int</span> age = <span class="nm">25</span>;
+<span class="kw">double</span> price = <span class="nm">99.99</span>;
+<span class="kw">String</span> name = <span class="val">"Alice"</span>;</pre>
+    </div>
+
+    <h2>Primitive Types</h2>
+    <p>
+        Java has 8 primitive data types.
+        Primitive types store simple values directly in memory.
+    </p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>byte</code></td>
+                <td>8 bit</td>
+                <td><code>byte b = 100;</code></td>
+            </tr>
+            <tr>
+                <td><code>short</code></td>
+                <td>16 bit</td>
+                <td><code>short s = 20000;</code></td>
+            </tr>
+            <tr>
+                <td><code>int</code></td>
+                <td>32 bit</td>
+                <td><code>int i = 123456;</code></td>
+            </tr>
+            <tr>
+                <td><code>long</code></td>
+                <td>64 bit</td>
+                <td><code>long l = 123456789L;</code></td>
+            </tr>
+            <tr>
+                <td><code>float</code></td>
+                <td>32 bit</td>
+                <td><code>float f = 3.14f;</code></td>
+            </tr>
+            <tr>
+                <td><code>double</code></td>
+                <td>64 bit</td>
+                <td><code>double d = 3.14159;</code></td>
+            </tr>
+            <tr>
+                <td><code>char</code></td>
+                <td>16 bit (Unicode)</td>
+                <td><code>char c = 'A';</code></td>
+            </tr>
+            <tr>
+                <td><code>boolean</code></td>
+                <td>1 bit (logical)</td>
+                <td><code>boolean ok = true;</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Integer Types</h2>
+    <p>
+        Integer types are used to store whole numbers without decimal points.
+    </p>
+
+    <ul>
+        <li><code>byte</code> → Small memory usage</li>
+        <li><code>short</code> → Slightly larger integers</li>
+        <li><code>int</code> → Most commonly used integer type</li>
+        <li><code>long</code> → Very large integer values</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">✅ Best Practice</div>
+        Most Java programs use <code>int</code> for integers unless very large numbers are required.
+    </div>
+
+    <h2>Floating-Point Types</h2>
+    <p>
+        Floating-point types are used to store decimal numbers.
+    </p>
+
+    <ul>
+        <li><code>float</code> → Less precision, uses less memory</li>
+        <li><code>double</code> → Higher precision, more commonly used</li>
+    </ul>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Important</div>
+        Decimal numbers are treated as <code>double</code> by default.
+        Add <code>f</code> at the end when using a <code>float</code>.
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">FloatExample.java</span>
+        </div>
+        <pre><span class="kw">float</span> value = <span class="nm">3.14f</span>;
+<span class="kw">double</span> pi = <span class="nm">3.1415926535</span>;</pre>
+    </div>
+
+    <h2>Character Type</h2>
+    <p>
+        The <code>char</code> type stores a single Unicode character.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">CharExample.java</span>
+        </div>
+        <pre><span class="kw">char</span> grade = <span class="val">'A'</span>;
+<span class="kw">char</span> symbol = <span class="val">'#'</span>;</pre>
+    </div>
+
+    <h2>Boolean Type</h2>
+    <p>
+        The <code>boolean</code> type stores only two values:
+        <code>true</code> or <code>false</code>.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">BooleanExample.java</span>
+        </div>
+        <pre><span class="kw">boolean</span> isLoggedIn = <span class="kw">true</span>;
+<span class="kw">boolean</span> hasPermission = <span class="kw">false</span>;</pre>
+    </div>
+
+    <h2>Reference Types</h2>
+    <p>
+        Anything that is not a primitive type is called a <strong>reference type</strong>.
+    </p>
+
+    <p>
+        Reference types store memory addresses that point to objects.
+    </p>
+
+    <p>Examples include:</p>
+
+    <ul>
+        <li><code>String</code></li>
+        <li>Arrays</li>
+        <li>Classes and objects</li>
+        <li>Collections</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🧠 Important Concept</div>
+        Primitive variables store actual values directly,
+        while reference variables store references to objects in memory.
+    </div>
+
+    <h2>Strings in Java</h2>
+    <p>
+        Strings are used to store text.
+        In Java, strings are objects of the <code>String</code> class.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">StringExample.java</span>
+        </div>
+        <pre><span class="kw">String</span> city = <span class="val">"London"</span>;
+<span class="kw">String</span> message = <span class="val">"Welcome to Java"</span>;</pre>
+    </div>
+
+    <h2>VariablesDemo.java</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">VariablesDemo.java</span>
+        </div>
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">VariablesDemo</span> {
     <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
         <span class="kw">int</span> age = <span class="nm">30</span>;
         <span class="kw">double</span> price = <span class="nm">19.99</span>;
@@ -548,146 +939,763 @@ javac -version</code></pre>
         <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(name + <span class="val">", age "</span> + age);
     }
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 3.1</div>
-                <p>Create a program that declares one variable of each primitive type, prints them, then swaps two
-                    integer values without using a third temporary variable.</p>
-            </div>
+    <h2>Type Conversion</h2>
+    <p>
+        Sometimes values must be converted from one data type to another.
+    </p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
-            </div>
+    <h3>Implicit Conversion</h3>
+    <p>
+        Java automatically converts smaller types into larger compatible types.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">ImplicitConversion.java</span>
         </div>
+        <pre><span class="kw">int</span> num = <span class="nm">100</span>;
+<span class="kw">double</span> result = num;</pre>
+    </div>
+
+    <h3>Explicit Conversion (Casting)</h3>
+    <p>
+        Larger types can be manually converted into smaller types using casting.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">CastingExample.java</span>
+        </div>
+        <pre><span class="kw">double</span> value = <span class="nm">9.78</span>;
+<span class="kw">int</span> result = (<span class="kw">int</span>) value;</pre>
+    </div>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Warning</div>
+        Explicit casting may cause data loss.
+        For example, converting <code>9.78</code> to <code>int</code> removes the decimal part.
+    </div>
+
+    <h2>Variable Naming Rules</h2>
+    <ul>
+        <li>Variable names are case-sensitive.</li>
+        <li>Names cannot start with numbers.</li>
+        <li>Spaces are not allowed.</li>
+        <li>Use meaningful names for readability.</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">GoodNaming.java</span>
+        </div>
+        <pre><span class="kw">int</span> studentAge = <span class="nm">20</span>;
+<span class="kw">double</span> accountBalance = <span class="nm">1500.75</span>;</pre>
+    </div>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Using variables before initialization</li>
+        <li>Assigning incorrect data types</li>
+        <li>Forgetting quotes around strings</li>
+        <li>Using single quotes for strings instead of double quotes</li>
+        <li>Confusing <code>=</code> with <code>==</code></li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.1</div>
+        <p>
+            Create a program that declares one variable of each primitive type,
+            prints them, then swaps two integer values without using a third temporary variable.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.2</div>
+        <p>
+            Create variables for:
+        </p>
+
+        <ul>
+            <li>Your name</li>
+            <li>Your age</li>
+            <li>Your height</li>
+            <li>Whether you are a student</li>
+        </ul>
+
+        <p>
+            Print all values using <code>System.out.println()</code>.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🚀 Challenge Exercise</div>
+        <p>
+            Create a simple billing program that stores:
+        </p>
+
+        <ul>
+            <li>Product name</li>
+            <li>Price</li>
+            <li>Quantity</li>
+        </ul>
+
+        <p>
+            Then calculate and print the total bill amount.
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, you learned about variables, primitive data types,
+        reference types, type conversion, and variable naming rules.
+    </p>
+
+    <p>
+        Understanding data types is essential because every Java program
+        relies heavily on storing and manipulating data correctly.
+    </p>
+
+    <p>
+        In the next lecture, we will explore operators and expressions in Java.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 4 ===================== -->
-        <div class="lecture" id="lec-3">
-            <div class="lecture-tag">Lecture 04 · Foundations</div>
-            <h1>Control Flow</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 03</span>
-            </div>
+ <div class="lecture" id="lec-3">
+    <div class="lecture-tag">Lecture 04 · Foundations</div>
+    <h1>Control Flow</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 03</span>
+    </div>
 
-            <h2>If / else</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">IfDemo.java</span>
-                </div>
-                <pre><span class="kw">int</span> score = <span class="nm">85</span>;
+    <h2>Introduction</h2>
+    <p>
+        Control flow determines how a program makes decisions and repeats tasks.
+        Without control flow, Java programs would execute statements one after another
+        without any logic or flexibility.
+    </p>
+
+    <p>
+        Using conditions and loops, programs can:
+    </p>
+
+    <ul>
+        <li>Make decisions</li>
+        <li>Repeat actions</li>
+        <li>Handle different situations dynamically</li>
+        <li>Process large amounts of data efficiently</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">💡 Real-World Analogy</div>
+        Traffic lights are an example of control flow:
+        if the light is green → move,
+        else if yellow → slow down,
+        else → stop.
+    </div>
+
+    <h2>Conditional Statements</h2>
+    <p>
+        Conditional statements allow programs to execute code only when certain conditions are true.
+    </p>
+
+    <h2>If / else</h2>
+    <p>
+        The <code>if</code> statement checks a condition.
+        If the condition evaluates to <code>true</code>, the code block executes.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">IfDemo.java</span>
+        </div>
+        <pre><span class="kw">int</span> score = <span class="nm">85</span>;
+
 <span class="kw">if</span> (score &gt;= <span class="nm">90</span>) {
     <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Grade A"</span>);
-} <span class="kw">else</span> <span class="kw">if</span> (score &gt;= <span class="nm">80</span>) {
+} <span class="kw">else if</span> (score &gt;= <span class="nm">80</span>) {
     <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Grade B"</span>);
 } <span class="kw">else</span> {
     <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Needs improvement"</span>);
 }</pre>
-            </div>
+    </div>
 
-            <h2>Switch (Java 17+ enhanced switch)</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">SwitchDemo.java</span>
-                </div>
-                <pre><span class="kw">String</span> day = <span class="val">"MONDAY"</span>;
+    <h2>Understanding the Logic</h2>
+    <ul>
+        <li><code>if</code> → Executes when the first condition is true</li>
+        <li><code>else if</code> → Checks additional conditions</li>
+        <li><code>else</code> → Executes if none of the conditions are true</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">✅ Best Practice</div>
+        Use indentation and braces properly to make conditions easier to read and debug.
+    </div>
+
+    <h2>Nested If Statements</h2>
+    <p>
+        An <code>if</code> statement can exist inside another <code>if</code> statement.
+        This is called nesting.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">NestedIf.java</span>
+        </div>
+        <pre><span class="kw">int</span> age = <span class="nm">20</span>;
+<span class="kw">boolean</span> hasTicket = <span class="kw">true</span>;
+
+<span class="kw">if</span> (age &gt;= <span class="nm">18</span>) {
+    <span class="kw">if</span> (hasTicket) {
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Entry allowed"</span>);
+    }
+}</pre>
+    </div>
+
+    <h2>Comparison Operators</h2>
+    <p>
+        Conditions usually rely on comparison operators.
+    </p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Operator</th>
+                <th>Meaning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>==</code></td>
+                <td>Equal to</td>
+            </tr>
+            <tr>
+                <td><code>!=</code></td>
+                <td>Not equal to</td>
+            </tr>
+            <tr>
+                <td><code>&gt;</code></td>
+                <td>Greater than</td>
+            </tr>
+            <tr>
+                <td><code>&lt;</code></td>
+                <td>Less than</td>
+            </tr>
+            <tr>
+                <td><code>&gt;=</code></td>
+                <td>Greater than or equal to</td>
+            </tr>
+            <tr>
+                <td><code>&lt;=</code></td>
+                <td>Less than or equal to</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Logical Operators</h2>
+    <p>
+        Logical operators combine multiple conditions.
+    </p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Operator</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>&&</code></td>
+                <td>Logical AND</td>
+            </tr>
+            <tr>
+                <td><code>||</code></td>
+                <td>Logical OR</td>
+            </tr>
+            <tr>
+                <td><code>!</code></td>
+                <td>Logical NOT</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">LogicalDemo.java</span>
+        </div>
+        <pre><span class="kw">int</span> age = <span class="nm">22</span>;
+<span class="kw">boolean</span> isStudent = <span class="kw">true</span>;
+
+<span class="kw">if</span> (age &gt;= <span class="nm">18</span> &amp;&amp; isStudent) {
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Eligible for student discount"</span>);
+}</pre>
+    </div>
+
+    <h2>Switch Statement</h2>
+    <p>
+        The <code>switch</code> statement is useful when comparing one value against multiple possible cases.
+    </p>
+
+    <h2>Switch (Java 17+ enhanced switch)</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">SwitchDemo.java</span>
+        </div>
+        <pre><span class="kw">String</span> day = <span class="val">"MONDAY"</span>;
 
 <span class="kw">String</span> result = <span class="kw">switch</span> (day) {
-    <span class="kw">case</span> <span class="val">"MONDAY"</span>, <span class="val">"TUESDAY"</span>, <span class="val">"WEDNESDAY"</span> -> <span class="val">"Mid‑week"</span>;
+    <span class="kw">case</span> <span class="val">"MONDAY"</span>, <span class="val">"TUESDAY"</span>, <span class="val">"WEDNESDAY"</span> -> <span class="val">"Mid-week"</span>;
     <span class="kw">case</span> <span class="val">"THURSDAY"</span>, <span class="val">"FRIDAY"</span> -> <span class="val">"Almost weekend"</span>;
     <span class="kw">case</span> <span class="val">"SATURDAY"</span>, <span class="val">"SUNDAY"</span> -> <span class="val">"Weekend"</span>;
     <span class="kw">default</span> -> <span class="val">"Invalid day"</span>;
 };
 
 <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(result);</pre>
-            </div>
+    </div>
 
-            <h2>Loops</h2>
-            <ul>
-                <li><strong>for (int i=0; i&lt;n; i++)</strong> – classic counting loop.</li>
-                <li><strong>enhanced for</strong> – iterate over arrays/collections
-                    (<code>for (String s : list)</code>).</li>
-                <li><strong>while / do‑while</strong> – condition‑driven loops.</li>
-            </ul>
+    <div class="box info">
+        <div class="box-title">🧠 Modern Java</div>
+        Java 17 introduced enhanced switch expressions that are cleaner and safer than older switch syntax.
+    </div>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">LoopDemo.java</span>
-                </div>
-                <pre><span class="kw">int</span>[] numbers = { <span class="nm">2</span>, <span class="nm">4</span>, <span class="nm">6</span>, <span class="nm">8</span> };
+    <h2>Loops</h2>
+    <p>
+        Loops allow code to repeat automatically until a condition becomes false.
+    </p>
+
+    <ul>
+        <li><strong>for loop</strong> → Best for counting and fixed repetitions</li>
+        <li><strong>enhanced for loop</strong> → Best for arrays and collections</li>
+        <li><strong>while loop</strong> → Repeats while a condition is true</li>
+        <li><strong>do-while loop</strong> → Executes at least once before checking the condition</li>
+    </ul>
+
+    <h2>For Loop</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">ForLoop.java</span>
+        </div>
+        <pre><span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">1</span>; i &lt;= <span class="nm">5</span>; i++) {
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(i);
+}</pre>
+    </div>
+
+    <h2>Enhanced For Loop</h2>
+    <p>
+        Enhanced for loops simplify iteration through arrays and collections.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">LoopDemo.java</span>
+        </div>
+        <pre><span class="kw">int</span>[] numbers = { <span class="nm">2</span>, <span class="nm">4</span>, <span class="nm">6</span>, <span class="nm">8</span> };
 <span class="kw">int</span> sum = <span class="nm">0</span>;
 
 <span class="kw">for</span> (<span class="kw">int</span> n : numbers) {
     sum += n;
 }
+
 <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Sum = "</span> + sum);</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 4.1</div>
-                <p>Write a program that prints the first 20 Fibonacci numbers using a <code>while</code> loop.</p>
-            </div>
+    <h2>While Loop</h2>
+    <p>
+        A <code>while</code> loop executes as long as its condition remains true.
+    </p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
-            </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">WhileDemo.java</span>
         </div>
+        <pre><span class="kw">int</span> count = <span class="nm">1</span>;
+
+<span class="kw">while</span> (count &lt;= <span class="nm">5</span>) {
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(count);
+    count++;
+}</pre>
+    </div>
+
+    <h2>Do-While Loop</h2>
+    <p>
+        A <code>do-while</code> loop executes the block first,
+        then checks the condition.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">DoWhileDemo.java</span>
+        </div>
+        <pre><span class="kw">int</span> number = <span class="nm">1</span>;
+
+<span class="kw">do</span> {
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(number);
+    number++;
+} <span class="kw">while</span> (number &lt;= <span class="nm">3</span>);</pre>
+    </div>
+
+    <h2>Break and Continue</h2>
+    <p>
+        Java provides special statements to control loop execution.
+    </p>
+
+    <ul>
+        <li><code>break</code> → Exits the loop immediately</li>
+        <li><code>continue</code> → Skips the current iteration</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">BreakContinue.java</span>
+        </div>
+        <pre><span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">1</span>; i &lt;= <span class="nm">10</span>; i++) {
+
+    <span class="kw">if</span> (i == <span class="nm">5</span>) {
+        <span class="kw">continue</span>;
+    }
+
+    <span class="kw">if</span> (i == <span class="nm">8</span>) {
+        <span class="kw">break</span>;
+    }
+
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(i);
+}</pre>
+    </div>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Using <code>=</code> instead of <code>==</code> in conditions</li>
+        <li>Creating infinite loops accidentally</li>
+        <li>Forgetting curly braces in nested conditions</li>
+        <li>Using incorrect loop conditions</li>
+        <li>Confusing <code>break</code> and <code>continue</code></li>
+    </ul>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Infinite Loop Warning</div>
+        Always ensure loop conditions eventually become false,
+        otherwise the program may run forever.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.1</div>
+        <p>
+            Write a program that prints the first 20 Fibonacci numbers using a
+            <code>while</code> loop.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.2</div>
+        <p>
+            Write a program that checks whether a number is even or odd using
+            an <code>if-else</code> statement.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.3</div>
+        <p>
+            Create a multiplication table generator using a <code>for</code> loop.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🚀 Challenge Exercise</div>
+        <p>
+            Create a number guessing game where:
+        </p>
+
+        <ul>
+            <li>The program stores a secret number</li>
+            <li>The user repeatedly guesses the number</li>
+            <li>The program prints whether the guess is too high or too low</li>
+            <li>The loop ends when the correct number is guessed</li>
+        </ul>
+    </div>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, you learned how Java programs make decisions and repeat tasks
+        using conditions and loops.
+    </p>
+
+    <p>
+        You explored:
+    </p>
+
+    <ul>
+        <li><code>if-else</code> statements</li>
+        <li><code>switch</code> expressions</li>
+        <li><code>for</code>, <code>while</code>, and <code>do-while</code> loops</li>
+        <li><code>break</code> and <code>continue</code> statements</li>
+    </ul>
+
+    <p>
+        In the next lecture, we will begin working with methods and modular programming in Java.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 5 ===================== -->
-        <div class="lecture" id="lec-4">
-            <div class="lecture-tag">Lecture 05 · Foundations</div>
-            <h1>Methods</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~40 min</span>
-                <span class="meta-badge">Requires: Lecture 04</span>
-            </div>
+     <div class="lecture" id="lec-4">
+    <div class="lecture-tag">Lecture 05 · Foundations</div>
+    <h1>Methods</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~40 min</span>
+        <span class="meta-badge">Requires: Lecture 04</span>
+    </div>
 
-            <h2>Method Syntax</h2>
-            <p>A method in Java consists of: <code>modifiers returnType name(parameters) { body }</code></p>
+    <h2>Introduction</h2>
+    <p>
+        Methods are reusable blocks of code that perform specific tasks.
+        They help organize programs into smaller, manageable pieces.
+    </p>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">MathUtils.java</span>
-                </div>
-                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">MathUtils</span> {
+    <p>
+        Instead of writing the same code repeatedly,
+        developers create methods and call them whenever needed.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">💡 Real-World Analogy</div>
+        Think of a method like a coffee machine button.
+        Pressing the button performs a predefined task automatically.
+    </div>
+
+    <h2>Why Methods Matter</h2>
+    <ul>
+        <li>Reduce code duplication</li>
+        <li>Improve readability</li>
+        <li>Make debugging easier</li>
+        <li>Encourage modular programming</li>
+        <li>Allow code reuse across projects</li>
+    </ul>
+
+    <h2>Method Syntax</h2>
+    <p>
+        A method in Java consists of:
+        <code>modifiers returnType name(parameters) { body }</code>
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">MethodSyntax.java</span>
+        </div>
+        <pre><span class="kw">accessModifier</span> <span class="kw">returnType</span> <span class="fn">methodName</span>(parameters) {
+
+    <span class="com">// method body</span>
+
+}</pre>
+    </div>
+
+    <h2>Understanding Method Components</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>public</code></td>
+                <td>Access modifier</td>
+            </tr>
+            <tr>
+                <td><code>static</code></td>
+                <td>Belongs to the class instead of an object</td>
+            </tr>
+            <tr>
+                <td><code>int</code></td>
+                <td>Return type</td>
+            </tr>
+            <tr>
+                <td><code>add</code></td>
+                <td>Method name</td>
+            </tr>
+            <tr>
+                <td><code>(int a, int b)</code></td>
+                <td>Parameters</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Creating Methods</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">MathUtils.java</span>
+        </div>
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">MathUtils</span> {
 
     <span class="kw">public</span> <span class="kw">static</span> <span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
         <span class="kw">return</span> a + b;
     }
 
     <span class="kw">public</span> <span class="kw">static</span> <span class="kw">double</span> <span class="fn">average</span>(<span class="kw">int</span>[] values) {
+
         <span class="kw">int</span> sum = <span class="nm">0</span>;
+
         <span class="kw">for</span> (<span class="kw">int</span> v : values) {
             sum += v;
         }
-        <span class="kw">return</span> ( <span class="kw">double</span> ) sum / values.<span class="fn">length</span>;
+
+        <span class="kw">return</span> (<span class="kw">double</span>) sum / values.<span class="fn">length</span>;
     }
 }</pre>
-            </div>
+    </div>
 
-            <h2>Parameter Passing</h2>
-            <ul>
-                <li>Primitives are passed **by value** – the method receives a copy.</li>
-                <li>Objects are passed **by reference value** – the method receives a copy of the reference, allowing it
-                    to mutate the object.</li>
-            </ul>
+    <h2>Calling Methods</h2>
+    <p>
+        Methods do nothing until they are called.
+    </p>
 
-            <h2>Method Overloading</h2>
-            <p>Same name, different parameter list.</p>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">OverloadDemo.java</span>
-                </div>
-                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">OverloadDemo</span> {
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">MethodCall.java</span>
+        </div>
+        <pre><span class="kw">int</span> result = MathUtils.<span class="fn">add</span>(<span class="nm">5</span>, <span class="nm">10</span>);
+
+<span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(result);</pre>
+    </div>
+
+    <h2>Return Values</h2>
+    <p>
+        Methods can return values back to the caller using the
+        <code>return</code> keyword.
+    </p>
+
+    <p>
+        The return type determines what type of value the method sends back.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Important</div>
+        If a method does not return anything,
+        use the <code>void</code> return type.
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">VoidMethod.java</span>
+        </div>
+        <pre><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">greet</span>() {
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Welcome!"</span>);
+}</pre>
+    </div>
+
+    <h2>Method Parameters</h2>
+    <p>
+        Parameters allow methods to receive input values.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">ParametersDemo.java</span>
+        </div>
+        <pre><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">displayName</span>(<span class="kw">String</span> name) {
+
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Hello "</span> + name);
+
+}</pre>
+    </div>
+
+    <h2>Method Arguments vs Parameters</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Term</th>
+                <th>Meaning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Parameter</td>
+                <td>Variable in the method definition</td>
+            </tr>
+            <tr>
+                <td>Argument</td>
+                <td>Actual value passed to the method</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Parameter Passing</h2>
+    <ul>
+        <li>
+            Primitives are passed <strong>by value</strong> —
+            the method receives a copy.
+        </li>
+
+        <li>
+            Objects are passed <strong>by reference value</strong> —
+            the method receives a copy of the reference,
+            allowing it to modify the object.
+        </li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🧠 Key Concept</div>
+        Changing a primitive inside a method does not affect the original variable outside the method.
+    </div>
+
+    <h2>Method Overloading</h2>
+    <p>
+        Method overloading allows multiple methods to share the same name
+        but use different parameter lists.
+    </p>
+
+    <p>
+        Java identifies overloaded methods based on:
+    </p>
+
+    <ul>
+        <li>Number of parameters</li>
+        <li>Parameter types</li>
+        <li>Order of parameters</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">OverloadDemo.java</span>
+        </div>
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">OverloadDemo</span> {
 
     <span class="kw">static</span> <span class="kw">int</span> <span class="fn">max</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
         <span class="kw">return</span> (a &gt; b) ? a : b;
@@ -697,92 +1705,677 @@ javac -version</code></pre>
         <span class="kw">return</span> (a &gt; b) ? a : b;
     }
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 5.1</div>
-                <p>Write a utility class that provides overloaded <code>factorial</code> methods for <code>int</code>
-                    and <code>long</code>. Add a simple <code>main</code> method that demonstrates both.</p>
-            </div>
+    <h2>Recursive Methods</h2>
+    <p>
+        A recursive method is a method that calls itself.
+    </p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
-            </div>
+    <p>
+        Recursion is commonly used for mathematical problems,
+        trees, and algorithms.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">RecursionDemo.java</span>
         </div>
+        <pre><span class="kw">public static</span> <span class="kw">int</span> <span class="fn">factorial</span>(<span class="kw">int</span> n) {
+
+    <span class="kw">if</span> (n == <span class="nm">1</span>) {
+        <span class="kw">return</span> <span class="nm">1</span>;
+    }
+
+    <span class="kw">return</span> n * <span class="fn">factorial</span>(n - <span class="nm">1</span>);
+}</pre>
+    </div>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ Warning</div>
+        Recursive methods must include a stopping condition,
+        otherwise they can cause infinite recursion and stack overflow errors.
+    </div>
+
+    <h2>Scope of Variables</h2>
+    <p>
+        Variables declared inside methods are called local variables.
+    </p>
+
+    <p>
+        They can only be accessed within that method.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">ScopeDemo.java</span>
+        </div>
+        <pre><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">test</span>() {
+
+    <span class="kw">int</span> number = <span class="nm">10</span>;
+
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(number);
+}</pre>
+    </div>
+
+    <h2>Main Method</h2>
+    <p>
+        Every Java application starts execution from the
+        <code>main()</code> method.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">MainMethod.java</span>
+        </div>
+        <pre><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] args) {
+
+    <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Program started"</span>);
+
+}</pre>
+    </div>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Forgetting the return statement</li>
+        <li>Using the wrong return type</li>
+        <li>Calling non-static methods incorrectly</li>
+        <li>Passing incorrect arguments</li>
+        <li>Creating recursive methods without a base case</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.1</div>
+        <p>
+            Write a utility class that provides overloaded
+            <code>factorial</code> methods for <code>int</code>
+            and <code>long</code>.
+            Add a simple <code>main</code> method that demonstrates both.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.2</div>
+        <p>
+            Create a method called <code>isEven()</code>
+            that returns <code>true</code> if a number is even,
+            otherwise returns <code>false</code>.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.3</div>
+        <p>
+            Write a calculator program that uses separate methods for:
+        </p>
+
+        <ul>
+            <li>Addition</li>
+            <li>Subtraction</li>
+            <li>Multiplication</li>
+            <li>Division</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🚀 Challenge Exercise</div>
+        <p>
+            Build a menu-driven banking simulation using methods.
+        </p>
+
+        <p>
+            Include methods for:
+        </p>
+
+        <ul>
+            <li>Deposit</li>
+            <li>Withdraw</li>
+            <li>Check balance</li>
+            <li>Exit program</li>
+        </ul>
+    </div>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, you learned how methods help organize and reuse code in Java.
+    </p>
+
+    <p>
+        You explored:
+    </p>
+
+    <ul>
+        <li>Method syntax</li>
+        <li>Parameters and return values</li>
+        <li>Method overloading</li>
+        <li>Recursion</li>
+        <li>Variable scope</li>
+    </ul>
+
+    <p>
+        Methods are one of the most important building blocks in Java programming.
+        They are heavily used in every real-world application.
+    </p>
+
+    <p>
+        In the next lecture, we will begin learning Object-Oriented Programming (OOP) concepts in Java.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 6 ===================== -->
-        <div class="lecture" id="lec-5">
-            <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-            <h1>Object‑Oriented Programming</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~60 min</span>
-                <span class="meta-badge">Requires: Lecture 05</span>
-            </div>
+     <div class="lecture" id="lec-5">
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+    <h1>Object-Oriented Programming</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~60 min</span>
+        <span class="meta-badge">Requires: Lecture 05</span>
+    </div>
 
-            <h2>Core Pillars</h2>
-            <ul>
-                <li><strong>Encapsulation</strong> – hide internal state behind private fields and expose behaviour via
-                    methods.</li>
-                <li><strong>Inheritance</strong> – reuse code with <code>extends</code>.</li>
-                <li><strong>Polymorphism</strong> – treat objects of different subclasses uniformly, often via
-                    interfaces.</li>
-                <li><strong>Abstraction</strong> – define contracts with abstract classes or interfaces.</li>
-            </ul>
+    <h2>Introduction</h2>
+    <p>
+        Object-Oriented Programming (OOP) is a programming paradigm based on the concept of
+        <strong>objects</strong>.
+    </p>
 
-            <h3>Class definition</h3>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">Person.java</span>
-                </div>
-                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Person</span> {
+    <p>
+        Objects combine both:
+    </p>
+
+    <ul>
+        <li><strong>Data</strong> → variables and fields</li>
+        <li><strong>Behavior</strong> → methods and actions</li>
+    </ul>
+
+    <p>
+        Java is primarily an object-oriented programming language,
+        and most real-world Java applications are built using OOP principles.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">💡 Real-World Analogy</div>
+        A car is an object.
+        It has properties like color and speed,
+        and behaviors like start(), brake(), and accelerate().
+    </div>
+
+    <h2>Why OOP Matters</h2>
+    <ul>
+        <li>Improves code organization</li>
+        <li>Encourages code reuse</li>
+        <li>Makes applications easier to maintain</li>
+        <li>Supports scalable software development</li>
+        <li>Helps teams collaborate efficiently</li>
+    </ul>
+
+    <h2>Core Pillars</h2>
+    <ul>
+        <li>
+            <strong>Encapsulation</strong> –
+            hide internal state behind private fields and expose behaviour via methods.
+        </li>
+
+        <li>
+            <strong>Inheritance</strong> –
+            reuse code with <code>extends</code>.
+        </li>
+
+        <li>
+            <strong>Polymorphism</strong> –
+            treat objects of different subclasses uniformly,
+            often via interfaces.
+        </li>
+
+        <li>
+            <strong>Abstraction</strong> –
+            define contracts with abstract classes or interfaces.
+        </li>
+    </ul>
+
+    <h2>Classes and Objects</h2>
+    <p>
+        A <strong>class</strong> is a blueprint used to create objects.
+    </p>
+
+    <p>
+        An <strong>object</strong> is an instance of a class.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Important</div>
+        Classes define structure and behavior,
+        while objects represent actual data in memory.
+    </div>
+
+    <h3>Class definition</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Person.java</span>
+        </div>
+
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Person</span> {
+
     <span class="kw">private</span> <span class="kw">String</span> <span class="nm">name</span>;
     <span class="kw">private</span> <span class="kw">int</span> <span class="nm">age</span>;
 
     <span class="kw">public</span> <span class="tag">Person</span>(<span class="kw">String</span> name, <span class="kw">int</span> age) {
+
         <span class="kw">this</span>.<span class="nm">name</span> = name;
         <span class="kw">this</span>.<span class="nm">age</span> = age;
+
     }
 
-    <span class="kw">public</span> <span class="kw">String</span> <span class="fn">getName</span>() { <span class="kw">return</span> name; }
-    <span class="kw">public</span> <span class="kw">int</span> <span class="fn">getAge</span>() { <span class="kw">return</span> age; }
+    <span class="kw">public</span> <span class="kw">String</span> <span class="fn">getName</span>() {
+        <span class="kw">return</span> name;
+    }
 
-    <span class="kw">public</span> <span class="kw">void</span> <span class="fn">birthday</span>() { <span class="nm">age</span>++; }
+    <span class="kw">public</span> <span class="kw">int</span> <span class="fn">getAge</span>() {
+        <span class="kw">return</span> age;
+    }
+
+    <span class="kw">public</span> <span class="kw">void</span> <span class="fn">birthday</span>() {
+        <span class="nm">age</span>++;
+    }
 }</pre>
-            </div>
+    </div>
 
-            <h3>Inheritance example</h3>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">Employee.java</span>
-                </div>
-                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Employee</span> <span class="kw">extends</span> <span class="tag">Person</span> {
+    <h2>Creating Objects</h2>
+    <p>
+        Objects are created using the <code>new</code> keyword.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">ObjectDemo.java</span>
+        </div>
+
+        <pre><span class="tag">Person</span> person = <span class="kw">new</span> <span class="tag">Person</span>(<span class="val">"Alice"</span>, <span class="nm">25</span>);
+
+<span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(person.<span class="fn">getName</span>());</pre>
+    </div>
+
+    <h2>Encapsulation</h2>
+    <p>
+        Encapsulation means hiding internal data and controlling access through methods.
+    </p>
+
+    <p>
+        In Java, this is commonly done using:
+    </p>
+
+    <ul>
+        <li><code>private</code> fields</li>
+        <li>Getter methods</li>
+        <li>Setter methods</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🧠 Why Encapsulation?</div>
+        Encapsulation protects objects from invalid or unsafe modifications.
+    </div>
+
+    <h2>Getter and Setter Methods</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">GettersSetters.java</span>
+        </div>
+
+        <pre><span class="kw">private</span> <span class="kw">double</span> <span class="nm">balance</span>;
+
+<span class="kw">public</span> <span class="kw">double</span> <span class="fn">getBalance</span>() {
+    <span class="kw">return</span> balance;
+}
+
+<span class="kw">public</span> <span class="kw">void</span> <span class="fn">setBalance</span>(<span class="kw">double</span> value) {
+
+    <span class="kw">if</span> (value &gt;= <span class="nm">0</span>) {
+        balance = value;
+    }
+}</pre>
+    </div>
+
+    <h2>Constructors</h2>
+    <p>
+        Constructors are special methods used to initialize objects.
+    </p>
+
+    <p>
+        A constructor:
+    </p>
+
+    <ul>
+        <li>Has the same name as the class</li>
+        <li>Does not have a return type</li>
+        <li>Runs automatically when an object is created</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">✅ Constructor Tip</div>
+        Constructors help ensure objects start in a valid state.
+    </div>
+
+    <h2>Inheritance</h2>
+    <p>
+        Inheritance allows one class to inherit properties and methods from another class.
+    </p>
+
+    <p>
+        The child class uses the <code>extends</code> keyword.
+    </p>
+
+    <h3>Inheritance example</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Employee.java</span>
+        </div>
+
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Employee</span> <span class="kw">extends</span> <span class="tag">Person</span> {
+
     <span class="kw">private</span> <span class="kw">String</span> <span class="nm">department</span>;
 
-    <span class="kw">public</span> <span class="tag">Employee</span>(<span class="kw">String</span> name, <span class="kw">int</span> age, <span class="kw">String</span> dept) {
+    <span class="kw">public</span> <span class="tag">Employee</span>(<span class="kw">String</span> name,
+                    <span class="kw">int</span> age,
+                    <span class="kw">String</span> dept) {
+
         <span class="kw">super</span>(name, age);
+
         <span class="nm">department</span> = dept;
     }
 
-    <span class="kw">public</span> <span class="kw">String</span> <span class="fn">getDepartment</span>() { <span class="kw">return</span> department; }
+    <span class="kw">public</span> <span class="kw">String</span> <span class="fn">getDepartment</span>() {
+        <span class="kw">return</span> department;
+    }
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 6.1</div>
-                <p>Model a simple library system: create a base class <code>Item</code> (with id, title) and subclasses
-                    <code>Book</code> and <code>Magazine</code>. Add a method <code>printInfo()</code> that is
-                    overridden in each subclass.</p>
-            </div>
+    <h2>The super Keyword</h2>
+    <p>
+        The <code>super</code> keyword refers to the parent class.
+    </p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-            </div>
+    <p>
+        It is commonly used to:
+    </p>
+
+    <ul>
+        <li>Call parent constructors</li>
+        <li>Access parent methods</li>
+        <li>Reuse inherited functionality</li>
+    </ul>
+
+    <h2>Method Overriding</h2>
+    <p>
+        Method overriding allows subclasses to provide their own implementation
+        of inherited methods.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">OverrideDemo.java</span>
         </div>
+
+        <pre><span class="kw">class</span> <span class="tag">Animal</span> {
+
+    <span class="kw">void</span> <span class="fn">sound</span>() {
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Animal sound"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="tag">Dog</span> <span class="kw">extends</span> <span class="tag">Animal</span> {
+
+    <span class="kw">@Override</span>
+    <span class="kw">void</span> <span class="fn">sound</span>() {
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Bark"</span>);
+    }
+}</pre>
+    </div>
+
+    <h2>Polymorphism</h2>
+    <p>
+        Polymorphism allows one interface or parent class reference
+        to represent many different object types.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">PolymorphismDemo.java</span>
+        </div>
+
+        <pre><span class="tag">Animal</span> pet = <span class="kw">new</span> <span class="tag">Dog</span>();
+
+pet.<span class="fn">sound</span>();</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">🧠 Dynamic Method Dispatch</div>
+        Java decides which overridden method to execute at runtime,
+        not compile time.
+    </div>
+
+    <h2>Abstraction</h2>
+    <p>
+        Abstraction focuses on hiding implementation details
+        and showing only essential behavior.
+    </p>
+
+    <p>
+        Java supports abstraction using:
+    </p>
+
+    <ul>
+        <li>Abstract classes</li>
+        <li>Interfaces</li>
+    </ul>
+
+    <h2>Abstract Class Example</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Shape.java</span>
+        </div>
+
+        <pre><span class="kw">abstract class</span> <span class="tag">Shape</span> {
+
+    <span class="kw">abstract</span> <span class="kw">double</span> <span class="fn">area</span>();
+
+}</pre>
+    </div>
+
+    <h2>Interface Example</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Vehicle.java</span>
+        </div>
+
+        <pre><span class="kw">interface</span> <span class="tag">Vehicle</span> {
+
+    <span class="kw">void</span> <span class="fn">start</span>();
+
+}</pre>
+    </div>
+
+    <h2>Access Modifiers</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Modifier</th>
+                <th>Accessibility</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>public</code></td>
+                <td>Accessible everywhere</td>
+            </tr>
+
+            <tr>
+                <td><code>private</code></td>
+                <td>Accessible only within the same class</td>
+            </tr>
+
+            <tr>
+                <td><code>protected</code></td>
+                <td>Accessible in subclasses and same package</td>
+            </tr>
+
+            <tr>
+                <td>default</td>
+                <td>Accessible only within the same package</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Composition vs Inheritance</h2>
+    <p>
+        Inheritance represents an "is-a" relationship,
+        while composition represents a "has-a" relationship.
+    </p>
+
+    <p>
+        Example:
+    </p>
+
+    <ul>
+        <li>A Dog <strong>is an</strong> Animal → inheritance</li>
+        <li>A Car <strong>has an</strong> Engine → composition</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Making everything public</li>
+        <li>Confusing classes and objects</li>
+        <li>Forgetting constructors</li>
+        <li>Using inheritance unnecessarily</li>
+        <li>Ignoring encapsulation principles</li>
+    </ul>
+
+    <div class="box warning">
+        <div class="box-title">⚠️ OOP Advice</div>
+        Good object-oriented design focuses on simplicity,
+        readability, and maintainability.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.1</div>
+        <p>
+            Model a simple library system:
+            create a base class <code>Item</code>
+            (with id, title) and subclasses
+            <code>Book</code> and <code>Magazine</code>.
+        </p>
+
+        <p>
+            Add a method <code>printInfo()</code>
+            that is overridden in each subclass.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.2</div>
+        <p>
+            Create a class called <code>BankAccount</code>
+            with:
+        </p>
+
+        <ul>
+            <li>Private balance field</li>
+            <li>Deposit method</li>
+            <li>Withdraw method</li>
+            <li>Getter method for balance</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.3</div>
+        <p>
+            Create an abstract class called <code>Employee</code>
+            and subclasses:
+        </p>
+
+        <ul>
+            <li><code>Developer</code></li>
+            <li><code>Manager</code></li>
+        </ul>
+
+        <p>
+            Override a method called <code>work()</code>.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🚀 Challenge Exercise</div>
+        <p>
+            Build a mini school management system using OOP concepts.
+        </p>
+
+        <p>
+            Include:
+        </p>
+
+        <ul>
+            <li>Student class</li>
+            <li>Teacher class</li>
+            <li>Course class</li>
+            <li>Inheritance and polymorphism</li>
+            <li>Encapsulation using private fields</li>
+        </ul>
+    </div>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, you explored the foundations of Object-Oriented Programming in Java.
+    </p>
+
+    <p>
+        You learned about:
+    </p>
+
+    <ul>
+        <li>Classes and objects</li>
+        <li>Encapsulation</li>
+        <li>Inheritance</li>
+        <li>Polymorphism</li>
+        <li>Abstraction</li>
+        <li>Constructors and access modifiers</li>
+    </ul>
+
+    <p>
+        OOP is one of the most important concepts in modern software development
+        and is heavily used in enterprise Java applications,
+        Android development, and backend systems.
+    </p>
+
+    <p>
+        In the next lecture, we will begin working with collections and advanced data handling in Java.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 7 ===================== -->
         <div class="lecture" id="lec-6">
@@ -1295,10 +2888,6 @@ javac -version</code></pre>
             </div>
         </div>
 
-    </div><!-- /content-column -->
-
-    <!-- RIGHT AD COLUMN -->
-    
 
 </div><!-- /content-wrapper -->
 
@@ -1379,27 +2968,5 @@ javac -version</code></pre>
   </footer></body>
 </html>
 
-<!-- Search Modal -->
-<div id="search-overlay" class="search-overlay"></div>
-<div id="search-box" class="search-box">
-    <div class="search-header">
-        <div class="search-input-wrap">
-            <svg class="search-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <input type="text" id="search-input" class="search-input" placeholder="Search tutorials, lessons, topics..." autocomplete="off">
-            <span class="search-esc">ESC</span>
-        </div>
-    </div>
-    <div id="search-results" class="search-results"></div>
-    <div class="search-hint">
-        <div class="search-hint-row"><span class="sh-icon">↓</span> Navigate</div>
-        <div class="search-hint-row"><span class="sh-icon">↵</span> Select</div>
-        <div class="search-hint-row"><span class="sh-icon">ESC</span> Close</div>
-    </div>
-</div>
-
-<script src="../search.js"></script>
 
 

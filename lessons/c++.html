@@ -173,285 +173,1108 @@
             
             <!-- LEFT AD COLUMN -->
             
-
             <!-- CENTER CONTENT COLUMN -->
             <div class="content-column">
                 <!-- ===================== LECTURE 1 ===================== -->
-                <div class="lecture active" id="lec-0">
-                    <div class="lecture-tag">Lecture 01 · Foundations</div>
-                    <h1>What is C++?</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~35 min</span>
-                        <span class="meta-badge">No prerequisites</span>
-                    </div>
+            <div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Lecture 01 · Foundations</div>
+    <h1>What is C++?</h1>
 
-                    <h2>Introduction</h2>
-                    <p><strong>C++</strong> is a compiled, general‑purpose programming language created by Bjarne Stroustrup in
-                        1985 as an extension of the C language. It adds object‑orientation, generic programming,
-                        low‑level memory control and a massive standard library.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~35 min</span>
+        <span class="meta-badge">No prerequisites</span>
+    </div>
 
-                    <h2>Key Characteristics</h2>
-                    <ul>
-                        <li>Compiled – source code is turned into native machine code.</li>
-                        <li>Statically typed – type checking is done at compile time.</li>
-                        <li>Supports multiple paradigms – procedural, OOP, generic, functional.</li>
-                        <li>Performance‑critical – fine‑grained control over memory and resources.</li>
-                    </ul>
+    <h2>Introduction</h2>
 
-                    <div class="box tip">
-                        <div class="box-title">✅ Quick fact</div>
-                        The current standard is <strong>C++20</strong>, with C++23 on the horizon.
-                    </div>
+    <p><strong>C++</strong> is a compiled, general-purpose programming language created by Bjarne Stroustrup in
+        1985 as an extension of the C language. It adds object-orientation, generic programming,
+        low-level memory control and a massive standard library.</p>
 
-                    <h2>Hello World – Your First C++ Program</h2>
-                    <p>Save the following as <code>hello.cpp</code>, compile it, and run it.</p>
+    <p>C++ is one of the most widely used programming languages in the world and is known for its
+        speed, efficiency, and flexibility.</p>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">hello.cpp</span>
-                        </div>
-                        <pre><span class="kw">#include</span> <span class="val">&lt;iostream&gt;</span>
+    <p>It is commonly used in:</p>
 
-<span class="kw">int</span> <span class="fn">main</span>() {
-    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Hello, World!"</span> <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
-    <span class="kw">return</span> <span class="nm">0</span>;
-}</pre>
-                    </div>
+    <ul>
+        <li>Game development</li>
+        <li>Operating systems</li>
+        <li>Embedded systems</li>
+        <li>Desktop applications</li>
+        <li>Compilers and browsers</li>
+        <li>High-performance software</li>
+    </ul>
 
-                    <p>Compile and run (Linux/macOS/macOS, Windows‑WSL, or MinGW):</p>
-                    <pre><code>g++ -std=c++20 hello.cpp -o hello
-./hello          # prints "Hello, World!"</code></pre>
+    <div class="box tip">
+        <div class="box-title">✅ Quick fact</div>
+        C++ is used in major software systems including game engines, browsers, databases, and operating systems.
+    </div>
 
-                    <!-- C++ COMPILER -->
-                    <div class="compiler-section">
-                        <h2>⚙️ Try It Yourself - C++ Compiler</h2>
-                        <p>Practice C++ programming right here in your browser! Modify the code below and click "Compile & Run" to see the results instantly.</p>
-                        
-                        <iframe src="../cpp-compiler.html" style="width: 100%; height: 650px; border: 1px solid var(--border); border-radius: 8px; margin: 1rem 0;" frameborder="0"></iframe>
-                        
-                        <div class="practice-tips">
-                            <h4>💡 Practice Tips:</h4>
-                            <ul>
-                                <li>Try changing the output message in the Hello World program</li>
-                                <li>Experiment with different data types (int, double, string)</li>
-                                <li>Add variables and practice arithmetic operations</li>
-                                <li>Try the Classes and STL examples to learn advanced concepts</li>
-                                <li>Use <strong>Ctrl+Enter</strong> to quickly compile and run your code</li>
-                            </ul>
-                        </div>
-                    </div>
+    <h2>History of C++</h2>
 
-                    <!-- Related Courses -->
-                    <div class="related-courses">
-                        <h3>🔗 Related Courses</h3>
-                        <div class="related-courses-grid">
-                            <a href="c.html" class="related-course-card">
-                                <span class="related-icon">🧭</span>
-                                <div class="related-info">
-                                    <strong>C Language</strong>
-                                    <span>Systems programming fundamentals</span>
-                                </div>
-                            </a>
-                            <a href="cc.html" class="related-course-card">
-                                <span class="related-icon">♯</span>
-                                <div class="related-info">
-                                    <strong>C#</strong>
-                                    <span>.NET framework & Windows development</span>
-                                </div>
-                            </a>
-                            <a href="rust.html" class="related-course-card">
-                                <span class="related-icon">🦀</span>
-                                <div class="related-info">
-                                    <strong>Rust</strong>
-                                    <span>Memory safety & modern systems</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+    <p>C++ was developed by <strong>Bjarne Stroustrup</strong> at Bell Labs.</p>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 1.1</div>
-                        <p>Install a C++ compiler (GCC, Clang or MSVC), write the program above, compile it and verify the
-                            output.</p>
-                    </div>
+    <ul>
+        <li><strong>1979</strong> – Development of “C with Classes” began.</li>
+        <li><strong>1985</strong> – The language was officially named C++.</li>
+        <li><strong>1998</strong> – First ISO standard (C++98).</li>
+        <li><strong>2011</strong> – Modern C++ introduced with C++11.</li>
+        <li><strong>2020</strong> – C++20 added modules, ranges, concepts, and more.</li>
+    </ul>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h2>Why Learn C++?</h2>
 
-                <!-- ===================== LECTURE 2 ===================== -->
-                <div class="lecture" id="lec-1">
-                    <div class="lecture-tag">Lecture 02 · Foundations</div>
-                    <h1>Setting up the Compiler</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~40 min</span>
-                        <span class="meta-badge">Requires: Lecture 01</span>
-                    </div>
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~40 min</span>
-                <span class="meta-badge">Requires: Lecture 01</span>
-            </div>
+    <ul>
+        <li>Excellent performance and speed</li>
+        <li>Strong understanding of memory and computer systems</li>
+        <li>Widely used in industry and competitive programming</li>
+        <li>Powerful object-oriented programming support</li>
+        <li>Huge ecosystem and standard library</li>
+        <li>Foundation for learning advanced programming concepts</li>
+    </ul>
 
-            <h2>Choosing a Toolchain</h2>
-            <p>For learning you can pick any of these:</p>
-            <ul>
-                <li><strong>GCC</strong> – the GNU Compiler Collection (Linux/macOS/WSL).</li>
-                <li><strong>Clang</strong> – LLVM‑based, great diagnostics.</li>
-                <li><strong><a href="https://visualstudio.microsoft.com/vs/" target="_blank" rel="noopener noreferrer" class="inline-link">MSVC</a></strong> – Microsoft Visual C++ compiler (Windows).</li>
-                <li><strong>Online IDEs</strong> – <a href="https://godbolt.org/" target="_blank"
-                        rel="noopener noreferrer">Compiler Explorer</a>, <a
-                        href="https://www.onlinegdb.com/online_c++_compiler" target="_blank"
-                        rel="noopener noreferrer">OnlineGDB</a>.</li>
-            </ul>
+    <h2>Key Characteristics</h2>
 
-            <h3>Verifying Installation</h3>
-            <pre><code>g++ --version
-clang++ --version
-cl</code></pre>
+    <ul>
+        <li><strong>Compiled</strong> – source code is turned into native machine code.</li>
+        <li><strong>Statically typed</strong> – type checking is done at compile time.</li>
+        <li><strong>Supports multiple paradigms</strong> – procedural, OOP, generic, functional.</li>
+        <li><strong>Performance-critical</strong> – fine-grained control over memory and resources.</li>
+    </ul>
 
-            <div class="box info">
-                <div class="box-title">ℹ️ IDE Recommendation</div>
-                <p>VS Code with the <strong>C/C++</strong> extension or JetBrains CLion give you IntelliSense,
-                    debugging, and project management out of the box.</p>
-            </div>
+    <h2>Understanding Compiled Languages</h2>
 
-            <h2>Compiling with Flags</h2>
-            <p>Common useful flags:</p>
-            <ul>
-                <li><code>-Wall -Wextra -Wpedantic</code> – enable most warnings.</li>
-                <li><code>-O2</code> – optimisation level.</li>
-                <li><code>-std=c++20</code> – select the language standard.</li>
-                <li><code>-g</code> – include debug symbols for <code>gdb</code>/<code>lldb</code>.</li>
-            </ul>
+    <p>C++ programs must be compiled before they can run.</p>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 2.1</div>
-                <p>Create a simple project with two source files (<code>main.cpp</code> and <code>utils.cpp</code>),
-                    compile them together, and run the resulting executable.</p>
-            </div>
+    <p>The compilation process converts human-readable source code into machine code that the computer can execute.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
-            </div>
+    <h3>Compilation process</h3>
+
+    <ol>
+        <li>Write source code (<code>.cpp</code> files)</li>
+        <li>Compile the code using a compiler</li>
+        <li>Generate an executable program</li>
+        <li>Run the executable</li>
+    </ol>
+
+    <div class="box info">
+        <div class="box-title">ℹ️ Source code vs executable</div>
+        Source code is the code you write. The executable is the final machine-readable program created by the compiler.
+    </div>
+
+    <h2>Structure of a C++ Program</h2>
+
+    <p>Most C++ programs contain:</p>
+
+    <ul>
+        <li>Header files</li>
+        <li>The <code>main()</code> function</li>
+        <li>Statements and expressions</li>
+        <li>Output/input operations</li>
+    </ul>
+
+    <h2>Hello World – Your First C++ Program</h2>
+
+    <p>Save the following as <code>hello.cpp</code>, compile it, and run it.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">hello.cpp</span>
         </div>
 
-        <!-- ===================== LECTURE 3 ===================== -->
-        <div class="lecture" id="lec-2">
-            <div class="lecture-tag">Lecture 03 · Foundations</div>
-            <h1>Variables &amp; Data Types</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 02</span>
+<pre><span class="kw">#include</span> <span class="val">&lt;iostream&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Hello, World!"</span>
+              <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+    </div>
+
+    <h2>Understanding the Code</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>#include &lt;iostream&gt;</code></td>
+                <td>Imports the standard input/output library</td>
+            </tr>
+
+            <tr>
+                <td><code>main()</code></td>
+                <td>The starting point of every C++ program</td>
+            </tr>
+
+            <tr>
+                <td><code>std::cout</code></td>
+                <td>Prints output to the console</td>
+            </tr>
+
+            <tr>
+                <td><code>return 0;</code></td>
+                <td>Indicates successful program execution</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="box tip">
+        <div class="box-title">💡 Important</div>
+        Every C++ program starts execution from the <code>main()</code> function.
+    </div>
+
+    <h2>Compiling and Running the Program</h2>
+
+    <p>Compile and run using GCC:</p>
+
+<pre><code>g++ -std=c++20 hello.cpp -o hello
+
+./hello</code></pre>
+
+    <p>The program output will be:</p>
+
+<pre><code>Hello, World!</code></pre>
+
+    <h2>Choosing a Toolchain</h2>
+
+    <p>For learning you can pick any of these:</p>
+
+    <ul>
+        <li><strong>GCC</strong> – the GNU Compiler Collection (Linux/macOS/WSL).</li>
+
+        <li><strong>Clang</strong> – LLVM-based compiler with excellent error messages.</li>
+
+        <li><strong>MSVC</strong> – Microsoft Visual C++ compiler for Windows.</li>
+
+        <li><strong>Online IDEs</strong> – useful for learning without installation.</li>
+    </ul>
+
+    <h3>Popular Online Compilers</h3>
+
+    <ul>
+        <li>Compiler Explorer</li>
+        <li>OnlineGDB</li>
+        <li>Replit</li>
+        <li>Programiz Compiler</li>
+    </ul>
+
+    <h3>Verifying Installation</h3>
+
+<pre><code>g++ --version
+
+clang++ --version
+
+cl</code></pre>
+
+    <div class="box info">
+        <div class="box-title">ℹ️ IDE Recommendation</div>
+
+        <p>VS Code with the <strong>C/C++</strong> extension or JetBrains CLion provide syntax
+            highlighting, debugging, IntelliSense, and project management tools.</p>
+    </div>
+
+    <h2>Compiling with Flags</h2>
+
+    <p>Compiler flags allow you to control warnings, optimizations, debugging, and language standards.</p>
+
+    <h3>Common useful flags</h3>
+
+    <ul>
+        <li><code>-Wall -Wextra -Wpedantic</code> – enable most warnings.</li>
+        <li><code>-O2</code> – optimisation level.</li>
+        <li><code>-std=c++20</code> – select the language standard.</li>
+        <li><code>-g</code> – include debug symbols for debugging tools.</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">compile-command.sh</span>
+        </div>
+
+<pre>g++ -Wall -Wextra -std=c++20 -O2 hello.cpp -o hello</pre>
+    </div>
+
+    <h2>Comments in C++</h2>
+
+    <p>Comments are notes written inside the source code for explanation and readability.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">comments.cpp</span>
+        </div>
+
+<pre><span class="kw">// Single-line comment</span>
+
+<span class="kw">/*
+   Multi-line
+   comment
+*/</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+    </div>
+
+    <h2>C++ File Extensions</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Extension</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>.cpp</code></td>
+                <td>C++ source file</td>
+            </tr>
+
+            <tr>
+                <td><code>.h</code></td>
+                <td>Header file</td>
+            </tr>
+
+            <tr>
+                <td><code>.hpp</code></td>
+                <td>C++ header file</td>
+            </tr>
+
+            <tr>
+                <td><code>.exe</code></td>
+                <td>Executable file (Windows)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- C++ COMPILER -->
+    <div class="compiler-section">
+
+        <h2>⚙️ Try It Yourself - C++ Compiler</h2>
+
+        <p>Practice C++ programming right here in your browser! Modify the code below and click
+            "Compile & Run" to see the results instantly.</p>
+
+        <iframe src="../cpp-compiler.html"
+            style="width: 100%; height: 650px; border: 1px solid var(--border); border-radius: 8px; margin: 1rem 0;"
+            frameborder="0"></iframe>
+
+        <div class="practice-tips">
+
+            <h4>💡 Practice Tips:</h4>
+
+            <ul>
+                <li>Try changing the output message in the Hello World program</li>
+                <li>Experiment with different data types like <code>int</code>, <code>double</code>, and <code>string</code></li>
+                <li>Add variables and practice arithmetic operations</li>
+                <li>Try creating multiple output statements using <code>std::cout</code></li>
+                <li>Use <strong>Ctrl+Enter</strong> to quickly compile and run your code</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Real-world Applications of C++</h2>
+
+    <ul>
+        <li>Game engines like Unreal Engine</li>
+        <li>Browsers such as Chrome and Firefox</li>
+        <li>Databases like MySQL</li>
+        <li>Operating systems and drivers</li>
+        <li>Financial and trading systems</li>
+        <li>Embedded and robotics systems</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.1</div>
+
+        <p>Install a C++ compiler (GCC, Clang or MSVC), write the Hello World program,
+            compile it, and verify the output.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.2</div>
+
+        <p>Modify the Hello World program so it prints:</p>
+
+<pre><code>Hello, C++!
+Welcome to programming.</code></pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.3</div>
+
+        <p>Create a simple project with two source files:</p>
+
+        <ul>
+            <li><code>main.cpp</code></li>
+            <li><code>utils.cpp</code></li>
+        </ul>
+
+        <p>Compile them together into a single executable program.</p>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Coming Up Next</div>
+
+        In the next lecture, you'll learn variables, data types, user input, and basic operators in C++.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+    </div>
+</div>
+
+                <!-- ===================== LECTURE 2 ===================== -->
+        <div class="lecture" id="lec-1">
+
+    <div class="lecture-tag">Lecture 02 · Foundations</div>
+
+    <h1>Setting up the Compiler</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~40 min</span>
+        <span class="meta-badge">Requires: Lecture 01</span>
+    </div>
+
+    <h2>Why Do You Need a Compiler?</h2>
+
+    <p>C++ is a compiled programming language. This means the source code you write must be converted into
+        machine code before the computer can execute it.</p>
+
+    <p>A <strong>compiler</strong> translates your C++ code into an executable program.</p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Important</div>
+        Without a compiler, the computer cannot understand or run your C++ source code.
+    </div>
+
+    <h2>Popular C++ Compilers</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Compiler</th>
+                <th>Platform</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>GCC</td>
+                <td>Linux / Windows / macOS</td>
+                <td>Open-source GNU Compiler Collection</td>
+            </tr>
+
+            <tr>
+                <td>Clang</td>
+                <td>Linux / macOS / Windows</td>
+                <td>LLVM-based compiler with excellent diagnostics</td>
+            </tr>
+
+            <tr>
+                <td>MSVC</td>
+                <td>Windows</td>
+                <td>Microsoft Visual C++ compiler included with Visual Studio</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Choosing an IDE or Code Editor</h2>
+
+    <p>You can write C++ code in any text editor, but modern IDEs provide features like syntax highlighting,
+        debugging, and auto-completion.</p>
+
+    <h3>Popular options</h3>
+
+    <ul>
+        <li><strong>VS Code</strong> – lightweight and beginner-friendly</li>
+        <li><strong>Visual Studio</strong> – powerful IDE for Windows</li>
+        <li><strong>CLion</strong> – professional JetBrains IDE</li>
+        <li><strong>Code::Blocks</strong> – simple IDE for beginners</li>
+        <li><strong>Dev-C++</strong> – lightweight Windows IDE</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">ℹ️ Recommended Setup</div>
+
+        <p>VS Code with the C/C++ extension and GCC compiler is one of the most popular setups for beginners.</p>
+    </div>
+
+    <h2>Installing GCC on Windows</h2>
+
+    <p>On Windows, GCC is commonly installed using <strong>MinGW-w64</strong>.</p>
+
+    <h3>Installation steps</h3>
+
+    <ol>
+        <li>Download MinGW-w64 installer</li>
+        <li>Install the compiler</li>
+        <li>Add the compiler path to the system PATH variable</li>
+        <li>Restart the terminal</li>
+    </ol>
+
+    <h3>Verify installation</h3>
+
+<pre><code>g++ --version</code></pre>
+
+    <p>If installed correctly, the compiler version will appear.</p>
+
+    <h2>Installing GCC on Linux</h2>
+
+    <p>Most Linux distributions provide GCC through package managers.</p>
+
+    <h3>Ubuntu / Debian</h3>
+
+<pre><code>sudo apt update
+sudo apt install g++</code></pre>
+
+    <h3>Fedora</h3>
+
+<pre><code>sudo dnf install gcc-c++</code></pre>
+
+    <h3>Arch Linux</h3>
+
+<pre><code>sudo pacman -S gcc</code></pre>
+
+    <h2>Installing Clang on macOS</h2>
+
+    <p>macOS users can install Clang using Xcode Command Line Tools.</p>
+
+<pre><code>xcode-select --install</code></pre>
+
+    <p>Verify installation:</p>
+
+<pre><code>clang++ --version</code></pre>
+
+    <h2>Installing Visual Studio (MSVC)</h2>
+
+    <p>Windows users can also use Microsoft's official C++ compiler.</p>
+
+    <h3>Steps</h3>
+
+    <ol>
+        <li>Download Visual Studio Community Edition</li>
+        <li>Select the “Desktop development with C++” workload</li>
+        <li>Complete installation</li>
+    </ol>
+
+    <p>MSVC includes:</p>
+
+    <ul>
+        <li>C++ compiler</li>
+        <li>Debugger</li>
+        <li>Build tools</li>
+        <li>Windows SDK</li>
+    </ul>
+
+    <h2>Creating Your First Project</h2>
+
+    <p>Create a folder called <code>cpp-project</code> and inside it create a file named
+        <code>main.cpp</code>.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
             </div>
 
-            <h2>Fundamental Types</h2>
-            <table class="tbl-wrap">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Size (typical)</th>
-                        <th>Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>bool</code></td>
-                        <td>1 byte</td>
-                        <td><code>bool ok = true;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>char</code></td>
-                        <td>1 byte</td>
-                        <td><code>char c = 'A';</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>int</code></td>
-                        <td>4 bytes</td>
-                        <td><code>int i = 42;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>long</code> / <code>long long</code></td>
-                        <td>8 bytes</td>
-                        <td><code>long long big = 123456789LL;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>float</code></td>
-                        <td>4 bytes</td>
-                        <td><code>float f = 3.14f;</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>double</code></td>
-                        <td>8 bytes</td>
-                        <td><code>double d = 2.71828;</code></td>
-                    </tr>
-                </tbody>
-            </table>
+            <span class="filename">main.cpp</span>
+        </div>
 
-            <h2>Signed vs Unsigned</h2>
-            <p>Appending <code>u</code> makes an integer type unsigned (<code>unsigned int</code> or
-                <code>uint32_t</code>). Unsigned types cannot represent negative values, which can be useful for
-                bit‑wise operations.</p>
+<pre><span class="kw">#include</span> <span class="val">&lt;iostream&gt;</span>
 
-            <h2>Type Modifiers</h2>
-            <p>Keywords that affect size and sign:</p>
+<span class="kw">int</span> <span class="fn">main</span>() {
+
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Compiler setup successful!"</span>
+              <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+    </div>
+
+    <h2>Compiling the Program</h2>
+
+    <p>Open the terminal inside your project folder and run:</p>
+
+<pre><code>g++ main.cpp -o main</code></pre>
+
+    <p>This command:</p>
+
+    <ul>
+        <li>Compiles <code>main.cpp</code></li>
+        <li>Creates an executable named <code>main</code></li>
+    </ul>
+
+    <h2>Running the Program</h2>
+
+    <h3>Linux / macOS</h3>
+
+<pre><code>./main</code></pre>
+
+    <h3>Windows</h3>
+
+<pre><code>main.exe</code></pre>
+
+    <p>Expected output:</p>
+
+<pre><code>Compiler setup successful!</code></pre>
+
+    <h2>Understanding Compiler Errors</h2>
+
+    <p>Compilers display errors when the code contains mistakes.</p>
+
+    <h3>Example error</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+
+            <span class="filename">error.cpp</span>
+        </div>
+
+<pre><span class="kw">#include</span> <span class="val">&lt;iostream&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Hello"</span>
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+    </div>
+
+    <p>This program is missing a semicolon (<code>;</code>) after the output statement.</p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Debugging Tip</div>
+
+        Read compiler errors carefully. Most beginner mistakes are caused by missing semicolons,
+        brackets, or spelling errors.
+    </div>
+
+    <h2>Useful Compiler Flags</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Flag</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>-Wall</code></td>
+                <td>Enable common warnings</td>
+            </tr>
+
+            <tr>
+                <td><code>-Wextra</code></td>
+                <td>Enable extra warnings</td>
+            </tr>
+
+            <tr>
+                <td><code>-std=c++20</code></td>
+                <td>Use C++20 standard</td>
+            </tr>
+
+            <tr>
+                <td><code>-g</code></td>
+                <td>Generate debug information</td>
+            </tr>
+
+            <tr>
+                <td><code>-O2</code></td>
+                <td>Enable optimization</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Compiling with Flags Example</h2>
+
+<pre><code>g++ -Wall -Wextra -std=c++20 main.cpp -o main</code></pre>
+
+    <h2>Online Compilers</h2>
+
+    <p>If you do not want to install software immediately, you can use online compilers.</p>
+
+    <ul>
+        <li>OnlineGDB</li>
+        <li>Replit</li>
+        <li>Compiler Explorer</li>
+        <li>Programiz</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🌐 Online Compiler Advantage</div>
+
+        <p>Online compilers are useful for practice and quick testing without local installation.</p>
+    </div>
+
+    <!-- COMPILER SECTION -->
+
+    <div class="compiler-section">
+
+        <h2>⚙️ Try It Yourself - Compiler Test</h2>
+
+        <p>Modify the program below and test your compiler setup directly in the browser.</p>
+
+        <iframe src="../cpp-compiler.html"
+            style="width: 100%; height: 650px; border: 1px solid var(--border); border-radius: 8px; margin: 1rem 0;"
+            frameborder="0"></iframe>
+
+        <div class="practice-tips">
+
+            <h4>💡 Practice Tips:</h4>
+
             <ul>
-                <li><code>short</code></li>
-                <li><code>long</code>, <code>long long</code></li>
-                <li><code>signed</code> (default for <code>int</code>)</li>
-                <li><code>unsigned</code></li>
+                <li>Change the output text</li>
+                <li>Add multiple <code>std::cout</code> statements</li>
+                <li>Experiment with syntax errors and observe compiler messages</li>
+                <li>Practice compiling with different flags</li>
+                <li>Try creating multiple source files</li>
             </ul>
+        </div>
+    </div>
 
-            <h2>Variable Declaration & Initialisation</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">variables.cpp</span>
-                </div>
-                <pre><span class="kw">int</span> <span class="nm">count</span> = <span class="nm">0</span>;                <span class="cm">// initialise to zero</span>
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.1</div>
+
+        <p>Install a C++ compiler on your operating system and verify the installation using
+            <code>g++ --version</code> or <code>clang++ --version</code>.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.2</div>
+
+        <p>Create a project folder with a <code>main.cpp</code> file, compile it manually using
+            terminal commands, and run the executable.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.3</div>
+
+        <p>Compile a program using:</p>
+
+<pre><code>g++ -Wall -Wextra -std=c++20 main.cpp -o main</code></pre>
+
+        <p>Observe any warnings generated by the compiler.</p>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">🚀 Coming Up Next</div>
+
+        In the next lecture, you'll learn variables, data types, constants, and user input in C++.
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+    </div>
+
+</div>
+          
+
+        <!-- ===================== LECTURE 3 ===================== -->
+    <div class="lecture" id="lec-2">
+    <div class="lecture-tag">Lecture 03 · Foundations</div>
+    <h1>Variables &amp; Data Types</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 02</span>
+    </div>
+
+    <h2>Introduction to Variables</h2>
+    <p>Variables are named containers used to store data in memory. Every program uses variables to keep track
+        of values such as numbers, characters, prices, marks, temperatures, or user input.</p>
+
+    <p>In C++, every variable must have:</p>
+    <ul>
+        <li>A <strong>type</strong> — defines what kind of data can be stored</li>
+        <li>A <strong>name</strong> — used to access the value later</li>
+        <li>An optional <strong>initial value</strong></li>
+    </ul>
+
+    <p>Example:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">intro.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">age</span> = <span class="nm">20</span>;
+<span class="kw">double</span> <span class="nm">salary</span> = <span class="nm">45000.50</span>;
+<span class="kw">char</span> <span class="nm">grade</span> = <span class="val">'A'</span>;</pre>
+    </div>
+
+    <p>Here:</p>
+    <ul>
+        <li><code>age</code> stores an integer value</li>
+        <li><code>salary</code> stores a decimal value</li>
+        <li><code>grade</code> stores a single character</li>
+    </ul>
+
+    <h2>Fundamental Types</h2>
+    <p>C++ provides several built-in primitive data types. Choosing the correct type helps optimise memory usage
+        and improves program performance.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Size (typical)</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>bool</code></td>
+                <td>1 byte</td>
+                <td><code>bool ok = true;</code></td>
+            </tr>
+            <tr>
+                <td><code>char</code></td>
+                <td>1 byte</td>
+                <td><code>char c = 'A';</code></td>
+            </tr>
+            <tr>
+                <td><code>int</code></td>
+                <td>4 bytes</td>
+                <td><code>int i = 42;</code></td>
+            </tr>
+            <tr>
+                <td><code>long</code> / <code>long long</code></td>
+                <td>8 bytes</td>
+                <td><code>long long big = 123456789LL;</code></td>
+            </tr>
+            <tr>
+                <td><code>float</code></td>
+                <td>4 bytes</td>
+                <td><code>float f = 3.14f;</code></td>
+            </tr>
+            <tr>
+                <td><code>double</code></td>
+                <td>8 bytes</td>
+                <td><code>double d = 2.71828;</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Understanding Integer Types</h2>
+    <p>Integer types are used for storing whole numbers without decimal points. Different integer types exist
+        because programs may need to store very small or very large values.</p>
+
+    <ul>
+        <li><code>short</code> → smaller range, uses less memory</li>
+        <li><code>int</code> → most commonly used integer type</li>
+        <li><code>long</code> and <code>long long</code> → used for large numeric values</li>
+    </ul>
+
+    <p>Example use cases:</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Scenario</th>
+                <th>Recommended Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Age of a student</td>
+                <td><code>int</code></td>
+            </tr>
+            <tr>
+                <td>Population of a country</td>
+                <td><code>long long</code></td>
+            </tr>
+            <tr>
+                <td>Game score</td>
+                <td><code>int</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Floating-Point Types</h2>
+    <p>Floating-point types are used for decimal numbers.</p>
+
+    <ul>
+        <li><code>float</code> → lower precision, uses less memory</li>
+        <li><code>double</code> → higher precision, commonly preferred</li>
+    </ul>
+
+    <p>Examples:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">floating.cpp</span>
+        </div>
+        <pre><span class="kw">float</span> <span class="nm">temperature</span> = <span class="nm">36.5f</span>;
+<span class="kw">double</span> <span class="nm">pi</span> = <span class="nm">3.1415926535</span>;</pre>
+    </div>
+
+    <p>The suffix <code>f</code> tells the compiler that the value is a <code>float</code>.</p>
+
+    <h2>Character and Boolean Types</h2>
+    <p>The <code>char</code> type stores a single character enclosed in single quotes.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">char.cpp</span>
+        </div>
+        <pre><span class="kw">char</span> <span class="nm">letter</span> = <span class="val">'G'</span>;
+<span class="kw">char</span> <span class="nm">symbol</span> = <span class="val">'#'</span>;</pre>
+    </div>
+
+    <p>The <code>bool</code> type stores logical values:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">bool.cpp</span>
+        </div>
+        <pre><span class="kw">bool</span> <span class="nm">isLoggedIn</span> = <span class="kw">true</span>;
+<span class="kw">bool</span> <span class="nm">gameOver</span> = <span class="kw">false</span>;</pre>
+    </div>
+
+    <h2>Signed vs Unsigned</h2>
+    <p>Appending <code>u</code> makes an integer type unsigned (<code>unsigned int</code> or
+        <code>uint32_t</code>). Unsigned types cannot represent negative values, which can be useful for
+        bit-wise operations.</p>
+
+    <p>Signed integers can store both positive and negative numbers:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">signed.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">temperature</span> = -<span class="nm">10</span>;
+<span class="kw">unsigned</span> <span class="kw">int</span> <span class="nm">score</span> = <span class="nm">100</span>;</pre>
+    </div>
+
+    <p>If you try to store a negative number in an unsigned variable, the result may not be what you expect due
+        to overflow.</p>
+
+    <h2>Type Modifiers</h2>
+    <p>Keywords that affect size and sign:</p>
+    <ul>
+        <li><code>short</code></li>
+        <li><code>long</code>, <code>long long</code></li>
+        <li><code>signed</code> (default for <code>int</code>)</li>
+        <li><code>unsigned</code></li>
+    </ul>
+
+    <p>These modifiers allow programmers to control memory usage and numeric range more precisely.</p>
+
+    <h2>Variable Naming Rules</h2>
+    <p>C++ variable names must follow certain rules:</p>
+
+    <ul>
+        <li>Names can contain letters, digits, and underscores</li>
+        <li>Names cannot begin with a number</li>
+        <li>Spaces are not allowed</li>
+        <li>C++ keywords cannot be used as variable names</li>
+        <li>Variable names are case-sensitive</li>
+    </ul>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Valid Names</th>
+                <th>Invalid Names</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>totalMarks</code></td>
+                <td><code>2marks</code></td>
+            </tr>
+            <tr>
+                <td><code>user_name</code></td>
+                <td><code>user name</code></td>
+            </tr>
+            <tr>
+                <td><code>price1</code></td>
+                <td><code>float</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Variable Declaration & Initialisation</h2>
+    <p>Declaration tells the compiler about the variable type and name. Initialisation assigns the first value to
+        the variable.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">variables.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">count</span> = <span class="nm">0</span>;                <span class="cm">// initialise to zero</span>
 <span class="kw">double</span> <span class="nm">price</span> = <span class="nm">19.99</span>;
 <span class="kw">char</span> <span class="nm">grade</span> = <span class="val">'A'</span>;
 <span class="kw">bool</span> <span class="nm">isReady</span> = <span class="kw">true</span>;
 
 <span class="kw">unsigned</span> <span class="kw">int</span> <span class="nm">mask</span> = <span class="nm">0xFF</span>;
 <span class="kw">long</span> <span class="nm">bigNum</span> = <span class="nm">123456789L</span>;</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 3.1</div>
-                <p>Write a program that declares one variable of each primitive type, prints their size using
-                    <code>sizeof</code>,
-                    and then swaps the values of two integer variables without using a temporary variable.</p>
-            </div>
+    <h2>Multiple Variable Declarations</h2>
+    <p>You can declare multiple variables of the same type in one line:</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
-            </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">multiple.cpp</span>
         </div>
+        <pre><span class="kw">int</span> <span class="nm">x</span> = <span class="nm">10</span>, <span class="nm">y</span> = <span class="nm">20</span>, <span class="nm">z</span> = <span class="nm">30</span>;</pre>
+    </div>
+
+    <p>However, for readability, many programmers prefer declaring one variable per line.</p>
+
+    <h2>The <code>sizeof</code> Operator</h2>
+    <p>The <code>sizeof</code> operator returns the number of bytes occupied by a type or variable in memory.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">sizeof.cpp</span>
+        </div>
+        <pre><span class="kw">cout</span> &lt;&lt; <span class="kw">sizeof</span>(<span class="kw">int</span>);
+<span class="kw">cout</span> &lt;&lt; <span class="kw">sizeof</span>(<span class="kw">double</span>);</pre>
+    </div>
+
+    <p>This is useful when working with memory management, arrays, and system-level programming.</p>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.1</div>
+        <p>Write a program that declares one variable of each primitive type, prints their size using
+            <code>sizeof</code>,
+            and then swaps the values of two integer variables without using a temporary variable.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.2</div>
+        <p>Create a simple student information program using variables for:</p>
+        <ul>
+            <li>Student name initial</li>
+            <li>Age</li>
+            <li>Marks</li>
+            <li>Percentage</li>
+            <li>Pass status</li>
+        </ul>
+
+        <p>Print all values using <code>cout</code>.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 4 ===================== -->
-        <div class="lecture" id="lec-3">
-            <div class="lecture-tag">Lecture 04 · Foundations</div>
-            <h1>Control Flow</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 03</span>
-            </div>
+       <div class="lecture" id="lec-3">
+    <div class="lecture-tag">Lecture 04 · Foundations</div>
+    <h1>Control Flow</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 03</span>
+    </div>
 
-            <h2>If / else</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">IfDemo.cpp</span>
-                </div>
-                <pre><span class="kw">int</span> <span class="nm">score</span> = <span class="nm">85</span>;
+    <h2>Introduction to Control Flow</h2>
+    <p>Control flow determines the order in which program instructions are executed. By default, C++ executes
+        code line by line from top to bottom. Control statements allow programs to make decisions, repeat tasks,
+        and react differently depending on conditions.</p>
+
+    <p>Control flow is mainly divided into:</p>
+
+    <ul>
+        <li><strong>Decision-making statements</strong> → <code>if</code>, <code>else</code>,
+            <code>switch</code></li>
+        <li><strong>Loops</strong> → <code>for</code>, <code>while</code>, <code>do-while</code></li>
+        <li><strong>Jump statements</strong> → <code>break</code>, <code>continue</code>, <code>return</code>
+        </li>
+    </ul>
+
+    <h2>Boolean Conditions</h2>
+    <p>Control flow statements work using conditions that evaluate to either <code>true</code> or
+        <code>false</code>.</p>
+
+    <p>Examples of comparison operators:</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Operator</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>==</code></td>
+                <td>Equal to</td>
+                <td><code>a == b</code></td>
+            </tr>
+            <tr>
+                <td><code>!=</code></td>
+                <td>Not equal to</td>
+                <td><code>a != b</code></td>
+            </tr>
+            <tr>
+                <td><code>&gt;</code></td>
+                <td>Greater than</td>
+                <td><code>x &gt; 10</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;</code></td>
+                <td>Less than</td>
+                <td><code>x &lt; 5</code></td>
+            </tr>
+            <tr>
+                <td><code>&gt;=</code></td>
+                <td>Greater than or equal</td>
+                <td><code>marks &gt;= 40</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;=</code></td>
+                <td>Less than or equal</td>
+                <td><code>age &lt;= 18</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>If / else</h2>
+    <p>The <code>if</code> statement executes a block of code only if the condition is true.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">IfDemo.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">score</span> = <span class="nm">85</span>;
 
 <span class="kw">if</span> (score &gt;= <span class="nm">90</span>) {
     <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Grade A"</span> <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
@@ -460,15 +1283,74 @@ cl</code></pre>
 } <span class="kw">else</span> {
     <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Needs improvement"</span> <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
 }</pre>
-            </div>
+    </div>
 
-            <h2>Switch (C++17 foldable switch)</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">SwitchDemo.cpp</span>
-                </div>
-                <pre><span class="kw">char</span> <span class="nm">choice</span> = <span class="val">'b'</span>;
+    <p>In this example:</p>
+
+    <ul>
+        <li>If score is 90 or above → Grade A</li>
+        <li>If score is between 80 and 89 → Grade B</li>
+        <li>Otherwise → Needs improvement</li>
+    </ul>
+
+    <h2>Nested If Statements</h2>
+    <p>An <code>if</code> statement can exist inside another <code>if</code> statement. This is called nesting.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">NestedIf.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">age</span> = <span class="nm">20</span>;
+<span class="kw">bool</span> <span class="nm">hasID</span> = <span class="kw">true</span>;
+
+<span class="kw">if</span> (age &gt;= <span class="nm">18</span>) {
+    <span class="kw">if</span> (hasID) {
+        <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Entry allowed"</span>;
+    }
+}</pre>
+    </div>
+
+    <h2>Logical Operators</h2>
+    <p>Logical operators combine multiple conditions.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Operator</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>&amp;&amp;</code></td>
+                <td>Logical AND</td>
+                <td><code>age &gt; 18 &amp;&amp; hasID</code></td>
+            </tr>
+            <tr>
+                <td><code>||</code></td>
+                <td>Logical OR</td>
+                <td><code>marks &gt; 40 || sportsQuota</code></td>
+            </tr>
+            <tr>
+                <td><code>!</code></td>
+                <td>Logical NOT</td>
+                <td><code>!isGameOver</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Switch Statement</h2>
+    <p>The <code>switch</code> statement is used when a variable can have multiple possible fixed values.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">SwitchDemo.cpp</span>
+        </div>
+        <pre><span class="kw">char</span> <span class="nm">choice</span> = <span class="val">'b'</span>;
 
 <span class="kw">switch</span> (choice) {
     <span class="kw">case</span> <span class="val">'a'</span>:
@@ -479,116 +1361,566 @@ cl</code></pre>
     <span class="kw">default</span>:
         <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Other option"</span> <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
 }</pre>
-            </div>
+    </div>
 
-            <h2>Loops</h2>
-            <ul>
-                <li><code>for (init; condition; increment)</code></li>
-                <li><code>while (condition)</code></li>
-                <li><code>do { … } while (condition);</code></li>
-                <li>Range‑based <code>for (auto &amp;v : container)</code></li>
-            </ul>
+    <p>The <code>break</code> statement prevents execution from continuing into the next case.</p>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">LoopDemo.cpp</span>
-                </div>
-                <pre><span class="kw">int</span> <span class="nm">sum</span> = <span class="nm">0</span>;
+    <h2>Fallthrough in Switch</h2>
+    <p>If <code>break</code> is omitted, execution continues into the next case. This behaviour is called
+        <strong>fallthrough</strong>.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Fallthrough.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">day</span> = <span class="nm">1</span>;
+
+<span class="kw">switch</span> (day) {
+    <span class="kw">case</span> <span class="nm">1</span>:
+        <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Monday"</span>;
+    <span class="kw">case</span> <span class="nm">2</span>:
+        <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">" Tuesday"</span>;
+}</pre>
+    </div>
+
+    <p>Output:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">output.txt</span>
+        </div>
+        <pre>Monday Tuesday</pre>
+    </div>
+
+    <h2>Loops</h2>
+    <p>Loops repeat a block of code multiple times until a condition becomes false.</p>
+
+    <ul>
+        <li><code>for (init; condition; increment)</code></li>
+        <li><code>while (condition)</code></li>
+        <li><code>do { … } while (condition);</code></li>
+        <li>Range-based <code>for (auto &amp;v : container)</code></li>
+    </ul>
+
+    <h2>For Loop</h2>
+    <p>The <code>for</code> loop is commonly used when the number of iterations is known.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">LoopDemo.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">sum</span> = <span class="nm">0</span>;
 
 <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">1</span>; i &lt;= <span class="nm">5</span>; ++i) {
     sum += i;
 }
 <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Sum = "</span> <span class="attr">&lt;&lt;</span> sum <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 4.1</div>
-                <p>Write a program that prints the first 20 Fibonacci numbers using a <code>while</code> loop.</p>
-            </div>
+    <p>This loop runs 5 times and calculates the total sum from 1 to 5.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
-            </div>
+    <h2>While Loop</h2>
+    <p>The <code>while</code> loop runs as long as the condition remains true.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">WhileLoop.cpp</span>
         </div>
+        <pre><span class="kw">int</span> <span class="nm">i</span> = <span class="nm">1</span>;
+
+<span class="kw">while</span> (i &lt;= <span class="nm">5</span>) {
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> i <span class="attr">&lt;&lt;</span> <span class="val">" "</span>;
+    ++i;
+}</pre>
+    </div>
+
+    <h2>Do-While Loop</h2>
+    <p>The <code>do-while</code> loop executes the code block at least once before checking the condition.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">DoWhile.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">num</span> = <span class="nm">1</span>;
+
+<span class="kw">do</span> {
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> num <span class="attr">&lt;&lt;</span> <span class="val">" "</span>;
+    ++num;
+} <span class="kw">while</span> (num &lt;= <span class="nm">5</span>);</pre>
+    </div>
+
+    <h2>Range-Based For Loop</h2>
+    <p>C++11 introduced range-based loops for easier iteration through containers such as arrays and vectors.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">RangeLoop.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="nm">numbers</span>[] = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>};
+
+<span class="kw">for</span> (<span class="kw">int</span> n : numbers) {
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> n <span class="attr">&lt;&lt;</span> <span class="val">" "</span>;
+}</pre>
+    </div>
+
+    <h2>Break and Continue</h2>
+    <p>The <code>break</code> statement immediately terminates a loop, while <code>continue</code> skips the
+        current iteration.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">BreakContinue.cpp</span>
+        </div>
+        <pre><span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">1</span>; i &lt;= <span class="nm">10</span>; ++i) {
+
+    <span class="kw">if</span> (i == <span class="nm">5</span>) {
+        <span class="kw">continue</span>;
+    }
+
+    <span class="kw">if</span> (i == <span class="nm">8</span>) {
+        <span class="kw">break</span>;
+    }
+
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> i <span class="attr">&lt;&lt;</span> <span class="val">" "</span>;
+}</pre>
+    </div>
+
+    <h2>Infinite Loops</h2>
+    <p>An infinite loop never stops unless interrupted manually or with a control statement.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">InfiniteLoop.cpp</span>
+        </div>
+        <pre><span class="kw">while</span> (<span class="kw">true</span>) {
+    <span class="cm">// runs forever</span>
+}</pre>
+    </div>
+
+    <p>Infinite loops are useful in game engines, servers, and event-driven applications.</p>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.1</div>
+        <p>Write a program that prints the first 20 Fibonacci numbers using a <code>while</code> loop.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.2</div>
+        <p>Create a number guessing program where the user keeps entering values until the correct number is
+            guessed.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.3</div>
+        <p>Print the multiplication table of a number entered by the user using a <code>for</code> loop.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 5 ===================== -->
-        <div class="lecture" id="lec-4">
-            <div class="lecture-tag">Lecture 05 · Foundations</div>
-            <h1>Functions</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-beginner">Beginner</span>
-                <span class="meta-badge">~40 min</span>
-                <span class="meta-badge">Requires: Lecture 04</span>
-            </div>
+    <div class="lecture" id="lec-4">
+    <div class="lecture-tag">Lecture 05 · Foundations</div>
+    <h1>Functions</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~40 min</span>
+        <span class="meta-badge">Requires: Lecture 04</span>
+    </div>
 
-            <h2>Function Syntax</h2>
-            <p>General form: <code>return_type name(parameter_list) { body }</code></p>
+    <h2>Introduction to Functions</h2>
+    <p>Functions are reusable blocks of code designed to perform a specific task. Instead of writing the same
+        logic multiple times, programmers create functions and call them whenever needed.</p>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">MathUtils.cpp</span>
-                </div>
-                <pre><span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <p>Functions improve:</p>
+
+    <ul>
+        <li><strong>Code reusability</strong></li>
+        <li><strong>Readability</strong></li>
+        <li><strong>Program organisation</strong></li>
+        <li><strong>Debugging and maintenance</strong></li>
+    </ul>
+
+    <p>Examples of common functions:</p>
+
+    <ul>
+        <li>Calculating totals</li>
+        <li>Checking passwords</li>
+        <li>Printing menus</li>
+        <li>Sorting data</li>
+        <li>Performing mathematical operations</li>
+    </ul>
+
+    <h2>Function Syntax</h2>
+    <p>General form: <code>return_type name(parameter_list) { body }</code></p>
+
+    <p>A function typically contains:</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Part</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>return_type</code></td>
+                <td>Type of value returned by the function</td>
+            </tr>
+            <tr>
+                <td><code>name</code></td>
+                <td>Name used to call the function</td>
+            </tr>
+            <tr>
+                <td><code>parameter_list</code></td>
+                <td>Input values accepted by the function</td>
+            </tr>
+            <tr>
+                <td><code>body</code></td>
+                <td>Code executed when the function is called</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">MathUtils.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
     <span class="kw">return</span> a + b;
 }
 
 <span class="kw">double</span> <span class="fn">average</span>(<span class="kw">const</span> <span class="kw">std::vector</span>&lt;<span class="kw">int</span>&gt;&amp; values) {
     <span class="kw">int</span> sum = <span class="nm">0</span>;
-    <span class="kw">for</span> (<span class="kw">int</span> v : values) sum += v;
+
+    <span class="kw">for</span> (<span class="kw">int</span> v : values)
+        sum += v;
+
     <span class="kw">return</span> <span class="kw">static_cast</span>&lt;<span class="kw">double</span>&gt;(sum) / values.<span class="fn">size</span>();
 }</pre>
-            </div>
+    </div>
 
-            <h2>Function Overloading</h2>
-            <p>Same name, different parameter types/counts.</p>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">OverloadDemo.cpp</span>
-                </div>
-                <pre><span class="kw">int</span> <span class="fn">max</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) { <span class="kw">return</span> (a &gt; b) ? a : b; }
-<span class="kw">double</span> <span class="fn">max</span>(<span class="kw">double</span> a, <span class="kw">double</span> b) { <span class="kw">return</span> (a &gt; b) ? a : b; }</pre>
-            </div>
+    <h2>Calling Functions</h2>
+    <p>Functions only execute when they are called.</p>
 
-            <h2>Default Arguments</h2>
-            <p>Supply a value that is used when the caller omits that argument.</p>
-            <pre><code>void greet(const std::string&amp; name = "World") {
-    std::cout << "Hello, " << name << "!\n";
-}</code></pre>
-
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 5.1</div>
-                <p>Implement a <code>factorial</code> function (recursive) for <code>int</code>
-                    and an overloaded version that works with <code>unsigned long long</code>. Write a short driver that
-                    calls both.</p>
-            </div>
-
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
-            </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">CallFunction.cpp</span>
         </div>
+        <pre><span class="kw">int</span> result = <span class="fn">add</span>(<span class="nm">5</span>, <span class="nm">3</span>);
 
+<span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> result;</pre>
+    </div>
+
+    <p>Here, the values <code>5</code> and <code>3</code> are passed to the function as arguments.</p>
+
+    <h2>Parameters vs Arguments</h2>
+    <p>These two terms are often confused by beginners.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Term</th>
+                <th>Meaning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Parameter</strong></td>
+                <td>Variable defined in the function declaration</td>
+            </tr>
+            <tr>
+                <td><strong>Argument</strong></td>
+                <td>Actual value passed to the function</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Arguments.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="fn">multiply</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a * b;
+}
+
+<span class="fn">multiply</span>(<span class="nm">4</span>, <span class="nm">6</span>);</pre>
+    </div>
+
+    <p>In this example:</p>
+
+    <ul>
+        <li><code>a</code> and <code>b</code> are parameters</li>
+        <li><code>4</code> and <code>6</code> are arguments</li>
+    </ul>
+
+    <h2>Void Functions</h2>
+    <p>A function that does not return any value uses the <code>void</code> keyword.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">VoidFunction.cpp</span>
+        </div>
+        <pre><span class="kw">void</span> <span class="fn">greet</span>() {
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Welcome to C++"</span>;
+}</pre>
+    </div>
+
+    <h2>Return Statement</h2>
+    <p>The <code>return</code> statement sends a value back to the caller.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">ReturnDemo.cpp</span>
+        </div>
+        <pre><span class="kw">double</span> <span class="fn">square</span>(<span class="kw">double</span> x) {
+    <span class="kw">return</span> x * x;
+}</pre>
+    </div>
+
+    <p>Once <code>return</code> executes, the function immediately ends.</p>
+
+    <h2>Function Declaration and Definition</h2>
+    <p>Functions can be declared before <code>main()</code> and defined later. This is called a function
+        prototype.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Prototype.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="fn">sum</span>(<span class="kw">int</span>, <span class="kw">int</span>);
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="fn">sum</span>(<span class="nm">2</span>, <span class="nm">3</span>);
+}
+
+<span class="kw">int</span> <span class="fn">sum</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a + b;
+}</pre>
+    </div>
+
+    <h2>Function Overloading</h2>
+    <p>Function overloading allows multiple functions to have the same name but different parameter types or
+        counts.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">OverloadDemo.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="fn">max</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> (a &gt; b) ? a : b;
+}
+
+<span class="kw">double</span> <span class="fn">max</span>(<span class="kw">double</span> a, <span class="kw">double</span> b) {
+    <span class="kw">return</span> (a &gt; b) ? a : b;
+}</pre>
+    </div>
+
+    <p>The compiler selects the correct function based on the argument types.</p>
+
+    <h2>Default Arguments</h2>
+    <p>Default arguments supply a value that is used when the caller omits that argument.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">DefaultArgs.cpp</span>
+        </div>
+        <pre><span class="kw">void</span> <span class="fn">greet</span>(<span class="kw">const</span> <span class="kw">std::string</span>&amp; name = <span class="val">"World"</span>) {
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Hello, "</span> <span class="attr">&lt;&lt;</span> name <span class="attr">&lt;&lt;</span> <span class="val">"!\n"</span>;
+}</pre>
+    </div>
+
+    <p>Calling <code>greet()</code> prints:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">output.txt</span>
+        </div>
+        <pre>Hello, World!</pre>
+    </div>
+
+    <h2>Pass by Value</h2>
+    <p>By default, C++ passes arguments by value, meaning a copy of the variable is sent to the function.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">PassByValue.cpp</span>
+        </div>
+        <pre><span class="kw">void</span> <span class="fn">changeValue</span>(<span class="kw">int</span> x) {
+    x = <span class="nm">100</span>;
+}
+
+<span class="kw">int</span> num = <span class="nm">10</span>;
+<span class="fn">changeValue</span>(num);</pre>
+    </div>
+
+    <p>The original value of <code>num</code> remains unchanged because only a copy was modified.</p>
+
+    <h2>Pass by Reference</h2>
+    <p>References allow functions to modify the original variable directly.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">PassByReference.cpp</span>
+        </div>
+        <pre><span class="kw">void</span> <span class="fn">increment</span>(<span class="kw">int</span>&amp; value) {
+    ++value;
+}</pre>
+    </div>
+
+    <p>Reference parameters are efficient for large objects because they avoid unnecessary copying.</p>
+
+    <h2>Recursive Functions</h2>
+    <p>A recursive function calls itself repeatedly until a stopping condition is reached.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Recursion.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> <span class="fn">factorial</span>(<span class="kw">int</span> n) {
+
+    <span class="kw">if</span> (n == <span class="nm">0</span>) {
+        <span class="kw">return</span> <span class="nm">1</span>;
+    }
+
+    <span class="kw">return</span> n * <span class="fn">factorial</span>(n - <span class="nm">1</span>);
+}</pre>
+    </div>
+
+    <p>Recursive functions must always include a base condition to prevent infinite recursion.</p>
+
+    <h2>Inline Functions</h2>
+    <p>The <code>inline</code> keyword suggests that the compiler replace the function call with the actual code
+        to reduce overhead.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Inline.cpp</span>
+        </div>
+        <pre><span class="kw">inline</span> <span class="kw">int</span> <span class="fn">cube</span>(<span class="kw">int</span> x) {
+    <span class="kw">return</span> x * x * x;
+}</pre>
+    </div>
+
+    <h2>Function Best Practices</h2>
+    <ul>
+        <li>Keep functions small and focused</li>
+        <li>Use meaningful function names</li>
+        <li>Avoid duplicate logic</li>
+        <li>Use comments where necessary</li>
+        <li>Prefer passing large objects by reference</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.1</div>
+        <p>Implement a <code>factorial</code> function (recursive) for <code>int</code>
+            and an overloaded version that works with <code>unsigned long long</code>.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.2</div>
+        <p>Create functions for:</p>
+
+        <ul>
+            <li>Finding the square of a number</li>
+            <li>Checking whether a number is even or odd</li>
+            <li>Finding the largest of three numbers</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.3</div>
+        <p>Create a menu-driven calculator using functions for addition, subtraction, multiplication, and
+            division.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+    </div>
+</div>
         <!-- ===================== LECTURE 6 ===================== -->
-        <div class="lecture" id="lec-5">
-            <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-            <h1>Object‑Oriented Programming</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~55 min</span>
-                <span class="meta-badge">Requires: Lecture 05</span>
-            </div>
+<div class="lecture" id="lec-5">
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+    <h1>Object-Oriented Programming</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+        <span class="meta-badge">Requires: Lecture 05</span>
+    </div>
 
-            <h2>Class Declaration</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">Person.hpp</span>
-                </div>
-                <pre><span class="kw">class</span> <span class="tag">Person</span> {
+    <h2>Introduction to Object-Oriented Programming</h2>
+    <p>
+        Object-Oriented Programming (OOP) is a programming paradigm that organizes code into
+        <strong>objects</strong>. An object combines both data and the functions that operate on that data.
+        OOP helps developers build applications that are easier to maintain, reuse, and scale.
+    </p>
+
+    <p>
+        Modern software systems such as games, banking apps, operating systems, and web applications
+        heavily rely on OOP concepts. In C++, OOP provides powerful tools for structuring large programs
+        into reusable components.
+    </p>
+
+    <p>The four major principles of OOP are:</p>
+
+    <ul>
+        <li><strong>Encapsulation</strong> → Protecting data inside classes</li>
+        <li><strong>Abstraction</strong> → Hiding implementation details</li>
+        <li><strong>Inheritance</strong> → Reusing existing classes</li>
+        <li><strong>Polymorphism</strong> → One interface, multiple behaviors</li>
+    </ul>
+
+    <div class="note">
+        <strong>💡 Real-World Analogy:</strong>
+        Think of a car. The driver only interacts with the steering wheel, pedals, and dashboard.
+        The internal engine implementation is hidden. This is similar to abstraction in OOP.
+    </div>
+
+    <h2>What is a Class?</h2>
+    <p>
+        A class acts as a blueprint for creating objects. It defines what data an object stores
+        and what actions it can perform.
+    </p>
+
+    <p>
+        For example, a <code>Person</code> class may store a person's name and age, while also
+        providing functions such as displaying information or updating the age.
+    </p>
+
+    <h2>Class Declaration</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Person.hpp</span>
+        </div>
+        <pre><span class="kw">class</span> <span class="tag">Person</span> {
 <span class="kw">private</span>:
     <span class="kw">std::string</span> <span class="nm">name</span>;
     <span class="kw">int</span> <span class="nm">age</span>;
@@ -602,15 +1934,74 @@ cl</code></pre>
 
     <span class="kw">void</span> <span class="fn">birthday</span>() { ++<span class="nm">age</span>; }
 };</pre>
-            </div>
+    </div>
 
-            <h2>Inheritance</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">Employee.hpp</span>
-                </div>
-                <pre><span class="kw">class</span> <span class="tag">Employee</span> : <span class="kw">public</span> <span class="tag">Person</span> {
+    <h2>Understanding Access Specifiers</h2>
+    <p>
+        Access specifiers control which parts of a class can be accessed from outside the class.
+    </p>
+
+    <ul>
+        <li><code>private</code> → Accessible only inside the class</li>
+        <li><code>public</code> → Accessible from anywhere</li>
+        <li><code>protected</code> → Accessible in derived classes</li>
+    </ul>
+
+    <div class="note">
+        <strong>⚠️ Important:</strong>
+        Data members are usually kept <code>private</code> to protect them from accidental modification.
+        This practice is known as <strong>encapsulation</strong>.
+    </div>
+
+    <h2>Constructors</h2>
+    <p>
+        A constructor is a special member function automatically called when an object is created.
+        Constructors are mainly used to initialize object data.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">ConstructorExample.cpp</span>
+        </div>
+        <pre><span class="tag">Person</span> p(<span class="val">"Alice"</span>, <span class="nm">25</span>);
+
+<span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> p.<span class="fn">getName</span>()
+          <span class="attr">&lt;&lt;</span> <span class="val">" is "</span>
+          <span class="attr">&lt;&lt;</span> p.<span class="fn">getAge</span>()
+          <span class="attr">&lt;&lt;</span> <span class="val">" years old"</span>
+          <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;</pre>
+    </div>
+
+    <h2>Member Functions</h2>
+    <p>
+        Member functions define the behavior of a class. In the <code>Person</code> class,
+        functions like <code>getName()</code>, <code>getAge()</code>, and
+        <code>birthday()</code> operate on the object's internal data.
+    </p>
+
+    <p>
+        The keyword <code>const</code> after a function means that the function does not modify
+        the object.
+    </p>
+
+    <h2>Inheritance</h2>
+    <p>
+        Inheritance allows one class to acquire properties and behaviors from another class.
+        This promotes code reuse and creates logical relationships between classes.
+    </p>
+
+    <p>
+        A derived class inherits members from a base class. In the following example,
+        <code>Employee</code> inherits from <code>Person</code>.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Employee.hpp</span>
+        </div>
+        <pre><span class="kw">class</span> <span class="tag">Employee</span> : <span class="kw">public</span> <span class="tag">Person</span> {
 <span class="kw">private</span>:
     <span class="kw">std::string</span> <span class="nm">department</span>;
 
@@ -622,15 +2013,41 @@ cl</code></pre>
 
     <span class="kw">const</span> <span class="kw">std::string</span>&amp; <span class="fn">getDept</span>() <span class="kw">const</span> { <span class="kw">return</span> <span class="nm">department</span>; }
 };</pre>
-            </div>
+    </div>
 
-            <h2>Polymorphism (virtual functions)</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">ShapeDemo.cpp</span>
-                </div>
-                <pre><span class="kw">class</span> <span class="tag">Shape</span> {
+    <h2>Types of Inheritance</h2>
+    <ul>
+        <li><strong>Single Inheritance</strong> → One derived class inherits from one base class</li>
+        <li><strong>Multilevel Inheritance</strong> → A derived class becomes a base class for another class</li>
+        <li><strong>Multiple Inheritance</strong> → One class inherits from multiple base classes</li>
+        <li><strong>Hierarchical Inheritance</strong> → Multiple classes inherit from one base class</li>
+    </ul>
+
+    <div class="warning">
+        <strong>⚠️ Note:</strong>
+        Multiple inheritance can make programs more complex. It should be used carefully in large projects.
+    </div>
+
+    <h2>Polymorphism</h2>
+    <p>
+        Polymorphism allows the same function name to behave differently depending on the object.
+        This is one of the most powerful features of OOP.
+    </p>
+
+    <p>There are two major types of polymorphism in C++:</p>
+
+    <ul>
+        <li><strong>Compile-time Polymorphism</strong> → Function overloading and operator overloading</li>
+        <li><strong>Run-time Polymorphism</strong> → Virtual functions and method overriding</li>
+    </ul>
+
+    <h2>Polymorphism (virtual functions)</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">ShapeDemo.cpp</span>
+        </div>
+        <pre><span class="kw">class</span> <span class="tag">Shape</span> {
 <span class="kw">public</span>:
     <span class="kw">virtual</span> <span class="kw">double</span> <span class="fn">area</span>() <span class="kw">const</span> = <span class="kw">0</span>;
     <span class="kw">virtual</span> ~<span class="tag">Shape</span>() {}
@@ -653,49 +2070,102 @@ cl</code></pre>
         <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> <span class="val">"Area = "</span> <span class="attr">&lt;&lt;</span> s-><span class="fn">area</span>() <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
     }
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 6.1</div>
-                <p>Model a simple library system: a base class <code>Item</code> with <code>id</code> and
-                    <code>title</code>,
-                    then derive <code>Book</code> and <code>Magazine</code>. Override a virtual <code>printInfo()</code>
-                    method for each derived class.</p>
-            </div>
+    <h2>Abstract Classes</h2>
+    <p>
+        The <code>Shape</code> class in the previous example is an abstract class because it contains
+        a pure virtual function:
+    </p>
 
-            <!-- Skill-Based Cross-Reference -->
-            <div class="skill-reference">
-                <h3>🎯 Related Skills</h3>
-                <div class="skill-cards">
-                    <a href="java.html" class="skill-card">
-                        <span class="skill-icon">☕</span>
-                        <div class="skill-info">
-                            <strong>OOP in Java</strong>
-                            <span>Classes, inheritance, polymorphism</span>
-                        </div>
-                    </a>
-                    <a href="cc.html" class="skill-card">
-                        <span class="skill-icon">♯</span>
-                        <div class="skill-info">
-                            <strong>C# Classes</strong>
-                            <span>Object-oriented design patterns</span>
-                        </div>
-                    </a>
-                    <a href="python.html" class="skill-card">
-                        <span class="skill-icon">🐍</span>
-                        <div class="skill-info">
-                            <strong>Python OOP</strong>
-                            <span>Classes and inheritance</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-            </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">PureVirtual.cpp</span>
         </div>
+        <pre><span class="kw">virtual</span> <span class="kw">double</span> <span class="fn">area</span>() <span class="kw">const</span> = <span class="kw">0</span>;</pre>
+    </div>
+
+    <p>
+        Abstract classes cannot be instantiated directly. They serve as templates for derived classes.
+    </p>
+
+    <h2>Benefits of OOP</h2>
+    <ul>
+        <li>Improves code organization</li>
+        <li>Encourages code reuse</li>
+        <li>Makes applications easier to maintain</li>
+        <li>Helps manage large projects efficiently</li>
+        <li>Provides better security through encapsulation</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Forgetting to make functions virtual when overriding behavior</li>
+        <li>Using public data members everywhere</li>
+        <li>Not understanding constructor initialization lists</li>
+        <li>Confusing objects with classes</li>
+        <li>Forgetting to use <code>override</code> in derived classes</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 6.1</div>
+        <p>Model a simple library system: a base class <code>Item</code> with <code>id</code> and
+            <code>title</code>,
+            then derive <code>Book</code> and <code>Magazine</code>. Override a virtual <code>printInfo()</code>
+            method for each derived class.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🚀 Challenge Exercise</div>
+        <p>
+            Create a base class <code>Vehicle</code> with a virtual method
+            <code>startEngine()</code>. Derive classes such as
+            <code>Car</code>, <code>Bike</code>, and <code>Truck</code>,
+            then override the method in each derived class.
+        </p>
+    </div>
+
+    <div class="note">
+        <strong>🧠 Interview Insight:</strong>
+        OOP is one of the most commonly asked topics in technical interviews.
+        Questions related to inheritance, virtual functions, constructors,
+        and polymorphism appear frequently in C++ interviews.
+    </div>
+
+    <!-- Skill-Based Cross-Reference -->
+    <div class="skill-reference">
+        <h3>🎯 Related Skills</h3>
+        <div class="skill-cards">
+            <a href="java.html" class="skill-card">
+                <span class="skill-icon">☕</span>
+                <div class="skill-info">
+                    <strong>OOP in Java</strong>
+                    <span>Classes, inheritance, polymorphism</span>
+                </div>
+            </a>
+            <a href="cc.html" class="skill-card">
+                <span class="skill-icon">♯</span>
+                <div class="skill-info">
+                    <strong>C# Classes</strong>
+                    <span>Object-oriented design patterns</span>
+                </div>
+            </a>
+            <a href="python.html" class="skill-card">
+                <span class="skill-icon">🐍</span>
+                <div class="skill-info">
+                    <strong>Python OOP</strong>
+                    <span>Classes and inheritance</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 7 ===================== -->
         <div class="lecture" id="lec-6">
@@ -1240,7 +2710,7 @@ public:
                 <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
             </div>
         </div>
-
+</div>
             </div><!-- /content-column -->
 
             <!-- RIGHT AD COLUMN -->
@@ -1323,7 +2793,9 @@ public:
         <p>&copy; 2026 Code Tutorium. All rights reserved.</p>
       </div>
     </div>
-  </footer></body>
+  </footer>
+
+</body>
 </html>
 
 <!-- Search Modal -->

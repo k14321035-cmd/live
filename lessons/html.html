@@ -42,17 +42,22 @@
 
 <!-- MEGA NAVIGATION -->
 <nav class="lesson-mega-nav">
-    <div class="lesson-nav-container">
-        <div class="lesson-nav-left">
-            <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
-            <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
-        </div>
-        <div class="lesson-mega-menu">
-            <div class="lesson-mega-item">
-                <button class="lesson-mega-trigger">Courses<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></button>
-                <div class="lesson-mega-dropdown">
-                     <div class="lesson-mega-grid">
-                           <div class="lesson-mega-grid">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+            
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                      <div class="lesson-mega-grid">
                             <a href="python" class="lesson-mega-link ">Python</a>
                             <a href="c++" class="lesson-mega-link active">C++</a>
                             <a href="html" class="lesson-mega-link">HTML</a>
@@ -77,18 +82,22 @@
                             <a href="shell" class="lesson-mega-link">Shell</a>
                             <a href="ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
                         </div>
+                    </div>
                 </div>
+                
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
-            <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
-            <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <div class="lesson-nav-search">
-            <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </button>
-        </div>
-    </div>
-</nav>
+    </nav>
 
 <!-- SIDEBAR -->
 <nav id="sidebar">
@@ -145,170 +154,1599 @@
     <!-- 3-COLUMN CONTENT WRAPPER -->
     <div class="content-wrapper">
         
-        <!-- LEFT AD COLUMN -->
-        
+        <!-- LEFT AD COLUMN -->  
 
         <!-- CENTER CONTENT COLUMN -->
         <div class="content-column">
 
     <!-- LECTURE 1 -->
-    <div class="lecture active" id="lec-0">
-        <div class="lecture-tag">Lecture 01 · Foundations</div>
-        <h1>What is HTML?</h1>
-        <div class="lecture-meta">
-            <span class="meta-badge level-beginner">Beginner</span>
-            <span class="meta-badge">~40 min</span>
-            <span class="meta-badge">No prerequisites</span>
+  <div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Lecture 01 · Foundations</div>
+    <h1>What is HTML?</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~40 min</span>
+        <span class="meta-badge">No prerequisites</span>
+    </div>
+
+    <h2>Introduction to HTML</h2>
+
+    <p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It is the standard language
+        used to create and structure content on the web.</p>
+
+    <p>Every website you visit uses HTML in some form. HTML provides the structure of a webpage, similar to how
+        the skeleton provides structure to the human body.</p>
+
+    <p>With HTML, developers can create:</p>
+
+    <ul>
+        <li>Headings</li>
+        <li>Paragraphs</li>
+        <li>Images</li>
+        <li>Links</li>
+        <li>Tables</li>
+        <li>Forms</li>
+        <li>Navigation menus</li>
+        <li>Entire webpage layouts</li>
+    </ul>
+
+    <h2>What Does HyperText Mean?</h2>
+
+    <p><strong>HyperText</strong> refers to text that contains links connecting one page to another.</p>
+
+    <p>For example, when you click a link on a website and move to another page, you are using hypertext.</p>
+
+    <h2>What Does Markup Language Mean?</h2>
+
+    <p>A markup language uses special tags to describe the structure of content.</p>
+
+    <p>HTML tags tell the browser:</p>
+
+    <ul>
+        <li>Which text is a heading</li>
+        <li>Which content is a paragraph</li>
+        <li>Where images should appear</li>
+        <li>How content should be organised</li>
+    </ul>
+
+    <h2>Structure of an HTML Document</h2>
+
+    <p>A basic HTML page contains several important parts.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>&lt;!DOCTYPE html&gt;</code></td>
+                <td>Defines the document type</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;html&gt;</code></td>
+                <td>Root element of the webpage</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;head&gt;</code></td>
+                <td>Contains metadata and page information</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;body&gt;</code></td>
+                <td>Contains visible webpage content</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">hello.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
         </div>
 
-        <h2>Introduction to HTML</h2>
-        <p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It is the standard language used to create and structure content on the web.</p>
-        
-        <div class="code-block">
-            <div class="code-header"><span class="code-filename">hello.html</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
-            <pre><code>&lt;!DOCTYPE html&gt;
+        <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
+
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;title&gt;My First Page&lt;/title&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
   &lt;h1&gt;Hello, World!&lt;/h1&gt;
   &lt;p&gt;Welcome to &lt;strong&gt;HTML&lt;/strong&gt;.&lt;/p&gt;
 &lt;/body&gt;
+
 &lt;/html&gt;</code></pre>
+    </div>
+
+    <h2>Understanding the Example</h2>
+
+    <ul>
+        <li><code>&lt;h1&gt;</code> creates a main heading</li>
+        <li><code>&lt;p&gt;</code> creates a paragraph</li>
+        <li><code>&lt;strong&gt;</code> makes text bold and important</li>
+        <li><code>&lt;title&gt;</code> sets the browser tab title</li>
+    </ul>
+
+    <h2>How Browsers Read HTML</h2>
+
+    <p>Web browsers like Chrome, Firefox, and Edge read HTML files and convert them into visual webpages.</p>
+
+    <p>The browser does not display the tags themselves. Instead, it interprets them and renders the final page
+        for users.</p>
+
+    <h2>HTML Tags and Elements</h2>
+
+    <p>HTML uses tags enclosed inside angle brackets.</p>
+
+    <p>Example:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">tags.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
         </div>
 
-        <!-- WEB COMPILER -->
-        <div class="compiler-section">
-            <h2>🌐 Try It Yourself - Web Compiler</h2>
-            <p>Practice HTML, CSS, and JavaScript right here in your browser! Modify the code below and click "Run" to see your changes instantly.</p>
-            
-            <iframe src="../web-compiler.html" style="width: 100%; height: 650px; border: 1px solid var(--border); border-radius: 8px; margin: 1rem 0;" frameborder="0"></iframe>
-            
-            <div class="practice-tips">
-                <h4>💡 Practice Tips:</h4>
-                <ul>
-                    <li>Try changing the heading text and paragraph content</li>
-                    <li>Add new HTML elements like <strong>&lt;div&gt;</strong>, <strong>&lt;span&gt;</strong>, or <strong>&lt;ul&gt;</strong></li>
-                    <li>Switch to the CSS tab to add colors and styling</li>
-                    <li>Use the JavaScript tab to add interactivity</li>
-                    <li>Use <strong>Ctrl+Enter</strong> to quickly run your code</li>
-                </ul>
-            </div>
+        <pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></pre>
+    </div>
+
+    <p>In this example:</p>
+
+    <ul>
+        <li><code>&lt;p&gt;</code> is the opening tag</li>
+        <li><code>&lt;/p&gt;</code> is the closing tag</li>
+        <li>The text between them is the content</li>
+    </ul>
+
+    <h2>Common HTML Elements</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Element</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>&lt;h1&gt; to &lt;h6&gt;</code></td>
+                <td>Headings</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;p&gt;</code></td>
+                <td>Paragraph</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;a&gt;</code></td>
+                <td>Hyperlink</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;img&gt;</code></td>
+                <td>Image</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;ul&gt;</code></td>
+                <td>Unordered list</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;ol&gt;</code></td>
+                <td>Ordered list</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;div&gt;</code></td>
+                <td>Container element</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>HTML is Not a Programming Language</h2>
+
+    <p>HTML is a markup language, not a programming language.</p>
+
+    <p>It cannot perform calculations, create logic, or make decisions on its own.</p>
+
+    <p>HTML is commonly used together with:</p>
+
+    <ul>
+        <li><strong>CSS</strong> → for styling and design</li>
+        <li><strong>JavaScript</strong> → for interactivity and dynamic behaviour</li>
+    </ul>
+
+    <h2>Tools Needed for HTML Development</h2>
+
+    <p>To start writing HTML, you only need:</p>
+
+    <ul>
+        <li>A web browser</li>
+        <li>A text editor or code editor</li>
+    </ul>
+
+    <h2>Recommended Code Editors</h2>
+
+    <ul>
+        <li>
+            <a href="https://code.visualstudio.com/" target="_blank">
+                Visual Studio Code
+            </a>
+            — Most popular editor for web development
+        </li>
+
+        <li>
+            <a href="https://www.sublimetext.com/" target="_blank">
+                Sublime Text
+            </a>
+            — Lightweight and fast code editor
+        </li>
+
+        <li>
+            <a href="https://notepad-plus-plus.org/" target="_blank">
+                Notepad++
+            </a>
+            — Beginner-friendly editor for Windows
+        </li>
+    </ul>
+
+    <h2>Recommended Browsers</h2>
+
+    <ul>
+        <li>
+            <a href="https://www.google.com/chrome/" target="_blank">
+                Google Chrome
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.mozilla.org/firefox/" target="_blank">
+                Mozilla Firefox
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.microsoft.com/edge" target="_blank">
+                Microsoft Edge
+            </a>
+        </li>
+    </ul>
+
+    <h2>Saving an HTML File</h2>
+
+    <p>HTML files must be saved using the <code>.html</code> extension.</p>
+
+    <p>Example:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">filename.txt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
         </div>
 
-        <div class="exercise">
-            <div class="exercise-title">🎯 Exercise 1.1</div>
-            <p>Create a simple HTML page with your name as the title, add a heading, and a paragraph.</p>
-        </div>
+        <pre><code>index.html</code></pre>
+    </div>
 
-        <div class="lecture-nav">
-            <button class="nav-btn primary" data-lecture="1">Next Lecture →</button>
+    <p>After saving the file, double-click it to open it in your web browser.</p>
+
+    <!-- WEB COMPILER -->
+    <div class="compiler-section">
+        <h2>🌐 Try It Yourself - Web Compiler</h2>
+
+        <p>Practice HTML, CSS, and JavaScript right here in your browser! Modify the code below and click "Run"
+            to see your changes instantly.</p>
+
+        <iframe src="../web-compiler.html"
+            style="width: 100%; height: 650px; border: 1px solid var(--border); border-radius: 8px; margin: 1rem 0;"
+            frameborder="0"></iframe>
+
+        <div class="practice-tips">
+            <h4>💡 Practice Tips:</h4>
+
+            <ul>
+                <li>Try changing the heading text and paragraph content</li>
+                <li>Add new HTML elements like <strong>&lt;div&gt;</strong>,
+                    <strong>&lt;span&gt;</strong>, or <strong>&lt;ul&gt;</strong>
+                </li>
+                <li>Switch to the CSS tab to add colors and styling</li>
+                <li>Use the JavaScript tab to add interactivity</li>
+                <li>Use <strong>Ctrl+Enter</strong> to quickly run your code</li>
+            </ul>
         </div>
     </div>
 
+    <h2>Best Practices for Beginners</h2>
+
+    <ul>
+        <li>Always close tags properly</li>
+        <li>Use lowercase tag names</li>
+        <li>Indent code for readability</li>
+        <li>Use meaningful file names</li>
+        <li>Practice by creating small webpages daily</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.1</div>
+
+        <p>Create a simple HTML page with your name as the title, add a heading, and a paragraph.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.2</div>
+
+        <p>Create a webpage containing:</p>
+
+        <ul>
+            <li>One main heading</li>
+            <li>Two paragraphs</li>
+            <li>A list of your favourite hobbies</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 1.3</div>
+
+        <p>Create an <code>about.html</code> page introducing yourself with:</p>
+
+        <ul>
+            <li>Your name</li>
+            <li>Your goals</li>
+            <li>Your favourite programming language</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn primary" data-lecture="1">Next Lecture →</button>
+    </div>
+</div>
+
     <!-- LECTURE 2 -->
-    <div class="lecture" id="lec-1">
-        <div class="lecture-tag">Lecture 02 · Foundations</div>
-        <h1>Document Structure</h1>
-        <div class="lecture-meta">
-            <span class="meta-badge level-beginner">Beginner</span>
-            <span class="meta-badge">~45 min</span>
-            <span class="meta-badge">Requires: Lecture 01</span>
+ <div class="lecture" id="lec-1">
+    <div class="lecture-tag">Lecture 02 · Foundations</div>
+
+    <h1>Document Structure</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 01</span>
+    </div>
+
+    <h2>Introduction to HTML Document Structure</h2>
+
+    <p>Every HTML webpage follows a standard structure known as the <strong>HTML boilerplate</strong>.</p>
+
+    <p>This structure helps browsers correctly understand and display the webpage content.</p>
+
+    <p>A well-structured HTML document improves:</p>
+
+    <ul>
+        <li>Readability</li>
+        <li>Browser compatibility</li>
+        <li>SEO (Search Engine Optimization)</li>
+        <li>Maintainability</li>
+    </ul>
+
+    <h2>The HTML Boilerplate</h2>
+
+    <p>The following is the basic structure of a modern HTML5 document.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">boilerplate.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
         </div>
 
-        <h2>The HTML Boilerplate</h2>
-        <div class="code-block">
-            <div class="code-header"><span class="code-filename">boilerplate.html</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
-            <pre><code>&lt;!DOCTYPE html&gt;
+        <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
+
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
   &lt;title&gt;Page Title&lt;/title&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
   &lt;!-- Content here --&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-        </div>
 
-        <div class="lecture-nav">
-            <button class="nav-btn" data-lecture="0">← Previous</button>
-            <button class="nav-btn primary" data-lecture="2">Next Lecture →</button>
-        </div>
+&lt;/html&gt;</code></pre>
     </div>
 
-    <!-- LECTURE 3 -->
-    <div class="lecture" id="lec-2">
-        <div class="lecture-tag">Lecture 03 · Foundations</div>
-        <h1>Text & Typography</h1>
-        <div class="lecture-meta">
-            <span class="meta-badge level-beginner">Beginner</span>
-            <span class="meta-badge">~50 min</span>
-            <span class="meta-badge">Requires: Lecture 02</span>
+    <h2>Understanding Each Part</h2>
+
+    <p>Let us break down the document structure step by step.</p>
+
+    <h3>&lt;!DOCTYPE html&gt;</h3>
+
+    <p>This declaration tells the browser that the document uses HTML5.</p>
+
+    <p>Without it, browsers may switch to older rendering modes that can cause layout issues.</p>
+
+    <h3>&lt;html&gt;</h3>
+
+    <p>The <code>&lt;html&gt;</code> tag is the root element of the webpage.</p>
+
+    <p>Everything inside the webpage must be placed between:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">html-tag.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
         </div>
 
-        <h2>Headings Hierarchy</h2>
-        <div class="code-block">
-            <pre><code>&lt;h1&gt;Main Page Title&lt;/h1&gt;
+        <pre><code>&lt;html&gt;
+  ...
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <h3>The <code>lang</code> Attribute</h3>
+
+    <p>The <code>lang="en"</code> attribute specifies the language of the webpage.</p>
+
+    <p>This helps:</p>
+
+    <ul>
+        <li>Search engines understand the page language</li>
+        <li>Screen readers improve accessibility</li>
+        <li>Browsers provide better translation support</li>
+    </ul>
+
+    <h3>&lt;head&gt;</h3>
+
+    <p>The <code>&lt;head&gt;</code> section contains information about the webpage that is not directly visible
+        on the page.</p>
+
+    <p>Common elements inside the head section include:</p>
+
+    <ul>
+        <li>Page title</li>
+        <li>Meta tags</li>
+        <li>CSS links</li>
+        <li>JavaScript files</li>
+        <li>Icons and fonts</li>
+    </ul>
+
+    <h3>&lt;meta charset="UTF-8"&gt;</h3>
+
+    <p>This meta tag sets the character encoding to UTF-8.</p>
+
+    <p>UTF-8 supports most characters and symbols used worldwide.</p>
+
+    <p>Without proper encoding, some text may display incorrectly.</p>
+
+    <h3>&lt;meta name="viewport"&gt;</h3>
+
+    <p>This tag helps webpages display correctly on mobile devices.</p>
+
+    <p>It makes responsive design possible by controlling page scaling and width.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">viewport.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+    </div>
+
+    <h3>&lt;title&gt;</h3>
+
+    <p>The <code>&lt;title&gt;</code> tag defines the title shown in the browser tab.</p>
+
+    <p>Example:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">title.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;title&gt;My Portfolio&lt;/title&gt;</code></pre>
+    </div>
+
+    <p>This title also appears in search engine results.</p>
+
+    <h3>&lt;body&gt;</h3>
+
+    <p>The <code>&lt;body&gt;</code> section contains all visible webpage content.</p>
+
+    <p>Examples include:</p>
+
+    <ul>
+        <li>Headings</li>
+        <li>Paragraphs</li>
+        <li>Images</li>
+        <li>Buttons</li>
+        <li>Navigation menus</li>
+        <li>Videos</li>
+    </ul>
+
+    <h2>Comments in HTML</h2>
+
+    <p>Comments are notes written inside the code that browsers ignore.</p>
+
+    <p>They help developers explain sections of code.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">comments.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;!-- This is a comment --&gt;</code></pre>
+    </div>
+
+    <h2>Indentation and Formatting</h2>
+
+    <p>Indentation makes HTML code easier to read and maintain.</p>
+
+    <p>Compare the following examples:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">bad-format.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;body&gt;
+&lt;h1&gt;Title&lt;/h1&gt;
+&lt;p&gt;Paragraph&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">good-format.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;body&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;Paragraph&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+    </div>
+
+    <p>Proper formatting becomes extremely important in large projects.</p>
+
+    <h2>HTML5 Semantic Structure</h2>
+
+    <p>Modern HTML uses semantic elements that describe the meaning of content.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Element</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>&lt;header&gt;</code></td>
+                <td>Top section of a webpage</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;nav&gt;</code></td>
+                <td>Navigation links</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;main&gt;</code></td>
+                <td>Main page content</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;section&gt;</code></td>
+                <td>Content section</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;article&gt;</code></td>
+                <td>Independent content block</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;footer&gt;</code></td>
+                <td>Bottom section of the page</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Example Semantic Layout</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">semantic-layout.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;body&gt;
+
+  &lt;header&gt;
+    &lt;h1&gt;My Website&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;nav&gt;
+    Navigation Menu
+  &lt;/nav&gt;
+
+  &lt;main&gt;
+    Main Content
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    Copyright 2026
+  &lt;/footer&gt;
+
+&lt;/body&gt;</code></pre>
+    </div>
+
+    <h2>Creating Your First HTML File</h2>
+
+    <ol>
+        <li>Open your code editor</li>
+        <li>Create a new file</li>
+        <li>Save it with a <code>.html</code> extension</li>
+        <li>Write the HTML boilerplate</li>
+        <li>Open the file in your browser</li>
+    </ol>
+
+    <h2>Useful VS Code Extensions</h2>
+
+    <ul>
+        <li>
+            <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
+                target="_blank">
+                Live Server
+            </a>
+            — Automatically reloads webpages during development
+        </li>
+
+        <li>
+            <a href="https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css"
+                target="_blank">
+                HTML CSS Support
+            </a>
+            — Better autocomplete support for HTML and CSS
+        </li>
+
+        <li>
+            <a href="https://emmet.io/" target="_blank">
+                Emmet
+            </a>
+            — Write HTML faster using shortcuts
+        </li>
+    </ul>
+
+    <h2>Emmet Example</h2>
+
+    <p>Typing the following in VS Code:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">emmet.txt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>!</code></pre>
+    </div>
+
+    <p>and pressing <strong>Tab</strong> automatically generates the complete HTML boilerplate.</p>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Always use the HTML5 doctype</li>
+        <li>Keep code properly indented</li>
+        <li>Use semantic tags whenever possible</li>
+        <li>Write meaningful page titles</li>
+        <li>Organise code cleanly from the beginning</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.1</div>
+
+        <p>Create a complete HTML5 boilerplate manually without copying the example.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.2</div>
+
+        <p>Create a webpage with:</p>
+
+        <ul>
+            <li>A page title</li>
+            <li>A heading</li>
+            <li>One paragraph</li>
+            <li>A footer section</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 2.3</div>
+
+        <p>Create a semantic webpage using:</p>
+
+        <ul>
+            <li><code>&lt;header&gt;</code></li>
+            <li><code>&lt;nav&gt;</code></li>
+            <li><code>&lt;main&gt;</code></li>
+            <li><code>&lt;footer&gt;</code></li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" data-lecture="0">← Previous</button>
+        <button class="nav-btn primary" data-lecture="2">Next Lecture →</button>
+    </div>
+</div>
+
+    <!-- LECTURE 3 -->
+   <div class="lecture" id="lec-2">
+
+    <div class="lecture-tag">Lecture 03 · Foundations</div>
+
+    <h1>Text & Typography</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~50 min</span>
+        <span class="meta-badge">Requires: Lecture 02</span>
+    </div>
+
+    <h2>Introduction to Text in HTML</h2>
+
+    <p>Text is one of the most important parts of every webpage. HTML provides several elements to structure and
+        format text properly.</p>
+
+    <p>Good typography improves:</p>
+
+    <ul>
+        <li>Readability</li>
+        <li>User experience</li>
+        <li>Accessibility</li>
+        <li>Search engine optimisation</li>
+    </ul>
+
+    <p>HTML text elements help browsers and search engines understand the importance of content on a webpage.</p>
+
+    <h2>Headings Hierarchy</h2>
+
+    <p>HTML provides six heading levels from <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>.</p>
+
+    <p>These headings create a content hierarchy similar to chapters and subheadings in a book.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">headings.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;h1&gt;Main Page Title&lt;/h1&gt;
 &lt;h2&gt;Major Section&lt;/h2&gt;
 &lt;h3&gt;Subsection&lt;/h3&gt;
 &lt;h4&gt;Sub-subsection&lt;/h4&gt;</code></pre>
+    </div>
+
+    <h2>Heading Levels Explained</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Heading</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>&lt;h1&gt;</code></td>
+                <td>Main title of the webpage</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;h2&gt;</code></td>
+                <td>Main section heading</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;h3&gt;</code></td>
+                <td>Subsection heading</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;h4&gt; - &lt;h6&gt;</code></td>
+                <td>Smaller nested sections</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Importance of Proper Heading Structure</h2>
+
+    <p>Headings are not only used for making text bigger. They provide semantic meaning to content.</p>
+
+    <p>Proper heading usage helps:</p>
+
+    <ul>
+        <li>Search engines understand page structure</li>
+        <li>Screen readers improve accessibility</li>
+        <li>Users quickly scan content</li>
+    </ul>
+
+    <p>A webpage should usually contain only one primary <code>&lt;h1&gt;</code>.</p>
+
+    <h2>Paragraphs</h2>
+
+    <p>The <code>&lt;p&gt;</code> tag is used to create paragraphs.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">paragraphs.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
         </div>
 
-        <div class="lecture-nav">
-            <button class="nav-btn" data-lecture="1">← Previous</button>
-            <button class="nav-btn primary" data-lecture="3">Next Lecture →</button>
-        </div>
+        <pre><code>&lt;p&gt;HTML is the foundation of web development.&lt;/p&gt;
+
+&lt;p&gt;It helps structure content on webpages.&lt;/p&gt;</code></pre>
     </div>
+
+    <p>Browsers automatically add spacing before and after paragraphs.</p>
+
+    <h2>Line Breaks</h2>
+
+    <p>The <code>&lt;br&gt;</code> tag inserts a line break.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">line-break.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;p&gt;
+Hello&lt;br&gt;
+Welcome to HTML
+&lt;/p&gt;</code></pre>
+    </div>
+
+    <p>The <code>&lt;br&gt;</code> tag does not require a closing tag.</p>
+
+    <h2>Horizontal Rules</h2>
+
+    <p>The <code>&lt;hr&gt;</code> tag creates a horizontal line used to separate content sections.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">horizontal-rule.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;h2&gt;Chapter 1&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Chapter 2&lt;/h2&gt;</code></pre>
+    </div>
+
+    <h2>Bold and Important Text</h2>
+
+    <p>HTML provides multiple ways to emphasise text.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>&lt;b&gt;</code></td>
+                <td>Bold text without semantic importance</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;strong&gt;</code></td>
+                <td>Important text with semantic meaning</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">bold-text.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;p&gt;
+&lt;strong&gt;Warning:&lt;/strong&gt; Save your work regularly.
+&lt;/p&gt;</code></pre>
+    </div>
+
+    <h2>Italic and Emphasised Text</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>&lt;i&gt;</code></td>
+                <td>Italic text without emphasis</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;em&gt;</code></td>
+                <td>Text with emphasis</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">italic.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;p&gt;
+&lt;em&gt;Important:&lt;/em&gt; Complete the assignment today.
+&lt;/p&gt;</code></pre>
+    </div>
+
+    <h2>Small Text</h2>
+
+    <p>The <code>&lt;small&gt;</code> tag displays smaller-sized text.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">small.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;p&gt;
+Copyright &lt;small&gt;2026&lt;/small&gt;
+&lt;/p&gt;</code></pre>
+    </div>
+
+    <h2>Subscript and Superscript</h2>
+
+    <p>These tags are commonly used in mathematics and chemistry.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>Example Usage</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>&lt;sub&gt;</code></td>
+                <td>H₂O</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;sup&gt;</code></td>
+                <td>x²</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">subsup.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+
+&lt;p&gt;x&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</code></pre>
+    </div>
+
+    <h2>Preformatted Text</h2>
+
+    <p>The <code>&lt;pre&gt;</code> tag preserves spaces and line breaks exactly as written.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">preformatted.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;pre&gt;
+Line 1
+    Line 2
+        Line 3
+&lt;/pre&gt;</code></pre>
+    </div>
+
+    <h2>Code Text</h2>
+
+    <p>The <code>&lt;code&gt;</code> tag is used for displaying programming code.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">code-tag.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;p&gt;
+Use the &lt;code&gt;print()&lt;/code&gt; function in Python.
+&lt;/p&gt;</code></pre>
+    </div>
+
+    <h2>Quotations</h2>
+
+    <p>HTML provides tags for quotations and cited text.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>&lt;blockquote&gt;</code></td>
+                <td>Long quotation</td>
+            </tr>
+
+            <tr>
+                <td><code>&lt;q&gt;</code></td>
+                <td>Short inline quotation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">quote.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;q&gt;Knowledge is power.&lt;/q&gt;</code></pre>
+    </div>
+
+    <h2>HTML Entities</h2>
+
+    <p>Some characters are reserved in HTML and must be written using entities.</p>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Character</th>
+                <th>Entity</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>&lt;</td>
+                <td><code>&amp;lt;</code></td>
+            </tr>
+
+            <tr>
+                <td>&gt;</td>
+                <td><code>&amp;gt;</code></td>
+            </tr>
+
+            <tr>
+                <td>&amp;</td>
+                <td><code>&amp;amp;</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Typography Best Practices</h2>
+
+    <ul>
+        <li>Use headings in proper order</li>
+        <li>Avoid skipping heading levels unnecessarily</li>
+        <li>Keep paragraphs short and readable</li>
+        <li>Use semantic tags like <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code></li>
+        <li>Do not overuse bold or italic text</li>
+    </ul>
+
+    <h2>Useful Typography Resources</h2>
+
+    <ul>
+        <li>
+            <a href="https://fonts.google.com/" target="_blank">
+                Google Fonts
+            </a>
+            — Free fonts for web design
+        </li>
+
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                target="_blank">
+                MDN HTML Documentation
+            </a>
+            — Official HTML reference and tutorials
+        </li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.1</div>
+
+        <p>Create a webpage containing all heading levels from <code>&lt;h1&gt;</code> to
+            <code>&lt;h6&gt;</code>.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.2</div>
+
+        <p>Create a webpage with:</p>
+
+        <ul>
+            <li>Three paragraphs</li>
+            <li>Bold and italic text</li>
+            <li>A horizontal rule</li>
+            <li>One quotation</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 3.3</div>
+
+        <p>Create a mini article page using:</p>
+
+        <ul>
+            <li>Headings</li>
+            <li>Paragraphs</li>
+            <li>Line breaks</li>
+            <li>Subscript or superscript text</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" data-lecture="1">← Previous</button>
+        <button class="nav-btn primary" data-lecture="3">Next Lecture →</button>
+    </div>
+
+</div>
 
     <!-- LECTURE 4 -->
     <div class="lecture" id="lec-3">
-        <div class="lecture-tag">Lecture 04 · Foundations</div>
-        <h1>Links & Navigation</h1>
-        <div class="lecture-meta">
-            <span class="meta-badge level-beginner">Beginner</span>
-            <span class="meta-badge">~45 min</span>
-            <span class="meta-badge">Requires: Lecture 03</span>
-        </div>
 
-        <h2>The Anchor Tag</h2>
-        <div class="code-block">
-            <pre><code>&lt;!-- External link --&gt;
-&lt;a href="https://example.com"&gt;Visit&lt;/a&gt;
+    <div class="lecture-tag">Lecture 04 · Foundations</div>
 
-&lt;!-- New tab --&gt;
-&lt;a href="..." target="_blank" rel="noopener"&gt;Open New Tab&lt;/a&gt;
+    <h1>Links & Navigation</h1>
 
-&lt;!-- Email --&gt;
-&lt;a href="mailto:email@example.com"&gt;Email&lt;/a&gt;
-
-&lt;!-- Anchor --&gt;
-&lt;a href="#section"&gt;Jump&lt;/a&gt;
-&lt;h2 id="section"&gt;Section&lt;/h2&gt;</code></pre>
-        </div>
-
-        <div class="lecture-nav">
-            <button class="nav-btn" data-lecture="2">← Previous</button>
-            <button class="nav-btn primary" data-lecture="4">Next Lecture →</button>
-        </div>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 03</span>
     </div>
 
-    <!-- LECTURE 5 -->
-    <div class="lecture" id="lec-4">
-        <div class="lecture-tag">Lecture 05 · Foundations</div>
-        <h1>Images & Media</h1>
-        <div class="lecture-meta">
-            <span class="meta-badge level-beginner">Beginner</span>
-            <span class="meta-badge">~50 min</span>
-            <span class="meta-badge">Requires: Lecture 04</span>
+    <h2>Introduction to Links</h2>
+
+    <p>Links are one of the most important features of the web.</p>
+
+    <p>They allow users to move between webpages, websites, sections, documents, and resources.</p>
+
+    <p>HTML uses the <code>&lt;a&gt;</code> tag, also called the <strong>anchor tag</strong>, to create
+        hyperlinks.</p>
+
+    <h2>The Anchor Tag</h2>
+
+    <p>The basic syntax of a hyperlink is:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">basic-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
         </div>
 
-        <h2>Adding Images</h2>
-        <div class="code-block">
-            <pre><code>&lt;!-- Basic image --&gt;
+        <pre><code>&lt;a href="https://example.com"&gt;Visit Website&lt;/a&gt;</code></pre>
+    </div>
+
+    <p>The <code>href</code> attribute specifies the destination URL.</p>
+
+    <h2>Types of Links</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>External Link</td>
+                <td>Opens another website</td>
+            </tr>
+
+            <tr>
+                <td>Internal Link</td>
+                <td>Opens another page within the same website</td>
+            </tr>
+
+            <tr>
+                <td>Anchor Link</td>
+                <td>Jumps to a section on the same page</td>
+            </tr>
+
+            <tr>
+                <td>Email Link</td>
+                <td>Opens the user's email application</td>
+            </tr>
+
+            <tr>
+                <td>Telephone Link</td>
+                <td>Starts a phone call on supported devices</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>External Links</h2>
+
+    <p>External links connect users to other websites.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">external-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="https://www.google.com"&gt;
+  Visit Google
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Opening Links in a New Tab</h2>
+
+    <p>The <code>target="_blank"</code> attribute opens the link in a new browser tab.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">new-tab.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="https://example.com"
+   target="_blank"
+   rel="noopener"&gt;
+
+   Open New Tab
+
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Why Use <code>rel="noopener"</code>?</h2>
+
+    <p>The <code>rel="noopener"</code> attribute improves security when opening new tabs.</p>
+
+    <p>It prevents the new webpage from accessing the original page through JavaScript.</p>
+
+    <h2>Internal Links</h2>
+
+    <p>Internal links connect pages inside the same website.</p>
+
+    <p>Example folder structure:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">project-structure.txt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>project/
+│
+├── index.html
+├── about.html
+└── contact.html</code></pre>
+    </div>
+
+    <p>Example internal link:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">internal-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="about.html"&gt;
+  About Us
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Anchor Links</h2>
+
+    <p>Anchor links jump to specific sections on the same webpage.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">anchor-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="#section"&gt;Jump to Section&lt;/a&gt;
+
+&lt;h2 id="section"&gt;Section&lt;/h2&gt;</code></pre>
+    </div>
+
+    <p>The <code>id</code> attribute identifies the target element.</p>
+
+    <h2>Email Links</h2>
+
+    <p>The <code>mailto:</code> protocol opens the user's default email application.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">email-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="mailto:email@example.com"&gt;
+  Send Email
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Telephone Links</h2>
+
+    <p>The <code>tel:</code> protocol is mainly used on mobile devices for phone calls.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">telephone-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="tel:+1234567890"&gt;
+  Call Now
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Download Links</h2>
+
+    <p>The <code>download</code> attribute allows users to download files instead of opening them.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">download-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="notes.pdf" download&gt;
+  Download Notes
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Images as Links</h2>
+
+    <p>An image can also be wrapped inside an anchor tag.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">image-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="https://example.com"&gt;
+  &lt;img src="logo.png" alt="Logo"&gt;
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Navigation Menus</h2>
+
+    <p>Navigation menus help users move through a website.</p>
+
+    <p>HTML commonly uses the <code>&lt;nav&gt;</code> element for navigation sections.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">navigation.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;nav&gt;
+  &lt;a href="index.html"&gt;Home&lt;/a&gt;
+  &lt;a href="about.html"&gt;About&lt;/a&gt;
+  &lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+
+    <h2>Relative vs Absolute URLs</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Relative URL</td>
+                <td><code>about.html</code></td>
+            </tr>
+
+            <tr>
+                <td>Absolute URL</td>
+                <td><code>https://example.com/about.html</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Link States</h2>
+
+    <p>Links can have different visual states:</p>
+
+    <ul>
+        <li><strong>Unvisited</strong></li>
+        <li><strong>Visited</strong></li>
+        <li><strong>Hovered</strong></li>
+        <li><strong>Active</strong></li>
+    </ul>
+
+    <p>These states are usually styled using CSS.</p>
+
+    <h2>Accessibility Tips for Links</h2>
+
+    <ul>
+        <li>Use descriptive link text</li>
+        <li>Avoid generic text like "Click Here"</li>
+        <li>Make links easy to identify visually</li>
+        <li>Use meaningful navigation labels</li>
+    </ul>
+
+    <h2>Bad vs Good Link Text</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">bad-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="course.html"&gt;Click Here&lt;/a&gt;</code></pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">good-link.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;a href="course.html"&gt;
+  View HTML Course
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Useful Resources</h2>
+
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"
+                target="_blank">
+                MDN Anchor Tag Documentation
+            </a>
+            — Official documentation for the anchor tag
+        </li>
+
+        <li>
+            <a href="https://validator.w3.org/"
+                target="_blank">
+                W3C HTML Validator
+            </a>
+            — Validate your HTML code for errors
+        </li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Forgetting the <code>href</code> attribute</li>
+        <li>Using broken file paths</li>
+        <li>Opening every link in a new tab unnecessarily</li>
+        <li>Using unclear link text</li>
+        <li>Forgetting to close the anchor tag</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.1</div>
+
+        <p>Create a webpage containing:</p>
+
+        <ul>
+            <li>One external link</li>
+            <li>One internal link</li>
+            <li>One email link</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.2</div>
+
+        <p>Create a navigation menu with links for:</p>
+
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Services</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 4.3</div>
+
+        <p>Create a long webpage with multiple sections and use anchor links to jump between them.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" data-lecture="2">← Previous</button>
+        <button class="nav-btn primary" data-lecture="4">Next Lecture →</button>
+    </div>
+
+</div>
+
+    <!-- LECTURE 5 -->
+  <div class="lecture" id="lec-4">
+
+    <div class="lecture-tag">Lecture 05 · Foundations</div>
+
+    <h1>Images & Media</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~50 min</span>
+        <span class="meta-badge">Requires: Lecture 04</span>
+    </div>
+
+    <h2>Introduction to Media in HTML</h2>
+
+    <p>Websites become more engaging when they include images, audio, videos, and other media elements.</p>
+
+    <p>HTML provides built-in tags for displaying media content directly inside webpages.</p>
+
+    <p>In this lecture, you will learn how to:</p>
+
+    <ul>
+        <li>Add images to webpages</li>
+        <li>Display captions</li>
+        <li>Embed audio and video</li>
+        <li>Use responsive media</li>
+        <li>Improve accessibility with media elements</li>
+    </ul>
+
+    <h2>Adding Images</h2>
+
+    <p>The <code>&lt;img&gt;</code> tag is used to display images in HTML.</p>
+
+    <p>Unlike many HTML elements, the image tag does not have a closing tag.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">images.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;!-- Basic image --&gt;
 &lt;img src="photo.jpg" alt="Description"&gt;
 
 &lt;!-- With dimensions --&gt;
@@ -320,13 +1758,373 @@
   &lt;img src="chart.png" alt="Chart"&gt;
   &lt;figcaption&gt;Figure 1: Sales&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
+    </div>
+
+    <h2>Important Image Attributes</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>src</code></td>
+                <td>Specifies the image file path</td>
+            </tr>
+
+            <tr>
+                <td><code>alt</code></td>
+                <td>Alternative text for accessibility</td>
+            </tr>
+
+            <tr>
+                <td><code>width</code></td>
+                <td>Sets image width</td>
+            </tr>
+
+            <tr>
+                <td><code>height</code></td>
+                <td>Sets image height</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>The Importance of Alt Text</h2>
+
+    <p>The <code>alt</code> attribute is extremely important for accessibility and SEO.</p>
+
+    <p>Screen readers use alt text to describe images to visually impaired users.</p>
+
+    <p>If an image fails to load, the alt text is displayed instead.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">alt-text.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
         </div>
 
-        <div class="lecture-nav">
-            <button class="nav-btn" data-lecture="3">← Previous</button>
-            <button class="nav-btn primary" data-lecture="5">Next Lecture →</button>
-        </div>
+        <pre><code>&lt;img src="cat.jpg"
+     alt="A white cat sitting on a chair"&gt;</code></pre>
     </div>
+
+    <h2>Image File Formats</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Format</th>
+                <th>Best Used For</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>JPG / JPEG</td>
+                <td>Photographs and realistic images</td>
+            </tr>
+
+            <tr>
+                <td>PNG</td>
+                <td>Transparent backgrounds and graphics</td>
+            </tr>
+
+            <tr>
+                <td>SVG</td>
+                <td>Icons and vector graphics</td>
+            </tr>
+
+            <tr>
+                <td>GIF</td>
+                <td>Simple animations</td>
+            </tr>
+
+            <tr>
+                <td>WebP</td>
+                <td>Modern compressed web images</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Image Paths</h2>
+
+    <p>Images can be loaded using relative or absolute paths.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">paths.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;!-- Relative path --&gt;
+&lt;img src="images/photo.jpg" alt="Photo"&gt;
+
+&lt;!-- Absolute URL --&gt;
+&lt;img src="https://example.com/photo.jpg"
+     alt="Online Photo"&gt;</code></pre>
+    </div>
+
+    <h2>Figure and Figcaption</h2>
+
+    <p>The <code>&lt;figure&gt;</code> element groups media content together.</p>
+
+    <p>The <code>&lt;figcaption&gt;</code> tag provides a caption for the content.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">figure.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;figure&gt;
+
+  &lt;img src="nature.jpg" alt="Nature"&gt;
+
+  &lt;figcaption&gt;
+    Beautiful mountain landscape
+  &lt;/figcaption&gt;
+
+&lt;/figure&gt;</code></pre>
+    </div>
+
+    <h2>Responsive Images</h2>
+
+    <p>Responsive images automatically adjust to different screen sizes.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">responsive-image.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;img src="photo.jpg"
+     alt="Responsive image"
+     style="max-width:100%; height:auto;"&gt;</code></pre>
+    </div>
+
+    <p>This technique prevents images from overflowing on smaller screens.</p>
+
+    <h2>Adding Audio</h2>
+
+    <p>The <code>&lt;audio&gt;</code> tag embeds sound files into webpages.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">audio.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;audio controls&gt;
+  &lt;source src="music.mp3" type="audio/mpeg"&gt;
+  Your browser does not support audio.
+&lt;/audio&gt;</code></pre>
+    </div>
+
+    <h2>Audio Attributes</h2>
+
+    <table class="tbl-wrap">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><code>controls</code></td>
+                <td>Displays play/pause buttons</td>
+            </tr>
+
+            <tr>
+                <td><code>autoplay</code></td>
+                <td>Automatically starts audio</td>
+            </tr>
+
+            <tr>
+                <td><code>loop</code></td>
+                <td>Repeats the audio continuously</td>
+            </tr>
+
+            <tr>
+                <td><code>muted</code></td>
+                <td>Starts audio muted</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Adding Video</h2>
+
+    <p>The <code>&lt;video&gt;</code> tag is used for embedding videos.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">video.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;video width="640"
+       height="360"
+       controls&gt;
+
+  &lt;source src="movie.mp4"
+          type="video/mp4"&gt;
+
+  Your browser does not support video.
+
+&lt;/video&gt;</code></pre>
+    </div>
+
+    <h2>Embedding YouTube Videos</h2>
+
+    <p>YouTube videos are commonly embedded using an iframe.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">youtube.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;iframe width="560"
+        height="315"
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="YouTube video"
+        allowfullscreen&gt;
+
+&lt;/iframe&gt;</code></pre>
+    </div>
+
+    <h2>Poster Images for Videos</h2>
+
+    <p>The <code>poster</code> attribute displays an image before the video starts.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">poster.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;video controls
+       poster="thumbnail.jpg"&gt;
+
+  &lt;source src="movie.mp4"
+          type="video/mp4"&gt;
+
+&lt;/video&gt;</code></pre>
+    </div>
+
+    <h2>Accessibility Tips for Media</h2>
+
+    <ul>
+        <li>Always include descriptive alt text for images</li>
+        <li>Add captions or transcripts for videos</li>
+        <li>Avoid autoplay audio when possible</li>
+        <li>Use accessible file names</li>
+        <li>Ensure media works on mobile devices</li>
+    </ul>
+
+    <h2>Performance Best Practices</h2>
+
+    <ul>
+        <li>Compress large images before uploading</li>
+        <li>Use modern formats like WebP</li>
+        <li>Avoid extremely large image dimensions</li>
+        <li>Optimise videos for faster loading</li>
+        <li>Use lazy loading for better performance</li>
+    </ul>
+
+    <h2>Lazy Loading Images</h2>
+
+    <p>Lazy loading delays image loading until the image becomes visible on screen.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-filename">lazy-loading.html</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        </div>
+
+        <pre><code>&lt;img src="photo.jpg"
+     alt="Photo"
+     loading="lazy"&gt;</code></pre>
+    </div>
+
+    <h2>Useful Resources</h2>
+
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"
+                target="_blank">
+                MDN Image Tag Documentation
+            </a>
+            — Official guide for the image element
+        </li>
+
+        <li>
+            <a href="https://tinypng.com/"
+                target="_blank">
+                TinyPNG
+            </a>
+            — Compress PNG and JPG images
+        </li>
+
+        <li>
+            <a href="https://squoosh.app/"
+                target="_blank">
+                Squoosh
+            </a>
+            — Optimise images for the web
+        </li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Forgetting the <code>alt</code> attribute</li>
+        <li>Using huge image sizes</li>
+        <li>Incorrect file paths</li>
+        <li>Stretching images unnaturally</li>
+        <li>Using autoplay audio excessively</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.1</div>
+
+        <p>Create a webpage containing:</p>
+
+        <ul>
+            <li>One image</li>
+            <li>An image caption</li>
+            <li>Proper alt text</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.2</div>
+
+        <p>Create a webpage with:</p>
+
+        <ul>
+            <li>An embedded audio file</li>
+            <li>A video player</li>
+            <li>A YouTube iframe embed</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 5.3</div>
+
+        <p>Create a small gallery page using multiple responsive images.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" data-lecture="3">← Previous</button>
+        <button class="nav-btn primary" data-lecture="5">Next Lecture →</button>
+    </div>
+
+</div>
 
     <!-- LECTURE 6 -->
     <div class="lecture" id="lec-5">

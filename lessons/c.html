@@ -144,18 +144,35 @@
                     class="dot"></span>Capstone Project</button>
         </div>
     </nav>
-
-    <!-- MAIN -->
+   <!-- MAIN -->
     <div id="main">
         <div id="topbar">
             <div class="breadcrumb">
                 <span>C Mastery</span>
                 <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">What is C?</span>
             </div>
-        </aside>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:8%"></div>
+                </div>
+            </div>
+            <button class="share-btn" onclick="copyLectureLink()" title="Copy link to this lecture">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Share
+            </button>
+        </div>
 
-        <!-- CENTER CONTENT COLUMN -->
-        <div class="content-column">
+        <!-- 3-COLUMN CONTENT WRAPPER -->
+        <div class="content-wrapper">
+            <!-- LEFT AD COLUMN -->
+            
+            <!-- CENTER CONTENT COLUMN -->
+            <div class="content-column">
 
         <!-- ===================== LECTURE 1 ===================== -->
         <div class="lecture active" id="lec-0">
@@ -1600,6 +1617,9 @@ Student *<span class="fn">db_find</span>  (StudentDB *db, <span class="tp">int</
 
     </div><!-- /content-wrapper -->
 
+
+
+
     <script>
         const titles = [
             "Intro to C",
@@ -1619,7 +1639,7 @@ Student *<span class="fn">db_find</span>  (StudentDB *db, <span class="tp">int</
         initLessons(titles);
     </script>
   <!-- FOOTER -->
-  <footer id="footer-grid">
+   <footer id="footer-grid">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
@@ -1673,29 +1693,12 @@ Student *<span class="fn">db_find</span>  (StudentDB *db, <span class="tp">int</
         <p>&copy; 2026 Code Tutorium. All rights reserved.</p>
       </div>
     </div>
-  </footer></body>
+  </footer>
+
+
+</body>
 </html>
 
-<div id="search-overlay" class="search-overlay"></div>
-<div id="search-box" class="search-box">
-    <div class="search-header">
-        <div class="search-input-wrap">
-            <svg class="search-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <input type="text" id="search-input" class="search-input" placeholder="Search tutorials, lessons, topics..." autocomplete="off">
-            <span class="search-esc">ESC</span>
-        </div>
-    </div>
-    <div id="search-results" class="search-results"></div>
-    <div class="search-hint">
-        <div class="search-hint-row"><span class="sh-icon">↓</span> Navigate</div>
-        <div class="search-hint-row"><span class="sh-icon">↵</span> Select</div>
-        <div class="search-hint-row"><span class="sh-icon">ESC</span> Close</div>
-    </div>
-</div>
 
-<script src="../search.js"></script>
 
 
