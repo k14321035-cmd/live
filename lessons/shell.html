@@ -103,7 +103,7 @@
                 <span class="logo-icon">🐚</span>
                 Shell Mastery
             </a>
-            <p>Complete Course — 12 Lessons</p>
+            <p>Complete Course — 14 Lessons</p>
         </div>
 
         <div class="nav-section">
@@ -140,6 +140,10 @@
                     class="dot"></span>DevOps & Automation</button>
             <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
                     class="dot"></span>Capstone Project</button>
+            <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span
+                    class="dot"></span>Advanced Shell Patterns</button>
+            <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span
+                    class="dot"></span>Final Project</button>
         </div>
     </nav>
 
@@ -229,7 +233,500 @@ echo "Today is $(date)"</pre>
                     </div>
                 </div>
 
-                <!-- Lectures 2–12 are fully written with rich, practical content matching the quality of all previous courses. -->
+                <!-- ===================== LECTURE 02 ===================== -->
+<div class="lecture" id="lec-1">
+<div class="lecture-tag">Lecture 02 · Fundamentals</div>
+<h1>Variables & Data Types</h1>
+<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
+<h2>Shell Variables</h2>
+<p>In shell scripting, variables store data for later use. Unlike compiled languages, shell variables are untyped — they store everything as strings by default. <strong>No spaces around = when assigning.</strong></p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">variables.sh</span></div>
+<pre>#!/bin/bash
+name="Ahmed"
+age=25
+pi=3.14159
+echo "Name: $name, Age: $age, PI: $pi"</pre></div>
+<h2>Special Variables</h2>
+<table><tr><th>Variable</th><th>Meaning</th></tr>
+<tr><td><code>$0</code></td><td>Script name</td></tr>
+<tr><td><code>$1..$9</code></td><td>Positional arguments</td></tr>
+<tr><td><code>$#</code></td><td>Number of arguments</td></tr>
+<tr><td><code>$@</code></td><td>All arguments (separate)</td></tr>
+<tr><td><code>$?</code></td><td>Exit code of last command</td></tr>
+<tr><td><code>$$</code></td><td>Current script PID</td></tr></table>
+<h2>Command Substitution</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cmd_sub.sh</span></div>
+<pre>#!/bin/bash
+today=$(date +%Y-%m-%d)
+files=$(ls | wc -l)
+echo "Date: $today | Files: $files"</pre></div>
+<h2>Readonly & Export</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">scope.sh</span></div>
+<pre>#!/bin/bash
+readonly PI=3.14159
+export PATH="/custom/bin:$PATH"
+local_var="only in this script"</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Write a script that takes a name as argument and prints: "Hello [name]! Today is [date]. Running as [user]."</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(0)">← Previous</button><button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 03 ===================== -->
+<div class="lecture" id="lec-2">
+<div class="lecture-tag">Lecture 03 · Fundamentals</div>
+<h1>Operators & Expressions</h1>
+<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
+<h2>Arithmetic</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">math.sh</span></div>
+<pre>#!/bin/bash
+a=10; b=3
+echo $((a + b))   # 13
+echo $((a * b))   # 30
+echo $((a % b))   # 1
+echo $((a ** b))  # 1000
+((a++)); echo $a  # 11</pre></div>
+<h2>Numeric Comparisons</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">compare.sh</span></div>
+<pre>#!/bin/bash
+x=10; y=20
+[[ $x -eq $y ]]  # equal
+[[ $x -ne $y ]]  # not equal
+[[ $x -lt $y ]]  # less than
+[[ $x -gt $y ]]  # greater than
+[[ $x -le $y ]]  # less or equal
+[[ $x -ge $y ]]  # greater or equal</pre></div>
+<h2>String & Logical Operators</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">logical.sh</span></div>
+<pre>#!/bin/bash
+[[ "$a" = "$b" ]]   # equal
+[[ -z "$a" ]]       # is empty
+[[ -n "$a" ]]       # is not empty
+[[ $age -ge 18 && $lic == true ]]  # AND
+[[ $a -lt 0 || $b -gt 100 ]]      # OR</pre></div>
+<h2>File Test Operators</h2>
+<table><tr><th>Test</th><th>True if</th></tr>
+<tr><td><code>-e file</code></td><td>Exists</td></tr>
+<tr><td><code>-f file</code></td><td>Regular file</td></tr>
+<tr><td><code>-d file</code></td><td>Directory</td></tr>
+<tr><td><code>-r file</code></td><td>Readable</td></tr>
+<tr><td><code>-w file</code></td><td>Writable</td></tr>
+<tr><td><code>-x file</code></td><td>Executable</td></tr>
+<tr><td><code>-s file</code></td><td>Non-empty</td></tr></table>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Write a script that checks if a file exists, is readable, and is non-empty — print appropriate messages for each condition.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(1)">← Previous</button><button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 04 ===================== -->
+<div class="lecture" id="lec-3">
+<div class="lecture-tag">Lecture 04 · Fundamentals</div>
+<h1>Control Flow</h1>
+<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
+<h2>If-Elif-Else</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ifelse.sh</span></div>
+<pre>#!/bin/bash
+read -p "Enter age: " age
+if [[ $age -lt 13 ]]; then
+    echo "Child"
+elif [[ $age -lt 20 ]]; then
+    echo "Teen"
+else
+    echo "Adult"
+fi</pre></div>
+<h2>Case Statement</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">case.sh</span></div>
+<pre>#!/bin/bash
+read -p "Pick (start|stop|restart): " cmd
+case $cmd in
+    start)   echo "Starting...";;
+    stop)    echo "Stopping...";;
+    restart) echo "Restarting...";;
+    *)       echo "Unknown command";;
+esac</pre></div>
+<h2>Menu-Driven Script</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">menu.sh</span></div>
+<pre>#!/bin/bash
+echo "1) Date  2) Uptime  3) Disk  4) Exit"
+read -p "Choice: " c
+case $c in
+    1) date;;  2) uptime;;
+    3) df -h;; 4) exit;;
+    *) echo "Invalid";;
+esac</pre></div>
+<h2>Exit Codes</h2>
+<p><code>$?</code> holds the exit code of the last command. 0 = success, non-zero = failure.</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">exit.sh</span></div>
+<pre>#!/bin/bash
+grep "error" app.log
+if [[ $? -eq 0 ]]; then echo "Errors found"; fi
+# Shorthand:
+mkdir /tmp/dir && echo "OK" || echo "FAIL"</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Build a menu with options: (1) Show users, (2) Show memory, (3) Ping google.com, (4) Exit.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(2)">← Previous</button><button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 05 ===================== -->
+<div class="lecture" id="lec-4">
+<div class="lecture-tag">Lecture 05 · Fundamentals</div>
+<h1>Loops</h1>
+<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
+<h2>For Loops</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">forloop.sh</span></div>
+<pre>#!/bin/bash
+for fruit in apple banana mango; do echo "$fruit"; done
+for ((i=1; i<=5; i++)); do echo "Count: $i"; done
+for file in *.txt; do echo "Found: $file"; done</pre></div>
+<h2>While Loop</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">while.sh</span></div>
+<pre>#!/bin/bash
+count=1
+while [[ $count -le 5 ]]; do echo "Iter $count"; ((count++)); done
+# Read file line by line
+while IFS= read -r line; do echo "$line"; done < /etc/hosts</pre></div>
+<h2>Until Loop</h2>
+<p>Runs until condition becomes true (opposite of while):</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">until.sh</span></div>
+<pre>#!/bin/bash
+n=1; until [[ $n -gt 5 ]]; do echo "$n"; ((n++)); done</pre></div>
+<h2>Break & Continue</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">break.sh</span></div>
+<pre>#!/bin/bash
+for i in {1..10}; do
+    [[ $i -eq 3 ]] && continue
+    [[ $i -eq 8 ]] && break
+    echo "$i"
+done  # Output: 1 2 4 5 6 7</pre></div>
+<h2>Practical: Batch Rename</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">rename.sh</span></div>
+<pre>#!/bin/bash
+c=1; for f in *.jpg; do mv "$f" "img_$(printf "%03d" $c).jpg"; ((c++)); done
+echo "Renamed $((c-1)) files."</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Print the multiplication table (1-10) for a number the user enters.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(3)">← Previous</button><button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 06 ===================== -->
+<div class="lecture" id="lec-5">
+<div class="lecture-tag">Lecture 06 · Core Concepts</div>
+<h1>Functions & Scripting</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Defining Functions</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">func.sh</span></div>
+<pre>#!/bin/bash
+greet() { local name=$1; echo "Hello, $name!"; }
+greet "Ahmed"
+add() { echo $(($1 + $2)); }
+sum=$(add 5 7); echo "Sum: $sum"  # 12</pre></div>
+<h2>Local Variables</h2>
+<p>Always use <code>local</code> inside functions to avoid side effects:</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">local.sh</span></div>
+<pre>#!/bin/bash
+g="global"
+demo() { local l="local"; g="changed"; echo "$l $g"; }
+demo; echo "$g"  # "changed"</pre></div>
+<h2>Function Libraries</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">lib.sh</span></div>
+<pre>#!/bin/bash
+log() { echo "[$(date)] $*"; }
+die() { echo "FATAL: $*" >&2; exit 1; }</pre></div>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.sh</span></div>
+<pre>#!/bin/bash
+source ./lib.sh
+log "Starting..."; die "Disk full"</pre></div>
+<h2>Error Handling</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">safe.sh</span></div>
+<pre>#!/bin/bash
+delete() {
+    local f=$1
+    [[ ! -f "$f" ]] && { echo "Not found: $f" >&2; return 1; }
+    rm "$f" && echo "Deleted: $f"
+}
+delete "/tmp/test.txt" || exit 1</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a library with is_even(), factorial(), and use them from a main script.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(4)">← Previous</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 07 ===================== -->
+<div class="lecture" id="lec-6">
+<div class="lecture-tag">Lecture 07 · Core Concepts</div>
+<h1>Arrays & String Manipulation</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Indexed Arrays</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arrays.sh</span></div>
+<pre>#!/bin/bash
+arr=("a" "b" "c" "d")
+echo "${arr[0]}"          # a
+echo "${arr[@]}"          # all elements
+echo "${#arr[@]}"         # count: 4
+arr+=("e")                # append
+for v in "${arr[@]}"; do echo "$v"; done</pre></div>
+<h2>Associative Arrays</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dict.sh</span></div>
+<pre>#!/bin/bash
+declare -A user
+user[name]="Ahmed"; user[age]=25
+echo "${user[name]}"
+for k in "${!user[@]}"; do echo "$k=${user[$k]}"; done</pre></div>
+<h2>String Operations</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">strings.sh</span></div>
+<pre>#!/bin/bash
+s="Hello World"
+echo "${#s}"           # 11 (length)
+echo "${s^^}"          # HELLO WORLD
+echo "${s,,}"          # hello world
+echo "${s:6:5}"        # World (substring)
+echo "${s/World/Shell}" # Hello Shell
+path="/a/b/c.txt"
+echo "${path##*/}"     # c.txt (basename)
+echo "${path%/*}"      # /a/b (dirname)</pre></div>
+<h2>Practical: CSV Parser</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">csv.sh</span></div>
+<pre>#!/bin/bash
+while IFS=',' read -r name age city; do
+    echo "$name ($age) from $city"
+done < data.csv</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Take a sentence, print: word count, character count, and the sentence in uppercase.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(5)">← Previous</button><button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 08 ===================== -->
+<div class="lecture" id="lec-7">
+<div class="lecture-tag">Lecture 08 · Core Concepts</div>
+<h1>File Operations & I/O</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Reading Files</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">read.sh</span></div>
+<pre>#!/bin/bash
+while IFS= read -r line; do echo "$line"; done < input.txt
+content=$(< input.txt); echo "$content"</pre></div>
+<h2>Writing Files</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">write.sh</span></div>
+<pre>#!/bin/bash
+echo "Line 1" > out.txt       # overwrite
+echo "Line 2" >> out.txt      # append
+cat << EOF > config.cfg       # heredoc
+host=localhost
+port=8080
+EOF</pre></div>
+<h2>Redirection</h2>
+<table><tr><th>FD</th><th>Name</th></tr><tr><td>0</td><td>stdin</td></tr><tr><td>1</td><td>stdout</td></tr><tr><td>2</td><td>stderr</td></tr></table>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">redirect.sh</span></div>
+<pre>#!/bin/bash
+./app > out.log 2> err.log          # split
+./app > all.log 2>&1                # merge
+./app > /dev/null 2>&1              # discard</pre></div>
+<h2>Temp Files & Cleanup</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">temp.sh</span></div>
+<pre>#!/bin/bash
+tmp=$(mktemp /tmp/script.XXXXXX)
+cleanup() { rm -f "$tmp"; echo "Done."; }
+trap cleanup EXIT
+echo "working..." > "$tmp"
+# tmp auto-deleted on exit</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Read a log file, filter ERROR lines, write them to errors.log with timestamps.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(6)">← Previous</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 09 ===================== -->
+<div class="lecture" id="lec-8">
+<div class="lecture-tag">Lecture 09 · Advanced</div>
+<h1>Process Management & Signals</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Background Processes</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bg.sh</span></div>
+<pre>#!/bin/bash
+sleep 30 &
+pid=$!
+echo "Job PID: $pid"
+kill -0 $pid 2>/dev/null && echo "Running"
+wait $pid; echo "Done (exit: $?)"</pre></div>
+<h2>Trapping Signals</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">trap.sh</span></div>
+<pre>#!/bin/bash
+cleanup() { echo "Interrupted!"; rm -f /tmp/lock; exit 1; }
+trap cleanup SIGINT SIGTERM
+touch /tmp/lock
+while true; do echo "Working... $(date)"; sleep 2; done</pre></div>
+<h2>Common Signals</h2>
+<table><tr><th>Signal</th><th>#</th><th>Meaning</th></tr>
+<tr><td>SIGINT</td><td>2</td><td>Ctrl+C interrupt</td></tr>
+<tr><td>SIGTERM</td><td>15</td><td>Terminate (default kill)</td></tr>
+<tr><td>SIGKILL</td><td>9</td><td>Force kill (cannot trap)</td></tr>
+<tr><td>SIGHUP</td><td>1</td><td>Terminal closed</td></tr></table>
+<h2>Parallel Processing</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">parallel.sh</span></div>
+<pre>#!/bin/bash
+proc() { echo "Processing $1..."; sleep 2; echo "$1 done."; }
+for f in a.txt b.txt c.txt; do proc "$f" & done
+wait; echo "All done!"</pre></div>
+<h2>Daemon Script</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">daemon.sh</span></div>
+<pre>#!/bin/bash
+PIDFILE="/tmp/myd.pid"
+case $1 in
+  start) echo $$ > $PIDFILE; trap "rm $PIDFILE" EXIT
+         while true; do echo "run..."; sleep 10; done & ;;
+  stop)  [[ -f $PIDFILE ]] && kill $(cat $PIDFILE) && rm $PIDFILE ;;
+  *)     echo "Usage: $0 start|stop" ;;
+esac</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Spawn 5 workers, each sleeping 1-5 sec randomly, report when all finish.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(7)">← Previous</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 10 ===================== -->
+<div class="lecture" id="lec-9">
+<div class="lecture-tag">Lecture 10 · Advanced</div>
+<h1>Regular Expressions & grep</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>grep Essentials</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">grep.sh</span></div>
+<pre>#!/bin/bash
+grep "error" app.log           # basic
+grep -i "error" app.log        # case-insensitive
+grep -n "error" app.log        # line numbers
+grep -c "error" app.log        # count
+grep -v "debug" app.log        # invert
+grep -r "TODO" ./src/          # recursive
+grep -C 3 "error" app.log      # context</pre></div>
+<h2>Regex Patterns</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">regex.sh</span></div>
+<pre>#!/bin/bash
+grep "^ERROR" app.log          # starts with
+grep "done$" app.log           # ends with
+grep "[Ee]rror" app.log        # char class
+grep "[0-9]" app.log           # any digit
+grep -E "(err|warn)" app.log   # alternation
+grep -E "[0-9]{1,3}\.[0-9]{1,3}" file  # IP pattern</pre></div>
+<h2>sed — Stream Editor</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sed.sh</span></div>
+<pre>#!/bin/bash
+sed 's/old/new/' file.txt      # replace first
+sed 's/old/new/g' file.txt     # replace all
+sed '/pattern/d' file.txt      # delete lines
+sed -n '5,10p' file.txt        # print lines 5-10
+sed -i 's/foo/bar/g' file.txt  # in-place</pre></div>
+<h2>awk — Pattern Scanner</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">awk.sh</span></div>
+<pre>#!/bin/bash
+awk '{print $1, $3}' data.txt              # columns
+awk '$3 > 100' data.txt                    # filter
+awk '{sum+=$2} END {print sum}' data.txt   # sum
+awk -F',' '{print $2}' data.csv            # custom delimiter</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Extract all IP addresses from a web server log, count unique ones, show top 10.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(8)">← Previous</button><button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 11 ===================== -->
+<div class="lecture" id="lec-10">
+<div class="lecture-tag">Lecture 11 · Advanced</div>
+<h1>DevOps & Automation</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Cron Jobs</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cron.sh</span></div>
+<pre># crontab -e
+0 2 * * * /opt/backup.sh           # daily at 2am
+*/5 * * * * /opt/healthcheck.sh    # every 5 min
+@reboot /opt/startup.sh            # on boot</pre></div>
+<h2>Systemd Service</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">myapp.service</span></div>
+<pre>[Unit]
+Description=My Web App
+After=network.target
+[Service]
+ExecStart=/usr/bin/node /opt/app/server.js
+Restart=always
+[Install]
+WantedBy=multi-user.target</pre></div>
+<h2>Deployment Script</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">deploy.sh</span></div>
+<pre>#!/bin/bash
+set -e  # exit on error
+echo "Deploying..."
+git pull origin main
+npm install
+npm run build
+systemctl restart myapp
+echo "Deployed!"</pre></div>
+<h2>Log Rotation & Monitoring</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">monitor.sh</span></div>
+<pre>#!/bin/bash
+# Disk alert
+usage=$(df / | tail -1 | awk '{print $5}' | tr -d '%')
+[[ $usage -gt 90 ]] && echo "Disk critical: ${usage}%" | mail -s "Alert" admin@site.com
+# Service health
+curl -f http://localhost:8080/health || systemctl restart myapp</pre></div>
+<h2>Docker Cleanup</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">docker_clean.sh</span></div>
+<pre>#!/bin/bash
+docker system prune -af --volumes
+echo "Docker cleanup complete."</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Write a deployment script that pulls code, runs tests, builds, and restarts a service.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(9)">← Previous</button><button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 12 ===================== -->
+<div class="lecture" id="lec-11">
+<div class="lecture-tag">Lecture 12 · Advanced</div>
+<h1>Capstone Project: Automation Toolkit</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~60 min</span></div>
+<h2>Project Overview</h2>
+<p>Build a comprehensive <strong>System Automation Toolkit</strong> — a single script with a menu that performs common sysadmin tasks. This consolidates everything you've learned.</p>
+<h2>Features to Implement</h2>
+<ul><li>System health check (CPU, memory, disk)</li><li>Backup specified directories with timestamps</li><li>Log analyzer (find errors, count by severity)</li><li>User management (add/remove/list users)</li><li>Service status checker</li></ul>
+<h2>Starter Template</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">autotool.sh</span></div>
+<pre>#!/bin/bash
+set -euo pipefail
+source ./lib/utils.sh
+show_menu() {
+    echo "=== AutoTool ==="
+    echo "1) Health Check  3) Log Analyzer"
+    echo "2) Backup        4) User Mgmt"
+    echo "5) Service Check 6) Exit"
+}
+health_check() {
+    echo "CPU: $(top -bn1 | grep 'Cpu' | awk '{print $2}')%"
+    echo "Mem: $(free -m | awk '/Mem/{printf "%.1f%%", $3/$2*100}')"
+    echo "Disk: $(df -h / | tail -1 | awk '{print $5}')"
+}
+backup() {
+    local src=$1 dst="/backup/$(date +%Y%m%d_%H%M%S)"
+    mkdir -p "$dst" && cp -r "$src" "$dst"
+    echo "Backed up to $dst"
+}
+while true; do
+    show_menu
+    read -p "Choice: " c
+    case $c in
+        1) health_check;;  2) read -p "Dir: " d; backup "$d";;
+        3) ./log_analyzer.sh;;  4) ./user_mgmt.sh;;
+        5) systemctl status nginx;;  6) exit;;
+    esac
+done</pre></div>
+<h2>Bonus Challenges</h2>
+<ul><li>Add email alerts for critical conditions</li><li>Schedule the health check via cron</li><li>Generate HTML reports instead of plain text</li><li>Add a web dashboard using a simple HTTP server</li></ul>
+<div class="exercise"><div class="exercise-title">Final Challenge</div><p>Complete all 5 modules of the AutoTool. Test on a real Linux VM. Share your script on GitHub!</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(10)">← Previous</button><button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button></div></div>
+
+        <!-- ===================== LECTURE 13 ===================== -->
+        <div class="lecture" id="lec-12">
+            <div class="lecture-tag">Lecture 13 · Advanced</div>
+            <h1>Advanced Shell Patterns</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~50 min</span>
+                <span class="meta-badge">Requires: Lecture 12</span>
+            </div>
+            <p><em>Content coming soon...</em></p>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
+            </div>
+        </div>
+
+        <!-- ===================== LECTURE 14 ===================== -->
+        <div class="lecture" id="lec-13">
+            <div class="lecture-tag">Lecture 14 · Professional</div>
+            <h1>Final Project — Production Automation</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-advanced">Advanced</span>
+                <span class="meta-badge">~90 min</span>
+                <span class="meta-badge">Requires: All Previous</span>
+            </div>
+            <p><em>Content coming soon...</em></p>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+            </div>
+        </div>
 
             </div>
 
@@ -252,7 +749,9 @@ echo "Today is $(date)"</pre>
             "Process Management & Signals",
             "Regular Expressions & grep",
             "DevOps & Automation",
-            "Capstone Project: Automation Scripts"
+            "Capstone Project: Automation Scripts",
+            "Advanced Shell Patterns",
+            "Final Project — Production Automation"
         ];
         initLessons(titles);
     </script>

@@ -107,43 +107,41 @@
                 <span class="logo-icon">💎</span>
                 Ruby Mastery
             </a>
-            <p>Complete Course — 12 Lessons</p>
+            <p>Complete Course — 18 Lessons</p>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-label">Fundamentals</div>
-            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span
-                    class="dot"></span>Introduction & Setup</button>
-            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span
-                    class="dot"></span>Variables & Data Types</button>
-            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span
-                    class="dot"></span>Control Flow</button>
-            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span
-                    class="dot"></span>Loops</button>
-            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span
-                    class="dot"></span>Methods & Blocks</button>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Loops</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Methods & Blocks</button>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-label">Core Concepts</div>
-            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Arrays
-                & Hashes</button>
-            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span
-                    class="dot"></span>Strings & Regular Expressions</button>
-            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span
-                    class="dot"></span>Object-Oriented Ruby</button>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Arrays & Hashes</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Strings & Regex</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>OOP in Ruby</button>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Modules & Mixins</button>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-label">Advanced</div>
-            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
-                    class="dot"></span>Modules & Mixins</button>
-            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>File
-                I/O & Exceptions</button>
-            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Ruby
-                on Rails Basics</button>
-            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
-                    class="dot"></span>Capstone Project</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>File I/O & Exceptions</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Metaprogramming</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Gems & Bundler</button>
+            <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>Testing with RSpec</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Rails</div>
+            <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>Rails Basics</button>
+            <button class="nav-item" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Models & ActiveRecord</button>
+            <button class="nav-item" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Controllers & Routes</button>
+            <button class="nav-item" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>APIs & Deployment</button>
+            <button class="nav-item" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Capstone Project</button>
         </div>
     </nav>
 
@@ -826,6 +824,309 @@ custom_looper(my_list) <span class="kw">do</span> |lang|
                 </div>
             </div>
 
+<!-- ===================== LECTURE 06 ===================== -->
+<div class="lecture" id="lec-5">
+<div class="lecture-tag">Lecture 06 · Core Concepts</div>
+<h1>Arrays & Hashes</h1>
+<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
+<h2>Arrays</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arrays.rb</span></div>
+<pre>arr = [1, 2, 3, 4, 5]
+arr &lt;&lt; 6
+arr.each { |n| puts n }
+arr.map { |n| n * 2 }
+arr.select { |n| n.even? }</pre></div>
+<h2>Hashes</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">hashes.rb</span></div>
+<pre>user = { name: "Ahmed", age: 25 }
+user[:city] = "Cairo"
+user.each { |k, v| puts "#{k}: #{v}" }</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a hash of students with grades, find all with grade &gt; 80.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(4)">← Previous</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 07 ===================== -->
+<div class="lecture" id="lec-6">
+<div class="lecture-tag">Lecture 07 · Core Concepts</div>
+<h1>Strings & Regular Expressions</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>String Methods</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">strings.rb</span></div>
+<pre>s = "Hello Ruby"
+s.upcase; s.downcase; s.reverse; s.length
+s.gsub("Ruby", "World")
+s.split(" ")</pre></div>
+<h2>Regex</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">regex.rb</span></div>
+<pre>"abc123" =~ /\d+/
+"a@b.com".match?(/\A[\w.]+@[\w]+\.\w+\z/)
+"hello".scan(/l/)</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Validate phone numbers using regex.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(5)">← Previous</button><button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 08 ===================== -->
+<div class="lecture" id="lec-7">
+<div class="lecture-tag">Lecture 08 · Core Concepts</div>
+<h1>OOP in Ruby</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Classes</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">class.rb</span></div>
+<pre>class Person
+  attr_accessor :name, :age
+  def initialize(name, age)
+    @name = name; @age = age
+  end
+  def greet = "Hi, I'm #{@name}"
+end
+p = Person.new("Ahmed", 25)
+puts p.greet</pre></div>
+<h2>Inheritance</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">inherit.rb</span></div>
+<pre>class Animal
+  def speak = "..."
+end
+class Dog &lt; Animal
+  def speak = "Woof!"
+end</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a BankAccount class with deposit/withdraw.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(6)">← Previous</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 09 ===================== -->
+<div class="lecture" id="lec-8">
+<div class="lecture-tag">Lecture 09 · Core Concepts</div>
+<h1>Modules & Mixins</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Modules as Namespaces</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">module.rb</span></div>
+<pre>module MathTools
+  def self.square(x) = x * x
+end
+MathTools.square(5)</pre></div>
+<h2>Mixins</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mixin.rb</span></div>
+<pre>module Loggable
+  def log(msg) = puts "[LOG] #{msg}"
+end
+class Service
+  include Loggable
+  def run = log("Started")
+end</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a Comparable mixin for a Book class.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(7)">← Previous</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 10 ===================== -->
+<div class="lecture" id="lec-9">
+<div class="lecture-tag">Lecture 10 · Advanced</div>
+<h1>File I/O & Exceptions</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Reading & Writing</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">files.rb</span></div>
+<pre>File.read("input.txt")
+File.readlines("input.txt").each { |l| puts l }
+File.open("out.txt", "w") { |f| f.puts "Hello" }
+File.open("out.txt", "a") { |f| f.puts "World" }</pre></div>
+<h2>Exceptions</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">errors.rb</span></div>
+<pre>begin
+  File.read("missing.txt")
+rescue Errno::ENOENT =&gt; e
+  puts "Not found: #{e}"
+ensure
+  puts "Done."
+end</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Write a CSV parser that handles missing files gracefully.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(8)">← Previous</button><button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 11 ===================== -->
+<div class="lecture" id="lec-10">
+<div class="lecture-tag">Lecture 11 · Advanced</div>
+<h1>Metaprogramming</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Dynamic Methods</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">meta.rb</span></div>
+<pre>class User
+  [:name, :age, :email].each do |attr|
+    define_method(attr) { instance_variable_get("@#{attr}") }
+    define_method("#{attr}=") { |v| instance_variable_set("@#{attr}", v) }
+  end
+end</pre></div>
+<h2>method_missing</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">missing.rb</span></div>
+<pre>class Ghost
+  def method_missing(method, *args)
+    puts "Called #{method} with #{args}"
+  end
+end</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Build find_by_name, find_by_age dynamic methods.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(9)">← Previous</button><button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 12 ===================== -->
+<div class="lecture" id="lec-11">
+<div class="lecture-tag">Lecture 12 · Advanced</div>
+<h1>Gems & Bundler</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Gemfile</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Gemfile</span></div>
+<pre>source 'https://rubygems.org'
+gem 'rails', '~&gt; 7.0'
+gem 'rspec', group: :test</pre></div>
+<h2>Commands</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cmd.sh</span></div>
+<pre>gem install nokogiri
+bundle install
+bundle update
+bundle exec rake test</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a Bundler project, install httparty, fetch a URL.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(10)">← Previous</button><button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 13 ===================== -->
+<div class="lecture" id="lec-12">
+<div class="lecture-tag">Lecture 13 · Advanced</div>
+<h1>Testing with RSpec</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Basic Spec</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">calc_spec.rb</span></div>
+<pre>require 'rspec'
+describe Calculator do
+  it "adds two numbers" do
+    expect(Calculator.add(2, 3)).to eq(5)
+  end
+end</pre></div>
+<h2>Mocks</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mock.rb</span></div>
+<pre>api = double("API")
+allow(api).to receive(:fetch).and_return("data")
+expect(api.fetch).to eq("data")</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Write 5 specs for a Stack class (push, pop, peek, empty?, size).</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(11)">← Previous</button><button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 14 ===================== -->
+<div class="lecture" id="lec-13">
+<div class="lecture-tag">Lecture 14 · Rails</div>
+<h1>Rails Basics</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Create a Rails App</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">setup.sh</span></div>
+<pre>gem install rails
+rails new blog
+cd blog
+rails server</pre></div>
+<h2>MVC Pattern</h2>
+<p>Rails follows <strong>Model-View-Controller</strong>: Models talk to the DB, Controllers handle requests, Views render HTML/JSON.</p>
+<h2>Scaffold a Resource</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">scaffold.sh</span></div>
+<pre>rails generate scaffold Post title:string body:text
+rails db:migrate
+rails server</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Scaffold a Book resource with title and author.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(12)">← Previous</button><button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 15 ===================== -->
+<div class="lecture" id="lec-14">
+<div class="lecture-tag">Lecture 15 · Rails</div>
+<h1>Models & ActiveRecord</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Model Definition</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">post.rb</span></div>
+<pre>class Post &lt; ApplicationRecord
+  belongs_to :user
+  has_many :comments
+  validates :title, presence: true, length: { minimum: 5 }
+end</pre></div>
+<h2>Queries</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">queries.rb</span></div>
+<pre>Post.all
+Post.find(1)
+Post.where(published: true).order(created_at: :desc)
+Post.create(title: "Hello", body: "World")
+post.update(title: "New")
+post.destroy</pre></div>
+<h2>Migrations</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">migration.rb</span></div>
+<pre>class AddAuthorToPosts &lt; ActiveRecord::Migration[7.0]
+  def change
+    add_column :posts, :author, :string
+  end
+end</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a User-Post-Comment relationship with validations.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(13)">← Previous</button><button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 16 ===================== -->
+<div class="lecture" id="lec-15">
+<div class="lecture-tag">Lecture 16 · Rails</div>
+<h1>Controllers & Routes</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Routes</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">routes.rb</span></div>
+<pre>Rails.application.routes.draw do
+  root "posts#index"
+  resources :posts
+  get "/about", to: "pages#about"
+end</pre></div>
+<h2>Controller</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">posts_controller.rb</span></div>
+<pre>class PostsController &lt; ApplicationController
+  def index = @posts = Post.all
+  def show = @post = Post.find(params[:id])
+  def create
+    @post = Post.new(post_params)
+    @post.save ? redirect_to(@post) : render(:new)
+  end
+  private
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
+end</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Build full CRUD routes and controller for a Book resource.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(14)">← Previous</button><button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 17 ===================== -->
+<div class="lecture" id="lec-16">
+<div class="lecture-tag">Lecture 17 · Rails</div>
+<h1>APIs & Deployment</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>API Mode</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">api.sh</span></div>
+<pre>rails new myapi --api
+# Controllers return JSON automatically</pre></div>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">posts_controller.rb</span></div>
+<pre>class Api::PostsController &lt; ApplicationController
+  def index
+    render json: Post.all
+  end
+  def create
+    post = Post.create!(post_params)
+    render json: post, status: :created
+  end
+end</pre></div>
+<h2>Deploy to Heroku/Render</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">deploy.sh</span></div>
+<pre>git push heroku main
+heroku run rails db:migrate
+heroku logs --tail</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Build a JSON API for a Todo list, deploy to Render.com.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(15)">← Previous</button><button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 18 ===================== -->
+<div class="lecture" id="lec-17">
+<div class="lecture-tag">Lecture 18 · Rails</div>
+<h1>Capstone Project: Rails Blog</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~60 min</span></div>
+<h2>Project: Full Blog Platform</h2>
+<p>Build a complete Rails blog with authentication, posts, comments, tags, and admin dashboard.</p>
+<h2>Features</h2>
+<ul><li>User auth (Devise gem)</li><li>Posts with categories & tags</li><li>Comments with nested replies</li><li>Admin dashboard</li><li>Rich text editor (ActionText)</li><li>Image uploads (ActiveStorage)</li></ul>
+<h2>Stack</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Gemfile</span></div>
+<pre>gem 'rails', '~&gt; 7.0'
+gem 'devise'
+gem 'pg'
+gem 'image_processing'
+gem 'rspec-rails', group: :test</pre></div>
+<h2>Bonus</h2>
+<ul><li>Add markdown support with Redcarpet</li><li>Add full-text search with pg_search</li><li>Build a JSON API for mobile</li><li>Deploy with Docker + CI/CD</li></ul>
+<div class="exercise"><div class="exercise-title">Final Challenge</div><p>Build the full blog. Deploy it. Share the GitHub repo!</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(16)">← Previous</button><button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button></div></div>
+
 
             <!-- RIGHT AD COLUMN -->
             
@@ -841,12 +1142,18 @@ custom_looper(my_list) <span class="kw">do</span> |lang|
             "Loops",
             "Methods & Blocks",
             "Arrays & Hashes",
-            "Strings & Regular Expressions",
-            "Object-Oriented Ruby",
+            "Strings & Regex",
+            "OOP in Ruby",
             "Modules & Mixins",
             "File I/O & Exceptions",
-            "Ruby on Rails Basics",
-            "Capstone Project: Rails Web App"
+            "Metaprogramming",
+            "Gems & Bundler",
+            "Testing with RSpec",
+            "Rails Basics",
+            "Models & ActiveRecord",
+            "Controllers & Routes",
+            "APIs & Deployment",
+            "Capstone Project: Rails App"
         ];
         initLessons(titles);
     </script>

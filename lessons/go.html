@@ -103,43 +103,41 @@
                 <span class="logo-icon">🐹</span>
                 Go Mastery
             </a>
-            <p>Complete Course — 12 Lessons</p>
+            <p>Complete Course — 18 Lessons</p>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-label">Fundamentals</div>
-            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span
-                    class="dot"></span>Introduction & Setup</button>
-            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span
-                    class="dot"></span>Variables & Data Types</button>
-            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span
-                    class="dot"></span>Control Flow</button>
-            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span
-                    class="dot"></span>Functions</button>
-            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span
-                    class="dot"></span>Pointers & Structs</button>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Functions</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Pointers & Structs</button>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-label">Core Concepts</div>
-            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span
-                    class="dot"></span>Arrays, Slices & Maps</button>
-            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span
-                    class="dot"></span>Methods & Interfaces</button>
-            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Error
-                Handling</button>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Arrays, Slices & Maps</button>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Methods & Interfaces</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Error Handling</button>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Generics</button>
         </div>
 
         <div class="nav-section">
-            <div class="nav-section-label">Advanced</div>
-            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
-                    class="dot"></span>Concurrency & Goroutines</button>
-            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span
-                    class="dot"></span>Channels & Synchronization</button>
-            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span
-                    class="dot"></span>Modules & Testing</button>
-            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
-                    class="dot"></span>Capstone Project</button>
+            <div class="nav-section-label">Concurrency</div>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Goroutines</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Channels & Sync</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Context & Cancellation</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Production</div>
+            <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>Modules & Testing</button>
+            <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>HTTP Servers</button>
+            <button class="nav-item" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>REST API with Gin</button>
+            <button class="nav-item" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Database with GORM</button>
+            <button class="nav-item" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Microservices</button>
+            <button class="nav-item" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Capstone Project</button>
         </div>
     </nav>
 
@@ -1140,7 +1138,48 @@ m[<span class="st">"apples"</span>] = 5</pre>
 
                 <!-- ===================== LECTURE 09 ===================== -->
                 <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Advanced</div>
+                    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+                    <h1>Generics</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Generic Functions</h2>
+                    <div class="code-block"><pre>func Sum[T int | float64](nums []T) T {
+    var total T
+    for _, n := range nums {
+        total += n
+    }
+    return total
+}
+fmt.Println(Sum([]int{1, 2, 3}))     // 6
+fmt.Println(Sum([]float64{1.5, 2.5})) // 4</pre></div>
+                    <h2>Type Constraints</h2>
+                    <div class="code-block"><pre>type Number interface {
+    int | int64 | float32 | float64
+}
+func Max[T Number](a, b T) T {
+    if a &gt; b { return a }
+    return b
+}</pre></div>
+                    <h2>Generic Types</h2>
+                    <div class="code-block"><pre>type Stack[T any] struct {
+    items []T
+}
+func (s *Stack[T]) Push(x T) { s.items = append(s.items, x) }
+func (s *Stack[T]) Pop() T {
+    n := len(s.items) - 1
+    x := s.items[n]
+    s.items = s.items[:n]
+    return x
+}</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Write a generic Filter function that works for any slice type.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 10 ===================== -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · Concurrency</div>
                     <h1>Concurrency & Goroutines</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -1154,14 +1193,14 @@ m[<span class="st">"apples"</span>] = 5</pre>
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 10 ===================== -->
-                <div class="lecture" id="lec-9">
-                    <div class="lecture-tag">Lecture 10 · Advanced</div>
+                <!-- ===================== LECTURE 11 ===================== -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · Concurrency</div>
                     <h1>Channels & Synchronization</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -1177,14 +1216,55 @@ val := <-ch <span class="cm">// Receive</span></pre>
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 11 ===================== -->
-                <div class="lecture" id="lec-10">
-                    <div class="lecture-tag">Lecture 11 · Advanced</div>
+                <!-- ===================== LECTURE 12 ===================== -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · Concurrency</div>
+                    <h1>Context & Cancellation</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Context Basics</h2>
+                    <div class="code-block"><pre>import "context"
+
+ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+defer cancel()
+
+select {
+case &lt;-time.After(3 * time.Second):
+    fmt.Println("done")
+case &lt;-ctx.Done():
+    fmt.Println("timeout:", ctx.Err())
+}</pre></div>
+                    <h2>WithCancel</h2>
+                    <div class="code-block"><pre>ctx, cancel := context.WithCancel(context.Background())
+go func() {
+    for {
+        select {
+        case &lt;-ctx.Done():
+            return
+        default:
+            doWork()
+        }
+    }
+}()
+time.Sleep(1 * time.Second)
+cancel() // signal goroutine to stop</pre></div>
+                    <h2>Passing Values</h2>
+                    <div class="code-block"><pre>ctx := context.WithValue(context.Background(), "userID", 42)
+id := ctx.Value("userID").(int)</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build an HTTP client that cancels requests after 5 seconds using context.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 13 ===================== -->
+                <div class="lecture" id="lec-12">
+                    <div class="lecture-tag">Lecture 13 · Production</div>
                     <h1>Modules & Testing</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-intermediate">Intermediate</span>
@@ -1201,14 +1281,194 @@ val := <-ch <span class="cm">// Receive</span></pre>
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 12 ===================== -->
-                <div class="lecture" id="lec-11">
-                    <div class="lecture-tag">Lecture 12 · Capstone Project</div>
+                <!-- ===================== LECTURE 14 ===================== -->
+                <div class="lecture" id="lec-13">
+                    <div class="lecture-tag">Lecture 14 · Production</div>
+                    <h1>HTTP Servers</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Basic HTTP Server</h2>
+                    <div class="code-block"><pre>package main
+import (
+    "fmt"
+    "net/http"
+)
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
+}
+func main() {
+    http.HandleFunc("/", handler)
+    http.ListenAndServe(":8080", nil)
+}</pre></div>
+                    <h2>JSON Responses</h2>
+                    <div class="code-block"><pre>type User struct {
+    Name string `json:"name"`
+    Age  int    `json:"age"`
+}
+func userHandler(w http.ResponseWriter, r *http.Request) {
+    u := User{Name: "Ahmed", Age: 25}
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(u)
+}</pre></div>
+                    <h2>Middleware</h2>
+                    <div class="code-block"><pre>func loggingMiddleware(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        log.Println(r.Method, r.URL.Path)
+        next.ServeHTTP(w, r)
+    })
+}</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a simple URL shortener with in-memory storage.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 15 ===================== -->
+                <div class="lecture" id="lec-14">
+                    <div class="lecture-tag">Lecture 15 · Production</div>
+                    <h1>REST API with Gin</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Setup</h2>
+                    <div class="code-block"><pre>go get -u github.com/gin-gonic/gin</pre></div>
+                    <h2>Basic Server</h2>
+                    <div class="code-block"><pre>package main
+import "github.com/gin-gonic/gin"
+func main() {
+    r := gin.Default()
+    r.GET("/ping", func(c *gin.Context) {
+        c.JSON(200, gin.H{"message": "pong"})
+    })
+    r.Run(":8080")
+}</pre></div>
+                    <h2>CRUD Routes</h2>
+                    <div class="code-block"><pre>type Book struct {
+    ID    string `json:"id"`
+    Title string `json:"title"`
+}
+var books []Book
+
+r.GET("/books", func(c *gin.Context) {
+    c.JSON(200, books)
+})
+r.POST("/books", func(c *gin.Context) {
+    var b Book
+    if err := c.BindJSON(&amp;b); err != nil { return }
+    books = append(books, b)
+    c.JSON(201, b)
+})
+r.GET("/books/:id", func(c *gin.Context) {
+    id := c.Param("id")
+    // find and return
+})</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a full REST API for a todo list using Gin.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 16 ===================== -->
+                <div class="lecture" id="lec-15">
+                    <div class="lecture-tag">Lecture 16 · Production</div>
+                    <h1>Database with GORM</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Setup</h2>
+                    <div class="code-block"><pre>go get gorm.io/gorm
+go get gorm.io/driver/postgres</pre></div>
+                    <h2>Models</h2>
+                    <div class="code-block"><pre>type Product struct {
+    gorm.Model
+    Code  string
+    Price uint
+}
+
+dsn := "host=localhost user=postgres dbname=shop sslmode=disable"
+db, _ := gorm.Open(postgres.Open(dsn), &amp;gorm.Config{})
+db.AutoMigrate(&amp;Product{})</pre></div>
+                    <h2>CRUD Operations</h2>
+                    <div class="code-block"><pre>// Create
+db.Create(&amp;Product{Code: "P1", Price: 100})
+
+// Read
+var p Product
+db.First(&amp;p, 1)
+db.Where("code = ?", "P1").First(&amp;p)
+
+// Update
+db.Model(&amp;p).Update("Price", 200)
+
+// Delete
+db.Delete(&amp;p, 1)</pre></div>
+                    <h2>Relationships</h2>
+                    <div class="code-block"><pre>type User struct {
+    gorm.Model
+    Name   string
+    Orders []Order // has many
+}
+type Order struct {
+    gorm.Model
+    UserID uint
+    Total  float64
+}
+db.Preload("Orders").Find(&amp;users)</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a blog API with User-Post-Comment relationships using GORM.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 17 ===================== -->
+                <div class="lecture" id="lec-16">
+                    <div class="lecture-tag">Lecture 17 · Production</div>
+                    <h1>Microservices in Go</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Why Microservices?</h2>
+                    <p>Microservices split a large app into small, independently deployable services that communicate via HTTP/gRPC. Go's small binaries and concurrency model make it ideal.</p>
+                    <h2>gRPC Service</h2>
+                    <div class="code-block"><pre>// users.proto
+service UserService {
+    rpc GetUser(UserRequest) returns (UserResponse);
+}
+message UserRequest { int32 id = 1; }
+message UserResponse { string name = 1; }</pre></div>
+                    <div class="code-block"><pre>// server.go
+func (s *server) GetUser(ctx context.Context, req *pb.UserRequest) (*pb.UserResponse, error) {
+    return &amp;pb.UserResponse{Name: "Ahmed"}, nil
+}
+func main() {
+    lis, _ := net.Listen("tcp", ":50051")
+    s := grpc.NewServer()
+    pb.RegisterUserServiceServer(s, &amp;server{})
+    s.Serve(lis)
+}</pre></div>
+                    <h2>Docker Deployment</h2>
+                    <div class="code-block"><pre># Dockerfile
+FROM golang:1.22-alpine AS build
+WORKDIR /app
+COPY . .
+RUN go build -o myapp
+
+FROM alpine
+COPY --from=build /app/myapp /myapp
+ENTRYPOINT ["/myapp"]</pre></div>
+                    <h2>Service Discovery</h2>
+                    <p>Use Consul, etcd, or Kubernetes DNS for services to find each other dynamically.</p>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build 2 microservices (auth + products) that communicate via gRPC. Containerize with Docker.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 18 ===================== -->
+                <div class="lecture" id="lec-17">
+                    <div class="lecture-tag">Lecture 18 · Capstone Project</div>
                     <h1>Capstone: Concurrent CLI Tool</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -1225,7 +1485,7 @@ val := <-ch <span class="cm">// Receive</span></pre>
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn" onclick="showLecture(16)">← Previous</button>
                         <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
                     </div>
                 </div>
@@ -1248,10 +1508,16 @@ val := <-ch <span class="cm">// Receive</span></pre>
             "Arrays, Slices & Maps",
             "Methods & Interfaces",
             "Error Handling",
-            "Concurrency & Goroutines",
-            "Channels & Synchronization",
+            "Generics",
+            "Goroutines",
+            "Channels & Sync",
+            "Context & Cancellation",
             "Modules & Testing",
-            "Capstone Project: Concurrent Tool"
+            "HTTP Servers",
+            "REST API with Gin",
+            "Database with GORM",
+            "Microservices",
+            "Capstone: Concurrent Tool"
         ];
         initLessons(titles);
     </script>

@@ -107,7 +107,7 @@
                 <span class="logo-icon">🎯</span>
                 Dart Mastery
             </a>
-            <p>Complete Course — 12 Lessons</p>
+            <p>Complete Course — 18 Lessons</p>
         </div>
 
         <div class="nav-section">
@@ -132,17 +132,33 @@
                 Safety & Asynchronous</button>
             <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span
                     class="dot"></span>Generics & Extensions</button>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
+                    class="dot"></span>Streams & Reactive</button>
         </div>
 
         <div class="nav-section">
-            <div class="nav-section-label">Advanced</div>
-            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span
+            <div class="nav-section-label">Flutter</div>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span
                     class="dot"></span>Flutter Basics</button>
-            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>State
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>State
                 Management</button>
-            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span
-                    class="dot"></span>Firebase & Backend</button>
             <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
+                    class="dot"></span>Navigation & Routing</button>
+            <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span
+                    class="dot"></span>Firebase & Backend</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Production</div>
+            <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span
+                    class="dot"></span>Testing & Debugging</button>
+            <button class="nav-item" onclick="showLecture(14)"><span class="num">15</span><span
+                    class="dot"></span>Platform Channels</button>
+            <button class="nav-item" onclick="showLecture(15)"><span class="num">16</span><span
+                    class="dot"></span>App Deployment</button>
+            <button class="nav-item" onclick="showLecture(16)"><span class="num">17</span><span
+                    class="dot"></span>Design Patterns</button>
+            <button class="nav-item" onclick="showLecture(17)"><span class="num">18</span><span
                     class="dot"></span>Capstone Project</button>
         </div>
     </nav>
@@ -2924,6 +2940,466 @@ print(student[<span class="st">"name"</span>]);</pre>
                     </div>
                 </div>
 
+<!-- ===================== LECTURE 06 ===================== -->
+<div class="lecture" id="lec-5">
+<div class="lecture-tag">Lecture 06 · Core Concepts</div>
+<h1>Classes & Objects</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Defining a Class</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">person.dart</span></div>
+<pre>class Person {
+  String name;
+  int age;
+  Person(this.name, this.age);
+  void greet() => print("Hi, I'm $name");
+}
+void main() {
+  var p = Person("Ahmed", 25);
+  p.greet(); // Hi, I'm Ahmed
+}</pre></div>
+<h2>Constructors</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">constructors.dart</span></div>
+<pre>class Point {
+  double x, y;
+  Point(this.x, this.y);                    // default
+  Point.origin() : x = 0, y = 0;           // named
+  Point.fromJson(Map<String,double> m)      // factory
+      : x = m['x']!, y = m['y']!;
+}</pre></div>
+<h2>Inheritance</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">inherit.dart</span></div>
+<pre>class Animal {
+  void speak() => print("...");
+}
+class Dog extends Animal {
+  @override
+  void speak() => print("Woof!");
+}</pre></div>
+<h2>Getters & Setters</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">getset.dart</span></div>
+<pre>class Rectangle {
+  double w, h;
+  Rectangle(this.w, this.h);
+  double get area => w * h;
+  set width(double val) => w = val;
+}</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a BankAccount class with deposit(), withdraw(), and a balance getter. Prevent negative balance.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(4)">← Previous</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 07 ===================== -->
+<div class="lecture" id="lec-6">
+<div class="lecture-tag">Lecture 07 · Core Concepts</div>
+<h1>Null Safety & Asynchronous Programming</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Null Safety Basics</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">nullsafe.dart</span></div>
+<pre>String? maybeNull;           // nullable
+String definitely = "hello"; // non-nullable
+print(maybeNull?.length);    // null-aware: prints null
+print(maybeNull ?? "default"); // if-null operator
+int? len = maybeNull?.length;  // nullable chain</pre></div>
+<h2>Late & Required</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">late.dart</span></div>
+<pre>class User {
+  late String name;  // initialized later
+  User({required this.name});
+}</pre></div>
+<h2>Futures (Async/Await)</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">async.dart</span></div>
+<pre>Future<String> fetchData() async {
+  await Future.delayed(Duration(seconds: 2));
+  return "Data loaded!";
+}
+void main() async {
+  print("Loading...");
+  String result = await fetchData();
+  print(result); // Data loaded!
+}</pre></div>
+<h2>Error Handling</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">errors.dart</span></div>
+<pre>try {
+  var data = await fetchData();
+} catch (e) {
+  print("Error: $e");
+} finally {
+  print("Done.");
+}</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Write an async function that fetches user data, handles network errors, and returns a default value on failure.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(5)">← Previous</button><button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 08 ===================== -->
+<div class="lecture" id="lec-7">
+<div class="lecture-tag">Lecture 08 · Core Concepts</div>
+<h1>Generics & Extensions</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>Generic Classes</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">generic.dart</span></div>
+<pre>class Box<T> {
+  T value;
+  Box(this.value);
+  T get() => value;
+}
+void main() {
+  var intBox = Box<int>(42);
+  var strBox = Box<String>("hello");
+}</pre></div>
+<h2>Generic Functions</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">genfunc.dart</span></div>
+<pre>T first<T>(List<T> items) => items[0];
+void main() {
+  print(first<int>([1,2,3]));  // 1
+  print(first(["a","b"]));     // a (type inferred)
+}</pre></div>
+<h2>Extensions</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">extension.dart</span></div>
+<pre>extension StringX on String {
+  String get reversed => split('').reversed.join();
+  bool get isEmail => contains('@');
+}
+void main() {
+  print("hello".reversed);  // olleh
+  print("a@b.com".isEmail); // true
+}</pre></div>
+<h2>Mixins</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mixin.dart</span></div>
+<pre>mixin Logger {
+  void log(String msg) => print("[LOG] $msg");
+}
+class Service with Logger {
+  void run() { log("Service started"); }
+}</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a generic Stack<T> class with push/pop, and an extension on List that adds a sum getter for numbers.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(6)">← Previous</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 09 ===================== -->
+<div class="lecture" id="lec-8">
+<div class="lecture-tag">Lecture 09 · Core Concepts</div>
+<h1>Streams & Reactive Programming</h1>
+<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+<h2>What are Streams?</h2>
+<p>Streams deliver a sequence of asynchronous data events. Think of them as a pipe where data flows over time — perfect for real-time data, user input, or file I/O.</p>
+<h2>Creating Streams</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">stream.dart</span></div>
+<pre>Stream<int> countStream(int max) async* {
+  for (int i = 1; i <= max; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
+  }
+}
+void main() async {
+  await for (var val in countStream(5)) {
+    print(val); // 1, 2, 3, 4, 5 (one per second)
+  }
+}</pre></div>
+<h2>StreamController</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">controller.dart</span></div>
+<pre>import 'dart:async';
+void main() {
+  var controller = StreamController<String>();
+  controller.stream.listen((data) => print("Got: $data"));
+  controller.add("Hello");
+  controller.add("World");
+  controller.close();
+}</pre></div>
+<h2>Stream Transformers</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">transform.dart</span></div>
+<pre>var stream = Stream.fromIterable([1, 2, 3, 4, 5]);
+stream
+  .where((n) => n % 2 == 0)   // filter even
+  .map((n) => n * 10)          // multiply
+  .listen(print);               // 20, 40</pre></div>
+<h2>StreamBuilder in Flutter</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">streambuilder.dart</span></div>
+<pre>StreamBuilder<int>(
+  stream: countStream(10),
+  builder: (context, snapshot) {
+    if (!snapshot.hasData) return CircularProgressIndicator();
+    return Text("Count: ${snapshot.data}");
+  },
+)</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a stream that emits a random number every second. Display it in a Flutter StreamBuilder.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(7)">← Previous</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 10 ===================== -->
+<div class="lecture" id="lec-9">
+<div class="lecture-tag">Lecture 10 · Flutter</div>
+<h1>Flutter Basics</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>What is Flutter?</h2>
+<p>Flutter is Google's UI toolkit for building natively compiled apps for mobile, web, and desktop from a single Dart codebase. Everything in Flutter is a <strong>widget</strong>.</p>
+<h2>Your First Flutter App</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.dart</span></div>
+<pre>import 'package:flutter/material.dart';
+void main() => runApp(MyApp());
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("My App")),
+        body: Center(child: Text("Hello Flutter!")),
+      ),
+    );
+  }
+}</pre></div>
+<h2>Common Widgets</h2>
+<table><tr><th>Widget</th><th>Purpose</th></tr>
+<tr><td>Container</td><td>Box with padding, margin, decoration</td></tr>
+<tr><td>Row / Column</td><td>Horizontal / vertical layout</td></tr>
+<tr><td>ListView</td><td>Scrollable list</td></tr>
+<tr><td>Stack</td><td>Overlapping widgets</td></tr>
+<tr><td>TextField</td><td>Text input</td></tr>
+<tr><td>ElevatedButton</td><td>Material button</td></tr></table>
+<h2>Hot Reload</h2>
+<p>Flutter's hot reload lets you see code changes instantly without losing app state — one of its best features for rapid development.</p>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a Flutter app with an AppBar, a TextField, and a button that displays the entered text below.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(7)">← Previous</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 10 ===================== -->
+<div class="lecture" id="lec-10">
+<div class="lecture-tag">Lecture 11 · Flutter</div>
+<h1>State Management</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>StatefulWidget</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">counter.dart</span></div>
+<pre>class Counter extends StatefulWidget {
+  @override _CounterState createState() => _CounterState();
+}
+class _CounterState extends State<Counter> {
+  int count = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      Text("$count"),
+      ElevatedButton(
+        onPressed: () => setState(() => count++),
+        child: Text("+"),
+      ),
+    ]);
+  }
+}</pre></div>
+<h2>Provider Pattern</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">provider.dart</span></div>
+<pre>class CartModel extends ChangeNotifier {
+  List<String> items = [];
+  void add(String item) { items.add(item); notifyListeners(); }
+}
+// In widget tree:
+ChangeNotifierProvider(create: (_) => CartModel(), child: MyApp());
+// In any widget:
+var cart = context.watch<CartModel>();
+print(cart.items.length);</pre></div>
+<h2>Riverpod (Modern)</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">riverpod.dart</span></div>
+<pre>final counterProvider = StateProvider<int>((ref) => 0);
+// In widget:
+final count = ref.watch(counterProvider);
+ref.read(counterProvider.notifier).state++;</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Build a todo list app using Provider — add, remove, and toggle completion of items.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(8)">← Previous</button><button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 11 ===================== -->
+<div class="lecture" id="lec-12">
+<div class="lecture-tag">Lecture 13 · Flutter</div>
+<h1>Firebase & Backend Integration</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Firebase Setup</h2>
+<p>Add Firebase to your Flutter app using <code>flutterfire configure</code>. This sets up Firebase Core, Authentication, Firestore, and more.</p>
+<h2>Firestore CRUD</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">firestore.dart</span></div>
+<pre>import 'package:cloud_firestore/cloud_firestore.dart';
+// Create
+await FirebaseFirestore.instance.collection('users').add({
+  'name': 'Ahmed', 'age': 25
+});
+// Read
+var snapshot = await FirebaseFirestore.instance
+    .collection('users').get();
+for (var doc in snapshot.docs) print(doc.data());
+// Real-time listener
+FirebaseFirestore.instance.collection('users')
+    .snapshots().listen((snapshot) { /* update UI */ });</pre></div>
+<h2>Firebase Auth</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">auth.dart</span></div>
+<pre>import 'package:firebase_auth/firebase_auth.dart';
+// Sign up
+await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    email: "a@b.com", password: "123456");
+// Sign in
+await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: "a@b.com", password: "123456");
+// Check auth state
+FirebaseAuth.instance.authStateChanges().listen((user) {
+  if (user != null) print("Logged in: ${user.email}");
+});</pre></div>
+<h2>REST API Calls</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">api.dart</span></div>
+<pre>import 'dart:convert';
+import 'package:http/http.dart' as http;
+Future<Map> fetchPost() async {
+  final res = await http.get(Uri.parse('https://api.example.com/posts/1'));
+  if (res.statusCode == 200) return jsonDecode(res.body);
+  throw Exception('Failed');
+}</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Build a chat app screen that reads/writes messages to Firestore in real-time.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(11)">← Previous</button><button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 12 ===================== -->
+<div class="lecture" id="lec-11">
+<div class="lecture-tag">Lecture 12 · Flutter</div>
+<h1>Navigation & Routing</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Basic Navigation</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">navigate.dart</span></div>
+<pre>Navigator.push(context, MaterialPageRoute(
+  builder: (_) => DetailScreen()));
+Navigator.pop(context);
+Navigator.pushNamed(context, '/detail');</pre></div>
+<h2>Passing Data</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">data.dart</span></div>
+<pre>final result = await Navigator.push(context,
+  MaterialPageRoute(builder: (_) => DetailScreen(id: 42)));
+print("Returned: $result");</pre></div>
+<h2>GoRouter</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">gorouter.dart</span></div>
+<pre>final router = GoRouter(routes: [
+  GoRoute(path: '/', builder: (_, __) => HomeScreen()),
+  GoRoute(path: '/user/:id', builder: (_, s) =>
+    UserScreen(id: s.pathParameters['id']!)),
+]);
+context.go('/user/42');</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Build 3-screen app with named routes, passing data and returning results.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(10)">← Previous</button><button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 14 ===================== -->
+<div class="lecture" id="lec-13">
+<div class="lecture-tag">Lecture 14 · Production</div>
+<h1>Testing & Debugging</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Unit Tests</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">test.dart</span></div>
+<pre>import 'package:test/test.dart';
+void main() {
+  test('addition', () {
+    expect(2 + 2, equals(4));
+  });
+}</pre></div>
+<h2>Widget Tests</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">widget_test.dart</span></div>
+<pre>testWidgets('has title', (tester) async {
+  await tester.pumpWidget(MyApp());
+  expect(find.text('My App'), findsOneWidget);
+});</pre></div>
+<h2>Flutter DevTools</h2>
+<p>Use <code>flutter run --debug</code> and open DevTools for widget inspector, performance profiling, and memory analysis.</p>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Write unit tests for a Counter class and widget tests for your app.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(12)">← Previous</button><button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 15 ===================== -->
+<div class="lecture" id="lec-14">
+<div class="lecture-tag">Lecture 15 · Production</div>
+<h1>Platform Channels</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Method Channels</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">channel.dart</span></div>
+<pre>const channel = MethodChannel('com.app/battery');
+final level = await channel.invokeMethod('getBatteryLevel');
+print("Battery: $level%");</pre></div>
+<h2>Android (Kotlin)</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">MainActivity.kt</span></div>
+<pre>MethodChannel(flutterEngine.dartExecutor, "com.app/battery")
+  .setMethodCallHandler { call, result ->
+    if (call.method == "getBatteryLevel") {
+      result.success(75)
+    }
+  }</pre></div>
+<h2>Event Channels (Streams)</h2>
+<p>Use EventChannel for continuous data streams from native to Flutter (sensors, location updates).</p>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a platform channel that gets device battery level and displays it in Flutter.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(13)">← Previous</button><button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 16 ===================== -->
+<div class="lecture" id="lec-15">
+<div class="lecture-tag">Lecture 16 · Production</div>
+<h1>App Deployment</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Build for Release</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">build.sh</span></div>
+<pre>flutter build apk --release
+flutter build ios --release
+flutter build web</pre></div>
+<h2>App Signing</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">key.properties</span></div>
+<pre>storeFile=key.jks
+storePassword=****
+keyAlias=upload
+keyPassword=****</pre></div>
+<h2>Google Play & App Store</h2>
+<ul><li>Create developer accounts ($25 Google, $99 Apple/year)</li><li>Fill store listing, screenshots, description</li><li>Upload AAB (Android) or IPA (iOS)</li><li>Submit for review</li></ul>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Build a release APK, sign it, and prepare a Play Store listing.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(14)">← Previous</button><button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 17 ===================== -->
+<div class="lecture" id="lec-16">
+<div class="lecture-tag">Lecture 17 · Production</div>
+<h1>Design Patterns in Dart</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+<h2>Singleton</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">singleton.dart</span></div>
+<pre>class Database {
+  Database._();
+  static final instance = Database._();
+}</pre></div>
+<h2>Factory & Builder</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">factory.dart</span></div>
+<pre>class Button {
+  final String label;
+  Button._(this.label);
+  factory Button.primary(String l) => Button._(l);
+}</pre></div>
+<h2>Repository Pattern</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">repo.dart</span></div>
+<pre>class UserRepo {
+  final api = ApiService();
+  final cache = LocalCache();
+  Future<User> getUser(int id) async {
+    try { return await api.fetchUser(id); }
+    catch (_) { return cache.getUser(id); }
+  }
+}</pre></div>
+<h2>BLoC Pattern</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bloc.dart</span></div>
+<pre>class CounterBloc extends Bloc<CounterEvent, int> {
+  CounterBloc() : super(0) {
+    on<Increment>((event, emit) => emit(state + 1));
+  }
+}</pre></div>
+<div class="exercise"><div class="exercise-title">Practice</div><p>Refactor your app to use Repository + BLoC pattern for state management.</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(15)">← Previous</button><button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button></div></div>
+
+<!-- ===================== LECTURE 18 ===================== -->
+<div class="lecture" id="lec-17">
+<div class="lecture-tag">Lecture 18 · Production</div>
+<h1>Capstone Project: Full Flutter App</h1>
+<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~60 min</span></div>
+<h2>Project: Task Manager</h2>
+<p>Build a complete Flutter app with Firebase auth, Firestore, Provider/Riverpod, navigation, and clean architecture.</p>
+<h2>Features</h2>
+<ul><li>Email/password auth</li><li>CRUD tasks with Firestore</li><li>Filter by status</li><li>User profile</li><li>Dark mode</li></ul>
+<h2>Architecture</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">structure.txt</span></div>
+<pre>lib/
+  main.dart
+  models/     # Data models
+  services/   # Auth, Firestore, API
+  screens/    # UI screens
+  widgets/    # Reusable widgets
+  blocs/      # State management</pre></div>
+<h2>Bonus</h2>
+<ul><li>Push notifications</li><li>Deploy to Play Store / App Store</li><li>Add widget + integration tests</li></ul>
+<div class="exercise"><div class="exercise-title">Final Challenge</div><p>Build the full app, deploy it, share the GitHub repo!</p></div>
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(16)">← Previous</button><button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button></div></div>
+
             </div>
 
             <!-- RIGHT AD COLUMN -->
@@ -2942,9 +3418,15 @@ print(student[<span class="st">"name"</span>]);</pre>
             "Classes & Objects",
             "Null Safety & Asynchronous",
             "Generics & Extensions",
+            "Streams & Reactive",
             "Flutter Basics",
             "State Management",
+            "Navigation & Routing",
             "Firebase & Backend",
+            "Testing & Debugging",
+            "Platform Channels",
+            "App Deployment",
+            "Design Patterns",
             "Capstone Project: Flutter App"
         ];
         initLessons(titles);

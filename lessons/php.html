@@ -100,7 +100,7 @@
                 <span class="logo-icon">🐘</span>
                 PHP Mastery
             </a>
-            <p>Complete Course — 12 Lessons</p>
+            <p>Complete Course — 18 Lessons</p>
         </div>
 
         <div class="nav-section">
@@ -117,14 +117,24 @@
             <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Functions</button>
             <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Arrays & Superglobals</button>
             <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Strings & Forms</button>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Sessions & Cookies</button>
         </div>
 
         <div class="nav-section">
-            <div class="nav-section-label">Advanced</div>
-            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Object-Oriented PHP</button>
-            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>File I/O & Security</button>
-            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>MySQL & PDO</button>
-            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Capstone Project</button>
+            <div class="nav-section-label">OOP & Advanced</div>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Object-Oriented PHP</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Namespaces & Composer</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Exceptions & Error Handling</button>
+            <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>File I/O & Security</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Web & Database</div>
+            <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>MySQL & PDO</button>
+            <button class="nav-item" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>REST APIs</button>
+            <button class="nav-item" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Laravel Basics</button>
+            <button class="nav-item" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Authentication & Deployment</button>
+            <button class="nav-item" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Capstone Project</button>
         </div>
     </nav>
 
@@ -1008,7 +1018,46 @@ echo (<span class="kw">$age</span> >= 18) ? <span class="st">"Adult"</span> : <s
 
                 <!-- ===================== LECTURE 09 ===================== -->
                 <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Advanced</div>
+                    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+                    <h1>Sessions & Cookies</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Sessions</h2>
+                    <div class="code-block"><pre>&lt;?php
+session_start();
+$_SESSION['user'] = 'Ahmed';
+$_SESSION['role'] = 'admin';
+echo $_SESSION['user']; // Ahmed
+
+// Destroy
+session_unset();
+session_destroy();
+?&gt;</pre></div>
+                    <h2>Cookies</h2>
+                    <div class="code-block"><pre>// Set cookie (expires in 1 hour)
+setcookie('theme', 'dark', time() + 3600, '/');
+
+// Read cookie
+echo $_COOKIE['theme'] ?? 'light';
+
+// Delete
+setcookie('theme', '', time() - 3600, '/');</pre></div>
+                    <h2>Login Example</h2>
+                    <div class="code-block"><pre>session_start();
+if ($_POST['user'] === 'admin' &amp;&amp; $_POST['pass'] === 'secret') {
+    $_SESSION['logged_in'] = true;
+    header('Location: dashboard.php');
+    exit;
+}</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a login/logout system with session-based authentication.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 10 ===================== -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · OOP & Advanced</div>
                     <h1>Object-Oriented PHP</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -1023,14 +1072,105 @@ echo (<span class="kw">$age</span> >= 18) ? <span class="st">"Adult"</span> : <s
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 10 ===================== -->
-                <div class="lecture" id="lec-9">
-                    <div class="lecture-tag">Lecture 10 · Advanced</div>
+                <!-- ===================== LECTURE 11 ===================== -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · OOP & Advanced</div>
+                    <h1>Namespaces & Composer</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Namespaces</h2>
+                    <div class="code-block"><pre>// src/Models/User.php
+&lt;?php
+namespace App\Models;
+class User {
+    public function __construct(public string $name) {}
+}
+
+// index.php
+require 'src/Models/User.php';
+use App\Models\User;
+$u = new User('Ahmed');</pre></div>
+                    <h2>Composer Setup</h2>
+                    <div class="code-block"><pre># Install Composer (one-time)
+curl -sS https://getcomposer.org/installer | php
+
+# Create composer.json
+composer init
+
+# Install a package
+composer require monolog/monolog
+composer require --dev phpunit/phpunit</pre></div>
+                    <h2>Autoloading (PSR-4)</h2>
+                    <div class="code-block"><pre>// composer.json
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
+// Then:
+composer dump-autoload
+
+// index.php
+require 'vendor/autoload.php';
+use App\Models\User;</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Set up a Composer project, autoload your classes with PSR-4, install Monolog and log to a file.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 12 ===================== -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · OOP & Advanced</div>
+                    <h1>Exceptions & Error Handling</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Try-Catch</h2>
+                    <div class="code-block"><pre>try {
+    $result = 10 / 0;
+} catch (DivisionByZeroError $e) {
+    echo "Math error: " . $e-&gt;getMessage();
+} catch (Exception $e) {
+    echo "Error: " . $e-&gt;getMessage();
+} finally {
+    echo "Cleanup.";
+}</pre></div>
+                    <h2>Custom Exception</h2>
+                    <div class="code-block"><pre>class InvalidUserException extends Exception {}
+
+function getUser(int $id): User {
+    $u = User::find($id);
+    if (!$u) throw new InvalidUserException("User $id not found");
+    return $u;
+}
+
+try {
+    $user = getUser(99);
+} catch (InvalidUserException $e) {
+    http_response_code(404);
+    echo $e-&gt;getMessage();
+}</pre></div>
+                    <h2>set_error_handler</h2>
+                    <div class="code-block"><pre>set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    error_log("[$errno] $errstr in $errfile:$errline");
+    return true;
+});</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a UserRepository that throws different custom exceptions for not-found, invalid-data, and DB errors.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 13 ===================== -->
+                <div class="lecture" id="lec-12">
+                    <div class="lecture-tag">Lecture 13 · OOP & Advanced</div>
                     <h1>File I/O & Security</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -1040,14 +1180,14 @@ echo (<span class="kw">$age</span> >= 18) ? <span class="st">"Adult"</span> : <s
                     <p>Always sanitize your inputs using <code>htmlspecialchars()</code> to prevent XSS attacks.</p>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 11 ===================== -->
-                <div class="lecture" id="lec-10">
-                    <div class="lecture-tag">Lecture 11 · Advanced</div>
+                <!-- ===================== LECTURE 14 ===================== -->
+                <div class="lecture" id="lec-13">
+                    <div class="lecture-tag">Lecture 14 · Web & Database</div>
                     <h1>MySQL & PDO</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -1061,14 +1201,140 @@ echo (<span class="kw">$age</span> >= 18) ? <span class="st">"Adult"</span> : <s
                     </div>
 
                     <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
                     </div>
                 </div>
 
-                <!-- ===================== LECTURE 12 ===================== -->
-                <div class="lecture" id="lec-11">
-                    <div class="lecture-tag">Lecture 12 · Capstone</div>
+                <!-- ===================== LECTURE 15 ===================== -->
+                <div class="lecture" id="lec-14">
+                    <div class="lecture-tag">Lecture 15 · Web & Database</div>
+                    <h1>Building REST APIs</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+                    <h2>JSON Response</h2>
+                    <div class="code-block"><pre>&lt;?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+
+$users = [['id'=&gt;1, 'name'=&gt;'Ahmed']];
+echo json_encode($users);
+?&gt;</pre></div>
+                    <h2>Routing by Method</h2>
+                    <div class="code-block"><pre>$method = $_SERVER['REQUEST_METHOD'];
+$input = json_decode(file_get_contents('php://input'), true);
+
+switch ($method) {
+    case 'GET':
+        echo json_encode($db-&gt;all());
+        break;
+    case 'POST':
+        $db-&gt;insert($input);
+        http_response_code(201);
+        break;
+    case 'DELETE':
+        $db-&gt;delete($_GET['id']);
+        http_response_code(204);
+        break;
+}</pre></div>
+                    <h2>Token Auth</h2>
+                    <div class="code-block"><pre>$token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+if (!str_starts_with($token, 'Bearer ')) {
+    http_response_code(401);
+    exit(json_encode(['error' =&gt; 'Unauthorized']));
+}</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a /api/products REST endpoint with GET/POST/PUT/DELETE.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 16 ===================== -->
+                <div class="lecture" id="lec-15">
+                    <div class="lecture-tag">Lecture 16 · Web & Database</div>
+                    <h1>Laravel Basics</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Install Laravel</h2>
+                    <div class="code-block"><pre>composer create-project laravel/laravel myapp
+cd myapp
+php artisan serve  # http://localhost:8000</pre></div>
+                    <h2>Routes</h2>
+                    <div class="code-block"><pre>// routes/web.php
+Route::get('/', fn() =&gt; view('welcome'));
+Route::get('/users', [UserController::class, 'index']);
+Route::resource('posts', PostController::class);</pre></div>
+                    <h2>Controller</h2>
+                    <div class="code-block"><pre>// php artisan make:controller PostController --resource
+class PostController extends Controller {
+    public function index() {
+        return Post::all();
+    }
+    public function store(Request $r) {
+        $r-&gt;validate(['title' =&gt; 'required']);
+        return Post::create($r-&gt;all());
+    }
+}</pre></div>
+                    <h2>Eloquent Model</h2>
+                    <div class="code-block"><pre>// php artisan make:model Post -m
+class Post extends Model {
+    protected $fillable = ['title', 'body'];
+    public function user() {
+        return $this-&gt;belongsTo(User::class);
+    }
+}
+
+Post::where('published', true)-&gt;latest()-&gt;take(10)-&gt;get();</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a Laravel blog with posts, categories, and Eloquent relationships.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 17 ===================== -->
+                <div class="lecture" id="lec-16">
+                    <div class="lecture-tag">Lecture 17 · Web & Database</div>
+                    <h1>Authentication & Deployment</h1>
+                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+                    <h2>Password Hashing</h2>
+                    <div class="code-block"><pre>// Hash on signup
+$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+// Verify on login
+if (password_verify($_POST['password'], $user-&gt;password_hash)) {
+    $_SESSION['user_id'] = $user-&gt;id;
+}</pre></div>
+                    <h2>JWT Tokens</h2>
+                    <div class="code-block"><pre>// composer require firebase/php-jwt
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+$payload = ['user_id' =&gt; 1, 'exp' =&gt; time() + 3600];
+$jwt = JWT::encode($payload, $secret, 'HS256');
+
+// Decode
+$decoded = JWT::decode($jwt, new Key($secret, 'HS256'));</pre></div>
+                    <h2>Deploy to Shared Hosting</h2>
+                    <div class="code-block"><pre># Upload via FTP/SFTP
+# Set document root to /public
+# Configure .htaccess for clean URLs
+# Update .env with production database</pre></div>
+                    <h2>Deploy to VPS</h2>
+                    <div class="code-block"><pre># Ubuntu + Nginx + PHP-FPM
+sudo apt install nginx php-fpm php-mysql composer
+sudo nano /etc/nginx/sites-available/myapp
+# Set fastcgi_pass to PHP-FPM
+sudo systemctl restart nginx</pre></div>
+                    <div class="exercise"><div class="exercise-title">Practice</div><p>Add JWT authentication to your REST API and deploy to a VPS or Heroku.</p></div>
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- ===================== LECTURE 18 ===================== -->
+                <div class="lecture" id="lec-17">
+                    <div class="lecture-tag">Lecture 18 · Capstone</div>
                     <h1>Capstone Project: Blog System</h1>
                     <div class="lecture-meta">
                         <span class="meta-badge level-advanced">Advanced</span>
@@ -1108,9 +1374,15 @@ echo (<span class="kw">$age</span> >= 18) ? <span class="st">"Adult"</span> : <s
             "Functions",
             "Arrays & Superglobals",
             "Strings & Forms",
+            "Sessions & Cookies",
             "Object-Oriented PHP",
+            "Namespaces & Composer",
+            "Exceptions & Error Handling",
             "File I/O & Security",
             "MySQL & PDO",
+            "REST APIs",
+            "Laravel Basics",
+            "Authentication & Deployment",
             "Capstone Project: Blog System"
         ];
 
