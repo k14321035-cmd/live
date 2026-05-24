@@ -334,7 +334,7 @@ y = 11; <span class="cm">// OK</span></pre>
     <p>Type annotations are useful when Rust cannot infer the type automatically.</p>
 
     <h2>Common Rust Data Types</h2>
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Type</th>
             <th>Description</th>
@@ -394,7 +394,7 @@ println!(<span class="st">"{}"</span>, number);</pre>
     <p>Unlike mutation, shadowing creates a completely new variable.</p>
 
     <h2>Difference Between Mutation and Shadowing</h2>
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Mutation</th>
             <th>Shadowing</th>
@@ -1098,89 +1098,1125 @@ println!(<span class="st">"Squared Evens: {:?}"</span>, squared_evens);</pre>
 
 
                 <!-- ===================== LECTURE 06 ===================== -->
-                <div class="lecture" id="lec-5">
-                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-                    <h1>Ownership & Borrowing</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~65 min</span>
-                    </div>
+          <div class="lecture" id="lec-5">
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
 
-                    <h2>References & Borrowing</h2>
-                    <p>Instead of transferring ownership, you can "borrow" a value using references (<code>&</code>).</p>
-                    <div class="code-block">
-                        <pre><span class="kw">fn</span> calculate_length(s: &<span class="kw">String</span>) -> <span class="kw">usize</span> {
+    <h1>Ownership & Borrowing</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~65 min</span>
+    </div>
+
+    <h2>Introduction to Ownership</h2>
+    <p>Ownership is one of the most unique and important concepts in Rust. It is the system that allows Rust to manage memory safely without using a garbage collector.</p>
+
+    <p>Instead of automatically cleaning unused memory at random times, Rust follows strict ownership rules at compile time. These rules prevent memory leaks, dangling pointers, and data races.</p>
+
+    <p>Understanding ownership is essential because almost every Rust program depends on it.</p>
+
+    <h2>The Three Ownership Rules</h2>
+    <p>Rust ownership is based on three core rules:</p>
+
+    <ul>
+        <li>Each value in Rust has a variable called its owner.</li>
+        <li>There can only be one owner at a time.</li>
+        <li>When the owner goes out of scope, the value is dropped.</li>
+    </ul>
+
+    <p>These rules make memory management automatic and safe.</p>
+
+    <h2>Variable Scope</h2>
+    <p>A variable is only valid inside the scope where it is declared.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> main() {
+
+    {
+        <span class="kw">let</span> name = <span class="st">"Rust"</span>;
+        println!(<span class="st">"{}"</span>, name);
+    }
+
+    <span class="cm">// name is no longer valid here</span>
+}</pre>
+    </div>
+
+    <p>When the scope ends, Rust automatically frees the memory associated with the variable.</p>
+
+    <h2>Ownership Transfer</h2>
+    <p>Some values are moved instead of copied. After a move occurs, the original variable can no longer be used.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> main() {
+
+    <span class="kw">let</span> s1 = <span class="kw">String</span>::from(<span class="st">"hello"</span>);
+
+    <span class="kw">let</span> s2 = s1;
+
+    <span class="cm">// println!("{}", s1);</span>
+}</pre>
+    </div>
+
+    <p>In this example, ownership of the string moves from <code>s1</code> to <code>s2</code>. The variable <code>s1</code> becomes invalid after the move.</p>
+
+    <h2>Why Rust Uses Moves</h2>
+    <p>Rust uses move semantics to prevent multiple variables from trying to free the same memory location.</p>
+
+    <p>This eliminates common bugs such as:</p>
+
+    <ul>
+        <li>Double free errors</li>
+        <li>Dangling pointers</li>
+        <li>Memory corruption</li>
+    </ul>
+
+    <h2>Copy Types</h2>
+    <p>Simple primitive values are copied instead of moved because they are stored directly on the stack.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> main() {
+
+    <span class="kw">let</span> x = 10;
+
+    <span class="kw">let</span> y = x;
+
+    println!(<span class="st">"{}"</span>, x);
+    println!(<span class="st">"{}"</span>, y);
+}</pre>
+    </div>
+
+    <p>Integers, booleans, characters, and floating-point numbers usually implement the <code>Copy</code> trait.</p>
+
+    <h2>Cloning Data</h2>
+    <p>If you want to create a deep copy of heap data, you can use the <code>clone()</code> method.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> main() {
+
+    <span class="kw">let</span> s1 = <span class="kw">String</span>::from(<span class="st">"Rust"</span>);
+
+    <span class="kw">let</span> s2 = s1.clone();
+
+    println!(<span class="st">"{}"</span>, s1);
+    println!(<span class="st">"{}"</span>, s2);
+}</pre>
+    </div>
+
+    <p>Unlike moves, cloning creates a completely separate copy of the data.</p>
+
+    <h2>Ownership and Functions</h2>
+    <p>Passing a variable to a function may transfer ownership depending on the type.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> print_string(text: <span class="kw">String</span>) {
+    println!(<span class="st">"{}"</span>, text);
+}
+
+<span class="kw">fn</span> main() {
+
+    <span class="kw">let</span> msg = <span class="kw">String</span>::from(<span class="st">"Hello"</span>);
+
+    print_string(msg);
+
+    <span class="cm">// msg is no longer valid here</span>
+}</pre>
+    </div>
+
+    <p>The function takes ownership of the string parameter.</p>
+
+    <h2>Returning Ownership</h2>
+    <p>Functions can also return ownership back to the caller.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> give_back(s: <span class="kw">String</span>) -> <span class="kw">String</span> {
+    s
+}</pre>
+    </div>
+
+    <p>This allows ownership to move safely between functions.</p>
+
+    <h2>References & Borrowing</h2>
+    <p>Instead of transferring ownership, you can "borrow" a value using references (<code>&</code>).</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> calculate_length(s: &<span class="kw">String</span>) -> <span class="kw">usize</span> {
     s.len()
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>Borrowing allows a function to use a value without taking ownership of it.</p>
+
+    <p>This means the original variable remains valid after the function call.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> main() {
+
+    <span class="kw">let</span> text = <span class="kw">String</span>::from(<span class="st">"Rust"</span>);
+
+    <span class="kw">let</span> length = calculate_length(&text);
+
+    println!(<span class="st">"Length: {}"</span>, length);
+
+    println!(<span class="st">"{}"</span>, text);
+}</pre>
+    </div>
+
+    <h2>Mutable References</h2>
+    <p>By default, references are immutable. To modify borrowed data, you must use mutable references.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> change(text: &<span class="kw">mut String</span>) {
+    text.push_str(<span class="st">" language"</span>);
+}</pre>
+    </div>
+
+    <p>Mutable references allow safe modification while still preventing dangerous memory access.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> main() {
+
+    <span class="kw">let</span> <span class="kw">mut</span> name = <span class="kw">String</span>::from(<span class="st">"Rust"</span>);
+
+    change(&<span class="kw">mut</span> name);
+
+    println!(<span class="st">"{}"</span>, name);
+}</pre>
+    </div>
+
+    <h2>Borrowing Rules</h2>
+    <p>Rust enforces strict borrowing rules to guarantee memory safety.</p>
+
+    <ul>
+        <li>You can have multiple immutable references at the same time.</li>
+        <li>You can only have one mutable reference at a time.</li>
+        <li>You cannot combine mutable and immutable references simultaneously.</li>
+    </ul>
+
+    <h2>Multiple Immutable References</h2>
+    <div class="code-block">
+        <pre><span class="kw">let</span> s = <span class="kw">String</span>::from(<span class="st">"hello"</span>);
+
+<span class="kw">let</span> r1 = &s;
+<span class="kw">let</span> r2 = &s;
+
+println!(<span class="st">"{}, {}"</span>, r1, r2);</pre>
+    </div>
+
+    <p>This is allowed because immutable references only read data.</p>
+
+    <h2>Single Mutable Reference</h2>
+    <div class="code-block">
+        <pre><span class="kw">let</span> <span class="kw">mut</span> s = <span class="kw">String</span>::from(<span class="st">"hello"</span>);
+
+<span class="kw">let</span> r1 = &<span class="kw">mut</span> s;</pre>
+    </div>
+
+    <p>Rust prevents multiple mutable references because simultaneous modification could cause data races.</p>
+
+    <h2>Dangling References</h2>
+    <p>Rust prevents dangling references at compile time.</p>
+
+    <div class="code-block">
+        <pre><span class="cm">// This code will not compile</span>
+
+<span class="kw">fn</span> dangle() -> &<span class="kw">String</span> {
+
+    <span class="kw">let</span> s = <span class="kw">String</span>::from(<span class="st">"hello"</span>);
+
+    &s
+}</pre>
+    </div>
+
+    <p>The compiler stops this because the local variable would be destroyed after the function ends.</p>
+
+    <h2>Slices and Borrowing</h2>
+    <p>Slices are references to parts of collections without taking ownership.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> word = &text[0..4];</pre>
+    </div>
+
+    <p>Slices are heavily used with strings and arrays.</p>
+
+    <h2>Benefits of Ownership</h2>
+    <ul>
+        <li>Memory safety without garbage collection.</li>
+        <li>Prevention of data races.</li>
+        <li>Better performance.</li>
+        <li>Automatic resource cleanup.</li>
+        <li>Safer concurrent programming.</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Trying to use variables after ownership has moved.</li>
+        <li>Creating multiple mutable references.</li>
+        <li>Confusing cloning with borrowing.</li>
+        <li>Forgetting to use <code>mut</code> for mutable references.</li>
+        <li>Returning references to local variables.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>Ownership and borrowing are the foundation of Rust’s memory safety model. Instead of relying on garbage collection, Rust uses compile-time rules to manage memory safely and efficiently.</p>
+
+    <p>Although ownership may feel difficult at first, mastering it allows developers to write high-performance and reliable systems software with confidence.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Structs & Enums</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
+             <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
 
-                    <h2>Pattern Matching</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">match</span> some_option {
+    <h1>Structs & Enums</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~60 min</span>
+    </div>
+
+    <h2>Introduction to Structs</h2>
+    <p>Structs are custom data types that allow you to group related values together. They are similar to objects or classes in other programming languages, but Rust structs only store data.</p>
+
+    <p>Structs help organize code and make programs easier to understand and maintain.</p>
+
+    <h2>Defining a Struct</h2>
+    <p>A struct is created using the <code>struct</code> keyword.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> User {
+    username: <span class="kw">String</span>,
+    email: <span class="kw">String</span>,
+    active: <span class="kw">bool</span>,
+}</pre>
+    </div>
+
+    <p>This struct stores information related to a user account.</p>
+
+    <h2>Creating Struct Instances</h2>
+    <p>You can create instances of a struct by providing values for each field.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> user1 = User {
+    username: <span class="kw">String</span>::from(<span class="st">"rustacean"</span>),
+    email: <span class="kw">String</span>::from(<span class="st">"rust@example.com"</span>),
+    active: <span class="kw">true</span>,
+};</pre>
+    </div>
+
+    <p>Each field must receive a value of the correct type.</p>
+
+    <h2>Accessing Struct Fields</h2>
+    <p>Struct fields are accessed using dot notation.</p>
+
+    <div class="code-block">
+        <pre>println!(<span class="st">"{}"</span>, user1.username);</pre>
+    </div>
+
+    <p>This prints the value stored inside the <code>username</code> field.</p>
+
+    <h2>Mutable Structs</h2>
+    <p>To modify struct fields, the struct instance must be mutable.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let mut</span> user1 = User {
+    username: <span class="kw">String</span>::from(<span class="st">"rustacean"</span>),
+    email: <span class="kw">String</span>::from(<span class="st">"rust@example.com"</span>),
+    active: <span class="kw">true</span>,
+};
+
+user1.active = <span class="kw">false</span>;</pre>
+    </div>
+
+    <p>Without the <code>mut</code> keyword, Rust will prevent modifications.</p>
+
+    <h2>Struct Update Syntax</h2>
+    <p>Rust provides a convenient way to create new struct instances using existing values.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> user2 = User {
+    email: <span class="kw">String</span>::from(<span class="st">"new@example.com"</span>),
+    ..user1
+};</pre>
+    </div>
+
+    <p>The <code>..user1</code> syntax copies remaining fields from another struct instance.</p>
+
+    <h2>Tuple Structs</h2>
+    <p>Tuple structs are structs without named fields.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> Color(<span class="kw">u8</span>, <span class="kw">u8</span>, <span class="kw">u8</span>);
+
+<span class="kw">let</span> black = Color(0, 0, 0);</pre>
+    </div>
+
+    <p>Tuple structs are useful when field names are unnecessary.</p>
+
+    <h2>Unit-Like Structs</h2>
+    <p>Rust also supports structs without fields.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> Logger;</pre>
+    </div>
+
+    <p>These are commonly used for traits or marker types.</p>
+
+    <h2>Methods on Structs</h2>
+    <p>Methods are defined using <code>impl</code> blocks.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> Rectangle {
+    width: <span class="kw">u32</span>,
+    height: <span class="kw">u32</span>,
+}
+
+<span class="kw">impl</span> Rectangle {
+
+    <span class="kw">fn</span> area(&self) -> <span class="kw">u32</span> {
+        self.width * self.height
+    }
+}</pre>
+    </div>
+
+    <p>The <code>&self</code> parameter refers to the current struct instance.</p>
+
+    <h2>Associated Functions</h2>
+    <p>Associated functions belong to a struct but do not use <code>self</code>.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">impl</span> Rectangle {
+
+    <span class="kw">fn</span> square(size: <span class="kw">u32</span>) -> Rectangle {
+
+        Rectangle {
+            width: size,
+            height: size,
+        }
+    }
+}</pre>
+    </div>
+
+    <p>These functions are often used as constructors.</p>
+
+    <h2>Introduction to Enums</h2>
+    <p>Enums allow a value to be one of several possible variants. They are extremely powerful and widely used in Rust.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">enum</span> Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+}</pre>
+    </div>
+
+    <p>The variable can only hold one variant at a time.</p>
+
+    <h2>Enums With Data</h2>
+    <p>Enum variants can also store additional data.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">enum</span> Message {
+    Text(<span class="kw">String</span>),
+    Number(<span class="kw">i32</span>),
+    Quit,
+}</pre>
+    </div>
+
+    <p>This makes enums much more flexible than traditional enums in many other languages.</p>
+
+    <h2>The Option Enum</h2>
+    <p>Rust uses the <code>Option</code> enum to represent optional values safely.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> some_number = <span class="kw">Some</span>(5);
+
+<span class="kw">let</span> no_value: <span class="kw">Option</span>&lt;<span class="kw">i32</span>&gt; = <span class="kw">None</span>;</pre>
+    </div>
+
+    <p>The <code>Option</code> type helps prevent null pointer errors.</p>
+
+    <h2>Pattern Matching</h2>
+    <p>Pattern matching allows you to check enum variants and execute different code depending on the result.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">match</span> some_option {
+
     <span class="kw">Some</span>(i) => println!(<span class="st">"{}"</span>, i),
+
     <span class="kw">None</span> => println!(<span class="st">"None"</span>),
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>The <code>match</code> statement is one of Rust’s most powerful control flow features.</p>
+
+    <h2>Match Expressions</h2>
+    <p>Every possible pattern must be handled in a <code>match</code> expression.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> number = 3;
+
+<span class="kw">match</span> number {
+
+    1 => println!(<span class="st">"One"</span>),
+
+    2 => println!(<span class="st">"Two"</span>),
+
+    3 => println!(<span class="st">"Three"</span>),
+
+    _ => println!(<span class="st">"Other"</span>),
+}</pre>
+    </div>
+
+    <p>The underscore <code>_</code> acts as a default case.</p>
+
+    <h2>The if let Syntax</h2>
+    <p>When you only care about one pattern, <code>if let</code> provides a shorter alternative.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">if let</span> <span class="kw">Some</span>(x) = some_option {
+    println!(<span class="st">"{}"</span>, x);
+}</pre>
+    </div>
+
+    <p>This is cleaner than writing a full match expression for simple cases.</p>
+
+    <h2>The Result Enum</h2>
+    <p>Rust also uses enums for error handling through the <code>Result</code> type.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">enum</span> Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+}</pre>
+    </div>
+
+    <p>This allows programs to safely handle operations that may fail.</p>
+
+    <h2>Benefits of Structs and Enums</h2>
+    <ul>
+        <li>Improve code organization.</li>
+        <li>Create custom data models.</li>
+        <li>Provide safer error handling.</li>
+        <li>Reduce bugs caused by invalid states.</li>
+        <li>Support powerful pattern matching.</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Forgetting to make structs mutable.</li>
+        <li>Confusing tuple structs with tuples.</li>
+        <li>Ignoring all enum variants in match statements.</li>
+        <li>Trying to use null instead of <code>Option</code>.</li>
+        <li>Moving ownership accidentally when updating structs.</li>
+    </ul>
+
+    <h2>Practice</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+
+        <p>Create a struct called <code>Book</code> with fields for title, author, and pages.</p>
+
+        <p>Then create an enum called <code>Status</code> with variants:</p>
+
+        <ul>
+            <li>Available</li>
+            <li>Borrowed</li>
+            <li>Reserved</li>
+        </ul>
+
+        <p>Use a <code>match</code> statement to print different messages for each status.</p>
+    </div>
+
+    <h2>Summary</h2>
+    <p>Structs and enums are fundamental building blocks in Rust. Structs organize related data, while enums represent multiple possible states safely and efficiently.</p>
+
+    <p>Combined with pattern matching, these features allow Rust developers to write expressive, safe, and maintainable programs.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Collections & Strings</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+            <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
 
-                    <h2>Vectors (Dynamic Arrays)</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">let mut</span> v = <span class="kw">vec!</span>[1, 2, 3];
+    <h1>Collections & Strings</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
+
+    <h2>Introduction to Collections</h2>
+    <p>Collections are data structures used to store multiple values together. Rust provides several powerful collection types that help developers manage and organize data efficiently.</p>
+
+    <p>Unlike arrays, many collections in Rust are dynamic, meaning they can grow or shrink during program execution.</p>
+
+    <p>The most commonly used collections include:</p>
+
+    <ul>
+        <li>Vectors</li>
+        <li>Strings</li>
+        <li>Hash Maps</li>
+    </ul>
+
+    <p>These collections are stored on the heap, allowing flexible memory usage.</p>
+
+    <h2>Vectors (Dynamic Arrays)</h2>
+    <p>Vectors are dynamic arrays that can store multiple values of the same type. They are one of the most commonly used collections in Rust.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let mut</span> v = <span class="kw">vec!</span>[1, 2, 3];
+
 v.push(4);</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>The <code>vec!</code> macro creates a vector containing initial values.</p>
+
+    <p>The <code>push()</code> method adds new elements to the end of the vector.</p>
+
+    <h2>Creating Empty Vectors</h2>
+    <p>You can also create an empty vector and add elements later.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let mut</span> numbers: <span class="kw">Vec</span>&lt;<span class="kw">i32</span>&gt; = <span class="kw">Vec</span>::new();
+
+numbers.push(10);
+numbers.push(20);</pre>
+    </div>
+
+    <p>Because the vector starts empty, Rust requires an explicit type declaration.</p>
+
+    <h2>Accessing Vector Elements</h2>
+    <p>Vector elements can be accessed using indexing or the safer <code>get()</code> method.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> first = v[0];
+
+<span class="kw">match</span> v.get(1) {
+    <span class="kw">Some</span>(value) => println!(<span class="st">"{}"</span>, value),
+    <span class="kw">None</span> => println!(<span class="st">"No value found"</span>),
+}</pre>
+    </div>
+
+    <p>Using <code>get()</code> is safer because it prevents runtime crashes caused by invalid indexes.</p>
+
+    <h2>Iterating Through Vectors</h2>
+    <p>You can loop through vector elements using a <code>for</code> loop.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">for</span> value <span class="kw">in</span> &v {
+    println!(<span class="st">"{}"</span>, value);
+}</pre>
+    </div>
+
+    <p>The <code>&v</code> creates an immutable reference so ownership is not moved.</p>
+
+    <h2>Modifying Vector Elements</h2>
+    <p>Mutable references allow vector elements to be modified during iteration.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">for</span> value <span class="kw">in</span> &<span class="kw">mut</span> v {
+    *value += 1;
+}</pre>
+    </div>
+
+    <p>The <code>*</code> operator dereferences the mutable reference to access the actual value.</p>
+
+    <h2>Vector Memory and Ownership</h2>
+    <p>Vectors follow Rust’s ownership rules. When a vector is assigned to another variable, ownership moves unless the vector is cloned.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> v1 = <span class="kw">vec!</span>[1, 2, 3];
+
+<span class="kw">let</span> v2 = v1;
+
+<span class="cm">// v1 is no longer valid</span></pre>
+    </div>
+
+    <p>To create a full copy, use the <code>clone()</code> method.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> v2 = v1.clone();</pre>
+    </div>
+
+    <h2>Strings in Rust</h2>
+    <p>Rust provides two main string types:</p>
+
+    <ul>
+        <li><code>String</code></li>
+        <li><code>&str</code> (string slice)</li>
+    </ul>
+
+    <p>A <code>String</code> is growable and heap-allocated, while <code>&str</code> is an immutable reference to string data.</p>
+
+    <h2>Creating Strings</h2>
+    <div class="code-block">
+        <pre><span class="kw">let</span> name = <span class="kw">String</span>::from(<span class="st">"Rust"</span>);
+
+<span class="kw">let</span> language = <span class="st">"Programming"</span>;</pre>
+    </div>
+
+    <p>The first variable creates an owned string, while the second is a string slice.</p>
+
+    <h2>Appending to Strings</h2>
+    <p>Strings can grow dynamically using methods such as <code>push_str()</code> and <code>push()</code>.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let mut</span> text = <span class="kw">String</span>::from(<span class="st">"Hello"</span>);
+
+text.push_str(<span class="st">" World"</span>);
+
+text.push(<span class="st">'!'</span>);</pre>
+    </div>
+
+    <p>The final string becomes <code>Hello World!</code>.</p>
+
+    <h2>String Concatenation</h2>
+    <p>Strings can be combined using the <code>+</code> operator or the <code>format!</code> macro.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> s1 = <span class="kw">String</span>::from(<span class="st">"Hello"</span>);
+
+<span class="kw">let</span> s2 = <span class="kw">String</span>::from(<span class="st">" Rust"</span>);
+
+<span class="kw">let</span> s3 = s1 + &s2;</pre>
+    </div>
+
+    <p>The <code>+</code> operator moves ownership of the first string.</p>
+
+    <p>The <code>format!</code> macro is often cleaner and safer.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> message = format!(<span class="st">"{} {}"</span>, s1, s2);</pre>
+    </div>
+
+    <h2>String Slices</h2>
+    <p>String slices allow references to parts of a string without taking ownership.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> text = <span class="kw">String</span>::from(<span class="st">"Rustacean"</span>);
+
+<span class="kw">let</span> slice = &text[0..4];
+
+println!(<span class="st">"{}"</span>, slice);</pre>
+    </div>
+
+    <p>This slice contains the value <code>Rust</code>.</p>
+
+    <h2>UTF-8 and Strings</h2>
+    <p>Rust strings are stored as UTF-8 encoded text. This allows support for international languages and Unicode characters.</p>
+
+    <p>Because UTF-8 characters may use multiple bytes, direct indexing into strings is not allowed.</p>
+
+    <div class="code-block">
+        <pre><span class="cm">// This is invalid in Rust</span>
+
+<span class="cm">// let ch = text[0];</span></pre>
+    </div>
+
+    <p>Instead, Rust encourages safer approaches such as iterators.</p>
+
+    <h2>Iterating Over Characters</h2>
+    <div class="code-block">
+        <pre><span class="kw">for</span> ch <span class="kw">in</span> text.chars() {
+    println!(<span class="st">"{}"</span>, ch);
+}</pre>
+    </div>
+
+    <p>The <code>chars()</code> method iterates through Unicode characters safely.</p>
+
+    <h2>Hash Maps</h2>
+    <p>Hash maps store data as key-value pairs.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">use</span> std::collections::HashMap;
+
+<span class="kw">let mut</span> scores = HashMap::new();
+
+scores.insert(<span class="st">"Alice"</span>, 90);
+
+scores.insert(<span class="st">"Bob"</span>, 85);</pre>
+    </div>
+
+    <p>Hash maps are useful for fast lookups and storing related data.</p>
+
+    <h2>Accessing Hash Map Values</h2>
+    <div class="code-block">
+        <pre><span class="kw">match</span> scores.get(<span class="st">"Alice"</span>) {
+
+    <span class="kw">Some</span>(score) => println!(<span class="st">"{}"</span>, score),
+
+    <span class="kw">None</span> => println!(<span class="st">"No score found"</span>),
+}</pre>
+    </div>
+
+    <p>The <code>get()</code> method returns an <code>Option</code> because the key may not exist.</p>
+
+    <h2>Ownership and Collections</h2>
+    <p>Collections often take ownership of inserted values.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> name = <span class="kw">String</span>::from(<span class="st">"Rust"</span>);
+
+scores.insert(name, 100);
+
+<span class="cm">// name is no longer valid</span></pre>
+    </div>
+
+    <p>This behavior prevents invalid memory access and ensures safety.</p>
+
+    <h2>Benefits of Rust Collections</h2>
+    <ul>
+        <li>Memory safety</li>
+        <li>High performance</li>
+        <li>Flexible dynamic storage</li>
+        <li>Powerful ownership tracking</li>
+        <li>Efficient data management</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Trying to index strings directly.</li>
+        <li>Forgetting ownership transfer in collections.</li>
+        <li>Using indexing without checking bounds.</li>
+        <li>Confusing <code>String</code> and <code>&str</code>.</li>
+        <li>Mutating immutable vectors.</li>
+    </ul>
+
+    <h2>Practice</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+
+        <p>Create a vector that stores five numbers and write a loop that prints only even numbers.</p>
+
+        <p>Then create a string and append additional text using <code>push_str()</code>.</p>
+    </div>
+
+    <h2>Summary</h2>
+    <p>Collections and strings are essential building blocks in Rust. Vectors provide dynamic storage, strings allow safe UTF-8 text handling, and hash maps organize key-value data efficiently.</p>
+
+    <p>Mastering these collections is important for building real-world Rust applications, APIs, command-line tools, and systems software.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 09 ===================== -->
-                <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Advanced</div>
-                    <h1>Error Handling</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
+             <div class="lecture" id="lec-8">
+    <div class="lecture-tag">Lecture 09 · Advanced</div>
+    <h1>Error Handling</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~60 min</span>
+    </div>
 
-                    <h2>Panic vs Result</h2>
-                    <p>Rust groups errors into two categories: recoverable (<code>Result&lt;T, E&gt;</code>) and unrecoverable (<code>panic!</code>).</p>
+    <h2>Introduction to Error Handling</h2>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        Error handling is an essential part of writing reliable and safe programs.
+        Rust provides a powerful system that helps developers handle errors explicitly
+        instead of ignoring them.
+    </p>
+
+    <p>
+        Unlike many languages that rely heavily on exceptions,
+        Rust encourages developers to handle failures using types such as
+        <code>Result&lt;T, E&gt;</code> and <code>Option&lt;T&gt;</code>.
+    </p>
+
+    <ul>
+        <li>Improves application stability</li>
+        <li>Prevents unexpected crashes</li>
+        <li>Encourages safer programming practices</li>
+        <li>Makes failures more predictable</li>
+    </ul>
+
+    <h2>Panic vs Result</h2>
+
+    <p>
+        Rust groups errors into two categories:
+    </p>
+
+    <ul>
+        <li><strong>Recoverable errors</strong> using <code>Result&lt;T, E&gt;</code></li>
+        <li><strong>Unrecoverable errors</strong> using <code>panic!</code></li>
+    </ul>
+
+    <p>
+        Recoverable errors are situations the program can handle gracefully,
+        while unrecoverable errors indicate serious bugs or invalid states.
+    </p>
+
+    <h2>Understanding panic!</h2>
+
+    <p>
+        The <code>panic!</code> macro immediately stops program execution
+        when something goes critically wrong.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> main() {
+    panic!(<span class="st">"Something went wrong!"</span>);
+}</pre>
+    </div>
+
+    <p>
+        When a panic occurs, Rust prints an error message and stack trace.
+    </p>
+
+    <h2>Common Causes of Panic</h2>
+
+    <ul>
+        <li>Accessing invalid array indexes</li>
+        <li>Calling <code>unwrap()</code> on an error value</li>
+        <li>Invalid assumptions in the program</li>
+        <li>Unexpected runtime states</li>
+    </ul>
+
+    <h2>Recoverable Errors with Result</h2>
+
+    <p>
+        The <code>Result</code> enum represents operations that may succeed or fail.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">enum</span> Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+}</pre>
+    </div>
+
+    <p>
+        <code>Ok</code> contains a successful value,
+        while <code>Err</code> contains error information.
+    </p>
+
+    <h2>Reading Files with Result</h2>
+
+    <p>
+        Many standard library functions return a <code>Result</code>.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">use</span> std::fs::File;
+
+<span class="kw">fn</span> main() {
+
+    <span class="kw">let</span> file = File::open(<span class="st">"data.txt"</span>);
+
+    <span class="kw">match</span> file {
+
+        Ok(f) => println!(<span class="st">"File opened!"</span>),
+
+        Err(error) => println!(<span class="st">"Error: {:?}"</span>, error),
+    }
+}</pre>
+    </div>
+
+    <h2>Pattern Matching with Result</h2>
+
+    <p>
+        Rust commonly uses <code>match</code> expressions
+        to handle different outcomes.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> result: Result&lt;<span class="kw">int</span>, <span class="kw">string</span>&gt; = Ok(10);
+
+<span class="kw">match</span> result {
+
+    Ok(value) => println!(<span class="st">"Value: {}"</span>, value),
+
+    Err(msg) => println!(<span class="st">"Error: {}"</span>, msg),
+}</pre>
+    </div>
+
+    <h2>The unwrap() Method</h2>
+
+    <p>
+        The <code>unwrap()</code> method extracts the successful value from a <code>Result</code>.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> file = File::open(<span class="st">"notes.txt"</span>).unwrap();</pre>
+    </div>
+
+    <p>
+        If the operation fails, <code>unwrap()</code> causes a panic.
+    </p>
+
+    <h2>The expect() Method</h2>
+
+    <p>
+        The <code>expect()</code> method works like <code>unwrap()</code>
+        but allows a custom error message.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> file = File::open(<span class="st">"config.txt"</span>)
+    .expect(<span class="st">"Failed to open config file"</span>);</pre>
+    </div>
+
+    <h2>Propagating Errors</h2>
+
+    <p>
+        Instead of handling errors immediately,
+        functions can return them to the caller.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">use</span> std::fs::File;
+<span class="kw">use</span> std::io::Error;
+
+<span class="kw">fn</span> open_file() -> Result&lt;File, Error&gt; {
+
+    <span class="kw">let</span> file = File::open(<span class="st">"data.txt"</span>)?;
+
+    Ok(file)
+}</pre>
+    </div>
+
+    <h2>The ? Operator</h2>
+
+    <p>
+        The <code>?</code> operator simplifies error propagation.
+    </p>
+
+    <p>
+        If the operation succeeds, the value is returned.
+        If it fails, the error is automatically returned from the function.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> divide(a: <span class="kw">f64</span>, b: <span class="kw">f64</span>) -> Result&lt;<span class="kw">f64</span>, <span class="kw">string</span>&gt; {
+
+    <span class="kw">if</span> b == 0.0 {
+
+        <span class="kw">return</span> Err(<span class="st">"Cannot divide by zero"</span>.to_string());
+    }
+
+    Ok(a / b)
+}</pre>
+    </div>
+
+    <h2>Option vs Result</h2>
+
+    <p>
+        Rust also provides the <code>Option&lt;T&gt;</code> enum
+        for values that may or may not exist.
+    </p>
+
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Type</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Option&lt;T&gt;</td>
+            <td>Represents missing values</td>
+        </tr>
+        <tr>
+            <td>Result&lt;T, E&gt;</td>
+            <td>Represents recoverable errors</td>
+        </tr>
+    </table>
+
+    <h2>Using Option</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">fn</span> find_number(numbers: Vec&lt;<span class="kw">i32</span>&gt;, target: <span class="kw">i32</span>) -> Option&lt;<span class="kw">usize</span>&gt; {
+
+    <span class="kw">for</span> (index, value) <span class="kw">in</span> numbers.iter().enumerate() {
+
+        <span class="kw">if</span> *value == target {
+
+            <span class="kw">return</span> Some(index);
+        }
+    }
+
+    None
+}</pre>
+    </div>
+
+    <h2>Handling Multiple Error Types</h2>
+
+    <p>
+        Large applications may encounter different kinds of errors.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">use</span> std::num::ParseIntError;
+
+<span class="kw">fn</span> parse_number(input: &str) -> Result&lt;<span class="kw">i32</span>, ParseIntError&gt; {
+
+    input.parse::&lt;<span class="kw">i32</span>&gt;()
+}</pre>
+    </div>
+
+    <h2>Creating Custom Errors</h2>
+
+    <p>
+        Developers can define custom error types using enums.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">enum</span> AppError {
+    NotFound,
+    InvalidInput,
+}</pre>
+    </div>
+
+    <h2>Error Handling Best Practices</h2>
+
+    <ul>
+        <li>Use <code>Result</code> for recoverable errors</li>
+        <li>Avoid unnecessary panics</li>
+        <li>Use descriptive error messages</li>
+        <li>Prefer the <code>?</code> operator for cleaner code</li>
+        <li>Handle errors close to where they occur</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Overusing <code>unwrap()</code></li>
+        <li>Ignoring error values</li>
+        <li>Using panic for recoverable situations</li>
+        <li>Returning unclear error messages</li>
+        <li>Not propagating errors properly</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A function returning <code>Result&lt;T, E&gt;</code></li>
+        <li>A file-reading example with <code>match</code></li>
+        <li>A custom error enum</li>
+        <li>A function using the <code>?</code> operator</li>
+        <li>An <code>Option</code> example returning <code>Some</code> or <code>None</code></li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 10 ===================== -->
                 <div class="lecture" id="lec-9">

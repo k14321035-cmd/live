@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+  <title>Code Tutorium Blog — Programming Q&amp;A, Tips &amp; Tutorials</title>
+  <meta name="description" content="Find answers to common programming questions. Our blog covers Python, CSS, JavaScript, HTML, Java, C++, SQL and more — written for beginners and developers.">
+  <meta name="keywords" content="programming questions, coding blog, learn to code, python tips, css tutorial, javascript answers, programming FAQ, code tutorium blog">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Code Tutorium Blog — Programming Q&amp;A &amp; Tutorials">
+  <meta property="og:description" content="Find clear answers to common programming questions — Python, CSS, JavaScript, HTML, Java, C++ and more.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Code Tutorium Blog — Programming Q&amp;A">
+  <meta name="twitter:description" content="Clear answers to common programming questions for beginners and developers.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://codetutorium.com/blog/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD: Blog / Q&A structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Code Tutorium Blog",
+    "url": "https://codetutorium.com/blog/",
+    "description": "Programming Q&A, tips, and tutorials for developers at every level.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "url": "https://codetutorium.com",
+      "logo": "https://codetutorium.com/favicon.png"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <!-- NAV -->
+     <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+
+
+            <div class="lesson-nav-right" style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="lesson-nav-search">
+                    <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </button>
+                </div>
+                <button id="menu-toggle" class="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+                <button class="btn-signin">Sign In</button>
+                 <a href="../index.html" class="btn-signin">Home</a>
+                
+            </div>
+        </div>
+    </nav>
+
+  <!-- HERO -->
+  <header class="blog-hero">
+    <div class="blog-hero-badge">// Programming Q&amp;A</div>
+    <h1>Questions.<br><em>Answered.</em></h1>
+    <p class="blog-hero-sub">Clear, beginner-friendly answers to the most common programming questions — covering Python, CSS, JavaScript, HTML, Java, C++ and more.</p>
+  </header>
+
+  <!-- CATEGORY FILTER -->
+  <div class="categories" role="navigation" aria-label="Article categories">
+    <button class="cat-btn active" onclick="filterCat('all', this)">All</button>
+    <button class="cat-btn" onclick="filterCat('css', this)">CSS</button>
+    <button class="cat-btn" onclick="filterCat('python', this)">Python</button>
+    <button class="cat-btn" onclick="filterCat('javascript', this)">JavaScript</button>
+    <button class="cat-btn" onclick="filterCat('html', this)">HTML</button>
+    <button class="cat-btn" onclick="filterCat('java', this)">Java</button>
+    <button class="cat-btn" onclick="filterCat('cpp', this)">C++</button>
+    <button class="cat-btn" onclick="filterCat('sql', this)">SQL</button>
+    <button class="cat-btn" onclick="filterCat('general', this)">General</button>
+  </div>
+
+  <!-- ARTICLES GRID -->
+  <main class="blog-grid-wrap" id="blog-main">
+    <div class="blog-grid" id="blog-grid">
+
+      <!-- ARTICLE 1 — CSS example -->
+      <a href="what-is-css.html" class="blog-card" data-cat="css" style="--card-color:#a5f3fc">
+        <div class="blog-card-meta">
+          <span class="blog-tag">CSS</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-card-title">What is CSS and why do we need it?</div>
+        <div class="blog-card-excerpt">CSS (Cascading Style Sheets) is the language that controls how HTML elements look on screen. Without CSS, every website would be plain, unstyled text. Learn how it works and why it matters.</div>
+        <div class="blog-card-footer">
+          <span class="blog-read-time">~4 min read</span>
+          <span class="blog-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- ARTICLE 2 -->
+      <a href="why-use-python.html" class="blog-card" data-cat="python" style="--card-color:#f7c948">
+        <div class="blog-card-meta">
+          <span class="blog-tag" style="color:#f7c948;border-color:rgba(247,201,72,0.3)">Python</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-card-title">What is Python and why do we use it?</div>
+        <div class="blog-card-excerpt">Python is a high-level, interpreted programming language known for its simplicity and readability. It's widely used in web development, data science, artificial intelligence, and automation.</div>
+        <div class="blog-card-footer">
+          <span class="blog-read-time">~6 min read</span>
+          <span class="blog-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- ARTICLE 4 -->
+      <a href="why-hacking.html" class="blog-card" data-cat="security" style="--card-color:#fbbf24">
+        <div class="blog-card-meta">
+          <span class="blog-tag" style="color:#fbbf24;border-color:rgba(251,191,36,0.3)">Security</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-card-title">What is Ethical Hacking?</div>
+        <div class="blog-card-excerpt">Hacking in 2026.</div>
+        <div class="blog-card-footer">
+          <span class="blog-read-time">~5 min read</span>
+          <span class="blog-arrow" style="color:#fbbf24">Read →</span>
+        </div>
+      </a>
+
+      <!-- ARTICLE 5 -->
+      <a href="#" class="blog-card" data-cat="javascript" style="--card-color:#facc15">
+        <div class="blog-card-meta">
+          <span class="blog-tag" style="color:#facc15;border-color:rgba(250,204,21,0.3)">JavaScript</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-card-title">What is the difference between let, const and var in JavaScript?</div>
+        <div class="blog-card-excerpt">Modern JavaScript has three ways to declare variables. Understanding the differences between <code style="font-size:0.85em;color:#facc15">let</code>, <code style="font-size:0.85em;color:#facc15">const</code>, and the older <code style="font-size:0.85em;color:#facc15">var</code> is essential for writing clean, bug-free code.</div>
+        <div class="blog-card-footer">
+          <span class="blog-read-time">~5 min read</span>
+          <span class="blog-arrow" style="color:#facc15">Read →</span>
+        </div>
+      </a>
+
+      <!-- ARTICLE 6 -->
+      <a href="#" class="blog-card" data-cat="html" style="--card-color:#fb923c">
+        <div class="blog-card-meta">
+          <span class="blog-tag" style="color:#fb923c;border-color:rgba(251,146,60,0.3)">HTML</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-card-title">What is the difference between &lt;div&gt; and &lt;section&gt; in HTML?</div>
+        <div class="blog-card-excerpt">Both are block-level container elements, but <code style="font-size:0.85em;color:#fb923c">&lt;section&gt;</code> carries semantic meaning while <code style="font-size:0.85em;color:#fb923c">&lt;div&gt;</code> is purely structural. Choosing the right one improves SEO and accessibility.</div>
+        <div class="blog-card-footer">
+          <span class="blog-read-time">~4 min read</span>
+          <span class="blog-arrow" style="color:#fb923c">Read →</span>
+        </div>
+      </a>
+
+      <!-- ARTICLE 7 -->
+      <a href="#" class="blog-card" data-cat="python" style="--card-color:#fbbf24">
+        <div class="blog-card-meta">
+          <span class="blog-tag" style="color:#fbbf24;border-color:rgba(251,191,36,0.3)">Python</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-card-title">What is the difference between a list and a tuple in Python?</div>
+        <div class="blog-card-excerpt">Lists and tuples both store ordered collections of items, but there is one key difference: lists are mutable (changeable) and tuples are immutable (fixed). Here's when to use each one.</div>
+        <div class="blog-card-footer">
+          <span class="blog-read-time">~4 min read</span>
+          <span class="blog-arrow" style="color:#fbbf24">Read →</span>
+        </div>
+      </a>
+
+      <!-- ARTICLE 8 -->
+      <a href="#" class="blog-card" data-cat="sql" style="--card-color:#34d399">
+        <div class="blog-card-meta">
+          <span class="blog-tag" style="color:#34d399;border-color:rgba(52,211,153,0.3)">SQL</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-card-title">What is the difference between WHERE and HAVING in SQL?</div>
+        <div class="blog-card-excerpt"><code style="font-size:0.85em;color:#34d399">WHERE</code> filters rows before grouping; <code style="font-size:0.85em;color:#34d399">HAVING</code> filters groups after <code style="font-size:0.85em;color:#34d399">GROUP BY</code>. It's a common interview question — here's the full explanation with examples.</div>
+        <div class="blog-card-footer">
+          <span class="blog-read-time">~5 min read</span>
+          <span class="blog-arrow" style="color:#34d399">Read →</span>
+        </div>
+      </a>
+
+      <!-- ARTICLE 9 -->
+      <a href="#" class="blog-card" data-cat="general" style="--card-color:#818cf8">
+        <div class="blog-card-meta">
+          <span class="blog-tag" style="color:#818cf8;border-color:rgba(129,140,248,0.3)">General</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-card-title">What is the best programming language to learn first?</div>
+        <div class="blog-card-excerpt">With so many choices, beginners often get stuck before writing a single line of code. We compare Python, JavaScript, HTML/CSS, and C++ to help you pick the right starting point.</div>
+        <div class="blog-card-footer">
+          <span class="blog-read-time">~6 min read</span>
+          <span class="blog-arrow" style="color:#818cf8">Read →</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="../blog/">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Category filter
+    function filterCat(cat, btn) {
+      // Update active button
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Show/hide cards
+      document.querySelectorAll('.blog-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

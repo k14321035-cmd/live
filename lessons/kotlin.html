@@ -49,7 +49,7 @@
                 <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">☰</button>
                 <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
             </div>
-
+            
             <div class="lesson-mega-menu">
                 <div class="lesson-mega-item">
                     <button class="lesson-mega-trigger">
@@ -58,13 +58,14 @@
                             <polyline points="6,9 12,15 18,9"/>
                         </svg>
                     </button>
-                    <div class="lesson-mega-grid">
+                    <div class="lesson-mega-dropdown">
+                          <div class="lesson-mega-grid">
                             <a href="python" class="lesson-mega-link ">Python</a>
-                            <a href="c++" class="lesson-mega-link active">C++</a>
+                            <a href="c++" class="lesson-mega-link">C++</a>
                             <a href="html" class="lesson-mega-link">HTML</a>
                             <a href="css" class="lesson-mega-link">CSS</a>
                             <a href="java" class="lesson-mega-link">Java</a>
-                            <a href="javascript" class="lesson-mega-link">JavaScript</a>
+                            <a href="javascript" class="lesson-mega-link active">JavaScript</a>
                             <a href="c" class="lesson-mega-link">C Language</a>
                             <a href="cc" class="lesson-mega-link">C#</a>
                             <a href="typescript" class="lesson-mega-link">TypeScript</a>
@@ -88,6 +89,14 @@
                 
                 <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
@@ -345,7 +354,7 @@ println(level)</pre>
     <p>This approach improves readability in larger applications.</p>
 
     <h2>Common Kotlin Data Types</h2>
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Type</th>
             <th>Description</th>
@@ -417,7 +426,7 @@ println(<span class="st">"Hello $name"</span>)</pre>
     <h2>Numeric Types</h2>
     <p>Kotlin provides several numeric data types.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Type</th>
             <th>Size</th>
@@ -1077,7 +1086,7 @@ println(inventory)</pre>
     <h2>Collection Functions</h2>
     <p>Kotlin collections provide many built-in functions.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Function</th>
             <th>Description</th>
@@ -1376,7 +1385,7 @@ println(a == b)</pre>
     </div>
 
     <h2>Regular Classes vs Data Classes</h2>
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Regular Class</th>
             <th>Data Class</th>
@@ -1398,7 +1407,7 @@ println(a == b)</pre>
     <h2>Property Visibility</h2>
     <p>Kotlin supports access modifiers to control visibility.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Modifier</th>
             <th>Description</th>
@@ -1536,40 +1545,585 @@ println(student)</pre>
     </div>
 </div>
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Null Safety & Extensions</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~65 min</span>
-                    </div>
+               <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Null Safety & Extensions</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~65 min</span>
+    </div>
 
-                    <h2>Safe Calls</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">val</span> length = name?.length ?: 0</pre>
-                    </div>
+    <h2>Introduction to Null Safety</h2>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        Null safety is one of Kotlin's most powerful features.
+        It helps developers avoid one of the most common runtime problems:
+        the dreaded null pointer exception.
+    </p>
+
+    <p>
+        Kotlin distinguishes between nullable and non-nullable types,
+        making programs safer and more predictable.
+    </p>
+
+    <ul>
+        <li>Reduces runtime crashes</li>
+        <li>Improves code reliability</li>
+        <li>Encourages safer programming practices</li>
+        <li>Makes null handling explicit</li>
+    </ul>
+
+    <h2>Nullable vs Non-Nullable Types</h2>
+
+    <p>
+        By default, Kotlin variables cannot store null values.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> name: String = <span class="st">"Kotlin"</span></pre>
+    </div>
+
+    <p>
+        This variable must always contain a valid string.
+    </p>
+
+    <p>
+        To allow null values, use the <code>?</code> symbol.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> username: String? = <span class="kw">null</span></pre>
+    </div>
+
+    <h2>Why Null Safety Matters</h2>
+
+    <p>
+        In many languages, null values can cause unexpected crashes.
+        Kotlin forces developers to handle null values safely.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> text: String? = <span class="kw">null</span>
+
+<span class="cm">// Unsafe</span>
+<span class="cm">// println(text.length)</span></pre>
+    </div>
+
+    <p>
+        Direct access is not allowed because the value may be null.
+    </p>
+
+    <h2>Safe Calls</h2>
+
+    <p>
+        The safe call operator <code>?.</code> accesses properties safely.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> length = name?.length ?: 0</pre>
+    </div>
+
+    <p>
+        If <code>name</code> is null, the expression returns <code>0</code>.
+    </p>
+
+    <h2>Safe Call Operator</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> message: String? = <span class="st">"Hello"</span>
+
+println(message?.length)</pre>
+    </div>
+
+    <p>
+        If the value is null, Kotlin returns null instead of throwing an error.
+    </p>
+
+    <h2>Elvis Operator</h2>
+
+    <p>
+        The Elvis operator <code>?:</code> provides a default value when null occurs.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> username: String? = <span class="kw">null</span>
+
+<span class="kw">val</span> result = username ?: <span class="st">"Guest"</span>
+
+println(result)</pre>
+    </div>
+
+    <h2>Not-Null Assertion Operator</h2>
+
+    <p>
+        The <code>!!</code> operator forces Kotlin to treat a value as non-null.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> text: String? = <span class="st">"Kotlin"</span>
+
+println(text!!.length)</pre>
+    </div>
+
+    <p>
+        If the value is null, the program throws a null pointer exception.
+    </p>
+
+    <h2>Using let with Nullable Values</h2>
+
+    <p>
+        The <code>let</code> function executes code only when a value is not null.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> email: String? = <span class="st">"admin@example.com"</span>
+
+email?.let {
+    println(it.uppercase())
+}</pre>
+    </div>
+
+    <h2>Nullable Collections</h2>
+
+    <p>
+        Collections can also contain nullable values.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> names: List&lt;String?&gt; = listOf(
+    <span class="st">"Alice"</span>,
+    <span class="kw">null</span>,
+    <span class="st">"Bob"</span>
+)</pre>
+    </div>
+
+    <h2>Filtering Null Values</h2>
+
+    <p>
+        Kotlin provides useful functions for removing null values.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> items = listOf(
+    <span class="st">"A"</span>,
+    <span class="kw">null</span>,
+    <span class="st">"B"</span>
+)
+
+<span class="kw">val</span> filtered = items.filterNotNull()
+
+println(filtered)</pre>
+    </div>
+
+    <h2>Introduction to Extension Functions</h2>
+
+    <p>
+        Extension functions allow developers to add new functionality
+        to existing classes without modifying their source code.
+    </p>
+
+    <p>
+        This makes code cleaner and easier to reuse.
+    </p>
+
+    <h2>Creating Extension Functions</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">fun</span> String.greet() {
+    println(<span class="st">"Hello $this"</span>)
+}
+
+<span class="st">"Kotlin"</span>.greet()</pre>
+    </div>
+
+    <p>
+        Here, the <code>String</code> class receives a new custom function.
+    </p>
+
+    <h2>Extension Functions with Parameters</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">fun</span> Int.multiply(value: Int): Int {
+    <span class="kw">return</span> this * value
+}
+
+println(5.multiply(3))</pre>
+    </div>
+
+    <h2>Extension Properties</h2>
+
+    <p>
+        Kotlin also supports extension properties.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> String.firstChar: Char
+    get() = this[0]
+
+println(<span class="st">"Kotlin"</span>.firstChar)</pre>
+    </div>
+
+    <h2>Nullable Extension Functions</h2>
+
+    <p>
+        Extension functions can safely handle nullable objects.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">fun</span> String?.printLength() {
+
+    <span class="kw">if</span> (this == <span class="kw">null</span>) {
+        println(<span class="st">"Null value"</span>)
+    } <span class="kw">else</span> {
+        println(length)
+    }
+}</pre>
+    </div>
+
+    <h2>Benefits of Extension Functions</h2>
+
+    <ul>
+        <li>Cleaner code organization</li>
+        <li>Improved readability</li>
+        <li>Reusable utility functions</li>
+        <li>Reduced helper classes</li>
+        <li>Better developer productivity</li>
+    </ul>
+
+    <h2>Extension Functions vs Inheritance</h2>
+
+    <table>
+        <tr>
+            <th>Extension Functions</th>
+            <th>Inheritance</th>
+        </tr>
+        <tr>
+            <td>Add functionality externally</td>
+            <td>Modify through subclassing</td>
+        </tr>
+        <tr>
+            <td>No class modification needed</td>
+            <td>Requires derived classes</td>
+        </tr>
+        <tr>
+            <td>Lightweight solution</td>
+            <td>More complex hierarchy</td>
+        </tr>
+    </table>
+
+    <h2>Real-World Use Cases</h2>
+
+    <ul>
+        <li>String utility functions</li>
+        <li>Validation helpers</li>
+        <li>Android UI extensions</li>
+        <li>Data formatting utilities</li>
+        <li>Custom collection operations</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Prefer safe calls over <code>!!</code></li>
+        <li>Use meaningful extension names</li>
+        <li>Keep extension functions small and focused</li>
+        <li>Use nullable types carefully</li>
+        <li>Avoid excessive nested null checks</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Overusing the <code>!!</code> operator</li>
+        <li>Ignoring nullability warnings</li>
+        <li>Creating unnecessary extension functions</li>
+        <li>Confusing extension functions with actual class methods</li>
+        <li>Using nullable values without checks</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A nullable string example using safe calls</li>
+        <li>An extension function for strings</li>
+        <li>An extension property</li>
+        <li>A nullable extension function</li>
+        <li>A function using the Elvis operator</li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
                 <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Generics & Inline Functions</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h1>Generics & Inline Functions</h1>
 
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
+
+    <h2>Introduction to Generics</h2>
+    <p>Generics allow developers to write reusable and type-safe code. Instead of creating separate functions or classes for different data types, generics make it possible to use one solution for multiple types.</p>
+
+    <p>Without generics, developers often duplicate code for integers, strings, floats, and custom objects.</p>
+
+    <p>Generics solve this problem by introducing type parameters.</p>
+
+    <h2>Why Generics Are Important</h2>
+    <p>Generics provide several major advantages:</p>
+
+    <ul>
+        <li>Reduce duplicated code.</li>
+        <li>Improve code reusability.</li>
+        <li>Increase type safety.</li>
+        <li>Reduce runtime type errors.</li>
+        <li>Make APIs cleaner and easier to maintain.</li>
+    </ul>
+
+    <h2>Basic Generic Function</h2>
+    <p>A generic function uses a type parameter inside angle brackets.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fun</span> &lt;T&gt; printValue(value: T) {
+    println(value)
+}</pre>
+    </div>
+
+    <p>The type parameter <code>T</code> acts as a placeholder for any data type.</p>
+
+    <div class="code-block">
+        <pre>printValue(10)
+printValue("Hello")
+printValue(true)</pre>
+    </div>
+
+    <p>The same function now works with multiple types.</p>
+
+    <h2>Generic Classes</h2>
+    <p>Classes can also use generics to store flexible data types.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Box&lt;T&gt;(value: T) {
+
+    <span class="kw">var</span> item = value
+}</pre>
+    </div>
+
+    <p>You can create objects using different types.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> intBox = Box(100)
+
+<span class="kw">val</span> stringBox = Box("Kotlin")</pre>
+    </div>
+
+    <h2>Type Inference</h2>
+    <p>Kotlin can automatically detect generic types in many situations.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> names = listOf("Alice", "Bob")</pre>
+    </div>
+
+    <p>Kotlin automatically infers that the list contains <code>String</code> values.</p>
+
+    <h2>Multiple Type Parameters</h2>
+    <p>Generics can use more than one type parameter.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> PairBox&lt;A, B&gt;(
+    <span class="kw">val</span> first: A,
+    <span class="kw">val</span> second: B
+)</pre>
+    </div>
+
+    <p>This allows flexible combinations of different data types.</p>
+
+    <h2>Generic Constraints</h2>
+    <p>Sometimes you may want to restrict the allowed types.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fun</span> &lt;T : Number&gt; add(a: T, b: T): Double {
+    <span class="kw">return</span> a.toDouble() + b.toDouble()
+}</pre>
+    </div>
+
+    <p>The constraint <code>T : Number</code> means only numeric types are allowed.</p>
+
+    <h2>Collections and Generics</h2>
+    <p>Kotlin collections heavily rely on generics.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> numbers: List&lt;Int&gt; = listOf(1, 2, 3)
+
+<span class="kw">val</span> names: List&lt;String&gt; = listOf("Tom", "Jerry")</pre>
+    </div>
+
+    <p>This ensures collections only store the correct data type.</p>
+
+    <h2>Introduction to Inline Functions</h2>
+    <p>Inline functions are special functions where the compiler copies the function code directly into the calling location during compilation.</p>
+
+    <p>This reduces the overhead of function calls and improves performance.</p>
+
+    <h2>Why Inline Functions Exist</h2>
+    <p>Higher-order functions often create additional objects and memory overhead.</p>
+
+    <p>Inline functions solve this by avoiding unnecessary object creation.</p>
+
+    <p>They are especially useful when working with lambda expressions.</p>
+
+    <h2>Basic Inline Function</h2>
+    <div class="code-block">
+        <pre><span class="kw">inline fun</span> greet(action: () -> Unit) {
+
+    println("Starting")
+
+    action()
+
+    println("Finished")
+}</pre>
+    </div>
+
+    <p>The <code>inline</code> keyword tells the compiler to insert the function body directly where it is called.</p>
+
+    <div class="code-block">
+        <pre>greet {
+    println("Hello World")
+}</pre>
+    </div>
+
+    <h2>Higher-Order Functions</h2>
+    <p>A higher-order function is a function that accepts another function as a parameter or returns a function.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">fun</span> operate(a: Int, b: Int, op: (Int, Int) -> Int): Int {
+
+    <span class="kw">return</span> op(a, b)
+}</pre>
+    </div>
+
+    <p>Inline functions are commonly used with higher-order functions to improve efficiency.</p>
+
+    <h2>Lambda Expressions</h2>
+    <p>Lambda expressions are anonymous functions that can be passed as arguments.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">val</span> sum = { a: Int, b: Int -> a + b }
+
+println(sum(2, 3))</pre>
+    </div>
+
+    <p>Inline functions make lambda execution faster by reducing runtime overhead.</p>
+
+    <h2>The noinline Keyword</h2>
+    <p>Sometimes a lambda should not be inlined. Kotlin provides the <code>noinline</code> keyword for this purpose.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">inline fun</span> process(
+    action1: () -> Unit,
+    <span class="kw">noinline</span> action2: () -> Unit
+) {
+
+    action1()
+
+    action2()
+}</pre>
+    </div>
+
+    <p>The second lambda will behave like a normal function object.</p>
+
+    <h2>The crossinline Keyword</h2>
+    <p>The <code>crossinline</code> keyword prevents non-local returns inside lambda expressions.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">inline fun</span> runTask(
+    <span class="kw">crossinline</span> action: () -> Unit
+) {
+
+    <span class="kw">val</span> task = Runnable {
+        action()
+    }
+
+    task.run()
+}</pre>
+    </div>
+
+    <p>This is useful when lambdas execute inside another context.</p>
+
+    <h2>Reified Type Parameters</h2>
+    <p>Normally, generic type information is erased at runtime. Inline functions allow the use of reified type parameters.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">inline fun</span> &lt;<span class="kw">reified</span> T&gt; checkType(value: Any) {
+
+    <span class="kw">if</span> (value <span class="kw">is</span> T) {
+        println("Correct type")
+    }
+}</pre>
+    </div>
+
+    <p>The <code>reified</code> keyword preserves type information at runtime.</p>
+
+    <h2>Benefits of Inline Functions</h2>
+    <ul>
+        <li>Improve performance.</li>
+        <li>Reduce memory allocations.</li>
+        <li>Optimize lambda execution.</li>
+        <li>Enable reified type parameters.</li>
+        <li>Reduce runtime overhead.</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Using inline functions everywhere unnecessarily.</li>
+        <li>Confusing generics with inheritance.</li>
+        <li>Overusing complex generic constraints.</li>
+        <li>Forgetting that inline functions increase compiled code size.</li>
+        <li>Misusing reified types outside inline functions.</li>
+    </ul>
+
+    <h2>Real-World Usage</h2>
+    <p>Generics and inline functions are heavily used in:</p>
+
+    <ul>
+        <li>Collection APIs</li>
+        <li>Android development</li>
+        <li>Dependency injection frameworks</li>
+        <li>Networking libraries</li>
+        <li>Coroutines</li>
+        <li>Utility helper functions</li>
+    </ul>
+
+    <h2>Practice</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+
+        <p>Create a generic function called <code>swap()</code> that swaps two values.</p>
+
+        <p>Then write an inline function that accepts a lambda and prints execution messages before and after running the lambda.</p>
+    </div>
+
+    <h2>Summary</h2>
+    <p>Generics help developers create reusable and type-safe code, while inline functions improve performance by reducing function call overhead.</p>
+
+    <p>Together, these features make Kotlin more powerful, efficient, and expressive for modern application development.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 09 ===================== -->
                 <div class="lecture" id="lec-8">
                     <div class="lecture-tag">Lecture 09 · Advanced</div>

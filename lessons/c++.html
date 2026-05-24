@@ -317,7 +317,7 @@
 
     <h2>Understanding the Code</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Code</th>
@@ -449,7 +449,7 @@ cl</code></pre>
 
     <h2>C++ File Extensions</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Extension</th>
@@ -584,7 +584,7 @@ Welcome to programming.</code></pre>
 
     <h2>Popular C++ Compilers</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Compiler</th>
@@ -790,7 +790,7 @@ sudo apt install g++</code></pre>
 
     <h2>Useful Compiler Flags</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Flag</th>
@@ -956,7 +956,7 @@ sudo apt install g++</code></pre>
     <p>C++ provides several built-in primitive data types. Choosing the correct type helps optimise memory usage
         and improves program performance.</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Type</th>
@@ -1010,7 +1010,7 @@ sudo apt install g++</code></pre>
 
     <p>Example use cases:</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Scenario</th>
@@ -1118,7 +1118,7 @@ sudo apt install g++</code></pre>
         <li>Variable names are case-sensitive</li>
     </ul>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Valid Names</th>
@@ -1244,7 +1244,7 @@ sudo apt install g++</code></pre>
 
     <p>Examples of comparison operators:</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Operator</th>
@@ -1335,7 +1335,7 @@ sudo apt install g++</code></pre>
     <h2>Logical Operators</h2>
     <p>Logical operators combine multiple conditions.</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Operator</th>
@@ -1588,7 +1588,7 @@ sudo apt install g++</code></pre>
 
     <p>A function typically contains:</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Part</th>
@@ -1652,7 +1652,7 @@ sudo apt install g++</code></pre>
     <h2>Parameters vs Arguments</h2>
     <p>These two terms are often confused by beginners.</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Term</th>
@@ -2270,22 +2270,48 @@ sudo apt install g++</code></pre>
         </div>
 
         <!-- ===================== LECTURE 8 ===================== -->
-        <div class="lecture" id="lec-7">
-            <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-            <h1>Templates &amp; Generics</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~55 min</span>
-                <span class="meta-badge">Requires: Lecture 07</span>
-            </div>
+    <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Templates &amp; Generics</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+        <span class="meta-badge">Requires: Lecture 07</span>
+    </div>
 
-            <h2>Function templates</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">SwapTemplate.cpp</span>
-                </div>
-                <pre><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;
+    <h2>What are Templates?</h2>
+    <p>Templates are one of the most powerful features in C++. They allow you to write code once and reuse it
+        with different data types. Instead of creating separate functions for <code>int</code>,
+        <code>float</code>, or <code>std::string</code>, templates let the compiler generate the correct code
+        automatically.</p>
+
+    <p>This concept is called <strong>generic programming</strong>. The goal is to write flexible and reusable
+        code while maintaining high performance and type safety.</p>
+
+    <div class="box info">
+        <div class="box-title">💡 Key Idea</div>
+        Templates are processed at compile time. The compiler generates concrete versions of template code for
+        every type you use.
+    </div>
+
+    <h2>Why Templates Matter</h2>
+    <ul>
+        <li>Reduce code duplication</li>
+        <li>Create reusable and scalable components</li>
+        <li>Provide strong type safety</li>
+        <li>Enable high-performance generic programming</li>
+        <li>Power the entire Standard Template Library (STL)</li>
+    </ul>
+
+    <h2>Function templates</h2>
+    <p>Function templates allow functions to work with multiple data types without rewriting logic.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">SwapTemplate.cpp</span>
+        </div>
+        <pre><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;
 <span class="kw">void</span> <span class="fn">swapValues</span>(T&amp; a, T&amp; b) {
     T tmp = a;
     a = b;
@@ -2295,18 +2321,74 @@ sudo apt install g++</code></pre>
 <span class="kw">int</span> <span class="fn">main</span>() {
     <span class="kw">int</span> x = <span class="nm">5</span>, y = <span class="nm">10</span>;
     <span class="fn">swapValues</span>(x, y);                <span class="cm">// works for ints</span>
+
     <span class="kw">std::string</span> s1 = <span class="val">"foo"</span>, s2 = <span class="val">"bar"</span>;
     <span class="fn">swapValues</span>(s1, s2);               <span class="cm">// works for std::string</span>
 }</pre>
-            </div>
+    </div>
 
-            <h2>Class templates</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">SimpleVector.hpp</span>
-                </div>
-                <pre><span class="kw">template</span>&lt;<span class="kw">typename</span> T, <span class="kw">size_t</span> N&gt;
+    <p>The keyword <code>typename T</code> declares a placeholder type called <code>T</code>. Whenever the
+        function is called, the compiler automatically replaces <code>T</code> with the actual type being used.</p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Best Practice</div>
+        Use descriptive template parameter names when multiple template types are involved. For example:
+        <code>KeyType</code>, <code>ValueType</code>, or <code>Iterator</code>.
+    </div>
+
+    <h2>How Template Type Deduction Works</h2>
+    <p>Most of the time, the compiler can automatically determine template types based on the function arguments.
+        This process is called <strong>template type deduction</strong>.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Deduction.cpp</span>
+        </div>
+        <pre><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;
+T <span class="fn">square</span>(T value) {
+    <span class="kw">return</span> value * value;
+}
+
+<span class="kw">int</span> result = <span class="fn">square</span>(<span class="nm">5</span>);
+<span class="kw">double</span> pi = <span class="fn">square</span>(<span class="nm">3.14</span>);</pre>
+    </div>
+
+    <p>Here, the compiler automatically detects whether <code>T</code> should become
+        <code>int</code> or <code>double</code>.</p>
+
+    <h2>Multiple Template Parameters</h2>
+    <p>Templates can accept multiple types simultaneously. This is useful when working with pairs, maps, or
+        generic utility classes.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">PairTemplate.cpp</span>
+        </div>
+        <pre><span class="kw">template</span>&lt;<span class="kw">typename</span> T1, <span class="kw">typename</span> T2&gt;
+<span class="kw">class</span> <span class="tag">Pair</span> {
+<span class="kw">public</span>:
+    T1 first;
+    T2 second;
+
+    <span class="fn">Pair</span>(T1 a, T2 b) : first(a), second(b) {}
+};</pre>
+    </div>
+
+    <p>This allows a single class to hold two completely different data types.</p>
+
+    <h2>Class templates</h2>
+    <p>Class templates allow entire classes to become generic. Many STL containers such as
+        <code>std::vector</code>, <code>std::array</code>, and <code>std::map</code> are implemented using
+        templates.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">SimpleVector.hpp</span>
+        </div>
+        <pre><span class="kw">template</span>&lt;<span class="kw">typename</span> T, <span class="kw">size_t</span> N&gt;
 <span class="kw">class</span> <span class="tag">SimpleVector</span> {
     T data[N];
 
@@ -2316,57 +2398,244 @@ sudo apt install g++</code></pre>
     T&amp; <span class="fn">operator[]</span>(<span class="kw">size_t</span> i) { <span class="kw">return</span> data[i]; }
     <span class="kw">const</span> T&amp; <span class="fn">operator[]</span>(<span class="kw">size_t</span> i) <span class="kw">const</span> { <span class="kw">return</span> data[i]; }
 };</pre>
-            </div>
+    </div>
 
-            <h2>Template specialization</h2>
-            <p>Provide a custom implementation for a particular type.</p>
-            <pre><code>template&lt;&gt;
+    <p>This template accepts two parameters:</p>
+
+    <ul>
+        <li><code>T</code> → the type of elements stored</li>
+        <li><code>N</code> → the fixed size of the container</li>
+    </ul>
+
+    <h2>Using Class Templates</h2>
+    <p>Once defined, templates can be instantiated with different types.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">UseVector.cpp</span>
+        </div>
+        <pre><span class="tag">SimpleVector</span>&lt;<span class="kw">int</span>, <span class="nm">5</span>&gt; numbers;
+<span class="tag">SimpleVector</span>&lt;<span class="kw">double</span>, <span class="nm">3</span>&gt; values;
+
+numbers[<span class="nm">0</span>] = <span class="nm">42</span>;
+values[<span class="nm">0</span>] = <span class="nm">3.14</span>;</pre>
+    </div>
+
+    <p>The compiler generates separate versions of the class for each type combination.</p>
+
+    <h2>Non-Type Template Parameters</h2>
+    <p>Templates are not limited to data types. They can also accept compile-time constant values such as
+        integers or sizes.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">ArrayPrinter.cpp</span>
+        </div>
+        <pre><span class="kw">template</span>&lt;<span class="kw">typename</span> T, <span class="kw">int</span> Size&gt;
+<span class="kw">void</span> <span class="fn">printArray</span>(T (&amp;arr)[Size]) {
+    <span class="kw">for</span>(<span class="kw">int</span> i = <span class="nm">0</span>; i &lt; Size; ++i)
+        std::cout &lt;&lt; arr[i] &lt;&lt; <span class="val">" "</span>;
+}</pre>
+    </div>
+
+    <p>Here, <code>Size</code> becomes part of the template definition itself.</p>
+
+    <h2>Template specialization</h2>
+    <p>Provide a custom implementation for a particular type.</p>
+
+    <pre><code>template&lt;&gt;
 struct std::hash&lt;MyType&gt; {
     size_t operator()(const MyType&amp; obj) const noexcept { … }
 };</code></pre>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 8.1</div>
-                <p>Write a generic <code>Stack&lt;T&gt;</code> class with <code>push</code>, <code>pop</code> and
-                    <code>top</code> operations.
-                    Then specialise it for <code>bool</code> so that it stores bits compactly (you can use
-                    <code>std::vector&lt;bool&gt;</code> for simplicity).</p>
-            </div>
+    <p>Template specialization is useful when a specific type requires optimized or unique behavior.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-            </div>
+    <h2>Full vs Partial Specialization</h2>
+    <p>C++ supports different forms of specialization:</p>
+
+    <ul>
+        <li><strong>Full specialization:</strong> Replaces the implementation for one exact type.</li>
+        <li><strong>Partial specialization:</strong> Replaces only part of a template pattern.</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Specialization.cpp</span>
         </div>
+        <pre><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;
+<span class="kw">class</span> <span class="tag">Printer</span> {
+<span class="kw">public</span>:
+    <span class="kw">void</span> <span class="fn">print</span>() {
+        std::cout &lt;&lt; <span class="val">"Generic printer"</span>;
+    }
+};
+
+<span class="kw">template</span>&lt;&gt;
+<span class="kw">class</span> <span class="tag">Printer</span>&lt;<span class="kw">bool</span>&gt; {
+<span class="kw">public</span>:
+    <span class="kw">void</span> <span class="fn">print</span>() {
+        std::cout &lt;&lt; <span class="val">"Boolean printer"</span>;
+    }
+};</pre>
+    </div>
+
+    <h2>Templates in the STL</h2>
+    <p>The Standard Template Library heavily depends on templates. Common containers are all generic:</p>
+
+    <ul>
+        <li><code>std::vector&lt;T&gt;</code></li>
+        <li><code>std::map&lt;Key, Value&gt;</code></li>
+        <li><code>std::set&lt;T&gt;</code></li>
+        <li><code>std::array&lt;T, N&gt;</code></li>
+    </ul>
+
+    <p>This allows the STL to work with virtually any user-defined or built-in type.</p>
+
+    <div class="box info">
+        <div class="box-title">🧠 Important Insight</div>
+        Templates are a compile-time feature. This means generic code often has zero runtime overhead compared
+        to manually written type-specific code.
+    </div>
+
+    <h2>Common Template Errors</h2>
+    <ul>
+        <li>Forgetting to place template definitions in header files</li>
+        <li>Using unsupported operations for a generic type</li>
+        <li>Creating extremely complex compiler error messages</li>
+        <li>Mixing incompatible template parameter types</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.1</div>
+        <p>Write a generic <code>Stack&lt;T&gt;</code> class with <code>push</code>, <code>pop</code> and
+            <code>top</code> operations.
+            Then specialise it for <code>bool</code> so that it stores bits compactly (you can use
+            <code>std::vector&lt;bool&gt;</code> for simplicity).</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.2</div>
+        <p>Create a function template called <code>maxValue</code> that returns the largest of two values.
+            Test it using integers, floating-point numbers, and strings.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.3</div>
+        <p>Create a class template called <code>Pair&lt;T1, T2&gt;</code> that stores two values of different
+            types and displays them using a member function.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 9 ===================== -->
-        <div class="lecture" id="lec-8">
-            <div class="lecture-tag">Lecture 09 · Advanced</div>
-            <h1>Modern C++ (C++11 +)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~60 min</span>
-                <span class="meta-badge">Requires: Lecture 08</span>
-            </div>
+    <div class="lecture" id="lec-8">
+    <div class="lecture-tag">Lecture 09 · Advanced</div>
+    <h1>Modern C++ (C++11 +)</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~60 min</span>
+        <span class="meta-badge">Requires: Lecture 08</span>
+    </div>
 
-            <h2>Auto type deduction</h2>
-            <pre><code>auto x = 42;                // int
+    <h2>Introduction to Modern C++</h2>
+    <p>C++11 introduced one of the largest upgrades in the history of the language. Since then, newer standards
+        like C++14, C++17, and C++20 have continued improving performance, readability, and developer
+        productivity.</p>
+
+    <p>Modern C++ focuses on safer memory management, cleaner syntax, stronger type safety, and high-performance
+        abstractions without sacrificing low-level control.</p>
+
+    <div class="box info">
+        <div class="box-title">💡 Why Modern C++ Matters</div>
+        Modern C++ makes code easier to write, safer to maintain, and less error-prone compared to older
+        C++98-style programming.
+    </div>
+
+    <h2>Auto type deduction</h2>
+    <p>The <code>auto</code> keyword allows the compiler to automatically determine a variable's type from its
+        initializer.</p>
+
+    <pre><code>auto x = 42;                // int
 auto y = 3.14;               // double
 auto z = std::vector&lt;int&gt;{1,2,3}; // deduced type</code></pre>
 
-            <h2>Range‑based for loop</h2>
-            <pre><code>std::vector&lt;int&gt; v = {1,2,3};
+    <p>This reduces verbosity and makes code easier to read, especially when working with complex template
+        types.</p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Best Practice</div>
+        Use <code>auto</code> when the type is obvious or excessively long, but avoid overusing it when it makes
+        code harder to understand.
+    </div>
+
+    <h2>Type Inference with References</h2>
+    <p><code>auto</code> can also work with references and const qualifiers.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">AutoReference.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> value = <span class="nm">10</span>;
+
+<span class="kw">auto</span> a = value;        <span class="cm">// copy</span>
+<span class="kw">auto</span>&amp; b = value;       <span class="cm">// reference</span>
+
+b = <span class="nm">20</span>;
+
+std::cout &lt;&lt; value;    <span class="cm">// prints 20</span></pre>
+    </div>
+
+    <p>Using references with <code>auto</code> prevents unnecessary copying and improves performance.</p>
+
+    <h2>Range-based for loop</h2>
+    <p>Range-based loops simplify iteration over containers and arrays.</p>
+
+    <pre><code>std::vector&lt;int&gt; v = {1,2,3};
+
 for (auto&amp; n : v) {
     n *= 2;
 }</code></pre>
 
-            <h2>Smart pointers</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">SmartPtrDemo.cpp</span>
-                </div>
-                <pre><span class="kw">#include</span> <span class="val">&lt;memory&gt;</span>
+    <p>This loop automatically iterates through every element in the container.</p>
+
+    <ul>
+        <li><code>auto n</code> → creates a copy of each element</li>
+        <li><code>auto&amp; n</code> → references the original element</li>
+        <li><code>const auto&amp; n</code> → prevents modification</li>
+    </ul>
+
+    <h2>Initializer Lists</h2>
+    <p>Modern C++ introduced uniform initialization syntax using curly braces.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">InitializerList.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> x{<span class="nm">10</span>};
+std::vector&lt;<span class="kw">int</span>&gt; numbers{<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>};</pre>
+    </div>
+
+    <p>Brace initialization helps avoid certain narrowing conversion bugs and creates more consistent syntax
+        across the language.</p>
+
+    <h2>Smart pointers</h2>
+    <p>One of the biggest improvements in modern C++ is automatic memory management using smart pointers.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">SmartPtrDemo.cpp</span>
+        </div>
+        <pre><span class="kw">#include</span> <span class="val">&lt;memory&gt;</span>
 <span class="kw">#include</span> <span class="val">&lt;iostream&gt;</span>
 
 <span class="kw">struct</span> <span class="tag">Node</span> {
@@ -2379,30 +2648,189 @@ for (auto&amp; n : v) {
 <span class="kw">int</span> <span class="fn">main</span>() {
     <span class="kw">auto</span> head = <span class="kw">std</span>::<span class="fn">make_unique</span>&lt;<span class="tag">Node</span>&gt;(<span class="nm">1</span>);
     head-&gt;next = <span class="kw">std</span>::<span class="fn">make_unique</span>&lt;<span class="tag">Node</span>&gt;(<span class="nm">2</span>);
-    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> head-&gt;value <span class="attr">&lt;&lt;</span> <span class="val">", "</span> <span class="attr">&lt;&lt;</span> head-&gt;next-&gt;value <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
-}</pre>
-            </div>
 
-            <h2>Lambda expressions</h2>
-            <pre><code>auto add = [](int a, int b) { return a + b; };
+    <span class="kw">std::cout</span> <span class="attr">&lt;&lt;</span> head-&gt;value
+              <span class="attr">&lt;&lt;</span> <span class="val">", "</span>
+              <span class="attr">&lt;&lt;</span> head-&gt;next-&gt;value
+              <span class="attr">&lt;&lt;</span> <span class="kw">std</span>::<span class="fn">endl</span>;
+}</pre>
+    </div>
+
+    <p><code>std::unique_ptr</code> automatically deletes the object when it goes out of scope, preventing
+        memory leaks.</p>
+
+    <h2>Types of Smart Pointers</h2>
+    <ul>
+        <li><code>std::unique_ptr</code> → exclusive ownership</li>
+        <li><code>std::shared_ptr</code> → shared ownership using reference counting</li>
+        <li><code>std::weak_ptr</code> → non-owning reference used with shared pointers</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🧠 Important Insight</div>
+        Smart pointers are a core part of RAII (Resource Acquisition Is Initialization), a major C++ design
+        principle for automatic resource management.
+    </div>
+
+    <h2>Move semantics</h2>
+    <p>Move semantics allow resources to be transferred instead of copied, dramatically improving performance
+        when working with large objects.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">MoveDemo.cpp</span>
+        </div>
+        <pre>std::vector&lt;int&gt; data = {1,2,3,4};
+
+std::vector&lt;int&gt; movedData = std::move(data);</pre>
+    </div>
+
+    <p>After the move operation, ownership of the internal resources transfers to
+        <code>movedData</code>.</p>
+
+    <h2>Lambda expressions</h2>
+    <p>Lambdas are anonymous inline functions introduced in C++11. They are commonly used with STL algorithms.</p>
+
+    <pre><code>auto add = [](int a, int b) {
+    return a + b;
+};
+
 std::cout << add(3,4) << '\n';</code></pre>
 
-            <h2>constexpr</h2>
-            <p>Compile‑time constants and functions.</p>
-            <pre><code>constexpr int square(int x) { return x*x; }
+    <p>The syntax may look unusual at first:</p>
+
+    <ul>
+        <li><code>[]</code> → capture list</li>
+        <li><code>(int a, int b)</code> → parameters</li>
+        <li><code>{ }</code> → function body</li>
+    </ul>
+
+    <h2>Lambda Capture</h2>
+    <p>Lambdas can capture variables from the surrounding scope.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">LambdaCapture.cpp</span>
+        </div>
+        <pre><span class="kw">int</span> multiplier = <span class="nm">5</span>;
+
+<span class="kw">auto</span> multiply = [multiplier](<span class="kw">int</span> x) {
+    <span class="kw">return</span> x * multiplier;
+};
+
+std::cout &lt;&lt; multiply(<span class="nm">3</span>);</pre>
+    </div>
+
+    <p>Capturing variables allows lambdas to behave similarly to lightweight function objects.</p>
+
+    <h2>constexpr</h2>
+    <p><code>constexpr</code> enables compile-time constants and functions.</p>
+
+    <pre><code>constexpr int square(int x) {
+    return x*x;
+}
+
 static_assert(square(5) == 25);</code></pre>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 9.1</div>
-                <p>Write a program that uses a <code>std::vector&lt;int&gt;</code> of random numbers, then sorts them
-                    with <code>std::sort</code> using a lambda comparator that orders them in descending order.</p>
-            </div>
+    <p>If the compiler can evaluate the expression during compilation, it will do so automatically.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-            </div>
+    <h2>nullptr</h2>
+    <p>Modern C++ introduced <code>nullptr</code> to replace the older <code>NULL</code> macro.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">Nullptr.cpp</span>
         </div>
+        <pre><span class="kw">int</span>* ptr = <span class="kw">nullptr</span>;
+
+<span class="kw">if</span>(ptr == <span class="kw">nullptr</span>) {
+    std::cout &lt;&lt; <span class="val">"Pointer is null"</span>;
+}</pre>
+    </div>
+
+    <p><code>nullptr</code> provides better type safety compared to the older integer-based NULL value.</p>
+
+    <h2>Strongly Typed Enums</h2>
+    <p>C++11 introduced scoped enumerations using <code>enum class</code>.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">EnumClass.cpp</span>
+        </div>
+        <pre><span class="kw">enum class</span> <span class="tag">Color</span> {
+    Red,
+    Green,
+    Blue
+};
+
+Color c = Color::Red;</pre>
+    </div>
+
+    <p>Unlike traditional enums, scoped enums prevent accidental implicit conversions.</p>
+
+    <h2>Using STL Algorithms with Lambdas</h2>
+    <p>Modern C++ works extremely well with STL algorithms.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">SortLambda.cpp</span>
+        </div>
+        <pre>std::vector&lt;<span class="kw">int</span>&gt; values = {5,2,8,1};
+
+std::sort(values.begin(), values.end(),
+    [](<span class="kw">int</span> a, <span class="kw">int</span> b) {
+        <span class="kw">return</span> a &gt; b;
+    });</pre>
+    </div>
+
+    <p>This sorts the vector in descending order using a lambda comparator.</p>
+
+    <h2>Benefits of Modern C++</h2>
+    <ul>
+        <li>Cleaner and shorter syntax</li>
+        <li>Safer memory management</li>
+        <li>Improved performance through move semantics</li>
+        <li>Powerful generic programming support</li>
+        <li>Better compatibility with STL algorithms</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Overusing <code>auto</code> when types become unclear</li>
+        <li>Confusing copies with references in range-based loops</li>
+        <li>Incorrect lambda capture usage</li>
+        <li>Using raw pointers instead of smart pointers</li>
+        <li>Forgetting that moved-from objects should not be relied upon</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.1</div>
+        <p>Write a program that uses a <code>std::vector&lt;int&gt;</code> of random numbers, then sorts them
+            with <code>std::sort</code> using a lambda comparator that orders them in descending order.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.2</div>
+        <p>Create a lambda function that multiplies two integers and stores it in a variable using
+            <code>auto</code>. Call the lambda with different values.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.3</div>
+        <p>Create a <code>std::unique_ptr</code> to a dynamically allocated object and demonstrate automatic
+            cleanup when it goes out of scope.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 10 ===================== -->
         <div class="lecture" id="lec-9">

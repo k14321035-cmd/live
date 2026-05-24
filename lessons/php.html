@@ -530,7 +530,7 @@
     <h2>Understanding Comparison Operators</h2>
     <p>Comparison operators compare values inside conditions.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Operator</th>
             <th>Description</th>
@@ -605,7 +605,7 @@
     <h2>Logical Operators</h2>
     <p>Logical operators combine multiple conditions.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Operator</th>
             <th>Description</th>
@@ -722,7 +722,7 @@
     <h2>Break and Continue</h2>
     <p>PHP provides loop control statements.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Statement</th>
             <th>Description</th>
@@ -956,105 +956,1249 @@ echo (<span class="kw">$age</span> >= 18) ? <span class="st">"Adult"</span> : <s
 
 
                 <!-- ===================== LECTURE 06 ===================== -->
-                <div class="lecture" id="lec-5">
-                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-                    <h1>Functions</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+               <div class="lecture" id="lec-5">
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
 
-                    <div class="code-block">
-                        <pre><span class="kw">function</span> <span class="fn">sum</span>(<span class="kw">$a</span>, <span class="kw">$b</span>) {
+    <h1>Functions</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
+
+    <h2>Introduction to Functions</h2>
+    <p>Functions are reusable blocks of code designed to perform specific tasks. Instead of writing the same logic multiple times, developers can place the logic inside a function and call it whenever needed.</p>
+
+    <p>Functions help make code:</p>
+
+    <ul>
+        <li>Cleaner</li>
+        <li>Reusable</li>
+        <li>Easier to debug</li>
+        <li>More organized</li>
+        <li>Easier to maintain</li>
+    </ul>
+
+    <p>Functions are heavily used in real-world PHP applications, frameworks, APIs, and backend systems.</p>
+
+    <h2>Creating a Function</h2>
+    <p>Functions in PHP are created using the <code>function</code> keyword.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> <span class="fn">sum</span>(<span class="kw">$a</span>, <span class="kw">$b</span>) {
+
     <span class="kw">return</span> <span class="kw">$a</span> + <span class="kw">$b</span>;
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>In this example:</p>
+
+    <ul>
+        <li><code>sum</code> is the function name.</li>
+        <li><code>$a</code> and <code>$b</code> are parameters.</li>
+        <li><code>return</code> sends a value back to the caller.</li>
+    </ul>
+
+    <h2>Calling a Function</h2>
+    <p>After creating a function, you can execute it by calling its name.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">echo</span> sum(5, 3);</pre>
+    </div>
+
+    <p>The output will be:</p>
+
+    <div class="code-block">
+        <pre>8</pre>
+    </div>
+
+    <h2>Function Parameters</h2>
+    <p>Parameters allow functions to accept input values.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> <span class="fn">greet</span>(<span class="kw">$name</span>) {
+
+    <span class="kw">echo</span> <span class="st">"Hello "</span> . <span class="kw">$name</span>;
+}</pre>
+    </div>
+
+    <div class="code-block">
+        <pre>greet("John");</pre>
+    </div>
+
+    <p>Functions become more flexible when they accept parameters.</p>
+
+    <h2>Default Parameter Values</h2>
+    <p>PHP allows default values for parameters.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> <span class="fn">welcome</span>(<span class="kw">$name</span> = <span class="st">"Guest"</span>) {
+
+    <span class="kw">echo</span> <span class="st">"Welcome "</span> . <span class="kw">$name</span>;
+}</pre>
+    </div>
+
+    <p>If no argument is passed, PHP uses the default value.</p>
+
+    <div class="code-block">
+        <pre>welcome();
+
+welcome("Alice");</pre>
+    </div>
+
+    <h2>Returning Values</h2>
+    <p>Functions can return values using the <code>return</code> keyword.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> <span class="fn">square</span>(<span class="kw">$num</span>) {
+
+    <span class="kw">return</span> <span class="kw">$num</span> * <span class="kw">$num</span>;
+}
+
+<span class="kw">$result</span> = square(4);
+
+<span class="kw">echo</span> <span class="kw">$result</span>;</pre>
+    </div>
+
+    <p>The returned value can be stored in variables or used directly.</p>
+
+    <h2>Function Scope</h2>
+    <p>Variables declared inside a function are local to that function.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> <span class="fn">test</span>() {
+
+    <span class="kw">$message</span> = <span class="st">"Hello"</span>;
+
+    <span class="kw">echo</span> <span class="kw">$message</span>;
+}</pre>
+    </div>
+
+    <p>The variable <code>$message</code> cannot be accessed outside the function.</p>
+
+    <h2>Global Variables</h2>
+    <p>Global variables can be accessed inside functions using the <code>global</code> keyword.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$count</span> = 10;
+
+<span class="kw">function</span> <span class="fn">showCount</span>() {
+
+    <span class="kw">global</span> <span class="kw">$count</span>;
+
+    <span class="kw">echo</span> <span class="kw">$count</span>;
+}</pre>
+    </div>
+
+    <p>Although possible, excessive use of global variables is discouraged because it makes code harder to maintain.</p>
+
+    <h2>Type Declarations</h2>
+    <p>Modern PHP supports type declarations for parameters and return values.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> <span class="fn">multiply</span>(<span class="kw">int</span> <span class="kw">$a</span>, <span class="kw">int</span> <span class="kw">$b</span>): <span class="kw">int</span> {
+
+    <span class="kw">return</span> <span class="kw">$a</span> * <span class="kw">$b</span>;
+}</pre>
+    </div>
+
+    <p>This improves code reliability and reduces unexpected bugs.</p>
+
+    <h2>Anonymous Functions</h2>
+    <p>PHP supports anonymous functions, also known as closures.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$greet</span> = <span class="kw">function</span>(<span class="kw">$name</span>) {
+
+    <span class="kw">echo</span> <span class="st">"Hello "</span> . <span class="kw">$name</span>;
+};</pre>
+    </div>
+
+    <p>Anonymous functions are useful when passing functions as arguments or storing them inside variables.</p>
+
+    <h2>Arrow Functions</h2>
+    <p>PHP also provides shorter arrow function syntax.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$square</span> = <span class="kw">fn</span>(<span class="kw">$x</span>) => <span class="kw">$x</span> * <span class="kw">$x</span>;</pre>
+    </div>
+
+    <p>Arrow functions are cleaner for simple one-line expressions.</p>
+
+    <h2>Variable-Length Arguments</h2>
+    <p>PHP allows functions to accept an unknown number of arguments using the spread operator.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> <span class="fn">total</span>(...<span class="kw">$numbers</span>) {
+
+    <span class="kw">$sum</span> = 0;
+
+    <span class="kw">foreach</span>(<span class="kw">$numbers</span> <span class="kw">as</span> <span class="kw">$num</span>) {
+
+        <span class="kw">$sum</span> += <span class="kw">$num</span>;
+    }
+
+    <span class="kw">return</span> <span class="kw">$sum</span>;
+}</pre>
+    </div>
+
+    <p>This feature is useful when the number of inputs is unknown.</p>
+
+    <h2>Recursive Functions</h2>
+    <p>A recursive function is a function that calls itself.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> <span class="fn">factorial</span>(<span class="kw">$n</span>) {
+
+    <span class="kw">if</span>(<span class="kw">$n</span> <= 1) {
+
+        <span class="kw">return</span> 1;
+    }
+
+    <span class="kw">return</span> <span class="kw">$n</span> * factorial(<span class="kw">$n</span> - 1);
+}</pre>
+    </div>
+
+    <p>Recursion is commonly used in mathematical calculations, tree structures, and algorithms.</p>
+
+    <h2>Built-in PHP Functions</h2>
+    <p>PHP includes thousands of built-in functions for common tasks.</p>
+
+    <div class="code-block">
+        <pre>strlen("Hello");
+
+strtoupper("php");
+
+date("Y-m-d");</pre>
+    </div>
+
+    <p>Learning built-in functions can greatly speed up development.</p>
+
+    <h2>Benefits of Functions</h2>
+    <ul>
+        <li>Reduce repeated code.</li>
+        <li>Improve readability.</li>
+        <li>Make debugging easier.</li>
+        <li>Encourage modular programming.</li>
+        <li>Simplify large applications.</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Forgetting to return values.</li>
+        <li>Using undefined variables inside functions.</li>
+        <li>Confusing local and global scope.</li>
+        <li>Passing incorrect argument types.</li>
+        <li>Creating overly large functions.</li>
+    </ul>
+
+    <h2>Practice</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+
+        <p>Create a function called <code>average()</code> that accepts three numbers and returns their average.</p>
+
+        <p>Then create an arrow function that multiplies two values.</p>
+    </div>
+
+    <h2>Summary</h2>
+    <p>Functions are one of the most important features in PHP. They allow developers to organize logic into reusable and maintainable blocks of code.</p>
+
+    <p>Mastering functions is essential for building dynamic websites, backend systems, APIs, and professional PHP applications.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Arrays & Superglobals</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~55 min</span>
-                    </div>
+               <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
 
-                    <h2>Associative Arrays</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">$person</span> = [
+    <h1>Arrays & Superglobals</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+    </div>
+
+    <h2>Introduction to Arrays</h2>
+    <p>Arrays are one of the most important data structures in PHP. They allow developers to store multiple values inside a single variable.</p>
+
+    <p>Instead of creating many separate variables, arrays help organize related data together.</p>
+
+    <p>PHP arrays are flexible and can store:</p>
+
+    <ul>
+        <li>Strings</li>
+        <li>Numbers</li>
+        <li>Booleans</li>
+        <li>Objects</li>
+        <li>Even other arrays</li>
+    </ul>
+
+    <h2>Indexed Arrays</h2>
+    <p>Indexed arrays store values using numeric indexes starting from <code>0</code>.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$colors</span> = [<span class="st">"Red"</span>, <span class="st">"Blue"</span>, <span class="st">"Green"</span>];
+
+<span class="kw">echo</span> <span class="kw">$colors</span>[0];</pre>
+    </div>
+
+    <p>The output will be:</p>
+
+    <div class="code-block">
+        <pre>Red</pre>
+    </div>
+
+    <h2>Adding Elements to Arrays</h2>
+    <p>New elements can be added using square brackets.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$colors</span>[] = <span class="st">"Yellow"</span>;</pre>
+    </div>
+
+    <p>PHP automatically places the value at the next available index.</p>
+
+    <h2>Associative Arrays</h2>
+    <p>Associative arrays use named keys instead of numeric indexes.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$person</span> = [
+
     <span class="st">"name"</span> => <span class="st">"Jane"</span>,
+
     <span class="st">"role"</span> => <span class="st">"Manager"</span>
 ];</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>Associative arrays are useful when storing structured data.</p>
+
+    <h2>Accessing Associative Array Values</h2>
+    <div class="code-block">
+        <pre><span class="kw">echo</span> <span class="kw">$person</span>[<span class="st">"name"</span>];</pre>
+    </div>
+
+    <p>The output will be:</p>
+
+    <div class="code-block">
+        <pre>Jane</pre>
+    </div>
+
+    <h2>Updating Array Values</h2>
+    <p>Existing array values can be modified easily.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$person</span>[<span class="st">"role"</span>] = <span class="st">"Developer"</span>;</pre>
+    </div>
+
+    <p>This replaces the old value with a new one.</p>
+
+    <h2>Multidimensional Arrays</h2>
+    <p>PHP supports arrays inside arrays, known as multidimensional arrays.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$students</span> = [
+
+    [
+        <span class="st">"name"</span> => <span class="st">"John"</span>,
+        <span class="st">"grade"</span> => 90
+    ],
+
+    [
+        <span class="st">"name"</span> => <span class="st">"Alice"</span>,
+        <span class="st">"grade"</span> => 85
+    ]
+];</pre>
+    </div>
+
+    <p>This structure is commonly used when handling database-like data.</p>
+
+    <h2>Looping Through Arrays</h2>
+    <p>The <code>foreach</code> loop is commonly used to iterate through arrays.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">foreach</span>(<span class="kw">$colors</span> <span class="kw">as</span> <span class="kw">$color</span>) {
+
+    <span class="kw">echo</span> <span class="kw">$color</span>;
+}</pre>
+    </div>
+
+    <p>This loop processes each element one at a time.</p>
+
+    <h2>Looping Through Associative Arrays</h2>
+    <p>You can access both keys and values during iteration.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">foreach</span>(<span class="kw">$person</span> <span class="kw">as</span> <span class="kw">$key</span> => <span class="kw">$value</span>) {
+
+    <span class="kw">echo</span> <span class="kw">$key</span> . <span class="st">": "</span> . <span class="kw">$value</span>;
+}</pre>
+    </div>
+
+    <h2>Useful Array Functions</h2>
+    <p>PHP provides many built-in array functions.</p>
+
+    <div class="code-block">
+        <pre>count(<span class="kw">$colors</span>);
+
+sort(<span class="kw">$colors</span>);
+
+array_push(<span class="kw">$colors</span>, <span class="st">"Black"</span>);</pre>
+    </div>
+
+    <p>These functions simplify common array operations.</p>
+
+    <h2>The count() Function</h2>
+    <p>The <code>count()</code> function returns the total number of elements.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">echo</span> count(<span class="kw">$colors</span>);</pre>
+    </div>
+
+    <h2>Sorting Arrays</h2>
+    <p>Arrays can be sorted alphabetically or numerically.</p>
+
+    <div class="code-block">
+        <pre>sort(<span class="kw">$colors</span>);
+
+rsort(<span class="kw">$colors</span>);</pre>
+    </div>
+
+    <p><code>sort()</code> sorts in ascending order while <code>rsort()</code> sorts in descending order.</p>
+
+    <h2>Introduction to Superglobals</h2>
+    <p>Superglobals are predefined PHP variables available in every scope.</p>
+
+    <p>They are commonly used to handle:</p>
+
+    <ul>
+        <li>Form data</li>
+        <li>User sessions</li>
+        <li>Cookies</li>
+        <li>Server information</li>
+        <li>File uploads</li>
+    </ul>
+
+    <h2>The $_GET Superglobal</h2>
+    <p><code>$_GET</code> collects data sent through URL parameters.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$name</span> = <span class="kw">$_GET</span>[<span class="st">"name"</span>];
+
+<span class="kw">echo</span> <span class="kw">$name</span>;</pre>
+    </div>
+
+    <p>Example URL:</p>
+
+    <div class="code-block">
+        <pre>example.php?name=John</pre>
+    </div>
+
+    <h2>The $_POST Superglobal</h2>
+    <p><code>$_POST</code> collects form data sent using the POST method.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$email</span> = <span class="kw">$_POST</span>[<span class="st">"email"</span>];</pre>
+    </div>
+
+    <p>POST requests are more secure for sensitive data than GET requests.</p>
+
+    <h2>The $_SERVER Superglobal</h2>
+    <p><code>$_SERVER</code> contains information about the server and request environment.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">echo</span> <span class="kw">$_SERVER</span>[<span class="st">"PHP_SELF"</span>];
+
+<span class="kw">echo</span> <span class="kw">$_SERVER</span>[<span class="st">"SERVER_NAME"</span>];</pre>
+    </div>
+
+    <h2>The $_SESSION Superglobal</h2>
+    <p>Sessions allow data to persist across multiple pages.</p>
+
+    <div class="code-block">
+        <pre>session_start();
+
+<span class="kw">$_SESSION</span>[<span class="st">"user"</span>] = <span class="st">"Admin"</span>;</pre>
+    </div>
+
+    <p>Sessions are commonly used for authentication systems.</p>
+
+    <h2>The $_COOKIE Superglobal</h2>
+    <p>Cookies store small pieces of data inside the user’s browser.</p>
+
+    <div class="code-block">
+        <pre>setcookie(<span class="st">"theme"</span>, <span class="st">"dark"</span>, time() + 3600);</pre>
+    </div>
+
+    <p>This cookie remains available for one hour.</p>
+
+    <h2>The $_FILES Superglobal</h2>
+    <p><code>$_FILES</code> handles uploaded files.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$fileName</span> = <span class="kw">$_FILES</span>[<span class="st">"image"</span>][<span class="st">"name"</span>];</pre>
+    </div>
+
+    <p>This is commonly used in upload forms and media systems.</p>
+
+    <h2>Security Best Practices</h2>
+    <p>Never trust user input directly. Always validate and sanitize data received through superglobals.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">$name</span> = htmlspecialchars(<span class="kw">$_POST</span>[<span class="st">"name"</span>]);</pre>
+    </div>
+
+    <p>This helps prevent XSS attacks.</p>
+
+    <h2>Benefits of Arrays & Superglobals</h2>
+    <ul>
+        <li>Store and organize data efficiently.</li>
+        <li>Handle dynamic web content.</li>
+        <li>Process user input.</li>
+        <li>Support sessions and authentication.</li>
+        <li>Enable form handling and uploads.</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Using undefined array indexes.</li>
+        <li>Forgetting to sanitize user input.</li>
+        <li>Mixing associative and indexed arrays incorrectly.</li>
+        <li>Using GET for sensitive information.</li>
+        <li>Forgetting to call <code>session_start()</code>.</li>
+    </ul>
+
+    <h2>Practice</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+
+        <p>Create an associative array called <code>$student</code> with keys for name, age, and grade.</p>
+
+        <p>Then write a <code>foreach</code> loop to display all keys and values.</p>
+
+        <p>Finally, create a simple form that sends data using the POST method and access the values using <code>$_POST</code>.</p>
+    </div>
+
+    <h2>Summary</h2>
+    <p>Arrays and superglobals are essential features in PHP development. Arrays help organize and manage data efficiently, while superglobals allow applications to interact with users, forms, sessions, servers, and uploaded files.</p>
+
+    <p>Understanding these concepts is critical for building dynamic and interactive PHP applications.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Strings & Forms</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~45 min</span>
-                    </div>
+              <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Strings & Forms</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
 
-                    <p>Handling form data with <code>$_POST</code> and <code>$_GET</code>.</p>
+    <h2>Introduction to Strings in PHP</h2>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        Strings are sequences of characters used to store and manipulate text.
+        In PHP, strings are extremely important because web applications frequently
+        work with usernames, passwords, messages, emails, and form input.
+    </p>
+
+    <p>
+        PHP provides many built-in functions for working with strings efficiently.
+    </p>
+
+    <ul>
+        <li>Displaying text on web pages</li>
+        <li>Processing user input</li>
+        <li>Validating form data</li>
+        <li>Generating dynamic content</li>
+    </ul>
+
+    <h2>Creating Strings</h2>
+
+    <p>
+        Strings can be created using single quotes or double quotes.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$name</span> = <span class="st">"PHP"</span>;
+
+<span class="kw">$message</span> = <span class="st">'Hello World'</span>;</pre>
+    </div>
+
+    <h2>Single Quotes vs Double Quotes</h2>
+
+    <p>
+        Double quotes allow variable interpolation,
+        while single quotes treat text literally.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$language</span> = <span class="st">"PHP"</span>;
+
+echo <span class="st">"Learning $language"</span>;
+
+echo <span class="st">'Learning $language'</span>;</pre>
+    </div>
+
+    <h2>String Concatenation</h2>
+
+    <p>
+        PHP uses the dot (<code>.</code>) operator to combine strings.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$first</span> = <span class="st">"Hello"</span>;
+
+<span class="kw">$second</span> = <span class="st">"World"</span>;
+
+echo <span class="kw">$first</span> . <span class="st">" "</span> . <span class="kw">$second</span>;</pre>
+    </div>
+
+    <h2>Useful String Functions</h2>
+
+    <table>
+        <tr>
+            <th>Function</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>strlen()</td>
+            <td>Returns string length</td>
+        </tr>
+        <tr>
+            <td>strtoupper()</td>
+            <td>Converts text to uppercase</td>
+        </tr>
+        <tr>
+            <td>strtolower()</td>
+            <td>Converts text to lowercase</td>
+        </tr>
+        <tr>
+            <td>trim()</td>
+            <td>Removes extra spaces</td>
+        </tr>
+        <tr>
+            <td>strpos()</td>
+            <td>Finds text position</td>
+        </tr>
+    </table>
+
+    <h2>Example: String Functions</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">$text</span> = <span class="st">"  PHP Programming  "</span>;
+
+echo trim(<span class="kw">$text</span>);
+
+echo strtoupper(<span class="kw">$text</span>);
+
+echo strlen(<span class="kw">$text</span>);</pre>
+    </div>
+
+    <h2>Searching Inside Strings</h2>
+
+    <p>
+        The <code>strpos()</code> function searches for text inside a string.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$sentence</span> = <span class="st">"I love PHP"</span>;
+
+echo strpos(<span class="kw">$sentence</span>, <span class="st">"PHP"</span>);</pre>
+    </div>
+
+    <h2>Replacing Text</h2>
+
+    <p>
+        The <code>str_replace()</code> function replaces parts of a string.
+    </p>
+
+    <div class="code-block">
+        <pre>echo str_replace(
+    <span class="st">"PHP"</span>,
+    <span class="st">"Laravel"</span>,
+    <span class="st">"PHP is powerful"</span>
+);</pre>
+    </div>
+
+    <h2>Introduction to Forms</h2>
+
+    <p>
+        Forms allow users to send data to the server.
+        PHP commonly handles form submissions using
+        <code>$_GET</code> and <code>$_POST</code>.
+    </p>
+
+    <p>
+        Forms are used in:
+    </p>
+
+    <ul>
+        <li>Login systems</li>
+        <li>Registration pages</li>
+        <li>Search boxes</li>
+        <li>Contact forms</li>
+        <li>Feedback systems</li>
+    </ul>
+
+    <h2>Basic HTML Form</h2>
+
+    <div class="code-block">
+        <pre>&lt;form method=<span class="st">"post"</span>&gt;
+
+    &lt;input type=<span class="st">"text"</span> name=<span class="st">"username"</span>&gt;
+
+    &lt;button type=<span class="st">"submit"</span>&gt;Send&lt;/button&gt;
+
+&lt;/form&gt;</pre>
+    </div>
+
+    <h2>Handling Form Data with $_POST</h2>
+
+    <p>
+        The <code>$_POST</code> superglobal stores data submitted using the POST method.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">if</span> ($_SERVER[<span class="st">"REQUEST_METHOD"</span>] == <span class="st">"POST"</span>) {
+
+    <span class="kw">$username</span> = $_POST[<span class="st">"username"</span>];
+
+    echo <span class="st">"Welcome "</span> . <span class="kw">$username</span>;
+}</pre>
+    </div>
+
+    <h2>Handling Form Data with $_GET</h2>
+
+    <p>
+        The <code>$_GET</code> superglobal retrieves data from the URL query string.
+    </p>
+
+    <div class="code-block">
+        <pre>&lt;form method=<span class="st">"get"</span>&gt;
+
+    &lt;input type=<span class="st">"text"</span> name=<span class="st">"search"</span>&gt;
+
+&lt;/form&gt;</pre>
+    </div>
+
+    <div class="code-block">
+        <pre><span class="kw">$search</span> = $_GET[<span class="st">"search"</span>];
+
+echo <span class="kw">$search</span>;</pre>
+    </div>
+
+    <h2>GET vs POST</h2>
+
+    <table>
+        <tr>
+            <th>GET</th>
+            <th>POST</th>
+        </tr>
+        <tr>
+            <td>Data visible in URL</td>
+            <td>Data hidden from URL</td>
+        </tr>
+        <tr>
+            <td>Less secure</td>
+            <td>More secure</td>
+        </tr>
+        <tr>
+            <td>Good for searches</td>
+            <td>Good for passwords/forms</td>
+        </tr>
+    </table>
+
+    <h2>Checking Form Fields</h2>
+
+    <p>
+        PHP provides functions for validating form input.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">if</span> (empty($_POST[<span class="st">"email"</span>])) {
+
+    echo <span class="st">"Email is required"</span>;
+}</pre>
+    </div>
+
+    <h2>Sanitizing User Input</h2>
+
+    <p>
+        User input should always be cleaned before displaying or storing it.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$name</span> = htmlspecialchars(
+    $_POST[<span class="st">"name"</span>]
+);</pre>
+    </div>
+
+    <p>
+        This prevents malicious HTML or JavaScript injection.
+    </p>
+
+    <h2>Working with Multiple Form Fields</h2>
+
+    <div class="code-block">
+        <pre>&lt;form method=<span class="st">"post"</span>&gt;
+
+    &lt;input type=<span class="st">"text"</span> name=<span class="st">"name"</span>&gt;
+
+    &lt;input type=<span class="st">"email"</span> name=<span class="st">"email"</span>&gt;
+
+    &lt;button&gt;Submit&lt;/button&gt;
+
+&lt;/form&gt;</pre>
+    </div>
+
+    <div class="code-block">
+        <pre><span class="kw">$name</span> = $_POST[<span class="st">"name"</span>];
+
+<span class="kw">$email</span> = $_POST[<span class="st">"email"</span>];
+
+echo <span class="kw">$name</span>;
+
+echo <span class="kw">$email</span>;</pre>
+    </div>
+
+    <h2>Form Validation Example</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">if</span> (strlen($_POST[<span class="st">"password"</span>]) &lt; 6) {
+
+    echo <span class="st">"Password too short"</span>;
+}</pre>
+    </div>
+
+    <h2>Best Practices for Forms</h2>
+
+    <ul>
+        <li>Always validate user input</li>
+        <li>Use POST for sensitive data</li>
+        <li>Sanitize form values before output</li>
+        <li>Check if fields are empty</li>
+        <li>Provide meaningful error messages</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Trusting user input directly</li>
+        <li>Using GET for passwords</li>
+        <li>Forgetting validation checks</li>
+        <li>Ignoring security vulnerabilities</li>
+        <li>Accessing undefined form fields</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A login form using POST</li>
+        <li>A search form using GET</li>
+        <li>A string manipulation example</li>
+        <li>A form validation system</li>
+        <li>A secure form using <code>htmlspecialchars()</code></li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 09 ===================== -->
-                <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
-                    <h1>Sessions & Cookies</h1>
-                    <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
-                    <h2>Sessions</h2>
-                    <div class="code-block"><pre>&lt;?php
+            <div class="lecture" id="lec-8">
+    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+    <h1>Sessions & Cookies</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <h2>Introduction to Sessions & Cookies</h2>
+
+    <p>
+        Modern web applications need a way to remember users between requests.
+        Since HTTP is stateless, PHP uses sessions and cookies to store user-related data.
+    </p>
+
+    <p>
+        Sessions and cookies are commonly used for:
+    </p>
+
+    <ul>
+        <li>User authentication</li>
+        <li>Login systems</li>
+        <li>Shopping carts</li>
+        <li>User preferences</li>
+        <li>Theme settings</li>
+    </ul>
+
+    <h2>Understanding Stateless HTTP</h2>
+
+    <p>
+        Every HTTP request is independent.
+        Without sessions or cookies, the server forgets the user after each request.
+    </p>
+
+    <p>
+        Sessions and cookies solve this problem by storing user information temporarily.
+    </p>
+
+    <h2>Sessions</h2>
+
+    <p>
+        Sessions store data on the server.
+        Each user receives a unique session ID that connects requests together.
+    </p>
+
+    <div class="code-block">
+        <pre>&lt;?php
+
 session_start();
+
 $_SESSION['user'] = 'Ahmed';
+
 $_SESSION['role'] = 'admin';
+
 echo $_SESSION['user']; // Ahmed
 
 // Destroy
 session_unset();
+
 session_destroy();
-?&gt;</pre></div>
-                    <h2>Cookies</h2>
-                    <div class="code-block"><pre>// Set cookie (expires in 1 hour)
+
+?&gt;</pre>
+    </div>
+
+    <h2>How Sessions Work</h2>
+
+    <ol>
+        <li>User visits the website</li>
+        <li>PHP creates a unique session ID</li>
+        <li>The ID is stored in the browser</li>
+        <li>Session data is stored on the server</li>
+        <li>Future requests use the same session ID</li>
+    </ol>
+
+    <h2>Starting a Session</h2>
+
+    <p>
+        The <code>session_start()</code> function must be called before accessing session data.
+    </p>
+
+    <div class="code-block">
+        <pre>&lt;?php
+
+session_start();
+
+?&gt;</pre>
+    </div>
+
+    <p>
+        This function should appear before any HTML output.
+    </p>
+
+    <h2>Storing Session Data</h2>
+
+    <p>
+        Session variables are stored using the <code>$_SESSION</code> superglobal.
+    </p>
+
+    <div class="code-block">
+        <pre>$_SESSION['username'] = 'admin';
+
+$_SESSION['email'] = 'admin@example.com';</pre>
+    </div>
+
+    <h2>Reading Session Values</h2>
+
+    <div class="code-block">
+        <pre>echo $_SESSION['username'];</pre>
+    </div>
+
+    <h2>Checking if a Session Exists</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">if</span> (isset($_SESSION['username'])) {
+
+    echo <span class="st">"User logged in"</span>;
+}</pre>
+    </div>
+
+    <h2>Destroying Sessions</h2>
+
+    <p>
+        Sessions should be destroyed during logout.
+    </p>
+
+    <div class="code-block">
+        <pre>session_unset();
+
+session_destroy();</pre>
+    </div>
+
+    <h2>Session Timeout Concept</h2>
+
+    <p>
+        Sessions usually expire after inactivity for security reasons.
+    </p>
+
+    <div class="code-block">
+        <pre>$_SESSION['last_activity'] = time();</pre>
+    </div>
+
+    <p>
+        Applications can compare timestamps to automatically log out inactive users.
+    </p>
+
+    <h2>Cookies</h2>
+
+    <p>
+        Cookies store small pieces of data directly in the user's browser.
+    </p>
+
+    <p>
+        Unlike sessions, cookies are stored on the client side.
+    </p>
+
+    <div class="code-block">
+        <pre>// Set cookie (expires in 1 hour)
+
 setcookie('theme', 'dark', time() + 3600, '/');
 
 // Read cookie
+
 echo $_COOKIE['theme'] ?? 'light';
 
 // Delete
-setcookie('theme', '', time() - 3600, '/');</pre></div>
-                    <h2>Login Example</h2>
-                    <div class="code-block"><pre>session_start();
-if ($_POST['user'] === 'admin' &amp;&amp; $_POST['pass'] === 'secret') {
-    $_SESSION['logged_in'] = true;
-    header('Location: dashboard.php');
-    exit;
-}</pre></div>
-                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a login/logout system with session-based authentication.</p></div>
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-                    </div>
-                </div>
 
+setcookie('theme', '', time() - 3600, '/');</pre>
+    </div>
+
+    <h2>Cookie Parameters</h2>
+
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Cookie identifier</td>
+        </tr>
+        <tr>
+            <td>Value</td>
+            <td>Stored data</td>
+        </tr>
+        <tr>
+            <td>Expiration</td>
+            <td>Expiry time</td>
+        </tr>
+        <tr>
+            <td>Path</td>
+            <td>Accessible directory</td>
+        </tr>
+    </table>
+
+    <h2>Setting Cookies</h2>
+
+    <p>
+        Cookies are created using the <code>setcookie()</code> function.
+    </p>
+
+    <div class="code-block">
+        <pre>setcookie(
+    'language',
+    'English',
+    time() + 86400,
+    '/'
+);</pre>
+    </div>
+
+    <h2>Reading Cookies</h2>
+
+    <div class="code-block">
+        <pre>echo $_COOKIE['language'];</pre>
+    </div>
+
+    <h2>Deleting Cookies</h2>
+
+    <p>
+        Cookies are deleted by setting an expiration time in the past.
+    </p>
+
+    <div class="code-block">
+        <pre>setcookie(
+    'language',
+    '',
+    time() - 3600,
+    '/'
+);</pre>
+    </div>
+
+    <h2>Sessions vs Cookies</h2>
+
+    <table>
+        <tr>
+            <th>Sessions</th>
+            <th>Cookies</th>
+        </tr>
+        <tr>
+            <td>Stored on server</td>
+            <td>Stored in browser</td>
+        </tr>
+        <tr>
+            <td>More secure</td>
+            <td>Less secure</td>
+        </tr>
+        <tr>
+            <td>Temporary</td>
+            <td>Can persist longer</td>
+        </tr>
+        <tr>
+            <td>Requires session ID</td>
+            <td>Sent automatically with requests</td>
+        </tr>
+    </table>
+
+    <h2>Login Example</h2>
+
+    <p>
+        Sessions are commonly used for authentication systems.
+    </p>
+
+    <div class="code-block">
+        <pre>session_start();
+
+if ($_POST['user'] === 'admin' &amp;&amp;
+    $_POST['pass'] === 'secret') {
+
+    $_SESSION['logged_in'] = true;
+
+    header('Location: dashboard.php');
+
+    exit;
+}</pre>
+    </div>
+
+    <h2>Protecting Pages with Sessions</h2>
+
+    <div class="code-block">
+        <pre>session_start();
+
+if (!isset($_SESSION['logged_in'])) {
+
+    header('Location: login.php');
+
+    exit;
+}</pre>
+    </div>
+
+    <h2>Logout System</h2>
+
+    <div class="code-block">
+        <pre>session_start();
+
+session_unset();
+
+session_destroy();
+
+header('Location: login.php');</pre>
+    </div>
+
+    <h2>Remember Me Feature</h2>
+
+    <p>
+        Cookies are often used for "Remember Me" functionality.
+    </p>
+
+    <div class="code-block">
+        <pre>setcookie(
+    'remember_user',
+    'admin',
+    time() + (86400 * 30),
+    '/'
+);</pre>
+    </div>
+
+    <h2>Security Best Practices</h2>
+
+    <ul>
+        <li>Never store passwords in cookies</li>
+        <li>Use HTTPS for secure sessions</li>
+        <li>Destroy sessions during logout</li>
+        <li>Validate session data properly</li>
+        <li>Regenerate session IDs after login</li>
+    </ul>
+
+    <h2>Regenerating Session IDs</h2>
+
+    <p>
+        Regenerating session IDs helps prevent session hijacking attacks.
+    </p>
+
+    <div class="code-block">
+        <pre>session_regenerate_id(true);</pre>
+    </div>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Forgetting to call <code>session_start()</code></li>
+        <li>Sending output before sessions start</li>
+        <li>Storing sensitive data in cookies</li>
+        <li>Ignoring session security</li>
+        <li>Not validating login sessions</li>
+    </ul>
+
+    <h2>Real-World Applications</h2>
+
+    <ul>
+        <li>User dashboards</li>
+        <li>E-commerce carts</li>
+        <li>Admin panels</li>
+        <li>Theme personalization</li>
+        <li>Authentication systems</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+
+        <p>
+            Build a login/logout system with session-based authentication.
+        </p>
+
+        <ul>
+            <li>Create a login form</li>
+            <li>Store user information in sessions</li>
+            <li>Protect private pages</li>
+            <li>Create a logout button</li>
+            <li>Store theme preferences using cookies</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 10 ===================== -->
                 <div class="lecture" id="lec-9">
                     <div class="lecture-tag">Lecture 10 · OOP & Advanced</div>

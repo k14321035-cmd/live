@@ -810,7 +810,7 @@
 
     <p>Combinators define relationships between elements.</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Combinator</th>
@@ -885,7 +885,7 @@
 
     <h3>Common attribute selector symbols</h3>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Selector</th>
@@ -1207,7 +1207,7 @@
 
     <h2>Positioning schemes</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Position</th>
@@ -1603,7 +1603,7 @@
 
     <p>Flexbox includes powerful sizing controls for items.</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Property</th>
@@ -2130,7 +2130,7 @@
 
     <h2>Font Categories</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Category</th>
@@ -2228,7 +2228,7 @@
 
     <p>CSS provides many properties to control text appearance and readability.</p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Property</th>
@@ -2452,39 +2452,189 @@
     </div>
 </div>
         <!-- ===================== LECTURE 8 ===================== -->
-        <div class="lecture" id="lec-7">
-            <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-            <h1>Custom Properties (CSS Variables)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~40 min</span>
-                <span class="meta-badge">Requires: Lecture 07</span>
-            </div>
+      <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Custom Properties (CSS Variables)</h1>
 
-            <h2>Defining &amp; using variables</h2>
-            <pre><code>:root {
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~40 min</span>
+        <span class="meta-badge">Requires: Lecture 07</span>
+    </div>
+
+    <h2>Introduction to CSS Variables</h2>
+    <p>Custom properties, commonly called <strong>CSS Variables</strong>, allow you to store reusable values inside
+        CSS. Instead of repeating the same colors, spacing, fonts, or sizes throughout your stylesheet, you can define
+        them once and reuse them everywhere.</p>
+
+    <p>CSS variables make stylesheets easier to maintain, scale, and update. Modern websites heavily rely on variables
+        for themes, design systems, responsive layouts, and dark mode support.</p>
+
+    <div class="box info">
+        <div class="box-title">💡 Key Concept</div>
+        CSS variables behave like reusable containers for values such as colors, spacing, font sizes, shadows, and
+        transitions.
+    </div>
+
+    <h2>Why Use CSS Variables?</h2>
+
+    <ul>
+        <li><strong>Reduces repetition</strong> in large stylesheets</li>
+        <li><strong>Makes themes easier</strong> to create and manage</li>
+        <li><strong>Improves maintainability</strong> of CSS code</li>
+        <li><strong>Allows dynamic updates</strong> with JavaScript</li>
+        <li><strong>Creates consistent design systems</strong></li>
+    </ul>
+
+    <h2>Defining &amp; using variables</h2>
+
+    <p>CSS variables are declared using two hyphens (<code>--</code>) followed by a custom name.</p>
+
+    <div class="code-block">
+        <pre><code>:root {
     --primary: #f97316;
     --bg: #fafafa;
     --text: #111827;
 }
+
 body {
     background: var(--bg);
     color: var(--text);
 }
+
 a {
     color: var(--primary);
 }</code></pre>
+    </div>
 
-            <h2>Scope & inheritance</h2>
-            <p>Variables obey the normal cascade – a variable defined on a parent is available to its children unless
-                overridden.</p>
+    <p>The <code>var()</code> function retrieves the value of a custom property.</p>
 
-            <h2>Theme switching (simple JavaScript example)</h2>
-            <pre><code>/* CSS */
+    <h2>Understanding the :root Selector</h2>
+
+    <p>The <code>:root</code> selector represents the highest-level element in the document, usually the
+        <code>&lt;html&gt;</code> element.</p>
+
+    <div class="code-block">
+        <pre><code>:root {
+    --main-color: blue;
+}</code></pre>
+    </div>
+
+    <p>Variables defined inside <code>:root</code> become globally available throughout the entire webpage.</p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Best Practice</div>
+        Store global design variables like colors, spacing, typography, and shadows inside <code>:root</code>.
+    </div>
+
+    <h2>Naming Conventions</h2>
+
+    <p>Use meaningful variable names so your CSS stays readable and organized.</p>
+
+    <div class="code-block">
+        <pre><code>:root {
+    --primary-color: #2563eb;
+    --secondary-color: #9333ea;
+    --font-large: 2rem;
+    --card-radius: 12px;
+}</code></pre>
+    </div>
+
+    <p>Good naming conventions make large projects easier to scale and maintain.</p>
+
+    <h2>Scope & inheritance</h2>
+
+    <p>Variables obey the normal CSS cascade and inheritance rules. A variable defined on a parent element is
+        accessible to all child elements unless overridden.</p>
+
+    <div class="code-block">
+        <pre><code>.card {
+    --text-color: darkblue;
+    color: var(--text-color);
+}
+
+.card p {
+    color: var(--text-color);
+}</code></pre>
+    </div>
+
+    <p>Both the parent and child elements can access the variable because of inheritance.</p>
+
+    <h2>Overriding Variables</h2>
+
+    <p>Variables can be redefined inside specific elements or classes.</p>
+
+    <div class="code-block">
+        <pre><code>:root {
+    --bg: white;
+}
+
+.dark-box {
+    --bg: black;
+    background: var(--bg);
+}</code></pre>
+    </div>
+
+    <p>This allows different sections of a website to have different themes or styles.</p>
+
+    <h2>Fallback Values</h2>
+
+    <p>You can provide fallback values in case a variable does not exist.</p>
+
+    <div class="code-block">
+        <pre><code>color: var(--main-text, black);</code></pre>
+    </div>
+
+    <p>If <code>--main-text</code> is undefined, the browser will use <code>black</code>.</p>
+
+    <h2>Using Variables for Spacing</h2>
+
+    <p>CSS variables are not limited to colors. They are also useful for spacing and sizing systems.</p>
+
+    <div class="code-block">
+        <pre><code>:root {
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+}
+
+.container {
+    padding: var(--spacing-lg);
+}</code></pre>
+    </div>
+
+    <p>This creates a consistent spacing system across your website.</p>
+
+    <h2>Using Variables with Fonts</h2>
+
+    <div class="code-block">
+        <pre><code>:root {
+    --heading-size: 3rem;
+    --body-size: 1rem;
+}
+
+h1 {
+    font-size: var(--heading-size);
+}
+
+p {
+    font-size: var(--body-size);
+}</code></pre>
+    </div>
+
+    <p>Variables simplify typography management for large websites.</p>
+
+    <h2>Theme switching (simple JavaScript example)</h2>
+
+    <p>CSS variables are extremely useful for implementing light and dark themes.</p>
+
+    <div class="code-block">
+        <pre><code>/* CSS */
 :root {
     --bg: #fafafa;
     --text: #111;
 }
+
 .dark {
     --bg: #111;
     --text: #fafafa;
@@ -2493,32 +2643,147 @@ a {
 /* JS */
 document.getElementById('theme-btn')
         .addEventListener('click', () => document.body.classList.toggle('dark'));</code></pre>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 8.1</div>
-                <p>Build a colour‑scheme switcher: define a light and a dark theme using custom properties, add a button
-                    that toggles the theme, and ensure all elements (background, text, links, borders) adapt correctly.
-                </p>
-            </div>
+    <p>When the <code>dark</code> class is added to the body, the variable values change automatically across the
+        page.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-            </div>
-        </div>
+    <h2>Real-World Theme Example</h2>
+
+    <div class="code-block">
+        <pre><code>:root {
+    --bg: white;
+    --card: #f3f4f6;
+    --text: black;
+}
+
+.dark {
+    --bg: #111827;
+    --card: #1f2937;
+    --text: white;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.card {
+    background: var(--card);
+}</code></pre>
+    </div>
+
+    <p>Changing only the variable values updates the entire interface instantly.</p>
+
+    <h2>Variables and Responsive Design</h2>
+
+    <p>Variables can also change based on screen size using media queries.</p>
+
+    <div class="code-block">
+        <pre><code>:root {
+    --container-width: 1200px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --container-width: 100%;
+    }
+}</code></pre>
+    </div>
+
+    <p>This technique improves responsive design flexibility.</p>
+
+    <h2>Common Use Cases</h2>
+
+    <ul>
+        <li>Dark mode / light mode themes</li>
+        <li>Design systems</li>
+        <li>Responsive layouts</li>
+        <li>Reusable spacing systems</li>
+        <li>Animation timing control</li>
+        <li>Brand color management</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Forgetting to use <code>var()</code> when accessing variables</li>
+        <li>Using unclear variable names</li>
+        <li>Defining too many unnecessary variables</li>
+        <li>Overriding variables accidentally</li>
+        <li>Using variables without fallback values in critical areas</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🚀 Modern CSS Insight</div>
+        CSS variables are now a standard part of professional frontend development and are widely used in frameworks,
+        design systems, and component libraries.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.1</div>
+        <p>Build a colour-scheme switcher: define a light and a dark theme using custom properties, add a button
+            that toggles the theme, and ensure all elements (background, text, links, borders) adapt correctly.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.2</div>
+        <p>Create a reusable spacing system using CSS variables for padding and margins.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.3</div>
+        <p>Build a card component that uses CSS variables for colors, border radius, shadows, and typography.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 9 ===================== -->
-        <div class="lecture" id="lec-8">
-            <div class="lecture-tag">Lecture 09 · Advanced</div>
-            <h1>Transitions &amp; Animations</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~50 min</span>
-                <span class="meta-badge">Requires: Lecture 08</span>
-            </div>
+       <div class="lecture" id="lec-8">
+    <div class="lecture-tag">Lecture 09 · Advanced</div>
+    <h1>Transitions &amp; Animations</h1>
 
-            <h2>CSS Transitions</h2>
-            <pre><code>.btn {
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+        <span class="meta-badge">Requires: Lecture 08</span>
+    </div>
+
+    <h2>Introduction to CSS Motion</h2>
+
+    <p>Modern websites use motion to improve user experience, provide feedback, guide attention, and create more
+        interactive interfaces. CSS transitions and animations allow developers to create smooth visual effects without
+        JavaScript.</p>
+
+    <p>Transitions are typically used for simple state changes like hover effects, while animations provide more
+        advanced multi-step motion using keyframes.</p>
+
+    <div class="box info">
+        <div class="box-title">💡 Key Concept</div>
+        Transitions animate changes between two states, while animations can create continuous or multi-step motion
+        sequences.
+    </div>
+
+    <h2>Why Animations Matter</h2>
+
+    <ul>
+        <li>Improve user experience and interactivity</li>
+        <li>Provide visual feedback for actions</li>
+        <li>Guide user attention to important elements</li>
+        <li>Create modern and polished interfaces</li>
+        <li>Enhance navigation and usability</li>
+    </ul>
+
+    <h2>CSS Transitions</h2>
+
+    <p>Transitions allow CSS properties to change smoothly over time instead of updating instantly.</p>
+
+    <div class="code-block">
+        <pre><code>.btn {
     background: var(--primary);
     color: #fff;
     padding: 0.75rem 1.5rem;
@@ -2526,41 +2791,331 @@ document.getElementById('theme-btn')
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s;
 }
+
 .btn:hover {
     background: #fb923c;
     transform: translateY(-2px);
 }</code></pre>
+    </div>
 
-            <h2>Keyframe animations</h2>
-            <pre><code>@keyframes spin {
+    <p>When the button is hovered, the background color and transform properties animate smoothly.</p>
+
+    <h2>Understanding the transition Property</h2>
+
+    <p>The <code>transition</code> property is shorthand for multiple transition settings.</p>
+
+    <div class="code-block">
+        <pre><code>transition: property duration timing-function delay;</code></pre>
+    </div>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Part</th>
+            <th>Description</th>
+        </tr>
+
+        <tr>
+            <td>property</td>
+            <td>The CSS property to animate</td>
+        </tr>
+
+        <tr>
+            <td>duration</td>
+            <td>How long the animation lasts</td>
+        </tr>
+
+        <tr>
+            <td>timing-function</td>
+            <td>Controls animation speed curve</td>
+        </tr>
+
+        <tr>
+            <td>delay</td>
+            <td>Wait time before animation starts</td>
+        </tr>
+    </table>
+
+    <h2>Transition Timing Functions</h2>
+
+    <p>Timing functions control how an animation accelerates or decelerates.</p>
+
+    <div class="code-block">
+        <pre><code>.box {
+    transition: transform 0.5s ease-in-out;
+}</code></pre>
+    </div>
+
+    <p>Common timing functions include:</p>
+
+    <ul>
+        <li><code>linear</code> → constant speed</li>
+        <li><code>ease</code> → smooth start and end</li>
+        <li><code>ease-in</code> → slow start</li>
+        <li><code>ease-out</code> → slow ending</li>
+        <li><code>ease-in-out</code> → smooth both ways</li>
+    </ul>
+
+    <h2>Hover Effects</h2>
+
+    <p>Hover effects are one of the most common uses of transitions.</p>
+
+    <div class="code-block">
+        <pre><code>.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}</code></pre>
+    </div>
+
+    <p>This creates a smooth zoom effect when hovering over the card.</p>
+
+    <h2>Animating Colors</h2>
+
+    <div class="code-block">
+        <pre><code>.link {
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: blue;
+}</code></pre>
+    </div>
+
+    <p>Color transitions make interfaces feel more responsive and polished.</p>
+
+    <h2>Transform Functions</h2>
+
+    <p>The <code>transform</code> property is heavily used in animations because it performs efficiently.</p>
+
+    <div class="code-block">
+        <pre><code>transform: translateX(20px);
+transform: rotate(45deg);
+transform: scale(1.2);
+transform: skew(10deg);</code></pre>
+    </div>
+
+    <p>Transforms can move, rotate, resize, or distort elements.</p>
+
+    <div class="box tip">
+        <div class="box-title">⚡ Performance Tip</div>
+        Animating <code>transform</code> and <code>opacity</code> is generally smoother and more performant than
+        animating width, height, or position properties.
+    </div>
+
+    <h2>Keyframe animations</h2>
+
+    <p>Keyframes allow developers to define multiple stages of an animation sequence.</p>
+
+    <div class="code-block">
+        <pre><code>@keyframes spin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
 }
+
 .icon {
     animation: spin 2s linear infinite;
 }</code></pre>
+    </div>
 
-            <h3>Animating multiple properties</h3>
-            <pre><code>.pulse {
+    <p>The element rotates continuously because of the <code>infinite</code> keyword.</p>
+
+    <h2>Understanding the animation Property</h2>
+
+    <div class="code-block">
+        <pre><code>animation: name duration timing-function delay iteration-count;</code></pre>
+    </div>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Property</th>
+            <th>Purpose</th>
+        </tr>
+
+        <tr>
+            <td>name</td>
+            <td>Name of the keyframe animation</td>
+        </tr>
+
+        <tr>
+            <td>duration</td>
+            <td>Animation length</td>
+        </tr>
+
+        <tr>
+            <td>timing-function</td>
+            <td>Speed behavior</td>
+        </tr>
+
+        <tr>
+            <td>delay</td>
+            <td>Start delay</td>
+        </tr>
+
+        <tr>
+            <td>iteration-count</td>
+            <td>How many times it repeats</td>
+        </tr>
+    </table>
+
+    <h2>Using Percentage Keyframes</h2>
+
+    <p>Animations can define multiple stages using percentages.</p>
+
+    <div class="code-block">
+        <pre><code>@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(100px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}</code></pre>
+    </div>
+
+    <p>This moves the element forward and then back to its original position.</p>
+
+    <h3>Animating multiple properties</h3>
+
+    <div class="code-block">
+        <pre><code>.pulse {
     animation: pulse 1.5s ease-in-out infinite;
 }
+
 @keyframes pulse {
-    0%   { transform: scale(1);   opacity: 1; }
-    50%  { transform: scale(1.1); opacity: .7; }
-    100% { transform: scale(1);   opacity: 1; }
+    0%   {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50%  {
+        transform: scale(1.1);
+        opacity: .7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }</code></pre>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 9.1</div>
-                <p>Create a button that on hover fades its background colour, slides upwards, and adds a subtle
-                    box‑shadow. Also make an SVG icon that continuously rotates using a keyframe animation.</p>
-            </div>
+    <p>This animation changes both size and opacity simultaneously.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-            </div>
-        </div>
+    <h2>Animation Iteration Count</h2>
+
+    <p>The <code>animation-iteration-count</code> property controls how many times an animation repeats.</p>
+
+    <div class="code-block">
+        <pre><code>.loader {
+    animation: spin 1s linear infinite;
+}</code></pre>
+    </div>
+
+    <ul>
+        <li><code>1</code> → plays once</li>
+        <li><code>3</code> → plays three times</li>
+        <li><code>infinite</code> → loops forever</li>
+    </ul>
+
+    <h2>Animation Direction</h2>
+
+    <p>Animations can reverse direction automatically.</p>
+
+    <div class="code-block">
+        <pre><code>.box {
+    animation: move 2s alternate infinite;
+}</code></pre>
+    </div>
+
+    <p>The <code>alternate</code> value makes the animation move forward and backward repeatedly.</p>
+
+    <h2>Combining Transitions & Animations</h2>
+
+    <p>Professional interfaces often combine both techniques together.</p>
+
+    <div class="code-block">
+        <pre><code>.notification {
+    animation: fadeIn 0.5s ease;
+    transition: transform 0.2s ease;
+}
+
+.notification:hover {
+    transform: scale(1.03);
+}</code></pre>
+    </div>
+
+    <p>The notification fades in initially and scales slightly on hover.</p>
+
+    <h2>Common Use Cases</h2>
+
+    <ul>
+        <li>Button hover effects</li>
+        <li>Loading spinners</li>
+        <li>Navigation animations</li>
+        <li>Card hover interactions</li>
+        <li>Page transitions</li>
+        <li>Notification popups</li>
+    </ul>
+
+    <h2>Accessibility Considerations</h2>
+
+    <p>Some users are sensitive to excessive motion and animations.</p>
+
+    <div class="code-block">
+        <pre><code>@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none;
+        transition: none;
+    }
+}</code></pre>
+    </div>
+
+    <p>This media query disables animations for users who prefer reduced motion.</p>
+
+    <div class="box info">
+        <div class="box-title">♿ Accessibility Insight</div>
+        Animations should enhance usability, not distract or overwhelm users.
+    </div>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Animating too many properties at once</li>
+        <li>Using extremely long animation durations</li>
+        <li>Overusing infinite animations</li>
+        <li>Forgetting transition timing functions</li>
+        <li>Using animations that distract from content</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.1</div>
+        <p>Create a button that on hover fades its background colour, slides upwards, and adds a subtle
+            box-shadow. Also make an SVG icon that continuously rotates using a keyframe animation.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.2</div>
+        <p>Create a loading spinner using only CSS animations and transforms.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.3</div>
+        <p>Build a card component that fades in and slightly scales when hovered.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 10 ===================== -->
         <div class="lecture" id="lec-9">

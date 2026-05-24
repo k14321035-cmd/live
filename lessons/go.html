@@ -366,7 +366,7 @@ language := <span class="st">"Go"</span></pre>
     <h2>Understanding Data Types</h2>
     <p>Data types define the kind of data stored inside a variable.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Type</th>
             <th>Description</th>
@@ -427,7 +427,7 @@ isAdmin := false</pre>
     <h2>Zero Values</h2>
     <p>Variables declared without an initial value are given their <strong>zero value</strong>.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Data Type</th>
             <th>Zero Value</th>
@@ -930,114 +930,334 @@ message()</pre>
     </div>
 </div>
                 <!-- ===================== LECTURE 05 ===================== -->
-                    <div class="lecture" id="lec-4">
-                    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
-                    <h1>Pointers & Structs</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~55 min</span>
-                    </div>
+               <div class="lecture" id="lec-4">
+    <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+    <h1>Pointers & Structs</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+    </div>
 
-                    <h2>Structs</h2>
-                    <p>Structs are the primary way to create custom data types in Go. They allow you to group related data together under a single name, similar to classes in other languages (but without inheritance).</p>
-                    
-                    <div class="code-block">
-                        <pre><span class="kw">type</span> User <span class="kw">struct</span> {
-    ID   <span class="kw">int</span>
-    Name <span class="st">string</span>
+    <h2>Introduction to Structs</h2>
+
+    <p>
+        Structs are the primary way to create custom data types in Go.
+        They allow you to group related data together under a single name,
+        similar to objects or classes in other programming languages.
+    </p>
+
+    <p>
+        Structs are widely used for:
+    </p>
+
+    <ul>
+        <li>Representing users, products, and database records</li>
+        <li>Building APIs and web applications</li>
+        <li>Organizing related data cleanly</li>
+        <li>Creating reusable program models</li>
+    </ul>
+
+    <h2>Structs</h2>
+
+    <p>
+        A struct is defined using the <code>type</code> and <code>struct</code> keywords.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> User <span class="kw">struct</span> {
+    ID    <span class="kw">int</span>
+    Name  <span class="st">string</span>
     Email <span class="st">string</span>
     Age   <span class="kw">int</span>
 }</pre>
-                    </div>
+    </div>
 
-                    <p>You can create a struct value using <strong>struct literal</strong> syntax:</p>
+    <p>
+        Each field inside the struct has:
+    </p>
 
-                    <div class="code-block">
-                        <pre><span class="kw">var</span> u1 User                    <span class="c">// zero value</span>
-u2 := User{ID: 1, Name: <span class="st">"Alice"</span>}   <span class="c">// specific fields</span>
+    <ul>
+        <li>A field name</li>
+        <li>A data type</li>
+    </ul>
+
+    <h2>Creating Struct Values</h2>
+
+    <p>
+        You can create struct values using struct literal syntax.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> u1 User                    <span class="c">// zero value</span>
+
+u2 := User{
+    ID: 1,
+    Name: <span class="st">"Alice"</span>,
+}
+
 u3 := User{                       <span class="c">// order-based (not recommended)</span>
     2,
     <span class="st">"Bob"</span>,
     <span class="st">"bob@example.com"</span>,
     28,
 }</pre>
-                    </div>
+    </div>
 
-                    <h3>Accessing and Modifying Fields</h3>
-                    <div class="code-block">
-                        <pre>u := User{ID: 1, Name: <span class="st">"Alice"</span>}
+    <h2>Zero Values in Structs</h2>
+
+    <p>
+        When a struct is created without assigning values,
+        Go automatically assigns zero values.
+    </p>
+
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Type</th>
+            <th>Zero Value</th>
+        </tr>
+        <tr>
+            <td>int</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>string</td>
+            <td>""</td>
+        </tr>
+        <tr>
+            <td>bool</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>pointer</td>
+            <td>nil</td>
+        </tr>
+    </table>
+
+    <h2>Accessing and Modifying Fields</h2>
+
+    <p>
+        Struct fields are accessed using dot notation.
+    </p>
+
+    <div class="code-block">
+        <pre>u := User{
+    ID: 1,
+    Name: <span class="st">"Alice"</span>,
+}
 
 fmt.Println(u.Name)     <span class="c">// Alice</span>
+
 u.Age = 25              <span class="c">// modify field</span>
+
 fmt.Println(u)          <span class="c">// {1 Alice  25}</span></pre>
-                    </div>
+    </div>
 
-                    <h2>Pointers</h2>
-                    <p>In Go, everything is passed by value. Pointers allow us to pass the memory address instead of copying the entire value, which is crucial when working with structs.</p>
+    <h2>Comparing Structs</h2>
 
-                    <div class="code-block">
-                        <pre><span class="kw">type</span> User <span class="kw">struct</span> {
+    <p>
+        Structs with comparable fields can be compared directly using <code>==</code>.
+    </p>
+
+    <div class="code-block">
+        <pre>u1 := User{ID: 1, Name: <span class="st">"Alice"</span>}
+
+u2 := User{ID: 1, Name: <span class="st">"Alice"</span>}
+
+fmt.Println(u1 == u2)   <span class="c">// true</span></pre>
+    </div>
+
+    <h2>Nested Structs</h2>
+
+    <p>
+        Structs can contain other structs as fields.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> Address <span class="kw">struct</span> {
+    City    <span class="st">string</span>
+    Country <span class="st">string</span>
+}
+
+<span class="kw">type</span> Employee <span class="kw">struct</span> {
+    Name    <span class="st">string</span>
+    Address Address
+}</pre>
+    </div>
+
+    <h2>Introduction to Pointers</h2>
+
+    <p>
+        In Go, everything is passed by value.
+        This means copies are created when values are passed to functions.
+    </p>
+
+    <p>
+        Pointers allow us to work directly with memory addresses instead of copies.
+    </p>
+
+    <h2>Pointers</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> User <span class="kw">struct</span> {
     ID   <span class="kw">int</span>
     Name <span class="st">string</span>
 }
 
 u := User{ID: 1, Name: <span class="st">"Alice"</span>}
+
 p := &u                    <span class="c">// pointer to u</span>
 
-fmt.Println((*p).Name)     <span class="c">// explicit dereference</span>
-fmt.Println(p.Name)        <span class="c">// convenience syntax (preferred)</span></pre>
-                    </div>
+fmt.Println((*p).Name)    <span class="c">// explicit dereference</span>
 
-                    <h3>Creating Pointers Directly</h3>
-                    <div class="code-block">
-                        <pre>u := &User{ID: 2, Name: <span class="st">"Bob"</span>}   <span class="c">// pointer to new struct</span>
+fmt.Println(p.Name)       <span class="c">// convenience syntax</span></pre>
+    </div>
 
-u.Name = <span class="st">"Robert"</span>     <span class="c">// no need for (*u)</span>
-fmt.Println(u.Name)       <span class="c">// Robert</span></pre>
-                    </div>
+    <h2>Understanding Memory Addresses</h2>
 
-                    <h3>Why Use Pointers with Structs?</h3>
-                    <ul>
-                        <li>Avoid copying large structs when passing to functions</li>
-                        <li>Allow functions to modify the original struct</li>
-                        <li>Essential when working with slices, maps, and goroutines</li>
-                    </ul>
+    <p>
+        The <code>&</code> operator gets the address of a variable,
+        while the <code>*</code> operator accesses the value stored at that address.
+    </p>
 
-                    <div class="code-block">
-                        <pre><span class="kw">func</span> updateName(user *User, newName <span class="st">string</span>) {
-    user.Name = newName          <span class="c">// modifies original</span>
+    <div class="code-block">
+        <pre>x := 10
+
+p := &x
+
+fmt.Println(p)     <span class="c">// memory address</span>
+
+fmt.Println(*p)    <span class="c">// value stored at address</span></pre>
+    </div>
+
+    <h2>Creating Pointers Directly</h2>
+
+    <p>
+        You can create pointers directly using struct literals.
+    </p>
+
+    <div class="code-block">
+        <pre>u := &User{
+    ID: 2,
+    Name: <span class="st">"Bob"</span>,
+}
+
+u.Name = <span class="st">"Robert"</span>
+
+fmt.Println(u.Name)   <span class="c">// Robert</span></pre>
+    </div>
+
+    <h2>Why Use Pointers with Structs?</h2>
+
+    <ul>
+        <li>Avoid copying large structs</li>
+        <li>Improve application performance</li>
+        <li>Allow functions to modify original data</li>
+        <li>Useful when sharing data across functions</li>
+    </ul>
+
+    <h2>Passing Structs to Functions</h2>
+
+    <p>
+        Passing a struct without pointers creates a copy.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">func</span> printUser(user User) {
+    fmt.Println(user.Name)
+}</pre>
+    </div>
+
+    <p>
+        Any modifications inside the function will not affect the original struct.
+    </p>
+
+    <h2>Modifying Structs with Pointers</h2>
+
+    <p>
+        Pointers allow functions to update the original struct value.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">func</span> updateName(user *User, newName <span class="st">string</span>) {
+
+    user.Name = newName
 }
 
 u := User{Name: <span class="st">"Alice"</span>}
-updateName(&u, <span class="st">"Alicia"</span>)
-fmt.Println(u.Name)              <span class="c">// Alicia</span></pre>
-                    </div>
 
-                    <h3>Common Mistake: Forgetting Pointers</h3>
-                    <div class="code-block">
-                        <pre><span class="kw">func</span> badUpdate(user User) {     <span class="c">// passes copy</span>
+updateName(&u, <span class="st">"Alicia"</span>)
+
+fmt.Println(u.Name)    <span class="c">// Alicia</span></pre>
+    </div>
+
+    <h2>Common Mistake: Forgetting Pointers</h2>
+
+    <p>
+        Forgetting pointers causes functions to modify copies instead of originals.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">func</span> badUpdate(user User) {
+
     user.Name = <span class="st">"Changed"</span>
 }
 
 u := User{Name: <span class="st">"Alice"</span>}
+
 badUpdate(u)
-fmt.Println(u.Name)             <span class="c">// Still "Alice" !</span></pre>
-                    </div>
 
-                    <h2>Struct Tags & Embedded Structs</h2>
-                    <p>Struct tags are metadata used by packages like <code>encoding/json</code>, database drivers, etc.</p>
+fmt.Println(u.Name)     <span class="c">// Still "Alice"</span></pre>
+    </div>
 
-                    <div class="code-block">
-                        <pre><span class="kw">type</span> User <span class="kw">struct</span> {
+    <h2>Nil Pointers</h2>
+
+    <p>
+        A pointer that does not reference any value is called a nil pointer.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> p *User
+
+fmt.Println(p == nil)   <span class="c">// true</span></pre>
+    </div>
+
+    <p>
+        Dereferencing a nil pointer will cause a runtime panic.
+    </p>
+
+    <h2>Struct Tags</h2>
+
+    <p>
+        Struct tags provide metadata for frameworks and libraries.
+    </p>
+
+    <p>
+        They are commonly used with:
+    </p>
+
+    <ul>
+        <li>JSON encoding</li>
+        <li>Database ORM tools</li>
+        <li>Validation libraries</li>
+    </ul>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> User <span class="kw">struct</span> {
     ID    <span class="kw">int</span>    `json:"id"`
     Name  <span class="st">string</span> `json:"name,omitempty"`
-    Email <span class="st">string</span> `json:"-"`           <span class="c">// ignored by json</span>
+    Email <span class="st">string</span> `json:"-"` 
 }</pre>
-                    </div>
+    </div>
 
-                    <h3>Embedded Structs (Composition)</h3>
-                    <div class="code-block">
-                        <pre><span class="kw">type</span> Address <span class="kw">struct</span> {
+    <h2>Embedded Structs (Composition)</h2>
+
+    <p>
+        Go uses composition instead of traditional inheritance.
+        Embedded structs allow one struct to include another struct.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> Address <span class="kw">struct</span> {
     City    <span class="st">string</span>
     Country <span class="st">string</span>
 }
@@ -1045,137 +1265,1200 @@ fmt.Println(u.Name)             <span class="c">// Still "Alice" !</span></pre>
 <span class="kw">type</span> User <span class="kw">struct</span> {
     ID      <span class="kw">int</span>
     Name    <span class="st">string</span>
-    Address               <span class="c">// embedded</span>
+    Address
 }
 
 u := User{
     Name: <span class="st">"Alice"</span>,
-    Address: Address{City: <span class="st">"Ludhiana"</span>, Country: <span class="st">"India"</span>},
+    Address: Address{
+        City: <span class="st">"Ludhiana"</span>,
+        Country: <span class="st">"India"</span>,
+    },
 }
 
-fmt.Println(u.City)      <span class="c">// promoted field</span></pre>
-                    </div>
+fmt.Println(u.City)</pre>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h2>Benefits of Composition</h2>
 
+    <ul>
+        <li>Encourages reusable code</li>
+        <li>Reduces tight coupling</li>
+        <li>Provides flexible designs</li>
+        <li>Preferred over inheritance in Go</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use pointers for large structs</li>
+        <li>Prefer named field initialization</li>
+        <li>Keep structs focused on one purpose</li>
+        <li>Use composition instead of complex nesting</li>
+        <li>Handle nil pointers carefully</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Forgetting to dereference pointers</li>
+        <li>Passing large structs by value unnecessarily</li>
+        <li>Using order-based struct initialization</li>
+        <li>Dereferencing nil pointers</li>
+        <li>Overcomplicating struct designs</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A <code>Book</code> struct with title and author</li>
+        <li>A function that updates a struct using pointers</li>
+        <li>A nested struct example</li>
+        <li>A struct with JSON tags</li>
+        <li>An embedded struct using composition</li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 06 ===================== -->
                 <div class="lecture" id="lec-5">
-                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-                    <h1>Arrays, Slices & Maps</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+    <h1>Arrays, Slices & Maps</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~60 min</span>
+    </div>
 
-                    <h2>Slices: Dynamic Arrays</h2>
-                    <div class="code-block">
-                        <pre>s := []<span class="kw">int</span>{1, 2, 3}
+    <h2>Introduction to Collections in Go</h2>
+
+    <p>
+        Go provides several built-in data structures for storing and organizing data.
+        The most commonly used are arrays, slices, and maps.
+    </p>
+
+    <p>
+        These structures help developers:
+    </p>
+
+    <ul>
+        <li>Store multiple values efficiently</li>
+        <li>Organize related data</li>
+        <li>Process large collections easily</li>
+        <li>Build scalable applications</li>
+    </ul>
+
+    <h2>Arrays</h2>
+
+    <p>
+        Arrays are fixed-size collections of elements of the same type.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> numbers [5]<span class="kw">int</span></pre>
+    </div>
+
+    <p>
+        This creates an array that can store exactly 5 integers.
+    </p>
+
+    <h2>Initializing Arrays</h2>
+
+    <p>
+        Arrays can be initialized during declaration.
+    </p>
+
+    <div class="code-block">
+        <pre>numbers := [5]<span class="kw">int</span>{1, 2, 3, 4, 5}</pre>
+    </div>
+
+    <p>
+        Each value is stored in a numbered position called an index.
+    </p>
+
+    <h2>Accessing Array Elements</h2>
+
+    <p>
+        Array elements are accessed using indexes starting from 0.
+    </p>
+
+    <div class="code-block">
+        <pre>numbers := [3]<span class="kw">int</span>{10, 20, 30}
+
+fmt.Println(numbers[0])   <span class="c">// 10</span>
+
+fmt.Println(numbers[2])   <span class="c">// 30</span></pre>
+    </div>
+
+    <h2>Modifying Array Values</h2>
+
+    <div class="code-block">
+        <pre>numbers := [3]<span class="kw">int</span>{1, 2, 3}
+
+numbers[1] = 50
+
+fmt.Println(numbers)</pre>
+    </div>
+
+    <h2>Array Length</h2>
+
+    <p>
+        The <code>len()</code> function returns the number of elements in an array.
+    </p>
+
+    <div class="code-block">
+        <pre>arr := [4]<span class="kw">int</span>{1, 2, 3, 4}
+
+fmt.Println(len(arr))   <span class="c">// 4</span></pre>
+    </div>
+
+    <h2>Looping Through Arrays</h2>
+
+    <p>
+        Arrays are commonly traversed using loops.
+    </p>
+
+    <div class="code-block">
+        <pre>numbers := [3]<span class="kw">int</span>{10, 20, 30}
+
+<span class="kw">for</span> i, value := <span class="kw">range</span> numbers {
+    fmt.Println(i, value)
+}</pre>
+    </div>
+
+    <h2>Limitations of Arrays</h2>
+
+    <ul>
+        <li>Fixed size</li>
+        <li>Cannot grow dynamically</li>
+        <li>Less flexible for real-world applications</li>
+    </ul>
+
+    <p>
+        Because of these limitations, Go developers usually prefer slices.
+    </p>
+
+    <h2>Slices: Dynamic Arrays</h2>
+
+    <p>
+        Slices are flexible and dynamic views over arrays.
+        They are one of the most important data structures in Go.
+    </p>
+
+    <div class="code-block">
+        <pre>s := []<span class="kw">int</span>{1, 2, 3}
+
 s = append(s, 4)</pre>
-                    </div>
+    </div>
 
-                    <h2>Maps: Key-Value Pairs</h2>
-                    <div class="code-block">
-                        <pre>m := <span class="kw">make</span>(<span class="kw">map</span>[<span class="kw">string</span>]<span class="kw">int</span>)
+    <h2>Why Slices Are Important</h2>
+
+    <ul>
+        <li>Dynamic size</li>
+        <li>Easy to modify</li>
+        <li>Efficient memory handling</li>
+        <li>Widely used in Go libraries</li>
+    </ul>
+
+    <h2>Creating Slices</h2>
+
+    <p>
+        Slices can be created from arrays or directly using literals.
+    </p>
+
+    <div class="code-block">
+        <pre>nums := []<span class="kw">int</span>{1, 2, 3, 4}</pre>
+    </div>
+
+    <h2>Slice Operations</h2>
+
+    <p>
+        Slices support many useful operations.
+    </p>
+
+    <div class="code-block">
+        <pre>nums := []<span class="kw">int</span>{1, 2, 3, 4, 5}
+
+fmt.Println(nums[1:4])   <span class="c">// [2 3 4]</span></pre>
+    </div>
+
+    <p>
+        Slice syntax:
+    </p>
+
+    <ul>
+        <li><code>[start:end]</code></li>
+        <li>Start index is included</li>
+        <li>End index is excluded</li>
+    </ul>
+
+    <h2>Appending Elements</h2>
+
+    <p>
+        The <code>append()</code> function adds new elements to a slice.
+    </p>
+
+    <div class="code-block">
+        <pre>s := []<span class="kw">int</span>{1, 2}
+
+s = append(s, 3)
+
+s = append(s, 4, 5)
+
+fmt.Println(s)</pre>
+    </div>
+
+    <h2>Slice Length and Capacity</h2>
+
+    <p>
+        Slices have both length and capacity.
+    </p>
+
+    <div class="code-block">
+        <pre>s := []<span class="kw">int</span>{1, 2, 3}
+
+fmt.Println(len(s))   <span class="c">// length</span>
+
+fmt.Println(cap(s))   <span class="c">// capacity</span></pre>
+    </div>
+
+    <p>
+        Length represents the number of elements,
+        while capacity represents the available underlying storage.
+    </p>
+
+    <h2>Using make() with Slices</h2>
+
+    <p>
+        The <code>make()</code> function creates slices with predefined length and capacity.
+    </p>
+
+    <div class="code-block">
+        <pre>s := <span class="kw">make</span>([]<span class="kw">int</span>, 5, 10)
+
+fmt.Println(len(s))
+
+fmt.Println(cap(s))</pre>
+    </div>
+
+    <h2>Copying Slices</h2>
+
+    <p>
+        The <code>copy()</code> function copies elements between slices.
+    </p>
+
+    <div class="code-block">
+        <pre>src := []<span class="kw">int</span>{1, 2, 3}
+
+dest := <span class="kw">make</span>([]<span class="kw">int</span>, len(src))
+
+copy(dest, src)
+
+fmt.Println(dest)</pre>
+    </div>
+
+    <h2>Maps: Key-Value Pairs</h2>
+
+    <p>
+        Maps store data as key-value pairs.
+        They are similar to dictionaries or hash tables in other languages.
+    </p>
+
+    <div class="code-block">
+        <pre>m := <span class="kw">make</span>(<span class="kw">map</span>[<span class="kw">string</span>]<span class="kw">int</span>)
+
 m[<span class="st">"apples"</span>] = 5</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h2>Creating Maps</h2>
+
+    <div class="code-block">
+        <pre>scores := <span class="kw">map</span>[<span class="kw">string</span>]<span class="kw">int</span>{
+    <span class="st">"Alice"</span>: 90,
+    <span class="st">"Bob"</span>: 85,
+}</pre>
+    </div>
+
+    <h2>Accessing Map Values</h2>
+
+    <div class="code-block">
+        <pre>fmt.Println(scores[<span class="st">"Alice"</span>])</pre>
+    </div>
+
+    <h2>Checking If a Key Exists</h2>
+
+    <p>
+        Go provides a special syntax for checking map keys.
+    </p>
+
+    <div class="code-block">
+        <pre>value, exists := scores[<span class="st">"John"</span>]
+
+fmt.Println(value)
+
+fmt.Println(exists)</pre>
+    </div>
+
+    <h2>Deleting Map Entries</h2>
+
+    <p>
+        The <code>delete()</code> function removes keys from maps.
+    </p>
+
+    <div class="code-block">
+        <pre>delete(scores, <span class="st">"Bob"</span>)</pre>
+    </div>
+
+    <h2>Looping Through Maps</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">for</span> key, value := <span class="kw">range</span> scores {
+    fmt.Println(key, value)
+}</pre>
+    </div>
+
+    <h2>Nested Maps</h2>
+
+    <p>
+        Maps can also store other maps.
+    </p>
+
+    <div class="code-block">
+        <pre>students := <span class="kw">map</span>[<span class="kw">string</span>]<span class="kw">map</span>[<span class="kw">string</span>]<span class="kw">int</span>{
+    <span class="st">"Alice"</span>: {
+        <span class="st">"Math"</span>: 95,
+    },
+}</pre>
+    </div>
+
+    <h2>Choosing Between Arrays, Slices, and Maps</h2>
+
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Structure</th>
+            <th>Use Case</th>
+        </tr>
+        <tr>
+            <td>Array</td>
+            <td>Fixed-size collections</td>
+        </tr>
+        <tr>
+            <td>Slice</td>
+            <td>Dynamic ordered data</td>
+        </tr>
+        <tr>
+            <td>Map</td>
+            <td>Fast key-value lookups</td>
+        </tr>
+    </table>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Prefer slices over arrays in most applications</li>
+        <li>Use maps for fast lookups</li>
+        <li>Initialize maps before use</li>
+        <li>Use meaningful keys in maps</li>
+        <li>Avoid unnecessary slice copying</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Accessing invalid indexes</li>
+        <li>Using uninitialized maps</li>
+        <li>Confusing length and capacity</li>
+        <li>Forgetting that arrays have fixed size</li>
+        <li>Modifying slices unexpectedly through shared backing arrays</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>An array storing 5 numbers</li>
+        <li>A slice that grows using <code>append()</code></li>
+        <li>A map storing student scores</li>
+        <li>A loop that prints slice values</li>
+        <li>A nested map representing user data</li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Methods & Interfaces</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
+               <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Methods & Interfaces</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~60 min</span>
+    </div>
 
-                    <h2>Interfaces</h2>
-                    <p>Go uses implicit interfaces. If a type implements the methods, it implements the interface.</p>
-                    <div class="code-block">
-                        <pre><span class="kw">type</span> Shape <span class="kw">interface</span> {
+    <h2>Introduction to Methods</h2>
+    <p>Methods in Go are functions that are attached to a specific type. They allow you to define behavior for structs and custom types. Methods make code more organized, reusable, and easier to understand.</p>
+
+    <p>In many programming languages, methods belong to classes. Go does not have classes, but it allows methods to be attached directly to types.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">package</span> main
+
+<span class="kw">import</span> "fmt"
+
+<span class="kw">type</span> Person <span class="kw">struct</span> {
+    Name <span class="kw">string</span>
+}
+
+<span class="kw">func</span> (p Person) Greet() {
+    fmt.Println("Hello,", p.Name)
+}
+
+<span class="kw">func</span> main() {
+    user := Person{Name: "John"}
+    user.Greet()
+}</pre>
+    </div>
+
+    <p>In the example above:</p>
+    <ul>
+        <li><code>Person</code> is a struct.</li>
+        <li><code>Greet()</code> is a method attached to the <code>Person</code> type.</li>
+        <li><code>p Person</code> is called the receiver.</li>
+    </ul>
+
+    <h2>Understanding Receivers</h2>
+    <p>A receiver connects a method to a type. Go supports two kinds of receivers:</p>
+
+    <ul>
+        <li>Value Receivers</li>
+        <li>Pointer Receivers</li>
+    </ul>
+
+    <h3>Value Receiver</h3>
+    <p>A value receiver works with a copy of the original value. Changes made inside the method do not affect the original data.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> Counter <span class="kw">struct</span> {
+    Value <span class="kw">int</span>
+}
+
+<span class="kw">func</span> (c Counter) Increment() {
+    c.Value++
+}</pre>
+    </div>
+
+    <p>Even after calling <code>Increment()</code>, the original value remains unchanged because Go passes a copy.</p>
+
+    <h3>Pointer Receiver</h3>
+    <p>A pointer receiver allows the method to modify the original struct value.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">func</span> (c *Counter) Increment() {
+    c.Value++
+}</pre>
+    </div>
+
+    <p>Pointer receivers are commonly used when:</p>
+
+    <ul>
+        <li>You want to modify the original object.</li>
+        <li>The struct is large and copying it would waste memory.</li>
+    </ul>
+
+    <h2>Methods on Custom Types</h2>
+    <p>Methods are not limited to structs. You can attach methods to custom types as well.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> Celsius <span class="kw">float64</span>
+
+<span class="kw">func</span> (c Celsius) ToFahrenheit() <span class="kw">float64</span> {
+    <span class="kw">return</span> (float64(c) * 9/5) + 32
+}</pre>
+    </div>
+
+    <p>This allows custom types to have their own behavior and utility methods.</p>
+
+    <h2>Interfaces</h2>
+    <p>Go uses implicit interfaces. If a type implements the methods, it implements the interface automatically. There is no need to explicitly declare implementation like in Java or C#.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> Shape <span class="kw">interface</span> {
     Area() <span class="kw">float64</span>
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>An interface defines a set of method signatures. Any type that contains those methods satisfies the interface.</p>
+
+    <h2>Implementing an Interface</h2>
+    <p>Let us create a rectangle type that implements the <code>Shape</code> interface.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> Rectangle <span class="kw">struct</span> {
+    Width  <span class="kw">float64</span>
+    Height <span class="kw">float64</span>
+}
+
+<span class="kw">func</span> (r Rectangle) Area() <span class="kw">float64</span> {
+    <span class="kw">return</span> r.Width * r.Height
+}</pre>
+    </div>
+
+    <p>Because <code>Rectangle</code> has an <code>Area()</code> method, it automatically satisfies the <code>Shape</code> interface.</p>
+
+    <h2>Multiple Types Using One Interface</h2>
+    <p>Interfaces become powerful when different types share the same behavior.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> Circle <span class="kw">struct</span> {
+    Radius <span class="kw">float64</span>
+}
+
+<span class="kw">func</span> (c Circle) Area() <span class="kw">float64</span> {
+    <span class="kw">return</span> 3.14 * c.Radius * c.Radius
+}</pre>
+    </div>
+
+    <p>Now both <code>Rectangle</code> and <code>Circle</code> satisfy the same interface.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">func</span> PrintArea(s Shape) {
+    fmt.Println("Area:", s.Area())
+}</pre>
+    </div>
+
+    <p>The function above accepts any type that implements the <code>Shape</code> interface.</p>
+
+    <h2>Why Interfaces Are Important</h2>
+    <p>Interfaces are heavily used in Go because they:</p>
+
+    <ul>
+        <li>Promote reusable code.</li>
+        <li>Allow flexible program design.</li>
+        <li>Reduce tight coupling between components.</li>
+        <li>Make testing easier using mock implementations.</li>
+        <li>Enable polymorphism.</li>
+    </ul>
+
+    <h2>The Empty Interface</h2>
+    <p>The empty interface can hold values of any type because it defines zero methods.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> data <span class="kw">interface</span>{}
+
+data = 42
+data = "Hello"
+data = true</pre>
+    </div>
+
+    <p>Before Go introduced generics, the empty interface was widely used for handling unknown data types.</p>
+
+    <h2>Type Assertions</h2>
+    <p>Type assertions allow you to retrieve the concrete value stored inside an interface.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> value <span class="kw">interface</span>{} = "Go"
+
+str := value.(<span class="kw">string</span>)
+
+fmt.Println(str)</pre>
+    </div>
+
+    <p>You can also safely check types using the two-value form.</p>
+
+    <div class="code-block">
+        <pre>str, ok := value.(<span class="kw">string</span>)
+
+<span class="kw">if</span> ok {
+    fmt.Println("Value:", str)
+}</pre>
+    </div>
+
+    <h2>Type Switches</h2>
+    <p>Type switches make it easier to work with multiple possible types stored inside interfaces.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">switch</span> v := value.(<span class="kw">type</span>) {
+<span class="kw">case</span> <span class="kw">string</span>:
+    fmt.Println("String:", v)
+
+<span class="kw">case</span> <span class="kw">int</span>:
+    fmt.Println("Integer:", v)
+
+<span class="kw">default</span>:
+    fmt.Println("Unknown type")
+}</pre>
+    </div>
+
+    <h2>Real-World Usage of Interfaces</h2>
+    <p>Interfaces are everywhere in Go’s standard library. Examples include:</p>
+
+    <ul>
+        <li><code>io.Reader</code></li>
+        <li><code>io.Writer</code></li>
+        <li><code>fmt.Stringer</code></li>
+        <li><code>http.Handler</code></li>
+    </ul>
+
+    <p>These interfaces allow completely different types to work together through shared behavior.</p>
+
+    <h2>Best Practices</h2>
+    <ul>
+        <li>Keep interfaces small and focused.</li>
+        <li>Use pointer receivers when modifying data.</li>
+        <li>Name interfaces based on behavior.</li>
+        <li>Do not create interfaces too early.</li>
+        <li>Prefer composition over complex inheritance patterns.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>Methods define behavior for types, while interfaces define shared behavior between multiple types. Together, they form the foundation of abstraction and reusable design in Go applications.</p>
+
+    <p>Understanding methods and interfaces is essential for building scalable applications, APIs, concurrent systems, and production-level Go software.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Error Handling</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~40 min</span>
-                    </div>
+             <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Error Handling</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~40 min</span>
+    </div>
 
-                    <h2>The Idiomatic Way</h2>
-                    <div class="code-block">
-                        <pre>val, err := doSomething()
+    <h2>Introduction to Error Handling</h2>
+    <p>Error handling is one of the most important concepts in Go. Unlike many programming languages that use exceptions, Go uses explicit error checking. This approach makes programs easier to understand and more predictable.</p>
+
+    <p>In Go, functions commonly return two values:</p>
+
+    <ul>
+        <li>The actual result.</li>
+        <li>An error value.</li>
+    </ul>
+
+    <p>If the error is <code>nil</code>, the operation succeeded. Otherwise, something went wrong.</p>
+
+    <h2>The Idiomatic Way</h2>
+    <p>Go developers follow a simple and readable pattern for handling errors.</p>
+
+    <div class="code-block">
+        <pre>val, err := doSomething()
+
 <span class="kw">if</span> err != <span class="kw">nil</span> {
     <span class="cm">// Handle error</span>
     <span class="kw">return</span> err
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>This pattern is called the idiomatic way because it is the standard style used throughout Go applications and the Go standard library.</p>
 
+    <h2>Why Go Uses Explicit Errors</h2>
+    <p>Go avoids hidden control flow caused by exceptions. Instead of automatic exception handling, errors are returned as normal values.</p>
+
+    <p>This provides several advantages:</p>
+
+    <ul>
+        <li>Programs become easier to debug.</li>
+        <li>Error handling is visible in the code.</li>
+        <li>Developers are forced to think about failure cases.</li>
+        <li>The control flow remains simple and predictable.</li>
+    </ul>
+
+    <h2>Creating Errors</h2>
+    <p>The <code>errors</code> package is commonly used to create custom error messages.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">package</span> main
+
+<span class="kw">import</span> (
+    "errors"
+    "fmt"
+)
+
+<span class="kw">func</span> divide(a, b <span class="kw">float64</span>) (<span class="kw">float64</span>, error) {
+
+    <span class="kw">if</span> b == 0 {
+        <span class="kw">return</span> 0, errors.New("cannot divide by zero")
+    }
+
+    <span class="kw">return</span> a / b, <span class="kw">nil</span>
+}
+
+<span class="kw">func</span> main() {
+
+    result, err := divide(10, 0)
+
+    <span class="kw">if</span> err != <span class="kw">nil</span> {
+        fmt.Println("Error:", err)
+        <span class="kw">return</span>
+    }
+
+    fmt.Println("Result:", result)
+}</pre>
+    </div>
+
+    <p>The <code>errors.New()</code> function creates a simple error value containing a message.</p>
+
+    <h2>Using fmt.Errorf()</h2>
+    <p>Sometimes you need formatted error messages that include variables or additional information.</p>
+
+    <div class="code-block">
+        <pre>err := fmt.Errorf("user %s not found", username)</pre>
+    </div>
+
+    <p>This works similarly to <code>fmt.Printf()</code> but returns an error value instead of printing output.</p>
+
+    <h2>Returning Multiple Values</h2>
+    <p>Go functions frequently return multiple values. Error handling is one of the biggest reasons for this design.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">func</span> getUser(id <span class="kw">int</span>) (<span class="kw">string</span>, error) {
+
+    <span class="kw">if</span> id == 0 {
+        <span class="kw">return</span> "", errors.New("invalid user id")
+    }
+
+    <span class="kw">return</span> "John", <span class="kw">nil</span>
+}</pre>
+    </div>
+
+    <p>The first value is the actual result, while the second value reports whether the operation failed.</p>
+
+    <h2>Ignoring Errors</h2>
+    <p>Sometimes developers intentionally ignore returned values using the blank identifier <code>_</code>.</p>
+
+    <div class="code-block">
+        <pre>value, _ := doSomething()</pre>
+    </div>
+
+    <p>However, ignoring errors is generally discouraged unless you are absolutely certain the error does not matter.</p>
+
+    <h2>Panic</h2>
+    <p>Go provides the <code>panic()</code> function for unrecoverable situations. A panic immediately stops normal execution of the program.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">panic</span>("something went terribly wrong")</pre>
+    </div>
+
+    <p>Panic should be used carefully. Most errors should be handled normally instead of crashing the program.</p>
+
+    <h2>Recover</h2>
+    <p>The <code>recover()</code> function allows a program to regain control after a panic. It is commonly used with deferred functions.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">func</span> safe() {
+
+    <span class="kw">defer</span> <span class="kw">func</span>() {
+
+        <span class="kw">if</span> r := recover(); r != <span class="kw">nil</span> {
+            fmt.Println("Recovered:", r)
+        }
+
+    }()
+
+    <span class="kw">panic</span>("unexpected error")
+}</pre>
+    </div>
+
+    <p>This prevents the application from crashing completely.</p>
+
+    <h2>Deferred Cleanup</h2>
+    <p>The <code>defer</code> keyword is frequently used during error handling to ensure cleanup code always runs.</p>
+
+    <div class="code-block">
+        <pre>file, err := os.Open("data.txt")
+
+<span class="kw">if</span> err != <span class="kw">nil</span> {
+    <span class="kw">return</span> err
+}
+
+<span class="kw">defer</span> file.Close()</pre>
+    </div>
+
+    <p>Even if an error occurs later, the file will still be closed properly.</p>
+
+    <h2>Custom Error Types</h2>
+    <p>Go allows developers to create custom error types by implementing the <code>Error()</code> method.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> ValidationError <span class="kw">struct</span> {
+    Message <span class="kw">string</span>
+}
+
+<span class="kw">func</span> (v ValidationError) Error() <span class="kw">string</span> {
+    <span class="kw">return</span> v.Message
+}</pre>
+    </div>
+
+    <p>Any type that implements the <code>Error()</code> method satisfies the built-in <code>error</code> interface.</p>
+
+    <h2>Error Wrapping</h2>
+    <p>Modern Go applications often wrap errors to preserve context and debugging information.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">if</span> err != <span class="kw">nil</span> {
+    <span class="kw">return</span> fmt.Errorf("failed to load config: %w", err)
+}</pre>
+    </div>
+
+    <p>The <code>%w</code> verb wraps the original error so it can still be inspected later.</p>
+
+    <h2>Checking Wrapped Errors</h2>
+    <p>The <code>errors.Is()</code> function checks whether an error matches another error.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">if</span> errors.Is(err, os.ErrNotExist) {
+    fmt.Println("File does not exist")
+}</pre>
+    </div>
+
+    <p>This is useful when working with wrapped or nested errors.</p>
+
+    <h2>Best Practices</h2>
+    <ul>
+        <li>Always check returned errors.</li>
+        <li>Keep error messages clear and meaningful.</li>
+        <li>Avoid using panic for normal application logic.</li>
+        <li>Use defer for cleanup operations.</li>
+        <li>Wrap errors when adding additional context.</li>
+        <li>Return errors instead of hiding them.</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Ignoring errors completely.</li>
+        <li>Using panic too often.</li>
+        <li>Returning vague error messages.</li>
+        <li>Forgetting to close files or connections.</li>
+        <li>Not checking for nil values.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>Error handling in Go is simple, explicit, and reliable. Instead of exceptions, Go treats errors as regular values that developers handle directly.</p>
+
+    <p>Mastering error handling is essential for building stable APIs, command-line tools, servers, and production-level Go applications.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 09 ===================== -->
-                <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
-                    <h1>Generics</h1>
-                    <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
-                    <h2>Generic Functions</h2>
-                    <div class="code-block"><pre>func Sum[T int | float64](nums []T) T {
+              <div class="lecture" id="lec-8">
+    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+    <h1>Generics</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <h2>Introduction to Generics</h2>
+    <p>Generics allow you to write flexible and reusable code that works with multiple data types without duplicating logic. Before generics were introduced in Go, developers often had to write separate functions for different types such as <code>int</code>, <code>float64</code>, and <code>string</code>.</p>
+
+    <p>Generics solve this problem by allowing functions, structs, and data structures to work with type parameters.</p>
+
+    <p>This feature was officially introduced in Go 1.18 and became one of the biggest additions to the language.</p>
+
+    <h2>Why Generics Are Important</h2>
+    <p>Without generics, developers usually:</p>
+
+    <ul>
+        <li>Repeated the same code for multiple types.</li>
+        <li>Used empty interfaces which reduced type safety.</li>
+        <li>Wrote large amounts of boilerplate code.</li>
+    </ul>
+
+    <p>Generics make code:</p>
+
+    <ul>
+        <li>Reusable</li>
+        <li>Cleaner</li>
+        <li>Safer</li>
+        <li>More maintainable</li>
+        <li>Easier to scale</li>
+    </ul>
+
+    <h2>Understanding Type Parameters</h2>
+    <p>Type parameters are placeholders for actual types. They are written inside square brackets <code>[]</code>.</p>
+
+    <div class="code-block">
+        <pre>func Print[T any](value T) {
+    fmt.Println(value)
+}</pre>
+    </div>
+
+    <p>In this example:</p>
+
+    <ul>
+        <li><code>T</code> is a type parameter.</li>
+        <li><code>any</code> means the function accepts any type.</li>
+    </ul>
+
+    <p>The function can now work with integers, strings, floats, booleans, and custom structs.</p>
+
+    <div class="code-block">
+        <pre>Print(10)
+Print("Hello")
+Print(true)</pre>
+    </div>
+
+    <h2>Generic Functions</h2>
+    <p>Generic functions are functions that work with multiple data types using type parameters.</p>
+
+    <div class="code-block">
+        <pre>func Sum[T int | float64](nums []T) T {
+
     var total T
+
     for _, n := range nums {
         total += n
     }
+
     return total
 }
-fmt.Println(Sum([]int{1, 2, 3}))     // 6
-fmt.Println(Sum([]float64{1.5, 2.5})) // 4</pre></div>
-                    <h2>Type Constraints</h2>
-                    <div class="code-block"><pre>type Number interface {
+
+fmt.Println(Sum([]int{1, 2, 3}))      // 6
+fmt.Println(Sum([]float64{1.5, 2.5})) // 4</pre>
+    </div>
+
+    <p>The function above works for both integer slices and floating-point slices.</p>
+
+    <p>Instead of writing two separate functions, generics allow one reusable solution.</p>
+
+    <h2>How Type Inference Works</h2>
+    <p>Go can automatically detect the type parameter based on the values passed into the function.</p>
+
+    <div class="code-block">
+        <pre>result := Sum([]int{1, 2, 3})</pre>
+    </div>
+
+    <p>Go automatically understands that <code>T</code> is <code>int</code>.</p>
+
+    <p>You can also specify the type manually.</p>
+
+    <div class="code-block">
+        <pre>result := Sum[int]([]int{1, 2, 3})</pre>
+    </div>
+
+    <h2>Type Constraints</h2>
+    <p>Type constraints define which types are allowed for a generic parameter.</p>
+
+    <div class="code-block">
+        <pre>type Number interface {
     int | int64 | float32 | float64
 }
+
 func Max[T Number](a, b T) T {
-    if a &gt; b { return a }
+
+    if a &gt; b {
+        return a
+    }
+
     return b
-}</pre></div>
-                    <h2>Generic Types</h2>
-                    <div class="code-block"><pre>type Stack[T any] struct {
+}</pre>
+    </div>
+
+    <p>Here:</p>
+
+    <ul>
+        <li><code>Number</code> is a custom constraint.</li>
+        <li>The function only accepts numeric types.</li>
+    </ul>
+
+    <p>This prevents invalid types from being used.</p>
+
+    <h2>The any Keyword</h2>
+    <p>The <code>any</code> keyword is simply an alias for <code>interface{}</code>.</p>
+
+    <div class="code-block">
+        <pre>func Display[T any](data T) {
+    fmt.Println(data)
+}</pre>
+    </div>
+
+    <p>It means the generic parameter can accept any possible type.</p>
+
+    <h2>Generic Types</h2>
+    <p>Generics are not limited to functions. Structs and custom types can also use type parameters.</p>
+
+    <div class="code-block">
+        <pre>type Stack[T any] struct {
     items []T
 }
-func (s *Stack[T]) Push(x T) { s.items = append(s.items, x) }
+
+func (s *Stack[T]) Push(x T) {
+    s.items = append(s.items, x)
+}
+
 func (s *Stack[T]) Pop() T {
+
     n := len(s.items) - 1
+
     x := s.items[n]
+
     s.items = s.items[:n]
+
     return x
-}</pre></div>
-                    <div class="exercise"><div class="exercise-title">Practice</div><p>Write a generic Filter function that works for any slice type.</p></div>
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-                    </div>
-                </div>
+}</pre>
+    </div>
+
+    <p>This stack can now store any type:</p>
+
+    <ul>
+        <li>Integers</li>
+        <li>Strings</li>
+        <li>Booleans</li>
+        <li>Structs</li>
+    </ul>
+
+    <div class="code-block">
+        <pre>var nums Stack[int]
+nums.Push(10)
+
+var names Stack[string]
+names.Push("Alice")</pre>
+    </div>
+
+    <h2>Generic Data Structures</h2>
+    <p>Generics are especially useful for reusable data structures such as:</p>
+
+    <ul>
+        <li>Stacks</li>
+        <li>Queues</li>
+        <li>Linked Lists</li>
+        <li>Trees</li>
+        <li>Hash Maps</li>
+    </ul>
+
+    <p>Without generics, developers often needed to duplicate these structures for each data type.</p>
+
+    <h2>Using Comparable Types</h2>
+    <p>Go provides the built-in <code>comparable</code> constraint for types that support equality operations.</p>
+
+    <div class="code-block">
+        <pre>func Equal[T comparable](a, b T) bool {
+    return a == b
+}</pre>
+    </div>
+
+    <p>This function works with types that can be compared using <code>==</code>.</p>
+
+    <h2>Combining Interfaces and Generics</h2>
+    <p>Generics and interfaces can work together to create powerful abstractions.</p>
+
+    <div class="code-block">
+        <pre>type Printer interface {
+    Print()
+}
+
+func Show[T Printer](item T) {
+    item.Print()
+}</pre>
+    </div>
+
+    <p>Any type that implements the <code>Print()</code> method can be used with the generic function.</p>
+
+    <h2>Benefits of Generics</h2>
+    <ul>
+        <li>Reduces duplicated code.</li>
+        <li>Improves type safety.</li>
+        <li>Makes reusable libraries easier to build.</li>
+        <li>Provides cleaner APIs.</li>
+        <li>Eliminates unnecessary type casting.</li>
+    </ul>
+
+    <h2>Limitations of Generics</h2>
+    <p>Although generics are powerful, they should not be overused.</p>
+
+    <ul>
+        <li>Some code becomes harder to read.</li>
+        <li>Complex constraints can confuse beginners.</li>
+        <li>Not every function needs generics.</li>
+    </ul>
+
+    <p>Use generics only when they genuinely improve code reuse and maintainability.</p>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Using generics for very simple functions.</li>
+        <li>Creating overly complex constraints.</li>
+        <li>Confusing interfaces with generics.</li>
+        <li>Forgetting that type inference exists.</li>
+        <li>Using <code>any</code> when stricter constraints are better.</li>
+    </ul>
+
+    <h2>Real-World Use Cases</h2>
+    <p>Generics are commonly used in:</p>
+
+    <ul>
+        <li>Utility libraries</li>
+        <li>Database query builders</li>
+        <li>Reusable collections</li>
+        <li>Frameworks</li>
+        <li>Data processing systems</li>
+        <li>Algorithms and sorting utilities</li>
+    </ul>
+
+    <h2>Practice</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+
+        <p>Write a generic Filter function that works for any slice type.</p>
+
+        <p>Your function should:</p>
+
+        <ul>
+            <li>Accept a slice of any type.</li>
+            <li>Accept a condition function.</li>
+            <li>Return only matching elements.</li>
+        </ul>
+
+        <div class="code-block">
+            <pre>func Filter[T any](items []T, fn func(T) bool) []T {
+
+    var result []T
+
+    for _, item := range items {
+
+        if fn(item) {
+            result = append(result, item)
+        }
+
+    }
+
+    return result
+}</pre>
+        </div>
+    </div>
+
+    <h2>Summary</h2>
+    <p>Generics allow Go developers to write reusable, type-safe, and maintainable code without duplication. By using type parameters and constraints, you can create flexible functions and data structures that work across many data types.</p>
+
+    <p>Understanding generics is important for modern Go development, especially when building reusable libraries, scalable systems, and production-grade applications.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 10 ===================== -->
                 <div class="lecture" id="lec-9">

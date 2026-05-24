@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+  <title>What is CSS? — Code Tutorium</title>
+  <meta name="description" content="CSS (Cascading Style Sheets) is the language that controls how HTML elements look on screen. Learn what CSS is, how it works, and why every web developer needs it.">
+  <meta name="keywords" content="what is css, css explained, css tutorial for beginners, learn css, cascading style sheets, css basics">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is CSS? — Code Tutorium">
+  <meta property="og:description" content="CSS is the language that styles the web. Learn what it is, how it works, and why it matters — with clear examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/what-is-css.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is CSS? — Code Tutorium">
+  <meta name="twitter:description" content="CSS explained simply for beginners, with examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/what-is-css.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Override post accent colour -->
+  <style> :root { --post-color: #a5f3fc; } </style>
+
+  <!-- FAQ Schema — enables Google featured snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is CSS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSS (Cascading Style Sheets) is a stylesheet language used to control the visual presentation of HTML documents. It defines how elements are displayed — including colours, fonts, spacing, and layout — across all screen sizes and devices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does CSS stand for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSS stands for Cascading Style Sheets. 'Cascading' refers to the way multiple style rules can apply to the same element, with the browser resolving conflicts using specificity and source order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is CSS used for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSS is used to style and lay out web pages. It controls colours, fonts, spacing, animations, responsive layouts, and much more. Every modern website uses CSS, including YouTube, Google, Amazon, and Instagram."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between HTML and CSS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HTML provides the structure and content of a web page (headings, paragraphs, images, links). CSS controls how that content looks — colours, fonts, layout, and spacing. HTML is the skeleton; CSS is the skin."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://codetutorium.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://codetutorium.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "What is CSS?", "item": "https://codetutorium.com/blog/what-is-css.html" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is CSS?",
+    "description": "CSS (Cascading Style Sheets) explained for beginners — what it is, how it works, and why it is essential for every web developer.",
+    "author": { "@type": "Organization", "name": "Code Tutorium" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": { "@type": "ImageObject", "url": "https://codetutorium.com/favicon.png" }
+    },
+    "datePublished": "2026-05-19",
+    "dateModified": "2026-05-19",
+    "url": "https://codetutorium.com/blog/what-is-css.html"
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- ═══ ARTICLE ═══ -->
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>What is CSS?</span>
+      </nav>
+
+      <div class="post-tag">CSS</div>
+
+      <h1 class="post-title">What is CSS?</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~4 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick-answer box -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li>CSS stands for <strong>Cascading Style Sheets</strong>.</li>
+          <li>It is the language that controls how HTML elements <strong>look</strong> on screen.</li>
+          <li>Without CSS, websites would be plain, unstyled text.</li>
+          <li>CSS handles colours, fonts, spacing, layout, animations, and responsive design.</li>
+          <li>It is one of the three core web technologies alongside HTML and JavaScript.</li>
+        </ul>
+      </div>
+
+      <!-- Body -->
+      <div class="post-body">
+
+        <h2>What is CSS?</h2>
+        <p>
+          <strong>CSS (Cascading Style Sheets)</strong> is a stylesheet language used to describe the
+          visual presentation of an HTML or XML document. In plain English: HTML builds the structure
+          of a web page, and CSS makes it look good.
+        </p>
+        <p>
+          First proposed by Håkon Wium Lie in 1994, CSS was designed to give developers full control
+          over how web content is displayed — separating design from document structure.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 In simple terms</div>
+          <p>HTML is the skeleton of a web page. CSS is the skin — it controls every colour, font, margin, and animation you see.</p>
+        </div>
+
+        <h2>What does CSS stand for?</h2>
+        <p>
+          CSS stands for <strong>Cascading Style Sheets</strong>. Each word matters:
+        </p>
+        <ul>
+          <li><strong>Cascading</strong> — multiple style rules can apply to one element; the browser resolves conflicts using specificity and order.</li>
+          <li><strong>Style</strong> — defines the visual appearance of elements.</li>
+          <li><strong>Sheets</strong> — styles are stored in files (stylesheets) separate from HTML.</li>
+        </ul>
+
+        <h2>How does CSS work?</h2>
+        <p>
+          CSS works by <strong>selecting</strong> HTML elements and applying <strong>declarations</strong>
+          (property–value pairs) to them. Here is the basic syntax:
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">style.css</span>
+          </div>
+          <pre><span class="cmt">/* selector { property: value; } */</span>
+
+<span class="kw">h1</span> {
+  <span class="prop">color</span>: <span class="val">#a5f3fc</span>;
+  <span class="prop">font-size</span>: <span class="val">2rem</span>;
+  <span class="prop">margin-bottom</span>: <span class="val">1rem</span>;
+}
+
+<span class="kw">p</span> {
+  <span class="prop">font-size</span>: <span class="val">1rem</span>;
+  <span class="prop">color</span>: <span class="val">#888896</span>;
+  <span class="prop">line-height</span>: <span class="val">1.7</span>;
+}</pre>
+        </div>
+
+        <p>In the example above, <code>h1</code> and <code>p</code> are <strong>selectors</strong>, <code>color</code> and <code>font-size</code> are <strong>properties</strong>, and the values after the colon are what gets applied.</p>
+
+        <h2>What is CSS used for?</h2>
+        <p>CSS handles virtually everything visual on a web page:</p>
+        <ul>
+          <li>🎨 <strong>Colors &amp; typography</strong> — text colour, font family, font size, line height</li>
+          <li>📐 <strong>Layout</strong> — Flexbox, Grid, positioning, alignment</li>
+          <li>📱 <strong>Responsive design</strong> — media queries that adapt the layout to any screen</li>
+          <li>✨ <strong>Animations &amp; transitions</strong> — smooth hover effects, keyframe animations</li>
+          <li>🌙 <strong>Theming</strong> — dark mode, custom colour schemes via CSS variables</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Real-world fact</div>
+          <p>Every modern website uses CSS — YouTube, Google, Amazon, Instagram, Netflix. It powers every button, card, colour, and animation you see.</p>
+        </div>
+
+        <h2>What is the difference between HTML and CSS?</h2>
+        <p>This is one of the most common beginner questions:</p>
+        <ul>
+          <li><strong>HTML</strong> defines <em>what</em> is on the page — headings, paragraphs, images, links.</li>
+          <li><strong>CSS</strong> defines <em>how</em> it looks — size, colour, spacing, layout.</li>
+        </ul>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">index.html</span>
+          </div>
+          <pre><span class="cmt">&lt;!-- HTML: structure --&gt;</span>
+<span class="tag">&lt;h1</span> <span class="attr">class</span>=<span class="str">"title"</span><span class="tag">&gt;</span>Hello, World!<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is a paragraph.<span class="tag">&lt;/p&gt;</span></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">style.css</span>
+          </div>
+          <pre><span class="cmt">/* CSS: presentation */</span>
+<span class="kw">.title</span> {
+  <span class="prop">color</span>: <span class="val">navy</span>;
+  <span class="prop">font-size</span>: <span class="val">2.5rem</span>;
+}
+
+<span class="kw">p</span> {
+  <span class="prop">color</span>: <span class="val">#555</span>;
+  <span class="prop">max-width</span>: <span class="val">600px</span>;
+}</pre>
+        </div>
+
+        <h2>Three ways to add CSS to a page</h2>
+
+        <h3>1. External stylesheet (recommended)</h3>
+        <p>CSS lives in a separate <code>.css</code> file linked with a <code>&lt;link&gt;</code> tag. This is the standard approach for real projects.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">index.html</span>
+          </div>
+          <pre><span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"style.css"</span><span class="tag">&gt;</span></pre>
+        </div>
+
+        <h3>2. Internal (embedded) CSS</h3>
+        <p>CSS is placed inside a <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code>. Useful for single-page demos.</p>
+
+        <h3>3. Inline CSS</h3>
+        <p>CSS is written directly on an element using the <code>style</code> attribute. Avoid for anything beyond quick tests.</p>
+
+        <div class="callout warning">
+          <div class="callout-title">⚠️ Best practice</div>
+          <p>Always prefer external stylesheets for real projects. They keep code clean, are reusable across pages, and are cached by browsers for faster load times.</p>
+        </div>
+
+        <h2>A brief history of CSS</h2>
+        <ul>
+          <li><strong>1994</strong> — Håkon Wium Lie proposes CSS.</li>
+          <li><strong>1996</strong> — CSS 1 becomes a W3C recommendation.</li>
+          <li><strong>1998</strong> — CSS 2 adds positioning and media types.</li>
+          <li><strong>2011–now</strong> — CSS 3 splits into modules: Flexbox, Grid, Animations, Custom Properties, Container Queries, and more.</li>
+        </ul>
+
+        <h2>Summary</h2>
+        <p>
+          CSS is the language that makes the web beautiful. It selects HTML elements and applies visual styles — colours, fonts, layouts, animations. Without it, the web would be nothing but black text on a white background.
+        </p>
+        <p>
+          Ready to master it? Our full <a href="../lessons/css.html">CSS  course</a> covers everything from selectors and the box model through Flexbox, Grid, animations, and modern CSS features — completely free.
+        </p>
+
+      </div><!-- /post-body -->
+
+      <!-- Related articles -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// CSS</div>
+            <div class="related-card-title">What is the CSS Box Model and how does it work?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// CSS</div>
+            <div class="related-card-title">What is the difference between Flexbox and Grid?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// HTML</div>
+            <div class="related-card-title">What is the difference between &lt;div&gt; and &lt;section&gt;?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// General</div>
+            <div class="related-card-title">What is the best programming language to learn first?</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside class="sidebar">
+
+      <!-- Table of contents -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list" aria-label="Table of contents">
+          <a href="#" class="toc-link">What is CSS?</a>
+          <a href="#" class="toc-link">What does CSS stand for?</a>
+          <a href="#" class="toc-link">How does CSS work?</a>
+          <a href="#" class="toc-link">What is CSS used for?</a>
+          <a href="#" class="toc-link">HTML vs CSS</a>
+          <a href="#" class="toc-link">Adding CSS to a page</a>
+          <a href="#" class="toc-link">History of CSS</a>
+          <a href="#" class="toc-link">Summary</a>
+        </nav>
+      </div>
+
+      <!-- Course promo -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">🎨</div>
+          <div class="course-promo-name">CSS </div>
+          <div class="course-promo-desc">16 structured lessons — from selectors to Grid, animations, and beyond. 100% free.</div>
+          <a href="../lessons/css.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /page-wrap -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

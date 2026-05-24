@@ -348,7 +348,7 @@ print(lives)</pre>
     <p>Explicit typing improves readability in complex programs.</p>
 
     <h2>Common Swift Data Types</h2>
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Type</th>
             <th>Description</th>
@@ -420,7 +420,7 @@ print(<span class="st">"Hello \(name)"</span>)</pre>
     <h2>Numeric Types</h2>
     <p>Swift provides several numeric types depending on size and precision.</p>
 
-    <table>
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <tr>
             <th>Type</th>
             <th>Description</th>
@@ -1394,41 +1394,670 @@ performTask {
 </div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Structs, Classes & Enums</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~70 min</span>
-                    </div>
+               <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
 
-                    <h2>Structs vs Classes</h2>
-                    <p>Structs are value types (copied), Classes are reference types (shared).</p>
+    <h1>Structs, Classes & Enums</h1>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~70 min</span>
+    </div>
+
+    <h2>Introduction</h2>
+    <p>Swift provides powerful ways to model and organize data using structs, classes, and enums. These are fundamental building blocks used throughout Swift development, especially in iOS and macOS applications.</p>
+
+    <p>Although structs, classes, and enums may appear similar at first, each one serves a different purpose and follows different behavior rules.</p>
+
+    <h2>Structs vs Classes</h2>
+    <p>Structs are value types (copied), Classes are reference types (shared).</p>
+
+    <p>This difference is one of the most important concepts in Swift programming.</p>
+
+    <h2>What Is a Struct?</h2>
+    <p>A struct is a value type used to group related properties and functionality together.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> User {
+
+    <span class="kw">var</span> name: String
+
+    <span class="kw">var</span> age: Int
+}</pre>
+    </div>
+
+    <p>Structs are commonly used for lightweight models and immutable data.</p>
+
+    <h2>Creating Struct Instances</h2>
+    <div class="code-block">
+        <pre><span class="kw">var</span> user1 = User(name: <span class="st">"John"</span>, age: 25)
+
+print(user1.name)</pre>
+    </div>
+
+    <p>Swift automatically creates a memberwise initializer for structs.</p>
+
+    <h2>Value Type Behavior</h2>
+    <p>When a struct is assigned to another variable, Swift creates a copy.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> user1 = User(name: <span class="st">"John"</span>, age: 25)
+
+<span class="kw">var</span> user2 = user1
+
+user2.name = <span class="st">"Alice"</span>
+
+print(user1.name)
+print(user2.name)</pre>
+    </div>
+
+    <p>Changing <code>user2</code> does not affect <code>user1</code> because they are separate copies.</p>
+
+    <h2>What Is a Class?</h2>
+    <p>A class is a reference type that supports shared instances, inheritance, and object-oriented programming features.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Employee {
+
+    <span class="kw">var</span> name: String
+
+    <span class="kw">init</span>(name: String) {
+        self.name = name
+    }
+}</pre>
+    </div>
+
+    <p>Classes are commonly used when multiple parts of an application need to share the same object.</p>
+
+    <h2>Reference Type Behavior</h2>
+    <p>Unlike structs, classes do not create copies during assignment.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> emp1 = Employee(name: <span class="st">"David"</span>)
+
+<span class="kw">var</span> emp2 = emp1
+
+emp2.name = <span class="st">"Emma"</span>
+
+print(emp1.name)
+print(emp2.name)</pre>
+    </div>
+
+    <p>Both variables point to the same object in memory, so changes affect both references.</p>
+
+    <h2>When to Use Structs</h2>
+    <p>Structs are recommended when:</p>
+
+    <ul>
+        <li>The data is simple.</li>
+        <li>You want safer copying behavior.</li>
+        <li>The object does not require inheritance.</li>
+        <li>You want immutable models.</li>
+        <li>Performance and safety are priorities.</li>
+    </ul>
+
+    <h2>When to Use Classes</h2>
+    <p>Classes are preferred when:</p>
+
+    <ul>
+        <li>Objects need shared mutable state.</li>
+        <li>Inheritance is required.</li>
+        <li>The object lifecycle must be managed carefully.</li>
+        <li>You need identity comparison.</li>
+    </ul>
+
+    <h2>Properties in Structs and Classes</h2>
+    <p>Both structs and classes can contain properties.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> Car {
+
+    <span class="kw">var</span> brand: String
+
+    <span class="kw">var</span> speed: Int
+}</pre>
+    </div>
+
+    <p>Properties store values associated with the object.</p>
+
+    <h2>Methods</h2>
+    <p>Methods are functions that belong to structs or classes.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> Rectangle {
+
+    <span class="kw">var</span> width: Double
+
+    <span class="kw">var</span> height: Double
+
+    <span class="kw">func</span> area() -> Double {
+
+        <span class="kw">return</span> width * height
+    }
+}</pre>
+    </div>
+
+    <p>Methods help organize related behavior inside the type.</p>
+
+    <h2>Mutating Methods</h2>
+    <p>Struct methods that modify properties must use the <code>mutating</code> keyword.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> Counter {
+
+    <span class="kw">var</span> value = 0
+
+    <span class="kw">mutating func</span> increment() {
+
+        value += 1
+    }
+}</pre>
+    </div>
+
+    <p>This tells Swift that the method changes the struct’s internal state.</p>
+
+    <h2>Inheritance in Classes</h2>
+    <p>Classes support inheritance, allowing one class to inherit properties and methods from another class.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Animal {
+
+    <span class="kw">func</span> sound() {
+        print(<span class="st">"Animal sound"</span>)
+    }
+}
+
+<span class="kw">class</span> Dog: Animal {
+
+    <span class="kw">override func</span> sound() {
+        print(<span class="st">"Bark"</span>)
+    }
+}</pre>
+    </div>
+
+    <p>Structs do not support inheritance.</p>
+
+    <h2>Identity Operators</h2>
+    <p>Classes support identity comparison using <code>===</code>.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">if</span> emp1 === emp2 {
+    print(<span class="st">"Same object"</span>)
+}</pre>
+    </div>
+
+    <p>This checks whether two variables reference the exact same instance.</p>
+
+    <h2>Introduction to Enums</h2>
+    <p>Enums define a group of related values. Swift enums are far more powerful than traditional enums in many languages.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">enum</span> Direction {
+
+    <span class="kw">case</span> north
+
+    <span class="kw">case</span> south
+
+    <span class="kw">case</span> east
+
+    <span class="kw">case</span> west
+}</pre>
+    </div>
+
+    <p>A variable can only contain one enum case at a time.</p>
+
+    <h2>Using Enums</h2>
+    <div class="code-block">
+        <pre><span class="kw">var</span> move = Direction.north</pre>
+    </div>
+
+    <p>Enums improve code readability and reduce invalid values.</p>
+
+    <h2>Switch Statements with Enums</h2>
+    <p>Enums work extremely well with switch statements.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">switch</span> move {
+
+<span class="kw">case</span> .north:
+    print(<span class="st">"Going North"</span>)
+
+<span class="kw">case</span> .south:
+    print(<span class="st">"Going South"</span>)
+
+<span class="kw">case</span> .east:
+    print(<span class="st">"Going East"</span>)
+
+<span class="kw">case</span> .west:
+    print(<span class="st">"Going West"</span>)
+}</pre>
+    </div>
+
+    <p>Swift requires all enum cases to be handled.</p>
+
+    <h2>Associated Values</h2>
+    <p>Enums can also store additional associated data.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">enum</span> Result {
+
+    <span class="kw">case</span> success(String)
+
+    <span class="kw">case</span> failure(String)
+}</pre>
+    </div>
+
+    <p>This makes enums extremely flexible for representing application states.</p>
+
+    <h2>Raw Values</h2>
+    <p>Enums can contain raw values such as strings or integers.</p>
+
+    <div class="code-block">
+        <pre><span class="kw">enum</span> Status: Int {
+
+    <span class="kw">case</span> pending = 1
+
+    <span class="kw">case</span> completed = 2
+}</pre>
+    </div>
+
+    <p>Raw values are useful when working with APIs or databases.</p>
+
+    <h2>Benefits of Structs, Classes & Enums</h2>
+    <ul>
+        <li>Improve code organization.</li>
+        <li>Create reusable data models.</li>
+        <li>Support safer programming patterns.</li>
+        <li>Reduce bugs and invalid states.</li>
+        <li>Make applications easier to maintain.</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+    <ul>
+        <li>Using classes when structs are better.</li>
+        <li>Forgetting that structs are copied.</li>
+        <li>Mutating structs without the <code>mutating</code> keyword.</li>
+        <li>Confusing identity and equality.</li>
+        <li>Not handling all enum cases in switch statements.</li>
+    </ul>
+
+    <h2>Practice</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+
+        <p>Create a struct called <code>Student</code> with properties for name and grade.</p>
+
+        <p>Create a class called <code>Teacher</code> with a subject property.</p>
+
+        <p>Then create an enum called <code>TrafficLight</code> with cases:</p>
+
+        <ul>
+            <li>red</li>
+            <li>yellow</li>
+            <li>green</li>
+        </ul>
+
+        <p>Use a switch statement to print actions for each traffic light state.</p>
+    </div>
+
+    <h2>Summary</h2>
+    <p>Structs, classes, and enums are essential parts of Swift programming. Structs provide safe value semantics, classes support shared object behavior and inheritance, while enums create powerful state representations.</p>
+
+    <p>Mastering these concepts is critical for building scalable, maintainable, and professional Swift applications.</p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Protocols & Extensions</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+           <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Protocols & Extensions</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
 
-                    <h2>Protocol-Oriented Programming</h2>
-                    <p>Protocols define a blueprint of methods or properties.</p>
+    <h2>Introduction to Protocol-Oriented Programming</h2>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        Swift strongly encourages a programming style known as
+        <strong>Protocol-Oriented Programming (POP)</strong>.
+    </p>
 
+    <p>
+        Instead of relying heavily on inheritance,
+        Swift promotes building flexible and reusable code using protocols and extensions.
+    </p>
+
+    <ul>
+        <li>Improves code reusability</li>
+        <li>Encourages modular design</li>
+        <li>Reduces complex inheritance chains</li>
+        <li>Makes applications easier to maintain</li>
+    </ul>
+
+    <h2>What Are Protocols?</h2>
+
+    <p>
+        Protocols define a blueprint of methods, properties,
+        and behaviors that classes, structs, or enums can adopt.
+    </p>
+
+    <p>
+        A protocol does not provide implementation details directly.
+        It only defines requirements.
+    </p>
+
+    <h2>Creating a Protocol</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> Drivable {
+
+    <span class="kw">var</span> speed: Int { <span class="kw">get set</span> }
+
+    <span class="kw">func</span> drive()
+}</pre>
+    </div>
+
+    <p>
+        Any type adopting this protocol must provide
+        the required property and method.
+    </p>
+
+    <h2>Adopting a Protocol</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> Car: Drivable {
+
+    <span class="kw">var</span> speed = 120
+
+    <span class="kw">func</span> drive() {
+        print(<span class="st">"Car is driving"</span>)
+    }
+}</pre>
+    </div>
+
+    <h2>Protocol Properties</h2>
+
+    <p>
+        Protocols can require computed or stored properties.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> Person {
+
+    <span class="kw">var</span> name: String { <span class="kw">get</span> }
+}</pre>
+    </div>
+
+    <p>
+        The <code>get</code> keyword means the property must be readable.
+    </p>
+
+    <h2>Read-Write Properties</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> Employee {
+
+    <span class="kw">var</span> salary: Double { <span class="kw">get set</span> }
+}</pre>
+    </div>
+
+    <p>
+        <code>get set</code> means the property must support both reading and writing.
+    </p>
+
+    <h2>Protocol Methods</h2>
+
+    <p>
+        Protocols commonly define required behaviors using methods.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> Greetable {
+
+    <span class="kw">func</span> greet()
+}</pre>
+    </div>
+
+    <h2>Multiple Protocol Conformance</h2>
+
+    <p>
+        A type can adopt multiple protocols simultaneously.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> Flyable {
+    <span class="kw">func</span> fly()
+}
+
+<span class="kw">protocol</span> Swimmable {
+    <span class="kw">func</span> swim()
+}
+
+<span class="kw">struct</span> Duck: Flyable, Swimmable {
+
+    <span class="kw">func</span> fly() {
+        print(<span class="st">"Flying"</span>)
+    }
+
+    <span class="kw">func</span> swim() {
+        print(<span class="st">"Swimming"</span>)
+    }
+}</pre>
+    </div>
+
+    <h2>Protocols with Classes</h2>
+
+    <p>
+        Classes can also conform to protocols.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> Animal {
+
+    <span class="kw">func</span> makeSound()
+}
+
+<span class="kw">class</span> Dog: Animal {
+
+    <span class="kw">func</span> makeSound() {
+        print(<span class="st">"Bark"</span>)
+    }
+}</pre>
+    </div>
+
+    <h2>Introduction to Extensions</h2>
+
+    <p>
+        Extensions allow developers to add new functionality
+        to existing types without modifying the original source code.
+    </p>
+
+    <p>
+        Extensions are heavily used in Swift development.
+    </p>
+
+    <h2>Creating Extensions</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">extension</span> String {
+
+    <span class="kw">func</span> shout() -> String {
+        <span class="kw">return</span> self.uppercased()
+    }
+}
+
+print(<span class="st">"swift"</span>.shout())</pre>
+    </div>
+
+    <h2>Adding Computed Properties</h2>
+
+    <p>
+        Extensions can add computed properties to existing types.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">extension</span> Int {
+
+    <span class="kw">var</span> squared: Int {
+        <span class="kw">return</span> self * self
+    }
+}
+
+print(5.squared)</pre>
+    </div>
+
+    <h2>Protocol Extensions</h2>
+
+    <p>
+        Swift allows protocols to provide default method implementations
+        using extensions.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> Printable {
+
+    <span class="kw">func</span> printDetails()
+}
+
+<span class="kw">extension</span> Printable {
+
+    <span class="kw">func</span> printDetails() {
+        print(<span class="st">"Default printing"</span>)
+    }
+}</pre>
+    </div>
+
+    <p>
+        Types adopting the protocol automatically receive the default behavior.
+    </p>
+
+    <h2>Using Default Implementations</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> User: Printable {
+
+}
+
+<span class="kw">let</span> u = User()
+
+u.printDetails()</pre>
+    </div>
+
+    <h2>Benefits of Protocol Extensions</h2>
+
+    <ul>
+        <li>Reduce duplicate code</li>
+        <li>Provide reusable default behavior</li>
+        <li>Improve code organization</li>
+        <li>Encourage cleaner architecture</li>
+    </ul>
+
+    <h2>Mutating Methods in Protocols</h2>
+
+    <p>
+        Structs and enums require the <code>mutating</code> keyword
+        when methods modify properties.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> Counter {
+
+    <span class="kw">mutating func</span> increment()
+}</pre>
+    </div>
+
+    <h2>Extensions on Custom Types</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">struct</span> Rectangle {
+
+    <span class="kw">var</span> width: Double
+    <span class="kw">var</span> height: Double
+}
+
+<span class="kw">extension</span> Rectangle {
+
+    <span class="kw">func</span> area() -> Double {
+        <span class="kw">return</span> width * height
+    }
+}</pre>
+    </div>
+
+    <h2>Protocol Composition</h2>
+
+    <p>
+        Swift allows combining multiple protocols into one requirement.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">protocol</span> A {
+    <span class="kw">func</span> methodA()
+}
+
+<span class="kw">protocol</span> B {
+    <span class="kw">func</span> methodB()
+}
+
+<span class="kw">func</span> execute(value: A & B) {
+
+}</pre>
+    </div>
+
+    <h2>Real-World Use Cases</h2>
+
+    <ul>
+        <li>Networking services</li>
+        <li>Reusable UI components</li>
+        <li>Data validation systems</li>
+        <li>Custom utility libraries</li>
+        <li>Flexible app architecture</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Prefer protocols over deep inheritance</li>
+        <li>Keep protocols focused and small</li>
+        <li>Use protocol extensions for shared behavior</li>
+        <li>Choose meaningful protocol names</li>
+        <li>Avoid overly large protocols</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Creating protocols with too many responsibilities</li>
+        <li>Overusing inheritance instead of protocols</li>
+        <li>Adding unnecessary extensions</li>
+        <li>Ignoring protocol composition</li>
+        <li>Writing duplicate default implementations</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A protocol with properties and methods</li>
+        <li>A struct conforming to a protocol</li>
+        <li>An extension for the String type</li>
+        <li>A protocol extension with default behavior</li>
+        <li>A protocol composition example</li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 09 ===================== -->
                 <div class="lecture" id="lec-8">
                     <div class="lecture-tag">Lecture 09 · Advanced</div>

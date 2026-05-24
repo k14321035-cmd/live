@@ -324,7 +324,7 @@ console.log(greet(<span class="st">"Tinashe"</span>));
         <h2>Core Primitive Types</h2>
         <p>TypeScript provides several basic types that allow us to constrain what data a variable can hold.</p>
 
-        <table class="type-table">
+        <table border="2px solid" cellpadding="10" cellspacing="0" class="type-table" style="border:2px solid black;border-collapse:collapse;">
             <thead>
                 <tr>
                     <th>Type</th>
@@ -517,7 +517,7 @@ currentId = <span class="st">"USR_99"</span>; <span class="cm">// Both are valid
         <h2>Interface vs. Type Alias</h2>
         <p>You will see both <code class="code-inline">interface</code> and <code class="code-inline">type</code> in professional codebases. Here is how to choose:</p>
 
-        <table class="comparison-table">
+        <table border="2px solid" cellpadding="10" cellspacing="0" class="comparison-table" style="border:2px solid black;border-collapse:collapse;">
             <thead>
                 <tr>
                     <th>Feature</th>
@@ -847,54 +847,896 @@ console.log(rest);   <span class="cm">// [30, 40, 50]</span>
 
                 <!-- ===================== LECTURE 06 ===================== -->
                 <div class="lecture" id="lec-5">
-                    <div class="lecture-tag">Lecture 06 · Fundamentals</div>
-                    <h1>Objects & Classes</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~55 min</span>
-                    </div>
+    <div class="lecture-tag">Lecture 06 · Fundamentals</div>
+    <h1>Objects & Classes</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~55 min</span>
+    </div>
 
-                    <h2>Class Access Modifiers</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">class</span> Animal {
-    <span class="kw">public</span> name: <span class="kw">string</span>;
-    <span class="kw">private</span> age: <span class="kw">number</span>;
-    <span class="kw">constructor</span>(name: <span class="kw">string</span>) { <span class="kw">this</span>.name = name; }
+    <h2>Introduction to Object-Oriented Programming</h2>
+
+    <p>
+        Object-Oriented Programming (OOP) is a programming style based on objects and classes.
+        It helps developers organize code into reusable and structured components.
+    </p>
+
+    <p>
+        In TypeScript, classes are used to create blueprints for objects.
+    </p>
+
+    <ul>
+        <li>A class defines properties and behaviors</li>
+        <li>An object is an instance created from a class</li>
+        <li>Classes improve code organization and reusability</li>
+    </ul>
+
+    <h2>Understanding Classes</h2>
+
+    <p>
+        A class acts like a template for creating objects.
+        It contains variables and methods related to that object.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Car {
+    brand: <span class="kw">string</span> = <span class="st">"Toyota"</span>;
+
+    start() {
+        console.log(<span class="st">"Car Started"</span>);
+    }
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        In this example:
+    </p>
+
+    <ul>
+        <li><code>brand</code> is a property</li>
+        <li><code>start()</code> is a method</li>
+    </ul>
+
+    <h2>Creating Objects</h2>
+
+    <p>
+        Objects are created using the <code>new</code> keyword.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">const</span> car1 = <span class="kw">new</span> Car();
+
+console.log(car1.brand);
+
+car1.start();</pre>
+    </div>
+
+    <h2>Class Access Modifiers</h2>
+
+    <p>
+        Access modifiers control how properties and methods can be accessed.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Animal {
+
+    <span class="kw">public</span> name: <span class="kw">string</span>;
+
+    <span class="kw">private</span> age: <span class="kw">number</span>;
+
+    <span class="kw">constructor</span>(name: <span class="kw">string</span>) {
+        <span class="kw">this</span>.name = name;
+    }
+}</pre>
+    </div>
+
+    <h2>Public Members</h2>
+
+    <p>
+        Public members can be accessed from anywhere in the program.
+        By default, class properties are public.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> User {
+
+    <span class="kw">public</span> username: <span class="kw">string</span>;
+
+    <span class="kw">constructor</span>(username: <span class="kw">string</span>) {
+        <span class="kw">this</span>.username = username;
+    }
+}
+
+<span class="kw">const</span> user1 = <span class="kw">new</span> User(<span class="st">"Alex"</span>);
+
+console.log(user1.username);</pre>
+    </div>
+
+    <h2>Private Members</h2>
+
+    <p>
+        Private members can only be accessed inside the class itself.
+        They help protect sensitive data.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> BankAccount {
+
+    <span class="kw">private</span> balance: <span class="kw">number</span> = 5000;
+
+    showBalance() {
+        console.log(<span class="kw">this</span>.balance);
+    }
+}</pre>
+    </div>
+
+    <p>
+        Attempting to access <code>balance</code> outside the class will cause an error.
+    </p>
+
+    <h2>Protected Members</h2>
+
+    <p>
+        Protected members are accessible inside the class and in derived classes.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Person {
+
+    <span class="kw">protected</span> country: <span class="kw">string</span> = <span class="st">"USA"</span>;
+}
+
+<span class="kw">class</span> Student <span class="kw">extends</span> Person {
+
+    showCountry() {
+        console.log(<span class="kw">this</span>.country);
+    }
+}</pre>
+    </div>
+
+    <h2>Constructors</h2>
+
+    <p>
+        Constructors are special methods used to initialize objects.
+        They run automatically when an object is created.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Product {
+
+    name: <span class="kw">string</span>;
+
+    <span class="kw">constructor</span>(name: <span class="kw">string</span>) {
+        <span class="kw">this</span>.name = name;
+    }
+}
+
+<span class="kw">const</span> item = <span class="kw">new</span> Product(<span class="st">"Laptop"</span>);</pre>
+    </div>
+
+    <h2>The this Keyword</h2>
+
+    <p>
+        The <code>this</code> keyword refers to the current object instance.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Employee {
+
+    name: <span class="kw">string</span>;
+
+    <span class="kw">constructor</span>(name: <span class="kw">string</span>) {
+        <span class="kw">this</span>.name = name;
+    }
+
+    greet() {
+        console.log(<span class="st">"Hello "</span> + <span class="kw">this</span>.name);
+    }
+}</pre>
+    </div>
+
+    <h2>Methods Inside Classes</h2>
+
+    <p>
+        Methods define behaviors for objects.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Calculator {
+
+    add(a: <span class="kw">number</span>, b: <span class="kw">number</span>) {
+        <span class="kw">return</span> a + b;
+    }
+}
+
+<span class="kw">const</span> calc = <span class="kw">new</span> Calculator();
+
+console.log(calc.add(5, 3));</pre>
+    </div>
+
+    <h2>Readonly Properties</h2>
+
+    <p>
+        Readonly properties cannot be modified after initialization.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Company {
+
+    <span class="kw">readonly</span> companyName: <span class="kw">string</span> = <span class="st">"TechCorp"</span>;
+}</pre>
+    </div>
+
+    <h2>Inheritance</h2>
+
+    <p>
+        Inheritance allows one class to reuse properties and methods from another class.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Vehicle {
+
+    move() {
+        console.log(<span class="st">"Vehicle Moving"</span>);
+    }
+}
+
+<span class="kw">class</span> Bike <span class="kw">extends</span> Vehicle {
+
+    ringBell() {
+        console.log(<span class="st">"Bell Ringing"</span>);
+    }
+}</pre>
+    </div>
+
+    <h2>Creating Multiple Objects</h2>
+
+    <p>
+        A single class can create many different objects.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">const</span> dog = <span class="kw">new</span> Animal(<span class="st">"Tommy"</span>);
+
+<span class="kw">const</span> cat = <span class="kw">new</span> Animal(<span class="st">"Kitty"</span>);
+
+console.log(dog.name);
+
+console.log(cat.name);</pre>
+    </div>
+
+    <h2>Advantages of Classes</h2>
+
+    <ul>
+        <li>Better code organization</li>
+        <li>Reusable components</li>
+        <li>Improved readability</li>
+        <li>Easier maintenance</li>
+        <li>Supports scalable applications</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use meaningful class names</li>
+        <li>Keep classes focused on one purpose</li>
+        <li>Use private members for sensitive data</li>
+        <li>Avoid very large classes</li>
+        <li>Reuse logic through inheritance when appropriate</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Forgetting to use the <code>new</code> keyword</li>
+        <li>Not initializing properties properly</li>
+        <li>Accessing private properties outside the class</li>
+        <li>Misusing the <code>this</code> keyword</li>
+        <li>Creating overly complex classes</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A <code>Student</code> class with name and grade</li>
+        <li>A <code>Car</code> class with start and stop methods</li>
+        <li>A class using private properties</li>
+        <li>A class with inheritance</li>
+        <li>A class using readonly properties</li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Generics</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
+               <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Generics</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~60 min</span>
+    </div>
 
-                    <h2>Reusable Types</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">function</span> identity&lt;T&gt;(arg: T): T {
+    <h2>Introduction to Generics</h2>
+
+    <p>
+        Generics allow developers to create reusable and flexible components
+        that work with different data types while maintaining type safety.
+    </p>
+
+    <p>
+        Instead of writing separate functions or classes for every data type,
+        generics allow one implementation to handle multiple types.
+    </p>
+
+    <ul>
+        <li>Reduce duplicate code</li>
+        <li>Improve code reusability</li>
+        <li>Provide strong type checking</li>
+        <li>Increase flexibility in applications</li>
+    </ul>
+
+    <h2>Why Generics Matter</h2>
+
+    <p>
+        Without generics, developers often need multiple versions of the same logic.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> printString(value: <span class="kw">string</span>) {
+    console.log(value);
+}
+
+<span class="kw">function</span> printNumber(value: <span class="kw">number</span>) {
+    console.log(value);
+}</pre>
+    </div>
+
+    <p>
+        Generics solve this problem by allowing one reusable solution.
+    </p>
+
+    <h2>Reusable Types</h2>
+
+    <p>
+        Generic functions use type parameters such as <code>T</code>
+        to represent a placeholder type.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> identity&lt;T&gt;(arg: T): T {
     <span class="kw">return</span> arg;
 }
 
 <span class="kw">let</span> output = identity&lt;<span class="kw">string</span>&gt;(<span class="st">"myString"</span>);</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        In this example:
+    </p>
+
+    <ul>
+        <li><code>T</code> represents the data type</li>
+        <li>The function accepts and returns the same type</li>
+        <li>The type is decided when the function is called</li>
+    </ul>
+
+    <h2>Type Inference</h2>
+
+    <p>
+        TypeScript can often automatically detect generic types.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> result = identity(<span class="st">"Hello"</span>);</pre>
+    </div>
+
+    <p>
+        TypeScript automatically infers that <code>T</code> is a string.
+    </p>
+
+    <h2>Generic Functions</h2>
+
+    <p>
+        Generic functions can work with many different data types.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> showData&lt;T&gt;(data: T): <span class="kw">void</span> {
+    console.log(data);
+}
+
+showData&lt;<span class="kw">number</span>&gt;(100);
+
+showData&lt;<span class="kw">string</span>&gt;(<span class="st">"TypeScript"</span>);
+
+showData&lt;<span class="kw">boolean</span>&gt;(<span class="kw">true</span>);</pre>
+    </div>
+
+    <h2>Generic Arrays</h2>
+
+    <p>
+        Generics can also be used with arrays.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> getFirst&lt;T&gt;(items: T[]): T {
+    <span class="kw">return</span> items[0];
+}
+
+<span class="kw">let</span> firstNumber = getFirst([1, 2, 3]);
+
+<span class="kw">let</span> firstText = getFirst([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>]);</pre>
+    </div>
+
+    <h2>Generic Interfaces</h2>
+
+    <p>
+        Interfaces can use generics to create reusable object structures.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">interface</span> Box&lt;T&gt; {
+    value: T;
+}
+
+<span class="kw">let</span> numberBox: Box&lt;<span class="kw">number</span>&gt; = {
+    value: 100
+};
+
+<span class="kw">let</span> textBox: Box&lt;<span class="kw">string</span>&gt; = {
+    value: <span class="st">"Hello"</span>
+};</pre>
+    </div>
+
+    <h2>Generic Classes</h2>
+
+    <p>
+        Classes can also use generics to work with different data types.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Storage&lt;T&gt; {
+
+    data: T;
+
+    <span class="kw">constructor</span>(value: T) {
+        <span class="kw">this</span>.data = value;
+    }
+
+    getData(): T {
+        <span class="kw">return</span> <span class="kw">this</span>.data;
+    }
+}
+
+<span class="kw">const</span> numberStorage = <span class="kw">new</span> Storage&lt;<span class="kw">number</span>&gt;(50);
+
+console.log(numberStorage.getData());</pre>
+    </div>
+
+    <h2>Using Multiple Generic Types</h2>
+
+    <p>
+        A generic component can use more than one type parameter.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> pair&lt;T, U&gt;(first: T, second: U) {
+    <span class="kw">return</span> [first, second];
+}
+
+<span class="kw">let</span> resultPair = pair&lt;<span class="kw">string</span>, <span class="kw">number</span>&gt;(<span class="st">"Age"</span>, 25);</pre>
+    </div>
+
+    <h2>Generic Constraints</h2>
+
+    <p>
+        Constraints limit the types that generics can accept.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">interface</span> Lengthwise {
+    length: <span class="kw">number</span>;
+}
+
+<span class="kw">function</span> logLength&lt;T <span class="kw">extends</span> Lengthwise&gt;(arg: T): T {
+    console.log(arg.length);
+
+    <span class="kw">return</span> arg;
+}</pre>
+    </div>
+
+    <p>
+        This ensures that only values with a <code>length</code> property are allowed.
+    </p>
+
+    <h2>Generic Utility Example</h2>
+
+    <p>
+        Generics are commonly used in utility functions and reusable libraries.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> reverseArray&lt;T&gt;(items: T[]): T[] {
+    <span class="kw">return</span> items.reverse();
+}
+
+console.log(reverseArray([1, 2, 3]));
+
+console.log(reverseArray([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>]));</pre>
+    </div>
+
+    <h2>Benefits of Generics</h2>
+
+    <ul>
+        <li>Reusable logic</li>
+        <li>Better type safety</li>
+        <li>Cleaner code structure</li>
+        <li>Reduced duplication</li>
+        <li>Improved maintainability</li>
+    </ul>
+
+    <h2>Common Generic Naming Conventions</h2>
+
+    <table class="generic-table" border="2px solid" cellpadding="10" cellspacing="0" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+        </tr>
+        <tr>
+            <td>T</td>
+            <td>General type</td>
+        </tr>
+        <tr>
+            <td>K</td>
+            <td>Key type</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>Value type</td>
+        </tr>
+        <tr>
+            <td>U</td>
+            <td>Second type parameter</td>
+        </tr>
+    </table>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use generics for reusable logic</li>
+        <li>Keep generic names meaningful when necessary</li>
+        <li>Use constraints to improve safety</li>
+        <li>Avoid unnecessary complexity</li>
+        <li>Prefer type inference when possible</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Using generics when not needed</li>
+        <li>Creating overly complex generic structures</li>
+        <li>Ignoring type constraints</li>
+        <li>Confusing generic types with normal variables</li>
+        <li>Using <code>any</code> instead of proper generics</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A generic function that returns the last array item</li>
+        <li>A generic class for storing user data</li>
+        <li>A generic interface for API responses</li>
+        <li>A function using two generic parameters</li>
+        <li>A constrained generic function using <code>extends</code></li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
+              <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Modules & Namespaces</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <h2>Introduction to Modules</h2>
+
+    <p>
+        As applications grow larger, organizing code becomes extremely important.
+        Modules help developers split code into separate reusable files.
+    </p>
+
+    <p>
+        Each module can contain variables, functions, classes, or interfaces
+        that can be shared across the application.
+    </p>
+
+    <ul>
+        <li>Improves code organization</li>
+        <li>Encourages reusability</li>
+        <li>Makes projects easier to maintain</li>
+        <li>Prevents naming conflicts</li>
+    </ul>
+
+    <h2>What Is a Module?</h2>
+
+    <p>
+        In TypeScript, any file containing an <code>export</code> statement
+        becomes a module.
+    </p>
+
+    <p>
+        Modules allow developers to expose selected parts of a file while keeping
+        other parts private.
+    </p>
+
+    <h2>Export & Import</h2>
+
+    <p>
+        The <code>export</code> keyword shares code from one file,
+        while the <code>import</code> keyword brings that code into another file.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="cm">// math.ts</span>
+
+<span class="kw">export const</span> PI = 3.14;
+
+<span class="cm">// main.ts</span>
+
+<span class="kw">import</span> { PI } <span class="kw">from</span> <span class="st">"./math"</span>;</pre>
+    </div>
+
+    <h2>Exporting Functions</h2>
+
+    <p>
+        Functions can also be exported and reused in other files.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="cm">// calculator.ts</span>
+
+<span class="kw">export function</span> add(a: <span class="kw">number</span>, b: <span class="kw">number</span>) {
+    <span class="kw">return</span> a + b;
+}</pre>
+    </div>
+
+    <div class="code-block">
+        <pre><span class="cm">// app.ts</span>
+
+<span class="kw">import</span> { add } <span class="kw">from</span> <span class="st">"./calculator"</span>;
+
+console.log(add(5, 3));</pre>
+    </div>
+
+    <h2>Exporting Classes</h2>
+
+    <p>
+        Entire classes can be exported from modules.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="cm">// user.ts</span>
+
+<span class="kw">export class</span> User {
+
+    name: <span class="kw">string</span>;
+
+    <span class="kw">constructor</span>(name: <span class="kw">string</span>) {
+        <span class="kw">this</span>.name = name;
+    }
+}</pre>
+    </div>
+
+    <div class="code-block">
+        <pre><span class="cm">// main.ts</span>
+
+<span class="kw">import</span> { User } <span class="kw">from</span> <span class="st">"./user"</span>;
+
+<span class="kw">const</span> user = <span class="kw">new</span> User(<span class="st">"Alex"</span>);
+
+console.log(user.name);</pre>
+    </div>
+
+    <h2>Default Exports</h2>
+
+    <p>
+        A module can have one default export.
+        Default exports are imported without curly braces.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="cm">// logger.ts</span>
+
+<span class="kw">export default function</span> log(message: <span class="kw">string</span>) {
+    console.log(message);
+}</pre>
+    </div>
+
+    <div class="code-block">
+        <pre><span class="cm">// app.ts</span>
+
+<span class="kw">import</span> log <span class="kw">from</span> <span class="st">"./logger"</span>;
+
+log(<span class="st">"Application Started"</span>);</pre>
+    </div>
+
+    <h2>Importing Everything</h2>
+
+    <p>
+        The <code>*</code> symbol imports all exported members from a module.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="cm">// math.ts</span>
+
+<span class="kw">export function</span> add(a: <span class="kw">number</span>, b: <span class="kw">number</span>) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="kw">export function</span> subtract(a: <span class="kw">number</span>, b: <span class="kw">number</span>) {
+    <span class="kw">return</span> a - b;
+}</pre>
+    </div>
+
+    <div class="code-block">
+        <pre><span class="kw">import</span> * <span class="kw">as</span> MathUtils <span class="kw">from</span> <span class="st">"./math"</span>;
+
+console.log(MathUtils.add(5, 2));
+
+console.log(MathUtils.subtract(10, 4));</pre>
+    </div>
+
+    <h2>Renaming Imports</h2>
+
+    <p>
+        Imported members can be renamed using the <code>as</code> keyword.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">import</span> { add <span class="kw">as</span> sum } <span class="kw">from</span> <span class="st">"./math"</span>;
+
+console.log(sum(2, 3));</pre>
+    </div>
+
+    <h2>Understanding Namespaces</h2>
+
+    <p>
+        Namespaces provide another way to organize code by grouping related logic together.
+    </p>
+
+    <p>
+        Before ES modules became popular, namespaces were commonly used
+        in large TypeScript applications.
+    </p>
+
+    <h2>Creating a Namespace</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">namespace</span> Geometry {
+
+    <span class="kw">export function</span> area(radius: <span class="kw">number</span>) {
+        <span class="kw">return</span> 3.14 * radius * radius;
+    }
+}</pre>
+    </div>
+
+    <h2>Using Namespace Members</h2>
+
+    <p>
+        Namespace members are accessed using dot notation.
+    </p>
+
+    <div class="code-block">
+        <pre>console.log(Geometry.area(5));</pre>
+    </div>
+
+    <h2>Namespaces vs Modules</h2>
+
+    <table border="2px solid" cellpadding="10" cellspacing="0" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Modules</th>
+            <th>Namespaces</th>
+        </tr>
+        <tr>
+            <td>File-based organization</td>
+            <td>Internal organization</td>
+        </tr>
+        <tr>
+            <td>Modern approach</td>
+            <td>Older approach</td>
+        </tr>
+        <tr>
+            <td>Uses import/export</td>
+            <td>Uses namespace keyword</td>
+        </tr>
+        <tr>
+            <td>Preferred in modern projects</td>
+            <td>Less common today</td>
+        </tr>
+    </table>
+
+    <h2>Benefits of Modules</h2>
+
+    <ul>
+        <li>Cleaner project structure</li>
+        <li>Reusable components</li>
+        <li>Better scalability</li>
+        <li>Improved maintainability</li>
+        <li>Reduced global variables</li>
+    </ul>
+
+    <h2>Organizing Large Applications</h2>
+
+    <p>
+        Real-world applications often separate code into modules such as:
+    </p>
+
+    <ul>
+        <li>Authentication modules</li>
+        <li>Database modules</li>
+        <li>Utility modules</li>
+        <li>UI component modules</li>
+        <li>API service modules</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Keep modules focused on one responsibility</li>
+        <li>Use meaningful file names</li>
+        <li>Avoid exporting unnecessary members</li>
+        <li>Prefer modules over namespaces in modern applications</li>
+        <li>Organize related logic together</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Incorrect file paths in imports</li>
+        <li>Forgetting to export members</li>
+        <li>Using too many global variables</li>
+        <li>Creating overly large modules</li>
+        <li>Mixing namespace and module patterns unnecessarily</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A math utility module</li>
+        <li>A module exporting multiple functions</li>
+        <li>A default exported logger function</li>
+        <li>A namespace containing geometry functions</li>
+        <li>A multi-file TypeScript project using imports and exports</li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>  <div class="lecture" id="lec-7">
                     <div class="lecture-tag">Lecture 08 · Core Concepts</div>
                     <h1>Modules & Namespaces</h1>
                     <div class="lecture-meta">
@@ -918,26 +1760,351 @@ console.log(rest);   <span class="cm">// [30, 40, 50]</span>
                 </div>
 
                 <!-- ===================== LECTURE 09 ===================== -->
-                <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
-                    <h1>Type Guards & Assertions</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+               <div class="lecture" id="lec-8">
+    <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+    <h1>Type Guards & Assertions</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
 
-                    <h2>Type Checking at Runtime</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">function</span> isString(x: <span class="kw">any</span>): x <span class="kw">is string</span> {
+    <h2>Introduction to Type Safety</h2>
+
+    <p>
+        TypeScript provides powerful tools for working safely with different data types.
+        Two important concepts are type guards and type assertions.
+    </p>
+
+    <p>
+        These features help developers:
+    </p>
+
+    <ul>
+        <li>Prevent runtime errors</li>
+        <li>Write safer code</li>
+        <li>Handle multiple data types correctly</li>
+        <li>Improve code readability</li>
+    </ul>
+
+    <h2>Understanding Union Types</h2>
+
+    <p>
+        Type guards are commonly used with union types.
+        A union type allows a variable to store multiple possible types.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> value: <span class="kw">string</span> | <span class="kw">number</span>;
+
+value = <span class="st">"Hello"</span>;
+
+value = 100;</pre>
+    </div>
+
+    <p>
+        Since the variable can hold different types,
+        TypeScript needs a way to determine the actual type at runtime.
+    </p>
+
+    <h2>What Are Type Guards?</h2>
+
+    <p>
+        Type guards are conditions that narrow down a variable's type.
+        They help TypeScript understand what type is currently being used.
+    </p>
+
+    <p>
+        Common type guards include:
+    </p>
+
+    <ul>
+        <li><code>typeof</code></li>
+        <li><code>instanceof</code></li>
+        <li><code>in</code> operator</li>
+        <li>Custom type guard functions</li>
+    </ul>
+
+    <h2>Type Checking at Runtime</h2>
+
+    <p>
+        Custom type guard functions return a special type predicate.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> isString(x: <span class="kw">any</span>): x <span class="kw">is string</span> {
+
     <span class="kw">return typeof</span> x === <span class="st">"string"</span>;
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        The expression <code>x is string</code> tells TypeScript
+        that the function checks whether the value is a string.
+    </p>
+
+    <h2>Using typeof</h2>
+
+    <p>
+        The <code>typeof</code> operator checks primitive data types.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> printValue(value: <span class="kw">string</span> | <span class="kw">number</span>) {
+
+    <span class="kw">if</span> (<span class="kw">typeof</span> value === <span class="st">"string"</span>) {
+
+        console.log(value.toUpperCase());
+
+    } <span class="kw">else</span> {
+
+        console.log(value.toFixed(2));
+    }
+}</pre>
+    </div>
+
+    <p>
+        Inside each block, TypeScript automatically narrows the type.
+    </p>
+
+    <h2>Using instanceof</h2>
+
+    <p>
+        The <code>instanceof</code> operator checks object instances created from classes.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Dog {
+
+    bark() {
+        console.log(<span class="st">"Woof"</span>);
+    }
+}
+
+<span class="kw">class</span> Cat {
+
+    meow() {
+        console.log(<span class="st">"Meow"</span>);
+    }
+}
+
+<span class="kw">function</span> speak(animal: Dog | Cat) {
+
+    <span class="kw">if</span> (animal <span class="kw">instanceof</span> Dog) {
+
+        animal.bark();
+
+    } <span class="kw">else</span> {
+
+        animal.meow();
+    }
+}</pre>
+    </div>
+
+    <h2>Using the in Operator</h2>
+
+    <p>
+        The <code>in</code> operator checks whether an object contains a property.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">type</span> Admin = {
+    permissions: <span class="kw">string</span>[];
+};
+
+<span class="kw">type</span> User = {
+    username: <span class="kw">string</span>;
+};
+
+<span class="kw">function</span> check(account: Admin | User) {
+
+    <span class="kw">if</span> (<span class="st">"permissions"</span> <span class="kw">in</span> account) {
+
+        console.log(account.permissions);
+    }
+}</pre>
+    </div>
+
+    <h2>Custom Type Guards</h2>
+
+    <p>
+        Developers can create reusable type guard functions
+        for more complex type checking.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">interface</span> Car {
+    drive(): <span class="kw">void</span>;
+}
+
+<span class="kw">interface</span> Boat {
+    sail(): <span class="kw">void</span>;
+}
+
+<span class="kw">function</span> isCar(vehicle: Car | Boat): vehicle <span class="kw">is</span> Car {
+
+    <span class="kw">return</span> (<span class="kw">vehicle as</span> Car).drive !== undefined;
+}</pre>
+    </div>
+
+    <h2>What Are Type Assertions?</h2>
+
+    <p>
+        Type assertions tell TypeScript to treat a value as a specific type.
+        They do not change the actual runtime type.
+    </p>
+
+    <p>
+        Assertions are useful when the developer knows more about a value
+        than TypeScript can infer.
+    </p>
+
+    <h2>Basic Type Assertions</h2>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> value: <span class="kw">any</span> = <span class="st">"TypeScript"</span>;
+
+<span class="kw">let</span> length = (<span class="kw">value as string</span>).length;
+
+console.log(length);</pre>
+    </div>
+
+    <h2>Angle Bracket Syntax</h2>
+
+    <p>
+        Type assertions can also use angle brackets.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> text: <span class="kw">any</span> = <span class="st">"Hello"</span>;
+
+<span class="kw">let</span> result = &lt;<span class="kw">string</span>&gt;text;</pre>
+    </div>
+
+    <p>
+        However, the <code>as</code> syntax is generally preferred,
+        especially in modern frameworks like React.
+    </p>
+
+    <h2>Assertions with DOM Elements</h2>
+
+    <p>
+        Type assertions are commonly used when working with HTML elements.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">const</span> input = document.getElementById(<span class="st">"username"</span>) <span class="kw">as</span> HTMLInputElement;
+
+input.value = <span class="st">"Admin"</span>;</pre>
+    </div>
+
+    <h2>Non-Null Assertion Operator</h2>
+
+    <p>
+        The <code>!</code> operator tells TypeScript that a value is not null or undefined.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">const</span> button = document.getElementById(<span class="st">"submit"</span>)!;
+
+button.addEventListener(<span class="st">"click"</span>, () => {
+    console.log(<span class="st">"Clicked"</span>);
+});</pre>
+    </div>
+
+    <p>
+        Use this carefully because incorrect assumptions may cause runtime errors.
+    </p>
+
+    <h2>Type Narrowing</h2>
+
+    <p>
+        Type narrowing means reducing a broad type into a more specific one.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">function</span> process(value: <span class="kw">string</span> | <span class="kw">number</span>) {
+
+    <span class="kw">if</span> (<span class="kw">typeof</span> value === <span class="st">"number"</span>) {
+
+        console.log(value * 2);
+
+    } <span class="kw">else</span> {
+
+        console.log(value.toUpperCase());
+    }
+}</pre>
+    </div>
+
+    <h2>Benefits of Type Guards</h2>
+
+    <ul>
+        <li>Safer runtime behavior</li>
+        <li>Better IntelliSense support</li>
+        <li>Improved readability</li>
+        <li>Fewer unexpected errors</li>
+        <li>More predictable code execution</li>
+    </ul>
+
+    <h2>Type Assertions vs Type Casting</h2>
+
+    <p>
+        Type assertions in TypeScript are different from type casting in other languages.
+    </p>
+
+    <p>
+        Assertions only affect TypeScript's understanding of the type.
+        They do not convert values at runtime.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">let</span> numberValue = <span class="st">"100"</span> <span class="kw">as any</span>;
+
+console.log(numberValue + 1);</pre>
+    </div>
+
+    <p>
+        This still performs string concatenation because the runtime value remains a string.
+    </p>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Prefer type guards over excessive assertions</li>
+        <li>Use assertions only when necessary</li>
+        <li>Write reusable custom type guards</li>
+        <li>Avoid overusing the <code>any</code> type</li>
+        <li>Use non-null assertions carefully</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Using incorrect assertions</li>
+        <li>Ignoring possible null values</li>
+        <li>Overusing <code>any</code></li>
+        <li>Confusing assertions with actual type conversion</li>
+        <li>Creating unsafe assumptions about runtime values</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul type="disc">
+        <li>A custom type guard for arrays</li>
+        <li>A function using <code>typeof</code> checks</li>
+        <li>A class example using <code>instanceof</code></li>
+        <li>A DOM element assertion example</li>
+        <li>A union type narrowed with the <code>in</code> operator</li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 10 ===================== -->
                 <div class="lecture" id="lec-9">

@@ -784,7 +784,7 @@ javac -version</code></pre>
         Primitive types store simple values directly in memory.
     </p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Type</th>
@@ -1194,7 +1194,7 @@ javac -version</code></pre>
         Conditions usually rely on comparison operators.
     </p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Operator</th>
@@ -1234,7 +1234,7 @@ javac -version</code></pre>
         Logical operators combine multiple conditions.
     </p>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Operator</th>
@@ -1542,7 +1542,7 @@ javac -version</code></pre>
 
     <h2>Understanding Method Components</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Component</th>
@@ -1659,7 +1659,7 @@ javac -version</code></pre>
 
     <h2>Method Arguments vs Parameters</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Term</th>
@@ -2239,7 +2239,7 @@ pet.<span class="fn">sound</span>();</pre>
 
     <h2>Access Modifiers</h2>
 
-    <table class="tbl-wrap">
+    <table class="tbl-wrap" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
         <thead>
             <tr>
                 <th>Modifier</th>
@@ -2401,30 +2401,100 @@ pet.<span class="fn">sound</span>();</pre>
 </div>
 
         <!-- ===================== LECTURE 7 ===================== -->
-        <div class="lecture" id="lec-6">
-            <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-            <h1>Collections Framework</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~55 min</span>
-                <span class="meta-badge">Requires: Lecture 06</span>
-            </div>
+       <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Collections Framework</h1>
 
-            <h2>Why Collections?</h2>
-            <p>They provide well‑tested, efficient implementations of common data structures (lists, sets, maps)
-                plus a rich set of utility methods.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+        <span class="meta-badge">Requires: Lecture 06</span>
+    </div>
 
-            <h3>List – ordered, duplicates allowed</h3>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">ListDemo.java</span>
-                </div>
-                <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// List, ArrayList</span>
+    <h2>Introduction to the Collections Framework</h2>
+
+    <p>The Java Collections Framework is a powerful set of classes and interfaces used to store, organize, and manage
+        groups of objects efficiently. Instead of manually creating arrays and complex data structures, Java provides
+        ready-made implementations for common programming needs.</p>
+
+    <p>The framework includes dynamic lists, sets, maps, queues, iterators, sorting utilities, and algorithms that are
+        optimized and widely used in real-world software development.</p>
+
+    <div class="box info">
+        <div class="box-title">💡 Key Concept</div>
+        Collections are dynamic data structures that can grow and shrink automatically during program execution.
+    </div>
+
+    <h2>Why Collections?</h2>
+
+    <p>They provide well-tested, efficient implementations of common data structures (lists, sets, maps)
+        plus a rich set of utility methods.</p>
+
+    <ul>
+        <li><strong>Dynamic sizing</strong> unlike fixed-size arrays</li>
+        <li><strong>Built-in algorithms</strong> for sorting and searching</li>
+        <li><strong>Improved code readability</strong></li>
+        <li><strong>Reusable and optimized implementations</strong></li>
+        <li><strong>Support for generics</strong> and type safety</li>
+    </ul>
+
+    <h2>Collection Hierarchy Overview</h2>
+
+    <p>The Collections Framework is built using interfaces and classes.</p>
+
+    <div class="code-block">
+        <pre><code>Collection
+ ├── List
+ │    ├── ArrayList
+ │    └── LinkedList
+ │
+ ├── Set
+ │    ├── HashSet
+ │    └── TreeSet
+ │
+ └── Queue
+      └── PriorityQueue
+
+Map
+ ├── HashMap
+ └── TreeMap</code></pre>
+    </div>
+
+    <p>Different collection types are designed for different use cases.</p>
+
+    <h2>Generics in Collections</h2>
+
+    <p>Collections usually use <strong>Generics</strong> to specify the type of data they store.</p>
+
+    <div class="code-block">
+        <pre><code>ArrayList&lt;String&gt; names = new ArrayList&lt;&gt;();</code></pre>
+    </div>
+
+    <p>This ensures type safety and prevents storing incorrect object types.</p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Best Practice</div>
+        Always use generics with collections to avoid unnecessary type casting and runtime errors.
+    </div>
+
+    <h3>List – ordered, duplicates allowed</h3>
+
+    <p>A <code>List</code> stores elements in insertion order and allows duplicate values.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">ListDemo.java</span>
+        </div>
+
+        <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// List, ArrayList</span>
 
 <span class="kw">public</span> <span class="kw">class</span> <span class="tag">ListDemo</span> {
+
     <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+
         List&lt;<span class="kw">String</span>&gt; names = <span class="kw">new</span> <span class="tag">ArrayList</span>&lt;&gt;();
+
         names.<span class="fn">add</span>(<span class="val">"Alice"</span>);
         names.<span class="fn">add</span>(<span class="val">"Bob"</span>);
         names.<span class="fn">add</span>(<span class="val">"Alice"</span>);   <span class="cm">// duplicate allowed</span>
@@ -2434,19 +2504,92 @@ pet.<span class="fn">sound</span>();</pre>
         }
     }
 }</pre>
-            </div>
+    </div>
 
-            <h3>Set – unique elements</h3>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">SetDemo.java</span>
-                </div>
-                <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// HashSet</span>
+    <h2>Common List Methods</h2>
+
+    <div class="code-block">
+        <pre><code>names.add("Charlie");
+names.remove("Bob");
+names.get(0);
+names.size();
+names.contains("Alice");</code></pre>
+    </div>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Method</th>
+            <th>Purpose</th>
+        </tr>
+
+        <tr>
+            <td>add()</td>
+            <td>Adds an element</td>
+        </tr>
+
+        <tr>
+            <td>remove()</td>
+            <td>Removes an element</td>
+        </tr>
+
+        <tr>
+            <td>get()</td>
+            <td>Accesses an element by index</td>
+        </tr>
+
+        <tr>
+            <td>size()</td>
+            <td>Returns collection size</td>
+        </tr>
+
+        <tr>
+            <td>contains()</td>
+            <td>Checks if an element exists</td>
+        </tr>
+    </table>
+
+    <h2>ArrayList vs LinkedList</h2>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>ArrayList</th>
+            <th>LinkedList</th>
+        </tr>
+
+        <tr>
+            <td>Fast random access</td>
+            <td>Fast insertions/removals</td>
+        </tr>
+
+        <tr>
+            <td>Uses dynamic arrays</td>
+            <td>Uses linked nodes</td>
+        </tr>
+
+        <tr>
+            <td>Better for reading data</td>
+            <td>Better for modifying data frequently</td>
+        </tr>
+    </table>
+
+    <h3>Set – unique elements</h3>
+
+    <p>A <code>Set</code> stores unique elements and automatically removes duplicates.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">SetDemo.java</span>
+        </div>
+
+        <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// HashSet</span>
 
 <span class="kw">public</span> <span class="kw">class</span> <span class="tag">SetDemo</span> {
+
     <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+
         Set&lt;<span class="kw">Integer</span>&gt; primes = <span class="kw">new</span> <span class="tag">HashSet</span>&lt;&gt;();
+
         primes.<span class="fn">add</span>(<span class="nm">2</span>);
         primes.<span class="fn">add</span>(<span class="nm">3</span>);
         primes.<span class="fn">add</span>(<span class="nm">2</span>);  <span class="cm">// ignored – duplicate</span>
@@ -2454,19 +2597,50 @@ pet.<span class="fn">sound</span>();</pre>
         <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(primes);
     }
 }</pre>
-            </div>
+    </div>
 
-            <h3>Map – key/value pairs</h3>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">MapDemo.java</span>
-                </div>
-                <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// Map, HashMap</span>
+    <h2>HashSet vs TreeSet</h2>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>HashSet</th>
+            <th>TreeSet</th>
+        </tr>
+
+        <tr>
+            <td>Unordered</td>
+            <td>Sorted automatically</td>
+        </tr>
+
+        <tr>
+            <td>Faster operations</td>
+            <td>Slightly slower</td>
+        </tr>
+
+        <tr>
+            <td>Uses hashing</td>
+            <td>Uses tree structure</td>
+        </tr>
+    </table>
+
+    <h3>Map – key/value pairs</h3>
+
+    <p>A <code>Map</code> stores data as key-value pairs.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">MapDemo.java</span>
+        </div>
+
+        <pre><span class="kw">import</span> <span class="kw">java.util</span>.*; <span class="cm">// Map, HashMap</span>
 
 <span class="kw">public</span> <span class="kw">class</span> <span class="tag">MapDemo</span> {
+
     <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+
         Map&lt;<span class="kw">String</span>, <span class="kw">Integer</span>&gt; scores = <span class="kw">new</span> <span class="tag">HashMap</span>&lt;&gt;();
+
         scores.<span class="fn">put</span>(<span class="val">"Alice"</span>, <span class="nm">90</span>);
         scores.<span class="fn">put</span>(<span class="val">"Bob"</span>, <span class="nm">85</span>);
         scores.<span class="fn">put</span>(<span class="val">"Alice"</span>, <span class="nm">95</span>); <span class="cm">// overwrites previous</span>
@@ -2474,146 +2648,837 @@ pet.<span class="fn">sound</span>();</pre>
         <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(scores);
     }
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 7.1</div>
-                <p>Implement a simple phone‑book using a <code>HashMap&lt;String, String&gt;</code> where the key is a
-                    person’s name and the value is a phone number. Add methods to add, lookup and remove entries.</p>
-            </div>
+    <h2>Common Map Methods</h2>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-            </div>
-        </div>
+    <div class="code-block">
+        <pre><code>scores.put("Charlie", 88);
+scores.get("Alice");
+scores.remove("Bob");
+scores.containsKey("Alice");
+scores.containsValue(95);</code></pre>
+    </div>
+
+    <h2>HashMap vs TreeMap</h2>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>HashMap</th>
+            <th>TreeMap</th>
+        </tr>
+
+        <tr>
+            <td>Unordered keys</td>
+            <td>Sorted keys</td>
+        </tr>
+
+        <tr>
+            <td>Faster performance</td>
+            <td>Maintains natural ordering</td>
+        </tr>
+
+        <tr>
+            <td>Uses hashing</td>
+            <td>Uses balanced trees</td>
+        </tr>
+    </table>
+
+    <h2>Iterating Through Collections</h2>
+
+    <p>Collections can be traversed using loops or iterators.</p>
+
+    <div class="code-block">
+        <pre><code>for (String name : names) {
+    System.out.println(name);
+}</code></pre>
+    </div>
+
+    <p>Enhanced for-loops are cleaner and easier to read.</p>
+
+    <h2>Sorting Collections</h2>
+
+    <p>The <code>Collections</code> utility class provides sorting methods.</p>
+
+    <div class="code-block">
+        <pre><code>Collections.sort(names);</code></pre>
+    </div>
+
+    <p>You can also sort in reverse order:</p>
+
+    <div class="code-block">
+        <pre><code>Collections.sort(names, Collections.reverseOrder());</code></pre>
+    </div>
+
+    <h2>Queue Interface</h2>
+
+    <p>A <code>Queue</code> processes elements in FIFO (First In First Out) order.</p>
+
+    <div class="code-block">
+        <pre><code>Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
+
+queue.add(10);
+queue.add(20);
+
+System.out.println(queue.poll());</code></pre>
+    </div>
+
+    <p><code>poll()</code> removes and returns the first element.</p>
+
+    <h2>Collections Utility Class</h2>
+
+    <p>The <code>Collections</code> class provides useful helper methods.</p>
+
+    <div class="code-block">
+        <pre><code>Collections.max(numbers);
+Collections.min(numbers);
+Collections.shuffle(numbers);</code></pre>
+    </div>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Using raw collections without generics</li>
+        <li>Choosing the wrong collection type</li>
+        <li>Forgetting that Sets remove duplicates</li>
+        <li>Accessing invalid indexes in Lists</li>
+        <li>Confusing HashMap ordering behavior</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">🚀 Real-World Insight</div>
+        The Collections Framework is heavily used in backend systems, Android apps, enterprise software, APIs,
+        databases, and game development.
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.1</div>
+
+        <p>Implement a simple phone-book using a <code>HashMap&lt;String, String&gt;</code> where the key is a
+            person’s name and the value is a phone number. Add methods to add, lookup and remove entries.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.2</div>
+
+        <p>Create an <code>ArrayList&lt;Integer&gt;</code> and write a program that sorts numbers in ascending and
+            descending order.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.3</div>
+
+        <p>Create a <code>HashSet&lt;String&gt;</code> to store usernames and prevent duplicate registrations.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 8 ===================== -->
-        <div class="lecture" id="lec-7">
-            <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-            <h1>Generics</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 07</span>
-            </div>
+       <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Generics</h1>
 
-            <h2>Why Generics?</h2>
-            <p>They let you write **type‑safe** collections and APIs without casting.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 07</span>
+    </div>
 
-            <h3>Simple generic class</h3>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">Box.java</span>
-                </div>
-                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Box</span>&lt;<span class="kw">T</span>&gt; {
+    <h2>Introduction to Generics</h2>
+
+    <p>Generics are one of Java’s most powerful features. They allow classes, interfaces, and methods to work with
+        different data types while maintaining type safety.</p>
+
+    <p>Before Generics were introduced in Java 5, developers had to store objects using the <code>Object</code> class,
+        which required manual casting and increased the chance of runtime errors.</p>
+
+    <div class="box info">
+        <div class="box-title">💡 Key Concept</div>
+        Generics allow you to write reusable and type-safe code that works with many different data types.
+    </div>
+
+    <h2>Why Generics?</h2>
+
+    <p>They let you write <strong>type-safe</strong> collections and APIs without casting.</p>
+
+    <ul>
+        <li>Improves code reusability</li>
+        <li>Eliminates unnecessary type casting</li>
+        <li>Provides compile-time type checking</li>
+        <li>Makes code cleaner and easier to maintain</li>
+        <li>Used heavily in the Collections Framework</li>
+    </ul>
+
+    <h2>Problem Without Generics</h2>
+
+    <p>Before Generics, collections stored data as <code>Object</code> types.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">WithoutGenerics.java</span>
+        </div>
+
+        <pre><span class="kw">import</span> java.util.*;
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="tag">WithoutGenerics</span> {
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+
+        ArrayList list = <span class="kw">new</span> ArrayList();
+
+        list.add(<span class="val">"Hello"</span>);
+        list.add(<span class="nm">100</span>);
+
+        String text = (String) list.get(<span class="nm">0</span>);
+
+        System.out.println(text);
+    }
+}</pre>
+    </div>
+
+    <p>This approach is unsafe because incorrect casting can cause runtime exceptions.</p>
+
+    <h2>Using Generics Properly</h2>
+
+    <p>With Generics, you specify the exact type of data allowed.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">GenericList.java</span>
+        </div>
+
+        <pre><span class="kw">import</span> java.util.*;
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="tag">GenericList</span> {
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+
+        ArrayList&lt;String&gt; names = <span class="kw">new</span> ArrayList&lt;&gt;();
+
+        names.add(<span class="val">"Alice"</span>);
+        names.add(<span class="val">"Bob"</span>);
+
+        String first = names.get(<span class="nm">0</span>);
+
+        System.out.println(first);
+    }
+}</pre>
+    </div>
+
+    <p>Now Java automatically ensures only <code>String</code> values can be stored.</p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Best Practice</div>
+        Always use Generics with collections to avoid unsafe casting and runtime type errors.
+    </div>
+
+    <h2>Generic Type Parameters</h2>
+
+    <p>Generic classes use placeholder type names inside angle brackets <code>&lt;&gt;</code>.</p>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Type Parameter</th>
+            <th>Meaning</th>
+        </tr>
+
+        <tr>
+            <td>T</td>
+            <td>Type</td>
+        </tr>
+
+        <tr>
+            <td>E</td>
+            <td>Element</td>
+        </tr>
+
+        <tr>
+            <td>K</td>
+            <td>Key</td>
+        </tr>
+
+        <tr>
+            <td>V</td>
+            <td>Value</td>
+        </tr>
+
+        <tr>
+            <td>N</td>
+            <td>Number</td>
+        </tr>
+    </table>
+
+    <h3>Simple generic class</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Box.java</span>
+        </div>
+
+        <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">Box</span>&lt;<span class="kw">T</span>&gt; {
+
     <span class="kw">private</span> <span class="kw">T</span> <span class="nm">value</span>;
 
     <span class="kw">public</span> <span class="tag">Box</span>(<span class="kw">T</span> value) {
         <span class="kw">this</span>.<span class="nm">value</span> = value;
     }
 
-    <span class="kw">public</span> <span class="kw">T</span> <span class="fn">get</span>() { <span class="kw">return</span> <span class="nm">value</span>; }
-    <span class="kw">public</span> <span class="kw">void</span> <span class="fn">set</span>(<span class="kw">T</span> value) { <span class="kw">this</span>.<span class="nm">value</span> = value; }
-}</pre>
-            </div>
+    <span class="kw">public</span> <span class="kw">T</span> <span class="fn">get</span>() {
+        <span class="kw">return</span> <span class="nm">value</span>;
+    }
 
-            <h3>Using bounded type parameters</h3>
-            <p>Restrict a type to subclasses of a given class or interface.</p>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">NumberUtils.java</span>
-                </div>
-                <pre><span class="kw">public</span> <span class="kw">class</span> <span class="tag">NumberUtils</span> {
-    <span class="kw">public static</span> &lt;<span class="kw">T</span> <span class="kw">extends</span> <span class="kw">Number</span>&gt;
+    <span class="kw">public</span> <span class="kw">void</span> <span class="fn">set</span>(<span class="kw">T</span> value) {
+        <span class="kw">this</span>.<span class="nm">value</span> = value;
+    }
+}</pre>
+    </div>
+
+    <h2>Creating Generic Objects</h2>
+
+    <div class="code-block">
+        <pre><code>Box&lt;String&gt; textBox = new Box&lt;&gt;("Hello");
+Box&lt;Integer&gt; numberBox = new Box&lt;&gt;(100);
+
+System.out.println(textBox.get());
+System.out.println(numberBox.get());</code></pre>
+    </div>
+
+    <p>The same class works with multiple data types.</p>
+
+    <h2>Generic Methods</h2>
+
+    <p>Methods can also use Generics independently of the class.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">GenericMethod.java</span>
+        </div>
+
+        <pre><span class="kw">public class</span> <span class="tag">GenericMethod</span> {
+
+    <span class="kw">public static</span> &lt;<span class="kw">T</span>&gt;
+    <span class="kw">void</span> <span class="fn">printData</span>(T value) {
+
+        System.out.println(value);
+    }
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+
+        printData(<span class="val">"Java"</span>);
+        printData(<span class="nm">500</span>);
+        printData(<span class="nm">3.14</span>);
+    }
+}</pre>
+    </div>
+
+    <h2>Using bounded type parameters</h2>
+
+    <p>Restrict a type to subclasses of a given class or interface.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">NumberUtils.java</span>
+        </div>
+
+        <pre><span class="kw">public class</span> <span class="tag">NumberUtils</span> {
+
+    <span class="kw">public static</span> &lt;<span class="kw">T extends Number</span>&gt;
     <span class="kw">double</span> <span class="fn">sum</span>(List&lt;<span class="kw">T</span>&gt; list) {
+
         <span class="kw">double</span> total = <span class="nm">0</span>;
+
         <span class="kw">for</span> (T n : list) {
-            total += n.<span class="fn">doubleValue</span>();
+            total += n.doubleValue();
         }
+
         <span class="kw">return</span> total;
     }
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 8.1</div>
-                <p>Create a generic <code>Pair&lt;K,V&gt;</code> class that stores two values. Write a short demo that
-                    creates a <code>Pair&lt;String,Integer&gt;</code> and prints both elements.</p>
-            </div>
+    <p>This method only accepts numeric types such as <code>Integer</code>, <code>Double</code>, or
+        <code>Float</code>.</p>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-            </div>
-        </div>
+    <h2>Wildcards in Generics</h2>
+
+    <p>Wildcards make Generics more flexible.</p>
+
+    <div class="code-block">
+        <pre><code>List&lt;?&gt; items;</code></pre>
+    </div>
+
+    <p>The <code>?</code> symbol means “unknown type”.</p>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Wildcard</th>
+            <th>Description</th>
+        </tr>
+
+        <tr>
+            <td>?</td>
+            <td>Any type</td>
+        </tr>
+
+        <tr>
+            <td>? extends Number</td>
+            <td>Number or subclass</td>
+        </tr>
+
+        <tr>
+            <td>? super Integer</td>
+            <td>Integer or parent class</td>
+        </tr>
+    </table>
+
+    <h2>Generic Interfaces</h2>
+
+    <p>Interfaces can also use Generics.</p>
+
+    <div class="code-block">
+        <pre><code>interface Storage&lt;T&gt; {
+    void save(T item);
+    T load();
+}</code></pre>
+    </div>
+
+    <h2>Type Erasure</h2>
+
+    <p>Java implements Generics using a concept called <strong>Type Erasure</strong>.</p>
+
+    <p>During compilation, generic type information is removed and converted into regular Java bytecode. This means
+        Generics provide compile-time safety but do not exist at runtime.</p>
+
+    <div class="box info">
+        <div class="box-title">⚠️ Important Limitation</div>
+        Because of type erasure, you cannot create objects like <code>new T()</code> directly inside generic classes.
+    </div>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Using raw types instead of generic types</li>
+        <li>Forgetting angle brackets <code>&lt;&gt;</code></li>
+        <li>Using incorrect type parameters</li>
+        <li>Mixing incompatible generic types</li>
+        <li>Assuming Generics exist at runtime</li>
+    </ul>
+
+    <h2>Real-World Usage of Generics</h2>
+
+    <p>Generics are heavily used throughout modern Java development.</p>
+
+    <ul>
+        <li>Collections Framework</li>
+        <li>Spring Boot applications</li>
+        <li>REST APIs</li>
+        <li>Database frameworks like Hibernate</li>
+        <li>Reusable utility libraries</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.1</div>
+
+        <p>Create a generic <code>Pair&lt;K,V&gt;</code> class that stores two values. Write a short demo that
+            creates a <code>Pair&lt;String,Integer&gt;</code> and prints both elements.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.2</div>
+
+        <p>Create a generic method called <code>display()</code> that prints arrays of different types such as
+            integers, strings, and doubles.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 8.3</div>
+
+        <p>Create a generic class called <code>Storage&lt;T&gt;</code> that stores and retrieves one object of any
+            type.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 9 ===================== -->
         <div class="lecture" id="lec-8">
-            <div class="lecture-tag">Lecture 09 · Advanced</div>
-            <h1>Streams &amp; Lambdas (Java 8+)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~55 min</span>
-                <span class="meta-badge">Requires: Lecture 08</span>
-            </div>
+    <div class="lecture-tag">Lecture 09 · Advanced</div>
+    <h1>Streams &amp; Lambdas (Java 8+)</h1>
 
-            <h2>Lambda syntax</h2>
-            <p>A lambda expression is an anonymous function that can be treated as an instance of a functional
-                interface.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+        <span class="meta-badge">Requires: Lecture 08</span>
+    </div>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">LambdaDemo.java</span>
-                </div>
-                <pre><span class="kw">import</span> <span class="kw">java.util</span>.function.*;
+    <h2>Introduction to Functional Programming in Java</h2>
+
+    <p>Java 8 introduced one of the biggest upgrades in Java history: <strong>Lambda Expressions</strong> and the
+        <strong>Stream API</strong>. These features allow developers to write cleaner, shorter, and more expressive
+        code using a functional programming style.
+    </p>
+
+    <p>Instead of manually writing loops and temporary variables, Streams allow operations such as filtering, mapping,
+        sorting, and collecting data in a concise pipeline.</p>
+
+    <div class="box info">
+        <div class="box-title">💡 Key Concept</div>
+        Lambdas define behavior, while Streams process collections of data using that behavior.
+    </div>
+
+    <h2>What is a Lambda Expression?</h2>
+
+    <p>A lambda expression is an anonymous function that can be passed as data.</p>
+
+    <p>It allows you to write compact code without creating separate classes for simple operations.</p>
+
+    <h2>Lambda syntax</h2>
+
+    <p>A lambda expression is an anonymous function that can be treated as an instance of a functional
+        interface.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">LambdaDemo.java</span>
+        </div>
+
+        <pre><span class="kw">import</span> <span class="kw">java.util</span>.function.*;
 
 <span class="kw">public</span> <span class="kw">class</span> <span class="tag">LambdaDemo</span> {
-    <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+
         <span class="kw">Predicate</span>&lt;<span class="kw">Integer</span>&gt; isEven = n -&gt; n % <span class="nm">2</span> == <span class="nm">0</span>;
-        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(isEven.<span class="fn">test</span>(<span class="nm">42</span>)); <span class="cm">// true</span>
+
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(
+            isEven.<span class="fn">test</span>(<span class="nm">42</span>)
+        ); <span class="cm">// true</span>
     }
 }</pre>
-            </div>
+    </div>
 
-            <h2>Stream pipeline</h2>
-            <p>Streams enable functional‑style processing of sequences of elements.</p>
+    <h2>Understanding Lambda Structure</h2>
 
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">StreamDemo.java</span>
-                </div>
-                <pre><span class="kw">import</span> <span class="kw">java.util</span>.stream.*;
+    <div class="code-block">
+        <pre><code>(parameters) -> expression</code></pre>
+    </div>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Part</th>
+            <th>Purpose</th>
+        </tr>
+
+        <tr>
+            <td>(parameters)</td>
+            <td>Input values</td>
+        </tr>
+
+        <tr>
+            <td>-&gt;</td>
+            <td>Lambda operator</td>
+        </tr>
+
+        <tr>
+            <td>expression</td>
+            <td>Code to execute</td>
+        </tr>
+    </table>
+
+    <h2>More Lambda Examples</h2>
+
+    <div class="code-block">
+        <pre><code>() -> System.out.println("Hello")
+
+x -> x * x
+
+(a, b) -> a + b</code></pre>
+    </div>
+
+    <p>Lambdas become especially powerful when combined with collections and streams.</p>
+
+    <h2>Functional Interfaces</h2>
+
+    <p>A lambda expression works with a <strong>functional interface</strong>, which is an interface containing only
+        one abstract method.</p>
+
+    <div class="code-block">
+        <pre><code>@FunctionalInterface
+interface Calculator {
+    int operate(int a, int b);
+}</code></pre>
+    </div>
+
+    <p>You can then provide implementations using lambdas:</p>
+
+    <div class="code-block">
+        <pre><code>Calculator add = (a, b) -> a + b;
+
+System.out.println(add.operate(5, 3));</code></pre>
+    </div>
+
+    <h2>Common Built-in Functional Interfaces</h2>
+
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Interface</th>
+            <th>Purpose</th>
+        </tr>
+
+        <tr>
+            <td>Predicate&lt;T&gt;</td>
+            <td>Returns true or false</td>
+        </tr>
+
+        <tr>
+            <td>Function&lt;T,R&gt;</td>
+            <td>Transforms data</td>
+        </tr>
+
+        <tr>
+            <td>Consumer&lt;T&gt;</td>
+            <td>Consumes data without returning</td>
+        </tr>
+
+        <tr>
+            <td>Supplier&lt;T&gt;</td>
+            <td>Provides data</td>
+        </tr>
+    </table>
+
+    <h2>What is the Stream API?</h2>
+
+    <p>The Stream API processes collections of data in a declarative and functional way.</p>
+
+    <p>Streams do not store data themselves — they operate on existing collections like lists and sets.</p>
+
+    <div class="box tip">
+        <div class="box-title">✅ Important</div>
+        Streams are designed for data processing, not data storage.
+    </div>
+
+    <h2>Stream pipeline</h2>
+
+    <p>Streams enable functional-style processing of sequences of elements.</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">StreamDemo.java</span>
+        </div>
+
+        <pre><span class="kw">import</span> <span class="kw">java.util</span>.stream.*;
 <span class="kw">import</span> <span class="kw">java.util</span>.*;
 
 <span class="kw">public</span> <span class="kw">class</span> <span class="tag">StreamDemo</span> {
-    <span class="kw">public static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
-        List&lt;<span class="kw">Integer</span>&gt; numbers = Arrays.<span class="fn">asList</span>(<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">3</span>,<span class="nm">4</span>,<span class="nm">5</span>);
-        <span class="kw">int</span> sum = numbers.<span class="fn">stream</span>()
-                               .<span class="fn">filter</span>(n -&gt; n % <span class="nm">2</span> == <span class="nm">0</span>)   <span class="cm">// keep evens</span>
-                               .<span class="fn">mapToInt</span>(n -&gt; n * n)       <span class="cm">// square them</span>
-                               .<span class="fn">sum</span>();                 <span class="cm">// sum</span>
 
-        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(<span class="val">"Result = "</span> + sum);
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="kw">String</span>[] <span class="nm">args</span>) {
+
+        List&lt;<span class="kw">Integer</span>&gt; numbers = Arrays.<span class="fn">asList</span>(
+            <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>
+        );
+
+        <span class="kw">int</span> sum = numbers.<span class="fn">stream</span>()
+                           .<span class="fn">filter</span>(n -&gt; n % <span class="nm">2</span> == <span class="nm">0</span>)
+                           .<span class="fn">mapToInt</span>(n -&gt; n * n)
+                           .<span class="fn">sum</span>();
+
+        <span class="kw">System</span>.<span class="fn">out</span>.<span class="fn">println</span>(
+            <span class="val">"Result = "</span> + sum
+        );
     }
 }</pre>
-            </div>
+    </div>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 9.1</div>
-                <p>Read a list of words from an array, convert them to uppercase, filter those longer than 5 characters,
-                    sort them alphabetically and print each on its own line – all using the Stream API.</p>
-            </div>
+    <h2>Understanding Stream Operations</h2>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-            </div>
-        </div>
+    <table border="1" cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Operation</th>
+            <th>Purpose</th>
+        </tr>
+
+        <tr>
+            <td>filter()</td>
+            <td>Select matching elements</td>
+        </tr>
+
+        <tr>
+            <td>map()</td>
+            <td>Transform elements</td>
+        </tr>
+
+        <tr>
+            <td>sorted()</td>
+            <td>Sort elements</td>
+        </tr>
+
+        <tr>
+            <td>collect()</td>
+            <td>Store results</td>
+        </tr>
+
+        <tr>
+            <td>forEach()</td>
+            <td>Iterate through elements</td>
+        </tr>
+    </table>
+
+    <h2>Filtering Data</h2>
+
+    <div class="code-block">
+        <pre><code>List&lt;Integer&gt; nums = Arrays.asList(1,2,3,4,5,6);
+
+nums.stream()
+    .filter(n -> n % 2 == 0)
+    .forEach(System.out::println);</code></pre>
+    </div>
+
+    <p>The <code>filter()</code> method keeps only matching elements.</p>
+
+    <h2>Mapping Data</h2>
+
+    <p>The <code>map()</code> method transforms each element.</p>
+
+    <div class="code-block">
+        <pre><code>names.stream()
+     .map(String::toUpperCase)
+     .forEach(System.out::println);</code></pre>
+    </div>
+
+    <h2>Sorting Streams</h2>
+
+    <div class="code-block">
+        <pre><code>numbers.stream()
+       .sorted()
+       .forEach(System.out::println);</code></pre>
+    </div>
+
+    <p>You can also use custom comparators with lambdas.</p>
+
+    <div class="code-block">
+        <pre><code>numbers.stream()
+       .sorted((a, b) -> b - a)
+       .forEach(System.out::println);</code></pre>
+    </div>
+
+    <h2>Collecting Results</h2>
+
+    <p>The <code>collect()</code> method converts stream results into collections.</p>
+
+    <div class="code-block">
+        <pre><code>List&lt;String&gt; result = names.stream()
+                           .map(String::toUpperCase)
+                           .collect(Collectors.toList());</code></pre>
+    </div>
+
+    <h2>Method References</h2>
+
+    <p>Method references are a shorter form of lambdas.</p>
+
+    <div class="code-block">
+        <pre><code>names.forEach(System.out::println);</code></pre>
+    </div>
+
+    <p>This is equivalent to:</p>
+
+    <div class="code-block">
+        <pre><code>names.forEach(name -> System.out.println(name));</code></pre>
+    </div>
+
+    <h2>Stream Pipeline Stages</h2>
+
+    <p>A stream pipeline usually has three stages:</p>
+
+    <ol>
+        <li><strong>Source</strong> → collection or array</li>
+        <li><strong>Intermediate operations</strong> → filter, map, sorted</li>
+        <li><strong>Terminal operation</strong> → collect, sum, forEach</li>
+    </ol>
+
+    <h2>Advantages of Streams</h2>
+
+    <ul>
+        <li>Cleaner and shorter code</li>
+        <li>Less manual looping</li>
+        <li>Easier data transformations</li>
+        <li>Supports parallel processing</li>
+        <li>Improved readability</li>
+    </ul>
+
+    <h2>Parallel Streams</h2>
+
+    <p>Java can process streams in parallel using multiple CPU cores.</p>
+
+    <div class="code-block">
+        <pre><code>numbers.parallelStream()
+       .forEach(System.out::println);</code></pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">⚡ Performance Insight</div>
+        Parallel streams can improve performance for large datasets, but they may introduce overhead for small tasks.
+    </div>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Trying to reuse a stream after a terminal operation</li>
+        <li>Using streams for extremely simple tasks unnecessarily</li>
+        <li>Confusing map() with filter()</li>
+        <li>Overusing parallel streams</li>
+        <li>Writing overly complex lambda expressions</li>
+    </ul>
+
+    <h2>Real-World Usage</h2>
+
+    <p>Streams and Lambdas are heavily used in modern Java applications.</p>
+
+    <ul>
+        <li>Spring Boot applications</li>
+        <li>REST APIs</li>
+        <li>Data processing systems</li>
+        <li>Backend enterprise software</li>
+        <li>Big-data pipelines</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.1</div>
+
+        <p>Read a list of words from an array, convert them to uppercase, filter those longer than 5 characters,
+            sort them alphabetically and print each on its own line — all using the Stream API.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.2</div>
+
+        <p>Create a list of integers and use streams to calculate the sum of all odd numbers.</p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 9.3</div>
+
+        <p>Create a lambda expression that checks whether a number is positive, negative, or zero.</p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 10 ===================== -->
         <div class="lecture" id="lec-9">

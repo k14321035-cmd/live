@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ╔══════════════════════════════════════════════════════════╗
+  ║  CODE TUTORIUM — BLOG POST TEMPLATE                      ║
+  ║  HOW TO USE:                                             ║
+  ║  1. Copy this file, rename it (e.g. what-is-python.html) ║
+  ║  2. Replace every EDIT: ...  placeholder                 ║
+  ║  3. Add your Q&A sections inside <article>               ║
+  ║  4. Update the JSON-LD FAQ schema at the bottom          ║
+  ╚══════════════════════════════════════════════════════════╝
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <!-- EDIT: Page title — include the main question as-is for SEO -->
+  <title>What is [TOPIC]? — Code Tutorium</title>
+
+  <!-- EDIT: Meta description — 150-160 chars, answer the question briefly -->
+  <meta name="description" content="[TOPIC] explained for beginners. Learn what [TOPIC] is, how it works, and why it matters in [LANGUAGE/FIELD] programming.">
+
+  <!-- EDIT: Keywords -->
+  <meta name="keywords" content="what is [topic], [topic] explained, [language] tutorial, learn [language], [topic] for beginners">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <!-- EDIT: og:title -->
+  <meta property="og:title" content="What is [TOPIC]? — Code Tutorium">
+  <!-- EDIT: og:description -->
+  <meta property="og:description" content="[TOPIC] explained simply for beginners — with examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <!-- EDIT: og:url -->
+  <meta property="og:url" content="https://codetutorium.com/blog/[SLUG].html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <!-- EDIT: twitter:title -->
+  <meta name="twitter:title" content="What is [TOPIC]? — Code Tutorium">
+  <meta name="twitter:description" content="[TOPIC] explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <!-- EDIT: Canonical URL -->
+  <link rel="canonical" href="https://codetutorium.com/blog/[SLUG].html">
+
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- EDIT: JSON-LD FAQ Schema — Google uses this for rich featured snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is [TOPIC]?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Write a clear 1-3 sentence answer here. This may appear as a Google featured snippet.]"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does [TOPIC] work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Write a clear 1-3 sentence answer here.]"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is [TOPIC] important?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Write a clear 1-3 sentence answer here.]"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://codetutorium.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog",  "item": "https://codetutorium.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "What is [TOPIC]?", "item": "https://codetutorium.com/blog/[SLUG].html" }
+    ]
+  }
+  </script>
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is [TOPIC]?",
+    "description": "[TOPIC] explained for beginners with examples.",
+    "author": { "@type": "Organization", "name": "Code Tutorium" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": { "@type": "ImageObject", "url": "https://codetutorium.com/favicon.png" }
+    },
+    "datePublished": "2026-05-19",
+    "dateModified":  "2026-05-19",
+    "url": "https://codetutorium.com/blog/[SLUG].html"
+  }
+  </script>
+
+  <link rel="stylesheet" href="../templae.css">
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../../index.html" class="nav-link">Home</a>
+        <a href="../../index.html#courses" class="nav-link">Courses</a>
+        <a href="../" class="nav-link">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- ═══════════════════════════════════════
+         MAIN ARTICLE
+         ═══════════════════════════════════════ -->
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="../">Blog</a>
+        <span class="sep">/</span>
+        <!-- EDIT: article title -->
+        <span>What is [TOPIC]?</span>
+      </nav>
+
+      <!-- Tag -->
+      <!-- EDIT: language tag text -->
+      <div class="post-tag">[LANGUAGE]</div>
+
+      <!-- H1 — should be the question verbatim -->
+      <!-- EDIT: -->
+      <h1 class="post-title">What is [TOPIC]?</h1>
+
+      <!-- Meta row -->
+      <div class="post-meta">
+        <!-- EDIT: date and read time -->
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick-answer summary box — great for featured snippets -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <!-- EDIT: 3-5 bullet-point summary of the answer -->
+          <li>[Key point 1 about the topic]</li>
+          <li>[Key point 2 about the topic]</li>
+          <li>[Key point 3 about the topic]</li>
+        </ul>
+      </div>
+
+      <!-- ═══ ARTICLE BODY ═══ -->
+      <div class="post-body">
+
+        <!-- ── Section 1: Definition ── -->
+        <h2>What is [TOPIC]?</h2>
+        <p>
+          <!-- EDIT: Write a clear, plain-English definition. 2-4 sentences. -->
+          [TOPIC] is ... [definition paragraph].
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 In simple terms</div>
+          <p>[One-sentence plain-English summary of the topic.]</p>
+        </div>
+
+        <!-- ── Section 2: How it works ── -->
+        <h2>How does [TOPIC] work?</h2>
+        <p>[Explanation of the mechanism / concept. 2-4 sentences.]</p>
+
+        <!-- Code example -->
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <!-- EDIT: filename -->
+            <span class="code-filename">example.[ext]</span>
+          </div>
+          <pre>
+<span class="cmt"><!-- EDIT: add syntax-highlighted code here --></span>
+<span class="kw">keyword</span> example {
+    <span class="attr">property</span>: <span class="str">value</span>;
+}
+          </pre>
+        </div>
+
+        <p>[Explanation of the code above.]</p>
+
+        <!-- ── Section 3: Why it matters ── -->
+        <h2>Why is [TOPIC] important?</h2>
+        <p>[Explain real-world relevance. 2-3 sentences.]</p>
+        <ul>
+          <!-- EDIT: list the main reasons / use-cases -->
+          <li>[Reason 1]</li>
+          <li>[Reason 2]</li>
+          <li>[Reason 3]</li>
+        </ul>
+
+        <!-- ── Section 4: Common questions ── -->
+        <h2>Frequently asked questions</h2>
+
+        <h3>[Sub-question 1]?</h3>
+        <p>[Answer to sub-question 1].</p>
+
+        <h3>[Sub-question 2]?</h3>
+        <p>[Answer to sub-question 2].</p>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Good to know</div>
+          <p>[Extra tip or clarification that beginners often miss.]</p>
+        </div>
+
+        <!-- ── Section 5: Summary ── -->
+        <h2>Summary</h2>
+        <p>[Wrap up: re-state the key point in 1-2 sentences.]</p>
+        <p>Ready to learn more? Check out our full
+          <!-- EDIT: link to the relevant course -->
+          <a href="../../lessons/[course].html" style="color:var(--post-color);text-decoration:underline">[LANGUAGE] course</a>
+          — it's free and beginner-friendly.
+        </p>
+
+      </div>
+      <!-- /post-body -->
+
+      <!-- Related articles -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <!-- EDIT: link to 2 related posts -->
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// [LANGUAGE]</div>
+            <div class="related-card-title">[Related article title 1]</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// [LANGUAGE]</div>
+            <div class="related-card-title">[Related article title 2]</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- ═══════════════════════════════════════
+         SIDEBAR
+         ═══════════════════════════════════════ -->
+    <aside class="sidebar">
+
+      <!-- Table of contents -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list" aria-label="Table of contents">
+          <!-- EDIT: match your H2 headings -->
+          <a href="#" class="toc-link">What is [TOPIC]?</a>
+          <a href="#" class="toc-link">How does it work?</a>
+          <a href="#" class="toc-link">Why is it important?</a>
+          <a href="#" class="toc-link">FAQ</a>
+          <a href="#" class="toc-link">Summary</a>
+        </nav>
+      </div>
+
+      <!-- Course promo -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <!-- EDIT: emoji, name, description, link -->
+          <div class="course-promo-icon">[emoji]</div>
+          <div class="course-promo-name">[LANGUAGE] — Complete Course</div>
+          <div class="course-promo-desc">Learn [LANGUAGE] from scratch, for free. Structured lessons, exercises &amp; projects.</div>
+          <a href="../../lessons/[course].html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /page-wrap -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="../">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

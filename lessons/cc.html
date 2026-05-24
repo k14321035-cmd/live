@@ -341,7 +341,7 @@
         <h2>Primitive Data Types</h2>
         <p>C# provides a variety of built-in types to handle different kinds of data. Choosing the right type is critical for <strong>performance</strong> and <strong>memory efficiency</strong>.</p>
 
-        <table>
+        <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
             <thead>
                 <tr>
                     <th>Type</th>
@@ -503,7 +503,7 @@
     <section>
         <h2>1. Arithmetic Operators</h2>
         <p>Used to perform standard mathematical operations.</p>
-        <table>
+        <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
             <thead>
                 <tr>
                     <th>Operator</th>
@@ -918,87 +918,1028 @@ if (!user.HasPermission) return;
 
 
                 <!-- ===================== LECTURE 06 ===================== -->
-                <div class="lecture" id="lec-5">
-                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-                    <h1>Methods & Parameters</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~55 min</span>
-                    </div>
+               <div class="lecture" id="lec-5">
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+    <h1>Methods & Parameters</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+    </div>
 
-                    <h2>Defining Methods</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">static int</span> Add(<span class="kw">int</span> x, <span class="kw">int</span> y) => x + y;
+    <h2>What Are Methods?</h2>
+    <p>
+        Methods are reusable blocks of code that perform a specific task.
+        Instead of writing the same logic multiple times, we place that logic
+        inside a method and call it whenever needed.
+    </p>
+
+    <p>
+        Methods help make programs:
+    </p>
+
+    <ul>
+        <li>Cleaner and easier to read</li>
+        <li>Reusable and modular</li>
+        <li>Easier to debug and maintain</li>
+        <li>More organized in large applications</li>
+    </ul>
+
+    <div class="code-block">
+        <pre><span class="kw">void</span> SayHello() {
+    Console.WriteLine(<span class="st">"Hello World"</span>);
+}</pre>
+    </div>
+
+    <p>
+        Once defined, the method can be called anywhere in the program:
+    </p>
+
+    <div class="code-block">
+        <pre>SayHello();
+SayHello();
+SayHello();</pre>
+    </div>
+
+    <h2>Defining Methods</h2>
+
+    <p>
+        A method definition usually contains:
+    </p>
+
+    <ul>
+        <li>Access modifier (optional)</li>
+        <li>Return type</li>
+        <li>Method name</li>
+        <li>Parameters</li>
+        <li>Method body</li>
+    </ul>
+
+    <div class="code-block">
+        <pre><span class="kw">static int</span> Add(<span class="kw">int</span> x, <span class="kw">int</span> y) => x + y;
 
 <span class="kw">void</span> Greet(<span class="kw">string</span> name, <span class="kw">string</span> title = <span class="st">"Dr."</span>) {
     Console.WriteLine(<span class="st">$"Hello {title} {name}"</span>);
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h2>Understanding Return Types</h2>
+
+    <p>
+        The return type tells C# what kind of value the method sends back.
+    </p>
+
+    <ul>
+        <li><code>int</code> → returns a whole number</li>
+        <li><code>double</code> → returns decimal values</li>
+        <li><code>string</code> → returns text</li>
+        <li><code>bool</code> → returns true or false</li>
+        <li><code>void</code> → returns nothing</li>
+    </ul>
+
+    <div class="code-block">
+        <pre><span class="kw">int</span> Square(<span class="kw">int</span> number) {
+    <span class="kw">return</span> number * number;
+}</pre>
+    </div>
+
+    <p>
+        Calling the method:
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">int</span> result = Square(5);
+
+Console.WriteLine(result);</pre>
+    </div>
+
+    <h2>Method Parameters</h2>
+
+    <p>
+        Parameters allow methods to receive data from outside.
+        They act like variables that belong to the method.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">void</span> DisplayUser(<span class="kw">string</span> username, <span class="kw">int</span> age) {
+    Console.WriteLine(username);
+    Console.WriteLine(age);
+}</pre>
+    </div>
+
+    <p>
+        Passing arguments into the method:
+    </p>
+
+    <div class="code-block">
+        <pre>DisplayUser(<span class="st">"Alex"</span>, 22);</pre>
+    </div>
+
+    <h2>Default Parameters</h2>
+
+    <p>
+        Default parameters provide fallback values when an argument is not supplied.
+        This makes methods more flexible.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">void</span> Welcome(<span class="kw">string</span> name = <span class="st">"Guest"</span>) {
+    Console.WriteLine(<span class="st">$"Welcome {name}"</span>);
+}</pre>
+    </div>
+
+    <div class="code-block">
+        <pre>Welcome();
+Welcome(<span class="st">"Emma"</span>);</pre>
+    </div>
+
+    <h2>Expression-Bodied Methods</h2>
+
+    <p>
+        Small methods can be shortened using the lambda-style arrow syntax.
+        This creates cleaner and shorter code.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">int</span> Multiply(<span class="kw">int</span> a, <span class="kw">int</span> b) => a * b;</pre>
+    </div>
+
+    <h2>Method Overloading</h2>
+
+    <p>
+        C# allows multiple methods with the same name as long as
+        their parameters are different.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">int</span> Add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="kw">double</span> Add(<span class="kw">double</span> a, <span class="kw">double</span> b) {
+    <span class="kw">return</span> a + b;
+}</pre>
+    </div>
+
+    <p>
+        The compiler automatically selects the correct version.
+    </p>
+
+    <h2>Pass By Value</h2>
+
+    <p>
+        By default, C# passes arguments by value.
+        This means the method receives a copy of the data.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">void</span> ChangeNumber(<span class="kw">int</span> num) {
+    num = 100;
+}
+
+<span class="kw">int</span> value = 10;
+
+ChangeNumber(value);
+
+Console.WriteLine(value);</pre>
+    </div>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>10</pre>
+    </div>
+
+    <p>
+        The original variable remains unchanged because only a copy was modified.
+    </p>
+
+    <h2>Using ref Parameters</h2>
+
+    <p>
+        The <code>ref</code> keyword passes variables by reference,
+        allowing the method to directly modify the original variable.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">void</span> Increase(<span class="kw">ref int</span> number) {
+    number++;
+}
+
+<span class="kw">int</span> score = 5;
+
+Increase(<span class="kw">ref</span> score);
+
+Console.WriteLine(score);</pre>
+    </div>
+
+    <h2>Using out Parameters</h2>
+
+    <p>
+        The <code>out</code> keyword is used when a method needs to return
+        multiple values.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">void</span> GetValues(<span class="kw">out int</span> x, <span class="kw">out int</span> y) {
+    x = 10;
+    y = 20;
+}
+
+GetValues(<span class="kw">out int</span> a, <span class="kw">out int</span> b);
+
+Console.WriteLine(a);
+Console.WriteLine(b);</pre>
+    </div>
+
+    <h2>Local Methods</h2>
+
+    <p>
+        Methods can also exist inside another method.
+        These are called local methods.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">void</span> MainMethod() {
+
+    <span class="kw">void</span> PrintMessage() {
+        Console.WriteLine(<span class="st">"Inside Local Method"</span>);
+    }
+
+    PrintMessage();
+}</pre>
+    </div>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Keep methods short and focused</li>
+        <li>Use meaningful method names</li>
+        <li>Avoid methods that do too many tasks</li>
+        <li>Reuse methods whenever possible</li>
+        <li>Use parameters instead of hardcoded values</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Forgetting the return statement</li>
+        <li>Using the wrong return type</li>
+        <li>Passing incorrect argument types</li>
+        <li>Creating methods with too many parameters</li>
+        <li>Not understanding value vs reference passing</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following methods yourself:
+    </p>
+
+    <ul>
+        <li>A method that calculates area of a rectangle</li>
+        <li>A method that checks if a number is even</li>
+        <li>A method that prints a full name</li>
+        <li>A method with a default parameter</li>
+        <li>A method using <code>ref</code> or <code>out</code></li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Collections & LINQ</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
+           <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Collections & LINQ</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~60 min</span>
+    </div>
 
-                    <h2>Working with Lists</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">var</span> numbers = <span class="kw">new</span> List&lt;<span class="kw">int</span>&gt; { 10, 20, 30, 40 };
+    <h2>What Are Collections?</h2>
+
+    <p>
+        Collections are data structures used to store and manage groups of objects.
+        Instead of creating multiple individual variables, collections allow us to
+        organize related data efficiently.
+    </p>
+
+    <p>
+        C# provides several built-in collection types that are powerful,
+        flexible, and easy to use.
+    </p>
+
+    <ul>
+        <li>Arrays</li>
+        <li>Lists</li>
+        <li>Dictionaries</li>
+        <li>Queues</li>
+        <li>Stacks</li>
+        <li>HashSets</li>
+    </ul>
+
+    <h2>Why Use Collections?</h2>
+
+    <p>
+        Collections help developers work with large amounts of data dynamically.
+        They make programs cleaner and more scalable.
+    </p>
+
+    <ul>
+        <li>Store multiple values together</li>
+        <li>Add or remove data dynamically</li>
+        <li>Search and sort efficiently</li>
+        <li>Loop through items easily</li>
+        <li>Organize related information</li>
+    </ul>
+
+    <h2>Working with Lists</h2>
+
+    <p>
+        A <code>List&lt;T&gt;</code> is one of the most commonly used collections in C#.
+        Unlike arrays, lists can grow and shrink dynamically.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> numbers = <span class="kw">new</span> List&lt;<span class="kw">int</span>&gt; { 10, 20, 30, 40 };
+
 numbers.Add(50);
+
 numbers.RemoveAt(0);</pre>
-                    </div>
+    </div>
 
-                    <h2>Introduction to LINQ</h2>
-                    <p>LINQ (Language Integrated Query) allows you to query collections like SQL.</p>
-                    <div class="code-block">
-                        <pre><span class="kw">var</span> highScores = numbers.Where(n => n > 25).OrderByDescending(n => n);</pre>
-                    </div>
+    <p>
+        After removing the first element, the list becomes:
+    </p>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <div class="code-block">
+        <pre>20, 30, 40, 50</pre>
+    </div>
+
+    <h2>Adding Items to a List</h2>
+
+    <p>
+        Use the <code>Add()</code> method to insert new items into a list.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> fruits = <span class="kw">new</span> List&lt;<span class="kw">string</span>&gt;();
+
+fruits.Add(<span class="st">"Apple"</span>);
+fruits.Add(<span class="st">"Banana"</span>);
+fruits.Add(<span class="st">"Orange"</span>);</pre>
+    </div>
+
+    <h2>Accessing List Elements</h2>
+
+    <p>
+        List items are accessed using indexes.
+        Indexes start from <code>0</code>.
+    </p>
+
+    <div class="code-block">
+        <pre>Console.WriteLine(fruits[0]);
+
+Console.WriteLine(fruits[1]);</pre>
+    </div>
+
+    <h2>Looping Through Lists</h2>
+
+    <p>
+        Lists are commonly used with loops to process every item.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">foreach</span> (<span class="kw">var</span> item <span class="kw">in</span> fruits) {
+    Console.WriteLine(item);
+}</pre>
+    </div>
+
+    <h2>Useful List Methods</h2>
+
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Method</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Add()</td>
+            <td>Adds a new item</td>
+        </tr>
+        <tr>
+            <td>Remove()</td>
+            <td>Removes a specific item</td>
+        </tr>
+        <tr>
+            <td>RemoveAt()</td>
+            <td>Removes item by index</td>
+        </tr>
+        <tr>
+            <td>Contains()</td>
+            <td>Checks if item exists</td>
+        </tr>
+        <tr>
+            <td>Clear()</td>
+            <td>Removes all items</td>
+        </tr>
+        <tr>
+            <td>Count</td>
+            <td>Returns total number of items</td>
+        </tr>
+    </table>
+
+    <h2>Using Dictionaries</h2>
+
+    <p>
+        Dictionaries store data as key-value pairs.
+        They are useful when each item has a unique identifier.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> students = <span class="kw">new</span> Dictionary&lt;<span class="kw">int</span>, <span class="kw">string</span>&gt;();
+
+students.Add(1, <span class="st">"John"</span>);
+students.Add(2, <span class="st">"Emma"</span>);
+
+Console.WriteLine(students[1]);</pre>
+    </div>
+
+    <h2>Understanding LINQ</h2>
+
+    <p>
+        LINQ stands for Language Integrated Query.
+        It allows developers to query collections using simple and readable syntax.
+    </p>
+
+    <p>
+        LINQ works with:
+    </p>
+
+    <ul>
+        <li>Lists</li>
+        <li>Arrays</li>
+        <li>Dictionaries</li>
+        <li>Databases</li>
+        <li>XML data</li>
+    </ul>
+
+    <h2>Introduction to LINQ</h2>
+
+    <p>
+        LINQ (Language Integrated Query) allows you to query collections like SQL.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> highScores = numbers
+    .Where(n => n > 25)
+    .OrderByDescending(n => n);</pre>
+    </div>
+
+    <p>
+        This query:
+    </p>
+
+    <ul>
+        <li>Filters numbers greater than 25</li>
+        <li>Sorts them in descending order</li>
+    </ul>
+
+    <h2>The Where() Method</h2>
+
+    <p>
+        <code>Where()</code> filters data based on a condition.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> evenNumbers = numbers.Where(n => n % 2 == 0);</pre>
+    </div>
+
+    <p>
+        Only even numbers will be selected.
+    </p>
+
+    <h2>The Select() Method</h2>
+
+    <p>
+        <code>Select()</code> transforms data into another form.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> squared = numbers.Select(n => n * n);</pre>
+    </div>
+
+    <p>
+        This creates a new collection with squared values.
+    </p>
+
+    <h2>Sorting Data with LINQ</h2>
+
+    <p>
+        LINQ provides easy methods for sorting collections.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> ascending = numbers.OrderBy(n => n);
+
+<span class="kw">var</span> descending = numbers.OrderByDescending(n => n);</pre>
+    </div>
+
+    <h2>Finding Data</h2>
+
+    <p>
+        LINQ can quickly search for matching values.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> firstLargeNumber = numbers.First(n => n > 25);</pre>
+    </div>
+
+    <p>
+        The first number greater than 25 will be returned.
+    </p>
+
+    <h2>Counting Items</h2>
+
+    <p>
+        The <code>Count()</code> method returns the total number of matching items.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">int</span> total = numbers.Count();
+
+<span class="kw">int</span> evenCount = numbers.Count(n => n % 2 == 0);</pre>
+    </div>
+
+    <h2>Combining LINQ Methods</h2>
+
+    <p>
+        Multiple LINQ methods can be chained together for powerful queries.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> result = numbers
+    .Where(n => n > 10)
+    .OrderBy(n => n)
+    .Select(n => n * 2);</pre>
+    </div>
+
+    <h2>Deferred Execution</h2>
+
+    <p>
+        Most LINQ queries use deferred execution.
+        This means the query runs only when the data is actually used.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">var</span> query = numbers.Where(n => n > 20);
+
+Console.WriteLine(query.Count());</pre>
+    </div>
+
+    <h2>Common LINQ Methods</h2>
+
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Method</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Where()</td>
+            <td>Filter data</td>
+        </tr>
+        <tr>
+            <td>Select()</td>
+            <td>Transform data</td>
+        </tr>
+        <tr>
+            <td>OrderBy()</td>
+            <td>Sort ascending</td>
+        </tr>
+        <tr>
+            <td>OrderByDescending()</td>
+            <td>Sort descending</td>
+        </tr>
+        <tr>
+            <td>First()</td>
+            <td>Get first matching item</td>
+        </tr>
+        <tr>
+            <td>Count()</td>
+            <td>Count items</td>
+        </tr>
+        <tr>
+            <td>Any()</td>
+            <td>Check if data exists</td>
+        </tr>
+    </table>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use collections instead of many separate variables</li>
+        <li>Choose the correct collection type for the task</li>
+        <li>Keep LINQ queries readable</li>
+        <li>Avoid overly complex chained queries</li>
+        <li>Use meaningful variable names</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Using the wrong collection type</li>
+        <li>Forgetting indexes start at 0</li>
+        <li>Modifying collections during iteration</li>
+        <li>Writing unreadable LINQ chains</li>
+        <li>Ignoring null values in queries</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating the following:
+    </p>
+
+    <ul>
+        <li>A list of student names</li>
+        <li>A dictionary of product prices</li>
+        <li>A LINQ query that finds even numbers</li>
+        <li>A query that sorts numbers descending</li>
+        <li>A query using both <code>Where()</code> and <code>Select()</code></li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
                 <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Strings & Formatting</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-beginner">Beginner</span>
-                        <span class="meta-badge">~40 min</span>
-                    </div>
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Strings & Formatting</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-beginner">Beginner</span>
+        <span class="meta-badge">~40 min</span>
+    </div>
 
-                    <h2>String Manipulation</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">string</span> text = <span class="st">"  C# Programming  "</span>;
+    <h2>What Are Strings?</h2>
+
+    <p>
+        A string is a sequence of characters used to store text.
+        Strings are one of the most commonly used data types in C#.
+    </p>
+
+    <p>
+        Examples of strings:
+    </p>
+
+    <ul>
+        <li>Names</li>
+        <li>Email addresses</li>
+        <li>Messages</li>
+        <li>User input</li>
+        <li>File paths</li>
+    </ul>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> name = <span class="st">"John"</span>;
+
+<span class="kw">string</span> message = <span class="st">"Welcome to C#"</span>;</pre>
+    </div>
+
+    <h2>Creating Strings</h2>
+
+    <p>
+        Strings are written inside double quotation marks.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> city = <span class="st">"London"</span>;
+
+<span class="kw">string</span> language = <span class="st">"C#"</span>;</pre>
+    </div>
+
+    <h2>String Manipulation</h2>
+
+    <p>
+        C# provides many built-in methods for modifying and working with strings.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> text = <span class="st">"  C# Programming  "</span>;
+
 Console.WriteLine(text.Trim().ToUpper());
+
 Console.WriteLine(text.Contains(<span class="st">"C#"</span>));</pre>
-                    </div>
+    </div>
 
-                    <h2>String Interpolation</h2>
-                    <div class="code-block">
-                        <pre>Console.WriteLine(<span class="st">$"Date: {DateTime.Now:d}"</span>);
+    <p>
+        This example:
+    </p>
+
+    <ul>
+        <li>Removes extra spaces using <code>Trim()</code></li>
+        <li>Converts text to uppercase using <code>ToUpper()</code></li>
+        <li>Checks if text contains a value using <code>Contains()</code></li>
+    </ul>
+
+    <h2>Common String Methods</h2>
+
+    <table border="2px solid " padding="8px" cellspacing="0" cellpadding="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Method</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>ToUpper()</td>
+            <td>Converts text to uppercase</td>
+        </tr>
+        <tr>
+            <td>ToLower()</td>
+            <td>Converts text to lowercase</td>
+        </tr>
+        <tr>
+            <td>Trim()</td>
+            <td>Removes extra spaces</td>
+        </tr>
+        <tr>
+            <td>Contains()</td>
+            <td>Checks for matching text</td>
+        </tr>
+        <tr>
+            <td>Replace()</td>
+            <td>Replaces text</td>
+        </tr>
+        <tr>
+            <td>Substring()</td>
+            <td>Extracts part of a string</td>
+        </tr>
+        <tr>
+            <td>StartsWith()</td>
+            <td>Checks starting characters</td>
+        </tr>
+        <tr>
+            <td>EndsWith()</td>
+            <td>Checks ending characters</td>
+        </tr>
+    </table>
+
+    <h2>Converting Case</h2>
+
+    <p>
+        Strings can easily be converted between uppercase and lowercase.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> word = <span class="st">"Programming"</span>;
+
+Console.WriteLine(word.ToUpper());
+
+Console.WriteLine(word.ToLower());</pre>
+    </div>
+
+    <h2>Replacing Text</h2>
+
+    <p>
+        The <code>Replace()</code> method changes parts of a string.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> sentence = <span class="st">"I like Java"</span>;
+
+sentence = sentence.Replace(<span class="st">"Java"</span>, <span class="st">"C#"</span>);
+
+Console.WriteLine(sentence);</pre>
+    </div>
+
+    <h2>Extracting Text</h2>
+
+    <p>
+        The <code>Substring()</code> method extracts a portion of a string.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> value = <span class="st">"Programming"</span>;
+
+Console.WriteLine(value.Substring(0, 4));</pre>
+    </div>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>Prog</pre>
+    </div>
+
+    <h2>Escaping Characters</h2>
+
+    <p>
+        Escape characters allow special characters inside strings.
+    </p>
+
+    <div class="code-block">
+        <pre>Console.WriteLine(<span class="st">"She said \"Hello\""</span>);
+
+Console.WriteLine(<span class="st">"C:\\Projects\\App"</span>);</pre>
+    </div>
+
+    <h2>Verbatim Strings</h2>
+
+    <p>
+        Verbatim strings use the <code>@</code> symbol to preserve formatting.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> path = <span class="st">@"
+C:\Projects\MyApp\data.txt"</span>;
+
+Console.WriteLine(path);</pre>
+    </div>
+
+    <h2>String Concatenation</h2>
+
+    <p>
+        Concatenation means joining strings together.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> firstName = <span class="st">"John"</span>;
+
+<span class="kw">string</span> lastName = <span class="st">"Doe"</span>;
+
+<span class="kw">string</span> fullName = firstName + <span class="st">" "</span> + lastName;
+
+Console.WriteLine(fullName);</pre>
+    </div>
+
+    <h2>String Interpolation</h2>
+
+    <p>
+        String interpolation is a cleaner way to insert variables into strings.
+    </p>
+
+    <div class="code-block">
+        <pre>Console.WriteLine(<span class="st">$"Date: {DateTime.Now:d}"</span>);
+
 Console.WriteLine(<span class="st">$"Price: {19.99:C}"</span>); <span class="cm">// Currency</span></pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        The <code>$</code> symbol allows variables and expressions inside curly braces.
+    </p>
+
+    <h2>Formatting Values</h2>
+
+    <p>
+        C# supports formatting numbers, dates, and currency values.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">double</span> price = 99.95;
+
+Console.WriteLine(<span class="st">$"{price:C}"</span>);
+
+Console.WriteLine(<span class="st">$"{price:N2}"</span>);
+
+Console.WriteLine(<span class="st">$"{price:P}"</span>);</pre>
+    </div>
+
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+        <tr>
+            <th>Format</th>
+            <th>Meaning</th>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>Currency</td>
+        </tr>
+        <tr>
+            <td>N2</td>
+            <td>Number with 2 decimals</td>
+        </tr>
+        <tr>
+            <td>P</td>
+            <td>Percentage</td>
+        </tr>
+        <tr>
+            <td>d</td>
+            <td>Short date format</td>
+        </tr>
+    </table>
+
+    <h2>Working with String Length</h2>
+
+    <p>
+        The <code>Length</code> property returns the number of characters.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> username = <span class="st">"Admin"</span>;
+
+Console.WriteLine(username.Length);</pre>
+    </div>
+
+    <h2>Splitting Strings</h2>
+
+    <p>
+        The <code>Split()</code> method separates text into multiple parts.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> data = <span class="st">"HTML,CSS,JavaScript"</span>;
+
+<span class="kw">var</span> skills = data.Split(<span class="st">','</span>);
+
+<span class="kw">foreach</span> (<span class="kw">var</span> skill <span class="kw">in</span> skills) {
+    Console.WriteLine(skill);
+}</pre>
+    </div>
+
+    <h2>Comparing Strings</h2>
+
+    <p>
+        Strings can be compared using comparison operators or helper methods.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> a = <span class="st">"C#"</span>;
+
+<span class="kw">string</span> b = <span class="st">"c#"</span>;
+
+Console.WriteLine(a == b);
+
+Console.WriteLine(a.Equals(b, StringComparison.OrdinalIgnoreCase));</pre>
+    </div>
+
+    <h2>String Immutability</h2>
+
+    <p>
+        Strings in C# are immutable.
+        This means their contents cannot be changed after creation.
+    </p>
+
+    <p>
+        Methods like <code>Replace()</code> or <code>ToUpper()</code>
+        create new strings instead of modifying the original one.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">string</span> textValue = <span class="st">"hello"</span>;
+
+<span class="kw">string</span> upper = textValue.ToUpper();
+
+Console.WriteLine(textValue);
+
+Console.WriteLine(upper);</pre>
+    </div>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use meaningful variable names</li>
+        <li>Prefer string interpolation over concatenation</li>
+        <li>Trim user input when necessary</li>
+        <li>Use formatting for readable output</li>
+        <li>Keep string operations simple and readable</li>
+    </ul>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Forgetting escape characters</li>
+        <li>Using invalid indexes in Substring()</li>
+        <li>Ignoring whitespace in user input</li>
+        <li>Comparing strings with incorrect casing</li>
+        <li>Confusing immutable behavior</li>
+    </ul>
+
+    <h2>Mini Practice</h2>
+
+    <p>
+        Try creating programs that:
+    </p>
+
+    <ul>
+        <li>Convert text to uppercase</li>
+        <li>Replace words in a sentence</li>
+        <li>Display formatted prices</li>
+        <li>Split a CSV string into values</li>
+        <li>Create a formatted welcome message using interpolation</li>
+    </ul>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 09 ===================== -->
-                <div class="lecture" id="lec-8">
+     <div class="lecture" id="lec-8">
                     <div class="lecture-tag">Lecture 09 · Advanced</div>
                     <h1>Object-Oriented Programming</h1>
                     <div class="lecture-meta">
@@ -1006,7 +1947,17 @@ Console.WriteLine(<span class="st">$"Price: {19.99:C}"</span>); <span class="cm"
                         <span class="meta-badge">~75 min</span>
                     </div>
 
-                    <h2>Classes & Objects</h2>
+                    <p>Welcome, class. Today we deep-dive into the foundational architecture of scalable software design: <strong>Object-Oriented Programming (OOP)</strong>. As software systems grow in complexity, linear, procedural code inevitably collapses under its own weight. OOP provides us with a framework to manage this complexity by partitioning our programs into self-contained, reusable modules modeled after real-world entities.</p>
+
+                    <h2>The Conceptual Paradigm: Blueprints vs. Artifacts</h2>
+                    <p>Before looking at the syntax, you must master the fundamental distinction between a <strong>Class</strong> and an <strong>Object</strong>:</p>
+                    <ul>
+                        <li><strong>The Class (The Blueprint):</strong> This is an abstract data type. It defines the structure, capabilities, and rules of engagement, but it consumes no operational memory for data storage. It is merely a design.</li>
+                        <li><strong>The Object (The Instance):</strong> This is the concrete artifact generated from that blueprint. It lives dynamically within your system's RAM, maintaining its own unique state.</li>
+                    </ul>
+                    
+                    <p>Consider the architectural example below written in C#. Here, we define a baseline archetype (<code>Person</code>) and a specialized extension of that archetype (<code>Developer</code>).</p>
+
                     <div class="code-block">
                         <pre><span class="kw">public class</span> Person {
     <span class="kw">public string</span> Name { <span class="kw">get; set;</span> }
@@ -1017,6 +1968,57 @@ Console.WriteLine(<span class="st">$"Price: {19.99:C}"</span>); <span class="cm"
     <span class="kw">public override void</span> Work() => Console.WriteLine(<span class="st">"Coding..."</span>);
 }</pre>
                     </div>
+
+                    <h2>Anatomy of the Mechanics: Inheritance & Polymorphism</h2>
+                    <p>Let us break down the underlying mechanics of this code slice. Notice the use of the <code>:</code> operator in <code>Developer : Person</code>. This establishes an <strong>IS-A relationship</strong> (Inheritance). A <code>Developer</code> <em>is a</em> <code>Person</code>, meaning it automatically inherits the <code>Name</code> property without explicit redeclaration.</p>
+
+                    <p>However, the real magic happens within the execution behavior, driven by two critical keywords:</p>
+                    <ol>
+                        <li><strong><code>virtual</code>:</strong> Declared in the base class, this signals to the compiler that this method's behavior is fluid and can be intercepted by derived child classes.</li>
+                        <li><strong><code>override</code>:</strong> Declared in the subclass, this actively intercepts the runtime execution path, substituting the base behavior with a specialized implementation.</li>
+                    </ol>
+
+                    <h2>Advanced Execution: Dynamic Binding in Action</h2>
+                    <p>To fully appreciate why this matters to a software architect, look at how the runtime engine processes these objects when grouped together. Because of polymorphism, a collection typed to the base class can hold any derived class instance seamlessly.</p>
+
+                    <div class="code-block">
+                        <pre><span class="kw">List</span>&lt;Person&gt; team = <span class="kw">new</span> <span class="kw">List</span>&lt;Person&gt;() {
+    <span class="kw">new</span> Person { Name = <span class="st">"Professor Smith"</span> },
+    <span class="kw">new</span> Developer { Name = <span class="st">"Grace Hopper"</span> }
+};
+
+<span class="kw">foreach</span> (<span class="kw">var</span> member <span class="kw">in</span> team) {
+    Console.Write(member.Name + <span class="st">" execution path: "</span>);
+    member.Work(); 
+}</pre>
+                    </div>
+
+                    <p>When this loop runs, the output demonstrates <strong>Dynamic Binding</strong> (or late binding). The system determines which method to call at runtime based on the actual object type, not the variable type:</p>
+                    
+                    <div class="code-block">
+                        <pre>Professor Smith execution path: Working...
+Grace Hopper execution path: Coding...</pre>
+                    </div>
+
+                    <h2>Professor's Lab Task: Expanding the Ecosystem</h2>
+                    <p>To reinforce today's lecture, you must complete a practical coding task. Your goal is to introduce a third tier to our organizational hierarchy that introduces unique tracking and alters behavior appropriately.</p>
+
+                    <p><strong>Your Instructions:</strong></p>
+                    <ul>
+                        <li>Create a new class named <code>Manager</code> that inherits directly from <code>Person</code>.</li>
+                        <li>Add an exclusive property to the <code>Manager</code> class: <code>TeamSize</code> (an integer type).</li>
+                        <li>Override the <code>Work()</code> method so that it outputs: <code>"Managing a team of [TeamSize] people..."</code> instead of the generic response.</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <pre><span class="kw">public class</span> Manager : Person {
+    <span class="kw">// 1. Task: Define your TeamSize property here
+    
+    // 2. Task: Override the Work() method using string interpolation</span>
+}</pre>
+                    </div>
+
+                    <p>Verify your solution by creating an instance of your <code>Manager</code>, assigning it a <code>TeamSize</code> of 5, adding it to the <code>team</code> list created above, and confirming that the output shifts dynamically at runtime.</p>
 
                     <div class="lecture-nav">
                         <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
