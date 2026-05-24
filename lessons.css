@@ -244,6 +244,26 @@ body {
   text-transform: uppercase;
 }
 
+.sidebar-app-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .5rem;
+  padding: .35rem .75rem;
+  font-size: .7rem;
+  font-weight: 600;
+  color: #a5f3fc;
+  background: rgba(165,243,252,0.08);
+  border: 1px solid rgba(165,243,252,0.15);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.sidebar-app-link:hover {
+  background: rgba(165,243,252,0.16);
+  border-color: rgba(165,243,252,0.3);
+}
+
 .nav-section { padding: .6rem 0; }
 
 .nav-section-label {
@@ -305,6 +325,28 @@ body {
 }
 .nav-item.active .dot { background: var(--blue-500); }
 .nav-item:hover .dot { background: var(--blue-400); }
+
+.nav-item.syllabus-topic {
+  padding: .42rem 1.25rem;
+  font-size: .78rem;
+}
+
+.nav-item.syllabus-topic .num {
+  min-width: 24px;
+}
+
+.sidebar-syllabus-list {
+  list-style: none;
+  margin: .35rem 1.25rem .75rem 3.1rem;
+  padding: 0;
+}
+
+.sidebar-syllabus-list li {
+  color: var(--text-muted);
+  font-size: .75rem;
+  line-height: 1.45;
+  margin: 0 0 .28rem;
+}
 
 /* =========================================================
    MAIN
@@ -496,6 +538,36 @@ body {
   margin: 1rem 0 .35rem;
 }
 
+.box {
+  border: 1px solid var(--border-default);
+  border-left: 4px solid var(--blue-500);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0 1.5rem;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.box.info {
+  background: var(--blue-50);
+  border-color: var(--blue-200);
+  border-left-color: var(--blue-500);
+}
+
+.box-title {
+  font-family: var(--font-display);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+  margin-bottom: .45rem;
+}
+
+.box p:last-child {
+  margin-bottom: 0;
+}
+
 .lecture p {
   color: var(--text-secondary);
   margin-bottom: 1rem;
@@ -524,6 +596,7 @@ code {
 .kw      { color: #1d3fa5; font-family: var(--font-mono); font-weight: 500; }
 .st      { color: #1a6e3c; font-family: var(--font-mono); }
 .fn      { color: #0f5f8a; font-family: var(--font-mono); }
+.cm      { color: #93a3b8; font-style: italic; font-family: var(--font-mono); }
 .comment { color: #93a3b8; font-style: italic; font-family: var(--font-mono); }
 strong   { color: var(--blue-900); font-weight: 600; }
 strong.kw { color: #1d3fa5; }
@@ -1373,6 +1446,21 @@ html[data-theme="dark"] .code-block {
 html[data-theme="dark"] .code-block pre { background: #0d1526; color: #c9d6f5; }
 html[data-theme="dark"] code {
   background: rgba(255,255,255,.07);
+  color: var(--blue-300);
+}
+
+html[data-theme="dark"] .box {
+  background: var(--bg-surface);
+  border-color: var(--border-default);
+  border-left-color: var(--blue-500);
+}
+
+html[data-theme="dark"] .box.info {
+  background: #0d1e3a;
+  border-color: var(--blue-700);
+}
+
+html[data-theme="dark"] .box-title {
   color: var(--blue-300);
 }
 

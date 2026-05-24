@@ -72,7 +72,10 @@ function showLecture(index) {
     
     // Activate nav item
     const navItems = document.querySelectorAll('.nav-item');
-    if (navItems[index]) {
+    const targetNavItem = document.querySelector(`.nav-item[onclick="showLecture(${index})"]`);
+    if (targetNavItem) {
+        targetNavItem.classList.add('active');
+    } else if (navItems[index]) {
         navItems[index].classList.add('active');
     }
     
@@ -583,7 +586,10 @@ function _performSearch() {
     navItems.forEach(function(item, idx) {
         const text = item.textContent.replace(/^\s*\d+\s*/,'').trim();
         if (!query || text.toLowerCase().includes(query)) {
-            matches.push({ idx, text });
+            const onclick = item.getAttribute('onclick') || '';
+            const lectureMatch = onclick.match(/showLecture\((\d+)\)/);
+            const lectureIndex = lectureMatch ? parseInt(lectureMatch[1], 10) : idx;
+            matches.push({ idx: lectureIndex, text });
         }
     });
 

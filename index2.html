@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMastery - 23 Best Coding Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light Theme */
+            --light-bg: #ffffff;
+            --light-bg-secondary: #f8f9fb;
+            --light-bg-tertiary: #eef2f7;
+            --light-text: #1a2b4a;
+            --light-text-muted: #6b7c94;
+            --light-border: #d4dce9;
+            --light-accent: #0052cc;
+            --light-accent-light: #4d94ff;
+            --light-success: #00a854;
+            
+            /* Dark Theme */
+            --dark-bg: #0a1626;
+            --dark-bg-secondary: #1a2f4a;
+            --dark-bg-tertiary: #2a3f5a;
+            --dark-text: #ffffff;
+            --dark-text-muted: #b0c4de;
+            --dark-border: #3a5073;
+            --dark-accent: #5b9fff;
+            --dark-accent-light: #7bb3ff;
+            --dark-success: #26c281;
+
+            /* Default to light theme */
+            --bg: var(--light-bg);
+            --bg-secondary: var(--light-bg-secondary);
+            --bg-tertiary: var(--light-bg-tertiary);
+            --text: var(--light-text);
+            --text-muted: var(--light-text-muted);
+            --border: var(--light-border);
+            --accent: var(--light-accent);
+            --accent-light: var(--light-accent-light);
+            --success: var(--light-success);
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --bg: var(--dark-bg);
+            --bg-secondary: var(--dark-bg-secondary);
+            --bg-tertiary: var(--dark-bg-tertiary);
+            --text: var(--dark-text);
+            --text-muted: var(--dark-text-muted);
+            --border: var(--dark-border);
+            --accent: var(--dark-accent);
+            --accent-light: var(--dark-accent-light);
+            --success: var(--dark-success);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg);
+            border-bottom: 2px solid var(--border);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        [data-theme="dark"] header {
+            background: rgba(10, 22, 38, 0.95);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-center a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-center a:hover {
+            color: var(--accent);
+        }
+
+        .nav-center a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-center a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent);
+        }
+
+        .cta-header {
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-header:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 82, 204, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 82, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .stat-card:hover {
+            box-shadow: 0 15px 40px rgba(91, 159, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .course-card {
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.1), transparent);
+            transition: top 0.4s ease;
+            pointer-events: none;
+        }
+
+        .course-card:hover::before {
+            top: 0;
+        }
+
+        .course-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 82, 204, 0.15);
+        }
+
+        [data-theme="dark"] .course-card:hover {
+            box-shadow: 0 20px 50px rgba(91, 159, 255, 0.2);
+        }
+
+        .course-number {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .course-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .course-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--bg-secondary);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        .difficulty {
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .difficulty.beginner {
+            background: rgba(0, 168, 84, 0.15);
+            color: var(--success);
+        }
+
+        .difficulty.intermediate {
+            background: rgba(0, 82, 204, 0.15);
+            color: var(--accent);
+        }
+
+        .difficulty.advanced {
+            background: rgba(255, 77, 77, 0.15);
+            color: #ff4d4d;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .category-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 82, 204, 0.15);
+        }
+
+        [data-theme="dark"] .category-card:hover {
+            box-shadow: 0 20px 50px rgba(91, 159, 255, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .category-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .category-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--border);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .course-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .course-card:nth-child(1) { animation-delay: 0.1s; }
+        .course-card:nth-child(2) { animation-delay: 0.2s; }
+        .course-card:nth-child(3) { animation-delay: 0.3s; }
+        .course-card:nth-child(4) { animation-delay: 0.4s; }
+        .course-card:nth-child(5) { animation-delay: 0.5s; }
+        .course-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Print styles */
+        @media print {
+            header, footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">CodeMastery</a>
+            <ul class="nav-center">
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <a href="#" class="cta-header">Enroll Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Master Modern Coding in 23 Expert-Crafted Courses</h1>
+        <p>From Python fundamentals to advanced DevOps and system design. Learn the skills that top tech companies are looking for, guided by industry experts.</p>
+        
+        <div class="hero-buttons">
+            <button class="btn btn-primary">Get Started Free</button>
+            <button class="btn btn-secondary">View All Courses</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Comprehensive Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Active Learners</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">⭐⭐⭐⭐⭐</div>
+                <div class="stat-label">Avg. Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-section" id="courses">
+        <h2 class="section-title">Our 23 Best Courses</h2>
+        <p class="section-subtitle">Carefully curated to take you from beginner to expert</p>
+
+        <div class="courses-grid">
+            <!-- Course 1 -->
+            <div class="course-card">
+                <div class="course-number">01</div>
+                <span class="course-icon">🐍</span>
+                <h3>Python Fundamentals</h3>
+                <p>Master the basics of Python programming. Learn syntax, data types, loops, functions, and build your first projects.</p>
+                <div class="course-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Core</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty beginner">Beginner</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="course-card">
+                <div class="course-number">02</div>
+                <span class="course-icon">🎯</span>
+                <h3>Advanced Python</h3>
+                <p>Deep dive into OOP, decorators, generators, context managers, and advanced patterns used by professionals.</p>
+                <div class="course-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Advanced</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty advanced">Advanced</span>
+                    <span>10 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="course-card">
+                <div class="course-number">03</div>
+                <span class="course-icon">📊</span>
+                <h3>Data Analysis & Visualization</h3>
+                <p>Work with pandas, NumPy, and matplotlib. Clean, analyze, and visualize real-world datasets effectively.</p>
+                <div class="course-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Data</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>10 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="course-card">
+                <div class="course-number">04</div>
+                <span class="course-icon">🌐</span>
+                <h3>HTML5 Essentials</h3>
+                <p>Build semantic HTML5 structures. Learn best practices for accessibility, SEO, and modern web standards.</p>
+                <div class="course-tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">Web</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty beginner">Beginner</span>
+                    <span>4 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 5 -->
+            <div class="course-card">
+                <div class="course-number">05</div>
+                <span class="course-icon">🎨</span>
+                <h3>CSS Mastery</h3>
+                <p>Modern CSS3: Flexbox, Grid, Responsive design. Create beautiful layouts that work on all devices.</p>
+                <div class="course-tags">
+                    <span class="tag">CSS</span>
+                    <span class="tag">Design</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 6 -->
+            <div class="course-card">
+                <div class="course-number">06</div>
+                <span class="course-icon">✨</span>
+                <h3>CSS Animations & Effects</h3>
+                <p>Advanced CSS animations, transitions, transforms. Create engaging, smooth user experiences with pure CSS.</p>
+                <div class="course-tags">
+                    <span class="tag">CSS</span>
+                    <span class="tag">Advanced</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty advanced">Advanced</span>
+                    <span>6 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 7 -->
+            <div class="course-card">
+                <div class="course-number">07</div>
+                <span class="course-icon">⚡</span>
+                <h3>JavaScript Fundamentals</h3>
+                <p>Learn JavaScript essentials: variables, functions, DOM manipulation, and event handling for interactive web.</p>
+                <div class="course-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Web</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty beginner">Beginner</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 8 -->
+            <div class="course-card">
+                <div class="course-number">08</div>
+                <span class="course-icon">🔧</span>
+                <h3>ES6+ Modern JavaScript</h3>
+                <p>Arrow functions, promises, async/await, destructuring. Master modern JavaScript for professional development.</p>
+                <div class="course-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Modern</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 9 -->
+            <div class="course-card">
+                <div class="course-number">09</div>
+                <span class="course-icon">⚛️</span>
+                <h3>React.js Mastery</h3>
+                <p>Build scalable UIs with React. Components, hooks, state management, and production-ready applications.</p>
+                <div class="course-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Frontend</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>10 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 10 -->
+            <div class="course-card">
+                <div class="course-number">10</div>
+                <span class="course-icon">💻</span>
+                <h3>Shell Scripting Basics</h3>
+                <p>Master Bash scripting. Automate tasks, write shell scripts, and become a command-line power user.</p>
+                <div class="course-tags">
+                    <span class="tag">Shell</span>
+                    <span class="tag">Linux</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty beginner">Beginner</span>
+                    <span>6 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 11 -->
+            <div class="course-card">
+                <div class="course-number">11</div>
+                <span class="course-icon">🔐</span>
+                <h3>Advanced Shell Scripting</h3>
+                <p>Regex, sed, awk, scripting techniques. Create advanced automation scripts for system administration.</p>
+                <div class="course-tags">
+                    <span class="tag">Shell</span>
+                    <span class="tag">Advanced</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty advanced">Advanced</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 12 -->
+            <div class="course-card">
+                <div class="course-number">12</div>
+                <span class="course-icon">🐧</span>
+                <h3>Linux Administration</h3>
+                <p>Manage Linux systems professionally. Users, permissions, networking, services, and security essentials.</p>
+                <div class="course-tags">
+                    <span class="tag">Linux</span>
+                    <span class="tag">DevOps</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>10 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 13 -->
+            <div class="course-card">
+                <div class="course-number">13</div>
+                <span class="course-icon">🚀</span>
+                <h3>Node.js & Express</h3>
+                <p>Build scalable backend applications. Node.js runtime, Express framework, and best practices for production.</p>
+                <div class="course-tags">
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Backend</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>10 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 14 -->
+            <div class="course-card">
+                <div class="course-number">14</div>
+                <span class="course-icon">🗄️</span>
+                <h3>SQL & Databases</h3>
+                <p>Master SQL queries, database design, indexing, and relationships. Work with PostgreSQL and MySQL.</p>
+                <div class="course-tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">Database</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 15 -->
+            <div class="course-card">
+                <div class="course-number">15</div>
+                <span class="course-icon">🔗</span>
+                <h3>REST APIs & Web Services</h3>
+                <p>Design RESTful APIs following HTTP standards. Authentication, versioning, error handling, and documentation.</p>
+                <div class="course-tags">
+                    <span class="tag">API</span>
+                    <span class="tag">Backend</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 16 -->
+            <div class="course-card">
+                <div class="course-number">16</div>
+                <span class="course-icon">🤖</span>
+                <h3>Machine Learning Basics</h3>
+                <p>Introduction to ML. Supervised learning, algorithms, scikit-learn, and real-world machine learning applications.</p>
+                <div class="course-tags">
+                    <span class="tag">ML</span>
+                    <span class="tag">AI</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty advanced">Advanced</span>
+                    <span>12 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 17 -->
+            <div class="course-card">
+                <div class="course-number">17</div>
+                <span class="course-icon">🎓</span>
+                <h3>Git & Version Control</h3>
+                <p>Master Git workflows. Branching, merging, collaboration on GitHub, and professional development practices.</p>
+                <div class="course-tags">
+                    <span class="tag">Git</span>
+                    <span class="tag">Tools</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty beginner">Beginner</span>
+                    <span>4 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 18 -->
+            <div class="course-card">
+                <div class="course-number">18</div>
+                <span class="course-icon">📦</span>
+                <h3>Docker Containerization</h3>
+                <p>Containerize applications with Docker. Images, containers, Docker Compose, and registry management.</p>
+                <div class="course-tags">
+                    <span class="tag">Docker</span>
+                    <span class="tag">DevOps</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>6 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 19 -->
+            <div class="course-card">
+                <div class="course-number">19</div>
+                <span class="course-icon">☸️</span>
+                <h3>Kubernetes Orchestration</h3>
+                <p>Deploy and manage containerized apps at scale. Pods, services, deployments, and production patterns.</p>
+                <div class="course-tags">
+                    <span class="tag">Kubernetes</span>
+                    <span class="tag">DevOps</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty advanced">Advanced</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 20 -->
+            <div class="course-card">
+                <div class="course-number">20</div>
+                <span class="course-icon">🧪</span>
+                <h3>Testing & Quality Assurance</h3>
+                <p>Write robust tests. Unit testing, integration testing, TDD methodology, and pytest/Jest frameworks.</p>
+                <div class="course-tags">
+                    <span class="tag">Testing</span>
+                    <span class="tag">QA</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <span>6 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 21 -->
+            <div class="course-card">
+                <div class="course-number">21</div>
+                <span class="course-icon">🏗️</span>
+                <h3>System Design</h3>
+                <p>Design scalable systems. Load balancing, caching, databases, and architectural patterns for scale.</p>
+                <div class="course-tags">
+                    <span class="tag">Architecture</span>
+                    <span class="tag">Design</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty advanced">Advanced</span>
+                    <span>10 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 22 -->
+            <div class="course-card">
+                <div class="course-number">22</div>
+                <span class="course-icon">🔒</span>
+                <h3>Web Security</h3>
+                <p>Secure web applications. OWASP top 10, encryption, authentication, authorization, and security best practices.</p>
+                <div class="course-tags">
+                    <span class="tag">Security</span>
+                    <span class="tag">Backend</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty advanced">Advanced</span>
+                    <span>8 Weeks</span>
+                </div>
+            </div>
+
+            <!-- Course 23 -->
+            <div class="course-card">
+                <div class="course-number">23</div>
+                <span class="course-icon">🚀</span>
+                <h3>Full-Stack Capstone Project</h3>
+                <p>Build a complete, production-ready application. Frontend, backend, database, deployment, and best practices.</p>
+                <div class="course-tags">
+                    <span class="tag">Full-Stack</span>
+                    <span class="tag">Project</span>
+                </div>
+                <div class="course-footer">
+                    <span class="difficulty advanced">Advanced</span>
+                    <span>12 Weeks</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <h2 class="section-title">Learning Paths by Technology</h2>
+        <p class="section-subtitle">Choose your learning journey and master in-demand skills</p>
+
+        <div class="categories-grid">
+            <div class="category-card">
+                <span class="category-icon">🐍</span>
+                <h3>Python Programming</h3>
+                <p>3 comprehensive courses from fundamentals to advanced data analysis. Build a strong programming foundation.</p>
+            </div>
+
+            <div class="category-card">
+                <span class="category-icon">🌐</span>
+                <h3>Web Development</h3>
+                <p>7 courses covering HTML, CSS, JavaScript, React. Create stunning, interactive web applications.</p>
+            </div>
+
+            <div class="category-card">
+                <span class="category-icon">💻</span>
+                <h3>Shell & Linux</h3>
+                <p>3 courses on shell scripting and Linux administration. Master command-line and system management.</p>
+            </div>
+
+            <div class="category-card">
+                <span class="category-icon">🚀</span>
+                <h3>Backend Development</h3>
+                <p>3 courses on Node.js, databases, and REST APIs. Build scalable backend systems and services.</p>
+            </div>
+
+            <div class="category-card">
+                <span class="category-icon">⚙️</span>
+                <h3>DevOps & Cloud</h3>
+                <p>4 courses on Git, Docker, Kubernetes, and deployment. Deploy applications professionally at scale.</p>
+            </div>
+
+            <div class="category-card">
+                <span class="category-icon">🎯</span>
+                <h3>Advanced Topics</h3>
+                <p>3 courses on ML, testing, system design, and security. Master enterprise-level technologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CodeMastery</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Your complete platform for mastering modern programming and web development. Learn from industry experts and become a skilled developer.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#courses">All Courses</a></li>
+                    <li><a href="#categories">Learning Paths</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Career Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Learning Tracks</h3>
+                <ul>
+                    <li><a href="#">Python Track</a></li>
+                    <li><a href="#">Frontend Track</a></li>
+                    <li><a href="#">Backend Track</a></li>
+                    <li><a href="#">Full-Stack Track</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 CodeMastery. All rights reserved. Built with passion for developers. 💻</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        // Load saved theme preference or default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        // Update icon based on theme
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add button functionality
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Welcome to CodeMastery! This would redirect to enrollment.');
+            });
+        });
+    </script>
+</body>
+</html>
