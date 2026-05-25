@@ -826,92 +826,1587 @@ custom_looper(my_list) <span class="kw">do</span> |lang|
 
 <!-- ===================== LECTURE 06 ===================== -->
 <div class="lecture" id="lec-5">
+
 <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+
 <h1>Arrays & Hashes</h1>
-<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-beginner">Beginner</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Arrays and Hashes are two of the most important data structures in Ruby.
+They help developers organize, store, and manage data efficiently in applications.
+</p>
+
+<p>
+Arrays are used for storing ordered collections of values, while Hashes store data in key-value pairs.
+Both are heavily used in Ruby programming, web development, APIs, and database operations.
+</p>
+
 <h2>Arrays</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arrays.rb</span></div>
+
+<p>
+An Array is a collection of multiple values stored inside a single variable.
+Each element inside the array has an index position starting from <code>0</code>.
+</p>
+
+<p>
+Arrays can store numbers, strings, objects, or even other arrays.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">arrays.rb</span>
+</div>
+
 <pre>arr = [1, 2, 3, 4, 5]
+
 arr &lt;&lt; 6
+
 arr.each { |n| puts n }
+
 arr.map { |n| n * 2 }
-arr.select { |n| n.even? }</pre></div>
+
+arr.select { |n| n.even? }</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>[1, 2, 3, 4, 5]</strong> creates an array</li>
+<li><strong>&lt;&lt;</strong> adds a new element to the array</li>
+<li><strong>each</strong> loops through every element</li>
+<li><strong>map</strong> transforms array values</li>
+<li><strong>select</strong> filters elements based on conditions</li>
+</ul>
+
+<h2>Accessing Array Elements</h2>
+
+<p>
+Array elements can be accessed using index positions.
+Remember that indexing starts from zero.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">access.rb</span>
+</div>
+
+<pre>fruits = ["Apple", "Banana", "Orange"]
+
+puts fruits[0]
+puts fruits[1]</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Apple
+Banana</pre>
+</div>
+
+<p>
+Here:
+</p>
+
+<ul>
+<li><strong>fruits[0]</strong> accesses the first element</li>
+<li><strong>fruits[1]</strong> accesses the second element</li>
+</ul>
+
+<h2>Adding and Removing Elements</h2>
+
+<p>
+Ruby provides several methods for modifying arrays dynamically.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">modify.rb</span>
+</div>
+
+<pre>numbers = [1, 2, 3]
+
+numbers.push(4)
+
+numbers.pop
+
+puts numbers.inspect</pre>
+
+</div>
+
+<p>
+Explanation:
+</p>
+
+<ul>
+<li><strong>push()</strong> adds an element to the end of the array</li>
+<li><strong>pop</strong> removes the last element</li>
+<li><strong>inspect</strong> displays the complete array</li>
+</ul>
+
+<h2>Looping Through Arrays</h2>
+
+<p>
+Looping allows us to process each element individually.
+Ruby provides elegant iteration methods for arrays.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">loop.rb</span>
+</div>
+
+<pre>colors = ["Red", "Green", "Blue"]
+
+colors.each do |color|
+  puts color
+end</pre>
+
+</div>
+
+<p>
+The <code>each</code> method is one of the most commonly used iteration methods in Ruby.
+</p>
+
+<h2>Transforming Arrays with map()</h2>
+
+<p>
+The <code>map()</code> method creates a new array by modifying each element.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">map.rb</span>
+</div>
+
+<pre>numbers = [1, 2, 3]
+
+doubled = numbers.map { |n| n * 2 }
+
+puts doubled.inspect</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>[2, 4, 6]</pre>
+</div>
+
+<h2>Filtering Arrays with select()</h2>
+
+<p>
+The <code>select()</code> method filters elements based on conditions.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">select.rb</span>
+</div>
+
+<pre>numbers = [1, 2, 3, 4, 5]
+
+evens = numbers.select { |n| n.even? }
+
+puts evens.inspect</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>[2, 4]</pre>
+</div>
+
 <h2>Hashes</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">hashes.rb</span></div>
+
+<p>
+A Hash is a collection of key-value pairs.
+Instead of numeric indexes, data is accessed using unique keys.
+</p>
+
+<p>
+Hashes are extremely useful for storing structured data such as user profiles, configuration settings, and JSON-like objects.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">hashes.rb</span>
+</div>
+
 <pre>user = { name: "Ahmed", age: 25 }
+
 user[:city] = "Cairo"
-user.each { |k, v| puts "#{k}: #{v}" }</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Create a hash of students with grades, find all with grade &gt; 80.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(4)">← Previous</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button></div></div>
+
+user.each { |k, v| puts "#{k}: #{v}" }</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>name</strong> and <strong>age</strong> are keys</li>
+<li><strong>"Ahmed"</strong> and <strong>25</strong> are values</li>
+<li><strong>user[:city]</strong> adds a new key-value pair</li>
+<li><strong>each</strong> iterates through the hash</li>
+</ul>
+
+<h2>Accessing Hash Values</h2>
+
+<p>
+Hash values are accessed using keys.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">access_hash.rb</span>
+</div>
+
+<pre>student = {
+  name: "Sara",
+  marks: 92
+}
+
+puts student[:name]
+puts student[:marks]</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Sara
+92</pre>
+</div>
+
+<h2>Updating Hashes</h2>
+
+<p>
+Hash values can easily be updated or modified.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">update.rb</span>
+</div>
+
+<pre>user = { name: "Ali", age: 20 }
+
+user[:age] = 21
+
+puts user.inspect</pre>
+
+</div>
+
+<p>
+The age value changes from 20 to 21.
+</p>
+
+<h2>Nested Arrays and Hashes</h2>
+
+<p>
+Ruby allows arrays and hashes to be nested inside each other for more complex data structures.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">nested.rb</span>
+</div>
+
+<pre>students = [
+  { name: "Ahmed", grade: 90 },
+  { name: "Sara", grade: 85 }
+]
+
+puts students[0][:name]</pre>
+
+</div>
+
+<p>
+This structure is commonly used in APIs and database records.
+</p>
+
+<h2>Advantages of Arrays & Hashes</h2>
+
+<ul>
+<li>Efficient data organization</li>
+<li>Easy data access and modification</li>
+<li>Flexible storage structures</li>
+<li>Useful for real-world applications</li>
+<li>Essential for Ruby and Rails development</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use arrays for ordered collections</li>
+<li>Use hashes for structured key-value data</li>
+<li>Choose meaningful key names</li>
+<li>Avoid deeply nested structures when possible</li>
+<li>Use iteration methods for cleaner code</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Create a hash of students with grades, find all with grade &gt; 80.
+</p>
+
+<p>
+Try adding:
+</p>
+
+<ul>
+<li>At least 5 students</li>
+<li>A loop to display student names</li>
+<li>A condition to filter high grades</li>
+<li>An average grade calculator</li>
+</ul>
+
+</div>
+
+<h2>Summary</h2>
+
+<p>
+In this lecture, we learned about Arrays and Hashes in Ruby.
+We explored how arrays store ordered collections and how hashes store data using key-value pairs.
+</p>
+
+<p>
+We also learned how to access, modify, transform, and filter data using methods like <code>each</code>, <code>map</code>, and <code>select</code>.
+</p>
+
+<p>
+Arrays and Hashes are foundational concepts used throughout Ruby programming and Ruby on Rails development.
+</p>
+
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+<button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+</div>
+
+</div>
 
 <!-- ===================== LECTURE 07 ===================== -->
 <div class="lecture" id="lec-6">
+
 <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+
 <h1>Strings & Regular Expressions</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+    <span class="meta-badge level-intermediate">Intermediate</span>
+    <span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+    Strings are one of the most commonly used data types in programming.
+    Almost every application works with text in some form — usernames, passwords,
+    emails, search queries, messages, logs, and file content.
+</p>
+
+<p>
+    Ruby provides powerful built-in string methods that make text processing simple and efficient.
+    Along with strings, Ruby also supports <strong>Regular Expressions (Regex)</strong>,
+    which allow developers to search, validate, and manipulate text patterns.
+</p>
+
+<p>
+    In this lecture, we will learn:
+</p>
+
+<ul>
+    <li>How to work with strings in Ruby</li>
+    <li>Important string methods</li>
+    <li>How string manipulation works</li>
+    <li>What regular expressions are</li>
+    <li>How regex is used for validation and searching</li>
+</ul>
+
 <h2>String Methods</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">strings.rb</span></div>
+
+<p>
+    Ruby strings come with many built-in methods for modifying and analyzing text.
+    These methods help developers process data quickly without writing complex logic.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">strings.rb</span>
+
+</div>
+
 <pre>s = "Hello Ruby"
-s.upcase; s.downcase; s.reverse; s.length
-s.gsub("Ruby", "World")
-s.split(" ")</pre></div>
-<h2>Regex</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">regex.rb</span></div>
-<pre>"abc123" =~ /\d+/
-"a@b.com".match?(/\A[\w.]+@[\w]+\.\w+\z/)
-"hello".scan(/l/)</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Validate phone numbers using regex.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(5)">← Previous</button><button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button></div></div>
+
+<span class="cm"># Convert to uppercase</span>
+puts s.upcase
+
+<span class="cm"># Convert to lowercase</span>
+puts s.downcase
+
+<span class="cm"># Reverse string</span>
+puts s.reverse
+
+<span class="cm"># String length</span>
+puts s.length
+
+<span class="cm"># Replace text</span>
+puts s.gsub("Ruby", "World")
+
+<span class="cm"># Split into array</span>
+p s.split(" ")</pre>
+
+</div>
+
+<h3>Understanding Important String Methods</h3>
+
+<ul>
+    <li><strong>upcase</strong> converts text to uppercase</li>
+    <li><strong>downcase</strong> converts text to lowercase</li>
+    <li><strong>reverse</strong> reverses characters</li>
+    <li><strong>length</strong> returns total characters</li>
+    <li><strong>gsub</strong> replaces text globally</li>
+    <li><strong>split</strong> breaks string into arrays</li>
+</ul>
+
+<h3>More Useful String Methods</h3>
+
+<p>
+    Ruby includes many additional methods for checking and manipulating text.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">more_strings.rb</span>
+
+</div>
+
+<pre>text = "  Ruby Language  "
+
+<span class="cm"># Remove spaces</span>
+puts text.strip
+
+<span class="cm"># Check substring</span>
+puts text.include?("Ruby")
+
+<span class="cm"># Start and end checks</span>
+puts text.start_with?(" ")
+puts text.end_with?(" ")
+
+<span class="cm"># Repeat string</span>
+puts "Hi! " * 3
+
+<span class="cm"># Access characters</span>
+puts text[2]
+puts text[0, 5]</pre>
+
+</div>
+
+<h3>String Interpolation</h3>
+
+<p>
+    String interpolation allows variables to be inserted directly inside strings
+    using <strong>#{ }</strong>.
+</p>
+
+<p>
+    This is cleaner and easier than concatenation.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">interpolation.rb</span>
+
+</div>
+
+<pre>name = "Ahmed"
+age = 22
+
+puts "My name is #{name}"
+puts "I am #{age} years old"</pre>
+
+</div>
+
+<h2>Regular Expressions (Regex)</h2>
+
+<p>
+    Regular Expressions are patterns used to search, match, and validate text.
+    Regex is extremely useful for checking formats like emails, phone numbers,
+    passwords, URLs, and dates.
+</p>
+
+<p>
+    Ruby provides excellent built-in support for regex.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">regex.rb</span>
+
+</div>
+
+<pre><span class="cm"># Match digits</span>
+puts "abc123" =~ /\d+/
+
+<span class="cm"># Email validation</span>
+puts "a@b.com".match?(/\A[\w.]+@[\w]+\.\w+\z/)
+
+<span class="cm"># Find all matches</span>
+p "hello".scan(/l/)</pre>
+
+</div>
+
+<h3>Understanding Regex Symbols</h3>
+
+<ul>
+    <li><strong>\d</strong> → Any digit</li>
+    <li><strong>+</strong> → One or more matches</li>
+    <li><strong>\A</strong> → Start of string</li>
+    <li><strong>\z</strong> → End of string</li>
+    <li><strong>[]</strong> → Character group</li>
+    <li><strong>.</strong> → Any character</li>
+</ul>
+
+<h3>Regex Matching Methods</h3>
+
+<p>
+    Ruby provides several methods for regex operations.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">regex_methods.rb</span>
+
+</div>
+
+<pre>text = "Ruby 123 Programming"
+
+<span class="cm"># Check match</span>
+puts text.match?(/\d+/)
+
+<span class="cm"># Return first match</span>
+p text.match(/\d+/)
+
+<span class="cm"># Find all matches</span>
+p text.scan(/\w+/)
+
+<span class="cm"># Replace using regex</span>
+puts text.gsub(/\d+/, "***")</pre>
+
+</div>
+
+<h3>Email Validation Example</h3>
+
+<p>
+    Regex is commonly used for validating user input in forms and applications.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">email_validator.rb</span>
+
+</div>
+
+<pre>email = "user@example.com"
+
+pattern = /\A[\w.]+@[\w]+\.\w+\z/
+
+if email.match?(pattern)
+  puts "Valid Email"
+else
+  puts "Invalid Email"
+end</pre>
+
+</div>
+
+<h3>Phone Number Validation</h3>
+
+<p>
+    Regex can also validate phone number formats.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">phone_regex.rb</span>
+
+</div>
+
+<pre>phone = "9876543210"
+
+if phone.match?(/\A\d{10}\z/)
+  puts "Valid Number"
+else
+  puts "Invalid Number"
+end</pre>
+
+</div>
+
+<h2>Common Regex Patterns</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">patterns.rb</span>
+
+</div>
+
+<pre><span class="cm"># Only digits</span>
+/\d+/
+
+<span class="cm"># Only alphabets</span>
+/[a-zA-Z]+/
+
+<span class="cm"># Whitespace</span>
+/\s/
+
+<span class="cm"># Email format</span>
+/\A[\w.]+@[\w]+\.\w+\z/
+
+<span class="cm"># 10-digit phone number</span>
+/\A\d{10}\z/</pre>
+
+</div>
+
+<h2>Best Practices</h2>
+
+<ul>
+    <li>Use meaningful regex patterns</li>
+    <li>Keep regex readable and simple</li>
+    <li>Use string methods before complex regex when possible</li>
+    <li>Validate user input carefully</li>
+    <li>Test regex patterns with multiple examples</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+    Create Ruby programs that:
+</p>
+
+<ul>
+    <li>Validate phone numbers using regex</li>
+    <li>Validate email addresses</li>
+    <li>Count words inside a sentence</li>
+    <li>Replace digits with symbols</li>
+    <li>Check if a password contains numbers</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(5)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(7)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
+
 
 <!-- ===================== LECTURE 08 ===================== -->
 <div class="lecture" id="lec-7">
+
 <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+
 <h1>OOP in Ruby</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-intermediate">Intermediate</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Object-Oriented Programming (OOP) is a programming paradigm that organizes code using objects and classes.
+Ruby is a fully object-oriented language, meaning almost everything in Ruby is treated as an object.
+</p>
+
+<p>
+OOP helps developers write cleaner, reusable, scalable, and maintainable code.
+It is widely used in Ruby on Rails applications and modern software development.
+</p>
+
+<h2>What is a Class?</h2>
+
+<p>
+A class is a blueprint or template used to create objects.
+It defines the properties (attributes) and behaviors (methods) that objects will have.
+</p>
+
+<p>
+For example:
+</p>
+
+<ul>
+<li>A <strong>Car</strong> class may contain color, speed, and brand</li>
+<li>A <strong>User</strong> class may contain name, email, and password</li>
+<li>A <strong>BankAccount</strong> class may contain balance and account number</li>
+</ul>
+
 <h2>Classes</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">class.rb</span></div>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">class.rb</span>
+</div>
+
 <pre>class Person
+
   attr_accessor :name, :age
+
   def initialize(name, age)
-    @name = name; @age = age
+    @name = name
+    @age = age
   end
+
   def greet = "Hi, I'm #{@name}"
 end
+
 p = Person.new("Ahmed", 25)
-puts p.greet</pre></div>
+
+puts p.greet</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>class Person</strong> defines a new class</li>
+<li><strong>attr_accessor</strong> creates getter and setter methods</li>
+<li><strong>initialize</strong> is the constructor method</li>
+<li><strong>@name</strong> and <strong>@age</strong> are instance variables</li>
+<li><strong>Person.new()</strong> creates a new object</li>
+<li><strong>greet</strong> is an instance method</li>
+</ul>
+
+<h2>Understanding Objects</h2>
+
+<p>
+An object is an instance of a class.
+When we create an object, Ruby allocates memory and stores the object's data separately.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">objects.rb</span>
+</div>
+
+<pre>car1 = Person.new("Ali", 22)
+
+car2 = Person.new("Sara", 21)
+
+puts car1.name
+puts car2.name</pre>
+
+</div>
+
+<p>
+Each object maintains its own independent data.
+</p>
+
+<h2>Instance Variables</h2>
+
+<p>
+Instance variables store object-specific data.
+They begin with the <code>@</code> symbol.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">instance.rb</span>
+</div>
+
+<pre>class Student
+
+  def initialize(name)
+    @name = name
+  end
+
+  def show
+    puts @name
+  end
+end</pre>
+
+</div>
+
+<p>
+The variable <code>@name</code> belongs to each individual object.
+</p>
+
+<h2>Methods in Ruby</h2>
+
+<p>
+Methods define the behavior of objects.
+They allow objects to perform actions.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">methods.rb</span>
+</div>
+
+<pre>class Calculator
+
+  def add(a, b)
+    a + b
+  end
+end
+
+calc = Calculator.new
+
+puts calc.add(5, 3)</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>8</pre>
+</div>
+
+<h2>Accessors in Ruby</h2>
+
+<p>
+Ruby provides special helper methods for managing object attributes.
+</p>
+
+<ul>
+<li><strong>attr_reader</strong> → Read-only access</li>
+<li><strong>attr_writer</strong> → Write-only access</li>
+<li><strong>attr_accessor</strong> → Read and write access</li>
+</ul>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">accessor.rb</span>
+</div>
+
+<pre>class User
+
+  attr_accessor :username
+
+  def initialize(username)
+    @username = username
+  end
+end</pre>
+
+</div>
+
 <h2>Inheritance</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">inherit.rb</span></div>
+
+<p>
+Inheritance allows one class to inherit properties and methods from another class.
+This promotes code reusability and reduces duplication.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">inherit.rb</span>
+</div>
+
 <pre>class Animal
+
   def speak = "..."
 end
+
 class Dog &lt; Animal
+
   def speak = "Woof!"
-end</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Create a BankAccount class with deposit/withdraw.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(6)">← Previous</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button></div></div>
+end</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Dog</strong> inherits from <strong>Animal</strong></li>
+<li>The <strong>speak</strong> method is overridden inside Dog</li>
+<li>This demonstrates polymorphism in Ruby</li>
+</ul>
+
+<h2>Method Overriding</h2>
+
+<p>
+Method overriding occurs when a child class provides its own version of a parent class method.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">override.rb</span>
+</div>
+
+<pre>class Vehicle
+
+  def move
+    puts "Moving..."
+  end
+end
+
+class Bike &lt; Vehicle
+
+  def move
+    puts "Bike is moving"
+  end
+end</pre>
+
+</div>
+
+<h2>Using super</h2>
+
+<p>
+The <code>super</code> keyword calls a method from the parent class.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">super.rb</span>
+</div>
+
+<pre>class Animal
+
+  def speak
+    puts "Animal sound"
+  end
+end
+
+class Cat &lt; Animal
+
+  def speak
+    super
+    puts "Meow"
+  end
+end</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Animal sound
+Meow</pre>
+</div>
+
+<h2>Encapsulation</h2>
+
+<p>
+Encapsulation means hiding internal object details and exposing only necessary functionality.
+It improves security and protects object data.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">private.rb</span>
+</div>
+
+<pre>class Account
+
+  def show_balance
+    puts calculate_balance
+  end
+
+  private
+
+  def calculate_balance
+    5000
+  end
+end</pre>
+
+</div>
+
+<p>
+Private methods can only be accessed inside the same class.
+</p>
+
+<h2>Advantages of OOP</h2>
+
+<ul>
+<li>Improves code organization</li>
+<li>Encourages code reusability</li>
+<li>Makes large applications easier to manage</li>
+<li>Supports modular development</li>
+<li>Reduces duplicate code</li>
+</ul>
+
+<h2>Real-World Uses of OOP</h2>
+
+<ul>
+<li>Web applications</li>
+<li>Game development</li>
+<li>Banking systems</li>
+<li>E-commerce platforms</li>
+<li>Social media applications</li>
+<li>Desktop software</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use meaningful class names</li>
+<li>Keep classes focused on one responsibility</li>
+<li>Avoid unnecessary inheritance</li>
+<li>Use encapsulation to protect data</li>
+<li>Write reusable methods</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Create a BankAccount class with deposit/withdraw.
+</p>
+
+<p>
+Try adding:
+</p>
+
+<ul>
+<li>A balance instance variable</li>
+<li>A method to check account balance</li>
+<li>Error handling for insufficient funds</li>
+<li>A transaction history array</li>
+</ul>
+
+</div>
+
+<h2>Summary</h2>
+
+<p>
+In this lecture, we learned the fundamentals of Object-Oriented Programming in Ruby.
+We explored classes, objects, methods, instance variables, and accessors.
+</p>
+
+<p>
+We also studied inheritance, method overriding, encapsulation, and the use of the <code>super</code> keyword.
+</p>
+
+<p>
+OOP is a foundational concept in Ruby and is heavily used in Ruby on Rails and modern software development.
+</p>
+
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+<button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+</div>
+
+</div>
+
 
 <!-- ===================== LECTURE 09 ===================== -->
 <div class="lecture" id="lec-8">
+
 <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+
 <h1>Modules & Mixins</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+    <span class="meta-badge level-intermediate">Intermediate</span>
+    <span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+    As Ruby applications grow larger, organizing code becomes extremely important.
+    Writing everything inside a single file or class quickly becomes difficult to manage.
+</p>
+
+<p>
+    Ruby provides <strong>Modules</strong> and <strong>Mixins</strong> to help developers
+    organize reusable code efficiently. Modules help group related functionality together,
+    while mixins allow classes to share methods without inheritance.
+</p>
+
+<p>
+    These concepts are widely used in Ruby and Ruby on Rails applications because they improve:
+</p>
+
+<ul>
+    <li>Code organization</li>
+    <li>Reusability</li>
+    <li>Maintainability</li>
+    <li>Scalability</li>
+</ul>
+
+<p>
+    In this lecture, we will learn:
+</p>
+
+<ul>
+    <li>What modules are</li>
+    <li>How modules work as namespaces</li>
+    <li>How to create reusable mixins</li>
+    <li>How include works in Ruby</li>
+    <li>How modules improve application structure</li>
+</ul>
+
+<h2>What is a Module?</h2>
+
+<p>
+    A module is a container used to group related methods, constants, and classes together.
+    Unlike classes, modules cannot create objects directly.
+</p>
+
+<p>
+    Modules are mainly used for:
+</p>
+
+<ul>
+    <li>Creating namespaces</li>
+    <li>Sharing reusable functionality</li>
+    <li>Avoiding naming conflicts</li>
+</ul>
+
 <h2>Modules as Namespaces</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">module.rb</span></div>
+
+<p>
+    Namespaces prevent naming conflicts between classes and methods.
+    In large applications, different files may contain methods or classes with the same name.
+</p>
+
+<p>
+    Modules solve this problem by grouping related functionality together.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">module.rb</span>
+
+</div>
+
 <pre>module MathTools
-  def self.square(x) = x * x
+
+  <span class="cm"># Module method</span>
+  def self.square(x)
+    x * x
+  end
 end
-MathTools.square(5)</pre></div>
+
+puts MathTools.square(5)</pre>
+
+</div>
+
+<h3>Understanding the Example</h3>
+
+<ul>
+    <li><strong>module MathTools</strong> creates a namespace</li>
+    <li><strong>self.square</strong> defines a module method</li>
+    <li><strong>MathTools.square(5)</strong> calls the method</li>
+</ul>
+
+<h3>Another Namespace Example</h3>
+
+<p>
+    Multiple classes with the same name can exist safely inside different modules.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">namespace.rb</span>
+
+</div>
+
+<pre>module Admin
+
+  class User
+
+    def info
+      puts "Admin User"
+    end
+  end
+end
+
+module Customer
+
+  class User
+
+    def info
+      puts "Customer User"
+    end
+  end
+end
+
+Admin::User.new.info
+
+Customer::User.new.info</pre>
+
+</div>
+
+<h3>Why Namespaces Are Important</h3>
+
+<ul>
+    <li>Avoid duplicate names</li>
+    <li>Improve project organization</li>
+    <li>Group related functionality</li>
+    <li>Keep code cleaner</li>
+</ul>
+
 <h2>Mixins</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mixin.rb</span></div>
+
+<p>
+    Mixins allow methods from a module to be included inside a class.
+    This is one of Ruby’s most powerful features.
+</p>
+
+<p>
+    Instead of inheriting from another class, Ruby allows classes to
+    reuse functionality through modules.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">mixin.rb</span>
+
+</div>
+
 <pre>module Loggable
-  def log(msg) = puts "[LOG] #{msg}"
+
+  def log(msg)
+    puts "[LOG] #{msg}"
+  end
 end
+
 class Service
+
   include Loggable
-  def run = log("Started")
-end</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Create a Comparable mixin for a Book class.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(7)">← Previous</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button></div></div>
+
+  def run
+    log("Started")
+  end
+end
+
+Service.new.run</pre>
+
+</div>
+
+<h3>Understanding Mixins</h3>
+
+<ul>
+    <li><strong>Loggable</strong> contains reusable methods</li>
+    <li><strong>include</strong> adds module methods to the class</li>
+    <li><strong>Service</strong> can directly use the log() method</li>
+</ul>
+
+<h3>Benefits of Mixins</h3>
+
+<ul>
+    <li>Reduce duplicate code</li>
+    <li>Share reusable behaviors</li>
+    <li>Support cleaner architecture</li>
+    <li>Avoid deep inheritance chains</li>
+</ul>
+
+<h2>Including Multiple Modules</h2>
+
+<p>
+    A Ruby class can include multiple modules at the same time.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">multi_mixin.rb</span>
+
+</div>
+
+<pre>module Printer
+
+  def print_data
+    puts "Printing Data"
+  end
+end
+
+module Scanner
+
+  def scan_data
+    puts "Scanning Data"
+  end
+end
+
+class Machine
+
+  include Printer
+  include Scanner
+end
+
+m = Machine.new
+
+m.print_data
+
+m.scan_data</pre>
+
+</div>
+
+<h2>Using extend</h2>
+
+<p>
+    Ruby also provides the <strong>extend</strong> keyword.
+    While <strong>include</strong> adds methods as instance methods,
+    <strong>extend</strong> adds methods as class methods.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">extend.rb</span>
+
+</div>
+
+<pre>module Greeting
+
+  def hello
+    puts "Hello"
+  end
+end
+
+class Test
+
+  extend Greeting
+end
+
+Test.hello</pre>
+
+</div>
+
+<h3>include vs extend</h3>
+
+<ul>
+    <li><strong>include</strong> → Adds instance methods</li>
+    <li><strong>extend</strong> → Adds class methods</li>
+</ul>
+
+<h2>Ruby Built-in Mixins</h2>
+
+<p>
+    Ruby includes several built-in modules that provide useful functionality.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">comparable.rb</span>
+
+</div>
+
+<pre>class Product
+
+  include Comparable
+
+  attr_accessor :price
+
+  def initialize(price)
+    @price = price
+  end
+
+  def <=>(other)
+    price <=> other.price
+  end
+end
+
+p1 = Product.new(100)
+
+p2 = Product.new(200)
+
+puts p1 < p2</pre>
+
+</div>
+
+<h3>What is Comparable?</h3>
+
+<p>
+    The Comparable module allows objects to be compared using operators like:
+</p>
+
+<ul>
+    <li>&lt;</li>
+    <li>&gt;</li>
+    <li>&lt;=</li>
+    <li>&gt;=</li>
+    <li>==</li>
+</ul>
+
+<p>
+    To use Comparable, a class must define the <strong>&lt;=&gt;</strong>
+    spaceship operator.
+</p>
+
+<h2>Best Practices</h2>
+
+<ul>
+    <li>Use modules to organize related functionality</li>
+    <li>Use mixins for reusable behaviors</li>
+    <li>Avoid putting too many responsibilities in one module</li>
+    <li>Prefer mixins over unnecessary inheritance</li>
+    <li>Use namespaces in large projects</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+    Create the following:
+</p>
+
+<ul>
+    <li>A Comparable mixin for a Book class</li>
+    <li>A Logger module with reusable log methods</li>
+    <li>Two namespaces containing classes with the same name</li>
+    <li>A class that includes multiple mixins</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(7)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(9)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
+
 
 <!-- ===================== LECTURE 10 ===================== -->
 <div class="lecture" id="lec-9">

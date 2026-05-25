@@ -2942,183 +2942,1514 @@ print(student[<span class="st">"name"</span>]);</pre>
 
 <!-- ===================== LECTURE 06 ===================== -->
 <div class="lecture" id="lec-5">
+
 <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+
 <h1>Classes & Objects</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+    <span class="meta-badge level-intermediate">Intermediate</span>
+    <span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+    Object-Oriented Programming (OOP) is a programming style where we organize code using
+    <strong>classes</strong> and <strong>objects</strong>. Instead of writing everything inside
+    functions, OOP allows us to model real-world entities like users, cars, products, and bank accounts.
+</p>
+
+<p>
+    Dart is a fully object-oriented language, meaning almost everything in Dart is an object.
+    Using classes makes programs cleaner, reusable, and easier to maintain.
+</p>
+
+<p>
+    In this lecture, we will learn:
+</p>
+
+<ul>
+    <li>How to create classes and objects</li>
+    <li>How constructors initialize data</li>
+    <li>How inheritance works</li>
+    <li>How getters and setters control access</li>
+    <li>How OOP improves code structure</li>
+</ul>
+
 <h2>Defining a Class</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">person.dart</span></div>
+
+<p>
+    A class acts like a blueprint or template for creating objects. It defines properties
+    (variables) and behaviors (methods) that objects will have.
+</p>
+
+<p>
+    An object is an actual instance created from the class.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">person.dart</span>
+</div>
+
 <pre>class Person {
+
+  <span class="cm">// Properties (instance variables)</span>
   String name;
   int age;
+
+  <span class="cm">// Constructor</span>
   Person(this.name, this.age);
-  void greet() => print("Hi, I'm $name");
+
+  <span class="cm">// Method</span>
+  void greet() {
+    print("Hi, I'm $name");
+  }
 }
+
 void main() {
+
+  <span class="cm">// Creating object</span>
   var p = Person("Ahmed", 25);
-  p.greet(); // Hi, I'm Ahmed
-}</pre></div>
-<h2>Constructors</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">constructors.dart</span></div>
-<pre>class Point {
-  double x, y;
-  Point(this.x, this.y);                    // default
-  Point.origin() : x = 0, y = 0;           // named
-  Point.fromJson(Map<String,double> m)      // factory
-      : x = m['x']!, y = m['y']!;
-}</pre></div>
-<h2>Inheritance</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">inherit.dart</span></div>
-<pre>class Animal {
-  void speak() => print("...");
+
+  <span class="cm">// Calling method</span>
+  p.greet();
+}</pre>
+
+</div>
+
+<h3>Understanding the Example</h3>
+
+<ul>
+    <li><strong>class Person</strong> creates a blueprint</li>
+    <li><strong>name</strong> and <strong>age</strong> are properties</li>
+    <li><strong>Person()</strong> is the constructor</li>
+    <li><strong>greet()</strong> is a method</li>
+    <li><strong>p</strong> is an object of the Person class</li>
+</ul>
+
+<h3>Creating Multiple Objects</h3>
+
+<p>
+    A single class can create many objects with different values.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">multiple_objects.dart</span>
+</div>
+
+<pre>class Student {
+
+  String name;
+  int marks;
+
+  Student(this.name, this.marks);
+
+  void showInfo() {
+    print("$name scored $marks");
+  }
 }
+
+void main() {
+
+  var s1 = Student("Ali", 90);
+  var s2 = Student("Sara", 85);
+
+  s1.showInfo();
+  s2.showInfo();
+}</pre>
+
+</div>
+
+<h2>Constructors</h2>
+
+<p>
+    Constructors are special methods used to initialize objects when they are created.
+    They automatically run whenever a new object is made.
+</p>
+
+<p>
+    Dart supports different types of constructors:
+</p>
+
+<ul>
+    <li>Default constructors</li>
+    <li>Named constructors</li>
+    <li>Factory constructors</li>
+</ul>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">constructors.dart</span>
+</div>
+
+<pre>class Point {
+
+  double x, y;
+
+  <span class="cm">// Default constructor</span>
+  Point(this.x, this.y);
+
+  <span class="cm">// Named constructor</span>
+  Point.origin()
+      : x = 0,
+        y = 0;
+
+  <span class="cm">// Named constructor with custom values</span>
+  Point.custom(double a, double b)
+      : x = a,
+        y = b;
+}
+
+void main() {
+
+  var p1 = Point(2, 5);
+
+  var p2 = Point.origin();
+
+  var p3 = Point.custom(10, 20);
+
+  print(p1.x);
+  print(p2.x);
+  print(p3.x);
+}</pre>
+
+</div>
+
+<h3>Why Constructors Are Important</h3>
+
+<ul>
+    <li>Initialize object data automatically</li>
+    <li>Reduce repetitive code</li>
+    <li>Ensure objects start with valid values</li>
+    <li>Improve readability</li>
+</ul>
+
+<h2>Inheritance</h2>
+
+<p>
+    Inheritance allows one class to reuse features from another class.
+    The child class inherits properties and methods from the parent class.
+</p>
+
+<p>
+    This promotes code reuse and avoids duplication.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">inherit.dart</span>
+</div>
+
+<pre>class Animal {
+
+  void speak() {
+    print("Animal makes sound");
+  }
+}
+
 class Dog extends Animal {
+
   @override
-  void speak() => print("Woof!");
-}</pre></div>
+  void speak() {
+    print("Woof!");
+  }
+}
+
+void main() {
+
+  var d = Dog();
+
+  d.speak();
+}</pre>
+
+</div>
+
+<h3>Understanding Inheritance</h3>
+
+<ul>
+    <li><strong>Animal</strong> is the parent class</li>
+    <li><strong>Dog</strong> is the child class</li>
+    <li><strong>extends</strong> creates inheritance</li>
+    <li><strong>@override</strong> replaces parent behavior</li>
+</ul>
+
+<h3>Benefits of Inheritance</h3>
+
+<ul>
+    <li>Code reusability</li>
+    <li>Cleaner program structure</li>
+    <li>Easy maintenance</li>
+    <li>Supports scalable applications</li>
+</ul>
+
 <h2>Getters & Setters</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">getset.dart</span></div>
+
+<p>
+    Getters and setters provide controlled access to class properties.
+    Instead of directly modifying variables, getters and setters allow validation
+    and custom behavior.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">getset.dart</span>
+</div>
+
 <pre>class Rectangle {
+
   double w, h;
+
   Rectangle(this.w, this.h);
-  double get area => w * h;
-  set width(double val) => w = val;
-}</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Create a BankAccount class with deposit(), withdraw(), and a balance getter. Prevent negative balance.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(4)">← Previous</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button></div></div>
+
+  <span class="cm">// Getter</span>
+  double get area {
+    return w * h;
+  }
+
+  <span class="cm">// Setter</span>
+  set width(double val) {
+
+    if (val > 0) {
+      w = val;
+    }
+  }
+}
+
+void main() {
+
+  var r = Rectangle(5, 10);
+
+  print(r.area);
+
+  r.width = 20;
+
+  print(r.area);
+}</pre>
+
+</div>
+
+<h3>Why Use Getters & Setters?</h3>
+
+<ul>
+    <li>Protect object data</li>
+    <li>Add validation logic</li>
+    <li>Prevent invalid values</li>
+    <li>Improve encapsulation</li>
+</ul>
+
+<h2>Encapsulation</h2>
+
+<p>
+    Encapsulation means hiding internal object data and exposing only necessary functionality.
+    This protects data from accidental modification.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">encapsulation.dart</span>
+</div>
+
+<pre>class BankAccount {
+
+  double _balance = 0;
+
+  <span class="cm">// Getter</span>
+  double get balance => _balance;
+
+  <span class="cm">// Deposit method</span>
+  void deposit(double amount) {
+
+    if (amount > 0) {
+      _balance += amount;
+    }
+  }
+}
+
+void main() {
+
+  var acc = BankAccount();
+
+  acc.deposit(500);
+
+  print(acc.balance);
+}</pre>
+
+</div>
+
+<h3>Best Practices</h3>
+
+<ul>
+    <li>Use meaningful class names</li>
+    <li>Keep classes focused on one responsibility</li>
+    <li>Use constructors for initialization</li>
+    <li>Protect important variables using encapsulation</li>
+    <li>Reuse code through inheritance</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+    Create a <strong>BankAccount</strong> class with:
+</p>
+
+<ul>
+    <li>A private balance variable</li>
+    <li>deposit() method</li>
+    <li>withdraw() method</li>
+    <li>A balance getter</li>
+    <li>Validation to prevent negative balance</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(4)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(6)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
 
 <!-- ===================== LECTURE 07 ===================== -->
 <div class="lecture" id="lec-6">
 <div class="lecture-tag">Lecture 07 · Core Concepts</div>
 <h1>Null Safety & Asynchronous Programming</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-intermediate">Intermediate</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+In modern Dart development, Null Safety and Asynchronous Programming are two extremely important concepts. 
+They help developers write safer, cleaner, and more efficient applications.
+</p>
+
+<p>
+Null Safety helps prevent unexpected null errors, while asynchronous programming allows applications 
+to perform time-consuming tasks like API requests, file handling, and database operations without freezing the app.
+</p>
+
 <h2>Null Safety Basics</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">nullsafe.dart</span></div>
+
+<p>
+Before Null Safety was introduced, applications often crashed because variables contained unexpected null values.
+Dart introduced Null Safety to reduce these runtime errors and improve code reliability.
+</p>
+
+<p>
+In Dart, variables are non-nullable by default. This means they must contain a value unless explicitly marked as nullable using <code>?</code>.
+</p>
+
+<div class="code-block">
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">nullsafe.dart</span>
+</div>
+
 <pre>String? maybeNull;           // nullable
 String definitely = "hello"; // non-nullable
-print(maybeNull?.length);    // null-aware: prints null
+
+print(maybeNull?.length);      // null-aware: prints null
 print(maybeNull ?? "default"); // if-null operator
-int? len = maybeNull?.length;  // nullable chain</pre></div>
+
+int? len = maybeNull?.length;  // nullable chain</pre>
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>String?</strong> allows the variable to store null values</li>
+<li><strong>String definitely</strong> must always contain a value</li>
+<li><strong>?.</strong> safely accesses a property if the object is not null</li>
+<li><strong>??</strong> provides a default value if the variable is null</li>
+</ul>
+
+<h2>Why Null Safety Matters</h2>
+
+<p>
+Null-related crashes are one of the most common problems in application development. 
+Null Safety helps developers detect these issues during compilation instead of runtime.
+</p>
+
+<ul>
+<li>Reduces application crashes</li>
+<li>Improves code readability</li>
+<li>Makes debugging easier</li>
+<li>Provides safer memory handling</li>
+<li>Improves application performance</li>
+</ul>
+
+<h2>Null Assertion Operator</h2>
+
+<p>
+Sometimes developers are completely sure that a nullable variable contains a value. 
+In such cases, the Null Assertion Operator <code>!</code> can be used.
+</p>
+
+<div class="code-block">
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">assertion.dart</span>
+</div>
+
+<pre>String? username = "Alex";
+
+print(username!.length);</pre>
+</div>
+
+<p>
+The <code>!</code> operator tells Dart that the value is definitely not null.
+However, using it incorrectly may still cause runtime errors.
+</p>
+
 <h2>Late & Required</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">late.dart</span></div>
+
+<p>
+The <code>late</code> keyword is used when a variable will be initialized later, 
+while <code>required</code> forces users to provide values for named parameters.
+</p>
+
+<div class="code-block">
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">late.dart</span>
+</div>
+
 <pre>class User {
   late String name;  // initialized later
+
   User({required this.name});
-}</pre></div>
+}</pre>
+</div>
+
+<p>
+Here:
+</p>
+
+<ul>
+<li><strong>late</strong> delays initialization until the variable is used</li>
+<li><strong>required</strong> ensures that the parameter must be passed during object creation</li>
+</ul>
+
+<h2>Introduction to Asynchronous Programming</h2>
+
+<p>
+Asynchronous programming allows Dart applications to perform long-running operations 
+without blocking the execution of other code.
+</p>
+
+<p>
+For example, when downloading data from the internet, the app should continue responding 
+to the user instead of freezing until the download completes.
+</p>
+
+<h2>Understanding Futures</h2>
+
+<p>
+A <strong>Future</strong> represents a value that will become available sometime in the future.
+It is commonly used for:
+</p>
+
+<ul>
+<li>API requests</li>
+<li>Database operations</li>
+<li>File reading and writing</li>
+<li>Timers and delays</li>
+<li>Network communication</li>
+</ul>
+
 <h2>Futures (Async/Await)</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">async.dart</span></div>
+
+<p>
+The <code>async</code> and <code>await</code> keywords simplify asynchronous programming 
+and make the code easier to read.
+</p>
+
+<div class="code-block">
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">async.dart</span>
+</div>
+
 <pre>Future<String> fetchData() async {
   await Future.delayed(Duration(seconds: 2));
+
   return "Data loaded!";
 }
+
 void main() async {
   print("Loading...");
+
   String result = await fetchData();
+
   print(result); // Data loaded!
-}</pre></div>
+}</pre>
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Future&lt;String&gt;</strong> means the function will return a String later</li>
+<li><strong>async</strong> marks the function as asynchronous</li>
+<li><strong>await</strong> pauses execution until the Future completes</li>
+<li><strong>Future.delayed()</strong> creates an artificial delay</li>
+</ul>
+
+<h2>Execution Flow of Async Code</h2>
+
+<p>
+The program first prints:
+</p>
+
+<div class="code-block">
+<pre>Loading...</pre>
+</div>
+
+<p>
+After waiting for 2 seconds, the Future completes and prints:
+</p>
+
+<div class="code-block">
+<pre>Data loaded!</pre>
+</div>
+
+<p>
+This demonstrates how asynchronous code allows the program to continue running while waiting for background tasks.
+</p>
+
 <h2>Error Handling</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">errors.dart</span></div>
+
+<p>
+Errors may occur during asynchronous operations such as failed network requests or missing files. 
+Dart uses <code>try-catch</code> blocks to handle these exceptions safely.
+</p>
+
+<div class="code-block">
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">errors.dart</span>
+</div>
+
 <pre>try {
   var data = await fetchData();
+
 } catch (e) {
   print("Error: $e");
+
 } finally {
   print("Done.");
-}</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Write an async function that fetches user data, handles network errors, and returns a default value on failure.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(5)">← Previous</button><button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button></div></div>
+}</pre>
+</div>
+
+<p>
+Here:
+</p>
+
+<ul>
+<li><strong>try</strong> contains risky code</li>
+<li><strong>catch</strong> handles exceptions</li>
+<li><strong>finally</strong> always executes whether an error occurs or not</li>
+</ul>
+
+<h2>Real-World Uses of Async Programming</h2>
+
+<ul>
+<li>Fetching data from REST APIs</li>
+<li>User authentication systems</li>
+<li>Cloud database operations</li>
+<li>Downloading images and files</li>
+<li>Real-time chat applications</li>
+<li>Background processing tasks</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use Null Safety to avoid crashes</li>
+<li>Avoid unnecessary use of the <code>!</code> operator</li>
+<li>Handle all possible exceptions</li>
+<li>Use async/await for readable asynchronous code</li>
+<li>Keep asynchronous operations lightweight and optimized</li>
+</ul>
+
+<div class="exercise">
+<div class="exercise-title">Practice</div>
+
+<p>
+Write an async function that fetches user data, handles network errors, and returns a default value on failure.
+</p>
+
+<p>
+Try adding:
+</p>
+
+<ul>
+<li>A loading message before fetching data</li>
+<li>A delay using <code>Future.delayed()</code></li>
+<li>A custom error message inside the catch block</li>
+<li>A fallback default value if the request fails</li>
+</ul>
+</div>
+
+<h2>Summary</h2>
+
+<p>
+In this lecture, we learned about Null Safety and Asynchronous Programming in Dart.
+We explored nullable and non-nullable variables, null-aware operators, the <code>late</code> keyword, and required parameters.
+</p>
+
+<p>
+We also learned how Futures, async, and await work together to handle time-consuming operations efficiently.
+Finally, we explored error handling techniques using try-catch-finally blocks.
+</p>
+
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+<button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+</div>
+</div>
+
 
 <!-- ===================== LECTURE 08 ===================== -->
 <div class="lecture" id="lec-7">
+
 <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+
 <h1>Generics & Extensions</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+    <span class="meta-badge level-intermediate">Intermediate</span>
+    <span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+    As applications grow larger, writing reusable and flexible code becomes extremely important.
+    Dart provides powerful features like <strong>Generics</strong>, <strong>Extensions</strong>,
+    and <strong>Mixins</strong> to help developers write cleaner and more reusable programs.
+</p>
+
+<p>
+    These features are heavily used in Flutter development, APIs, libraries, and large-scale
+    applications because they reduce code duplication and improve maintainability.
+</p>
+
+<p>
+    In this lecture, we will learn:
+</p>
+
+<ul>
+    <li>How generic classes work</li>
+    <li>How generic functions increase flexibility</li>
+    <li>How extensions add functionality to existing classes</li>
+    <li>How mixins share reusable behaviors</li>
+    <li>How these concepts improve code reusability</li>
+</ul>
+
 <h2>Generic Classes</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">generic.dart</span></div>
-<pre>class Box<T> {
+
+<p>
+    Generics allow classes to work with different data types while keeping type safety.
+    Instead of creating separate classes for integers, strings, or doubles, we can create
+    one reusable class using generics.
+</p>
+
+<p>
+    Generic types are represented using angle brackets <strong>&lt;T&gt;</strong>.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">generic.dart</span>
+</div>
+
+<pre>class Box&lt;T&gt; {
+
   T value;
+
   Box(this.value);
-  T get() => value;
+
+  T get() {
+    return value;
+  }
 }
+
 void main() {
-  var intBox = Box<int>(42);
-  var strBox = Box<String>("hello");
-}</pre></div>
+
+  <span class="cm">// Integer box</span>
+  var intBox = Box&lt;int&gt;(42);
+
+  <span class="cm">// String box</span>
+  var strBox = Box&lt;String&gt;("hello");
+
+  print(intBox.get());
+
+  print(strBox.get());
+}</pre>
+
+</div>
+
+<h3>Understanding the Example</h3>
+
+<ul>
+    <li><strong>T</strong> represents a generic type</li>
+    <li>The same class works with different data types</li>
+    <li>Dart ensures type safety at compile time</li>
+    <li>No need to create multiple similar classes</li>
+</ul>
+
+<h3>Benefits of Generics</h3>
+
+<ul>
+    <li>Reusable code</li>
+    <li>Better type safety</li>
+    <li>Cleaner architecture</li>
+    <li>Less duplication</li>
+</ul>
+
+<h3>Generic List Example</h3>
+
+<p>
+    Dart collections like List, Map, and Set also use generics internally.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">generic_list.dart</span>
+</div>
+
+<pre>void main() {
+
+  List&lt;int&gt; numbers = [1, 2, 3];
+
+  List&lt;String&gt; names = ["Ali", "Sara"];
+
+  print(numbers);
+
+  print(names);
+}</pre>
+
+</div>
+
 <h2>Generic Functions</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">genfunc.dart</span></div>
-<pre>T first<T>(List<T> items) => items[0];
+
+<p>
+    Generics can also be used with functions. A generic function can work with
+    multiple data types while maintaining type safety.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">genfunc.dart</span>
+</div>
+
+<pre>T first&lt;T&gt;(List&lt;T&gt; items) {
+
+  return items[0];
+}
+
 void main() {
-  print(first<int>([1,2,3]));  // 1
-  print(first(["a","b"]));     // a (type inferred)
-}</pre></div>
+
+  print(first&lt;int&gt;([1, 2, 3]));
+
+  print(first(["a", "b", "c"]));
+}</pre>
+
+</div>
+
+<h3>Type Inference</h3>
+
+<p>
+    Dart is smart enough to automatically detect data types in many cases.
+    This is called <strong>type inference</strong>.
+</p>
+
+<ul>
+    <li><strong>first&lt;int&gt;()</strong> explicitly provides the type</li>
+    <li><strong>first(["a","b"])</strong> allows Dart to infer the type automatically</li>
+</ul>
+
+<h3>Another Generic Function Example</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">swap.dart</span>
+</div>
+
+<pre>void printItem&lt;T&gt;(T item) {
+
+  print(item);
+}
+
+void main() {
+
+  printItem&lt;String&gt;("Hello");
+
+  printItem&lt;int&gt;(100);
+
+  printItem&lt;double&gt;(5.5);
+}</pre>
+
+</div>
+
 <h2>Extensions</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">extension.dart</span></div>
+
+<p>
+    Extensions allow us to add new functionality to existing classes without modifying
+    the original class source code.
+</p>
+
+<p>
+    This is extremely useful when working with built-in classes like String, List, or DateTime.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">extension.dart</span>
+</div>
+
 <pre>extension StringX on String {
-  String get reversed => split('').reversed.join();
-  bool get isEmail => contains('@');
+
+  String get reversed {
+
+    return split('').reversed.join();
+  }
+
+  bool get isEmail {
+
+    return contains('@');
+  }
 }
+
 void main() {
-  print("hello".reversed);  // olleh
-  print("a@b.com".isEmail); // true
-}</pre></div>
-<h2>Mixins</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mixin.dart</span></div>
-<pre>mixin Logger {
-  void log(String msg) => print("[LOG] $msg");
+
+  print("hello".reversed);
+
+  print("a@b.com".isEmail);
+}</pre>
+
+</div>
+
+<h3>Understanding Extensions</h3>
+
+<ul>
+    <li><strong>extension StringX on String</strong> extends the String class</li>
+    <li><strong>reversed</strong> creates a custom getter</li>
+    <li><strong>isEmail</strong> checks if the string contains '@'</li>
+    <li>The original String class remains unchanged</li>
+</ul>
+
+<h3>Extension on List</h3>
+
+<p>
+    Extensions can also add custom functionality to lists.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">list_extension.dart</span>
+</div>
+
+<pre>extension NumberList on List&lt;int&gt; {
+
+  int get total {
+
+    int sum = 0;
+
+    for (var n in this) {
+      sum += n;
+    }
+
+    return sum;
+  }
 }
+
+void main() {
+
+  var nums = [1, 2, 3, 4];
+
+  print(nums.total);
+}</pre>
+
+</div>
+
+<h2>Mixins</h2>
+
+<p>
+    Mixins allow classes to reuse methods and properties from multiple sources
+    without using inheritance.
+</p>
+
+<p>
+    They are commonly used for sharing reusable behaviors between classes.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">mixin.dart</span>
+</div>
+
+<pre>mixin Logger {
+
+  void log(String msg) {
+
+    print("[LOG] $msg");
+  }
+}
+
 class Service with Logger {
-  void run() { log("Service started"); }
-}</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Create a generic Stack<T> class with push/pop, and an extension on List that adds a sum getter for numbers.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(6)">← Previous</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button></div></div>
+
+  void run() {
+
+    log("Service started");
+  }
+}
+
+void main() {
+
+  var s = Service();
+
+  s.run();
+}</pre>
+
+</div>
+
+<h3>Why Use Mixins?</h3>
+
+<ul>
+    <li>Share reusable functionality</li>
+    <li>Avoid duplicate methods</li>
+    <li>Keep code modular</li>
+    <li>Support multiple behavior sharing</li>
+</ul>
+
+<h3>Multiple Mixins</h3>
+
+<p>
+    Dart allows a class to use multiple mixins together.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">multi_mixin.dart</span>
+</div>
+
+<pre>mixin A {
+
+  void methodA() {
+    print("Method A");
+  }
+}
+
+mixin B {
+
+  void methodB() {
+    print("Method B");
+  }
+}
+
+class Test with A, B {}
+
+void main() {
+
+  var t = Test();
+
+  t.methodA();
+
+  t.methodB();
+}</pre>
+
+</div>
+
+<h2>Best Practices</h2>
+
+<ul>
+    <li>Use generics to create reusable components</li>
+    <li>Keep extensions focused on one responsibility</li>
+    <li>Avoid adding unnecessary extension methods</li>
+    <li>Use mixins for reusable behavior sharing</li>
+    <li>Prefer composition and mixins over deep inheritance</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+    Create the following:
+</p>
+
+<ul>
+    <li>A generic <strong>Stack&lt;T&gt;</strong> class with push() and pop()</li>
+    <li>An extension on List that adds a <strong>sum</strong> getter</li>
+    <li>A mixin called <strong>Printer</strong> that prints log messages</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(6)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(8)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
+
 
 <!-- ===================== LECTURE 09 ===================== -->
 <div class="lecture" id="lec-8">
+
 <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+
 <h1>Streams & Reactive Programming</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-intermediate">Intermediate</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Streams are one of the most powerful features in Dart and Flutter for handling asynchronous data.
+They are widely used in real-time applications such as chat systems, live notifications, stock market updates, and user interactions.
+</p>
+
+<p>
+Reactive Programming is a programming approach where applications react automatically to changing data.
+Instead of constantly checking for updates, streams push new data whenever it becomes available.
+</p>
+
 <h2>What are Streams?</h2>
-<p>Streams deliver a sequence of asynchronous data events. Think of them as a pipe where data flows over time — perfect for real-time data, user input, or file I/O.</p>
+
+<p>
+Streams deliver a sequence of asynchronous data events. Think of them as a pipe where data flows over time — perfect for real-time data, user input, or file I/O.
+</p>
+
+<p>
+Unlike a Future, which returns only one value, a Stream can return multiple values over time.
+</p>
+
+<ul>
+<li><strong>Future</strong> → returns a single value once</li>
+<li><strong>Stream</strong> → returns multiple values continuously</li>
+</ul>
+
+<p>
+Streams are commonly used when data changes continuously or arrives over time.
+</p>
+
+<h2>Real-World Uses of Streams</h2>
+
+<ul>
+<li>Live chat applications</li>
+<li>Real-time notifications</li>
+<li>Location tracking</li>
+<li>Audio and video streaming</li>
+<li>Sensor data processing</li>
+<li>User input handling</li>
+<li>Firebase real-time databases</li>
+</ul>
+
 <h2>Creating Streams</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">stream.dart</span></div>
+
+<p>
+Streams can be created manually using asynchronous generator functions with the <code>async*</code> keyword.
+The <code>yield</code> keyword sends values one by one into the stream.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">stream.dart</span>
+</div>
+
 <pre>Stream<int> countStream(int max) async* {
+
   for (int i = 1; i <= max; i++) {
+
     await Future.delayed(Duration(seconds: 1));
+
     yield i;
   }
 }
+
 void main() async {
+
   await for (var val in countStream(5)) {
+
     print(val); // 1, 2, 3, 4, 5 (one per second)
   }
-}</pre></div>
+}</pre>
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Stream&lt;int&gt;</strong> creates a stream of integers</li>
+<li><strong>async*</strong> marks the function as a stream generator</li>
+<li><strong>yield</strong> emits values into the stream</li>
+<li><strong>await for</strong> listens to stream events one by one</li>
+</ul>
+
+<h2>How Stream Execution Works</h2>
+
+<p>
+The function waits for one second before sending each number.
+This creates a continuous flow of data instead of returning everything at once.
+</p>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>1
+2
+3
+4
+5</pre>
+</div>
+
+<p>
+Each value appears one second apart, demonstrating asynchronous event handling.
+</p>
+
+<h2>Single Subscription vs Broadcast Streams</h2>
+
+<p>
+Dart provides two main types of streams:
+</p>
+
+<ul>
+<li><strong>Single Subscription Stream</strong> → Can only be listened to once</li>
+<li><strong>Broadcast Stream</strong> → Multiple listeners can receive the same events</li>
+</ul>
+
+<p>
+Broadcast streams are commonly used in Flutter applications where multiple widgets need access to the same data source.
+</p>
+
+<h2>Listening to Streams</h2>
+
+<p>
+Streams become useful when listeners subscribe to receive emitted events.
+The <code>listen()</code> method is commonly used for this purpose.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">listen.dart</span>
+</div>
+
+<pre>Stream.fromIterable([1, 2, 3]).listen((value) {
+
+  print(value);
+});</pre>
+</div>
+
+<p>
+The listener automatically reacts whenever new data arrives in the stream.
+</p>
+
 <h2>StreamController</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">controller.dart</span></div>
+
+<p>
+A <code>StreamController</code> provides full control over streams.
+Developers can manually add data, errors, or close the stream whenever needed.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">controller.dart</span>
+</div>
+
 <pre>import 'dart:async';
+
 void main() {
+
   var controller = StreamController<String>();
+
   controller.stream.listen((data) => print("Got: $data"));
+
   controller.add("Hello");
   controller.add("World");
+
   controller.close();
-}</pre></div>
+}</pre>
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>StreamController</strong> creates and manages the stream</li>
+<li><strong>add()</strong> sends data into the stream</li>
+<li><strong>listen()</strong> receives emitted data</li>
+<li><strong>close()</strong> stops the stream and frees resources</li>
+</ul>
+
+<h2>Handling Stream Errors</h2>
+
+<p>
+Streams can also emit errors. Error handling is important for preventing application crashes.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">errors.dart</span>
+</div>
+
+<pre>controller.stream.listen(
+
+  (data) => print(data),
+
+  onError: (err) => print("Error: $err"),
+
+  onDone: () => print("Stream closed"),
+);</pre>
+</div>
+
+<p>
+Here:
+</p>
+
+<ul>
+<li><strong>onError</strong> handles stream errors</li>
+<li><strong>onDone</strong> executes when the stream closes</li>
+</ul>
+
 <h2>Stream Transformers</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">transform.dart</span></div>
+
+<p>
+Streams can be modified before the data reaches the listener.
+This process is called stream transformation.
+</p>
+
+<p>
+Dart provides methods like <code>map()</code>, <code>where()</code>, and <code>expand()</code> for transforming data streams.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">transform.dart</span>
+</div>
+
 <pre>var stream = Stream.fromIterable([1, 2, 3, 4, 5]);
+
 stream
   .where((n) => n % 2 == 0)   // filter even
-  .map((n) => n * 10)          // multiply
-  .listen(print);               // 20, 40</pre></div>
+  .map((n) => n * 10)         // multiply
+  .listen(print);             // 20, 40</pre>
+</div>
+
+<p>
+This example:
+</p>
+
+<ul>
+<li>Filters only even numbers</li>
+<li>Multiplies each value by 10</li>
+<li>Prints the transformed data</li>
+</ul>
+
+<h2>Reactive Programming in Flutter</h2>
+
+<p>
+Flutter uses reactive programming heavily.
+Whenever stream data changes, widgets automatically rebuild and update the UI.
+</p>
+
+<p>
+This creates smooth and responsive applications without manually refreshing screens.
+</p>
+
 <h2>StreamBuilder in Flutter</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">streambuilder.dart</span></div>
+
+<p>
+The <code>StreamBuilder</code> widget listens to streams and rebuilds the UI whenever new data arrives.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">streambuilder.dart</span>
+</div>
+
 <pre>StreamBuilder<int>(
+
   stream: countStream(10),
+
   builder: (context, snapshot) {
-    if (!snapshot.hasData) return CircularProgressIndicator();
+
+    if (!snapshot.hasData)
+      return CircularProgressIndicator();
+
     return Text("Count: ${snapshot.data}");
   },
-)</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Create a stream that emits a random number every second. Display it in a Flutter StreamBuilder.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(7)">← Previous</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button></div></div>
+)</pre>
+</div>
+
+<p>
+In this widget:
+</p>
+
+<ul>
+<li><strong>stream</strong> provides the data source</li>
+<li><strong>builder</strong> rebuilds the UI whenever data changes</li>
+<li><strong>snapshot</strong> stores the latest stream data</li>
+<li><strong>hasData</strong> checks if data is available</li>
+</ul>
+
+<h2>Advantages of Streams</h2>
+
+<ul>
+<li>Efficient real-time data handling</li>
+<li>Supports reactive programming</li>
+<li>Improves application responsiveness</li>
+<li>Useful for event-driven architectures</li>
+<li>Works perfectly with Flutter widgets</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Always close StreamControllers to avoid memory leaks</li>
+<li>Use StreamBuilder for real-time UI updates</li>
+<li>Handle stream errors properly</li>
+<li>Keep stream transformations simple and readable</li>
+<li>Use broadcast streams only when necessary</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Create a stream that emits a random number every second. Display it in a Flutter StreamBuilder.
+</p>
+
+<p>
+Try adding:
+</p>
+
+<ul>
+<li>A button to start and stop the stream</li>
+<li>Error handling for invalid data</li>
+<li>A loading indicator while waiting for values</li>
+<li>A transformation that doubles the random number</li>
+</ul>
+
+</div>
+
+<h2>Summary</h2>
+
+<p>
+In this lecture, we learned about Streams and Reactive Programming in Dart and Flutter.
+We explored how streams emit asynchronous data over time and how listeners receive stream events.
+</p>
+
+<p>
+We also learned about StreamController, stream transformations, error handling, and the StreamBuilder widget for building reactive Flutter interfaces.
+</p>
+
+<p>
+Streams are an essential concept for developing modern real-time Flutter applications.
+</p>
+
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+<button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+</div>
+
+</div>
+
 
 <!-- ===================== LECTURE 10 ===================== -->
 <div class="lecture" id="lec-9">

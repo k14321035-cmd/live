@@ -1371,119 +1371,1570 @@ min([5 8 2])</pre>
                 </div>
 
                 <!-- ===================== LECTURE 06 ===================== -->
-                <div class="lecture" id="lec-5">
-                    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
-                    <h1>Arrays & Matrix Operations</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~55 min</span>
-                    </div>
+              <div class="lecture" id="lec-5">
 
-                    <h2>Linear Algebra</h2>
-                    <div class="code-block">
-                        <pre>A = [1 2; 3 4];
+    <div class="lecture-tag">Lecture 06 · Core Concepts</div>
+
+    <h1>Arrays & Matrix Operations</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+    </div>
+
+    <p>
+        Arrays and matrices are fundamental concepts in MATLAB and numerical computing.
+        They are widely used in engineering, machine learning, physics, data science, graphics, and scientific simulations.
+    </p>
+
+    <p>
+        MATLAB is specially designed for matrix-based computations, which makes mathematical operations fast and efficient.
+        Almost every value in MATLAB is stored internally as an array or matrix.
+    </p>
+
+    <h2>Understanding Arrays</h2>
+
+    <p>
+        An array is a collection of multiple values stored inside a single variable.
+        Arrays allow developers and engineers to work with large datasets efficiently.
+    </p>
+
+    <p>
+        MATLAB supports:
+    </p>
+
+    <ul>
+        <li><strong>1D Arrays (Vectors)</strong></li>
+        <li><strong>2D Arrays (Matrices)</strong></li>
+        <li><strong>Multi-dimensional Arrays</strong></li>
+    </ul>
+
+    <h2>Creating Arrays</h2>
+
+    <p>
+        Arrays are created using square brackets <code>[]</code>.
+        Elements are separated using spaces or commas.
+    </p>
+
+    <div class="code-block">
+        <pre>arr = [1 2 3 4 5]
+
+rowVector = [10, 20, 30]
+
+columnVector = [1; 2; 3; 4]</pre>
+    </div>
+
+    <p>
+        In this example:
+    </p>
+
+    <ul>
+        <li><strong>arr</strong> creates a row array</li>
+        <li><strong>rowVector</strong> uses commas for separation</li>
+        <li><strong>columnVector</strong> uses semicolons to create a column vector</li>
+    </ul>
+
+    <h2>Accessing Array Elements</h2>
+
+    <p>
+        MATLAB uses indexing to access specific elements in arrays and matrices.
+        Indexing starts from <strong>1</strong> instead of 0.
+    </p>
+
+    <div class="code-block">
+        <pre>numbers = [5 10 15 20]
+
+numbers(1)
+numbers(3)</pre>
+    </div>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>5
+15</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>numbers(1)</strong> accesses the first element</li>
+        <li><strong>numbers(3)</strong> accesses the third element</li>
+    </ul>
+
+    <h2>Matrix Basics</h2>
+
+    <p>
+        A matrix is a two-dimensional array containing rows and columns.
+        Matrices are essential in linear algebra and scientific computing.
+    </p>
+
+    <div class="code-block">
+        <pre>A = [1 2; 
+     3 4]</pre>
+    </div>
+
+    <p>
+        This matrix contains:
+    </p>
+
+    <ul>
+        <li>2 rows</li>
+        <li>2 columns</li>
+        <li>4 total elements</li>
+    </ul>
+
+    <h2>Matrix Addition & Subtraction</h2>
+
+    <p>
+        Matrices of the same dimensions can be added or subtracted.
+    </p>
+
+    <div class="code-block">
+        <pre>A = [1 2; 3 4]
+
+B = [5 6; 7 8]
+
+A + B
+
+A - B</pre>
+    </div>
+
+    <p>
+        MATLAB performs operations element by element.
+    </p>
+
+    <h2>Matrix Multiplication</h2>
+
+    <p>
+        Matrix multiplication follows mathematical linear algebra rules.
+    </p>
+
+    <div class="code-block">
+        <pre>A = [1 2; 3 4]
+
+B = [2 0; 1 2]
+
+A * B</pre>
+    </div>
+
+    <p>
+        The <code>*</code> operator performs matrix multiplication.
+    </p>
+
+    <h2>Element-wise Operations</h2>
+
+    <p>
+        MATLAB also supports element-wise operations using the dot operator <code>.</code>.
+    </p>
+
+    <div class="code-block">
+        <pre>A = [1 2; 3 4]
+
+A .* A
+
+A .^ 2</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>.*</strong> multiplies corresponding elements</li>
+        <li><strong>.^</strong> applies power to each element individually</li>
+    </ul>
+
+    <h2>Linear Algebra</h2>
+
+    <p>
+        MATLAB provides powerful built-in functions for solving linear algebra problems.
+        These functions are heavily used in engineering, robotics, AI, and data science.
+    </p>
+
+    <div class="code-block">
+        <pre>A = [1 2; 3 4];
+
 inv(A) <span class="cm">% Inverse</span>
-det(A) <span class="cm">% Determinant</span>
-eig(A) <span class="cm">% Eigenvalues</span></pre>
-                    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
-                    </div>
-                </div>
+det(A) <span class="cm">% Determinant</span>
+
+eig(A) <span class="cm">% Eigenvalues</span></pre>
+    </div>
+
+    <p>
+        In this example:
+    </p>
+
+    <ul>
+        <li><strong>inv(A)</strong> calculates the inverse of the matrix</li>
+        <li><strong>det(A)</strong> calculates the determinant</li>
+        <li><strong>eig(A)</strong> returns the eigenvalues</li>
+    </ul>
+
+    <h2>Understanding Matrix Inverse</h2>
+
+    <p>
+        The inverse of a matrix is useful for solving systems of equations.
+        A matrix must be square and have a non-zero determinant to be invertible.
+    </p>
+
+    <div class="code-block">
+        <pre>A = [2 1;
+     5 3]
+
+inv(A)</pre>
+    </div>
+
+    <h2>Determinants</h2>
+
+    <p>
+        The determinant is a special numeric value calculated from a square matrix.
+        It helps determine whether a matrix is invertible.
+    </p>
+
+    <div class="code-block">
+        <pre>A = [4 7;
+     2 6]
+
+det(A)</pre>
+    </div>
+
+    <p>
+        If the determinant equals zero, the matrix cannot be inverted.
+    </p>
+
+    <h2>Eigenvalues</h2>
+
+    <p>
+        Eigenvalues are important in machine learning, image processing, physics, and vibration analysis.
+    </p>
+
+    <div class="code-block">
+        <pre>A = [3 1;
+     0 2]
+
+eig(A)</pre>
+    </div>
+
+    <p>
+        Eigenvalues describe important mathematical properties of matrices.
+    </p>
+
+    <h2>Special Matrix Functions</h2>
+
+    <p>
+        MATLAB provides several built-in functions for generating special matrices.
+    </p>
+
+    <div class="code-block">
+        <pre>zeros(3,3)
+
+ones(2,2)
+
+eye(3)</pre>
+    </div>
+
+    <p>
+        These functions create:
+    </p>
+
+    <ul>
+        <li><strong>zeros()</strong> → Matrix filled with zeros</li>
+        <li><strong>ones()</strong> → Matrix filled with ones</li>
+        <li><strong>eye()</strong> → Identity matrix</li>
+    </ul>
+
+    <h2>Real-World Applications</h2>
+
+    <ul>
+        <li>Machine learning algorithms</li>
+        <li>Computer graphics</li>
+        <li>Engineering simulations</li>
+        <li>Signal processing</li>
+        <li>Image processing</li>
+        <li>Physics calculations</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use vectorized operations whenever possible</li>
+        <li>Avoid unnecessary loops for matrix calculations</li>
+        <li>Check matrix dimensions before operations</li>
+        <li>Use built-in MATLAB functions for efficiency</li>
+        <li>Write clean and readable matrix expressions</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+        In this lecture, we learned about arrays and matrix operations in MATLAB.
+        We explored how to create arrays, access elements, and perform matrix operations.
+    </p>
+
+    <p>
+        We also studied important linear algebra concepts such as matrix inverse, determinant, and eigenvalues using built-in MATLAB functions.
+    </p>
+
+    <p>
+        Arrays and matrices form the foundation of scientific computing and numerical programming in MATLAB.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+    </div>
+
+</div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Plotting & Visualization</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
+              <div class="lecture" id="lec-6">
 
-                    <h2>2D Plotting</h2>
-                    <div class="code-block">
-                        <pre>x = 0:0.1:10;
+
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+
+    <h1>Plotting & Visualization</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~60 min</span>
+    </div>
+
+    <p>
+        Data visualization is one of the most important features of MATLAB.
+        Instead of reading raw numbers from arrays or matrices, graphs help us
+        understand patterns, trends, relationships, and behavior visually.
+    </p>
+
+    <p>
+        MATLAB provides powerful plotting functions for creating:
+    </p>
+
+    <ul>
+        <li>2D graphs</li>
+        <li>3D plots</li>
+        <li>Bar charts</li>
+        <li>Pie charts</li>
+        <li>Histograms</li>
+        <li>Scientific visualizations</li>
+    </ul>
+
+    <p>
+        Plotting is heavily used in:
+    </p>
+
+    <ul>
+        <li>Engineering</li>
+        <li>Machine Learning</li>
+        <li>Signal Processing</li>
+        <li>Statistics</li>
+        <li>Scientific Research</li>
+    </ul>
+
+    <p>
+        In this lecture, we will learn:
+    </p>
+
+    <ul>
+        <li>How to create 2D plots</li>
+        <li>How to customize graphs</li>
+        <li>How to add titles and labels</li>
+        <li>How to create multiple plots</li>
+        <li>How to create different chart types</li>
+    </ul>
+
+    <h2>2D Plotting</h2>
+
+    <p>
+        The <strong>plot()</strong> function is used to create 2D line graphs.
+        It takes x-values and y-values as input and draws the graph.
+    </p>
+
+    <div class="code-block">
+
+        <pre>x = 0:0.1:10;
+
 y = sin(x);
-plot(x, y, <span class="st">'r--'</span>, <span class="st">'LineWidth'</span>, 2);
-title(<span class="st">'Sine Wave'</span>);
-xlabel(<span class="st">'Time'</span>);
-ylabel(<span class="st">'Amplitude'</span>);
-grid on;</pre>
-                    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+plot(x, y, <span class="st">'r--'</span>, <span class="st">'LineWidth'</span>, 2);
+
+title(<span class="st">'Sine Wave'</span>);
+
+xlabel(<span class="st">'Time'</span>);
+
+ylabel(<span class="st">'Amplitude'</span>);
+
+grid on;</pre>
+
+    </div>
+
+    <h3>Understanding the Example</h3>
+
+    <ul>
+        <li><strong>0:0.1:10</strong> creates values from 0 to 10 with step 0.1</li>
+        <li><strong>sin(x)</strong> calculates sine values</li>
+        <li><strong>plot()</strong> draws the graph</li>
+        <li><strong>'r--'</strong> means red dashed line</li>
+        <li><strong>LineWidth</strong> controls line thickness</li>
+        <li><strong>title()</strong> adds graph title</li>
+        <li><strong>xlabel()</strong> labels x-axis</li>
+        <li><strong>ylabel()</strong> labels y-axis</li>
+        <li><strong>grid on</strong> enables background grid</li>
+    </ul>
+
+    <h2>Plot Styles & Colors</h2>
+
+    <p>
+        MATLAB allows different colors, markers, and line styles to improve graph appearance.
+    </p>
+
+    <div class="code-block">
+
+        <pre>x = 0:0.5:10;
+
+y1 = x;
+
+y2 = x.^2;
+
+plot(x, y1, <span class="st">'b-o'</span>);
+
+hold on;
+
+plot(x, y2, <span class="st">'g:*'</span>);
+
+legend(<span class="st">'Linear'</span>, <span class="st">'Quadratic'</span>);
+
+grid on;</pre>
+
+    </div>
+
+    <h3>Common Plot Symbols</h3>
+
+    <div class="code-block">
+
+        <pre><span class="cm">% Colors</span>
+<span class="st">'r'</span>  <span class="cm">% Red</span>
+<span class="st">'g'</span>  <span class="cm">% Green</span>
+<span class="st">'b'</span>  <span class="cm">% Blue</span>
+<span class="st">'k'</span>  <span class="cm">% Black</span>
+
+<span class="cm">% Line styles</span>
+<span class="st">'-'</span>   <span class="cm">% Solid line</span>
+<span class="st">'--'</span>  <span class="cm">% Dashed line</span>
+<span class="st">':'</span>   <span class="cm">% Dotted line</span>
+
+<span class="cm">% Markers</span>
+<span class="st">'o'</span>   <span class="cm">% Circle</span>
+<span class="st">'*'</span>   <span class="cm">% Star</span>
+<span class="st">'+'</span>   <span class="cm">% Plus</span></pre>
+
+    </div>
+
+    <h2>Multiple Plots</h2>
+
+    <p>
+        MATLAB can display multiple graphs in the same figure using
+        <strong>subplot()</strong>.
+    </p>
+
+    <div class="code-block">
+
+        <pre>x = 0:0.1:10;
+
+subplot(2,1,1);
+
+plot(x, sin(x));
+
+title(<span class="st">'Sine Function'</span>);
+
+subplot(2,1,2);
+
+plot(x, cos(x));
+
+title(<span class="st">'Cosine Function'</span>);</pre>
+
+    </div>
+
+    <h3>Understanding subplot()</h3>
+
+    <p>
+        The syntax <strong>subplot(rows, columns, position)</strong> divides the figure window
+        into sections.
+    </p>
+
+    <ul>
+        <li><strong>2</strong> → total rows</li>
+        <li><strong>1</strong> → total columns</li>
+        <li><strong>1 or 2</strong> → position number</li>
+    </ul>
+
+    <h2>Bar Charts</h2>
+
+    <p>
+        Bar charts are useful for comparing categories and discrete values.
+    </p>
+
+    <div class="code-block">
+
+        <pre>students = [50 65 80 90];
+
+bar(students);
+
+title(<span class="st">'Student Marks'</span>);
+
+xlabel(<span class="st">'Students'</span>);
+
+ylabel(<span class="st">'Marks'</span>);</pre>
+
+    </div>
+
+    <h2>Pie Charts</h2>
+
+    <p>
+        Pie charts show percentage distribution of data.
+    </p>
+
+    <div class="code-block">
+
+        <pre>data = [30 25 20 25];
+
+pie(data);
+
+title(<span class="st">'Market Share'</span>);</pre>
+
+    </div>
+
+    <h2>Histograms</h2>
+
+    <p>
+        Histograms display frequency distribution of data values.
+    </p>
+
+    <div class="code-block">
+
+        <pre>values = randn(1,1000);
+
+histogram(values);
+
+title(<span class="st">'Random Data Distribution'</span>);</pre>
+
+    </div>
+
+    <h2>3D Plotting</h2>
+
+    <p>
+        MATLAB also supports 3D visualizations for advanced mathematical and engineering analysis.
+    </p>
+
+    <div class="code-block">
+
+        <pre>[X,Y] = meshgrid(-5:0.5:5);
+
+Z = sin(sqrt(X.^2 + Y.^2));
+
+surf(X, Y, Z);
+
+title(<span class="st">'3D Surface Plot'</span>);</pre>
+
+    </div>
+
+    <h3>Important 3D Functions</h3>
+
+    <ul>
+        <li><strong>plot3()</strong> → 3D line plot</li>
+        <li><strong>surf()</strong> → Surface plot</li>
+        <li><strong>mesh()</strong> → Wireframe mesh</li>
+        <li><strong>contour()</strong> → Contour map</li>
+    </ul>
+
+    <h2>Customizing Graphs</h2>
+
+    <p>
+        MATLAB provides many functions to improve graph readability and design.
+    </p>
+
+    <div class="code-block">
+
+        <pre>x = 0:0.1:5;
+
+y = exp(x);
+
+plot(x, y, <span class="st">'LineWidth'</span>, 3);
+
+axis([0 5 0 150]);
+
+grid on;
+
+legend(<span class="st">'e^x'</span>);
+
+title(<span class="st">'Exponential Function'</span>);</pre>
+
+    </div>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Always label graph axes clearly</li>
+        <li>Use titles for better understanding</li>
+        <li>Choose readable colors and styles</li>
+        <li>Use legends when plotting multiple graphs</li>
+        <li>Enable grids for scientific visualization</li>
+    </ul>
+
+    <div class="exercise">
+
+        <div class="exercise-title">🎯 Exercise 7.1: Function Plotter</div>
+
+        <p>
+            Create MATLAB programs that:
+        </p>
+
+        <ul>
+            <li>Plot sine, cosine, and tangent functions</li>
+            <li>Create multiple subplots in one figure</li>
+            <li>Customize line colors and markers</li>
+            <li>Add titles, labels, and legends</li>
+        </ul>
+
+    </div>
+
+    <div class="exercise">
+
+        <div class="exercise-title">🎯 Exercise 7.2: Data Visualization</div>
+
+        <p>
+            Create different chart types using sample datasets:
+        </p>
+
+        <ul>
+            <li>Create a bar chart of student marks</li>
+            <li>Create a pie chart for expenses</li>
+            <li>Create a histogram of random values</li>
+            <li>Create a 3D surface plot</li>
+        </ul>
+
+    </div>
+
+    <div class="lecture-nav">
+
+        <button class="nav-btn" onclick="showLecture(5)">
+            ← Previous
+        </button>
+
+        <button class="nav-btn primary" onclick="showLecture(7)">
+            Next Lecture →
+        </button>
+
+    </div>
+
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Data Import & Export</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~45 min</span>
-                    </div>
+             <div class="lecture" id="lec-7">
 
-                    <h2>Reading Data</h2>
-                    <div class="code-block">
-                        <pre>T = readtable(<span class="st">'data.csv'</span>);
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+
+    <h1>Data Import & Export</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <p>
+        Data Import and Export are essential skills in MATLAB for working with external datasets.
+        Most real-world applications involve reading data from files, processing it, and exporting the results.
+    </p>
+
+    <p>
+        MATLAB supports multiple file formats such as CSV, Excel, text files, MAT files, and JSON files.
+        These features make MATLAB highly useful for data analysis, machine learning, and scientific computing.
+    </p>
+
+    <h2>Introduction to Data Import</h2>
+
+    <p>
+        Importing data means loading external information into MATLAB for processing and analysis.
+        Data may come from spreadsheets, databases, sensors, APIs, or other software systems.
+    </p>
+
+    <p>
+        MATLAB provides built-in functions that simplify reading and handling structured data.
+    </p>
+
+    <h2>Reading Data</h2>
+
+    <p>
+        One of the most common formats for storing tabular data is the CSV (Comma-Separated Values) file.
+        MATLAB can easily read CSV files using the <code>readtable()</code> function.
+    </p>
+
+    <div class="code-block">
+        <pre>T = readtable(<span class="st">'data.csv'</span>);
+
 data = T.Variables;</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        In this example:
+    </p>
+
+    <ul>
+        <li><strong>readtable()</strong> imports the CSV file as a table</li>
+        <li><strong>T</strong> stores the table data</li>
+        <li><strong>T.Variables</strong> extracts the raw values from the table</li>
+    </ul>
+
+    <h2>Understanding Tables</h2>
+
+    <p>
+        Tables are one of the most useful data structures in MATLAB.
+        They allow datasets to contain different types of data such as numbers, text, and dates.
+    </p>
+
+    <div class="code-block">
+        <pre>T = table(
+    ["Ali"; "Sara"; "John"],
+    [20; 22; 21],
+    [85; 90; 88]
+)</pre>
+    </div>
+
+    <p>
+        Tables organize information into rows and columns similar to spreadsheets.
+    </p>
+
+    <h2>Previewing Imported Data</h2>
+
+    <p>
+        After importing data, it is important to inspect the dataset before performing analysis.
+    </p>
+
+    <div class="code-block">
+        <pre>head(T)
+
+summary(T)
+
+size(T)</pre>
+    </div>
+
+    <p>
+        These functions help us understand the dataset:
+    </p>
+
+    <ul>
+        <li><strong>head()</strong> displays the first rows</li>
+        <li><strong>summary()</strong> provides information about columns</li>
+        <li><strong>size()</strong> returns the dimensions of the table</li>
+    </ul>
+
+    <h2>Reading Excel Files</h2>
+
+    <p>
+        MATLAB can also import Excel spreadsheets using the <code>readtable()</code> function.
+    </p>
+
+    <div class="code-block">
+        <pre>T = readtable(<span class="st">'students.xlsx'</span>)</pre>
+    </div>
+
+    <p>
+        This automatically loads Excel sheet data into a MATLAB table.
+    </p>
+
+    <h2>Reading Text Files</h2>
+
+    <p>
+        Text files are commonly used for logs, configurations, and raw datasets.
+    </p>
+
+    <div class="code-block">
+        <pre>data = readlines(<span class="st">'notes.txt'</span>)</pre>
+    </div>
+
+    <p>
+        The <code>readlines()</code> function reads text files line by line.
+    </p>
+
+    <h2>Importing MAT Files</h2>
+
+    <p>
+        MAT files are MATLAB’s native file format used to store variables and workspace data.
+    </p>
+
+    <div class="code-block">
+        <pre>load(<span class="st">'dataset.mat'</span>)</pre>
+    </div>
+
+    <p>
+        The <code>load()</code> function imports variables directly into the current workspace.
+    </p>
+
+    <h2>Accessing Table Data</h2>
+
+    <p>
+        Individual rows and columns can be accessed using indexing or variable names.
+    </p>
+
+    <div class="code-block">
+        <pre>T.Name
+
+T(1,:)
+
+T(:,2)</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>T.Name</strong> accesses the Name column</li>
+        <li><strong>T(1,:)</strong> returns the first row</li>
+        <li><strong>T(:,2)</strong> returns the second column</li>
+    </ul>
+
+    <h2>Data Cleaning Basics</h2>
+
+    <p>
+        Imported data may contain missing values, incorrect formatting, or duplicate entries.
+        Cleaning data improves analysis accuracy.
+    </p>
+
+    <div class="code-block">
+        <pre>rmmissing(T)
+
+unique(T)</pre>
+    </div>
+
+    <p>
+        In this example:
+    </p>
+
+    <ul>
+        <li><strong>rmmissing()</strong> removes missing data</li>
+        <li><strong>unique()</strong> removes duplicate rows</li>
+    </ul>
+
+    <h2>Exporting Data</h2>
+
+    <p>
+        After processing data, results can be exported to external files for sharing or storage.
+    </p>
+
+    <h2>Writing CSV Files</h2>
+
+    <div class="code-block">
+        <pre>writetable(T, <span class="st">'output.csv'</span>)</pre>
+    </div>
+
+    <p>
+        The <code>writetable()</code> function exports table data to a CSV file.
+    </p>
+
+    <h2>Writing Excel Files</h2>
+
+    <div class="code-block">
+        <pre>writetable(T, <span class="st">'report.xlsx'</span>)</pre>
+    </div>
+
+    <p>
+        This saves the table data into an Excel spreadsheet.
+    </p>
+
+    <h2>Saving MATLAB Variables</h2>
+
+    <p>
+        MATLAB variables can also be saved directly into MAT files.
+    </p>
+
+    <div class="code-block">
+        <pre>save(<span class="st">'backup.mat'</span>)</pre>
+    </div>
+
+    <p>
+        This stores all workspace variables inside a MAT file.
+    </p>
+
+    <h2>Advantages of Data Import & Export</h2>
+
+    <ul>
+        <li>Enables integration with external software</li>
+        <li>Simplifies data analysis workflows</li>
+        <li>Supports multiple file formats</li>
+        <li>Improves data sharing and storage</li>
+        <li>Essential for scientific and business applications</li>
+    </ul>
+
+    <h2>Real-World Applications</h2>
+
+    <ul>
+        <li>Machine learning datasets</li>
+        <li>Business reporting systems</li>
+        <li>Scientific experiments</li>
+        <li>Financial analysis</li>
+        <li>Sensor and IoT systems</li>
+        <li>Data visualization projects</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Always inspect imported data before analysis</li>
+        <li>Use tables for structured datasets</li>
+        <li>Clean missing and duplicate data</li>
+        <li>Use meaningful file names</li>
+        <li>Keep backup copies of important datasets</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+        In this lecture, we learned how to import and export data in MATLAB.
+        We explored reading CSV, Excel, text, and MAT files using built-in MATLAB functions.
+    </p>
+
+    <p>
+        We also learned how to access table data, clean datasets, and export processed information into external files.
+    </p>
+
+    <p>
+        Data Import and Export are critical skills for data analysis, machine learning, and scientific computing workflows.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+
+</div>
 
                 <!-- ===================== LECTURE 09 ===================== -->
-                <div class="lecture" id="lec-8">
-                    <div class="lecture-tag">Lecture 09 · Advanced</div>
-                    <h1>Symbolic Math</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+        <div class="lecture" id="lec-8">
 
-                    <h2>Solving Equations</h2>
-                    <div class="code-block">
-                        <pre>syms x
+    <div class="lecture-tag">Lecture 09 · Advanced</div>
+
+    <h1>Symbolic Math</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
+
+    <p>
+        Symbolic Math in MATLAB allows mathematical expressions to be handled symbolically instead of numerically.
+        This means MATLAB can work with variables, equations, derivatives, integrals, and algebraic expressions exactly as they appear in mathematics.
+    </p>
+
+    <p>
+        Symbolic computation is widely used in engineering, physics, machine learning, robotics, and scientific research.
+        MATLAB provides powerful symbolic tools through the Symbolic Math Toolbox.
+    </p>
+
+    <h2>Introduction to Symbolic Variables</h2>
+
+    <p>
+        Before performing symbolic calculations, symbolic variables must be declared using the <code>syms</code> command.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x y</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>x</strong> and <strong>y</strong> become symbolic variables</li>
+        <li>MATLAB now treats them as mathematical symbols instead of numeric values</li>
+    </ul>
+
+    <h2>Solving Equations</h2>
+
+    <p>
+        MATLAB can solve algebraic equations symbolically using the <code>solve()</code> function.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x
+
 eqn = x^2 + 5*x + 6 == 0;
-S = solve(eqn, x);</pre>
-                    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
-                    </div>
-                </div>
+S = solve(eqn, x);</pre>
+    </div>
+
+    <p>
+        In this example:
+    </p>
+
+    <ul>
+        <li><strong>syms x</strong> declares a symbolic variable</li>
+        <li><strong>eqn</strong> stores the equation</li>
+        <li><strong>solve()</strong> finds the roots of the equation</li>
+    </ul>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>S =
+
+    -2
+    -3</pre>
+    </div>
+
+    <p>
+        MATLAB automatically calculates the exact symbolic solutions.
+    </p>
+
+    <h2>Solving Systems of Equations</h2>
+
+    <p>
+        Multiple equations can also be solved simultaneously.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x y
+
+eq1 = x + y == 10;
+
+eq2 = x - y == 2;
+
+sol = solve([eq1, eq2], [x, y])</pre>
+    </div>
+
+    <p>
+        This solves both equations together and returns values for <code>x</code> and <code>y</code>.
+    </p>
+
+    <h2>Symbolic Expressions</h2>
+
+    <p>
+        Symbolic expressions can be created and manipulated just like algebraic formulas.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x
+
+expr = x^2 + 3*x + 2
+
+factor(expr)
+
+expand((x + 1)*(x + 2))</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>factor()</strong> converts expressions into factors</li>
+        <li><strong>expand()</strong> multiplies and expands expressions</li>
+    </ul>
+
+    <h2>Differentiation</h2>
+
+    <p>
+        Symbolic Math can calculate derivatives automatically using the <code>diff()</code> function.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x
+
+f = x^3 + 2*x^2 + x
+
+diff(f)</pre>
+    </div>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>3*x^2 + 4*x + 1</pre>
+    </div>
+
+    <p>
+        Differentiation is commonly used in optimization, physics, and machine learning.
+    </p>
+
+    <h2>Higher-Order Derivatives</h2>
+
+    <p>
+        MATLAB can calculate second, third, or higher-order derivatives.
+    </p>
+
+    <div class="code-block">
+        <pre>diff(f, 2)</pre>
+    </div>
+
+    <p>
+        The second argument specifies the derivative order.
+    </p>
+
+    <h2>Integration</h2>
+
+    <p>
+        Symbolic integration calculates exact integrals mathematically.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x
+
+f = x^2
+
+int(f)</pre>
+    </div>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>x^3/3</pre>
+    </div>
+
+    <h2>Definite Integrals</h2>
+
+    <p>
+        MATLAB can also evaluate integrals over a specific interval.
+    </p>
+
+    <div class="code-block">
+        <pre>int(f, 0, 5)</pre>
+    </div>
+
+    <p>
+        This calculates the integral of <code>f</code> from 0 to 5.
+    </p>
+
+    <h2>Limits</h2>
+
+    <p>
+        Limits are important in calculus and mathematical analysis.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x
+
+limit(sin(x)/x, x, 0)</pre>
+    </div>
+
+    <p>
+        MATLAB evaluates the symbolic limit automatically.
+    </p>
+
+    <h2>Substituting Values</h2>
+
+    <p>
+        Symbolic variables can be replaced with numeric values using <code>subs()</code>.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x
+
+expr = x^2 + 3*x
+
+subs(expr, x, 5)</pre>
+    </div>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>40</pre>
+    </div>
+
+    <h2>Converting Symbolic to Numeric</h2>
+
+    <p>
+        Sometimes symbolic results need to be converted into decimal values.
+    </p>
+
+    <div class="code-block">
+        <pre>vpa(pi, 10)</pre>
+    </div>
+
+    <p>
+        The <code>vpa()</code> function provides high-precision numerical approximations.
+    </p>
+
+    <h2>Plotting Symbolic Functions</h2>
+
+    <p>
+        Symbolic functions can be visualized using MATLAB plotting functions.
+    </p>
+
+    <div class="code-block">
+        <pre>syms x
+
+fplot(x^2)</pre>
+    </div>
+
+    <p>
+        This generates the graph of the symbolic function.
+    </p>
+
+    <h2>Applications of Symbolic Math</h2>
+
+    <ul>
+        <li>Engineering calculations</li>
+        <li>Physics simulations</li>
+        <li>Machine learning mathematics</li>
+        <li>Robotics and control systems</li>
+        <li>Optimization problems</li>
+        <li>Scientific research</li>
+    </ul>
+
+    <h2>Advantages of Symbolic Computation</h2>
+
+    <ul>
+        <li>Provides exact mathematical solutions</li>
+        <li>Reduces manual calculations</li>
+        <li>Handles complex algebra efficiently</li>
+        <li>Supports advanced calculus operations</li>
+        <li>Useful for academic and scientific work</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Declare symbolic variables clearly</li>
+        <li>Use symbolic math for exact calculations</li>
+        <li>Convert symbolic values to numeric only when necessary</li>
+        <li>Keep expressions readable and organized</li>
+        <li>Use comments for complex equations</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+        In this lecture, we learned how MATLAB performs symbolic mathematical computations using symbolic variables and functions.
+    </p>
+
+    <p>
+        We explored solving equations, symbolic expressions, differentiation, integration, limits, substitution, and plotting symbolic functions.
+    </p>
+
+    <p>
+        Symbolic Math is a powerful feature that makes MATLAB highly effective for advanced mathematical and scientific computing tasks.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+    </div>
+
+</div>
 
                 <!-- ===================== LECTURE 10 ===================== -->
-                <div class="lecture" id="lec-9">
-                    <div class="lecture-tag">Lecture 10 · Advanced</div>
-                    <h1>Programming Structures</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+             <div class="lecture" id="lec-9">
 
-                    <h2>Cell Arrays & Structs</h2>
-                    <div class="code-block">
-                        <pre>C = {1, <span class="st">'text'</span>, magic(3)};
+    <div class="lecture-tag">Lecture 10 · Advanced</div>
+
+    <h1>Programming Structures</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
+
+    <p>
+        Programming structures in MATLAB help developers organize, manage, and process complex data efficiently.
+        They are essential for building scalable applications, scientific simulations, machine learning systems, and engineering projects.
+    </p>
+
+    <p>
+        MATLAB provides advanced data structures such as Cell Arrays and Structures (Structs) that allow different types of data to be stored together in an organized way.
+    </p>
+
+    <h2>Introduction to Cell Arrays</h2>
+
+    <p>
+        A Cell Array is a special type of array that can store multiple data types inside a single container.
+        Unlike regular arrays, cell arrays are not limited to storing only one type of data.
+    </p>
+
+    <p>
+        Cell arrays can contain:
+    </p>
+
+    <ul>
+        <li>Numbers</li>
+        <li>Strings</li>
+        <li>Matrices</li>
+        <li>Functions</li>
+        <li>Other arrays</li>
+    </ul>
+
+    <h2>Cell Arrays & Structs</h2>
+
+    <div class="code-block">
+        <pre>C = {1, <span class="st">'text'</span>, magic(3)};
+
 S.name = <span class="st">'Project'</span>;
 S.value = 100;</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        In this example:
+    </p>
 
+    <ul>
+        <li><strong>C</strong> is a cell array containing different data types</li>
+        <li><strong>1</strong> is a numeric value</li>
+        <li><strong>'text'</strong> is a string</li>
+        <li><strong>magic(3)</strong> creates a 3×3 magic matrix</li>
+        <li><strong>S</strong> is a structure containing fields</li>
+    </ul>
+
+    <h2>Accessing Cell Array Elements</h2>
+
+    <p>
+        Cell arrays use curly braces <code>{}</code> for accessing actual values.
+    </p>
+
+    <div class="code-block">
+        <pre>C = {10, 'MATLAB', [1 2 3]};
+
+C{1}
+
+C{2}</pre>
+    </div>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>10
+
+MATLAB</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>C{1}</strong> accesses the first element</li>
+        <li><strong>C{2}</strong> accesses the second element</li>
+    </ul>
+
+    <h2>Difference Between () and {}</h2>
+
+    <p>
+        MATLAB uses both parentheses and curly braces with cell arrays, but they behave differently.
+    </p>
+
+    <ul>
+        <li><strong>()</strong> returns a cell container</li>
+        <li><strong>{}</strong> returns the actual stored value</li>
+    </ul>
+
+    <div class="code-block">
+        <pre>C = {5, 10};
+
+C(1)
+
+C{1}</pre>
+    </div>
+
+    <h2>Adding Data to Cell Arrays</h2>
+
+    <p>
+        New elements can be added dynamically to cell arrays.
+    </p>
+
+    <div class="code-block">
+        <pre>C = {1, 2};
+
+C{3} = 'New Data'</pre>
+    </div>
+
+    <p>
+        MATLAB automatically expands the cell array when new elements are added.
+    </p>
+
+    <h2>Introduction to Structures</h2>
+
+    <p>
+        Structures (Structs) store data using named fields.
+        They are similar to objects or records in other programming languages.
+    </p>
+
+    <p>
+        Structures are useful for organizing related information together.
+    </p>
+
+    <h2>Creating Structures</h2>
+
+    <div class="code-block">
+        <pre>student.name = 'Ali';
+
+student.age = 21;
+
+student.grade = 90;</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>student</strong> is the structure name</li>
+        <li><strong>name</strong>, <strong>age</strong>, and <strong>grade</strong> are fields</li>
+    </ul>
+
+    <h2>Accessing Structure Fields</h2>
+
+    <p>
+        Structure fields are accessed using dot notation.
+    </p>
+
+    <div class="code-block">
+        <pre>student.name
+
+student.grade</pre>
+    </div>
+
+    <p>
+        Output:
+    </p>
+
+    <div class="code-block">
+        <pre>Ali
+
+90</pre>
+    </div>
+
+    <h2>Structure Arrays</h2>
+
+    <p>
+        MATLAB allows multiple structures to be grouped together into structure arrays.
+    </p>
+
+    <div class="code-block">
+        <pre>students(1).name = 'Ahmed';
+students(1).grade = 88;
+
+students(2).name = 'Sara';
+students(2).grade = 95;</pre>
+    </div>
+
+    <p>
+        This creates a collection of structured records.
+    </p>
+
+    <h2>Nested Structures</h2>
+
+    <p>
+        Structures can contain other structures for hierarchical data organization.
+    </p>
+
+    <div class="code-block">
+        <pre>company.name = 'TechSoft';
+
+company.manager.name = 'John';
+
+company.manager.age = 40;</pre>
+    </div>
+
+    <p>
+        Nested structures are commonly used in complex applications and APIs.
+    </p>
+
+    <h2>Using fieldnames()</h2>
+
+    <p>
+        The <code>fieldnames()</code> function returns all field names inside a structure.
+    </p>
+
+    <div class="code-block">
+        <pre>fieldnames(student)</pre>
+    </div>
+
+    <p>
+        This is useful for dynamic structure processing.
+    </p>
+
+    <h2>Combining Structures and Cell Arrays</h2>
+
+    <p>
+        Cell arrays and structures can work together to create flexible data models.
+    </p>
+
+    <div class="code-block">
+        <pre>data.users = {
+    'Ali',
+    'Sara',
+    'John'
+};</pre>
+    </div>
+
+    <p>
+        This combines structured fields with dynamic cell storage.
+    </p>
+
+    <h2>Applications of Programming Structures</h2>
+
+    <ul>
+        <li>Machine learning datasets</li>
+        <li>Engineering simulations</li>
+        <li>Scientific computing</li>
+        <li>Database-like records</li>
+        <li>API response handling</li>
+        <li>Configuration systems</li>
+    </ul>
+
+    <h2>Advantages of Cell Arrays & Structs</h2>
+
+    <ul>
+        <li>Store mixed data types efficiently</li>
+        <li>Improve data organization</li>
+        <li>Support complex hierarchical data</li>
+        <li>Provide flexible data storage</li>
+        <li>Useful for real-world applications</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use structures for related grouped data</li>
+        <li>Use cell arrays for mixed data types</li>
+        <li>Choose meaningful field names</li>
+        <li>Avoid overly complex nesting</li>
+        <li>Keep data structures organized and readable</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+        In this lecture, we learned about advanced programming structures in MATLAB including Cell Arrays and Structures.
+    </p>
+
+    <p>
+        We explored how to create, access, and manage mixed data types using cell arrays and how to organize structured information using structs.
+    </p>
+
+    <p>
+        These programming structures are essential for handling complex datasets and building scalable MATLAB applications.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+    </div>
+
+</div>
                 <!-- ===================== LECTURE 11 ===================== -->
                 <div class="lecture" id="lec-10">
                     <div class="lecture-tag">Lecture 11 · Advanced</div>

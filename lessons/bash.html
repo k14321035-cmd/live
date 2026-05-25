@@ -1351,436 +1351,575 @@ result=$(safe_divide 100 5)
                 </div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Arrays & String Manipulation</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~70 min</span>
-                    </div>
+            <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Arrays & String Manipulation</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~70 min</span>
+    </div>
 
-                    <h2>Indexed Arrays</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">arrays.sh</span>
-                        </div>
-                        <pre><span class="cm"># Declare arrays</span>
+    <h2>Indexed Arrays</h2>
+
+    <p>
+        Arrays allow us to store multiple values inside a single variable. Instead of creating
+        many separate variables, arrays help organize data efficiently. In Bash, indexed arrays
+        use numeric indexes starting from <strong>0</strong>.
+    </p>
+
+    <p>
+        Arrays are commonly used for handling file lists, user data, logs, automation tasks,
+        and command outputs.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">arrays.sh</span>
+        </div>
+        <pre><span class="cm"># Declare arrays</span>
 FRUITS=(<span class="st">"Apple"</span> <span class="st">"Banana"</span> <span class="st">"Cherry"</span> <span class="st">"Date"</span>)
 NUMBERS=(10 20 30 40 50)
 
 <span class="cm"># Access elements (0-indexed)</span>
 echo <span class="st">"${FRUITS[0]}"</span>     <span class="cm"># Apple (first element)</span>
 echo <span class="st">"${FRUITS[2]}"</span>     <span class="cm"># Cherry (third element)</span>
-echo <span class="st">"${FRUITS[-1]}"</span>    <span class="cm"># Date (last element - Bash 4.2+)</span>
-echo <span class="st">"${FRUITS[-2]}"</span>    <span class="cm"># Cherry (second to last)</span>
+
+<span class="cm"># Last element (Bash 4.2+)</span>
+echo <span class="st">"${FRUITS[-1]}"</span>
 
 <span class="cm"># Array length</span>
-echo <span class="st">"Total fruits: ${#FRUITS[@]}"</span>
-echo <span class="st">"Also: ${#FRUITS[*]}"</span>
+echo <span class="st">"${#FRUITS[@]}"</span>
 
-<span class="cm"># All elements</span>
-echo <span class="st">"All: ${FRUITS[@]}"</span>
-echo <span class="st">"Quoted: ${FRUITS[*]}"</span></pre>
-                    </div>
+<span class="cm"># Print all elements</span>
+echo <span class="st">"${FRUITS[@]}"</span></pre>
+    </div>
 
-                    <h3>Array Operations</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">array_ops.sh</span>
-                        </div>
-                        <pre><span class="cm"># Add elements</span>
-FRUITS+=(<span class="st">"Elderberry"</span>)    <span class="cm"># Append single</span>
-FRUITS+=(<span class="st">"Fig"</span> <span class="st">"Grape"</span>)   <span class="cm"># Append multiple</span>
+    <h3>Adding and Updating Elements</h3>
 
-<span class="cm"># Insert at specific index</span>
-FRUITS[1]=<span class="st">"Blueberry"</span>      <span class="cm"># Replace index 1</span>
+    <p>
+        Bash arrays are dynamic, meaning elements can be added or modified at runtime.
+        This makes arrays very useful in scripts that continuously process data.
+    </p>
 
-<span class="cm"># Remove elements</span>
-unset FRUITS[2]           <span class="cm"># Remove element at index 2</span>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">array_update.sh</span>
+        </div>
+        <pre><span class="cm"># Initial array</span>
+LANGUAGES=(<span class="st">"Python"</span> <span class="st">"JavaScript"</span>)
 
-<span class="cm"># Slice array (Bash 4.0+)</span>
-echo <span class="st">"${FRUITS[@]:1:3}"</span>    <span class="cm"># 3 elements starting from index 1</span>
+<span class="cm"># Add new elements</span>
+LANGUAGES+=(<span class="st">"Rust"</span>)
+LANGUAGES+=(<span class="st">"Go"</span> <span class="st">"Java"</span>)
 
-<span class="cm"># Iterate over array</span>
-<span class="kw">for</span> fruit <span class="kw">in</span> <span class="st">"${FRUITS[@]}"</span>; <span class="kw">do</span>
-    echo <span class="st">"Fruit: $fruit"</span>
+<span class="cm"># Update existing element</span>
+LANGUAGES[1]=<span class="st">"TypeScript"</span>
+
+echo <span class="st">"${LANGUAGES[@]}"</span></pre>
+    </div>
+
+    <h3>Looping Through Arrays</h3>
+
+    <p>
+        Arrays become extremely powerful when combined with loops. We can iterate through
+        every element automatically instead of accessing values manually.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">array_loops.sh</span>
+        </div>
+        <pre>SERVERS=(<span class="st">"Web"</span> <span class="st">"Database"</span> <span class="st">"Cache"</span>)
+
+<span class="cm"># Loop through values</span>
+<span class="kw">for</span> server <span class="kw">in</span> <span class="st">"${SERVERS[@]}"</span>; <span class="kw">do</span>
+    echo <span class="st">"Server: $server"</span>
 <span class="kw">done</span>
 
-<span class="cm"># Iterate with index</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="st">"${!FRUITS[@]}"</span>; <span class="kw">do</span>
-    echo <span class="st">"Index $i: ${FRUITS[$i]}"</span>
+<span class="cm"># Loop using indexes</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="st">"${!SERVERS[@]}"</span>; <span class="kw">do</span>
+    echo <span class="st">"$i -> ${SERVERS[$i]}"</span>
 <span class="kw">done</span></pre>
-                    </div>
+    </div>
 
-                    <h2>Associative Arrays (Bash 4.0+)</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">assoc_arrays.sh</span>
-                        </div>
-                        <pre><span class="cm"># Declare associative array</span>
-declare -A USER_INFO
+    <h3>Array Slicing</h3>
 
-<span class="cm"># Set values</span>
-USER_INFO[name]=<span class="st">"Alice"</span>
-USER_INFO[age]=30
-USER_INFO[city]=<span class="st">"New York"</span>
+    <p>
+        Slicing allows extracting a portion of an array. This is useful when processing
+        subsets of data.
+    </p>
 
-<span class="cm"># Alternative declaration</span>
-declare -A COLORS=(
-    [red]=<span class="st">"#FF0000"</span>
-    [green]=<span class="st">"#00FF00"</span>
-    [blue]=<span class="st">"#0000FF"</span>
-)
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">array_slice.sh</span>
+        </div>
+        <pre>COLORS=(<span class="st">"Red"</span> <span class="st">"Blue"</span> <span class="st">"Green"</span> <span class="st">"Yellow"</span>)
 
-<span class="cm"># Access</span>
-echo <span class="st">"Name: ${USER_INFO[name]}"</span>
-echo <span class="st">"Hex for red: ${COLORS[red]}"</span>
+<span class="cm"># Get elements from index 1</span>
+echo <span class="st">"${COLORS[@]:1}"</span>
 
-<span class="cm"># All keys</span>
-echo <span class="st">"Keys: ${!USER_INFO[@]}"</span>
+<span class="cm"># Get 2 elements starting from index 1</span>
+echo <span class="st">"${COLORS[@]:1:2}"</span></pre>
+    </div>
 
-<span class="cm"># All values</span>
-echo <span class="st">"Values: ${USER_INFO[@]}"</span>
+    <h2>Associative Arrays (Bash 4.0+)</h2>
 
-<span class="cm"># Iterate</span>
-<span class="kw">for</span> key <span class="kw">in</span> <span class="st">"${!USER_INFO[@]}"</span>; <span class="kw">do</span>
-    echo <span class="st">"$key -> ${USER_INFO[$key]}"</span>
-<span class="kw">done</span>
+    <p>
+        Associative arrays store data using custom keys instead of numeric indexes.
+        They work similarly to objects or dictionaries in other programming languages.
+    </p>
 
-<span class="cm"># Check if key exists</span>
-<span class="kw">if</span> [[ -v USER_INFO[name] ]]; <span class="kw">then</span>
-    echo <span class="st">"Name key exists"</span>
-<span class="kw">fi</span></pre>
-                    </div>
+    <p>
+        Associative arrays are useful for storing structured information such as:
+    </p>
 
-                    <h2>String Manipulation</h2>
+    <ul>
+        <li>User profiles</li>
+        <li>Configuration settings</li>
+        <li>Server information</li>
+        <li>API responses</li>
+    </ul>
 
-                    <h3>String Length & Extraction</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">string_ops.sh</span>
-                        </div>
-                        <pre>STR=<span class="st">"Hello, World!"</span>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">assoc_arrays.sh</span>
+        </div>
+        <pre><span class="cm"># Declare associative array</span>
+declare -A USER
 
-<span class="cm"># Length</span>
-echo <span class="st">"${#STR}"</span>           <span class="cm"># 13</span>
+USER[name]=<span class="st">"Alice"</span>
+USER[role]=<span class="st">"Administrator"</span>
+USER[country]=<span class="st">"Canada"</span>
 
-<span class="cm"># Extract substring</span>
-echo <span class="st">"${STR:0:5}"</span>       <span class="cm"># Hello (start at 0, length 5)</span>
-echo <span class="st">"${STR:7}"</span>         <span class="cm"># World! (start at 7 to end)</span>
-echo <span class="st">"${STR: -6}"</span>        <span class="cm"># World! (last 6 chars - note space)</span>
+<span class="cm"># Access values</span>
+echo <span class="st">"${USER[name]}"</span>
+echo <span class="st">"${USER[role]}"</span>
 
-<span class="cm"># Remove from start/end</span>
-echo <span class="st">"${STR#Hello, }"</span>   <span class="cm"># World! (remove shortest match from start)</span>
-echo <span class="st">"${STR% World!}"</span>   <span class="cm"># Hello (remove shortest match from end)</span>
+<span class="cm"># Print all keys</span>
+echo <span class="st">"${!USER[@]}"</span>
 
-<span class="cm"># Remove all occurrences</span>
-STR2=<span class="st">"aaabbbcccaaa"</span>
-echo <span class="st">"${STR2//a/}"</span>      <span class="cm"># bbbccc (remove all 'a')</span>
-echo <span class="st">"${STR2//a/X}"</span>     <span class="cm"># XXXbbbcccXXX (replace all 'a' with 'X')</span>
+<span class="cm"># Print all values</span>
+echo <span class="st">"${USER[@]}"</span></pre>
+    </div>
 
-<span class="cm"># Replace first occurrence only</span>
-echo <span class="st">"${STR2/a/X}"</span>      <span class="cm"># Xaabbbcccaaa</span></pre>
-                    </div>
+    <h3>Looping Through Associative Arrays</h3>
 
-                    <h3>Case Conversion</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">case_convert.sh</span>
-                        </div>
-                        <pre>TEXT=<span class="st">"Hello World"</span>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">assoc_loop.sh</span>
+        </div>
+        <pre>declare -A PRODUCTS
+
+PRODUCTS[laptop]=1200
+PRODUCTS[mouse]=25
+PRODUCTS[keyboard]=70
+
+<span class="kw">for</span> item <span class="kw">in</span> <span class="st">"${!PRODUCTS[@]}"</span>; <span class="kw">do</span>
+    echo <span class="st">"$item costs ${PRODUCTS[$item]}"</span>
+<span class="kw">done</span></pre>
+    </div>
+
+    <h2>String Manipulation</h2>
+
+    <p>
+        Strings are heavily used in Bash scripting because shell scripts mainly work with text,
+        file paths, command outputs, and logs.
+    </p>
+
+    <p>
+        Bash provides powerful built-in operations for extracting, replacing, formatting,
+        and processing strings efficiently.
+    </p>
+
+    <h3>String Length & Extraction</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">string_ops.sh</span>
+        </div>
+        <pre>TEXT=<span class="st">"Learning Bash Scripting"</span>
+
+<span class="cm"># String length</span>
+echo <span class="st">"${#TEXT}"</span>
+
+<span class="cm"># Extract first 8 characters</span>
+echo <span class="st">"${TEXT:0:8}"</span>
+
+<span class="cm"># Extract from position 9</span>
+echo <span class="st">"${TEXT:9}"</span></pre>
+    </div>
+
+    <h3>Replacing Text</h3>
+
+    <p>
+        String replacement is commonly used for cleaning filenames, editing logs,
+        or formatting output data.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">replace_text.sh</span>
+        </div>
+        <pre>MESSAGE=<span class="st">"I love Java"</span>
+
+<span class="cm"># Replace first occurrence</span>
+echo <span class="st">"${MESSAGE/Java/Python}"</span>
+
+<span class="cm"># Replace all occurrences</span>
+TEXT=<span class="st">"apple apple apple"</span>
+
+echo <span class="st">"${TEXT//apple/orange}"</span></pre>
+    </div>
+
+    <h3>Case Conversion</h3>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">case_convert.sh</span>
+        </div>
+        <pre>WORD=<span class="st">"Linux"</span>
 
 <span class="cm"># Uppercase</span>
-echo <span class="st">"${TEXT^^}"</span>        <span class="cm"># HELLO WORLD (Bash 4.0+)</span>
-echo <span class="st">"${TEXT^^[hw]}"</span>    <span class="cm"># HEllo World (only h,w to uppercase)</span>
+echo <span class="st">"${WORD^^}"</span>
 
 <span class="cm"># Lowercase</span>
-echo <span class="st">"${TEXT,,}"</span>        <span class="cm"># hello world</span>
-
-<span class="cm"># Toggle case</span>
-echo <span class="st">"${TEXT~~}"</span>        <span class="cm"># hELLO wORLD</span>
+echo <span class="st">"${WORD,,}"</span>
 
 <span class="cm"># Capitalize first character</span>
-echo <span class="st">"${TEXT^}"</span>         <span class="cm"># Hello world (first char only)</span>
+echo <span class="st">"${WORD^}"</span></pre>
+    </div>
 
-<span class="cm"># Using tr command</span>
-echo <span class="st">"$TEXT"</span> | tr '[:lower:]' '[:upper:]'
-echo <span class="st">"$TEXT"</span> | tr '[:upper:]' '[:lower:]'</pre>
-                    </div>
+    <h3>String Comparison</h3>
 
-                    <h3>Path Manipulation</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">path_ops.sh</span>
-                        </div>
-                        <pre>FILE=<span class="st">"/home/user/documents/report.txt"</span>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">string_compare.sh</span>
+        </div>
+        <pre>ROLE=<span class="st">"admin"</span>
 
-<span class="cm"># Get filename</span>
-echo <span class="st">"${FILE##*/}"</span>      <span class="cm"># report.txt</span>
+<span class="kw">if</span> [[ <span class="st">"$ROLE"</span> == <span class="st">"admin"</span> ]]; <span class="kw">then</span>
+    echo <span class="st">"Administrator access granted"</span>
+<span class="kw">fi</span>
 
-<span class="cm"># Get directory</span>
-echo <span class="st">"${FILE%/*}"</span>       <span class="cm"># /home/user/documents</span>
+EMAIL=<span class="st">""</span>
 
-<span class="cm"># Get extension</span>
-echo <span class="st">"${FILE##*.}"</span>      <span class="cm"># txt</span>
+<span class="kw">if</span> [[ -z <span class="st">"$EMAIL"</span> ]]; <span class="kw">then</span>
+    echo <span class="st">"Email is empty"</span>
+<span class="kw">fi</span></pre>
+    </div>
 
-<span class="cm"># Remove extension</span>
-echo <span class="st">"${FILE%.*}"</span>       <span class="cm"># /home/user/documents/report</span>
+    <h3>Splitting Strings</h3>
 
-<span class="cm"># Default value if empty</span>
-UNSET_VAR=<span class="st">""</span>
-echo <span class="st">"${UNSET_VAR:-default}"</span>  <span class="cm"># default</span>
-echo <span class="st">"${UNSET_VAR:=default}"</span>  <span class="cm"># Sets AND returns default</span>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div><span
+                class="filename">split_strings.sh</span>
+        </div>
+        <pre>DATA=<span class="st">"red,green,blue"</span>
 
-<span class="cm"># Error if empty</span>
-<span class="cm"># echo "${UNSET_VAR:?Variable is required}"</span></pre>
-                    </div>
+IFS=<span class="st">','</span> read -ra COLORS <<< <span class="st">"$DATA"</span>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 7.1: Phone Book</div>
-                        <p>Create an associative array-based phone book script with functions to:</p>
-                        <ul>
-                            <li>Add contact (name → phone number)</li>
-                            <li>Lookup contact by name</li>
-                            <li>Delete contact</li>
-                            <li>List all contacts</li>
-                        </ul>
-                    </div>
+<span class="kw">for</span> color <span class="kw">in</span> <span class="st">"${COLORS[@]}"</span>; <span class="kw">do</span>
+    echo <span class="st">"Color: $color"</span>
+<span class="kw">done</span></pre>
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 7.2: Log Parser</div>
-                        <p>Write a script that processes web server logs:</p>
-                        <ul>
-                            <li>Extract IP addresses, timestamps, and URLs</li>
-                            <li>Count requests per IP using associative array</li>
-                            <li>Find most requested URLs</li>
-                        </ul>
-                    </div>
+    <h3>Best Practices</h3>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <ul>
+        <li>Always quote string variables to avoid word splitting</li>
+        <li>Use meaningful names for arrays and variables</li>
+        <li>Prefer associative arrays for structured data</li>
+        <li>Use loops instead of repetitive code</li>
+        <li>Validate string data before processing</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.1: Contact Manager</div>
+        <p>Create a contact manager using associative arrays.</p>
+        <ul>
+            <li>Add contacts with phone numbers</li>
+            <li>Search contact by name</li>
+            <li>Delete contacts</li>
+            <li>Display all contacts</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 7.2: Filename Cleaner</div>
+        <p>Create a script that cleans messy filenames using string manipulation.</p>
+        <ul>
+            <li>Convert uppercase to lowercase</li>
+            <li>Replace spaces with underscores</li>
+            <li>Remove unwanted symbols</li>
+            <li>Rename files automatically</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>File Operations & I/O</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~75 min</span>
-                    </div>
+<div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Data Import & Cleaning</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
 
-                    <h2>Standard Streams</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">streams.sh</span>
-                        </div>
-                        <pre><span class="cm"># In Linux, everything is a file including I/O streams:</span>
-<span class="cm"># stdin  (0) - Standard Input  (keyboard by default)</span>
-<span class="cm"># stdout (1) - Standard Output (screen by default)</span>
-<span class="cm"># stderr (2) - Standard Error  (screen by default)</span>
+    <p>
+        Learn how to read CSV and Excel files and clean messy data using <code>tidyr</code>.
+    </p>
 
-<span class="cm"># Redirect stdout to file</span>
-echo <span class="st">"Hello"</span> > output.txt      <span class="cm"># Overwrite</span>
-echo <span class="st">"World"</span> >> output.txt     <span class="cm"># Append</span>
+    <h2>Introduction to Data Import</h2>
+    <p>
+        In real-world data analysis projects, data usually comes from external files such as 
+        CSV files, Excel spreadsheets, databases, or APIs. Before analyzing data, we first 
+        need to import it into R.
+    </p>
 
-<span class="cm"># Redirect stderr</span>
-ls nonexistent 2> errors.log
+    <p>
+        R provides powerful functions and libraries that make data importing simple and efficient. 
+        Once the data is imported, the next important step is cleaning the data to remove errors, 
+        missing values, and inconsistencies.
+    </p>
 
-<span class="cm"># Redirect both stdout and stderr</span>
-command > output.log 2>&1
-command &> output.log        <span class="cm"># Bash 4+ shorthand</span>
+    <h2>Reading CSV Files</h2>
+    <p>
+        CSV (Comma-Separated Values) files are one of the most common file formats used in 
+        data science and analytics. Each line in a CSV file represents a row, and commas 
+        separate the column values.
+    </p>
 
-<span class="cm"># Redirect to /dev/null (discard)</span>
-command > /dev/null 2>&1     <span class="cm"># Silent execution</span></pre>
-                    </div>
+    <div class="code-block">
+        <pre>data <- read.csv("students.csv")
 
-                    <h3>Advanced Redirects</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">advanced_io.sh</span>
-                        </div>
-                        <pre><span class="cm"># Separate stdout and stderr to different files</span>
-command > output.log 2> errors.log
+data</pre>
+    </div>
 
-<span class="cm"># Redirect stderr to stdout</span>
-command 2>&1
+    <p>
+        The <strong>read.csv()</strong> function imports the CSV file into a Data Frame.
+    </p>
 
-<span class="cm"># Redirect stdout to stderr</span>
-echo <span class="st">"Error message"</span> >&2
+    <ul>
+        <li><strong>"students.csv"</strong> is the file name</li>
+        <li>The imported data is stored in the variable <strong>data</strong></li>
+    </ul>
 
-<span class="cm"># Here documents (multi-line input)</span>
-cat << EOF
-This is a multi-line
-message that ends
-with the delimiter EOF
-EOF
+    <h2>Viewing Imported Data</h2>
+    <p>
+        After importing data, it is important to inspect and understand the dataset structure.
+    </p>
 
-<span class="cm"># Here strings (single line input)</span>
-cat <<< <span class="st">"This is a single line"</span>
+    <div class="code-block">
+        <pre>head(data)
+str(data)
+summary(data)</pre>
+    </div>
 
-<span class="cm"># Process substitution (treat command output as file)</span>
-diff <(sort file1.txt) <(sort file2.txt)
-</pre>
-                    </div>
+    <p>
+        These functions help us understand the dataset:
+    </p>
 
-                    <h2>Pipes</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">pipes.sh</span>
-                        </div>
-                        <pre><span class="cm"># Basic pipe: command1 | command2</span>
-cat file.txt | grep <span class="st">"error"</span> | wc -l
+    <ul>
+        <li><strong>head()</strong> displays the first few rows</li>
+        <li><strong>str()</strong> shows the structure and data types</li>
+        <li><strong>summary()</strong> provides statistical summaries</li>
+    </ul>
 
-<span class="cm"># Multiple pipes (pipeline)</span>
-ps aux | grep <span class="st">"apache"</span> | awk '{print $2}' | xargs kill
+    <h2>Reading Excel Files</h2>
+    <p>
+        Excel files are widely used in businesses and organizations for storing data. 
+        To read Excel files in R, we commonly use the <strong>readxl</strong> package.
+    </p>
 
-<span class="cm"># Pipe to while loop</span>
-cat file.txt | <span class="kw">while</span> read line; <span class="kw">do</span>
-    echo <span class="st">"Processing: $line"</span>
-<span class="kw">done</span>
+    <div class="code-block">
+        <pre>library(readxl)
 
-<span class="cm"># Pipe with tee (split output)</span>
-command | tee output.log    <span class="cm"># Show on screen AND save to file</span>
-command | tee -a output.log <span class="cm"># Append instead of overwrite</span>
+data <- read_excel("students.xlsx")
 
-<span class="cm"># Named pipes (FIFO)</span>
-mkfifo mypipe
-<span class="cm"># Terminal 1: echo "data" > mypipe</span>
-<span class="cm"># Terminal 2: cat < mypipe</span></pre>
-                    </div>
+data</pre>
+    </div>
 
-                    <h2>File Operations</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">file_ops.sh</span>
-                        </div>
-                        <pre><span class="cm"># Create files</span>
-touch newfile.txt           <span class="cm"># Empty file</span>
-echo <span class="st">"content"</span> > file.txt    <span class="cm"># Create with content</span>
+    <p>
+        The <strong>read_excel()</strong> function imports Excel spreadsheets directly into R.
+    </p>
 
-<span class="cm"># Copy files</span>
-cp source.txt dest.txt
-cp -r dir1 dir2             <span class="cm"># Recursive copy</span>
-cp -v file1 file2 dir/      <span class="cm"># Verbose</span>
+    <h2>Understanding Dirty Data</h2>
+    <p>
+        Dirty data refers to incomplete, inconsistent, or incorrect data that can affect analysis results.
+    </p>
 
-<span class="cm"># Move/Rename files</span>
-mv old.txt new.txt
-mv file.txt /path/to/dest/
+    <p>
+        Common problems in datasets include:
+    </p>
 
-<span class="cm"># Delete files</span>
-rm file.txt
-rm -i file.txt             <span class="cm"># Interactive (prompt)</span>
-rm -f file.txt             <span class="cm"># Force (no error if missing)</span>
-rm -r directory/           <span class="cm"># Recursive delete</span>
+    <ul>
+        <li>Missing values</li>
+        <li>Duplicate rows</li>
+        <li>Incorrect formatting</li>
+        <li>Extra spaces in text</li>
+        <li>Empty columns</li>
+    </ul>
 
-<span class="cm"># Create directories</span>
-mkdir newdir
-mkdir -p path/to/nested/dir <span class="cm"># Create parent directories</span></pre>
-                    </div>
+    <p>
+        Data cleaning is an important step because clean data produces more accurate analysis 
+        and better machine learning models.
+    </p>
 
-                    <h2>Reading Files</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">read_files.sh</span>
-                        </div>
-                        <pre><span class="cm"># Read entire file</span>
-content=$(< file.txt)
+    <h2>Handling Missing Values</h2>
+    <p>
+        Missing values are represented as <strong>NA</strong> in R. 
+        We can identify and remove missing values using built-in functions.
+    </p>
 
-<span class="cm"># Read line by line</span>
-<span class="kw">while</span> IFS= read -r line; <span class="kw">do</span>
-    echo <span class="st">"Line: $line"</span>
-<span class="kw">done</span> < file.txt
+    <div class="code-block">
+        <pre>is.na(data)
 
-<span class="cm"># Read with line numbers</span>
-n=1
-<span class="kw">while</span> IFS= read -r line; <span class="kw">do</span>
-    printf <span class="st">"%5d: %s\n"</span> $n <span class="st">"$line"</span>
-    ((n++))
-<span class="kw">done</span> < file.txt
+na.omit(data)</pre>
+    </div>
 
-<span class="cm"># Read first N lines</span>
-head -n 10 file.txt
+    <p>
+        Here:
+    </p>
 
-<span class="cm"># Read last N lines</span>
-tail -n 10 file.txt
+    <ul>
+        <li><strong>is.na()</strong> checks for missing values</li>
+        <li><strong>na.omit()</strong> removes rows containing missing values</li>
+    </ul>
 
-<span class="cm"># Read specific line (line 5)</span>
-sed -n '5p' file.txt
-awk 'NR==5' file.txt</pre>
-                    </div>
+    <h2>Removing Duplicate Data</h2>
+    <p>
+        Duplicate records can create incorrect analysis results. 
+        R provides functions to detect and remove duplicates.
+    </p>
 
-                    <h2>Text Processing Tools</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span
-                                class="filename">text_tools.sh</span>
-                        </div>
-                        <pre><span class="cm"># sort - sort lines</span>
-sort file.txt              <span class="cm"># Alphabetical</span>
-sort -n numbers.txt        <span class="cm"># Numerical</span>
-sort -r file.txt           <span class="cm"># Reverse</span>
-sort -k 2 file.txt         <span class="cm"># Sort by 2nd column</span>
+    <div class="code-block">
+        <pre>unique(data)</pre>
+    </div>
 
-<span class="cm"># uniq - unique lines (input must be sorted)</span>
-uniq file.txt              <span class="cm"># Remove duplicates</span>
-uniq -c file.txt           <span class="cm"># Count occurrences</span>
-uniq -d file.txt           <span class="cm"># Show only duplicates</span>
+    <p>
+        The <strong>unique()</strong> function removes duplicate rows from the dataset.
+    </p>
 
-<span class="cm"># cut - extract columns</span>
-cut -d',' -f 1,3 file.csv  <span class="cm"># CSV, fields 1 and 3</ncut -c 1-10 file.txt       <span class="cm"># Characters 1-10</span>
+    <h2>Introduction to tidyr</h2>
+    <p>
+        The <strong>tidyr</strong> package is used for cleaning and organizing messy datasets. 
+        It helps convert raw data into a tidy format that is easier to analyze.
+    </p>
 
-<span class="cm"># wc - word count</span>
-wc -l file.txt             <span class="cm"># Lines</span>
-wc -w file.txt             <span class="cm"># Words</span>
-wc -c file.txt             <span class="cm"># Bytes</span>
+    <div class="code-block">
+        <pre>library(tidyr)</pre>
+    </div>
 
-<span class="cm"># tr - translate characters</span>
-cat file.txt | tr 'a-z' 'A-Z'  <span class="cm"># Uppercase</span>
-cat file.txt | tr -d '0-9'     <span class="cm"># Delete digits</span>
-cat file.txt | tr -s ' '       <span class="cm"># Squeeze spaces</span></pre>
-                    </div>
+    <h2>Using drop_na()</h2>
+    <p>
+        The <strong>drop_na()</strong> function removes rows containing missing values.
+    </p>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 8.1: Log Analyzer</div>
-                        <p>Write a script that analyzes system logs:</p>
-                        <ul>
-                            <li>Count errors vs warnings vs info messages</li>
-                            <li>Find most common error messages</li>
-                            <li>Generate hourly activity report</li>
-                            <li>Save report to file with timestamp</li>
-                        </ul>
-                    </div>
+    <div class="code-block">
+        <pre>data %>%
+    drop_na()</pre>
+    </div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 8.2: File Synchronizer</div>
-                        <p>Create a backup script that:</p>
-                        <ul>
-                            <li>Copies files from source to destination</li>
-                            <li>Only copies files that have changed (compare timestamps)</li>
-                            <li>Creates a log of all operations</li>
-                            <li>Reports total bytes transferred</li>
-                        </ul>
-                    </div>
+    <h2>Using replace_na()</h2>
+    <p>
+        Instead of removing missing values, we can replace them with meaningful values.
+    </p>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <div class="code-block">
+        <pre>data %>%
+    replace_na(list(marks = 0))</pre>
+    </div>
+
+    <p>
+        In this example, missing values in the <strong>marks</strong> column are replaced with 0.
+    </p>
+
+    <h2>Cleaning Text Data</h2>
+    <p>
+        Text data often contains unnecessary spaces or inconsistent capitalization. 
+        Cleaning text improves data quality and consistency.
+    </p>
+
+    <div class="code-block">
+        <pre>trimws(data$name)</pre>
+    </div>
+
+    <p>
+        The <strong>trimws()</strong> function removes extra spaces from text values.
+    </p>
+
+    <h2>Renaming Columns</h2>
+    <p>
+        Clear and meaningful column names make datasets easier to understand.
+    </p>
+
+    <div class="code-block">
+        <pre>colnames(data) <- c("Name", "Age", "Marks")</pre>
+    </div>
+
+    <p>
+        This statement changes the column names of the dataset.
+    </p>
+
+    <h2>Exporting Cleaned Data</h2>
+    <p>
+        After cleaning the dataset, we can save it back to a CSV file for future use.
+    </p>
+
+    <div class="code-block">
+        <pre>write.csv(data, "cleaned_data.csv")</pre>
+    </div>
+
+    <p>
+        The cleaned dataset will be stored in a new CSV file.
+    </p>
+
+    <h2>Advantages of Data Cleaning</h2>
+    <ul>
+        <li>Improves data accuracy</li>
+        <li>Removes inconsistencies</li>
+        <li>Prepares data for analysis</li>
+        <li>Enhances machine learning performance</li>
+        <li>Makes reports more reliable</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, we learned how to import CSV and Excel files into R using 
+        <strong>read.csv()</strong> and <strong>read_excel()</strong>.
+    </p>
+
+    <p>
+        We also explored data cleaning techniques such as handling missing values, 
+        removing duplicates, renaming columns, and organizing datasets using the 
+        <strong>tidyr</strong> package.
+    </p>
+
+    <p>
+        Clean data is essential for accurate analysis, reporting, and machine learning applications.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 09 ===================== -->
                 <div class="lecture" id="lec-8">

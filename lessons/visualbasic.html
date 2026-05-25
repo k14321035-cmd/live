@@ -1608,118 +1608,1800 @@ Console.WriteLine(Math.Abs(-10))</pre>
 
 <!-- ===================== LECTURE 06 ===================== -->
 <div class="lecture" id="lec-5">
-<div class="lecture-tag">Lecture 06 · Core Concepts</div>
-<h1>Procedures & Functions</h1>
-<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
-<h2>Sub Procedures</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sub.vb</span></div>
-<pre>Sub Greet(name As String)
-    Console.WriteLine("Hello, " &amp; name)
-End Sub
-Greet("Ahmed")</pre></div>
-<h2>Functions</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">func.vb</span></div>
-<pre>Function Add(a As Integer, b As Integer) As Integer
-    Return a + b
-End Function
-Dim total As Integer = Add(5, 3)  ' 8</pre></div>
-<h2>Optional & ByRef</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">opt.vb</span></div>
-<pre>Sub Greet(Optional name As String = "World")
-    Console.WriteLine("Hello, " &amp; name)
-End Sub
-Sub Swap(ByRef a As Integer, ByRef b As Integer)
-    Dim tmp = a : a = b : b = tmp
-End Sub</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Write functions to compute factorial, GCD, and Fibonacci numbers.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(4)">← Previous</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button></div></div>
 
+<div class="lecture-tag">Lecture 06 · Core Concepts</div>
+
+<h1>Procedures & Functions</h1>
+
+<div class="lecture-meta">
+<span class="meta-badge level-beginner">Beginner</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Procedures and functions are essential building blocks in Visual Basic programming.
+They help organize code into reusable sections, making programs easier to read, maintain, and debug.
+</p>
+
+<p>
+Instead of writing the same code repeatedly, developers can create procedures and functions that can be called whenever needed.
+This improves efficiency and reduces code duplication.
+</p>
+
+<h2>What are Procedures?</h2>
+
+<p>
+A procedure is a block of code that performs a specific task.
+In Visual Basic, procedures are commonly created using the <code>Sub</code> keyword.
+</p>
+
+<p>
+Sub procedures do not return a value.
+They are mainly used for performing actions such as displaying messages, processing data, or handling user input.
+</p>
+
+<h2>Sub Procedures</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">sub.vb</span>
+</div>
+
+<pre>Sub Greet(name As String)
+
+    Console.WriteLine("Hello, " &amp; name)
+
+End Sub
+
+Greet("Ahmed")</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Sub Greet</strong> defines a new procedure</li>
+<li><strong>name As String</strong> is a parameter</li>
+<li><strong>Console.WriteLine()</strong> displays output</li>
+<li><strong>Greet("Ahmed")</strong> calls the procedure</li>
+</ul>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Hello, Ahmed</pre>
+</div>
+
+<h2>Why Use Procedures?</h2>
+
+<ul>
+<li>Reduce duplicate code</li>
+<li>Improve program organization</li>
+<li>Make debugging easier</li>
+<li>Increase code reusability</li>
+<li>Simplify large applications</li>
+</ul>
+
+<h2>Passing Parameters</h2>
+
+<p>
+Parameters allow information to be passed into procedures and functions.
+They make code flexible and reusable.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">params.vb</span>
+</div>
+
+<pre>Sub DisplayMessage(message As String)
+
+    Console.WriteLine(message)
+
+End Sub
+
+DisplayMessage("Welcome to VB.NET")</pre>
+
+</div>
+
+<h2>What are Functions?</h2>
+
+<p>
+Functions are similar to procedures, but they return a value after performing calculations or processing data.
+Functions are declared using the <code>Function</code> keyword.
+</p>
+
+<h2>Functions</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">func.vb</span>
+</div>
+
+<pre>Function Add(a As Integer, b As Integer) As Integer
+
+    Return a + b
+
+End Function
+
+Dim total As Integer = Add(5, 3)  ' 8</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Add()</strong> is a function</li>
+<li><strong>a</strong> and <strong>b</strong> are parameters</li>
+<li><strong>As Integer</strong> defines the return type</li>
+<li><strong>Return</strong> sends the result back</li>
+</ul>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>8</pre>
+</div>
+
+<h2>Difference Between Sub and Function</h2>
+
+<table>
+<tr>
+<th>Sub Procedure</th>
+<th>Function</th>
+</tr>
+
+<tr>
+<td>Does not return a value</td>
+<td>Returns a value</td>
+</tr>
+
+<tr>
+<td>Used for actions</td>
+<td>Used for calculations</td>
+</tr>
+
+<tr>
+<td>Declared with Sub</td>
+<td>Declared with Function</td>
+</tr>
+</table>
+
+<h2>Return Values</h2>
+
+<p>
+Functions return values using the <code>Return</code> keyword.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">return.vb</span>
+</div>
+
+<pre>Function Square(num As Integer) As Integer
+
+    Return num * num
+
+End Function
+
+Console.WriteLine(Square(4))</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>16</pre>
+</div>
+
+<h2>Optional Parameters</h2>
+
+<p>
+Optional parameters allow arguments to be omitted when calling procedures or functions.
+Default values are used automatically.
+</p>
+
+<h2>Optional & ByRef</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">opt.vb</span>
+</div>
+
+<pre>Sub Greet(Optional name As String = "World")
+
+    Console.WriteLine("Hello, " &amp; name)
+
+End Sub
+
+Sub Swap(ByRef a As Integer, ByRef b As Integer)
+
+    Dim tmp = a
+    a = b
+    b = tmp
+
+End Sub</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Optional</strong> allows a default parameter value</li>
+<li><strong>ByRef</strong> passes variables by reference</li>
+<li>Changes made inside the procedure affect original variables</li>
+</ul>
+
+<h2>ByVal vs ByRef</h2>
+
+<p>
+Visual Basic supports two ways of passing parameters:
+</p>
+
+<ul>
+<li><strong>ByVal</strong> → Passes a copy of the value</li>
+<li><strong>ByRef</strong> → Passes the original variable reference</li>
+</ul>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">byval.vb</span>
+</div>
+
+<pre>Sub ChangeValue(ByVal num As Integer)
+
+    num = 100
+
+End Sub</pre>
+
+</div>
+
+<p>
+Changes inside a <code>ByVal</code> parameter do not affect the original variable.
+</p>
+
+<h2>Function Overloading</h2>
+
+<p>
+Visual Basic allows multiple functions with the same name but different parameter lists.
+This is called function overloading.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">overload.vb</span>
+</div>
+
+<pre>Function Multiply(a As Integer, b As Integer) As Integer
+
+    Return a * b
+
+End Function
+
+Function Multiply(a As Double, b As Double) As Double
+
+    Return a * b
+
+End Function</pre>
+
+</div>
+
+<h2>Recursive Functions</h2>
+
+<p>
+A recursive function calls itself repeatedly until a condition is met.
+Recursion is useful for mathematical and algorithmic problems.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">factorial.vb</span>
+</div>
+
+<pre>Function Factorial(n As Integer) As Integer
+
+    If n = 0 Then
+        Return 1
+    End If
+
+    Return n * Factorial(n - 1)
+
+End Function</pre>
+
+</div>
+
+<h2>Variable Scope</h2>
+
+<p>
+Scope determines where variables can be accessed inside a program.
+</p>
+
+<ul>
+<li><strong>Local Variables</strong> → Accessible only inside procedures</li>
+<li><strong>Global Variables</strong> → Accessible throughout the program</li>
+</ul>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">scope.vb</span>
+</div>
+
+<pre>Dim globalVar As Integer = 10
+
+Sub Test()
+
+    Dim localVar As Integer = 5
+
+End Sub</pre>
+
+</div>
+
+<h2>Error Handling in Functions</h2>
+
+<p>
+Functions and procedures should handle invalid input properly to avoid crashes.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">errors.vb</span>
+</div>
+
+<pre>Try
+
+    Dim result = 10 / 0
+
+Catch ex As Exception
+
+    Console.WriteLine("Error occurred")
+
+End Try</pre>
+
+</div>
+
+<h2>Advantages of Functions & Procedures</h2>
+
+<ul>
+<li>Improve code reusability</li>
+<li>Reduce program complexity</li>
+<li>Make code easier to maintain</li>
+<li>Increase readability</li>
+<li>Simplify debugging and testing</li>
+</ul>
+
+<h2>Real-World Applications</h2>
+
+<ul>
+<li>Banking systems</li>
+<li>Game development</li>
+<li>Desktop applications</li>
+<li>Inventory management software</li>
+<li>Student management systems</li>
+<li>Scientific applications</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use meaningful procedure and function names</li>
+<li>Keep functions short and focused</li>
+<li>Avoid duplicate code</li>
+<li>Use comments for complex logic</li>
+<li>Validate user input properly</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Write functions to compute factorial, GCD, and Fibonacci numbers.
+</p>
+
+<p>
+Try adding:
+</p>
+
+<ul>
+<li>User input handling</li>
+<li>Error checking</li>
+<li>Recursive implementations</li>
+<li>Loop-based solutions</li>
+</ul>
+
+</div>
+
+<h2>Summary</h2>
+
+<p>
+In this lecture, we learned how procedures and functions work in Visual Basic.
+We explored Sub procedures, functions, parameters, optional arguments, recursion, and parameter passing methods.
+</p>
+
+<p>
+Functions and procedures are essential programming concepts that improve organization, reusability, and maintainability in software development.
+</p>
+
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+<button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+</div>
+
+</div>
 <!-- ===================== LECTURE 07 ===================== -->
 <div class="lecture" id="lec-6">
+
 <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+
 <h1>Arrays & Collections</h1>
-<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-beginner">Beginner</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Arrays and collections are essential data structures in Visual Basic programming.
+They allow developers to store, organize, and manage multiple values efficiently.
+</p>
+
+<p>
+Instead of creating separate variables for every piece of data, arrays and collections group related data together.
+This makes programs more scalable, readable, and easier to maintain.
+</p>
+
+<h2>Introduction to Arrays</h2>
+
+<p>
+An array is a collection of values stored inside a single variable.
+All elements inside an array usually share the same data type.
+</p>
+
+<p>
+Arrays are useful when working with lists of numbers, names, scores, products, or other grouped data.
+</p>
+
 <h2>Arrays</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arr.vb</span></div>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">arr.vb</span>
+</div>
+
 <pre>Dim nums(4) As Integer  ' 0-4 = 5 elements
+
 nums(0) = 10
+
 Dim names() As String = {"Aman", "Rahul", "Arjun"}
+
 For Each n As String In names
+
     Console.WriteLine(n)
-Next</pre></div>
+
+Next</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>nums(4)</strong> creates an array with 5 elements</li>
+<li>Array indexing starts from <strong>0</strong></li>
+<li><strong>names()</strong> initializes a string array</li>
+<li><strong>For Each</strong> loops through all elements</li>
+</ul>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Aman
+Rahul
+Arjun</pre>
+</div>
+
+<h2>Why Use Arrays?</h2>
+
+<ul>
+<li>Store multiple values efficiently</li>
+<li>Reduce repetitive variables</li>
+<li>Simplify loops and processing</li>
+<li>Improve code organization</li>
+<li>Useful for large datasets</li>
+</ul>
+
+<h2>Accessing Array Elements</h2>
+
+<p>
+Array elements are accessed using indexes inside parentheses.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">access.vb</span>
+</div>
+
+<pre>Dim fruits() As String = {"Apple", "Banana", "Orange"}
+
+Console.WriteLine(fruits(1))</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Banana</pre>
+</div>
+
+<p>
+Here, <code>fruits(1)</code> accesses the second element because indexing begins at 0.
+</p>
+
+<h2>Modifying Array Values</h2>
+
+<p>
+Array elements can be updated by assigning new values.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">modify.vb</span>
+</div>
+
+<pre>Dim scores() As Integer = {50, 60, 70}
+
+scores(1) = 95
+
+Console.WriteLine(scores(1))</pre>
+
+</div>
+
+<h2>Looping Through Arrays</h2>
+
+<p>
+Loops are commonly used with arrays to process all elements efficiently.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">loop.vb</span>
+</div>
+
+<pre>Dim nums() As Integer = {1, 2, 3, 4, 5}
+
+For i As Integer = 0 To nums.Length - 1
+
+    Console.WriteLine(nums(i))
+
+Next</pre>
+
+</div>
+
+<p>
+The <code>Length</code> property returns the total number of elements in the array.
+</p>
+
+<h2>Multi-Dimensional Arrays</h2>
+
+<p>
+Visual Basic supports arrays with multiple dimensions such as rows and columns.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">multi.vb</span>
+</div>
+
+<pre>Dim matrix(1, 1) As Integer
+
+matrix(0, 0) = 10
+matrix(0, 1) = 20
+
+matrix(1, 0) = 30
+matrix(1, 1) = 40</pre>
+
+</div>
+
+<p>
+Multi-dimensional arrays are useful for tables, matrices, and grid-based systems.
+</p>
+
+<h2>Introduction to Collections</h2>
+
+<p>
+Collections are advanced data structures that provide more flexibility than arrays.
+Unlike arrays, collections can dynamically grow and shrink during program execution.
+</p>
+
 <h2>List(Of T)</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">list.vb</span></div>
+
+<p>
+The <code>List(Of T)</code> collection stores dynamic lists of data.
+It is one of the most commonly used collection types in VB.NET.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">list.vb</span>
+</div>
+
 <pre>Dim items As New List(Of String)
+
 items.Add("Apple")
+
 items.Add("Banana")
+
 items.Remove("Apple")
-Console.WriteLine(items.Count)</pre></div>
+
+Console.WriteLine(items.Count)</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Add()</strong> inserts new items</li>
+<li><strong>Remove()</strong> deletes items</li>
+<li><strong>Count</strong> returns total items</li>
+</ul>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>1</pre>
+</div>
+
+<h2>Advantages of List(Of T)</h2>
+
+<ul>
+<li>Dynamic resizing</li>
+<li>Easy insertion and removal</li>
+<li>Powerful built-in methods</li>
+<li>Efficient data handling</li>
+<li>Flexible compared to arrays</li>
+</ul>
+
+<h2>Looping Through Lists</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">foreach.vb</span>
+</div>
+
+<pre>Dim colors As New List(Of String)
+
+colors.Add("Red")
+colors.Add("Blue")
+colors.Add("Green")
+
+For Each c In colors
+
+    Console.WriteLine(c)
+
+Next</pre>
+
+</div>
+
 <h2>Dictionary</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dict.vb</span></div>
+
+<p>
+A Dictionary stores data as key-value pairs.
+It allows fast searching and retrieval using keys.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">dict.vb</span>
+</div>
+
 <pre>Dim ages As New Dictionary(Of String, Integer)
+
 ages("Ahmed") = 25
+
 ages("Sara") = 30
+
 For Each kvp In ages
+
     Console.WriteLine($"{kvp.Key}: {kvp.Value}")
-Next</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Build a phone book using Dictionary(Of String, String).</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(5)">← Previous</button><button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button></div></div>
+
+Next</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Ahmed</strong> and <strong>Sara</strong> are keys</li>
+<li><strong>25</strong> and <strong>30</strong> are values</li>
+<li><strong>kvp.Key</strong> accesses the key</li>
+<li><strong>kvp.Value</strong> accesses the value</li>
+</ul>
+
+<h2>Accessing Dictionary Values</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">lookup.vb</span>
+</div>
+
+<pre>Console.WriteLine(ages("Ahmed"))</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>25</pre>
+</div>
+
+<h2>Checking Dictionary Keys</h2>
+
+<p>
+The <code>ContainsKey()</code> method checks whether a key exists.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">contains.vb</span>
+</div>
+
+<pre>If ages.ContainsKey("Sara") Then
+
+    Console.WriteLine("Found")
+
+End If</pre>
+
+</div>
+
+<h2>Choosing Between Arrays & Collections</h2>
+
+<table>
+<tr>
+<th>Arrays</th>
+<th>Collections</th>
+</tr>
+
+<tr>
+<td>Fixed size</td>
+<td>Dynamic size</td>
+</tr>
+
+<tr>
+<td>Faster for simple data</td>
+<td>More flexible</td>
+</tr>
+
+<tr>
+<td>Less memory overhead</td>
+<td>More built-in features</td>
+</tr>
+</table>
+
+<h2>Real-World Applications</h2>
+
+<ul>
+<li>Student management systems</li>
+<li>Phone books and contact lists</li>
+<li>Inventory systems</li>
+<li>Game scoreboards</li>
+<li>Banking applications</li>
+<li>Shopping cart systems</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use arrays for fixed-size data</li>
+<li>Use lists for dynamic data</li>
+<li>Use dictionaries for fast key-based lookup</li>
+<li>Choose meaningful variable names</li>
+<li>Validate indexes before accessing elements</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Build a phone book using Dictionary(Of String, String).
+</p>
+
+<p>
+Try adding:
+</p>
+
+<ul>
+<li>Add new contacts</li>
+<li>Search contacts by name</li>
+<li>Delete contacts</li>
+<li>Display all saved entries</li>
+</ul>
+
+</div>
+
+<h2>Summary</h2>
+
+<p>
+In this lecture, we learned about arrays and collections in Visual Basic.
+We explored arrays, lists, dictionaries, looping techniques, and data storage methods.
+</p>
+
+<p>
+Arrays and collections are essential tools for organizing and processing data efficiently in modern applications.
+</p>
+
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+<button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+</div>
+
+</div>
+
 
 <!-- ===================== LECTURE 08 ===================== -->
-<div class="lecture" id="lec-7">
-<div class="lecture-tag">Lecture 08 · Core Concepts</div>
-<h1>Strings & File I/O</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
-<h2>String Methods</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">str.vb</span></div>
-<pre>Dim s As String = "Hello VB"
-s.ToUpper()       ' HELLO VB
-s.ToLower()
-s.Length          ' 8
-s.Substring(0, 5) ' Hello
-s.Replace("VB", "World")
-s.Split(" "c)</pre></div>
-<h2>File I/O</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">file.vb</span></div>
-<pre>Imports System.IO
-File.WriteAllText("out.txt", "Hello")
-File.AppendAllText("out.txt", vbCrLf &amp; "World")
-Dim text As String = File.ReadAllText("out.txt")
-Dim lines() = File.ReadAllLines("out.txt")</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Write a program that counts the number of words in a text file.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(6)">← Previous</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button></div></div>
+<div class="lecture" id="lec-6">
+
+<div class="lecture-tag">Lecture 07 · Core Concepts</div>
+
+<h1>Arrays & Collections</h1>
+
+<div class="lecture-meta">
+<span class="meta-badge level-beginner">Beginner</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Arrays and collections are essential data structures in Visual Basic programming.
+They allow developers to store, organize, and manage multiple values efficiently.
+</p>
+
+<p>
+Instead of creating separate variables for every piece of data, arrays and collections group related data together.
+This makes programs more scalable, readable, and easier to maintain.
+</p>
+
+<h2>Introduction to Arrays</h2>
+
+<p>
+An array is a collection of values stored inside a single variable.
+All elements inside an array usually share the same data type.
+</p>
+
+<p>
+Arrays are useful when working with lists of numbers, names, scores, products, or other grouped data.
+</p>
+
+<h2>Arrays</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">arr.vb</span>
+</div>
+
+<pre>Dim nums(4) As Integer  ' 0-4 = 5 elements
+
+nums(0) = 10
+
+Dim names() As String = {"Aman", "Rahul", "Arjun"}
+
+For Each n As String In names
+
+    Console.WriteLine(n)
+
+Next</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>nums(4)</strong> creates an array with 5 elements</li>
+<li>Array indexing starts from <strong>0</strong></li>
+<li><strong>names()</strong> initializes a string array</li>
+<li><strong>For Each</strong> loops through all elements</li>
+</ul>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Aman
+Rahul
+Arjun</pre>
+</div>
+
+<h2>Why Use Arrays?</h2>
+
+<ul>
+<li>Store multiple values efficiently</li>
+<li>Reduce repetitive variables</li>
+<li>Simplify loops and processing</li>
+<li>Improve code organization</li>
+<li>Useful for large datasets</li>
+</ul>
+
+<h2>Accessing Array Elements</h2>
+
+<p>
+Array elements are accessed using indexes inside parentheses.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">access.vb</span>
+</div>
+
+<pre>Dim fruits() As String = {"Apple", "Banana", "Orange"}
+
+Console.WriteLine(fruits(1))</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Banana</pre>
+</div>
+
+<p>
+Here, <code>fruits(1)</code> accesses the second element because indexing begins at 0.
+</p>
+
+<h2>Modifying Array Values</h2>
+
+<p>
+Array elements can be updated by assigning new values.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">modify.vb</span>
+</div>
+
+<pre>Dim scores() As Integer = {50, 60, 70}
+
+scores(1) = 95
+
+Console.WriteLine(scores(1))</pre>
+
+</div>
+
+<h2>Looping Through Arrays</h2>
+
+<p>
+Loops are commonly used with arrays to process all elements efficiently.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">loop.vb</span>
+</div>
+
+<pre>Dim nums() As Integer = {1, 2, 3, 4, 5}
+
+For i As Integer = 0 To nums.Length - 1
+
+    Console.WriteLine(nums(i))
+
+Next</pre>
+
+</div>
+
+<p>
+The <code>Length</code> property returns the total number of elements in the array.
+</p>
+
+<h2>Multi-Dimensional Arrays</h2>
+
+<p>
+Visual Basic supports arrays with multiple dimensions such as rows and columns.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">multi.vb</span>
+</div>
+
+<pre>Dim matrix(1, 1) As Integer
+
+matrix(0, 0) = 10
+matrix(0, 1) = 20
+
+matrix(1, 0) = 30
+matrix(1, 1) = 40</pre>
+
+</div>
+
+<p>
+Multi-dimensional arrays are useful for tables, matrices, and grid-based systems.
+</p>
+
+<h2>Introduction to Collections</h2>
+
+<p>
+Collections are advanced data structures that provide more flexibility than arrays.
+Unlike arrays, collections can dynamically grow and shrink during program execution.
+</p>
+
+<h2>List(Of T)</h2>
+
+<p>
+The <code>List(Of T)</code> collection stores dynamic lists of data.
+It is one of the most commonly used collection types in VB.NET.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">list.vb</span>
+</div>
+
+<pre>Dim items As New List(Of String)
+
+items.Add("Apple")
+
+items.Add("Banana")
+
+items.Remove("Apple")
+
+Console.WriteLine(items.Count)</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Add()</strong> inserts new items</li>
+<li><strong>Remove()</strong> deletes items</li>
+<li><strong>Count</strong> returns total items</li>
+</ul>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>1</pre>
+</div>
+
+<h2>Advantages of List(Of T)</h2>
+
+<ul>
+<li>Dynamic resizing</li>
+<li>Easy insertion and removal</li>
+<li>Powerful built-in methods</li>
+<li>Efficient data handling</li>
+<li>Flexible compared to arrays</li>
+</ul>
+
+<h2>Looping Through Lists</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">foreach.vb</span>
+</div>
+
+<pre>Dim colors As New List(Of String)
+
+colors.Add("Red")
+colors.Add("Blue")
+colors.Add("Green")
+
+For Each c In colors
+
+    Console.WriteLine(c)
+
+Next</pre>
+
+</div>
+
+<h2>Dictionary</h2>
+
+<p>
+A Dictionary stores data as key-value pairs.
+It allows fast searching and retrieval using keys.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">dict.vb</span>
+</div>
+
+<pre>Dim ages As New Dictionary(Of String, Integer)
+
+ages("Ahmed") = 25
+
+ages("Sara") = 30
+
+For Each kvp In ages
+
+    Console.WriteLine($"{kvp.Key}: {kvp.Value}")
+
+Next</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Ahmed</strong> and <strong>Sara</strong> are keys</li>
+<li><strong>25</strong> and <strong>30</strong> are values</li>
+<li><strong>kvp.Key</strong> accesses the key</li>
+<li><strong>kvp.Value</strong> accesses the value</li>
+</ul>
+
+<h2>Accessing Dictionary Values</h2>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">lookup.vb</span>
+</div>
+
+<pre>Console.WriteLine(ages("Ahmed"))</pre>
+
+</div>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>25</pre>
+</div>
+
+<h2>Checking Dictionary Keys</h2>
+
+<p>
+The <code>ContainsKey()</code> method checks whether a key exists.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">contains.vb</span>
+</div>
+
+<pre>If ages.ContainsKey("Sara") Then
+
+    Console.WriteLine("Found")
+
+End If</pre>
+
+</div>
+
+<h2>Choosing Between Arrays & Collections</h2>
+
+<table>
+<tr>
+<th>Arrays</th>
+<th>Collections</th>
+</tr>
+
+<tr>
+<td>Fixed size</td>
+<td>Dynamic size</td>
+</tr>
+
+<tr>
+<td>Faster for simple data</td>
+<td>More flexible</td>
+</tr>
+
+<tr>
+<td>Less memory overhead</td>
+<td>More built-in features</td>
+</tr>
+</table>
+
+<h2>Real-World Applications</h2>
+
+<ul>
+<li>Student management systems</li>
+<li>Phone books and contact lists</li>
+<li>Inventory systems</li>
+<li>Game scoreboards</li>
+<li>Banking applications</li>
+<li>Shopping cart systems</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use arrays for fixed-size data</li>
+<li>Use lists for dynamic data</li>
+<li>Use dictionaries for fast key-based lookup</li>
+<li>Choose meaningful variable names</li>
+<li>Validate indexes before accessing elements</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Build a phone book using Dictionary(Of String, String).
+</p>
+
+<p>
+Try adding:
+</p>
+
+<ul>
+<li>Add new contacts</li>
+<li>Search contacts by name</li>
+<li>Delete contacts</li>
+<li>Display all saved entries</li>
+</ul>
+
+</div>
+
+<h2>Summary</h2>
+
+<p>
+In this lecture, we learned about arrays and collections in Visual Basic.
+We explored arrays, lists, dictionaries, looping techniques, and data storage methods.
+</p>
+
+<p>
+Arrays and collections are essential tools for organizing and processing data efficiently in modern applications.
+</p>
+
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+<button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+</div>
+
+</div>
+
 
 <!-- ===================== LECTURE 09 ===================== -->
 <div class="lecture" id="lec-8">
+
 <div class="lecture-tag">Lecture 09 · Core Concepts</div>
+
 <h1>Exception Handling</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-intermediate">Intermediate</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Exception handling is a mechanism used to detect and manage runtime errors in a program.
+Instead of crashing the application, exception handling allows developers to respond to errors gracefully.
+</p>
+
+<p>
+Errors can occur for many reasons such as invalid user input, missing files, network failures, or mathematical mistakes.
+VB.NET provides powerful tools for handling these situations safely.
+</p>
+
+<h2>What is an Exception?</h2>
+
+<p>
+An exception is an unexpected problem that occurs while a program is running.
+When an exception occurs, normal program execution stops unless the error is handled properly.
+</p>
+
+<p>
+Common exceptions include:
+</p>
+
+<ul>
+<li>Division by zero</li>
+<li>Invalid file paths</li>
+<li>Incorrect data formats</li>
+<li>Array index out of range</li>
+<li>Null reference errors</li>
+</ul>
+
+<h2>Why Exception Handling is Important</h2>
+
+<ul>
+<li>Prevents application crashes</li>
+<li>Improves user experience</li>
+<li>Helps identify bugs</li>
+<li>Protects important data</li>
+<li>Makes programs more reliable</li>
+</ul>
+
 <h2>Try-Catch-Finally</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">try.vb</span></div>
+
+<p>
+VB.NET handles exceptions using the <code>Try</code>, <code>Catch</code>, and <code>Finally</code> blocks.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">try.vb</span>
+</div>
+
 <pre>Try
+
     Dim x = Integer.Parse("abc")
+
 Catch ex As FormatException
+
     Console.WriteLine("Bad format: " &amp; ex.Message)
+
 Catch ex As Exception
+
     Console.WriteLine("Error: " &amp; ex.Message)
+
 Finally
+
     Console.WriteLine("Cleanup done.")
-End Try</pre></div>
+
+End Try</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>Try</strong> contains risky code</li>
+<li><strong>Catch</strong> handles exceptions</li>
+<li><strong>FormatException</strong> handles invalid number formats</li>
+<li><strong>Finally</strong> executes whether an error occurs or not</li>
+</ul>
+
+<p>
+Output:
+</p>
+
+<div class="code-block">
+<pre>Bad format: Input string was not in a correct format.
+Cleanup done.</pre>
+</div>
+
+<h2>Understanding Try Block</h2>
+
+<p>
+The <code>Try</code> block contains code that may generate exceptions during execution.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">tryonly.vb</span>
+</div>
+
+<pre>Try
+
+    Dim result = 10 / 0
+
+Catch ex As Exception
+
+    Console.WriteLine(ex.Message)
+
+End Try</pre>
+
+</div>
+
+<p>
+If an exception occurs inside the <code>Try</code> block, program control immediately moves to the appropriate <code>Catch</code> block.
+</p>
+
+<h2>Multiple Catch Blocks</h2>
+
+<p>
+Programs can use multiple catch blocks to handle different exception types separately.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">multi.vb</span>
+</div>
+
+<pre>Try
+
+    Dim nums(2) As Integer
+
+    Console.WriteLine(nums(5))
+
+Catch ex As IndexOutOfRangeException
+
+    Console.WriteLine("Invalid index")
+
+Catch ex As Exception
+
+    Console.WriteLine("General error")
+
+End Try</pre>
+
+</div>
+
+<p>
+Specific exceptions should always be placed before general exceptions.
+</p>
+
+<h2>The Finally Block</h2>
+
+<p>
+The <code>Finally</code> block always executes regardless of whether an exception occurs.
+It is commonly used for cleanup operations.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">finally.vb</span>
+</div>
+
+<pre>Try
+
+    Console.WriteLine("Program running")
+
+Finally
+
+    Console.WriteLine("Resources released")
+
+End Try</pre>
+
+</div>
+
+<p>
+Typical uses of <code>Finally</code> include:
+</p>
+
+<ul>
+<li>Closing files</li>
+<li>Releasing database connections</li>
+<li>Cleaning temporary resources</li>
+<li>Saving logs</li>
+</ul>
+
+<h2>Common Exception Types</h2>
+
+<table>
+<tr>
+<th>Exception</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>FormatException</td>
+<td>Invalid data format</td>
+</tr>
+
+<tr>
+<td>DivideByZeroException</td>
+<td>Division by zero</td>
+</tr>
+
+<tr>
+<td>FileNotFoundException</td>
+<td>Missing file</td>
+</tr>
+
+<tr>
+<td>IndexOutOfRangeException</td>
+<td>Invalid array index</td>
+</tr>
+
+<tr>
+<td>NullReferenceException</td>
+<td>Using null objects</td>
+</tr>
+</table>
+
+<h2>Throwing Exceptions</h2>
+
+<p>
+Developers can manually generate exceptions using the <code>Throw</code> keyword.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">throwbasic.vb</span>
+</div>
+
+<pre>Dim age As Integer = -5
+
+If age &lt; 0 Then
+
+    Throw New Exception("Age cannot be negative")
+
+End If</pre>
+
+</div>
+
 <h2>Throw Custom Exception</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">throw.vb</span></div>
+
+<p>
+Custom exceptions help create more meaningful and application-specific error handling.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">throw.vb</span>
+</div>
+
 <pre>Class InsufficientFundsException
+
     Inherits Exception
+
     Sub New(msg As String)
+
         MyBase.New(msg)
+
     End Sub
+
 End Class
 
 If balance &lt; amount Then
-    Throw New InsufficientFundsException("Not enough money!")
-End If</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Wrap a file-read operation in try-catch handling FileNotFound and IOException.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(7)">← Previous</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button></div></div>
 
+    Throw New InsufficientFundsException("Not enough money!")
+
+End If</pre>
+
+</div>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><strong>InsufficientFundsException</strong> is a custom exception class</li>
+<li><strong>Inherits Exception</strong> extends the base Exception class</li>
+<li><strong>Throw</strong> generates the custom error</li>
+</ul>
+
+<h2>Using Message Property</h2>
+
+<p>
+The <code>Message</code> property provides detailed information about an exception.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">message.vb</span>
+</div>
+
+<pre>Catch ex As Exception
+
+    Console.WriteLine(ex.Message)
+
+End Catch</pre>
+
+</div>
+
+<h2>Error Logging</h2>
+
+<p>
+Applications often log exceptions into files for debugging and maintenance.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">log.vb</span>
+</div>
+
+<pre>Catch ex As Exception
+
+    File.AppendAllText(
+        "errors.txt",
+        ex.Message &amp; vbCrLf
+    )
+
+End Catch</pre>
+
+</div>
+
+<h2>Nested Exception Handling</h2>
+
+<p>
+Exception handling blocks can also be nested inside each other.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots"><span></span><span></span><span></span></div>
+<span class="filename">nested.vb</span>
+</div>
+
+<pre>Try
+
+    Try
+
+        Dim x = 10 / 0
+
+    Catch ex As DivideByZeroException
+
+        Console.WriteLine("Math error")
+
+    End Try
+
+Catch ex As Exception
+
+    Console.WriteLine("Outer error")
+
+End Try</pre>
+
+</div>
+
+<h2>Best Practices for Exception Handling</h2>
+
+<ul>
+<li>Handle only expected exceptions</li>
+<li>Use specific exception types when possible</li>
+<li>Avoid empty catch blocks</li>
+<li>Log important errors</li>
+<li>Use Finally for cleanup tasks</li>
+<li>Do not overuse exceptions for normal logic</li>
+</ul>
+
+<h2>Real-World Applications</h2>
+
+<ul>
+<li>Banking software</li>
+<li>Web applications</li>
+<li>Database systems</li>
+<li>Game development</li>
+<li>Desktop applications</li>
+<li>Cloud services</li>
+</ul>
+
+<h2>Advantages of Exception Handling</h2>
+
+<ul>
+<li>Improves application stability</li>
+<li>Provides better debugging support</li>
+<li>Prevents sudden crashes</li>
+<li>Improves software reliability</li>
+<li>Creates safer applications</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Wrap a file-read operation in try-catch handling FileNotFound and IOException.
+</p>
+
+<p>
+Try adding:
+</p>
+
+<ul>
+<li>Custom error messages</li>
+<li>Error logging to a file</li>
+<li>User input validation</li>
+<li>Finally block cleanup operations</li>
+</ul>
+
+</div>
+
+<h2>Summary</h2>
+
+<p>
+In this lecture, we learned how exception handling works in VB.NET using Try, Catch, Finally, and Throw statements.
+</p>
+
+<p>
+We explored built-in exceptions, custom exceptions, error logging, nested handling, and best practices for building reliable applications.
+</p>
+
+<p>
+Exception handling is a critical skill that helps developers create stable and professional software systems.
+</p>
+
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+<button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+</div>
+
+</div>
 <!-- ===================== LECTURE 10 ===================== -->
 <div class="lecture" id="lec-9">
 <div class="lecture-tag">Lecture 10 · OOP</div>

@@ -484,237 +484,763 @@ echo "You are in: $(pwd)"</pre>
 <div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
 
 <h2>Shell Variables</h2>
-<p>In shell scripting, variables store data for later use. Unlike compiled languages, shell variables are untyped — they store everything as strings by default. <strong>No spaces around = when assigning.</strong></p>
+<p>Variables are containers used to store data inside a shell script. They allow scripts to reuse information without typing the same values repeatedly. In Bash, variables do not require data types like <code>int</code> or <code>string</code>. Everything is treated as text internally.</p>
+
+<p>One of the most common beginner mistakes is adding spaces around the equals sign. In Bash, variable assignment must not contain spaces.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">variables.sh</span></div>
 <pre>#!/bin/bash
 name="Ahmed"
 age=25
-pi=3.14159
-echo "Name: $name, Age: $age, PI: $pi"</pre></div>
+course="Shell Scripting"
+
+echo "Student: $name"
+echo "Age: $age"
+echo "Course: $course"</pre></div>
+
+<p>Variables can store names, numbers, file paths, command output, and even entire sentences.</p>
+
+<h2>Variable Naming Rules</h2>
+<p>Variable names should be meaningful and easy to understand. Good naming improves readability and helps when debugging large scripts.</p>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>Valid</th><th>Invalid</th></tr>
+<tr><td><code>user_name</code></td><td><code>user-name</code></td></tr>
+<tr><td><code>course1</code></td><td><code>1course</code></td></tr>
+<tr><td><code>HOME_PATH</code></td><td><code>my variable</code></td></tr></table>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">naming.sh</span></div>
+<pre>#!/bin/bash
+student_name="Ali"
+project_name="CodeTutorium"
+
+echo "$student_name is learning on $project_name"</pre></div>
 
 <h2>Special Variables</h2>
+<p>Bash provides special predefined variables that give information about the script, arguments, and shell session.</p>
+
 <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>Variable</th><th>Meaning</th></tr>
-<tr><td><code>$0</code></td><td>Script name</td></tr>
-<tr><td><code>$1..$9</code></td><td>Positional arguments</td></tr>
-<tr><td><code>$#</code></td><td>Number of arguments</td></tr>
-<tr><td><code>$@</code></td><td>All arguments (separate)</td></tr>
-<tr><td><code>$?</code></td><td>Exit code of last command</td></tr>
-<tr><td><code>$$</code></td><td>Current script PID</td></tr></table>
+<tr><td><code>$0</code></td><td>Name of the current script</td></tr>
+<tr><td><code>$1..$9</code></td><td>Arguments passed to the script</td></tr>
+<tr><td><code>$#</code></td><td>Total number of arguments</td></tr>
+<tr><td><code>$@</code></td><td>All arguments separately</td></tr>
+<tr><td><code>$?</code></td><td>Exit status of last command</td></tr>
+<tr><td><code>$$</code></td><td>Process ID of current script</td></tr></table>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">special.sh</span></div>
+<pre>#!/bin/bash
+echo "Script Name: $0"
+echo "First Argument: $1"
+echo "Total Arguments: $#"</pre></div>
+
+<h2>User Input with read</h2>
+<p>Scripts become interactive when they accept input from users. The <code>read</code> command stores keyboard input inside a variable.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">input.sh</span></div>
+<pre>#!/bin/bash
+echo "Enter your name:"
+read username
+
+echo "Welcome $username"</pre></div>
+
+<p>You can also display prompts directly inside the command using the <code>-p</code> option.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">prompt.sh</span></div>
+<pre>#!/bin/bash
+read -p "Enter your city: " city
+
+echo "City: $city"</pre></div>
 
 <h2>Command Substitution</h2>
+<p>Command substitution allows the output of a command to be stored inside a variable. This is extremely useful for automation and system scripting.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cmd_sub.sh</span></div>
 <pre>#!/bin/bash
 today=$(date +%Y-%m-%d)
-files=$(ls | wc -l)
-echo "Date: $today | Files: $files"</pre></div>
+current_user=$(whoami)
+
+echo "Date: $today"
+echo "Logged in as: $current_user"</pre></div>
+
+<p>The <code>$(command)</code> syntax is preferred because it is cleaner and easier to read than older backtick syntax.</p>
 
 <h2>Readonly & Export</h2>
+<p>Sometimes variables should not be changed after assignment. The <code>readonly</code> keyword protects variables from modification. The <code>export</code> command makes variables available to child processes.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">scope.sh</span></div>
 <pre>#!/bin/bash
-readonly PI=3.14159
-export PATH="/custom/bin:$PATH"
-local_var="only in this script"</pre></div>
+readonly VERSION="1.0"
+export APP_ENV="production"
 
-<!-- NEW CONTENT ADDED BELOW -->
+echo "Version: $VERSION"
+echo "Environment: $APP_ENV"</pre></div>
 
 <h2>Quoting Rules</h2>
-<p>How you quote variables determines how the shell interprets them. This is one of the most critical concepts in scripting.</p>
+<p>Quotes affect how Bash interprets variables and text. Understanding quoting rules prevents unexpected errors, especially when working with spaces.</p>
+
 <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>Style</th><th>Behavior</th></tr>
-<tr><td><code>"$var"</code></td><td>Double quotes — expands variables but prevents word splitting</td></tr>
-<tr><td><code>'$var'</code></td><td>Single quotes — literal text, no expansion at all</td></tr>
-<tr><td><code>$var</code></td><td>Unquoted — expands variables <em>and</em> splits on whitespace</td></tr></table>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">quoting.sh</span></div>
+<tr><td><code>"$var"</code></td><td>Expands variables safely</td></tr>
+<tr><td><code>'$var'</code></td><td>Treats everything literally</td></tr>
+<tr><td><code>$var</code></td><td>Expands and splits text</td></tr></table>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">quotes.sh</span></div>
 <pre>#!/bin/bash
-filename="my file.txt"
+file="my document.txt"
 
-# Safe: preserves the space
-touch "$filename"
+touch "$file"
 
-# Dangerous: creates two files: "my" and "file.txt"
-touch $filename</pre></div>
-<p><strong>Golden rule:</strong> Always double-quote your variables unless you specifically need word splitting.</p>
+echo "Created: $file"</pre></div>
+
+<p><strong>Best Practice:</strong> Always wrap variables in double quotes unless you intentionally need word splitting.</p>
 
 <h2>Arithmetic Operations</h2>
-<p>Since all variables are strings, math requires special syntax. Use <code>$(( ))</code> for integer arithmetic or <code>bc</code> for floating-point math.</p>
+<p>Bash treats variables as strings, but arithmetic can still be performed using special syntax. Integer calculations use <code>$(( ))</code>.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">math.sh</span></div>
 <pre>#!/bin/bash
+x=15
+y=4
+
+echo "Addition: $((x + y))"
+echo "Subtraction: $((x - y))"
+echo "Multiplication: $((x * y))"
+echo "Division: $((x / y))"</pre></div>
+
+<p>For floating-point calculations, external tools like <code>bc</code> are commonly used.</p>
+
+<h2>Arrays</h2>
+<p>Arrays allow multiple values to be stored inside a single variable. Bash supports indexed arrays and associative arrays.</p>
+
+<h3>Indexed Arrays</h3>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arrays.sh</span></div>
+<pre>#!/bin/bash
+languages=("Bash" "Python" "JavaScript")
+
+echo "First Language: ${languages[0]}"
+echo "All Languages: ${languages[@]}"</pre></div>
+
+<h3>Associative Arrays</h3>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">assoc.sh</span></div>
+<pre>#!/bin/bash
+declare -A user
+
+user[name]="Ahmed"
+user[role]="Developer"
+
+echo "${user[name]} is a ${user[role]}"</pre></div>
+
+<h2>Environment vs Local Variables</h2>
+<p>Variables can exist either locally or globally. Local variables are available only inside the current shell session, while exported environment variables can be inherited by child processes.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">environment.sh</span></div>
+<pre>#!/bin/bash
+local_var="Local"
+export global_var="Global"
+
+bash -c 'echo $global_var'
+bash -c 'echo $local_var'</pre></div>
+
+<p>Use the <code>env</code> or <code>printenv</code> command to display environment variables currently available in the shell.</p>
+
+<h2>Removing Variables</h2>
+<p>The <code>unset</code> command removes variables from memory. Once removed, the variable no longer stores any value.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">unset.sh</span></div>
+<pre>#!/bin/bash
+language="Bash"
+
+echo "$language"
+
+unset language
+
+echo "$language"</pre></div>
+
+<p>Removing unnecessary variables helps keep scripts organized and prevents accidental reuse of old data.</p>
+
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a script that asks the user for their name and favorite programming language, stores both values in variables, and prints a welcome message using those variables.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(0)">← Previous</button><button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button></div>
+</div>
+
+
+<!-- ===================== LECTURE 03 ===================== -->
+<div class="lecture" id="lec-2">
+
+<div class="lecture-tag">Lecture 03 · Fundamentals</div>
+
+<h1>Operators & Expressions</h1>
+
+<div class="lecture-meta">
+<span class="meta-badge level-beginner">Beginner</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Operators are special symbols used to perform operations on values and variables.
+In Bash scripting, operators are used for calculations, comparisons, logical decisions,
+pattern matching, and file testing.
+</p>
+
+<p>
+Expressions are combinations of variables, operators, and values that produce a result.
+Understanding operators is extremely important because they are used in almost every script.
+</p>
+
+<p>
+In this lecture, we will learn:
+</p>
+
+<ul>
+<li>Arithmetic operations</li>
+<li>Numeric comparisons</li>
+<li>String and logical operators</li>
+<li>File test operators</li>
+<li>Bitwise operations</li>
+<li>Pattern matching and regex</li>
+<li>Operator precedence</li>
+<li>Short-circuit evaluation</li>
+</ul>
+
+<h2>Arithmetic</h2>
+
+<p>
+Arithmetic operators are used to perform mathematical calculations.
+Bash supports addition, subtraction, multiplication, division, modulus, and exponentiation.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">math.sh</span>
+</div>
+
+<pre>#!/bin/bash
+
 a=10
 b=3
 
-echo "Addition: $((a + b))"
-echo "Modulo: $((a % b))"
-echo "Increment: $((a++))"
+<span class="cm"># Addition</span>
+echo $((a + b))
 
-# Floating point with bc
-result=$(echo "scale=2; $a / $b" | bc)
-echo "Division: $result"</pre></div>
+<span class="cm"># Multiplication</span>
+echo $((a * b))
 
-<h2>Arrays</h2>
-<p>Bash supports indexed arrays and associative arrays (key-value pairs). Arrays are the closest thing shell has to true data structures.</p>
-<h3>Indexed Arrays</h3>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arrays.sh</span></div>
+<span class="cm"># Modulus (remainder)</span>
+echo $((a % b))
+
+<span class="cm"># Exponentiation</span>
+echo $((a ** b))
+
+<span class="cm"># Increment</span>
+((a++))
+echo $a</pre>
+
+</div>
+
+<h3>Understanding Arithmetic Operators</h3>
+
+<ul>
+<li><strong>+</strong> → Addition</li>
+<li><strong>-</strong> → Subtraction</li>
+<li><strong>*</strong> → Multiplication</li>
+<li><strong>/</strong> → Division</li>
+<li><strong>%</strong> → Remainder</li>
+<li><strong>**</strong> → Power operator</li>
+</ul>
+
+<h3>Integer Division</h3>
+
+<p>
+Bash arithmetic works mainly with integers.
+Decimal calculations require external tools like <code>bc</code>.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">division.sh</span>
+</div>
+
 <pre>#!/bin/bash
-languages=("Bash" "Python" "Go" "Rust")
 
-echo "First: ${languages[0]}"
-echo "All: ${languages[@]}"
-echo "Count: ${#languages[@]}"
+echo $((10 / 3))
 
-# Append
-languages+=("Java")</pre></div>
-<h3>Associative Arrays</h3>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">assoc_array.sh</span></div>
-<pre>#!/bin/bash
-declare -A user
-user[name]="Ahmed"
-user[role]="DevOps"
-user[years]=5
+echo "10 / 3" | bc -l</pre>
 
-echo "${user[name]} works as ${user[role]}"</pre></div>
-
-<h2>Environment vs Local Variables</h2>
-<p>Variables exist in two scopes. <strong>Local</strong> variables live only inside the current shell or script. <strong>Environment</strong> variables are inherited by child processes.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">env_check.sh</span></div>
-<pre>#!/bin/bash
-local_var="I am local"
-export global_var="I am global"
-
-bash -c 'echo "Inside child: $global_var"'  # Works
-bash -c 'echo "Inside child: $local_var"'    # Empty — not inherited</pre></div>
-<p>Use <code>env</code> or <code>printenv</code> to inspect environment variables, and <code>unset VAR_NAME</code> to remove a variable from the current session.</p>
-
-<!-- END OF NEW CONTENT -->
-
-<div class="exercise"><div class="exercise-title">Practice</div><p>Write a script that takes a name as argument and prints: "Hello [name]! Today is [date]. Running as [user]."</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(0)">← Previous</button><button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button></div></div>
-<!-- ===================== LECTURE 03 ===================== -->
-
-<div class="lecture" id="lec-2">
-<div class="lecture-tag">Lecture 03 · Fundamentals</div>
-<h1>Operators & Expressions</h1>
-<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
-
-<h2>Arithmetic</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">math.sh</span></div>
-<pre>#!/bin/bash
-a=10; b=3
-echo $((a + b))   # 13
-echo $((a * b))   # 30
-echo $((a % b))   # 1
-echo $((a ** b))  # 1000
-((a++)); echo $a  # 11</pre></div>
+</div>
 
 <h2>Numeric Comparisons</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">compare.sh</span></div>
+
+<p>
+Numeric comparison operators are used to compare integer values.
+These are commonly used inside conditional statements.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">compare.sh</span>
+</div>
+
 <pre>#!/bin/bash
-x=10; y=20
-[[ $x -eq $y ]]  # equal
-[[ $x -ne $y ]]  # not equal
-[[ $x -lt $y ]]  # less than
-[[ $x -gt $y ]]  # greater than
-[[ $x -le $y ]]  # less or equal
-[[ $x -ge $y ]]  # greater or equal</pre></div>
+
+x=10
+y=20
+
+[[ $x -eq $y ]]  <span class="cm"># equal</span>
+
+[[ $x -ne $y ]]  <span class="cm"># not equal</span>
+
+[[ $x -lt $y ]]  <span class="cm"># less than</span>
+
+[[ $x -gt $y ]]  <span class="cm"># greater than</span>
+
+[[ $x -le $y ]]  <span class="cm"># less or equal</span>
+
+[[ $x -ge $y ]]  <span class="cm"># greater or equal</span></pre>
+
+</div>
+
+<h3>Comparison Operator Table</h3>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td><code>-eq</code></td>
+<td>Equal</td>
+</tr>
+
+<tr>
+<td><code>-ne</code></td>
+<td>Not Equal</td>
+</tr>
+
+<tr>
+<td><code>-lt</code></td>
+<td>Less Than</td>
+</tr>
+
+<tr>
+<td><code>-gt</code></td>
+<td>Greater Than</td>
+</tr>
+
+<tr>
+<td><code>-le</code></td>
+<td>Less Than or Equal</td>
+</tr>
+
+<tr>
+<td><code>-ge</code></td>
+<td>Greater Than or Equal</td>
+</tr>
+</table>
 
 <h2>String & Logical Operators</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">logical.sh</span></div>
+
+<p>
+String operators compare text values, while logical operators combine conditions together.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">logical.sh</span>
+</div>
+
 <pre>#!/bin/bash
-[[ "$a" = "$b" ]]   # equal
-[[ -z "$a" ]]       # is empty
-[[ -n "$a" ]]       # is not empty
-[[ $age -ge 18 && $lic == true ]]  # AND
-[[ $a -lt 0 || $b -gt 100 ]]      # OR</pre></div>
+
+a="hello"
+b="world"
+age=20
+lic=true
+
+<span class="cm"># String equality</span>
+[[ "$a" = "$b" ]]
+
+<span class="cm"># Empty string check</span>
+[[ -z "$a" ]]
+
+<span class="cm"># Non-empty string check</span>
+[[ -n "$a" ]]
+
+<span class="cm"># Logical AND</span>
+[[ $age -ge 18 && $lic == true ]]
+
+<span class="cm"># Logical OR</span>
+[[ $a == "admin" || $age -gt 18 ]]</pre>
+
+</div>
+
+<h3>Logical Operators</h3>
+
+<ul>
+<li><strong>&&</strong> → AND</li>
+<li><strong>||</strong> → OR</li>
+<li><strong>!</strong> → NOT</li>
+</ul>
 
 <h2>File Test Operators</h2>
-<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>Test</th><th>True if</th></tr>
-<tr><td><code>-e file</code></td><td>Exists</td></tr>
-<tr><td><code>-f file</code></td><td>Regular file</td></tr>
-<tr><td><code>-d file</code></td><td>Directory</td></tr>
-<tr><td><code>-r file</code></td><td>Readable</td></tr>
-<tr><td><code>-w file</code></td><td>Writable</td></tr>
-<tr><td><code>-x file</code></td><td>Executable</td></tr>
-<tr><td><code>-s file</code></td><td>Non-empty</td></tr></table>
 
-<!-- NEW CONTENT ADDED BELOW -->
+<p>
+File test operators are used to check properties of files and directories.
+These operators are extremely important in shell scripting.
+</p>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+
+<tr>
+<th>Test</th>
+<th>True if</th>
+</tr>
+
+<tr>
+<td><code>-e file</code></td>
+<td>Exists</td>
+</tr>
+
+<tr>
+<td><code>-f file</code></td>
+<td>Regular file</td>
+</tr>
+
+<tr>
+<td><code>-d file</code></td>
+<td>Directory</td>
+</tr>
+
+<tr>
+<td><code>-r file</code></td>
+<td>Readable</td>
+</tr>
+
+<tr>
+<td><code>-w file</code></td>
+<td>Writable</td>
+</tr>
+
+<tr>
+<td><code>-x file</code></td>
+<td>Executable</td>
+</tr>
+
+<tr>
+<td><code>-s file</code></td>
+<td>Non-empty</td>
+</tr>
+
+</table>
+
+<h3>Practical File Check Example</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">file_check.sh</span>
+</div>
+
+<pre>#!/bin/bash
+
+file="notes.txt"
+
+if [[ -f "$file" ]]; then
+    echo "File exists"
+else
+    echo "File missing"
+fi</pre>
+
+</div>
 
 <h2>Bitwise Operators</h2>
-<p>When working with permissions, flags, or low-level data, bitwise operations manipulate individual bits inside integers.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bitwise.sh</span></div>
-<pre>#!/bin/bash
-flags=6   # binary: 110
-mask=2    # binary: 010
 
-echo $((flags & mask))   # AND  -> 2 (010)
-echo $((flags | mask))   # OR   -> 6 (110)
-echo $((flags ^ mask))   # XOR  -> 4 (100)
-echo $((~flags))         # NOT  -> -7 (inverts all bits)
-echo $((flags << 1))     # Left shift  -> 12 (1100)
-echo $((flags >> 1))     # Right shift -> 3  (011)</pre></div>
-<p>Bitwise AND is especially common for checking if a specific permission bit is set inside a numeric mode.</p>
+<p>
+Bitwise operators work directly with binary values.
+These are commonly used in permissions, flags, networking, and system-level programming.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">bitwise.sh</span>
+</div>
+
+<pre>#!/bin/bash
+
+flags=6
+mask=2
+
+echo $((flags & mask))
+
+echo $((flags | mask))
+
+echo $((flags ^ mask))
+
+echo $((~flags))
+
+echo $((flags << 1))
+
+echo $((flags >> 1))</pre>
+
+</div>
+
+<h3>Bitwise Operators Table</h3>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td><code>&</code></td>
+<td>Bitwise AND</td>
+</tr>
+
+<tr>
+<td><code>|</code></td>
+<td>Bitwise OR</td>
+</tr>
+
+<tr>
+<td><code>^</code></td>
+<td>Bitwise XOR</td>
+</tr>
+
+<tr>
+<td><code>~</code></td>
+<td>Bitwise NOT</td>
+</tr>
+
+<tr>
+<td><code>&lt;&lt;</code></td>
+<td>Left Shift</td>
+</tr>
+
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>Right Shift</td>
+</tr>
+
+</table>
 
 <h2>Pattern Matching & Regex</h2>
-<p>The double bracket <code>[[ ]]</code> syntax supports pattern matching with <code>*</code> and <code>?</code>, plus regex matching with <code>=~</code>.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">patterns.sh</span></div>
+
+<p>
+Bash supports wildcard pattern matching and regular expressions for advanced text searching.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">patterns.sh</span>
+</div>
+
 <pre>#!/bin/bash
+
 filename="report_2024.pdf"
 
 [[ $filename == *.pdf ]] && echo "PDF file"
+
 [[ $filename == report_* ]] && echo "Report prefix"
-[[ $filename =~ [0-9]{4} ]] && echo "Contains 4-digit year"</pre></div>
-<p>Regex matching with <code>=~</code> stores capture groups in the <code>BASH_REMATCH</code> array automatically.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">regex_capture.sh</span></div>
+
+[[ $filename =~ [0-9]{4} ]] && echo "Contains year"</pre>
+
+</div>
+
+<h3>Common Wildcards</h3>
+
+<ul>
+<li><strong>*</strong> → Matches multiple characters</li>
+<li><strong>?</strong> → Matches single character</li>
+<li><strong>[]</strong> → Character ranges</li>
+</ul>
+
+<h2>Regex Capture Groups</h2>
+
+<p>
+Bash automatically stores regex capture groups inside the
+<code>BASH_REMATCH</code> array.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">regex_capture.sh</span>
+</div>
+
 <pre>#!/bin/bash
+
 email="user@example.com"
+
 [[ $email =~ ^([a-z]+)@([a-z]+\.[a-z]+)$ ]]
+
 echo "User: ${BASH_REMATCH[1]}"
-echo "Domain: ${BASH_REMATCH[2]}"</pre></div>
+
+echo "Domain: ${BASH_REMATCH[2]}"</pre>
+
+</div>
 
 <h2>Operator Precedence & Grouping</h2>
-<p>Complex conditions must be grouped with parentheses inside <code>[[ ]]</code> to control evaluation order. Outside of double brackets, use separate <code>[ ]</code> blocks joined by <code>&&</code> or <code>||</code>.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">precedence.sh</span></div>
+
+<p>
+Complex conditions should be grouped properly using parentheses.
+This improves readability and prevents logical errors.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">precedence.sh</span>
+</div>
+
 <pre>#!/bin/bash
+
 age=25
 income=50000
 credit=700
 
-# Correct grouping inside [[ ]]
-[[ ($age -ge 21 && $income -gt 40000) || $credit -ge 750 ]] && echo "Approved"
+[[ ($age -ge 21 && $income -gt 40000) || $credit -ge 750 ]] && echo "Approved"</pre>
 
-# Old-style [ ] requires separate blocks
-[ "$age" -ge 21 ] && [ "$income" -gt 40000 ] || [ "$credit" -ge 750 ]</pre></div>
-<p>When mixing <code>&&</code> and <code>||</code> in old-style tests, Bash evaluates left-to-right without mathematical precedence — always group explicitly.</p>
+</div>
 
 <h2>Short-Circuit Evaluation</h2>
-<p>Bash uses short-circuit logic: <code>&&</code> stops if the left side is false, <code>||</code> stops if the left side is true. This is not just for conditions — it is a common idiom for conditional execution.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">short_circuit.sh</span></div>
+
+<p>
+Bash uses short-circuit logic for efficient execution.
+</p>
+
+<ul>
+<li><strong>&&</strong> stops if the left side is false</li>
+<li><strong>||</strong> stops if the left side is true</li>
+</ul>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">short_circuit.sh</span>
+</div>
+
 <pre>#!/bin/bash
-# Only create file if directory exists
+
 [[ -d /var/log ]] && touch /var/log/app.log
 
-# Provide default value if variable is unset
 [[ -n "$username" ]] || username="guest"
 
-# Equivalent to: if command succeeds, then do this
-ping -c 1 google.com &>/dev/null && echo "Online" || echo "Offline"</pre></div>
+ping -c 1 google.com &>/dev/null && echo "Online" || echo "Offline"</pre>
+
+</div>
 
 <h2>Compound File Tests</h2>
-<p>Real scripts rarely check one file property at a time. Combine tests to validate files before processing them.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">validate.sh</span></div>
+
+<p>
+Real-world scripts usually combine multiple file checks together.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">validate.sh</span>
+</div>
+
 <pre>#!/bin/bash
+
 config="app.conf"
 
 if [[ -f "$config" && -r "$config" && -s "$config" ]]; then
-    echo "Config is valid — loading..."
-    source "$config"
+
+    echo "Config is valid"
+
 else
-    echo "Error: $config missing, unreadable, or empty" >&2
+
+    echo "Invalid config" >&2
+
     exit 1
-fi</pre></div>
-<p>Redirecting error messages to <code>&amp;2</code> (stderr) keeps them separate from normal output and is considered best practice in production scripts.</p>
+fi</pre>
 
-<!-- END OF NEW CONTENT -->
+</div>
 
-<div class="exercise"><div class="exercise-title">Practice</div><p>Write a script that checks if a file exists, is readable, and is non-empty — print appropriate messages for each condition.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(1)">← Previous</button><button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button></div></div>
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use <code>[[ ]]</code> instead of old-style <code>[ ]</code> when possible</li>
+<li>Quote variables to avoid unexpected errors</li>
+<li>Group complex conditions clearly</li>
+<li>Use comments for readability</li>
+<li>Validate files before processing them</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Write Bash scripts that:
+</p>
+
+<ul>
+<li>Check if a file exists and is readable</li>
+<li>Compare two numbers and print the larger one</li>
+<li>Validate email format using regex</li>
+<li>Perform arithmetic calculations using user input</li>
+<li>Use logical operators to validate login conditions</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(1)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(3)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
+
+
 <!-- ===================== LECTURE 04 ===================== -->
 
 <div class="lecture" id="lec-3">
@@ -722,10 +1248,18 @@ fi</pre></div>
 <h1>Control Flow</h1>
 <div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
 
+<h2>Introduction to Control Flow</h2>
+<p>Control flow determines how a script makes decisions and repeats tasks. Without control flow, scripts would execute line-by-line with no ability to react to conditions or user input.</p>
+
+<p>Bash provides conditional statements and loops that allow scripts to become dynamic and interactive.</p>
+
 <h2>If-Elif-Else</h2>
+<p>The <code>if</code> statement checks conditions and executes different blocks of code depending on whether the condition is true or false.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ifelse.sh</span></div>
 <pre>#!/bin/bash
 read -p "Enter age: " age
+
 if [[ $age -lt 13 ]]; then
     echo "Child"
 elif [[ $age -lt 20 ]]; then
@@ -734,591 +1268,3844 @@ else
     echo "Adult"
 fi</pre></div>
 
+<p>The condition inside <code>[[ ]]</code> is evaluated by Bash. If the condition is true, the matching block executes.</p>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>Operator</th><th>Meaning</th></tr>
+<tr><td><code>-eq</code></td><td>Equal to</td></tr>
+<tr><td><code>-ne</code></td><td>Not equal to</td></tr>
+<tr><td><code>-lt</code></td><td>Less than</td></tr>
+<tr><td><code>-gt</code></td><td>Greater than</td></tr>
+<tr><td><code>-le</code></td><td>Less than or equal</td></tr>
+<tr><td><code>-ge</code></td><td>Greater than or equal</td></tr></table>
+
+<h2>String Comparisons</h2>
+<p>Conditions are not limited to numbers. Bash can also compare strings and text values.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">string_compare.sh</span></div>
+<pre>#!/bin/bash
+read -p "Enter role: " role
+
+if [[ $role == "admin" ]]; then
+    echo "Access granted"
+else
+    echo "Access denied"
+fi</pre></div>
+
+<p>String comparisons are commonly used in login systems, menus, and configuration scripts.</p>
+
 <h2>Case Statement</h2>
+<p>The <code>case</code> statement is useful when checking multiple possible values. It is cleaner and easier to manage than writing many <code>if</code> statements.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">case.sh</span></div>
 <pre>#!/bin/bash
 read -p "Pick (start|stop|restart): " cmd
+
 case $cmd in
-    start)   echo "Starting...";;
-    stop)    echo "Stopping...";;
-    restart) echo "Restarting...";;
+    start)   echo "Starting service...";;
+    stop)    echo "Stopping service...";;
+    restart) echo "Restarting service...";;
     *)       echo "Unknown command";;
 esac</pre></div>
 
+<p>The <code>*</code> symbol acts as a default option if no pattern matches.</p>
+
 <h2>Menu-Driven Script</h2>
+<p>Menus make scripts easier for users to interact with. Instead of memorizing commands, users can choose numbered options.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">menu.sh</span></div>
 <pre>#!/bin/bash
-echo "1) Date  2) Uptime  3) Disk  4) Exit"
+echo "1) Date"
+echo "2) Uptime"
+echo "3) Disk Usage"
+echo "4) Exit"
+
 read -p "Choice: " c
+
 case $c in
-    1) date;;  2) uptime;;
-    3) df -h;; 4) exit;;
-    *) echo "Invalid";;
+    1) date;;
+    2) uptime;;
+    3) df -h;;
+    4) exit;;
+    *) echo "Invalid choice";;
 esac</pre></div>
 
+<p>Menu-based scripts are commonly used in system administration and automation tools.</p>
+
 <h2>Exit Codes</h2>
-<p><code>$?</code> holds the exit code of the last command. 0 = success, non-zero = failure.</p>
+<p>Every command in Linux returns an exit code after execution. A value of <code>0</code> means success, while non-zero values indicate errors or failures.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">exit.sh</span></div>
 <pre>#!/bin/bash
 grep "error" app.log
-if [[ $? -eq 0 ]]; then echo "Errors found"; fi
-# Shorthand:
-mkdir /tmp/dir && echo "OK" || echo "FAIL"</pre></div>
 
-<!-- NEW CONTENT ADDED BELOW -->
+if [[ $? -eq 0 ]]; then
+    echo "Errors found"
+else
+    echo "No errors found"
+fi</pre></div>
+
+<p>The special variable <code>$?</code> stores the exit code of the last executed command.</p>
+
+<h2>Logical Operators</h2>
+<p>Bash supports logical operators for combining multiple conditions inside a single statement.</p>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>Operator</th><th>Purpose</th></tr>
+<tr><td><code>&&</code></td><td>Logical AND</td></tr>
+<tr><td><code>||</code></td><td>Logical OR</td></tr>
+<tr><td><code>!</code></td><td>Logical NOT</td></tr></table>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">logic.sh</span></div>
+<pre>#!/bin/bash
+age=20
+country="India"
+
+if [[ $age -ge 18 && $country == "India" ]]; then
+    echo "Eligible"
+fi</pre></div>
 
 <h2>For Loops</h2>
-<p>The <code>for</code> loop iterates over a list of items — words, files, numbers, or command output. It is the most common loop in shell scripting.</p>
-<h3>Iterating Over Lists</h3>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">for_list.sh</span></div>
+<p>The <code>for</code> loop repeats a block of code multiple times. It is commonly used when processing lists, files, or ranges of numbers.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">for_loop.sh</span></div>
 <pre>#!/bin/bash
-for lang in Bash Python Go Rust; do
+for lang in Bash Python JavaScript Go; do
     echo "Learning $lang"
 done</pre></div>
-<h3>C-Style Numeric Range</h3>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">for_range.sh</span></div>
-<pre>#!/bin/bash
-for ((i = 1; i <= 5; i++)); do
-    echo "Iteration $i"
-done</pre></div>
-<h3>Looping Over Files</h3>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">for_files.sh</span></div>
-<pre>#!/bin/bash
-for file in *.log; do
-    echo "Processing: $file"
-    gzip "$file"
-done</pre></div>
-<p>Always double-quote the loop variable (<code>"$file"</code>) to handle filenames containing spaces correctly.</p>
 
-<h2>While & Until Loops</h2>
-<p><code>while</code> runs as long as a condition is true. <code>until</code> runs until a condition becomes true — they are logical opposites.</p>
+<p>The loop runs once for every item in the list.</p>
+
+<h3>Numeric Loops</h3>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">range.sh</span></div>
+<pre>#!/bin/bash
+for ((i=1; i<=5; i++)); do
+    echo "Number: $i"
+done</pre></div>
+
+<h2>While Loops</h2>
+<p>The <code>while</code> loop continues running as long as its condition remains true.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">while.sh</span></div>
 <pre>#!/bin/bash
 count=1
+
 while [[ $count -le 5 ]]; do
     echo "Count: $count"
     ((count++))
 done</pre></div>
+
+<p>While loops are useful when the number of iterations is not known in advance.</p>
+
+<h2>Until Loops</h2>
+<p>The <code>until</code> loop is the opposite of <code>while</code>. It runs until a condition becomes true.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">until.sh</span></div>
 <pre>#!/bin/bash
-# Keep trying until a file appears
-until [[ -f /var/run/service.pid ]]; do
-    echo "Waiting for service..."
-    sleep 2
-done
-echo "Service is ready"</pre></div>
-<p><code>while</code> is ideal for reading files line-by-line with <code>read</code>, which is memory-efficient compared to loading the entire file at once.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">read_lines.sh</span></div>
-<pre>#!/bin/bash
-while read -r line; do
-    echo "Line: $line"
-done < users.txt</pre></div>
+number=1
+
+until [[ $number -gt 5 ]]; do
+    echo "Value: $number"
+    ((number++))
+done</pre></div>
 
 <h2>Break & Continue</h2>
-<p>Use <code>break</code> to exit a loop early, and <code>continue</code> to skip the rest of the current iteration and move to the next one.</p>
+<p>The <code>break</code> statement immediately exits a loop, while <code>continue</code> skips the current iteration and moves to the next one.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">loop_control.sh</span></div>
 <pre>#!/bin/bash
 for i in {1..10}; do
-    [[ $i -eq 3 ]] && continue   # Skip number 3
-    [[ $i -eq 7 ]] && break      # Stop at 7
+
+    if [[ $i -eq 3 ]]; then
+        continue
+    fi
+
+    if [[ $i -eq 7 ]]; then
+        break
+    fi
+
     echo "Value: $i"
 done</pre></div>
-<p>Both commands accept an optional numeric argument (<code>break 2</code>, <code>continue 2</code>) to control nested loops, jumping out of or skipping to the next iteration of an outer loop.</p>
 
-<h2>The Select Loop</h2>
-<p>Bash provides a built-in <code>select</code> construct that automatically generates a numbered menu from a list, handling user input with a prompt. It is cleaner than manually writing a <code>case</code> menu.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">select_menu.sh</span></div>
+<p>In this example, number 3 is skipped and the loop stops completely at 7.</p>
+
+<h2>Select Loop</h2>
+<p>The <code>select</code> loop automatically creates numbered menus. It is useful for interactive terminal applications.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">select.sh</span></div>
 <pre>#!/bin/bash
-PS3="Choose an action: "
-options=("Start" "Stop" "Status" "Quit")
-select opt in "${options[@]}"; do
-    case $opt in
-        "Start")  echo "Starting service..."; break;;
-        "Stop")   echo "Stopping service..."; break;;
-        "Status") systemctl status myapp; break;;
-        "Quit")   exit 0;;
-        *)        echo "Invalid option $REPLY";;
+PS3="Choose option: "
+
+select option in Start Stop Exit; do
+    case $option in
+        Start) echo "Starting...";;
+        Stop) echo "Stopping...";;
+        Exit) break;;
+        *) echo "Invalid";;
     esac
 done</pre></div>
-<p>The <code>PS3</code> variable customizes the prompt, and <code>REPLY</code> stores the raw number the user typed. Remember to use <code>break</code> inside each valid option or the menu will loop infinitely.</p>
 
-<h2>Ternary-Style Defaults</h2>
-<p>Shell does not have a true ternary operator, but parameter expansion provides concise ways to assign default values or perform conditional substitution without writing a full <code>if</code> block.</p>
-<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>Syntax</th><th>Behavior</th></tr>
-<tr><td><code>${var:-default}</code></td><td>Use default if var is unset or empty</td></tr>
-<tr><td><code>${var:=default}</code></td><td>Same, but also assigns default to var</td></tr>
-<tr><td><code>${var:+value}</code></td><td>Use value only if var is set and non-empty</td></tr>
-<tr><td><code>${var:?error}</code></td><td>Print error and exit if var is missing</td></tr></table>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">defaults.sh</span></div>
+<p>The <code>PS3</code> variable changes the prompt shown to the user.</p>
+
+<h2>Nested Conditions</h2>
+<p>Conditions can also be placed inside other conditions. This technique is called nesting and is useful for handling more complex logic.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">nested.sh</span></div>
 <pre>#!/bin/bash
-name=${1:-Anonymous}
-port=${PORT:-8080}
-output=${DEBUG:+/dev/stderr}
+read -p "Enter username: " user
+read -p "Enter password: " pass
 
-echo "Running as $name on port $port"</pre></div>
-<p>This pattern is heavily used in configuration scripts and containerized applications where environment variables may or may not be provided by the orchestrator.</p>
+if [[ $user == "admin" ]]; then
 
-<!-- END OF NEW CONTENT -->
+    if [[ $pass == "1234" ]]; then
+        echo "Login successful"
+    else
+        echo "Wrong password"
+    fi
 
-<div class="exercise"><div class="exercise-title">Practice</div><p>Build a menu with options: (1) Show users, (2) Show memory, (3) Ping google.com, (4) Exit.</p></div>
+else
+    echo "Unknown user"
+fi</pre></div>
+
+<h2>Best Practices</h2>
+<p>Writing clean control flow improves script readability and reduces bugs.</p>
+
+<ul>
+<li>Use indentation inside conditions and loops.</li>
+<li>Prefer <code>case</code> statements for menus and multiple choices.</li>
+<li>Keep conditions simple and readable.</li>
+<li>Always test user input before processing it.</li>
+<li>Use comments to explain complex logic.</li>
+</ul>
+
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a menu-driven script with options to display the current date, show system uptime, list files, and exit the program.</p></div>
+
 <div class="lecture-nav"><button class="nav-btn" onclick="showLecture(2)">← Previous</button><button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button></div></div>
-
 
 
 
 <!-- ===================== LECTURE 05 ===================== -->
 <div class="lecture" id="lec-4">
+
 <div class="lecture-tag">Lecture 05 · Fundamentals</div>
+
 <h1>Loops</h1>
-<div class="lecture-meta"><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-beginner">Beginner</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Loops allow a script to repeat instructions automatically.
+Instead of writing the same code multiple times, loops execute a block of code repeatedly until a condition changes.
+</p>
+
+<p>
+Loops are extremely important in shell scripting because they help automate repetitive tasks such as:
+</p>
+
+<ul>
+<li>Processing files</li>
+<li>Reading log data</li>
+<li>Running commands repeatedly</li>
+<li>Monitoring systems</li>
+<li>Working with arrays</li>
+</ul>
+
+<p>
+In this lecture, we will learn:
+</p>
+
+<ul>
+<li>For loops</li>
+<li>While loops</li>
+<li>Until loops</li>
+<li>Break and continue</li>
+<li>Nested loops</li>
+<li>Looping through arrays</li>
+<li>Safe file processing</li>
+<li>Practical automation examples</li>
+</ul>
 
 <h2>For Loops</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span>
 
+<p>
+The <code>for</code> loop is used when the number of iterations is known beforehand.
+It is commonly used to loop through lists, ranges, arrays, and files.
+</p>
 
+<div class="code-block">
 
+<div class="code-header">
 
- </span><span></span></div><span class="filename">forloop.sh</span></div>
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">forloop.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
-for fruit in apple banana mango; do echo "$fruit"; done
-for ((i=1; i<=5; i++)); do echo "Count: $i"; done
-for file in *.txt; do echo "Found: $file"; done</pre></div>
+
+<span class="cm"># Loop through words</span>
+for fruit in apple banana mango; do
+    echo "$fruit"
+done
+
+<span class="cm"># C-style numeric loop</span>
+for ((i=1; i<=5; i++)); do
+    echo "Count: $i"
+done
+
+<span class="cm"># Loop through matching files</span>
+for file in *.txt; do
+    echo "Found: $file"
+done</pre>
+
+</div>
+
+<h3>Understanding the Example</h3>
+
+<ul>
+<li>The loop variable changes automatically during each iteration</li>
+<li><code>do</code> starts the loop body</li>
+<li><code>done</code> marks the end of the loop</li>
+<li><code>*.txt</code> matches all text files</li>
+</ul>
+
+<h3>Using Ranges</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">ranges.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+for i in {1..10}; do
+    echo "$i"
+done</pre>
+
+</div>
 
 <h2>While Loop</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">while.sh</span></div>
+
+<p>
+A <code>while</code> loop runs as long as a condition remains true.
+It is useful when the number of iterations is unknown.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">while.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
+
 count=1
-while [[ $count -le 5 ]]; do echo "Iter $count"; ((count++)); done
-# Read file line by line
-while IFS= read -r line; do echo "$line"; done < /etc/hosts</pre></div>
+
+while [[ $count -le 5 ]]; do
+
+    echo "Iter $count"
+
+    ((count++))
+
+done
+
+<span class="cm"># Read file line by line</span>
+
+while IFS= read -r line; do
+
+    echo "$line"
+
+done < /etc/hosts</pre>
+
+</div>
+
+<h3>Why Use IFS= read -r ?</h3>
+
+<ul>
+<li><code>IFS=</code> prevents trimming spaces</li>
+<li><code>-r</code> prevents backslash escaping</li>
+<li>This is the safest way to read files line by line</li>
+</ul>
 
 <h2>Until Loop</h2>
-<p>Runs until condition becomes true (opposite of while):</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">until.sh</span></div>
+
+<p>
+The <code>until</code> loop is the opposite of a while loop.
+It continues running until the condition becomes true.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">until.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
-n=1; until [[ $n -gt 5 ]]; do echo "$n"; ((n++)); done</pre></div>
+
+n=1
+
+until [[ $n -gt 5 ]]; do
+
+    echo "$n"
+
+    ((n++))
+
+done</pre>
+
+</div>
+
+<h3>Difference Between While and Until</h3>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+
+<tr>
+<th>Loop</th>
+<th>Runs While</th>
+</tr>
+
+<tr>
+<td><code>while</code></td>
+<td>Condition is true</td>
+</tr>
+
+<tr>
+<td><code>until</code></td>
+<td>Condition is false</td>
+</tr>
+
+</table>
 
 <h2>Break & Continue</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">break.sh</span></div>
+
+<p>
+Bash provides loop control statements to change loop execution.
+</p>
+
+<ul>
+<li><code>break</code> stops the loop completely</li>
+<li><code>continue</code> skips the current iteration</li>
+</ul>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">break.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
+
 for i in {1..10}; do
+
     [[ $i -eq 3 ]] && continue
+
     [[ $i -eq 8 ]] && break
+
     echo "$i"
-done  # Output: 1 2 4 5 6 7</pre></div>
 
-<h2>Practical: Batch Rename</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">rename.sh</span></div>
-<pre>#!/bin/bash
-c=1; for f in *.jpg; do mv "$f" "img_$(printf "%03d" $c).jpg"; ((c++)); done
-echo "Renamed $((c-1)) files."</pre></div>
+done</pre>
 
-<!-- NEW CONTENT ADDED BELOW -->
+</div>
+
+<h3>Program Output</h3>
+
+<pre>1
+2
+4
+5
+6
+7</pre>
 
 <h2>Looping Over Arrays</h2>
-<p>Arrays pair naturally with loops. Use the <code>@</code> expansion to visit every element, or loop over indices when you need the position number.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">array_loop.sh</span></div>
+
+<p>
+Arrays work naturally with loops.
+You can iterate through values or indices.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">array_loop.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
+
 tools=(Docker Kubernetes Terraform Ansible)
 
-# By value
+<span class="cm"># By value</span>
 for tool in "${tools[@]}"; do
     echo "Deploying with $tool"
 done
 
-# By index
+<span class="cm"># By index</span>
 for i in "${!tools[@]}"; do
     echo "$((i+1)). ${tools[$i]}"
-done</pre></div>
-<p>Notice the double quotes around <code>"${tools[@]}"</code> — this preserves array elements that contain spaces as single items.</p>
+done</pre>
+
+</div>
+
+<h3>Important Note</h3>
+
+<p>
+Always quote <code>"${array[@]}"</code> to preserve elements containing spaces.
+</p>
 
 <h2>Nested Loops</h2>
-<p>Place one loop inside another to work with rows, columns, or combinations of data. The inner loop completes all its iterations for every single iteration of the outer loop.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">nested.sh</span></div>
+
+<p>
+A nested loop is a loop inside another loop.
+The inner loop completes fully for every iteration of the outer loop.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">nested.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
+
 for row in 1 2 3; do
+
     for col in A B C; do
+
         echo -n "[$row$col] "
+
     done
-    echo   # New line after each row
-done</pre></div>
-<p>Be mindful of complexity — nested loops multiply the total iterations (3×3 = 9 above). Keep them shallow for shell scripts to maintain readability.</p>
+
+    echo
+
+done</pre>
+
+</div>
+
+<h3>Understanding Nested Loops</h3>
+
+<p>
+The outer loop controls rows while the inner loop controls columns.
+Nested loops are useful for:
+</p>
+
+<ul>
+<li>Tables</li>
+<li>Matrix operations</li>
+<li>Combinations</li>
+<li>Grid generation</li>
+</ul>
 
 <h2>Safe File Processing</h2>
-<p>Filenames with spaces or special characters break unquoted loops. Always quote the loop variable. For advanced scenarios, pipe <code>find</code> output with a null delimiter.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">safe_files.sh</span></div>
-<pre>#!/bin/bash
-# Dangerous: splits on spaces
-for f in $(find . -name "*.log"); do echo "$f"; done
 
-# Safe: null-delimited pipeline
+<p>
+Looping through files incorrectly can break filenames containing spaces.
+Always quote variables properly.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">safe_files.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+<span class="cm"># Unsafe</span>
+for f in $(find . -name "*.log"); do
+    echo "$f"
+done
+
+<span class="cm"># Safe method</span>
 find . -name "*.log" -print0 | while IFS= read -r -d '' f; do
     echo "Processing: $f"
-done</pre></div>
-<p>The <code>-print0</code> and <code>-d ''</code> combination treats the null byte as the filename separator, making spaces and newlines inside names harmless.</p>
+done</pre>
+
+</div>
+
+<h3>Why Use -print0 ?</h3>
+
+<p>
+The <code>-print0</code> option separates filenames using null bytes instead of spaces.
+This safely handles filenames containing spaces and special characters.
+</p>
 
 <h2>Subshell Pitfalls</h2>
-<p>When you pipe data into a <code>while</code> loop, Bash runs the loop in a subshell. Variables set inside it disappear after the loop ends.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">subshell.sh</span></div>
-<pre>#!/bin/bash
-# Broken: count is lost
-cat list.txt | while read line; do ((count++)); done
-echo "Total: $count"   # Always 0 or empty
 
-# Fixed: process substitution keeps it in the main shell
-while read line; do ((count++)); done < <(cat list.txt)
-echo "Total: $count"   # Correct</pre></div>
-<p>Process substitution <code>< <(...)</code> feeds the file descriptor directly without creating a subshell, preserving your variables for later use.</p>
+<p>
+When piping data into a loop, Bash may run the loop in a subshell.
+Variables changed inside the loop may disappear afterwards.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">subshell.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+<span class="cm"># Problematic example</span>
+cat list.txt | while read line; do
+    ((count++))
+done
+
+echo "$count"
+
+<span class="cm"># Correct solution</span>
+while read line; do
+    ((count++))
+done < <(cat list.txt)
+
+echo "$count"</pre>
+
+</div>
+
+<h2>Practical: Batch Rename</h2>
+
+<p>
+Loops are commonly used for batch file operations such as renaming files automatically.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">rename.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+c=1
+
+for f in *.jpg; do
+
+    mv "$f" "img_$(printf "%03d" $c).jpg"
+
+    ((c++))
+
+done
+
+echo "Renamed $((c-1)) files."</pre>
+
+</div>
 
 <h2>Practical: System Monitor</h2>
-<p>Combine a <code>while</code> loop with <code>sleep</code> to create repeating tasks such as health checks or log tailing.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">monitor.sh</span></div>
+
+<p>
+Loops can also automate monitoring tasks.
+The following example checks CPU usage repeatedly.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">monitor.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
+
 interval=5
 attempts=0
 max_attempts=6
 
 while [[ $attempts -lt $max_attempts ]]; do
-    cpu=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1)
-    echo "[$(date '+%H:%M:%S')] CPU: ${cpu}%"
+
+    cpu=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}')
+
+    echo "CPU Usage: ${cpu}%"
+
     ((attempts++))
+
     sleep $interval
-done</pre></div>
-<p>Use <code>Ctrl+C</code> to interrupt, or build an explicit exit condition (like the attempt counter above) to prevent infinite loops during testing.</p>
 
-<!-- END OF NEW CONTENT -->
+done</pre>
 
-<div class="exercise"><div class="exercise-title">Practice</div><p>Print the multiplication table (1-10) for a number the user enters.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(3)">← Previous</button><button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button></div></div>
+</div>
+
+<h2>Infinite Loops</h2>
+
+<p>
+Infinite loops continue forever until manually stopped.
+These are useful for servers, monitoring systems, and background services.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">infinite.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+while true; do
+
+    echo "Running..."
+
+    sleep 2
+
+done</pre>
+
+</div>
+
+<h3>Stopping Infinite Loops</h3>
+
+<p>
+Press <code>Ctrl + C</code> to interrupt the script manually.
+</p>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use meaningful loop variable names</li>
+<li>Quote variables when working with files</li>
+<li>Avoid deeply nested loops when possible</li>
+<li>Use comments for readability</li>
+<li>Always test loops with small datasets first</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Create Bash scripts that:
+</p>
+
+<ul>
+<li>Print multiplication tables</li>
+<li>Loop through files in a directory</li>
+<li>Count lines inside a text file</li>
+<li>Rename image files automatically</li>
+<li>Create a simple system monitor using loops</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(3)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(5)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
+
+
 <!-- ===================== LECTURE 06 ===================== -->
 <div class="lecture" id="lec-5">
 <div class="lecture-tag">Lecture 06 · Core Concepts</div>
 <h1>Functions & Scripting</h1>
 <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<h2>Introduction to Functions</h2>
+<p>Functions help organize code into reusable blocks. Instead of writing the same commands repeatedly, a function allows you to define logic once and call it whenever needed.</p>
+
+<p>Functions make scripts cleaner, easier to maintain, and more modular. Large shell scripts often rely heavily on functions to separate different tasks.</p>
+
 <h2>Defining Functions</h2>
+<p>A function is created using a function name followed by parentheses and a block of code inside braces.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">func.sh</span></div>
 <pre>#!/bin/bash
-greet() { local name=$1; echo "Hello, $name!"; }
+
+greet() {
+    local name=$1
+    echo "Hello, $name!"
+}
+
 greet "Ahmed"
-add() { echo $(($1 + $2)); }
-sum=$(add 5 7); echo "Sum: $sum"  # 12</pre></div>
+
+add() {
+    echo $(($1 + $2))
+}
+
+sum=$(add 5 7)
+
+echo "Sum: $sum"</pre></div>
+
+<p>Function arguments are accessed using positional variables like <code>$1</code>, <code>$2</code>, and so on.</p>
+
+<h2>Calling Functions</h2>
+<p>Functions execute only when called. Defining a function alone does not run it.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">call.sh</span></div>
+<pre>#!/bin/bash
+
+welcome() {
+    echo "Welcome to Bash Scripting"
+}
+
+welcome
+welcome</pre></div>
+
+<p>In this example, the function runs twice because it is called two times.</p>
+
+<h2>Returning Values</h2>
+<p>Bash functions do not return values like traditional programming languages. Instead, they usually print output or use exit codes.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">return.sh</span></div>
+<pre>#!/bin/bash
+
+multiply() {
+    echo $(($1 * $2))
+}
+
+result=$(multiply 4 5)
+
+echo "Result: $result"</pre></div>
+
+<p>The output of the function is captured using command substitution.</p>
+
 <h2>Local Variables</h2>
-<p>Always use <code>local</code> inside functions to avoid side effects:</p>
+<p>Variables inside functions should usually be declared with <code>local</code>. This prevents accidental modification of variables outside the function.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">local.sh</span></div>
 <pre>#!/bin/bash
+
 g="global"
-demo() { local l="local"; g="changed"; echo "$l $g"; }
-demo; echo "$g"  # "changed"</pre></div>
+
+demo() {
+    local l="local"
+    g="changed"
+
+    echo "$l $g"
+}
+
+demo
+
+echo "$g"</pre></div>
+
+<p>Without <code>local</code>, variables inside functions become global and may affect other parts of the script.</p>
+
+<h2>Using Parameters in Functions</h2>
+<p>Functions can accept multiple parameters, making them flexible and reusable.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">params.sh</span></div>
+<pre>#!/bin/bash
+
+info() {
+    echo "Name: $1"
+    echo "Role: $2"
+}
+
+info "Ahmed" "Developer"</pre></div>
+
+<p>Parameters are assigned in the same order they are passed during the function call.</p>
+
 <h2>Function Libraries</h2>
+<p>Functions can be stored in separate files and reused across multiple scripts. This approach improves code organization and prevents duplication.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">lib.sh</span></div>
 <pre>#!/bin/bash
-log() { echo "[$(date)] $*"; }
-die() { echo "FATAL: $*" >&2; exit 1; }</pre></div>
+
+log() {
+    echo "[$(date)] $*"
+}
+
+die() {
+    echo "FATAL: $*" >&2
+    exit 1
+}</pre></div>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.sh</span></div>
 <pre>#!/bin/bash
+
 source ./lib.sh
-log "Starting..."; die "Disk full"</pre></div>
+
+log "Starting application"
+
+die "Disk full"</pre></div>
+
+<p>The <code>source</code> command loads another script into the current shell session.</p>
+
 <h2>Error Handling</h2>
+<p>Functions should properly handle errors and invalid input. Good error handling makes scripts more reliable and easier to debug.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">safe.sh</span></div>
 <pre>#!/bin/bash
+
 delete() {
     local f=$1
-    [[ ! -f "$f" ]] && { echo "Not found: $f" >&2; return 1; }
-    rm "$f" && echo "Deleted: $f"
-}
-delete "/tmp/test.txt" || exit 1</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Create a library with is_even(), factorial(), and use them from a main script.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(4)">← Previous</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button></div></div>
 
+    if [[ ! -f "$f" ]]; then
+        echo "Not found: $f" >&2
+        return 1
+    fi
+
+    rm "$f"
+
+    echo "Deleted: $f"
+}
+
+delete "/tmp/test.txt" || exit 1</pre></div>
+
+<p>The <code>return</code> statement exits the function and sends an exit status back to the caller.</p>
+
+<h2>Recursive Functions</h2>
+<p>A recursive function is a function that calls itself. Recursion is useful for solving repetitive problems like factorial calculations.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">factorial.sh</span></div>
+<pre>#!/bin/bash
+
+factorial() {
+    local n=$1
+
+    if [[ $n -le 1 ]]; then
+        echo 1
+    else
+        local prev=$(factorial $(($n - 1)))
+        echo $(($n * $prev))
+    fi
+}
+
+factorial 5</pre></div>
+
+<p>Recursive functions must always include a stopping condition to avoid infinite recursion.</p>
+
+<h2>Debugging Functions</h2>
+<p>Debugging helps identify problems inside scripts and functions. Bash provides debugging options that show commands during execution.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">debug.sh</span></div>
+<pre>#!/bin/bash
+
+set -x
+
+test_func() {
+    echo "Debugging function"
+}
+
+test_func</pre></div>
+
+<p>The <code>set -x</code> option prints commands before execution, making it easier to trace script behavior.</p>
+
+<h2>Best Practices</h2>
+<p>Writing clean and reusable functions improves script quality and maintainability.</p>
+
+<ul>
+<li>Keep functions focused on a single task.</li>
+<li>Use meaningful function names.</li>
+<li>Always use <code>local</code> variables when possible.</li>
+<li>Validate input before processing it.</li>
+<li>Store reusable functions inside libraries.</li>
+</ul>
+
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a function library containing <code>is_even()</code>, <code>factorial()</code>, and <code>square()</code>. Import the library into another script and call each function with user input.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(4)">← Previous</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button></div></div>
 <!-- ===================== LECTURE 07 ===================== -->
 <div class="lecture" id="lec-6">
+
 <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+
 <h1>Arrays & String Manipulation</h1>
-<div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-intermediate">Intermediate</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Arrays and strings are fundamental parts of Bash scripting.
+Arrays allow scripts to store multiple values inside a single variable,
+while string manipulation helps process text efficiently.
+</p>
+
+<p>
+These concepts are heavily used in:
+</p>
+
+<ul>
+<li>Automation scripts</li>
+<li>Log processing</li>
+<li>Configuration management</li>
+<li>CSV parsing</li>
+<li>Text filtering</li>
+<li>System administration</li>
+</ul>
+
+<p>
+In this lecture, we will learn:
+</p>
+
+<ul>
+<li>Indexed arrays</li>
+<li>Associative arrays</li>
+<li>Looping through arrays</li>
+<li>String operations</li>
+<li>Substring extraction</li>
+<li>Path manipulation</li>
+<li>CSV parsing</li>
+</ul>
+
 <h2>Indexed Arrays</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">arrays.sh</span></div>
+
+<p>
+Indexed arrays store multiple values using numeric indexes.
+Bash array indexing starts from <strong>0</strong>.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">arrays.sh</span>
+</div>
+
 <pre>#!/bin/bash
+
 arr=("a" "b" "c" "d")
-echo "${arr[0]}"          # a
-echo "${arr[@]}"          # all elements
-echo "${#arr[@]}"         # count: 4
-arr+=("e")                # append
-for v in "${arr[@]}"; do echo "$v"; done</pre></div>
+
+<span class="cm"># Access element by index</span>
+echo "${arr[0]}"
+
+<span class="cm"># Print all elements</span>
+echo "${arr[@]}"
+
+<span class="cm"># Array length</span>
+echo "${#arr[@]}"
+
+<span class="cm"># Append new value</span>
+arr+=("e")
+
+<span class="cm"># Loop through array</span>
+for v in "${arr[@]}"; do
+    echo "$v"
+done</pre>
+
+</div>
+
+<h3>Understanding Array Syntax</h3>
+
+<ul>
+<li><code>${arr[0]}</code> → first element</li>
+<li><code>${arr[@]}</code> → all elements</li>
+<li><code>${#arr[@]}</code> → total elements</li>
+<li><code>+=</code> → append new values</li>
+</ul>
+
+<h3>Looping with Array Indexes</h3>
+
+<p>
+Sometimes we need both the index and value.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">indexes.sh</span>
+</div>
+
+<pre>#!/bin/bash
+
+colors=("red" "green" "blue")
+
+for i in "${!colors[@]}"; do
+    echo "Index $i = ${colors[$i]}"
+done</pre>
+
+</div>
+
 <h2>Associative Arrays</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dict.sh</span></div>
+
+<p>
+Associative arrays use keys instead of numeric indexes.
+They behave similarly to dictionaries or hash maps in other languages.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">dict.sh</span>
+</div>
+
 <pre>#!/bin/bash
+
 declare -A user
-user[name]="Ahmed"; user[age]=25
+
+user[name]="Ahmed"
+user[age]=25
+
 echo "${user[name]}"
-for k in "${!user[@]}"; do echo "$k=${user[$k]}"; done</pre></div>
+
+for k in "${!user[@]}"; do
+    echo "$k=${user[$k]}"
+done</pre>
+
+</div>
+
+<h3>Important Notes</h3>
+
+<ul>
+<li><code>declare -A</code> creates an associative array</li>
+<li>Keys are strings instead of numbers</li>
+<li><code>${!user[@]}</code> returns all keys</li>
+</ul>
+
+<h3>Real-World Example</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">server_status.sh</span>
+</div>
+
+<pre>#!/bin/bash
+
+declare -A servers
+
+servers[web]="online"
+servers[db]="offline"
+servers[cache]="online"
+
+for s in "${!servers[@]}"; do
+    echo "$s server is ${servers[$s]}"
+done</pre>
+
+</div>
+
 <h2>String Operations</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">strings.sh</span></div>
+
+<p>
+Strings are sequences of characters.
+Bash provides powerful built-in tools for manipulating strings.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">strings.sh</span>
+</div>
+
 <pre>#!/bin/bash
+
 s="Hello World"
-echo "${#s}"           # 11 (length)
-echo "${s^^}"          # HELLO WORLD
-echo "${s,,}"          # hello world
-echo "${s:6:5}"        # World (substring)
-echo "${s/World/Shell}" # Hello Shell
+
+<span class="cm"># String length</span>
+echo "${#s}"
+
+<span class="cm"># Uppercase</span>
+echo "${s^^}"
+
+<span class="cm"># Lowercase</span>
+echo "${s,,}"
+
+<span class="cm"># Substring extraction</span>
+echo "${s:6:5}"
+
+<span class="cm"># Replace text</span>
+echo "${s/World/Shell}"
+
 path="/a/b/c.txt"
-echo "${path##*/}"     # c.txt (basename)
-echo "${path%/*}"      # /a/b (dirname)</pre></div>
-<h2>Practical: CSV Parser</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">csv.sh</span></div>
+
+<span class="cm"># Basename</span>
+echo "${path##*/}"
+
+<span class="cm"># Directory name</span>
+echo "${path%/*}"</pre>
+
+</div>
+
+<h3>String Manipulation Operators</h3>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+
+<tr>
+<th>Expression</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td><code>${#s}</code></td>
+<td>String length</td>
+</tr>
+
+<tr>
+<td><code>${s^^}</code></td>
+<td>Uppercase conversion</td>
+</tr>
+
+<tr>
+<td><code>${s,,}</code></td>
+<td>Lowercase conversion</td>
+</tr>
+
+<tr>
+<td><code>${s:start:length}</code></td>
+<td>Substring extraction</td>
+</tr>
+
+<tr>
+<td><code>${s/old/new}</code></td>
+<td>Replace text</td>
+</tr>
+
+</table>
+
+<h2>Removing Text from Strings</h2>
+
+<p>
+Bash can remove matching text from the beginning or end of strings.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">trim.sh</span>
+</div>
+
 <pre>#!/bin/bash
+
+file="backup.tar.gz"
+
+<span class="cm"># Remove shortest match from front</span>
+echo "${file#*.}"
+
+<span class="cm"># Remove longest match from front</span>
+echo "${file##*.}"
+
+<span class="cm"># Remove shortest match from end</span>
+echo "${file%.*}"
+
+<span class="cm"># Remove longest match from end</span>
+echo "${file%%.*}"</pre>
+
+</div>
+
+<h3>Understanding # and %</h3>
+
+<ul>
+<li><code>#</code> removes from beginning</li>
+<li><code>%</code> removes from end</li>
+<li>Double symbols remove the longest match</li>
+</ul>
+
+<h2>Splitting Strings</h2>
+
+<p>
+Strings can be split into arrays using separators.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">split.sh</span>
+</div>
+
+<pre>#!/bin/bash
+
+data="red,green,blue"
+
+IFS=',' read -ra colors <<< "$data"
+
+for c in "${colors[@]}"; do
+    echo "$c"
+done</pre>
+
+</div>
+
+<h3>What is IFS?</h3>
+
+<p>
+IFS stands for <strong>Internal Field Separator</strong>.
+It controls how Bash splits text into fields.
+</p>
+
+<h2>Practical: CSV Parser</h2>
+
+<p>
+CSV files store values separated by commas.
+Bash can process them line by line using loops and IFS.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">csv.sh</span>
+</div>
+
+<pre>#!/bin/bash
+
 while IFS=',' read -r name age city; do
+
     echo "$name ($age) from $city"
-done < data.csv</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Take a sentence, print: word count, character count, and the sentence in uppercase.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(5)">← Previous</button><button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button></div></div>
+
+done < data.csv</pre>
+
+</div>
+
+<h3>Understanding the CSV Parser</h3>
+
+<ul>
+<li><code>IFS=','</code> splits columns using commas</li>
+<li><code>read -r</code> safely reads each line</li>
+<li>Variables automatically store each column value</li>
+</ul>
+
+<h2>Searching Inside Strings</h2>
+
+<p>
+Bash supports pattern matching for checking string contents.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+<span class="filename">search.sh</span>
+</div>
+
+<pre>#!/bin/bash
+
+text="server-error.log"
+
+[[ $text == *.log ]] && echo "Log file"
+
+[[ $text == server* ]] && echo "Starts with server"</pre>
+
+</div>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Always quote array expansions</li>
+<li>Use associative arrays for key-value data</li>
+<li>Use meaningful variable names</li>
+<li>Use IFS carefully when splitting strings</li>
+<li>Validate input before processing files</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Create Bash scripts that:
+</p>
+
+<ul>
+<li>Count words in a sentence</li>
+<li>Convert text to uppercase and lowercase</li>
+<li>Store user information in associative arrays</li>
+<li>Read and process CSV files</li>
+<li>Extract filenames from file paths</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(5)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(7)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
 
 <!-- ===================== LECTURE 08 ===================== -->
 <div class="lecture" id="lec-7">
 <div class="lecture-tag">Lecture 08 · Core Concepts</div>
 <h1>File Operations & I/O</h1>
 <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
+
+<h2>Introduction to File Operations</h2>
+<p>File handling is one of the most important parts of shell scripting. Scripts often need to read configuration files, process logs, generate reports, or store application data.</p>
+
+<p>Bash provides powerful tools for reading files, writing content, redirecting output, and managing input/output streams.</p>
+
 <h2>Reading Files</h2>
+<p>Files can be read line-by-line using loops. This method is memory-efficient and works well even for large files.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">read.sh</span></div>
 <pre>#!/bin/bash
-while IFS= read -r line; do echo "$line"; done < input.txt
-content=$(< input.txt); echo "$content"</pre></div>
+
+while IFS= read -r line; do
+    echo "$line"
+done < input.txt
+
+content=$(< input.txt)
+
+echo "$content"</pre></div>
+
+<p>The <code>IFS=</code> prevents trimming whitespace, while <code>-r</code> stops backslashes from being interpreted as escape characters.</p>
+
+<h2>Reading Specific Columns</h2>
+<p>Shell scripts can split lines into multiple fields using delimiters. This is useful when processing CSV files or structured text.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">columns.sh</span></div>
+<pre>#!/bin/bash
+
+while IFS=":" read -r user shell; do
+    echo "User: $user | Shell: $shell"
+done < users.txt</pre></div>
+
+<p>The <code>IFS</code> variable defines the separator used while reading the file.</p>
+
 <h2>Writing Files</h2>
+<p>Bash can create new files, overwrite existing files, or append data to the end of files.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">write.sh</span></div>
 <pre>#!/bin/bash
-echo "Line 1" > out.txt       # overwrite
-echo "Line 2" >> out.txt      # append
-cat << EOF > config.cfg       # heredoc
+
+echo "Line 1" > out.txt
+echo "Line 2" >> out.txt
+
+cat << EOF > config.cfg
 host=localhost
 port=8080
 EOF</pre></div>
+
+<p>The <code>></code> operator overwrites a file, while <code>>></code> appends content without removing existing data.</p>
+
+<h2>Here Documents</h2>
+<p>A heredoc allows multiple lines of text to be written directly inside a script. This is commonly used for configuration files and automated setup scripts.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">heredoc.sh</span></div>
+<pre>#!/bin/bash
+
+cat << EOF
+Welcome to Bash Scripting
+This text spans multiple lines
+EOF</pre></div>
+
+<p>The text continues until the ending keyword is reached.</p>
+
 <h2>Redirection</h2>
-<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>FD</th><th>Name</th></tr><tr><td>0</td><td>stdin</td></tr><tr><td>1</td><td>stdout</td></tr><tr><td>2</td><td>stderr</td></tr></table>
+<p>Redirection controls where command output goes. By default, output appears on the terminal, but Bash allows output to be redirected into files.</p>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+<tr><th>FD</th><th>Name</th></tr>
+<tr><td>0</td><td>stdin</td></tr>
+<tr><td>1</td><td>stdout</td></tr>
+<tr><td>2</td><td>stderr</td></tr>
+</table>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">redirect.sh</span></div>
 <pre>#!/bin/bash
-./app > out.log 2> err.log          # split
-./app > all.log 2>&1                # merge
-./app > /dev/null 2>&1              # discard</pre></div>
-<h2>Temp Files & Cleanup</h2>
+
+./app > out.log 2> err.log
+./app > all.log 2>&1
+./app > /dev/null 2>&1</pre></div>
+
+<p>Redirecting output is extremely useful for logging and debugging scripts.</p>
+
+<h2>Pipes</h2>
+<p>Pipes connect the output of one command directly into another command. This allows powerful command chaining.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pipes.sh</span></div>
+<pre>#!/bin/bash
+
+cat users.txt | grep "Ahmed"
+ps aux | grep nginx
+df -h | sort</pre></div>
+
+<p>The pipe operator <code>|</code> passes stdout from one command as stdin to the next command.</p>
+
+<h2>Appending Logs</h2>
+<p>Logs are commonly appended instead of overwritten so that older data is preserved.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">logs.sh</span></div>
+<pre>#!/bin/bash
+
+echo "[$(date)] Script started" >> app.log
+echo "[$(date)] Processing files" >> app.log</pre></div>
+
+<p>Appending logs helps track events and monitor script execution over time.</p>
+
+<h2>Checking File Existence</h2>
+<p>Before reading or writing files, scripts should verify whether the file exists to avoid unexpected errors.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">check.sh</span></div>
+<pre>#!/bin/bash
+
+file="data.txt"
+
+if [[ -f "$file" ]]; then
+    echo "File exists"
+else
+    echo "File not found"
+fi</pre></div>
+
+<p>The <code>-f</code> operator checks whether a regular file exists.</p>
+
+<h2>Temporary Files & Cleanup</h2>
+<p>Temporary files are useful for storing intermediate data during script execution. They should always be cleaned up afterward.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">temp.sh</span></div>
 <pre>#!/bin/bash
+
 tmp=$(mktemp /tmp/script.XXXXXX)
-cleanup() { rm -f "$tmp"; echo "Done."; }
+
+cleanup() {
+    rm -f "$tmp"
+    echo "Done."
+}
+
 trap cleanup EXIT
-echo "working..." > "$tmp"
-# tmp auto-deleted on exit</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Read a log file, filter ERROR lines, write them to errors.log with timestamps.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(6)">← Previous</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button></div></div>
+
+echo "working..." > "$tmp"</pre></div>
+
+<p>The <code>trap</code> command ensures cleanup happens automatically when the script exits.</p>
+
+<h2>File Permissions</h2>
+<p>Shell scripts often need permission management. Linux uses read, write, and execute permissions for files.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">permissions.sh</span></div>
+<pre>#!/bin/bash
+
+chmod +x script.sh
+ls -l script.sh</pre></div>
+
+<p>The <code>chmod</code> command changes file permissions, while <code>ls -l</code> displays them.</p>
+
+<h2>Input from Users</h2>
+<p>Scripts can combine file operations with user input to make interactive tools.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">save_input.sh</span></div>
+<pre>#!/bin/bash
+
+read -p "Enter your note: " note
+
+echo "$note" >> notes.txt
+
+echo "Saved."</pre></div>
+
+<p>This technique is commonly used in note-taking utilities, logging systems, and automation scripts.</p>
+
+<h2>Best Practices</h2>
+<p>Proper file handling prevents data loss and improves script reliability.</p>
+
+<ul>
+<li>Always quote filenames to handle spaces safely.</li>
+<li>Check whether files exist before using them.</li>
+<li>Use append mode for logs whenever possible.</li>
+<li>Clean temporary files after execution.</li>
+<li>Separate stdout and stderr for easier debugging.</li>
+</ul>
+
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a script that reads a log file, filters lines containing the word <code>ERROR</code>, adds timestamps, and writes the results into <code>errors.log</code>.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(6)">← Previous</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button></div>
+</div>
 
 <!-- ===================== LECTURE 09 ===================== -->
 <div class="lecture" id="lec-8">
+
 <div class="lecture-tag">Lecture 09 · Advanced</div>
+
 <h1>Process Management & Signals</h1>
-<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-advanced">Advanced</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Every program running on Linux is called a <strong>process</strong>.
+Bash scripts often create, monitor, stop, or control processes while automating tasks.
+</p>
+
+<p>
+Understanding process management is important for:
+</p>
+
+<ul>
+<li>Automation scripts</li>
+<li>Background jobs</li>
+<li>System monitoring</li>
+<li>Server management</li>
+<li>Task scheduling</li>
+<li>Daemon services</li>
+</ul>
+
+<p>
+In this lecture, we will learn:
+</p>
+
+<ul>
+<li>Running background processes</li>
+<li>Understanding process IDs (PID)</li>
+<li>Using signals</li>
+<li>Trapping signals safely</li>
+<li>Parallel processing</li>
+<li>Building daemon-style scripts</li>
+</ul>
+
 <h2>Background Processes</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bg.sh</span></div>
+
+<p>
+Normally, Bash waits for a command to finish before continuing.
+Adding <code>&amp;</code> runs the process in the background so the script can continue immediately.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">bg.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
+
+<span class="cm"># Run command in background</span>
 sleep 30 &
+
+<span class="cm"># Store process ID</span>
 pid=$!
+
 echo "Job PID: $pid"
+
+<span class="cm"># Check if process exists</span>
 kill -0 $pid 2>/dev/null && echo "Running"
-wait $pid; echo "Done (exit: $?)"</pre></div>
+
+<span class="cm"># Wait for process to finish</span>
+wait $pid
+
+echo "Done (exit: $?)"</pre>
+
+</div>
+
+<h3>Important Concepts</h3>
+
+<ul>
+<li><code>&amp;</code> → run command in background</li>
+<li><code>$!</code> → PID of last background process</li>
+<li><code>wait</code> → pause until process finishes</li>
+<li><code>$?</code> → exit status of last command</li>
+</ul>
+
+<h3>Viewing Running Processes</h3>
+
+<p>
+Linux provides several commands for viewing processes.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">processes.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+<span class="cm"># Show current shell processes</span>
+ps
+
+<span class="cm"># Detailed process list</span>
+ps aux
+
+<span class="cm"># Search for process</span>
+ps aux | grep nginx
+
+<span class="cm"># Interactive process viewer</span>
+top</pre>
+
+</div>
+
 <h2>Trapping Signals</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">trap.sh</span></div>
+
+<p>
+Signals are messages sent to processes.
+They are used to interrupt, stop, restart, or terminate programs.
+</p>
+
+<p>
+The <code>trap</code> command lets Bash execute cleanup code when a signal is received.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">trap.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
-cleanup() { echo "Interrupted!"; rm -f /tmp/lock; exit 1; }
+
+cleanup() {
+
+    echo "Interrupted!"
+
+    rm -f /tmp/lock
+
+    exit 1
+}
+
+<span class="cm"># Trap Ctrl+C and termination signals</span>
 trap cleanup SIGINT SIGTERM
+
 touch /tmp/lock
-while true; do echo "Working... $(date)"; sleep 2; done</pre></div>
+
+while true; do
+
+    echo "Working... $(date)"
+
+    sleep 2
+
+done</pre>
+
+</div>
+
+<h3>Why Trap Signals?</h3>
+
+<ul>
+<li>Remove temporary files</li>
+<li>Release locks</li>
+<li>Close database connections</li>
+<li>Save progress before exiting</li>
+<li>Prevent corrupted state</li>
+</ul>
+
 <h2>Common Signals</h2>
-<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;"><tr><th>Signal</th><th>#</th><th>Meaning</th></tr>
-<tr><td>SIGINT</td><td>2</td><td>Ctrl+C interrupt</td></tr>
-<tr><td>SIGTERM</td><td>15</td><td>Terminate (default kill)</td></tr>
-<tr><td>SIGKILL</td><td>9</td><td>Force kill (cannot trap)</td></tr>
-<tr><td>SIGHUP</td><td>1</td><td>Terminal closed</td></tr></table>
+
+<p>
+Signals are identified by names and numbers.
+</p>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+
+<tr>
+<th>Signal</th>
+<th>#</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>SIGINT</td>
+<td>2</td>
+<td>Ctrl+C interrupt</td>
+</tr>
+
+<tr>
+<td>SIGTERM</td>
+<td>15</td>
+<td>Terminate (default kill)</td>
+</tr>
+
+<tr>
+<td>SIGKILL</td>
+<td>9</td>
+<td>Force kill (cannot trap)</td>
+</tr>
+
+<tr>
+<td>SIGHUP</td>
+<td>1</td>
+<td>Terminal closed</td>
+</tr>
+
+</table>
+
+<h3>Sending Signals Manually</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">signals.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+<span class="cm"># Graceful termination</span>
+kill -TERM 1234
+
+<span class="cm"># Force termination</span>
+kill -KILL 1234
+
+<span class="cm"># Same as SIGTERM</span>
+kill 1234</pre>
+
+</div>
+
+<p>
+Always try <code>SIGTERM</code> before <code>SIGKILL</code>.
+Force killing prevents cleanup operations from running.
+</p>
+
+<h2>Jobs & Job Control</h2>
+
+<p>
+Bash provides built-in commands for managing background jobs directly from the shell.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">jobs.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+sleep 100 &
+
+jobs
+
+fg %1
+
+bg %1</pre>
+
+</div>
+
+<h3>Job Commands</h3>
+
+<ul>
+<li><code>jobs</code> → list background jobs</li>
+<li><code>fg</code> → bring job to foreground</li>
+<li><code>bg</code> → continue stopped job in background</li>
+</ul>
+
 <h2>Parallel Processing</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">parallel.sh</span></div>
+
+<p>
+Running multiple tasks simultaneously can improve performance dramatically.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">parallel.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
-proc() { echo "Processing $1..."; sleep 2; echo "$1 done."; }
-for f in a.txt b.txt c.txt; do proc "$f" & done
-wait; echo "All done!"</pre></div>
+
+proc() {
+
+    echo "Processing $1..."
+
+    sleep 2
+
+    echo "$1 done."
+}
+
+for f in a.txt b.txt c.txt; do
+
+    proc "$f" &
+
+done
+
+wait
+
+echo "All done!"</pre>
+
+</div>
+
+<h3>Understanding Parallel Execution</h3>
+
+<p>
+Without <code>&amp;</code>, files process one after another.
+With background execution, all tasks run simultaneously.
+</p>
+
+<h3>Practical Example</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">backup_parallel.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+backup() {
+
+    tar -czf "$1.tar.gz" "$1"
+
+    echo "$1 backed up"
+}
+
+for dir in docs images videos; do
+
+    backup "$dir" &
+
+done
+
+wait
+
+echo "All backups completed."</pre>
+
+</div>
+
+<h2>Monitoring Processes</h2>
+
+<p>
+Scripts can monitor system activity and process health.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">monitor.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+while true; do
+
+    echo "System Load:"
+
+    uptime
+
+    sleep 5
+
+done</pre>
+
+</div>
+
+<p>
+Press <code>Ctrl+C</code> to stop the monitoring loop.
+</p>
+
 <h2>Daemon Script</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">daemon.sh</span></div>
+
+<p>
+A daemon is a long-running background service.
+Daemon scripts are commonly used for monitoring, scheduling, or server automation.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">daemon.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
+
 PIDFILE="/tmp/myd.pid"
+
 case $1 in
-  start) echo $$ > $PIDFILE; trap "rm $PIDFILE" EXIT
-         while true; do echo "run..."; sleep 10; done & ;;
-  stop)  [[ -f $PIDFILE ]] && kill $(cat $PIDFILE) && rm $PIDFILE ;;
-  *)     echo "Usage: $0 start|stop" ;;
-esac</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Spawn 5 workers, each sleeping 1-5 sec randomly, report when all finish.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(7)">← Previous</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button></div></div>
+
+  start)
+
+         echo $$ > $PIDFILE
+
+         trap "rm $PIDFILE" EXIT
+
+         while true; do
+
+             echo "run..."
+
+             sleep 10
+
+         done &
+
+         ;;
+
+  stop)
+
+         [[ -f $PIDFILE ]] && kill $(cat $PIDFILE) && rm $PIDFILE
+
+         ;;
+
+  *)
+
+         echo "Usage: $0 start|stop"
+
+         ;;
+
+esac</pre>
+
+</div>
+
+<h3>Understanding PID Files</h3>
+
+<ul>
+<li>PID files store the running process ID</li>
+<li>Useful for stopping services later</li>
+<li>Prevents multiple copies of the same daemon</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Always clean temporary files with traps</li>
+<li>Use <code>wait</code> after background jobs</li>
+<li>Prefer graceful termination over force kill</li>
+<li>Track important processes using PID files</li>
+<li>Limit excessive parallel jobs to avoid CPU overload</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Create scripts that:
+</p>
+
+<ul>
+<li>Spawn 5 worker processes</li>
+<li>Monitor a running process every 2 seconds</li>
+<li>Handle Ctrl+C using trap</li>
+<li>Create a mini daemon with start/stop commands</li>
+<li>Run multiple backup jobs in parallel</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(7)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(9)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
 
 <!-- ===================== LECTURE 10 ===================== -->
 <div class="lecture" id="lec-9">
+
 <div class="lecture-tag">Lecture 10 · Advanced</div>
+
 <h1>Regular Expressions & grep</h1>
-<div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+
+<div class="lecture-meta">
+<span class="meta-badge level-advanced">Advanced</span>
+<span class="meta-badge">~45 min</span>
+</div>
+
+<p>
+Text processing is one of the most powerful features of Linux and Bash scripting.
+System administrators and developers constantly search logs, filter data,
+extract patterns, and modify text files automatically.
+</p>
+
+<p>
+This lecture introduces:
+</p>
+
+<ul>
+<li><strong>grep</strong> for searching text</li>
+<li><strong>Regular Expressions (Regex)</strong> for pattern matching</li>
+<li><strong>sed</strong> for editing streams of text</li>
+<li><strong>awk</strong> for structured text processing</li>
+</ul>
+
+<p>
+These tools are essential for:
+</p>
+
+<ul>
+<li>Log analysis</li>
+<li>Data extraction</li>
+<li>Automation scripts</li>
+<li>Monitoring systems</li>
+<li>Configuration management</li>
+<li>CSV and report processing</li>
+</ul>
+
 <h2>grep Essentials</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">grep.sh</span></div>
+
+<p>
+The <code>grep</code> command searches files for matching text patterns.
+It prints every line that matches the search condition.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">grep.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
-grep "error" app.log           # basic
-grep -i "error" app.log        # case-insensitive
-grep -n "error" app.log        # line numbers
-grep -c "error" app.log        # count
-grep -v "debug" app.log        # invert
-grep -r "TODO" ./src/          # recursive
-grep -C 3 "error" app.log      # context</pre></div>
+
+grep "error" app.log           <span class="cm"># basic search</span>
+
+grep -i "error" app.log        <span class="cm"># case-insensitive</span>
+
+grep -n "error" app.log        <span class="cm"># show line numbers</span>
+
+grep -c "error" app.log        <span class="cm"># count matches</span>
+
+grep -v "debug" app.log        <span class="cm"># invert match</span>
+
+grep -r "TODO" ./src/          <span class="cm"># recursive search</span>
+
+grep -C 3 "error" app.log      <span class="cm"># show 3 context lines</span></pre>
+
+</div>
+
+<h3>Understanding Common grep Options</h3>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td><code>-i</code></td>
+<td>Ignore uppercase/lowercase</td>
+</tr>
+
+<tr>
+<td><code>-n</code></td>
+<td>Show line numbers</td>
+</tr>
+
+<tr>
+<td><code>-c</code></td>
+<td>Count matching lines</td>
+</tr>
+
+<tr>
+<td><code>-v</code></td>
+<td>Invert match</td>
+</tr>
+
+<tr>
+<td><code>-r</code></td>
+<td>Recursive directory search</td>
+</tr>
+
+<tr>
+<td><code>-C</code></td>
+<td>Show surrounding context</td>
+</tr>
+
+</table>
+
+<h3>Practical Example</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">logs.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+<span class="cm"># Find failed login attempts</span>
+grep "Failed password" /var/log/auth.log
+
+<span class="cm"># Count warnings</span>
+grep -c "WARNING" server.log</pre>
+
+</div>
+
 <h2>Regex Patterns</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">regex.sh</span></div>
+
+<p>
+Regular Expressions (Regex) are patterns used to match text.
+Regex allows advanced searching beyond simple words.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">regex.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
-grep "^ERROR" app.log          # starts with
-grep "done$" app.log           # ends with
-grep "[Ee]rror" app.log        # char class
-grep "[0-9]" app.log           # any digit
-grep -E "(err|warn)" app.log   # alternation
-grep -E "[0-9]{1,3}\.[0-9]{1,3}" file  # IP pattern</pre></div>
+
+grep "^ERROR" app.log                 <span class="cm"># starts with ERROR</span>
+
+grep "done$" app.log                  <span class="cm"># ends with done</span>
+
+grep "[Ee]rror" app.log               <span class="cm"># character class</span>
+
+grep "[0-9]" app.log                  <span class="cm"># any digit</span>
+
+grep -E "(err|warn)" app.log          <span class="cm"># alternation</span>
+
+grep -E "[0-9]{1,3}\.[0-9]{1,3}" file <span class="cm"># partial IP pattern</span></pre>
+
+</div>
+
+<h3>Important Regex Symbols</h3>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+
+<tr>
+<th>Pattern</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td><code>^</code></td>
+<td>Start of line</td>
+</tr>
+
+<tr>
+<td><code>$</code></td>
+<td>End of line</td>
+</tr>
+
+<tr>
+<td><code>.</code></td>
+<td>Any character</td>
+</tr>
+
+<tr>
+<td><code>*</code></td>
+<td>Zero or more</td>
+</tr>
+
+<tr>
+<td><code>+</code></td>
+<td>One or more</td>
+</tr>
+
+<tr>
+<td><code>[ ]</code></td>
+<td>Character class</td>
+</tr>
+
+<tr>
+<td><code>(a|b)</code></td>
+<td>Alternatives</td>
+</tr>
+
+</table>
+
+<h3>Email Matching Example</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">email.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+grep -E "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" users.txt</pre>
+
+</div>
+
+<p>
+This regex searches for lines that look like valid email addresses.
+</p>
+
 <h2>sed — Stream Editor</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sed.sh</span></div>
+
+<p>
+The <code>sed</code> command edits text streams automatically.
+It is extremely useful for replacing, deleting, or transforming text.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">sed.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
-sed 's/old/new/' file.txt      # replace first
-sed 's/old/new/g' file.txt     # replace all
-sed '/pattern/d' file.txt      # delete lines
-sed -n '5,10p' file.txt        # print lines 5-10
-sed -i 's/foo/bar/g' file.txt  # in-place</pre></div>
+
+sed 's/old/new/' file.txt      <span class="cm"># replace first match</span>
+
+sed 's/old/new/g' file.txt     <span class="cm"># replace all matches</span>
+
+sed '/pattern/d' file.txt      <span class="cm"># delete matching lines</span>
+
+sed -n '5,10p' file.txt        <span class="cm"># print lines 5-10</span>
+
+sed -i 's/foo/bar/g' file.txt  <span class="cm"># modify file directly</span></pre>
+
+</div>
+
+<h3>Understanding sed Syntax</h3>
+
+<ul>
+<li><code>s</code> → substitute</li>
+<li><code>g</code> → global replacement</li>
+<li><code>-i</code> → edit file in place</li>
+<li><code>-n</code> → suppress automatic output</li>
+</ul>
+
+<h3>Practical Example</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">cleanup.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+<span class="cm"># Remove blank lines</span>
+sed '/^$/d' notes.txt
+
+<span class="cm"># Replace tabs with spaces</span>
+sed 's/\t/    /g' code.py</pre>
+
+</div>
+
 <h2>awk — Pattern Scanner</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">awk.sh</span></div>
+
+<p>
+The <code>awk</code> tool processes structured text line by line.
+It is especially powerful for working with columns and reports.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">awk.sh</span>
+
+</div>
+
 <pre>#!/bin/bash
-awk '{print $1, $3}' data.txt              # columns
-awk '$3 > 100' data.txt                    # filter
-awk '{sum+=$2} END {print sum}' data.txt   # sum
-awk -F',' '{print $2}' data.csv            # custom delimiter</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Extract all IP addresses from a web server log, count unique ones, show top 10.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(8)">← Previous</button><button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button></div></div>
+
+awk '{print $1, $3}' data.txt              <span class="cm"># print columns</span>
+
+awk '$3 > 100' data.txt                    <span class="cm"># filter rows</span>
+
+awk '{sum+=$2} END {print sum}' data.txt   <span class="cm"># calculate sum</span>
+
+awk -F',' '{print $2}' data.csv            <span class="cm"># custom delimiter</span></pre>
+
+</div>
+
+<h3>awk Column Variables</h3>
+
+<ul>
+<li><code>$1</code> → first column</li>
+<li><code>$2</code> → second column</li>
+<li><code>NF</code> → total fields</li>
+<li><code>NR</code> → current line number</li>
+</ul>
+
+<h3>CSV Example</h3>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">sales.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+awk -F',' '{total += $3} END {print "Total Sales:", total}' sales.csv</pre>
+
+</div>
+
+<h2>Combining grep, sed & awk</h2>
+
+<p>
+These tools are often combined together using pipes.
+</p>
+
+<div class="code-block">
+
+<div class="code-header">
+
+<div class="code-dots">
+<span></span><span></span><span></span>
+</div>
+
+<span class="filename">pipeline.sh</span>
+
+</div>
+
+<pre>#!/bin/bash
+
+grep "ERROR" app.log | awk '{print $5}' | sed 's/:$//' | sort | uniq -c</pre>
+
+</div>
+
+<p>
+This pipeline:
+</p>
+
+<ul>
+<li>Finds ERROR lines</li>
+<li>Extracts a column</li>
+<li>Removes trailing colons</li>
+<li>Sorts results</li>
+<li>Counts duplicates</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+<li>Use quotes around regex patterns</li>
+<li>Test regex carefully before production use</li>
+<li>Use <code>-i</code> in sed carefully because it changes files permanently</li>
+<li>Prefer pipelines for readable data processing</li>
+<li>Use awk for structured column-based data</li>
+</ul>
+
+<div class="exercise">
+
+<div class="exercise-title">Practice</div>
+
+<p>
+Create scripts that:
+</p>
+
+<ul>
+<li>Extract all IP addresses from logs</li>
+<li>Count unique visitors using awk and sort</li>
+<li>Replace sensitive words using sed</li>
+<li>Search recursively for TODO comments</li>
+<li>Validate email addresses using regex</li>
+</ul>
+
+</div>
+
+<div class="lecture-nav">
+
+<button class="nav-btn" onclick="showLecture(8)">
+← Previous
+</button>
+
+<button class="nav-btn primary" onclick="showLecture(10)">
+Next Lecture →
+</button>
+
+</div>
+
+</div>
 
 <!-- ===================== LECTURE 11 ===================== -->
 <div class="lecture" id="lec-10">
 <div class="lecture-tag">Lecture 11 · Advanced</div>
 <h1>DevOps & Automation</h1>
 <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
+
+<h2>Introduction to DevOps Automation</h2>
+<p>DevOps focuses on automating development, deployment, monitoring, and infrastructure tasks. Shell scripting plays a major role in DevOps because it allows repetitive operations to be automated quickly and efficiently.</p>
+
+<p>Automation reduces manual work, minimizes human error, and helps maintain consistent deployments across servers and environments.</p>
+
 <h2>Cron Jobs</h2>
+<p>Cron is a Linux scheduling system used to run scripts automatically at specific times or intervals. Scheduled tasks are managed using the <code>crontab</code> command.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cron.sh</span></div>
 <pre># crontab -e
-0 2 * * * /opt/backup.sh           # daily at 2am
-*/5 * * * * /opt/healthcheck.sh    # every 5 min
-@reboot /opt/startup.sh            # on boot</pre></div>
-<h2>Systemd Service</h2>
+
+0 2 * * * /opt/backup.sh
+*/5 * * * * /opt/healthcheck.sh
+@reboot /opt/startup.sh</pre></div>
+
+<p>The five fields represent minute, hour, day of month, month, and day of week.</p>
+
+<table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+<tr><th>Symbol</th><th>Meaning</th></tr>
+<tr><td><code>*</code></td><td>Every value</td></tr>
+<tr><td><code>*/5</code></td><td>Every 5 units</td></tr>
+<tr><td><code>@reboot</code></td><td>Run at startup</td></tr>
+<tr><td><code>0 2 * * *</code></td><td>Every day at 2 AM</td></tr>
+</table>
+
+<h2>Automated Backups</h2>
+<p>One of the most common DevOps tasks is creating automated backups for applications and databases.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">backup.sh</span></div>
+<pre>#!/bin/bash
+
+backup_dir="/backup"
+date=$(date +%Y-%m-%d)
+
+tar -czf "$backup_dir/site-$date.tar.gz" /var/www/html
+
+echo "Backup completed"</pre></div>
+
+<p>This script compresses website files into a timestamped archive.</p>
+
+<h2>Systemd Services</h2>
+<p>Systemd manages services and background processes on modern Linux systems. Service files define how applications start, stop, and restart.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">myapp.service</span></div>
 <pre>[Unit]
 Description=My Web App
 After=network.target
+
 [Service]
 ExecStart=/usr/bin/node /opt/app/server.js
 Restart=always
+
 [Install]
 WantedBy=multi-user.target</pre></div>
-<h2>Deployment Script</h2>
+
+<p>After creating a service file, use <code>systemctl</code> commands to manage it.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">systemctl.sh</span></div>
+<pre>#!/bin/bash
+
+systemctl start myapp
+systemctl stop myapp
+systemctl restart myapp
+systemctl status myapp</pre></div>
+
+<h2>Deployment Scripts</h2>
+<p>Deployment scripts automate the process of updating applications on servers. Instead of manually running commands, everything can be handled in one script.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">deploy.sh</span></div>
 <pre>#!/bin/bash
-set -e  # exit on error
-echo "Deploying..."
+
+set -e
+
+echo "Deploying application..."
+
 git pull origin main
+
 npm install
+
 npm run build
+
 systemctl restart myapp
-echo "Deployed!"</pre></div>
+
+echo "Deployment completed"</pre></div>
+
+<p>The <code>set -e</code> option immediately stops the script if any command fails.</p>
+
+<h2>Environment Variables</h2>
+<p>Environment variables are commonly used in DevOps to store configuration values such as database credentials, ports, and API keys.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">env.sh</span></div>
+<pre>#!/bin/bash
+
+export APP_ENV="production"
+export PORT=8080
+
+echo "Running in $APP_ENV mode on port $PORT"</pre></div>
+
+<p>Environment variables allow the same application to run in different environments without changing source code.</p>
+
 <h2>Log Rotation & Monitoring</h2>
+<p>Monitoring scripts help detect issues before they become critical. Logs should also be rotated regularly to prevent disks from filling up.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">monitor.sh</span></div>
 <pre>#!/bin/bash
-# Disk alert
+
 usage=$(df / | tail -1 | awk '{print $5}' | tr -d '%')
-[[ $usage -gt 90 ]] && echo "Disk critical: ${usage}%" | mail -s "Alert" admin@site.com
-# Service health
+
+if [[ $usage -gt 90 ]]; then
+    echo "Disk critical: ${usage}%"
+fi
+
 curl -f http://localhost:8080/health || systemctl restart myapp</pre></div>
+
+<p>This script checks disk usage and restarts the application if the health endpoint fails.</p>
+
 <h2>Docker Cleanup</h2>
+<p>Docker stores images, containers, volumes, and cache data. Over time, unused resources can consume large amounts of disk space.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">docker_clean.sh</span></div>
 <pre>#!/bin/bash
+
 docker system prune -af --volumes
-echo "Docker cleanup complete."</pre></div>
-<div class="exercise"><div class="exercise-title">Practice</div><p>Write a deployment script that pulls code, runs tests, builds, and restarts a service.</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(9)">← Previous</button><button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button></div></div>
+
+echo "Docker cleanup complete"</pre></div>
+
+<p>The cleanup command removes unused containers, images, networks, and volumes.</p>
+
+<h2>CI/CD Basics</h2>
+<p>CI/CD stands for Continuous Integration and Continuous Deployment. It automates testing, building, and deployment whenever new code is pushed.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pipeline.sh</span></div>
+<pre>#!/bin/bash
+
+echo "Running tests..."
+npm test
+
+echo "Building project..."
+npm run build
+
+echo "Deploying..."
+systemctl restart myapp</pre></div>
+
+<p>CI/CD pipelines reduce deployment time and improve software reliability.</p>
+
+<h2>SSH Automation</h2>
+<p>Shell scripts are frequently used to automate commands on remote servers through SSH.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">remote.sh</span></div>
+<pre>#!/bin/bash
+
+ssh user@server "uptime"
+
+ssh user@server "systemctl restart nginx"</pre></div>
+
+<p>This allows administrators to manage servers remotely without manually logging in each time.</p>
+
+<h2>Health Check Scripts</h2>
+<p>Health check scripts monitor services, APIs, and websites to ensure they remain operational.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">health.sh</span></div>
+<pre>#!/bin/bash
+
+response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080)
+
+if [[ $response -eq 200 ]]; then
+    echo "Application healthy"
+else
+    echo "Application down"
+fi</pre></div>
+
+<p>Health checks are often combined with cron jobs and monitoring systems.</p>
+
+<h2>Best Practices</h2>
+<p>Automation scripts should be safe, reliable, and easy to maintain.</p>
+
+<ul>
+<li>Always test scripts in a staging environment first.</li>
+<li>Use logging for important operations.</li>
+<li>Store secrets in environment variables instead of hardcoding them.</li>
+<li>Use <code>set -e</code> to stop scripts on failure.</li>
+<li>Monitor resource usage regularly.</li>
+</ul>
+
+<div class="exercise"><div class="exercise-title">Practice</div><p>Create a deployment automation script that pulls the latest code, runs tests, builds the application, rotates old logs, and restarts the service automatically.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(9)">← Previous</button><button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button></div>
+</div>
 
 <!-- ===================== LECTURE 12 ===================== -->
 <div class="lecture" id="lec-11">
 <div class="lecture-tag">Lecture 12 · Advanced</div>
 <h1>Capstone Project: Automation Toolkit</h1>
 <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~60 min</span></div>
+
 <h2>Project Overview</h2>
-<p>Build a comprehensive <strong>System Automation Toolkit</strong> — a single script with a menu that performs common sysadmin tasks. This consolidates everything you've learned.</p>
+<p>In this capstone project, you will build a complete <strong>System Automation Toolkit</strong>. The goal is to combine everything learned throughout the course into one practical real-world application.</p>
+
+<p>This toolkit acts as a mini DevOps and system administration utility capable of monitoring systems, managing backups, analyzing logs, and automating maintenance tasks.</p>
+
+<h2>Project Goals</h2>
+<p>The project focuses on building modular shell scripts that work together through a menu-driven interface.</p>
+
+<ul>
+<li>Practice writing reusable Bash functions</li>
+<li>Use loops, conditions, and case statements</li>
+<li>Work with files, logs, and system commands</li>
+<li>Automate common Linux administration tasks</li>
+<li>Improve scripting structure and organization</li>
+</ul>
+
 <h2>Features to Implement</h2>
-<ul><li>System health check (CPU, memory, disk)</li><li>Backup specified directories with timestamps</li><li>Log analyzer (find errors, count by severity)</li><li>User management (add/remove/list users)</li><li>Service status checker</li></ul>
+<ul>
+<li>System health check (CPU, memory, disk)</li>
+<li>Backup specified directories with timestamps</li>
+<li>Log analyzer (find errors, count by severity)</li>
+<li>User management (add/remove/list users)</li>
+<li>Service status checker</li>
+</ul>
+
+<h2>Project Structure</h2>
+<p>Organizing scripts into folders makes large projects easier to maintain.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">structure.txt</span></div>
+<pre>AutoTool/
+├── autotool.sh
+├── log_analyzer.sh
+├── user_mgmt.sh
+├── reports/
+├── backups/
+└── lib/
+    └── utils.sh</pre></div>
+
+<p>Separating utilities into modules improves readability and reusability.</p>
+
 <h2>Starter Template</h2>
+<p>The main script displays the menu and calls the appropriate module based on user input.</p>
+
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">autotool.sh</span></div>
 <pre>#!/bin/bash
+
 set -euo pipefail
+
 source ./lib/utils.sh
+
 show_menu() {
     echo "=== AutoTool ==="
     echo "1) Health Check  3) Log Analyzer"
     echo "2) Backup        4) User Mgmt"
     echo "5) Service Check 6) Exit"
 }
+
 health_check() {
     echo "CPU: $(top -bn1 | grep 'Cpu' | awk '{print $2}')%"
     echo "Mem: $(free -m | awk '/Mem/{printf "%.1f%%", $3/$2*100}')"
     echo "Disk: $(df -h / | tail -1 | awk '{print $5}')"
 }
+
 backup() {
-    local src=$1 dst="/backup/$(date +%Y%m%d_%H%M%S)"
-    mkdir -p "$dst" && cp -r "$src" "$dst"
+    local src=$1
+    local dst="/backup/$(date +%Y%m%d_%H%M%S)"
+
+    mkdir -p "$dst"
+
+    cp -r "$src" "$dst"
+
     echo "Backed up to $dst"
 }
+
 while true; do
     show_menu
+
     read -p "Choice: " c
+
     case $c in
-        1) health_check;;  2) read -p "Dir: " d; backup "$d";;
-        3) ./log_analyzer.sh;;  4) ./user_mgmt.sh;;
-        5) systemctl status nginx;;  6) exit;;
+        1) health_check;;
+        2) read -p "Dir: " d; backup "$d";;
+        3) ./log_analyzer.sh;;
+        4) ./user_mgmt.sh;;
+        5) systemctl status nginx;;
+        6) exit;;
     esac
 done</pre></div>
+
+<p>The <code>set -euo pipefail</code> option enables safer scripting by stopping execution on errors and preventing undefined variables.</p>
+
+<h2>Health Check Module</h2>
+<p>The health check module gathers important system metrics such as CPU usage, memory usage, and disk space.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">health.sh</span></div>
+<pre>#!/bin/bash
+
+echo "===== SYSTEM HEALTH ====="
+
+echo "CPU Usage:"
+top -bn1 | grep "Cpu"
+
+echo "Memory Usage:"
+free -h
+
+echo "Disk Usage:"
+df -h</pre></div>
+
+<p>System monitoring scripts help administrators detect resource problems early.</p>
+
+<h2>Backup Module</h2>
+<p>Backups are essential for protecting data against accidental deletion, corruption, or hardware failure.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">backup.sh</span></div>
+<pre>#!/bin/bash
+
+src="/var/www/html"
+
+dest="./backups/site-$(date +%Y%m%d_%H%M%S).tar.gz"
+
+tar -czf "$dest" "$src"
+
+echo "Backup saved to $dest"</pre></div>
+
+<p>The <code>tar</code> command compresses files into a single archive for easier storage and transfer.</p>
+
+<h2>Log Analyzer Module</h2>
+<p>Logs contain valuable information about system activity and application errors. Analyzing logs helps identify issues quickly.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">log_analyzer.sh</span></div>
+<pre>#!/bin/bash
+
+logfile="/var/log/syslog"
+
+echo "ERROR COUNT:"
+grep -i "error" "$logfile" | wc -l
+
+echo "WARNING COUNT:"
+grep -i "warning" "$logfile" | wc -l</pre></div>
+
+<p>The <code>grep</code> command filters matching lines, while <code>wc -l</code> counts them.</p>
+
+<h2>User Management Module</h2>
+<p>System administrators often automate user management tasks such as creating or deleting accounts.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">user_mgmt.sh</span></div>
+<pre>#!/bin/bash
+
+read -p "Enter username: " user
+
+sudo useradd "$user"
+
+echo "User created: $user"</pre></div>
+
+<p>User management operations usually require administrative privileges.</p>
+
+<h2>Service Status Checker</h2>
+<p>Monitoring services ensures important applications remain operational.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">service_check.sh</span></div>
+<pre>#!/bin/bash
+
+service="nginx"
+
+systemctl is-active --quiet "$service"
+
+if [[ $? -eq 0 ]]; then
+    echo "$service is running"
+else
+    echo "$service is stopped"
+fi</pre></div>
+
+<p>This script checks whether a Linux service is currently active.</p>
+
+<h2>Utility Functions</h2>
+<p>Shared helper functions should be stored inside reusable library files.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">utils.sh</span></div>
+<pre>#!/bin/bash
+
+log() {
+    echo "[$(date)] $*"
+}
+
+error() {
+    echo "ERROR: $*" >&2
+}</pre></div>
+
+<p>Using utility libraries prevents duplicate code across modules.</p>
+
+<h2>Generating Reports</h2>
+<p>The toolkit can generate reports summarizing system status and automation results.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">report.sh</span></div>
+<pre>#!/bin/bash
+
+report="./reports/report.txt"
+
+echo "System Report - $(date)" > "$report"
+
+df -h >> "$report"
+
+free -m >> "$report"
+
+echo "Report generated"</pre></div>
+
+<p>Reports are useful for tracking server health over time.</p>
+
+<h2>Scheduling with Cron</h2>
+<p>The toolkit becomes more powerful when automated using cron jobs.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">crontab.txt</span></div>
+<pre># Run health checks every hour
+0 * * * * /opt/autotool/health.sh
+
+# Run backups daily at midnight
+0 0 * * * /opt/autotool/backup.sh</pre></div>
+
+<p>Automation ensures maintenance tasks run even when administrators are offline.</p>
+
 <h2>Bonus Challenges</h2>
-<ul><li>Add email alerts for critical conditions</li><li>Schedule the health check via cron</li><li>Generate HTML reports instead of plain text</li><li>Add a web dashboard using a simple HTTP server</li></ul>
-<div class="exercise"><div class="exercise-title">Final Challenge</div><p>Complete all 5 modules of the AutoTool. Test on a real Linux VM. Share your script on GitHub!</p></div>
-<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(10)">← Previous</button><button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button></div></div>
+<ul>
+<li>Add email alerts for critical conditions</li>
+<li>Schedule the health check via cron</li>
+<li>Generate HTML reports instead of plain text</li>
+<li>Add a web dashboard using a simple HTTP server</li>
+</ul>
+
+<h2>Best Practices</h2>
+<p>Large automation projects should follow professional scripting practices.</p>
+
+<ul>
+<li>Use modular scripts and reusable functions.</li>
+<li>Validate user input before processing.</li>
+<li>Store logs for debugging and monitoring.</li>
+<li>Always test scripts in a virtual machine first.</li>
+<li>Document your project using comments and README files.</li>
+</ul>
+
+<h2>Final Thoughts</h2>
+<p>This capstone project combines shell scripting, automation, monitoring, file handling, functions, and Linux administration into one practical toolkit.</p>
+
+<p>Completing this project gives hands-on experience similar to real-world DevOps and system administration workflows.</p>
+
+<div class="exercise"><div class="exercise-title">Final Challenge</div><p>Complete all 5 modules of the AutoTool, add logging and automated scheduling, then test the toolkit on a Linux virtual machine. Upload the finished project to GitHub with proper documentation.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn" onclick="showLecture(10)">← Previous</button><button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button></div>
+</div>
 
         <!-- ===================== LECTURE 13 ===================== -->
         <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Advanced Shell Patterns</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~50 min</span>
-                <span class="meta-badge">Requires: Lecture 12</span>
+
+    <div class="lecture-tag">Lecture 13 · Advanced</div>
+
+    <h1>Advanced Shell Patterns</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+        <span class="meta-badge">Requires: Lecture 12</span>
+    </div>
+
+    <p>
+        As Bash scripts grow larger, repeating the same code becomes difficult to maintain.
+        Advanced shell patterns help organize scripts into reusable, cleaner, and more efficient structures.
+    </p>
+
+    <p>
+        These patterns are heavily used in:
+    </p>
+
+    <ul>
+        <li>Automation frameworks</li>
+        <li>Deployment scripts</li>
+        <li>DevOps tooling</li>
+        <li>Monitoring systems</li>
+        <li>Server provisioning</li>
+        <li>Production-grade shell scripts</li>
+    </ul>
+
+    <p>
+        In this lecture, we will learn:
+    </p>
+
+    <ul>
+        <li>Reusable functions</li>
+        <li>Command substitution</li>
+        <li>Case statements</li>
+        <li>Input validation patterns</li>
+        <li>Retry mechanisms</li>
+        <li>Lock files</li>
+        <li>Script templates</li>
+    </ul>
+
+    <h2>Reusable Functions</h2>
+
+    <p>
+        Functions allow code reuse and better organization.
+        Instead of writing the same commands multiple times, create a function once and call it whenever needed.
+    </p>
+
+    <div class="code-block">
+
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
             </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
+            <span class="filename">functions.sh</span>
         </div>
+
+<pre>#!/bin/bash
+
+log_info() {
+
+    echo "[INFO] $1"
+}
+
+log_error() {
+
+    echo "[ERROR] $1" >&2
+}
+
+backup_file() {
+
+    cp "$1" "$1.bak"
+
+    log_info "Backup created for $1"
+}
+
+backup_file "config.txt"</pre>
+
+    </div>
+
+    <h3>Why Use Functions?</h3>
+
+    <ul>
+        <li>Reduce duplicated code</li>
+        <li>Improve readability</li>
+        <li>Make debugging easier</li>
+        <li>Keep scripts modular</li>
+    </ul>
+
+    <h2>Command Substitution</h2>
+
+    <p>
+        Command substitution stores command output inside variables.
+    </p>
+
+    <div class="code-block">
+
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">substitution.sh</span>
+        </div>
+
+<pre>#!/bin/bash
+
+current_date=$(date)
+
+hostname=$(hostname)
+
+files=$(ls | wc -l)
+
+echo "Date: $current_date"
+
+echo "Host: $hostname"
+
+echo "Files: $files"</pre>
+
+    </div>
+
+    <p>
+        The modern syntax <code>$(command)</code> is preferred over older backticks because it is easier to read and nest.
+    </p>
+
+    <h2>Case Statements</h2>
+
+    <p>
+        The <code>case</code> statement simplifies complex conditional logic.
+        It is cleaner than writing many <code>if-elif</code> blocks.
+    </p>
+
+    <div class="code-block">
+
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">case.sh</span>
+        </div>
+
+<pre>#!/bin/bash
+
+read -p "Enter option: " choice
+
+case $choice in
+
+    start)
+
+        echo "Starting service..."
+
+        ;;
+
+    stop)
+
+        echo "Stopping service..."
+
+        ;;
+
+    restart)
+
+        echo "Restarting service..."
+
+        ;;
+
+    *)
+
+        echo "Invalid option"
+
+        ;;
+esac</pre>
+
+    </div>
+
+    <h3>Wildcard Matching in case</h3>
+
+    <div class="code-block">
+
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">wildcards.sh</span>
+        </div>
+
+<pre>#!/bin/bash
+
+file="report.pdf"
+
+case $file in
+
+    *.txt)
+
+        echo "Text file"
+
+        ;;
+
+    *.pdf)
+
+        echo "PDF file"
+
+        ;;
+
+    *)
+
+        echo "Unknown type"
+
+        ;;
+esac</pre>
+
+    </div>
+
+    <h2>Input Validation Patterns</h2>
+
+    <p>
+        Production scripts should always validate user input before processing it.
+    </p>
+
+    <div class="code-block">
+
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">validate.sh</span>
+        </div>
+
+<pre>#!/bin/bash
+
+read -p "Enter age: " age
+
+if [[ $age =~ ^[0-9]+$ ]]; then
+
+    echo "Valid number"
+
+else
+
+    echo "Invalid input"
+
+fi</pre>
+
+    </div>
+
+    <p>
+        Regex validation helps prevent crashes caused by unexpected input values.
+    </p>
+
+    <h2>Retry Pattern</h2>
+
+    <p>
+        Network operations and API requests may fail temporarily.
+        Retry loops automatically attempt commands again after failure.
+    </p>
+
+    <div class="code-block">
+
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">retry.sh</span>
+        </div>
+
+<pre>#!/bin/bash
+
+max_retries=5
+
+attempt=1
+
+while [[ $attempt -le $max_retries ]]; do
+
+    ping -c 1 google.com &>/dev/null && break
+
+    echo "Attempt $attempt failed"
+
+    sleep 2
+
+    ((attempt++))
+done
+
+echo "Finished"</pre>
+
+    </div>
+
+    <h3>Why Retries Matter</h3>
+
+    <ul>
+        <li>Handle temporary failures</li>
+        <li>Improve reliability</li>
+        <li>Prevent immediate script termination</li>
+    </ul>
+
+    <h2>Lock Files</h2>
+
+    <p>
+        Lock files prevent multiple copies of the same script from running simultaneously.
+    </p>
+
+    <div class="code-block">
+
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">lock.sh</span>
+        </div>
+
+<pre>#!/bin/bash
+
+LOCKFILE="/tmp/app.lock"
+
+if [[ -f $LOCKFILE ]]; then
+
+    echo "Script already running"
+
+    exit 1
+fi
+
+touch $LOCKFILE
+
+trap "rm -f $LOCKFILE" EXIT
+
+echo "Running task..."
+
+sleep 10</pre>
+
+    </div>
+
+    <p>
+        The <code>trap</code> command ensures the lock file is removed even if the script exits unexpectedly.
+    </p>
+
+    <h2>Script Template Pattern</h2>
+
+    <p>
+        Professional shell scripts usually begin with a common structure.
+    </p>
+
+    <div class="code-block">
+
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">template.sh</span>
+        </div>
+
+<pre>#!/bin/bash
+
+set -e
+
+set -u
+
+LOGFILE="app.log"
+
+log() {
+
+    echo "[$(date '+%H:%M:%S')] $1" | tee -a $LOGFILE
+}
+
+main() {
+
+    log "Script started"
+
+    echo "Processing..."
+
+    log "Script finished"
+}
+
+main "$@"</pre>
+
+    </div>
+
+    <h3>Important Safety Options</h3>
+
+    <table cellpadding="4" cellspacing="4" style="border:2px solid black;border-collapse:collapse;">
+
+        <tr>
+            <th>Option</th>
+            <th>Description</th>
+        </tr>
+
+        <tr>
+            <td><code>set -e</code></td>
+            <td>Exit immediately on errors</td>
+        </tr>
+
+        <tr>
+            <td><code>set -u</code></td>
+            <td>Error on undefined variables</td>
+        </tr>
+
+    </table>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Break large scripts into functions</li>
+        <li>Validate all external input</li>
+        <li>Use logging for debugging</li>
+        <li>Always clean temporary resources with traps</li>
+        <li>Use lock files for scheduled tasks</li>
+        <li>Write reusable script templates</li>
+    </ul>
+
+    <div class="exercise">
+
+        <div class="exercise-title">Practice</div>
+
+        <p>
+            Create scripts that:
+        </p>
+
+        <ul>
+            <li>Use functions for logging and backups</li>
+            <li>Validate email input using regex</li>
+            <li>Create a retry mechanism for network checks</li>
+            <li>Prevent duplicate execution using lock files</li>
+            <li>Build a menu-driven application using case</li>
+        </ul>
+
+    </div>
+
+    <div class="lecture-nav">
+
+        <button class="nav-btn" onclick="showLecture(11)">
+            ← Previous
+        </button>
+
+        <button class="nav-btn primary" onclick="showLecture(13)">
+            Next Lecture →
+        </button>
+
+    </div>
+
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Professional</div>
-            <h1>Final Project — Production Automation</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-advanced">Advanced</span>
-                <span class="meta-badge">~90 min</span>
-                <span class="meta-badge">Requires: All Previous</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-            </div>
-        </div>
+       <div class="lecture" id="lec-13">
+    <div class="lecture-tag">Lecture 14 · Professional</div>
+    <h1>Final Project — Production Automation</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~90 min</span>
+        <span class="meta-badge">Requires: All Previous</span>
+    </div>
 
+    <h2>Project Overview</h2>
+    <p>
+        In this final project, you will combine everything learned throughout the course to build a real-world
+        production automation system using Bash scripting.
+    </p>
+
+    <p>
+        The goal is to automate common DevOps and server administration tasks such as:
+    </p>
+
+    <ul>
+        <li>Monitoring system health</li>
+        <li>Backing up important files</li>
+        <li>Rotating and compressing logs</li>
+        <li>Cleaning temporary files</li>
+        <li>Generating reports</li>
+        <li>Sending alerts for failures</li>
+    </ul>
+
+    <p>
+        This type of automation is heavily used in Linux servers, cloud systems, CI/CD pipelines,
+        monitoring platforms, and deployment infrastructure.
+    </p>
+
+    <h2>Project Structure</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">project_structure.sh</span>
+        </div>
+<pre>production-automation/
+├── backup.sh
+├── monitor.sh
+├── cleanup.sh
+├── rotate_logs.sh
+├── report.sh
+├── config.conf
+├── logs/
+├── backups/
+└── reports/</pre>
+    </div>
+
+    <p>
+        Splitting automation tasks into separate scripts makes the system modular and easier to maintain.
+        Each script should handle one responsibility only.
+    </p>
+
+    <h2>Configuration File</h2>
+    <p>
+        Hardcoding paths inside scripts is bad practice. Store configurable values in a dedicated config file.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">config.conf</span>
+        </div>
+<pre>BACKUP_DIR="./backups"
+LOG_DIR="./logs"
+REPORT_DIR="./reports"
+
+SOURCE_DIR="/var/www/html"
+
+MAX_LOG_DAYS=7
+MAX_BACKUPS=5
+
+ADMIN_EMAIL="admin@example.com"</pre>
+    </div>
+
+    <p>
+        Scripts can load configuration values using the <code>source</code> command.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">load_config.sh</span>
+        </div>
+<pre>#!/bin/bash
+
+source ./config.conf
+
+echo "Backup directory: $BACKUP_DIR"
+echo "Admin email: $ADMIN_EMAIL"</pre>
+    </div>
+
+    <h2>Automated Backup System</h2>
+    <p>
+        Backups are one of the most important automation tasks in production systems.
+        This script creates timestamped compressed backups.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">backup.sh</span>
+        </div>
+<pre>#!/bin/bash
+
+source ./config.conf
+
+timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+backup_file="$BACKUP_DIR/site_$timestamp.tar.gz"
+
+mkdir -p "$BACKUP_DIR"
+
+tar -czf "$backup_file" "$SOURCE_DIR"
+
+if [[ $? -eq 0 ]]; then
+    echo "Backup created: $backup_file"
+else
+    echo "Backup failed!" >&2
+fi</pre>
+    </div>
+
+    <p>
+        The <code>tar -czf</code> command creates compressed archives:
+    </p>
+
+    <ul>
+        <li><code>-c</code> → Create archive</li>
+        <li><code>-z</code> → Compress using gzip</li>
+        <li><code>-f</code> → Output filename</li>
+    </ul>
+
+    <h2>System Monitoring</h2>
+    <p>
+        Production systems must constantly monitor CPU usage, memory usage, and disk space.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">monitor.sh</span>
+        </div>
+<pre>#!/bin/bash
+
+cpu=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}')
+memory=$(free -m | awk '/Mem:/ {print $3 "MB"}')
+disk=$(df -h / | awk 'NR==2 {print $5}')
+
+echo "===== SYSTEM REPORT ====="
+echo "CPU Usage: $cpu%"
+echo "Memory Usage: $memory"
+echo "Disk Usage: $disk"</pre>
+    </div>
+
+    <p>
+        These commands are extremely common in Linux automation:
+    </p>
+
+    <ul>
+        <li><code>top</code> → CPU statistics</li>
+        <li><code>free</code> → RAM usage</li>
+        <li><code>df</code> → Disk usage</li>
+        <li><code>awk</code> → Extract columns</li>
+    </ul>
+
+    <h2>Log Rotation</h2>
+    <p>
+        Log files grow endlessly in production environments.
+        Rotate and compress old logs automatically.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">rotate_logs.sh</span>
+        </div>
+<pre>#!/bin/bash
+
+source ./config.conf
+
+find "$LOG_DIR" -name "*.log" -mtime +$MAX_LOG_DAYS | while read file; do
+    gzip "$file"
+    echo "Compressed: $file"
+done</pre>
+    </div>
+
+    <p>
+        The <code>-mtime</code> option finds files older than a specific number of days.
+    </p>
+
+    <h2>Automatic Cleanup</h2>
+    <p>
+        Temporary files and old backups consume storage over time.
+        Cleanup scripts help maintain server performance.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">cleanup.sh</span>
+        </div>
+<pre>#!/bin/bash
+
+source ./config.conf
+
+find "$BACKUP_DIR" -type f | sort | head -n -$MAX_BACKUPS | while read file; do
+    rm -f "$file"
+    echo "Deleted old backup: $file"
+done</pre>
+    </div>
+
+    <h2>Generating Reports</h2>
+    <p>
+        Automation systems should generate logs and reports for administrators.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">report.sh</span>
+        </div>
+<pre>#!/bin/bash
+
+source ./config.conf
+
+report="$REPORT_DIR/report_$(date +%F).txt"
+
+mkdir -p "$REPORT_DIR"
+
+{
+    echo "===== DAILY REPORT ====="
+    date
+    echo
+
+    echo "Disk Usage:"
+    df -h
+
+    echo
+    echo "Memory Usage:"
+    free -m
+
+    echo
+    echo "Running Processes:"
+    ps aux | head
+} > "$report"
+
+echo "Report saved to $report"</pre>
+    </div>
+
+    <h2>Error Handling</h2>
+    <p>
+        Production scripts must fail safely and clearly report problems.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">safe_script.sh</span>
+        </div>
+<pre>#!/bin/bash
+
+set -euo pipefail
+
+backup_file="/tmp/test.tar.gz"
+
+if tar -czf "$backup_file" /important/data; then
+    echo "Backup successful"
+else
+    echo "Backup failed" >&2
+    exit 1
+fi</pre>
+    </div>
+
+    <p>
+        Important production flags:
+    </p>
+
+    <ul>
+        <li><code>set -e</code> → Exit on command failure</li>
+        <li><code>set -u</code> → Error on undefined variables</li>
+        <li><code>pipefail</code> → Detect pipeline failures</li>
+    </ul>
+
+    <h2>Scheduling with Cron</h2>
+    <p>
+        Automation becomes truly powerful when scripts run automatically on schedules.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">crontab.txt</span>
+        </div>
+<pre># Run backup every day at 2 AM
+0 2 * * * /home/user/backup.sh
+
+# Run monitor every 10 minutes
+*/10 * * * * /home/user/monitor.sh
+
+# Cleanup every Sunday
+0 0 * * 0 /home/user/cleanup.sh</pre>
+    </div>
+
+    <p>
+        Open the cron editor using:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">cron_command.sh</span>
+        </div>
+<pre>crontab -e</pre>
+    </div>
+
+    <h2>Production Best Practices</h2>
+
+    <ul>
+        <li>Always quote variables: <code>"$file"</code></li>
+        <li>Use absolute paths in cron jobs</li>
+        <li>Log important actions</li>
+        <li>Validate user input</li>
+        <li>Test scripts in safe environments first</li>
+        <li>Use functions to organize large scripts</li>
+        <li>Store secrets outside scripts</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Final Project Challenge</div>
+        <p>Build a complete production automation toolkit that:</p>
+        <ul>
+            <li>Creates automatic backups</li>
+            <li>Compresses old logs</li>
+            <li>Monitors CPU and memory usage</li>
+            <li>Sends alerts when disk usage exceeds 80%</li>
+            <li>Generates daily reports</li>
+            <li>Runs automatically using cron</li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Bonus Challenge</div>
+        <p>Upgrade the project with advanced production features:</p>
+        <ul>
+            <li>Add colored terminal output</li>
+            <li>Create reusable shell functions</li>
+            <li>Implement lock files to prevent duplicate runs</li>
+            <li>Add retry logic for failed backups</li>
+            <li>Store logs with timestamps</li>
+            <li>Create interactive command-line menus</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+    </div>
+</div>
             </div>
 
             <!-- RIGHT AD COLUMN -->

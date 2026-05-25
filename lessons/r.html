@@ -1879,43 +1879,453 @@ results <- nums * 2 <span class="cm"># R automatically doubles every element!</s
                 </div>
 
                 <!-- ===================== LECTURE 07 ===================== -->
-                <div class="lecture" id="lec-6">
-                    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
-                    <h1>Data Frames & dplyr</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~65 min</span>
-                    </div>
+               <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Lecture 07 · Core Concepts</div>
+    <h1>Data Frames & dplyr</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~65 min</span>
+    </div>
 
-                    <h2>The Pipe Operator</h2>
-                    <div class="code-block">
-                        <pre>df %>%
+    <h2>Introduction to Data Frames</h2>
+    <p>
+        Data Frames are one of the most important data structures in R. 
+        They are used to store data in a tabular format, similar to an Excel spreadsheet 
+        or a database table. Each column can contain different types of data such as numbers, 
+        text, or logical values.
+    </p>
+
+    <p>
+        In real-world data science and analytics projects, most datasets are handled using 
+        Data Frames because they are flexible, organized, and easy to manipulate.
+    </p>
+
+    <div class="code-block">
+        <pre>students <- data.frame(
+    name = c("Ali", "Sara", "John"),
+    age = c(20, 22, 21),
+    marks = c(85, 90, 88)
+)
+
+students</pre>
+    </div>
+
+    <p>
+        In the example above:
+    </p>
+
+    <ul>
+        <li><strong>name</strong> column stores character values</li>
+        <li><strong>age</strong> column stores numeric values</li>
+        <li><strong>marks</strong> column stores students' scores</li>
+    </ul>
+
+    <h2>Accessing Data in Data Frames</h2>
+    <p>
+        We can access rows and columns of a Data Frame using indexing or column names.
+    </p>
+
+    <div class="code-block">
+        <pre>students$name
+students$marks
+
+students[1, ]
+students[, 2]</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>students$name</strong> accesses the name column</li>
+        <li><strong>students[1, ]</strong> returns the first row</li>
+        <li><strong>students[, 2]</strong> returns the second column</li>
+    </ul>
+
+    <h2>What is dplyr?</h2>
+    <p>
+        <strong>dplyr</strong> is one of the most popular R packages used for data manipulation 
+        and data analysis. It provides simple and readable functions that make working with 
+        datasets faster and easier.
+    </p>
+
+    <p>
+        The main advantage of dplyr is that it allows developers and data analysts to write 
+        clean and understandable code when processing data.
+    </p>
+
+    <div class="code-block">
+        <pre>library(dplyr)</pre>
+    </div>
+
+    <h2>Important dplyr Functions</h2>
+
+    <h3>1. select()</h3>
+    <p>
+        The <strong>select()</strong> function is used to choose specific columns from a Data Frame.
+    </p>
+
+    <div class="code-block">
+        <pre>students %>%
+    select(name, marks)</pre>
+    </div>
+
+    <h3>2. filter()</h3>
+    <p>
+        The <strong>filter()</strong> function is used to extract rows based on conditions.
+    </p>
+
+    <div class="code-block">
+        <pre>students %>%
+    filter(age > 20)</pre>
+    </div>
+
+    <h3>3. mutate()</h3>
+    <p>
+        The <strong>mutate()</strong> function creates new columns or modifies existing columns.
+    </p>
+
+    <div class="code-block">
+        <pre>students %>%
+    mutate(grade = marks + 5)</pre>
+    </div>
+
+    <h3>4. arrange()</h3>
+    <p>
+        The <strong>arrange()</strong> function sorts data in ascending or descending order.
+    </p>
+
+    <div class="code-block">
+        <pre>students %>%
+    arrange(marks)</pre>
+    </div>
+
+    <h2>The Pipe Operator</h2>
+    <p>
+        The Pipe Operator <strong>%>%</strong> is one of the most useful features in dplyr.
+        It passes the output of one operation directly into the next operation.
+    </p>
+
+    <p>
+        Without the pipe operator, code becomes deeply nested and difficult to read. 
+        Using pipes makes the code cleaner, more readable, and easier to debug.
+    </p>
+
+    <div class="code-block">
+        <pre>df %>%
     filter(age > 18) %>%
     select(name, salary)</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        In this example:
+    </p>
+
+    <ul>
+        <li>The dataset is first filtered to include people older than 18</li>
+        <li>Then only the <strong>name</strong> and <strong>salary</strong> columns are selected</li>
+    </ul>
+
+    <h2>Chaining Multiple Operations</h2>
+    <p>
+        One of the biggest strengths of dplyr is the ability to combine multiple operations 
+        into a single pipeline.
+    </p>
+
+    <div class="code-block">
+        <pre>students %>%
+    filter(marks > 85) %>%
+    arrange(desc(marks)) %>%
+    select(name, marks)</pre>
+    </div>
+
+    <p>
+        This pipeline:
+    </p>
+
+    <ul>
+        <li>Filters students with marks greater than 85</li>
+        <li>Sorts them in descending order</li>
+        <li>Selects only the required columns</li>
+    </ul>
+
+    <h2>Advantages of Using dplyr</h2>
+    <ul>
+        <li>Easy to read and understand</li>
+        <li>Cleaner syntax compared to base R</li>
+        <li>Efficient for large datasets</li>
+        <li>Supports chaining with the pipe operator</li>
+        <li>Widely used in data science and analytics</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, we learned about Data Frames and the dplyr package in R. 
+        We explored how to create and access Data Frames, and how dplyr functions 
+        such as <strong>select()</strong>, <strong>filter()</strong>, 
+        <strong>mutate()</strong>, and <strong>arrange()</strong> help in data manipulation.
+    </p>
+
+    <p>
+        We also understood the importance of the Pipe Operator <strong>%>%</strong>, 
+        which allows multiple operations to be chained together in a clean and readable way.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 08 ===================== -->
-                <div class="lecture" id="lec-7">
-                    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
-                    <h1>Data Import & Cleaning</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-intermediate">Intermediate</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+               <div class="lecture" id="lec-7">
+    <div class="lecture-tag">Lecture 08 · Core Concepts</div>
+    <h1>Data Import & Cleaning</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
 
-                    <p>Learn how to read CSV and Excel files and clean messy data using <code>tidyr</code>.</p>
+    <p>
+        Learn how to read CSV and Excel files and clean messy data using <code>tidyr</code>.
+    </p>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
-                    </div>
-                </div>
+    <h2>Introduction to Data Import</h2>
+    <p>
+        In real-world data analysis projects, data usually comes from external files such as 
+        CSV files, Excel spreadsheets, databases, or APIs. Before analyzing data, we first 
+        need to import it into R.
+    </p>
+
+    <p>
+        R provides powerful functions and libraries that make data importing simple and efficient. 
+        Once the data is imported, the next important step is cleaning the data to remove errors, 
+        missing values, and inconsistencies.
+    </p>
+
+    <h2>Reading CSV Files</h2>
+    <p>
+        CSV (Comma-Separated Values) files are one of the most common file formats used in 
+        data science and analytics. Each line in a CSV file represents a row, and commas 
+        separate the column values.
+    </p>
+
+    <div class="code-block">
+        <pre>data <- read.csv("students.csv")
+
+data</pre>
+    </div>
+
+    <p>
+        The <strong>read.csv()</strong> function imports the CSV file into a Data Frame.
+    </p>
+
+    <ul>
+        <li><strong>"students.csv"</strong> is the file name</li>
+        <li>The imported data is stored in the variable <strong>data</strong></li>
+    </ul>
+
+    <h2>Viewing Imported Data</h2>
+    <p>
+        After importing data, it is important to inspect and understand the dataset structure.
+    </p>
+
+    <div class="code-block">
+        <pre>head(data)
+str(data)
+summary(data)</pre>
+    </div>
+
+    <p>
+        These functions help us understand the dataset:
+    </p>
+
+    <ul>
+        <li><strong>head()</strong> displays the first few rows</li>
+        <li><strong>str()</strong> shows the structure and data types</li>
+        <li><strong>summary()</strong> provides statistical summaries</li>
+    </ul>
+
+    <h2>Reading Excel Files</h2>
+    <p>
+        Excel files are widely used in businesses and organizations for storing data. 
+        To read Excel files in R, we commonly use the <strong>readxl</strong> package.
+    </p>
+
+    <div class="code-block">
+        <pre>library(readxl)
+
+data <- read_excel("students.xlsx")
+
+data</pre>
+    </div>
+
+    <p>
+        The <strong>read_excel()</strong> function imports Excel spreadsheets directly into R.
+    </p>
+
+    <h2>Understanding Dirty Data</h2>
+    <p>
+        Dirty data refers to incomplete, inconsistent, or incorrect data that can affect analysis results.
+    </p>
+
+    <p>
+        Common problems in datasets include:
+    </p>
+
+    <ul>
+        <li>Missing values</li>
+        <li>Duplicate rows</li>
+        <li>Incorrect formatting</li>
+        <li>Extra spaces in text</li>
+        <li>Empty columns</li>
+    </ul>
+
+    <p>
+        Data cleaning is an important step because clean data produces more accurate analysis 
+        and better machine learning models.
+    </p>
+
+    <h2>Handling Missing Values</h2>
+    <p>
+        Missing values are represented as <strong>NA</strong> in R. 
+        We can identify and remove missing values using built-in functions.
+    </p>
+
+    <div class="code-block">
+        <pre>is.na(data)
+
+na.omit(data)</pre>
+    </div>
+
+    <p>
+        Here:
+    </p>
+
+    <ul>
+        <li><strong>is.na()</strong> checks for missing values</li>
+        <li><strong>na.omit()</strong> removes rows containing missing values</li>
+    </ul>
+
+    <h2>Removing Duplicate Data</h2>
+    <p>
+        Duplicate records can create incorrect analysis results. 
+        R provides functions to detect and remove duplicates.
+    </p>
+
+    <div class="code-block">
+        <pre>unique(data)</pre>
+    </div>
+
+    <p>
+        The <strong>unique()</strong> function removes duplicate rows from the dataset.
+    </p>
+
+    <h2>Introduction to tidyr</h2>
+    <p>
+        The <strong>tidyr</strong> package is used for cleaning and organizing messy datasets. 
+        It helps convert raw data into a tidy format that is easier to analyze.
+    </p>
+
+    <div class="code-block">
+        <pre>library(tidyr)</pre>
+    </div>
+
+    <h2>Using drop_na()</h2>
+    <p>
+        The <strong>drop_na()</strong> function removes rows containing missing values.
+    </p>
+
+    <div class="code-block">
+        <pre>data %>%
+    drop_na()</pre>
+    </div>
+
+    <h2>Using replace_na()</h2>
+    <p>
+        Instead of removing missing values, we can replace them with meaningful values.
+    </p>
+
+    <div class="code-block">
+        <pre>data %>%
+    replace_na(list(marks = 0))</pre>
+    </div>
+
+    <p>
+        In this example, missing values in the <strong>marks</strong> column are replaced with 0.
+    </p>
+
+    <h2>Cleaning Text Data</h2>
+    <p>
+        Text data often contains unnecessary spaces or inconsistent capitalization. 
+        Cleaning text improves data quality and consistency.
+    </p>
+
+    <div class="code-block">
+        <pre>trimws(data$name)</pre>
+    </div>
+
+    <p>
+        The <strong>trimws()</strong> function removes extra spaces from text values.
+    </p>
+
+    <h2>Renaming Columns</h2>
+    <p>
+        Clear and meaningful column names make datasets easier to understand.
+    </p>
+
+    <div class="code-block">
+        <pre>colnames(data) <- c("Name", "Age", "Marks")</pre>
+    </div>
+
+    <p>
+        This statement changes the column names of the dataset.
+    </p>
+
+    <h2>Exporting Cleaned Data</h2>
+    <p>
+        After cleaning the dataset, we can save it back to a CSV file for future use.
+    </p>
+
+    <div class="code-block">
+        <pre>write.csv(data, "cleaned_data.csv")</pre>
+    </div>
+
+    <p>
+        The cleaned dataset will be stored in a new CSV file.
+    </p>
+
+    <h2>Advantages of Data Cleaning</h2>
+    <ul>
+        <li>Improves data accuracy</li>
+        <li>Removes inconsistencies</li>
+        <li>Prepares data for analysis</li>
+        <li>Enhances machine learning performance</li>
+        <li>Makes reports more reliable</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>
+        In this lecture, we learned how to import CSV and Excel files into R using 
+        <strong>read.csv()</strong> and <strong>read_excel()</strong>.
+    </p>
+
+    <p>
+        We also explored data cleaning techniques such as handling missing values, 
+        removing duplicates, renaming columns, and organizing datasets using the 
+        <strong>tidyr</strong> package.
+    </p>
+
+    <p>
+        Clean data is essential for accurate analysis, reporting, and machine learning applications.
+    </p>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 09 ===================== -->
                 <div class="lecture" id="lec-8">
