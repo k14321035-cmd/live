@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+  <title>div vs section in HTML — Code Tutorium</title>
+  <meta name="description" content="What is the difference between &lt;div&gt; and &lt;section&gt; in HTML? Learn when to use each element, why it matters for accessibility and SEO, and see clear examples.">
+  <meta name="keywords" content="div vs section html, html div section difference, when to use section html, html semantic elements, div vs section, html5 semantic tags">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="div vs section in HTML — Code Tutorium">
+  <meta property="og:description" content="The difference between &lt;div&gt; and &lt;section&gt; explained clearly — with examples, accessibility notes, and when to use each.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/div-vs-section.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="div vs section in HTML — Code Tutorium">
+  <meta name="twitter:description" content="div vs section in HTML explained simply, with examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/div-vs-section.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Override post accent colour -->
+  <style> :root { --post-color: #fca5a5; } </style>
+
+  <!-- FAQ Schema — enables Google featured snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between div and section in HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A &lt;div&gt; is a generic, non-semantic container with no inherent meaning. A &lt;section&gt; is a semantic element that represents a thematically related group of content, typically with a heading. Use &lt;section&gt; when the content has a clear topic; use &lt;div&gt; for layout and styling purposes only."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I use section instead of div?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use &lt;section&gt; when grouping content that shares a common theme and would logically appear in a document outline — for example, an About section, a Features section, or a Reviews section. Use &lt;div&gt; when you only need a container for styling or layout purposes and the content has no distinct semantic meaning."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does using section instead of div affect SEO?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, indirectly. Semantic HTML like &lt;section&gt; helps search engines better understand the structure and topic of your content. It also improves accessibility, which is a positive signal. However, &lt;section&gt; alone is not a magic SEO boost — quality content and proper headings matter far more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use a div inside a section or a section inside a div?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, both are perfectly valid. A &lt;section&gt; can contain &lt;div&gt; elements for inner layout, and a &lt;div&gt; wrapper can contain multiple &lt;section&gt; elements. The key rule is: use &lt;section&gt; for meaningful content groups and &lt;div&gt; purely for structure or styling."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://codetutorium.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://codetutorium.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "div vs section in HTML", "item": "https://codetutorium.com/blog/div-vs-section.html" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is the difference between div and section in HTML?",
+    "description": "A clear explanation of when to use &lt;div&gt; vs &lt;section&gt; in HTML5 — covering semantics, accessibility, SEO, and practical examples.",
+    "author": { "@type": "Organization", "name": "Code Tutorium" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": { "@type": "ImageObject", "url": "https://codetutorium.com/favicon.png" }
+    },
+    "datePublished": "2026-05-27",
+    "dateModified": "2026-05-27",
+    "url": "https://codetutorium.com/blog/div-vs-section.html"
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- ═══ ARTICLE ═══ -->
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>div vs section in HTML</span>
+      </nav>
+
+      <div class="post-tag">HTML</div>
+
+      <h1 class="post-title">What is the difference between &lt;div&gt; and &lt;section&gt;?</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick-answer box -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li><code>&lt;div&gt;</code> is a <strong>generic, non-semantic</strong> container — it carries no meaning.</li>
+          <li><code>&lt;section&gt;</code> is a <strong>semantic</strong> element representing a thematically grouped block of content.</li>
+          <li>Use <code>&lt;section&gt;</code> when the content has a clear topic and ideally a heading.</li>
+          <li>Use <code>&lt;div&gt;</code> for layout and styling purposes only, when no semantic meaning is needed.</li>
+          <li>Choosing correctly improves <strong>accessibility</strong> and helps search engines understand your page.</li>
+        </ul>
+      </div>
+
+      <!-- Body -->
+      <div class="post-body">
+
+        <h2>The core difference</h2>
+        <p>
+          Both <code>&lt;div&gt;</code> and <code>&lt;section&gt;</code> are block-level HTML elements used to group content.
+          The difference is entirely about <strong>meaning</strong>.
+        </p>
+        <p>
+          A <code>&lt;div&gt;</code> is a <strong>generic container</strong>. It tells the browser (and developers)
+          nothing about what is inside it. A <code>&lt;section&gt;</code>, introduced in HTML5, is a
+          <strong>semantic element</strong> — it signals that its content forms a distinct, thematically
+          related unit within the page.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 One-line rule</div>
+          <p>If you could give the content a heading and it would make sense as its own topic — use <code>&lt;section&gt;</code>. If you just need a box for styling — use <code>&lt;div&gt;</code>.</p>
+        </div>
+
+        <h2>What is a &lt;div&gt;?</h2>
+        <p>
+          The <code>&lt;div&gt;</code> element (short for <em>division</em>) has been part of HTML since the early days.
+          It is a <strong>block-level, non-semantic</strong> wrapper with no inherent meaning or accessibility role.
+          Browsers treat it as a plain box.
+        </p>
+        <p>
+          Its sole job is to give you a hook for CSS and JavaScript — a place to attach classes, IDs,
+          and event listeners.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">index.html</span>
+          </div>
+          <pre><span class="cmt">&lt;!-- div: purely a layout/styling wrapper --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card-grid"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>Item one<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>Item two<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>Item three<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+        </div>
+
+        <p>Here the <code>&lt;div&gt;</code> elements are layout tools — they create a grid of cards. There is no meaningful topic being grouped; CSS is the only reason they exist.</p>
+
+        <h2>What is a &lt;section&gt;?</h2>
+        <p>
+          The <code>&lt;section&gt;</code> element, introduced in <strong>HTML5</strong>, represents a
+          <strong>thematic grouping of content</strong>. According to the HTML specification, a section
+          is "a generic section of a document or application" — one that could theoretically appear
+          in the document's outline with its own heading.
+        </p>
+        <p>
+          Screen readers and search engines recognise <code>&lt;section&gt;</code> as a landmark region,
+          giving users and crawlers a clearer understanding of how the page is structured.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">index.html</span>
+          </div>
+          <pre><span class="cmt">&lt;!-- section: content grouped by topic --&gt;</span>
+<span class="tag">&lt;section&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>About Us<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>We are a team of developers who love building for the web.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/section&gt;</span>
+
+<span class="tag">&lt;section&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Our Services<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>We offer web design, development, and consulting.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/section&gt;</span></pre>
+        </div>
+
+        <p>Each <code>&lt;section&gt;</code> has a clear topic and a heading. Remove those headings and the sections would lose their meaning — a sign that <code>&lt;section&gt;</code> is the right choice here.</p>
+
+        <h2>Side-by-side comparison</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">comparison.html</span>
+          </div>
+          <pre><span class="cmt">&lt;!-- ✅ Correct use of &lt;section&gt; --&gt;</span>
+<span class="tag">&lt;section&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Customer Reviews<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>"Best product I have ever used." — Sarah K.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p&gt;</span>"Absolutely love it." — James T.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/section&gt;</span>
+
+<span class="cmt">&lt;!-- ✅ Correct use of &lt;div&gt; --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"review-layout"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"review-card"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"review-card"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- ❌ Wrong: section used purely for styling --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="str">"blue-background"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"hero.jpg"</span> <span class="attr">alt</span>=<span class="str">"Hero image"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/section&gt;</span></pre>
+        </div>
+
+        <h2>Why does it matter?</h2>
+
+        <h3>Accessibility</h3>
+        <p>
+          Screen readers expose <code>&lt;section&gt;</code> as a <strong>landmark region</strong>, allowing
+          keyboard users to jump directly to it. A page full of <code>&lt;div&gt;</code> elements gives
+          assistive technology nothing to navigate by — users must listen to the entire page from top to bottom.
+        </p>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Accessibility note</div>
+          <p>A <code>&lt;section&gt;</code> with an accessible name (via <code>aria-labelledby</code> pointing to its heading) becomes a named landmark. Screen reader users can pull up a list of all landmarks and jump straight to the one they need.</p>
+        </div>
+
+        <h3>SEO</h3>
+        <p>
+          Search engines use semantic markup to understand page structure. When your content is wrapped in
+          meaningful elements like <code>&lt;section&gt;</code>, crawlers can more easily identify the
+          topics covered on each part of your page, which can positively influence how your content is ranked and displayed.
+        </p>
+
+        <h3>Maintainability</h3>
+        <p>
+          Semantic HTML is also self-documenting. A developer reading your code instantly understands
+          that a <code>&lt;section&gt;</code> block contains meaningful content, not just a styling wrapper.
+          This makes codebases easier to read, review, and maintain over time.
+        </p>
+
+        <h2>When to use which — a practical guide</h2>
+        <ul>
+          <li>✅ <strong>Use <code>&lt;section&gt;</code></strong> — an "About" block, a "Features" list, a "Pricing" area, a "Contact" form group, a "Related Articles" block. Each has a clear topic and a heading.</li>
+          <li>✅ <strong>Use <code>&lt;div&gt;</code></strong> — a CSS grid wrapper, a flex row container, an inner card layout, a JavaScript hook. No semantic meaning needed.</li>
+          <li>❌ <strong>Don't use <code>&lt;section&gt;</code></strong> — just to add a background colour, create a full-width stripe, or wrap a single image. That is a job for <code>&lt;div&gt;</code>.</li>
+        </ul>
+
+        <div class="callout warning">
+          <div class="callout-title">⚠️ Common mistake</div>
+          <p>Replacing every single <code>&lt;div&gt;</code> with <code>&lt;section&gt;</code> is not "more semantic" — it is incorrect. Overusing <code>&lt;section&gt;</code> creates noise that harms accessibility, not helps it.</p>
+        </div>
+
+        <h2>Can you nest them?</h2>
+        <p>
+          Absolutely. Nesting <code>&lt;div&gt;</code> inside <code>&lt;section&gt;</code> (and vice versa) is
+          entirely valid and very common in real projects.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">index.html</span>
+          </div>
+          <pre><span class="tag">&lt;section&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Our Team<span class="tag">&lt;/h2&gt;</span>
+
+  <span class="cmt">&lt;!-- div used for the inner grid layout --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"team-grid"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"team-card"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"alice.jpg"</span> <span class="attr">alt</span>=<span class="str">"Alice"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h3&gt;</span>Alice<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Lead Developer<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"team-card"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"ben.jpg"</span> <span class="attr">alt</span>=<span class="str">"Ben"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h3&gt;</span>Ben<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;p&gt;</span>UI Designer<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/section&gt;</span></pre>
+        </div>
+
+        <p>The <code>&lt;section&gt;</code> groups the thematic content ("Our Team"). The <code>&lt;div&gt;</code> elements inside handle the grid layout — that is the correct division of responsibility.</p>
+
+        <h2>Other semantic elements to know</h2>
+        <p>
+          HTML5 introduced several semantic alternatives to <code>&lt;div&gt;</code>. Knowing when to reach
+          for each one will make your HTML much more expressive:
+        </p>
+        <ul>
+          <li><code>&lt;header&gt;</code> — introductory content or navigation at the top of the page or a section.</li>
+          <li><code>&lt;footer&gt;</code> — closing content: copyright, links, author info.</li>
+          <li><code>&lt;main&gt;</code> — the primary content of the page (only one per page).</li>
+          <li><code>&lt;article&gt;</code> — a self-contained piece of content (blog post, news story, comment) that makes sense on its own.</li>
+          <li><code>&lt;aside&gt;</code> — content tangentially related to the main content (sidebar, callout).</li>
+          <li><code>&lt;nav&gt;</code> — a block of navigation links.</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 article vs section</div>
+          <p>An <code>&lt;article&gt;</code> is self-contained and can be lifted out of the page and still make sense on its own (syndicated RSS, a tweet embed). A <code>&lt;section&gt;</code> is part of a larger whole and depends on its context. When in doubt: does the content make sense alone? Use <code>&lt;article&gt;</code>. Is it one part of a bigger topic? Use <code>&lt;section&gt;</code>.</p>
+        </div>
+
+        <h2>Summary</h2>
+        <p>
+          The choice between <code>&lt;div&gt;</code> and <code>&lt;section&gt;</code> comes down to intent.
+          Use <code>&lt;div&gt;</code> when you need a generic wrapper for CSS or JavaScript and the
+          content has no inherent topic. Use <code>&lt;section&gt;</code> when you are grouping related
+          content around a theme — especially when it would carry a heading.
+        </p>
+        <p>
+          Getting this right is a small change that improves accessibility, helps search engines, and
+          makes your HTML self-documenting. Ready to go deeper? Our full
+          <a href="../lessons/html.html">HTML course</a> covers all the semantic elements, document
+          structure, and best practices — completely free.
+        </p>
+
+      </div><!-- /post-body -->
+
+      <!-- Related articles -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// HTML</div>
+            <div class="related-card-title">What is semantic HTML and why does it matter?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// HTML</div>
+            <div class="related-card-title">What is the difference between article and section?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// CSS</div>
+            <div class="related-card-title">What is CSS and how does it work?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// General</div>
+            <div class="related-card-title">What is the best programming language to learn first?</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside class="sidebar">
+
+      <!-- Table of contents -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list" aria-label="Table of contents">
+          <a href="#" class="toc-link">The core difference</a>
+          <a href="#" class="toc-link">What is a &lt;div&gt;?</a>
+          <a href="#" class="toc-link">What is a &lt;section&gt;?</a>
+          <a href="#" class="toc-link">Side-by-side comparison</a>
+          <a href="#" class="toc-link">Why does it matter?</a>
+          <a href="#" class="toc-link">When to use which</a>
+          <a href="#" class="toc-link">Can you nest them?</a>
+          <a href="#" class="toc-link">Other semantic elements</a>
+          <a href="#" class="toc-link">Summary</a>
+        </nav>
+      </div>
+
+      <!-- Course promo -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">🏗️</div>
+          <div class="course-promo-name">HTML</div>
+          <div class="course-promo-desc">14 structured lessons — from basic tags to semantic HTML, forms, and accessibility. 100% free.</div>
+          <a href="../lessons/html.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /page-wrap -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

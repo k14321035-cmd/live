@@ -3117,314 +3117,1074 @@ transform: skew(10deg);</code></pre>
     </div>
 </div>
 
-        <!-- ===================== LECTURE 10 ===================== -->
-        <div class="lecture" id="lec-9">
-            <div class="lecture-tag">Lecture 10 · Advanced</div>
-            <h1>Responsive Design</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~55 min</span>
-                <span class="meta-badge">Requires: Lecture 09</span>
-            </div>
+     <!-- ===================== LECTURE 10 ===================== -->
+<div class="lecture" id="lec-9">
+    <div class="lecture-tag">Lecture 10 · Advanced</div>
 
-            <h2>Media Queries</h2>
-            <pre><code>@media (max-width: 992px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
+    <h1>Responsive Design</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+        <span class="meta-badge">Requires: Lecture 09</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">What is Responsive Design?</div>
+
+        <p>
+            Responsive design is the process of building websites that automatically adapt
+            to different screen sizes and devices. A responsive website looks good and works
+            properly on desktops, tablets, laptops, and mobile phones.
+        </p>
+
+        <p>
+            Modern users visit websites using many different devices. Responsive design ensures
+            that layouts, images, typography, and navigation adjust smoothly for every screen size.
+        </p>
+    </div>
+
+    <h2>Why Responsive Design Matters</h2>
+
+    <ul>
+        <li>Improves user experience on all devices</li>
+        <li>Makes websites mobile-friendly</li>
+        <li>Improves accessibility and readability</li>
+        <li>Helps with SEO rankings on search engines</li>
+        <li>Reduces the need for separate mobile websites</li>
+    </ul>
+
+    <h2>Media Queries</h2>
+
+    <p>
+        Media queries allow developers to apply different CSS styles depending on the screen size,
+        device width, orientation, or resolution.
+    </p>
+
+    <pre><code>@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
+
 @media (max-width: 600px) {
-    .grid { grid-template-columns: 1fr; }
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }</code></pre>
 
-            <h2>Mobile‑first approach</h2>
-            <p>Start with the default (mobile) styles, then use <code>min-width</code> breakpoints to add features for
-                larger screens.</p>
+    <div class="box info">
+        <div class="box-title">How This Works</div>
 
-            <pre><code>/* Base (mobile) */
-.container { padding: 1rem; }
+        <ul>
+            <li>When the screen width becomes smaller than 992px, the layout changes to 2 columns</li>
+            <li>When the width becomes smaller than 600px, the layout changes to a single column</li>
+            <li>This helps content fit smaller screens properly</li>
+        </ul>
+    </div>
+
+    <h2>Common Breakpoints</h2>
+
+    <table>
+        <tr>
+            <th>Device Type</th>
+            <th>Typical Width</th>
+        </tr>
+
+        <tr>
+            <td>Mobile</td>
+            <td>0px – 600px</td>
+        </tr>
+
+        <tr>
+            <td>Tablet</td>
+            <td>601px – 992px</td>
+        </tr>
+
+        <tr>
+            <td>Desktop</td>
+            <td>993px and above</td>
+        </tr>
+    </table>
+
+    <h2>Mobile-first approach</h2>
+
+    <p>
+        The mobile-first approach means designing for small screens first,
+        then gradually adding styles for larger devices.
+    </p>
+
+    <p>
+        This approach is widely recommended because:
+    </p>
+
+    <ul>
+        <li>Mobile traffic is extremely high today</li>
+        <li>It improves performance</li>
+        <li>It forces cleaner and simpler layouts</li>
+        <li>It creates scalable designs</li>
+    </ul>
+
+    <p>
+        Start with the default (mobile) styles, then use <code>min-width</code> breakpoints
+        to add features for larger screens.
+    </p>
+
+    <pre><code>/* Base (mobile) */
+.container {
+    padding: 1rem;
+}
 
 /* Tablet */
 @media (min-width: 600px) {
-    .container { padding: 2rem; }
+    .container {
+        padding: 2rem;
+    }
 }
 
 /* Desktop */
 @media (min-width: 992px) {
-    .container { padding: 3rem; }
+    .container {
+        padding: 3rem;
+    }
 }</code></pre>
 
-            <h2>Fluid typography with <code>clamp()</code></h2>
-            <pre><code>html {
+    <div class="box tip">
+        <div class="box-title">💡 Best Practice</div>
+
+        <p>
+            Always test your layouts on multiple screen sizes using browser developer tools.
+            Chrome DevTools provides built-in mobile device simulation.
+        </p>
+    </div>
+
+    <h2>Fluid typography with <code>clamp()</code></h2>
+
+    <p>
+        The <code>clamp()</code> function allows text sizes to scale smoothly between
+        minimum and maximum values.
+    </p>
+
+    <pre><code>html {
     font-size: clamp(14px, 1vw, 18px);
 }</code></pre>
 
-            <h2>Responsive images</h2>
-            <pre><code>&lt;img src="small.jpg"
+    <div class="box info">
+        <div class="box-title">Understanding clamp()</div>
+
+        <p>
+            The syntax is:
+        </p>
+
+        <pre><code>clamp(minimum, preferred, maximum)</code></pre>
+
+        <ul>
+            <li><strong>Minimum:</strong> Smallest allowed size</li>
+            <li><strong>Preferred:</strong> Flexible scaling value</li>
+            <li><strong>Maximum:</strong> Largest allowed size</li>
+        </ul>
+    </div>
+
+    <h2>Responsive images</h2>
+
+    <p>
+        Responsive images automatically adjust based on screen size and device resolution.
+        This improves performance and prevents oversized images from loading on small devices.
+    </p>
+
+    <pre><code>&lt;img src="small.jpg"
      srcset="small.jpg 480w, medium.jpg 768w, large.jpg 1200w"
      sizes="(max-width: 600px) 480px,
             (max-width: 900px) 768px,
             1200px"
      alt="Responsive example"&gt;</code></pre>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 10.1</div>
-                <p>Turn the three‑column layout from Lecture 5 into a fully responsive layout that collapses to two
-                    columns at 800 px and to a single column at 500 px. Add a responsive navigation bar that switches to
-                    a hamburger menu (you can reuse the existing sidebar toggle).</p>
-            </div>
+    <div class="box info">
+        <div class="box-title">Responsive Image Benefits</div>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
-            </div>
-        </div>
+        <ul>
+            <li>Faster page loading</li>
+            <li>Reduced bandwidth usage</li>
+            <li>Better mobile performance</li>
+            <li>Sharper images on high-resolution screens</li>
+        </ul>
+    </div>
 
-        <!-- ===================== LECTURE 11 ===================== -->
-        <div class="lecture" id="lec-10">
-            <div class="lecture-tag">Lecture 11 · Advanced</div>
-            <h1>SCSS &amp; Pre‑processors</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 10</span>
-            </div>
+    <h2>Responsive Layout Tips</h2>
 
-            <h2>Why preprocess?</h2>
-            <ul>
-                <li>Variables (<code>$primary: #f97316;</code>)</li>
-                <li>Nesting – clearer hierarchy.</li>
-                <li>Mixins – reusable blocks of CSS.</li>
-                <li>Functions – compute values.</li>
-                <li>Partial files &amp; imports for modular code.</li>
-            </ul>
+    <ul>
+        <li>Use flexible units like <code>%</code>, <code>vw</code>, and <code>rem</code></li>
+        <li>Avoid fixed widths whenever possible</li>
+        <li>Use CSS Grid and Flexbox for layouts</li>
+        <li>Test navigation menus on small screens</li>
+        <li>Keep touch targets large enough for mobile users</li>
+    </ul>
 
-            <h3>Variables & nesting example</h3>
-            <pre><code>$primary: #f97316;
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 10.1</div>
+
+        <p>
+            Turn the three-column layout from Lecture 5 into a fully responsive layout
+            that collapses to two columns at 800 px and to a single column at 500 px.
+        </p>
+
+        <p>
+            Add a responsive navigation bar that switches to a hamburger menu.
+            You can reuse the existing sidebar toggle logic.
+        </p>
+
+        <p>
+            Bonus Challenge:
+        </p>
+
+        <ul>
+            <li>Add responsive typography using <code>clamp()</code></li>
+            <li>Make all images responsive using <code>max-width: 100%</code></li>
+            <li>Test your layout on mobile and tablet screen sizes</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+    </div>
+</div>
+
+<!-- ===================== LECTURE 11 ===================== -->
+<div class="lecture" id="lec-10">
+    <div class="lecture-tag">Lecture 11 · Advanced</div>
+
+    <h1>SCSS &amp; Pre-processors</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 10</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Introduction to SCSS</div>
+
+        <p>
+            SCSS is a more powerful version of CSS that adds programming-like features
+            such as variables, nesting, mixins, functions, and reusable code structures.
+            SCSS belongs to a group of tools called CSS pre-processors.
+        </p>
+
+        <p>
+            Browsers cannot directly understand SCSS files. SCSS code must first be
+            compiled into normal CSS before the browser can use it.
+        </p>
+    </div>
+
+    <h2>What is a CSS Pre-processor?</h2>
+
+    <p>
+        A CSS pre-processor is a tool that extends normal CSS with advanced features.
+        It helps developers write cleaner, faster, and more maintainable stylesheets.
+    </p>
+
+    <p>
+        Popular CSS pre-processors include:
+    </p>
+
+    <ul>
+        <li>SCSS / Sass</li>
+        <li>LESS</li>
+        <li>Stylus</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 Why Developers Love SCSS</div>
+
+        <ul>
+            <li>Reduces repeated code</li>
+            <li>Makes large projects easier to manage</li>
+            <li>Improves readability</li>
+            <li>Supports reusable styling systems</li>
+            <li>Speeds up development</li>
+        </ul>
+    </div>
+
+    <h2>Why preprocess?</h2>
+
+    <ul>
+        <li>Variables (<code>$primary: #f97316;</code>)</li>
+        <li>Nesting for clearer hierarchy</li>
+        <li>Mixins for reusable blocks of CSS</li>
+        <li>Functions for computing values</li>
+        <li>Partial files and imports for modular code</li>
+    </ul>
+
+    <h2>Variables in SCSS</h2>
+
+    <p>
+        Variables allow developers to store reusable values such as colors,
+        spacing, fonts, shadows, and sizes.
+    </p>
+
+    <p>
+        Instead of rewriting the same value multiple times, you can store it once
+        and reuse it throughout the project.
+    </p>
+
+    <pre><code>$primary: #f97316;
 $spacing: 1rem;
 
 body {
     font-family: 'Open Sans', sans-serif;
     color: #111;
+
     a {
         color: $primary;
-        &:hover { color: darken($primary, 10%); }
+
+        &:hover {
+            color: darken($primary, 10%);
+        }
     }
+
     .section {
         padding: $spacing * 2;
     }
 }</code></pre>
 
-            <h3>Mixin for clearfix</h3>
-            <pre><code>@mixin clearfix {
+    <div class="box info">
+        <div class="box-title">Understanding the Example</div>
+
+        <ul>
+            <li><code>$primary</code> stores the main brand color</li>
+            <li><code>$spacing</code> stores reusable spacing</li>
+            <li>Nesting keeps related styles together</li>
+            <li><code>&amp;:hover</code> targets the hover state</li>
+            <li><code>darken()</code> automatically creates a darker color</li>
+        </ul>
+    </div>
+
+    <h2>Nesting in SCSS</h2>
+
+    <p>
+        SCSS allows CSS selectors to be nested inside each other.
+        This creates a cleaner hierarchy that matches HTML structure.
+    </p>
+
+    <pre><code>.card {
+    padding: 1rem;
+
+    h2 {
+        color: blue;
+    }
+
+    p {
+        line-height: 1.6;
+    }
+}</code></pre>
+
+    <div class="box info">
+        <div class="box-title">Compiled CSS Output</div>
+
+        <pre><code>.card {
+    padding: 1rem;
+}
+
+.card h2 {
+    color: blue;
+}
+
+.card p {
+    line-height: 1.6;
+}</code></pre>
+    </div>
+
+    <h2>Mixins</h2>
+
+    <p>
+        Mixins are reusable groups of CSS rules.
+        They help avoid duplication and improve maintainability.
+    </p>
+
+    <h3>Mixin for clearfix</h3>
+
+    <pre><code>@mixin clearfix {
    &::after {
        content: "";
        display: table;
        clear: both;
    }
 }
-.container { @include clearfix; }</code></pre>
 
-            <h3>Using partials</h3>
-            <pre><code>// _variables.scss
+.container {
+    @include clearfix;
+}</code></pre>
+
+    <div class="box info">
+        <div class="box-title">What is Happening Here?</div>
+
+        <ul>
+            <li><code>@mixin</code> creates a reusable style block</li>
+            <li><code>@include</code> inserts the mixin into a selector</li>
+            <li>The clearfix technique fixes floating layout issues</li>
+        </ul>
+    </div>
+
+    <h2>Functions in SCSS</h2>
+
+    <p>
+        SCSS provides built-in functions for colors, calculations, strings, and more.
+    </p>
+
+    <pre><code>$mainColor: #3498db;
+
+.button {
+    background: lighten($mainColor, 15%);
+}</code></pre>
+
+    <p>
+        The <code>lighten()</code> function automatically creates a lighter version
+        of the selected color.
+    </p>
+
+    <h2>Using partials</h2>
+
+    <p>
+        Partials allow developers to split styles into smaller organized files.
+        This is extremely useful for large projects.
+    </p>
+
+    <pre><code>// _variables.scss
 $primary: #f97316;
 
 // main.scss
 @import 'variables';
-@import 'components/buttons';
-</code></pre>
+@import 'components/buttons';</code></pre>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Exercise 11.1</div>
-                <p>Set up a simple SCSS project (you can use an online compiler like <a
-                        href="https://sass-lang.com/online-sass-compiler" target="_blank"
-                        rel="noopener noreferrer">SassMeister</a>). Create a <code>_buttons.scss</code> partial with a
-                    mixin that generates primary, secondary and disabled button styles. Import the partial into a main
-                    stylesheet and demonstrate the three button variants in HTML.</p>
-            </div>
+    <div class="box info">
+        <div class="box-title">Why Use Partials?</div>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+        <ul>
+            <li>Improves project organization</li>
+            <li>Keeps code modular</li>
+            <li>Makes styles easier to maintain</li>
+            <li>Supports teamwork in large projects</li>
+        </ul>
+    </div>
+
+    <h2>SCSS File Structure Example</h2>
+
+    <pre><code>scss/
+│
+├── main.scss
+├── _variables.scss
+├── _buttons.scss
+├── _navbar.scss
+└── _cards.scss</code></pre>
+
+    <h2>SCSS vs Normal CSS</h2>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>CSS</th>
+            <th>SCSS</th>
+        </tr>
+
+        <tr>
+            <td>Variables</td>
+            <td>No</td>
+            <td>Yes</td>
+        </tr>
+
+        <tr>
+            <td>Nesting</td>
+            <td>Limited</td>
+            <td>Yes</td>
+        </tr>
+
+        <tr>
+            <td>Mixins</td>
+            <td>No</td>
+            <td>Yes</td>
+        </tr>
+
+        <tr>
+            <td>Functions</td>
+            <td>Basic</td>
+            <td>Advanced</td>
+        </tr>
+    </table>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Exercise 11.1</div>
+
+        <p>
+            Set up a simple SCSS project using an online compiler like SassMeister.
+        </p>
+
+        <p>
+            Create a <code>_buttons.scss</code> partial with a mixin that generates:
+        </p>
+
+        <ul>
+            <li>Primary button styles</li>
+            <li>Secondary button styles</li>
+            <li>Disabled button styles</li>
+        </ul>
+
+        <p>
+            Import the partial into a main stylesheet and demonstrate
+            the three button variants in HTML.
+        </p>
+
+        <p>
+            Bonus Challenge:
+        </p>
+
+        <ul>
+            <li>Create color variables</li>
+            <li>Add hover effects using nesting</li>
+            <li>Use a mixin for border radius</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+    </div>
+</div>
+
+
+
+
+
+      <!-- ===================== LECTURE 13 ===================== -->
+<div class="lecture" id="lec-12">
+    <div class="lecture-tag">Lecture 13 · Advanced</div>
+    <h1>CSS Architecture (BEM & ITCSS)</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 12</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">What You’ll Learn</div>
+        <p>
+            In large projects, CSS can become difficult to manage. 
+            CSS Architecture helps organize styles into reusable, scalable, 
+            and maintainable structures. In this lecture, you will learn 
+            BEM naming methodology and ITCSS architecture.
+        </p>
+    </div>
+
+    <h2>What is CSS Architecture?</h2>
+    <p>
+        CSS Architecture is a way to organize CSS code so that projects stay clean,
+        readable, and easy to maintain.
+    </p>
+
+    <ul>
+        <li>Avoids duplicate styles</li>
+        <li>Makes teamwork easier</li>
+        <li>Improves scalability</li>
+        <li>Reduces CSS conflicts</li>
+    </ul>
+
+    <h2>BEM Methodology</h2>
+    <p>
+        BEM stands for:
+    </p>
+
+    <ul>
+        <li><strong>Block</strong> → Independent component</li>
+        <li><strong>Element</strong> → Part of a block</li>
+        <li><strong>Modifier</strong> → Variation of a block or element</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">BEM Syntax</div>
+        <p>
+            block__element--modifier
+        </p>
+    </div>
+
+    <h2>BEM Example</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
             </div>
+            <span class="filename">index.html</span>
         </div>
 
-        <!-- ===================== LECTURE 12 ===================== -->
-        <div class="lecture" id="lec-11">
-            <div class="lecture-tag">Lecture 12 · Capstone</div>
-            <h1>Capstone Project – Responsive Landing Page</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-advanced">Advanced</span>
-                <span class="meta-badge">~90 min</span>
-                <span class="meta-badge">Requires: All Lectures</span>
+<pre>
+&lt;div class="card card--dark"&gt;
+    &lt;h2 class="card__title"&gt;Welcome&lt;/h2&gt;
+    &lt;p class="card__text"&gt;Learning BEM CSS.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
             </div>
-
-            <p>Build a **single‑page landing site** that showcases everything you’ve learned:</p>
-            <ul>
-                <li>Semantic HTML structure (header, hero, features, testimonial, footer).</li>
-                <li>External stylesheet using CSS variables for a colour scheme.</li>
-                <li>Flexbox for the navigation bar and testimonial carousel.</li>
-                <li>CSS Grid for the feature cards.</li>
-                <li>Responsive typography with <code>clamp()</code>.</li>
-                <li>Transition effects on buttons and links.</li>
-                <li>Keyframe animation for a decorative element.</li>
-                <li>Responsive media queries for mobile, tablet, desktop.</li>
-                <li>Optional SCSS source files (if you prefer a pre‑processor).</li>
-            </ul>
-
-            <h2>Project skeleton</h2>
-            <pre><code>index.html
-styles/
-   │─ main.css
-   │─ components/
-   │     └─ _buttons.css
-   └─ utils/
-         └─ _variables.css
-assets/
-   ├─ img/
-   └─ fonts/</code></pre>
-
-            <h2>Starter HTML (feel free to expand)</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">index.html</span>
-                </div>
-                <pre><span class="tag">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"en"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;head&gt;</span>
-    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;title&gt;</span>Creative Agency<span class="tag">&lt;/title&gt;</span>
-    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"styles/main.css"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body&gt;</span>
-
-<span class="cm">&lt;!-- NAVIGATION --&gt;</span>
-<span class="tag">&lt;header</span> <span class="attr">class</span>=<span class="val">"site-header"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"logo"</span><span class="tag">&gt;</span>Creative<span class="tag">&lt;/div&gt;</span>
-    <span class="tag">&lt;nav</span> <span class="attr">class</span>=<span class="val">"nav"</span><span class="tag">&gt;</span>
-        <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
-        <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#services"</span><span class="tag">&gt;</span>Services<span class="tag">&lt;/a&gt;</span>
-        <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#contact"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span>
-    <span class="tag">&lt;/nav&gt;</span>
-<span class="tag">&lt;/header&gt;</span>
-
-<span class="cm">&lt;!-- HERO SECTION --&gt;</span>
-<span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="val">"hero"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;h1&gt;</span>Design <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="val">"highlight"</span><span class="tag">&gt;</span>Beautiful<span class="tag">&lt;/span&gt;</span> Experiences<span class="tag">&lt;/h1&gt;</span>
-    <span class="tag">&lt;p&gt;</span>We craft digital products that delight users and drive results.<span class="tag">&lt;/p&gt;</span>
-    <span class="tag">&lt;a</span> <span class="attr">class</span>=<span class="val">"btn btn-primary"</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span>Get Started<span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/section&gt;</span>
-
-<span class="cm">&lt;!-- FEATURES (GRID) --&gt;</span>
-<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"services"</span> <span class="attr">class</span>=<span class="val">"features"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;h2&gt;</span>What We Offer<span class="tag">&lt;/h2&gt;</span>
-    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"grid"</span><span class="tag">&gt;</span>
-        <span class="tag">&lt;article</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span>
-            <span class="tag">&lt;h3&gt;</span>UX Design<span class="tag">&lt;/h3&gt;</span>
-            <span class="tag">&lt;p&gt;</span>Research‑driven design that puts users first.<span class="tag">&lt;/p&gt;</span>
-        <span class="tag">&lt;/article&gt;</span>
-        <span class="tag">&lt;article</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span>
-            <span class="tag">&lt;h3&gt;</span>Web Development<span class="tag">&lt;/h3&gt;</span>
-            <span class="tag">&lt;p&gt;</span>Fast, responsive, and SEO‑friendly sites.<span class="tag">&lt;/p&gt;</span>
-        <span class="tag">&lt;/article&gt;</span>
-        <span class="tag">&lt;article</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span>
-            <span class="tag">&lt;h3&gt;</span>Brand Strategy<span class="tag">&lt;/h3&gt;</span>
-            <span class="tag">&lt;p&gt;</span>Building memorable visual identities.<span class="tag">&lt;/p&gt;</span>
-        <span class="tag">&lt;/article&gt;</span>
-    <span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;/section&gt;</span>
-
-<span class="cm">&lt;!-- FOOTER --&gt;</span>
-<span class="tag">&lt;footer</span> <span class="attr">class</span>=<span class="val">"site-footer"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;p&gt;</span>&amp;copy; <span class="kw">2026</span> Creative Agency. All rights reserved.<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/footer&gt;</span>
-
-<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span></pre>
-            </div>
-
-            <h2>What you’ll prove</h2>
-            <ul>
-                <li>Use of CSS custom properties for theming.</li>
-                <li>Flexbox navigation and Grid feature cards.</li>
-                <li>Responsive typography and layout with media queries.</li>
-                <li>Transitions on interactive elements and a keyframe animation.</li>
-                <li>Clean, semantic HTML markup.</li>
-                <li>(Optional) SCSS file structure and compilation.</li>
-            </ul>
-
-            <div class="box tip">
-                <div class="box-title">🚀 Next steps after the capstone</div>
-                <ul style="margin-top:8px">
-                    <li>Explore CSS Houdini APIs.</li>
-                    <li>Learn about CSS-in-JS libraries (styled‑components, Emotion).</li>
-                    <li>Integrate your CSS into a modern front‑end framework (React, Vue, Svelte).</li>
-                    <li>Get familiar with build tools (PostCSS, autoprefixer, minifiers).</li>
-                </ul>
-            </div>
-
-            <div class="exercise">
-                <div class="exercise-title">🎯 Final Challenge</div>
-                <p>Extend the landing page with a sticky navigation bar, a dark‑mode toggle (using custom properties),
-                    and a testimonial carousel built with CSS scroll‑snap. Validate the final HTML with <a
-                        href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">validator.w3.org</a>
-                    – you should have zero errors.</p>
-            </div>
-
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
-            </div>
+            <span class="filename">style.css</span>
         </div>
 
-        <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>CSS Architecture (BEM & ITCSS)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 12</span>
+<pre>
+.card{
+    padding:20px;
+    border-radius:10px;
+    background:#f1f1f1;
+}
+
+.card--dark{
+    background:#222;
+    color:white;
+}
+
+.card__title{
+    font-size:28px;
+}
+
+.card__text{
+    font-size:16px;
+}
+</pre>
+    </div>
+
+    <h2>What is ITCSS?</h2>
+
+    <p>
+        ITCSS stands for <strong>Inverted Triangle CSS</strong>.
+        It organizes CSS from generic styles to specific styles.
+    </p>
+
+    <h2>ITCSS Layers</h2>
+
+    <ol>
+        <li><strong>Settings</strong> → Variables and config</li>
+        <li><strong>Tools</strong> → Mixins/functions</li>
+        <li><strong>Generic</strong> → Reset styles</li>
+        <li><strong>Elements</strong> → HTML tag styling</li>
+        <li><strong>Objects</strong> → Layout patterns</li>
+        <li><strong>Components</strong> → UI components</li>
+        <li><strong>Utilities</strong> → Helper classes</li>
+    </ol>
+
+    <h2>Example Folder Structure</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
             </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
+            <span class="filename">project-structure</span>
         </div>
 
-        <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Advanced</div>
-            <h1>Container Queries & Modern Layout</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~50 min</span>
-                <span class="meta-badge">Requires: Lecture 13</span>
+<pre>
+css/
+│
+├── settings/
+├── tools/
+├── generic/
+├── elements/
+├── objects/
+├── components/
+└── utilities/
+</pre>
+    </div>
+
+    <h2>Advantages of BEM & ITCSS</h2>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Benefit</th>
+        </tr>
+
+        <tr>
+            <td>BEM</td>
+            <td>Reusable and readable class names</td>
+        </tr>
+
+        <tr>
+            <td>ITCSS</td>
+            <td>Organized CSS structure</td>
+        </tr>
+
+        <tr>
+            <td>Architecture</td>
+            <td>Easy scaling for large projects</td>
+        </tr>
+    </table>
+
+    <h2>Practice Exercise</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Hands-on Task</div>
+
+        <p>Create a product card using BEM naming convention.</p>
+
+        <ul>
+            <li>Add title, image, and button</li>
+            <li>Create a modifier class for dark mode</li>
+            <li>Organize styles using ITCSS folders</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
+    </div>
+</div>
+
+<!-- ===================== LECTURE 14 ===================== -->
+<div class="lecture" id="lec-13">
+    <div class="lecture-tag">Lecture 14 · Advanced</div>
+    <h1>Container Queries & Modern Layout</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+        <span class="meta-badge">Requires: Lecture 13</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Lecture Overview</div>
+        <p>
+            Modern CSS introduces powerful layout tools such as Container Queries,
+            Subgrid, and improved Flexbox/Grid techniques. These help build truly
+            responsive websites.
+        </p>
+    </div>
+
+    <h2>What are Container Queries?</h2>
+
+    <p>
+        Container Queries allow elements to respond based on the size of their parent container,
+        not the entire screen.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">Difference</div>
+        <p>
+            Media Queries → depend on viewport size.<br>
+            Container Queries → depend on parent container size.
+        </p>
+    </div>
+
+    <h2>Basic Container Query Example</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
             </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
-            </div>
+            <span class="filename">style.css</span>
         </div>
 
-        <!-- ===================== LECTURE 15 ===================== -->
-        <div class="lecture" id="lec-14">
-            <div class="lecture-tag">Lecture 15 · Advanced</div>
-            <h1>CSS Layers & Native Nesting</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-advanced">Advanced</span>
-                <span class="meta-badge">~45 min</span>
-                <span class="meta-badge">Requires: Lecture 14</span>
+<pre>
+.card-container{
+    container-type:inline-size;
+}
+
+.card{
+    padding:20px;
+    background:#f3f3f3;
+}
+
+@container (min-width:500px){
+    .card{
+        display:flex;
+        gap:20px;
+    }
+}
+</pre>
+    </div>
+
+    <h2>CSS Grid Review</h2>
+
+    <p>
+        CSS Grid is a two-dimensional layout system used for rows and columns.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
             </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
-            </div>
+            <span class="filename">grid.css</span>
         </div>
 
+<pre>
+.container{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+</pre>
+    </div>
+
+    <h2>Subgrid</h2>
+
+    <p>
+        Subgrid allows child grids to align with the parent grid structure.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">subgrid.css</span>
+        </div>
+
+<pre>
+.child{
+    display:grid;
+    grid-template-columns:subgrid;
+}
+</pre>
+    </div>
+
+    <h2>Modern Flexbox Tips</h2>
+
+    <ul>
+        <li>Use <code>gap</code> instead of margins</li>
+        <li>Use <code>flex-wrap</code> for responsive layouts</li>
+        <li>Use <code>align-items</code> and <code>justify-content</code></li>
+    </ul>
+
+    <h2>Responsive Card Layout</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">layout.css</span>
+        </div>
+
+<pre>
+.cards{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+}
+</pre>
+    </div>
+
+    <h2>Advantages of Modern Layout</h2>
+
+    <ul>
+        <li>Cleaner responsive design</li>
+        <li>Less media query usage</li>
+        <li>Better component-based layouts</li>
+        <li>Flexible and scalable UI</li>
+    </ul>
+
+    <h2>Practice Exercise</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+
+        <p>Create a responsive dashboard layout using:</p>
+
+        <ul>
+            <li>CSS Grid</li>
+            <li>Container Queries</li>
+            <li>Responsive cards</li>
+            <li>Flexible navigation</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
+    </div>
+</div>
+
+<!-- ===================== LECTURE 15 ===================== -->
+<div class="lecture" id="lec-14">
+    <div class="lecture-tag">Lecture 15 · Advanced</div>
+    <h1>CSS Layers & Native Nesting</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~45 min</span>
+        <span class="meta-badge">Requires: Lecture 14</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Lecture Overview</div>
+
+        <p>
+            CSS now includes powerful modern features such as Layers and Native Nesting.
+            These help organize styles, avoid conflicts, and write cleaner CSS.
+        </p>
+    </div>
+
+    <h2>What are CSS Layers?</h2>
+
+    <p>
+        CSS Layers allow developers to control style priority using named layers.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">Purpose of Layers</div>
+
+        <ul>
+            <li>Prevent style conflicts</li>
+            <li>Manage CSS order clearly</li>
+            <li>Separate utilities/components/base styles</li>
+        </ul>
+    </div>
+
+    <h2>Layer Syntax</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">style.css</span>
+        </div>
+
+<pre>
+@layer base, components, utilities;
+</pre>
+    </div>
+
+    <h2>Layer Example</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">style.css</span>
+        </div>
+
+<pre>
+@layer base{
+    h1{
+        color:blue;
+    }
+}
+
+@layer components{
+    .btn{
+        background:black;
+        color:white;
+        padding:10px 20px;
+    }
+}
+</pre>
+    </div>
+
+    <h2>What is Native Nesting?</h2>
+
+    <p>
+        Native Nesting allows CSS rules to be nested inside other selectors,
+        similar to SCSS.
+    </p>
+
+    <h2>Nesting Example</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">style.css</span>
+        </div>
+
+<pre>
+.card{
+    padding:20px;
+
+    h2{
+        color:darkblue;
+    }
+
+    p{
+        font-size:16px;
+    }
+}
+</pre>
+    </div>
+
+    <h2>Using & Selector</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">button.css</span>
+        </div>
+
+<pre>
+.button{
+    background:black;
+    color:white;
+
+    &:hover{
+        background:gray;
+    }
+}
+</pre>
+    </div>
+
+    <h2>Benefits of Modern CSS Features</h2>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Benefit</th>
+        </tr>
+
+        <tr>
+            <td>Layers</td>
+            <td>Better CSS organization</td>
+        </tr>
+
+        <tr>
+            <td>Nesting</td>
+            <td>Cleaner readable code</td>
+        </tr>
+
+        <tr>
+            <td>Modern CSS</td>
+            <td>Less dependency on preprocessors</td>
+        </tr>
+    </table>
+
+    <h2>Practice Exercise</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Hands-on Practice</div>
+
+        <p>Create a small UI library using:</p>
+
+        <ul>
+            <li>CSS Layers</li>
+            <li>Nested selectors</li>
+            <li>Buttons and cards</li>
+            <li>Hover effects</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
+    </div>
+</div>
         <!-- ===================== LECTURE 16 ===================== -->
         <div class="lecture" id="lec-15">
             <div class="lecture-tag">Lecture 16 · Professional</div>

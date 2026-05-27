@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+  <title>Difference Between List and Tuple in Python — Code Tutorium</title>
+  <meta name="description" content="Learn the difference between lists and tuples in Python. Understand mutability, syntax, performance, use cases, and when to use each data structure.">
+  <meta name="keywords" content="difference between list and tuple in python, python list vs tuple, list and tuple explained, python tuple tutorial, python lists">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Difference Between List and Tuple in Python — Code Tutorium">
+  <meta property="og:description" content="Understand the key differences between Python lists and tuples with examples and beginner-friendly explanations.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/difference-between-list-and-tuple-python.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Difference Between List and Tuple in Python — Code Tutorium">
+  <meta name="twitter:description" content="Python lists vs tuples explained simply with practical examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/difference-between-list-and-tuple-python.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blog.css">
+
+  <style> :root { --post-color: #93c5fd; } </style>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between a list and tuple in Python?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The main difference is that lists are mutable while tuples are immutable. Lists can be modified after creation, but tuples cannot."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are tuples faster than lists in Python?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Tuples are generally slightly faster and use less memory because they are immutable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I use a tuple instead of a list?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use tuples when the data should not change, such as coordinates, RGB values, or fixed records."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a tuple contain a list?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. A tuple can contain mutable objects like lists, although the tuple itself cannot be reassigned."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://codetutorium.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://codetutorium.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Difference Between List and Tuple in Python", "item": "https://codetutorium.com/blog/difference-between-list-and-tuple-python.html" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Difference Between List and Tuple in Python",
+    "description": "Learn the differences between Python lists and tuples, including syntax, mutability, performance, and practical use cases.",
+    "author": { "@type": "Organization", "name": "Code Tutorium" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": { "@type": "ImageObject", "url": "https://codetutorium.com/favicon.png" }
+    },
+    "datePublished": "2026-05-27",
+    "dateModified": "2026-05-27",
+    "url": "https://codetutorium.com/blog/difference-between-list-and-tuple-python.html"
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- ═══ ARTICLE ═══ -->
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>Difference Between List and Tuple in Python</span>
+      </nav>
+
+      <div class="post-tag">Python</div>
+
+      <h1 class="post-title">Difference Between List and Tuple in Python</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick-answer box -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li>Lists and tuples are both Python data structures used to store collections of items.</li>
+          <li><strong>Lists are mutable</strong> — they can be changed after creation.</li>
+          <li><strong>Tuples are immutable</strong> — they cannot be modified once created.</li>
+          <li>Lists use square brackets <code>[]</code>, while tuples use parentheses <code>()</code>.</li>
+          <li>Tuples are slightly faster and more memory-efficient than lists.</li>
+        </ul>
+      </div>
+
+      <!-- Body -->
+      <div class="post-body">
+
+        <h2>What is a List in Python?</h2>
+        <p>
+          A <strong>list</strong> is an ordered and mutable collection in Python.
+          It allows you to store multiple values inside a single variable.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">list.py</span>
+          </div>
+<pre><span class="kw">fruits</span> = [<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"mango"</span>]
+
+<span class="kw">print</span>(fruits)</pre>
+        </div>
+
+        <p>
+          Lists are commonly used when the data may change during program execution.
+        </p>
+
+        <h2>What is a Tuple in Python?</h2>
+        <p>
+          A <strong>tuple</strong> is also an ordered collection, but unlike lists,
+          tuples are immutable.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">tuple.py</span>
+          </div>
+<pre><span class="kw">colors</span> = (<span class="str">"red"</span>, <span class="str">"green"</span>, <span class="str">"blue"</span>)
+
+<span class="kw">print</span>(colors)</pre>
+        </div>
+
+        <p>
+          Tuples are useful when values should remain fixed and protected from accidental modification.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 Easy way to remember</div>
+          <p>Lists can change. Tuples stay the same.</p>
+        </div>
+
+        <h2>Main Difference Between List and Tuple</h2>
+
+        <p>
+          The biggest difference between lists and tuples is <strong>mutability</strong>.
+        </p>
+
+        <ul>
+          <li><strong>List</strong> → mutable</li>
+          <li><strong>Tuple</strong> → immutable</li>
+        </ul>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">example.py</span>
+          </div>
+<pre><span class="cmt"># List can be modified</span>
+
+<span class="kw">numbers</span> = [1, 2, 3]
+numbers[0] = 10
+
+<span class="kw">print</span>(numbers)
+
+<span class="cmt"># Tuple cannot be modified</span>
+
+<span class="kw">data</span> = (1, 2, 3)
+data[0] = 10</pre>
+        </div>
+
+        <p>
+          The tuple example will produce an error because tuples do not support item assignment.
+        </p>
+
+        <h2>Syntax Difference</h2>
+
+        <p>
+          Lists and tuples look similar, but they use different brackets.
+        </p>
+
+        <ul>
+          <li><strong>List</strong> → square brackets <code>[]</code></li>
+          <li><strong>Tuple</strong> → parentheses <code>()</code></li>
+        </ul>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">syntax.py</span>
+          </div>
+<pre><span class="kw">my_list</span> = [1, 2, 3]
+
+<span class="kw">my_tuple</span> = (1, 2, 3)</pre>
+        </div>
+
+        <h2>Performance and Memory</h2>
+
+        <p>
+          Tuples are generally faster than lists because they are immutable.
+          Python can optimize tuples internally, making them slightly more memory-efficient.
+        </p>
+
+        <ul>
+          <li>Tuples use less memory</li>
+          <li>Tuples are faster to iterate</li>
+          <li>Lists are more flexible</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Real-world usage</div>
+          <p>Lists are commonly used for dynamic data like shopping carts, while tuples are often used for fixed data like coordinates or database records.</p>
+        </div>
+
+        <h2>Methods Available in Lists and Tuples</h2>
+
+        <p>
+          Lists support many methods because they are mutable.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">list-methods.py</span>
+          </div>
+<pre><span class="kw">numbers</span> = [1, 2, 3]
+
+numbers.append(4)
+numbers.remove(2)
+
+<span class="kw">print</span>(numbers)</pre>
+        </div>
+
+        <p>
+          Tuples only support limited methods like <code>count()</code> and <code>index()</code>.
+        </p>
+
+        <h2>When Should You Use a List?</h2>
+
+        <ul>
+          <li>When data changes frequently</li>
+          <li>When adding or removing elements</li>
+          <li>When working with dynamic collections</li>
+          <li>When flexibility is important</li>
+        </ul>
+
+        <h2>When Should You Use a Tuple?</h2>
+
+        <ul>
+          <li>When data should remain constant</li>
+          <li>When performance matters</li>
+          <li>When storing fixed records</li>
+          <li>When using dictionary keys</li>
+        </ul>
+
+        <div class="callout warning">
+          <div class="callout-title">⚠️ Common beginner mistake</div>
+          <p>Many beginners accidentally use tuples when they need editable data. If you plan to modify values later, use a list instead.</p>
+        </div>
+
+        <h2>List vs Tuple Comparison Table</h2>
+
+        <ul>
+          <li><strong>Mutability:</strong> List = Mutable, Tuple = Immutable</li>
+          <li><strong>Syntax:</strong> List = [], Tuple = ()</li>
+          <li><strong>Performance:</strong> Tuple is slightly faster</li>
+          <li><strong>Memory:</strong> Tuple uses less memory</li>
+          <li><strong>Methods:</strong> Lists have more built-in methods</li>
+        </ul>
+
+        <h2>Summary</h2>
+
+        <p>
+          Lists and tuples are both important Python data structures.
+          The main difference is that lists can be modified while tuples cannot.
+        </p>
+
+        <p>
+          Use lists for dynamic data and tuples for fixed data.
+          Understanding this difference is essential for writing efficient Python programs.
+        </p>
+
+        <p>
+          Want to learn more? Explore our full <a href="../lessons/python.html">Python course</a> where we cover lists, tuples, dictionaries, sets, functions, OOP, and real-world Python projects — completely free.
+        </p>
+
+      </div><!-- /post-body -->
+
+      <!-- Related articles -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Python</div>
+            <div class="related-card-title">What is a Python List?</div>
+          </a>
+
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Python</div>
+            <div class="related-card-title">What is a Tuple in Python?</div>
+          </a>
+
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Python</div>
+            <div class="related-card-title">Difference Between List and Set in Python</div>
+          </a>
+
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// General</div>
+            <div class="related-card-title">Best Programming Languages for Beginners</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside class="sidebar">
+
+      <!-- Table of contents -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list" aria-label="Table of contents">
+          <a href="#" class="toc-link">What is a List?</a>
+          <a href="#" class="toc-link">What is a Tuple?</a>
+          <a href="#" class="toc-link">Main Difference</a>
+          <a href="#" class="toc-link">Syntax Difference</a>
+          <a href="#" class="toc-link">Performance</a>
+          <a href="#" class="toc-link">Methods</a>
+          <a href="#" class="toc-link">When to Use Lists</a>
+          <a href="#" class="toc-link">When to Use Tuples</a>
+          <a href="#" class="toc-link">Summary</a>
+        </nav>
+      </div>
+
+      <!-- Course promo -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">🐍</div>
+          <div class="course-promo-name">Python</div>
+          <div class="course-promo-desc">Learn Python from beginner to advanced with structured lessons, projects, and exercises. 100% free.</div>
+          <a href="../lessons/python.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /page-wrap -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

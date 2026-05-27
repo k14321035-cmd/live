@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>Difference Between const, let and var in JavaScript — Code Tutorium</title>
+
+  <meta name="description" content="Learn the difference between const, let and var in JavaScript with examples. Understand scope, reassignment and hoisting easily.">
+
+  <meta name="keywords" content="difference between const let var, const vs let vs var, javascript variables, let and var explained, javascript tutorial">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Difference Between const, let and var in JavaScript — Code Tutorium">
+  <meta property="og:description" content="Understand const, let and var in JavaScript with beginner-friendly examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/difference-between-const-let-var.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Difference Between const, let and var in JavaScript — Code Tutorium">
+  <meta name="twitter:description" content="Learn how const, let and var work in JavaScript.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/difference-between-const-let-var.html">
+
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../favicon.png">
+<link rel="stylesheet" href="blog.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between const, let and var in JavaScript?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "const creates variables that cannot be reassigned, let creates block-scoped variables that can change, and var creates function-scoped variables with older behavior."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I use const, let and var?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use const by default, use let when values need to change, and avoid var in modern JavaScript."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is let better than var?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "let is block-scoped and safer to use because it avoids many problems caused by var hoisting and redeclaration."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://codetutorium.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog",  "item": "https://codetutorium.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Difference Between const, let and var in JavaScript", "item": "https://codetutorium.com/blog/difference-between-const-let-var.html" }
+    ]
+  }
+  </script>
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Difference Between const, let and var in JavaScript",
+    "description": "Learn the difference between const, let and var with examples.",
+    "author": { "@type": "Organization", "name": "Code Tutorium" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": { "@type": "ImageObject", "url": "https://codetutorium.com/favicon.png" }
+    },
+    "datePublished": "2026-05-26",
+    "dateModified":  "2026-05-26",
+    "url": "https://codetutorium.com/blog/difference-between-const-let-var.html"
+  }
+  </script>
+
+  <link rel="stylesheet" href="../templae.css">
+</head>
+
+<body>
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../../index.html" class="nav-link">Home</a>
+        <a href="../../index.html#courses" class="nav-link">Courses</a>
+        <a href="../" class="nav-link">Blog</a>
+        <a href="https://x.com/codetutorium?s=11" class="nav-link" target="_blank" rel="noopener">X</a>
+        <a href="https://www.facebook.com/share/1B2n3uJQpd/?mibextid=wwXIfr" class="nav-link" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/codetutorium?igsh=MWs0Z2szNnpkaGIzaw%3D%3D&utm_source=qr" class="nav-link" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <article>
+
+      <nav class="post-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="../">Blog</a>
+        <span class="sep">/</span>
+        <span>Difference Between const, let and var in JavaScript</span>
+      </nav>
+
+      <div class="post-tag">JavaScript</div>
+
+      <h1 class="post-title">Difference Between const, let and var in JavaScript</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li><b>const</b> cannot be reassigned after declaration.</li>
+          <li><b>let</b> allows reassignment and is block-scoped.</li>
+          <li><b>var</b> is function-scoped and has older JavaScript behavior.</li>
+          <li>Modern JavaScript mainly uses <b>const</b> and <b>let</b>.</li>
+        </ul>
+      </div>
+
+      <div class="post-body">
+
+        <h2>What is the difference between const, let and var?</h2>
+        <p>
+          In JavaScript, <b>const</b>, <b>let</b>, and <b>var</b> are used to create variables.
+          The main differences are scope, reassignment, and hoisting behavior.
+          Modern JavaScript mostly uses <b>const</b> and <b>let</b> because they are safer and easier to manage.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 In simple terms</div>
+          <p>Use <b>const</b> for fixed values, <b>let</b> for changing values, and avoid <b>var</b> in modern code.</p>
+        </div>
+
+        <h2>How do const, let and var work?</h2>
+        <p>
+          Variables created with <b>var</b> are function-scoped and can be redeclared.
+          Variables created with <b>let</b> and <b>const</b> are block-scoped, meaning they only exist inside the block where they are created.
+          Also, <b>const</b> variables cannot be reassigned after declaration.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">example.js</span>
+          </div>
+<pre>
+<span class="cmt">// var example</span>
+<span class="kw">var</span> city = <span class="str">"Delhi"</span>;
+city = <span class="str">"Mumbai"</span>;
+
+<span class="cmt">// let example</span>
+<span class="kw">let</span> age = <span class="str">20</span>;
+age = <span class="str">21</span>;
+
+<span class="cmt">// const example</span>
+<span class="kw">const</span> country = <span class="str">"India"</span>;
+
+<span class="cmt">// Error: cannot reassign const</span>
+country = <span class="str">"Canada"</span>;
+</pre>
+        </div>
+
+        <p>
+          In the example above, <b>var</b> and <b>let</b> can change their values.
+          But <b>const</b> cannot be reassigned after it is created.
+        </p>
+
+        <h2>Why are const and let important?</h2>
+        <p>
+          <b>const</b> and <b>let</b> make JavaScript code more predictable and reduce bugs.
+          They help developers write cleaner and safer programs compared to older <b>var</b> declarations.
+        </p>
+
+        <ul>
+          <li>Better variable scope management.</li>
+          <li>Prevents accidental redeclaration.</li>
+          <li>Makes code easier to understand and maintain.</li>
+        </ul>
+
+        <h2>Frequently asked questions</h2>
+
+        <h3>Should I always use const?</h3>
+        <p>
+          Yes, use <b>const</b> by default. Only use <b>let</b> when the variable value needs to change later.
+        </p>
+
+        <h3>Why is var avoided in modern JavaScript?</h3>
+        <p>
+          <b>var</b> can cause unexpected bugs because of hoisting and function scope.
+          Modern JavaScript developers usually prefer <b>let</b> and <b>const</b>.
+        </p>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Good to know</div>
+          <p>
+            Even if an object is declared with <b>const</b>, its internal properties can still change.
+            Only reassignment is blocked.
+          </p>
+        </div>
+
+        <h2>Summary</h2>
+        <p>
+          <b>const</b>, <b>let</b>, and <b>var</b> are all used to create variables in JavaScript.
+          Modern developers mainly use <b>const</b> and <b>let</b> because they provide safer and cleaner behavior.
+        </p>
+
+        <p>
+          Ready to learn more? Check out our full
+          <a href="../../lessons/javascript.html" style="color:var(--post-color);text-decoration:underline">JavaScript course</a>
+          — it's free and beginner-friendly.
+        </p>
+
+      </div>
+
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+
+          <a href="what-is-javascript.html" class="related-card">
+            <div class="related-card-tag">// JavaScript</div>
+            <div class="related-card-title">What is JavaScript?</div>
+          </a>
+
+          <a href="javascript-hoisting.html" class="related-card">
+            <div class="related-card-tag">// JavaScript</div>
+            <div class="related-card-title">What is Hoisting in JavaScript?</div>
+          </a>
+
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list" aria-label="Table of contents">
+          <a href="#" class="toc-link">What is the difference?</a>
+          <a href="#" class="toc-link">How do they work?</a>
+          <a href="#" class="toc-link">Why are they important?</a>
+          <a href="#" class="toc-link">FAQ</a>
+          <a href="#" class="toc-link">Summary</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">⚡</div>
+          <div class="course-promo-name">JavaScript — Complete Course</div>
+          <div class="course-promo-desc">
+            Learn JavaScript from scratch, for free. Structured lessons, exercises &amp; projects.
+          </div>
+          <a href="../../lessons/javascript.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="../">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
