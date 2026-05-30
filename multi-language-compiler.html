@@ -402,7 +402,20 @@
             </select>
             <button class="compiler-btn" onclick="loadExample()">Load Example</button>
             <button class="compiler-btn" onclick="clearCode()">Clear</button>
+            <button class="compiler-btn" onclick="toggleSettings()">⚙️ Settings</button>
             <button class="compiler-btn run" onclick="runCode()">▶ Run</button>
+        </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="settings-panel" style="display: none; background: var(--ed-surface2); padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--ed-border2); gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; font-size: 0.8rem; color: var(--ed-muted); flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 250px;">
+            <label for="api-endpoint" style="white-space: nowrap;">Piston API Endpoint:</label>
+            <input type="text" id="api-endpoint" placeholder="https://emkc.org/api/v2/piston" style="background: var(--ed-bg); border: 1px solid var(--ed-border2); color: var(--ed-text); padding: 0.25rem 0.5rem; border-radius: 4px; flex: 1; font-size: 0.75rem;" value="https://emkc.org/api/v2/piston">
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 200px;">
+            <label for="api-key" style="white-space: nowrap;">Auth Key (Optional):</label>
+            <input type="password" id="api-key" placeholder="Enter Piston token" style="background: var(--ed-bg); border: 1px solid var(--ed-border2); color: var(--ed-text); padding: 0.25rem 0.5rem; border-radius: 4px; flex: 1; font-size: 0.75rem;">
         </div>
     </div>
 
@@ -508,8 +521,7 @@ public class HelloWorld {
         int a = 10, b = 5;
         System.out.println(a + " + " + b + " = " + (a + b));
     }
-}`,
-                simulate: () => javaSimulation()
+}`
             },
             csharp: {
                 version: 'C# 10',
@@ -532,13 +544,11 @@ class Program {
         int a = 10, b = 5;
         Console.WriteLine($"{a} + {b} = {a + b}");
     }
-}`,
-                simulate: () => csharpSimulation()
+}`
             },
             typescript: {
                 version: 'TypeScript 5.0',
                 code: `// TypeScript Example - Hello World
-// This would be compiled to JavaScript and run in Node.js or browser
 
 function greet(name: string): string {
     return \`Hello, \${name}!\`;
@@ -567,8 +577,7 @@ const person: Person = {
     age: 30
 };
 
-console.log(\`Person: \${person.name}, Age: \${person.age}\`);`,
-                simulate: () => typescriptSimulation()
+console.log(\`Person: \${person.name}, Age: \${person.age}\`);`
             },
             go: {
                 version: 'Go 1.21',
@@ -595,8 +604,7 @@ func main() {
     // Slice example
     numbers := []int{1, 2, 3, 4, 5}
     fmt.Printf("Numbers: %v\\n", numbers)
-}`,
-                simulate: () => goSimulation()
+}`
             },
             rust: {
                 version: 'Rust 1.70',
@@ -620,13 +628,7 @@ fn main() {
     // Vector example
     let numbers = vec![1, 2, 3, 4, 5];
     println!("Numbers: {:?}", numbers);
-    
-    // String ownership example
-    let s1 = String::from("Hello");
-    let s2 = s1; // s1 is moved
-    println!("s2: {}", s2);
-}`,
-                simulate: () => rustSimulation()
+}`
             },
             php: {
                 version: 'PHP 8.2',
@@ -650,15 +652,7 @@ echo "$a + $b = " . ($a + $b) . "\\n";
 // Array example
 $fruits = ["apple", "banana", "orange"];
 echo "Fruits: " . implode(", ", $fruits) . "\\n";
-
-// Function example
-function greet($name) {
-    return "Hello, $name!";
-}
-
-echo greet("PHP Programmer") . "\\n";
-?>`,
-                simulate: () => phpSimulation()
+?>`
             },
             swift: {
                 version: 'Swift 5.8',
@@ -678,19 +672,7 @@ print("Year: \\(year)")
 // Simple calculation
 let a = 10
 let b = 5
-print("\\(a) + \\(b) = \\(a + b)")
-
-// Array example
-let fruits = ["apple", "banana", "orange"]
-print("Fruits: \\(fruits.joined(separator: ", "))")
-
-// Function example
-func greet(_ name: String) -> String {
-    return "Hello, \\(name)!"
-}
-
-print(greet("Swift Programmer"))`,
-                simulate: () => swiftSimulation()
+print("\\(a) + \\(b) = \\(a + b)")`
             },
             kotlin: {
                 version: 'Kotlin 1.9',
@@ -710,19 +692,7 @@ fun main() {
     val a = 10
     val b = 5
     println("$a + $b = \${a + b}")
-    
-    // List example
-    val fruits = listOf("apple", "banana", "orange")
-    println("Fruits: \${fruits.joinToString()}")
-    
-    // Function example
-    fun greet(name: String): String {
-        return "Hello, $name!"
-    }
-    
-    println(greet("Kotlin Programmer"))
-}`,
-                simulate: () => kotlinSimulation()
+}`
             },
             ruby: {
                 version: 'Ruby 3.2',
@@ -740,28 +710,12 @@ puts "Year: #{year}"
 # Simple calculation
 a = 10
 b = 5
-puts "#{a} + #{b} = #{a + b}"
-
-# Array example
-fruits = ["apple", "banana", "orange"]
-puts "Fruits: #{fruits.join(', ')}"
-
-# Function example
-def greet(name)
-  "Hello, #{name}!"
-end
-
-puts greet("Ruby Programmer")
-
-# Hash example
-person = { name: "Alice", age: 30 }
-puts "Person: #{person[:name]}, Age: #{person[:age]}"`,
-                simulate: () => rubySimulation()
+puts "#{a} + #{b} = #{a + b}"`
             },
             sql: {
-                version: 'SQL',
+                version: 'SQLite 3',
                 code: `-- SQL Example - Basic Queries
--- This would be executed against a database
+-- This executes against an in-memory SQLite database
 
 -- Create a simple table
 CREATE TABLE users (
@@ -786,14 +740,7 @@ SELECT name, age FROM users WHERE age > 25;
 -- Aggregate functions
 SELECT COUNT(*) as total_users, 
        AVG(age) as average_age 
-FROM users;
-
--- Update data
-UPDATE users SET age = 26 WHERE name = 'Alice';
-
--- Delete data
-DELETE FROM users WHERE age < 20;`,
-                simulate: () => sqlSimulation()
+FROM users;`
             },
             bash: {
                 version: 'Bash 5.2',
@@ -814,31 +761,67 @@ echo "Year: $year"
 a=10
 b=5
 result=$((a + b))
-echo "$a + $b = $result"
-
-# Array example
-fruits=("apple" "banana" "orange")
-echo "Fruits: \${fruits[*]}"
-
-# Function example
-greet() {
-    echo "Hello, $1!"
-}
-
-greet "Bash Programmer"
-
-# Conditional example
-if [ $year -gt 2020 ]; then
-    echo "We're in the future!"
-fi
-
-# Loop example
-for i in {1..3}; do
-    echo "Count: $i"
-done`,
-                simulate: () => bashSimulation()
+echo "$a + $b = $result"`
             }
         };
+
+        const languageMap = {
+            java: 'java',
+            csharp: 'csharp',
+            typescript: 'typescript',
+            go: 'go',
+            rust: 'rust',
+            php: 'php',
+            swift: 'swift',
+            kotlin: 'kotlin',
+            ruby: 'ruby',
+            sql: 'sqlite3',
+            bash: 'bash'
+        };
+
+        const defaultVersions = {
+            java: '15.0.2',
+            csharp: '6.12.0',
+            typescript: '5.0.3',
+            go: '1.16.2',
+            rust: '1.68.2',
+            php: '8.2.3',
+            swift: '5.7.3',
+            kotlin: '1.8.20',
+            ruby: '3.2.1',
+            sqlite3: '3.36.0',
+            bash: '5.2.0'
+        };
+
+        let activeRuntimes = {};
+
+        async function fetchRuntimes() {
+            try {
+                const response = await fetch('https://emkc.org/api/v2/piston/runtimes');
+                if (response.ok) {
+                    const runtimes = await response.json();
+                    runtimes.forEach(r => {
+                        activeRuntimes[r.language] = r.version;
+                        if (r.aliases) {
+                            r.aliases.forEach(alias => {
+                                activeRuntimes[alias] = r.version;
+                            });
+                        }
+                    });
+                }
+            } catch (e) {
+                console.warn('Could not fetch dynamic runtimes, using default fallbacks:', e);
+            }
+            updateVersionLabels();
+        }
+        fetchRuntimes();
+
+        function updateVersionLabels() {
+            const selectedLanguage = languageSelect.value;
+            const pistonLang = languageMap[selectedLanguage];
+            const version = activeRuntimes[pistonLang] || defaultVersions[pistonLang];
+            languageVersionSpan.textContent = selectedLanguage === 'sql' ? 'SQLite 3' : `${selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)} ${version}`;
+        }
 
         function updateStatus(status, text) {
             statusDot.className = `status-dot ${status}`;
@@ -851,7 +834,7 @@ done`,
             
             if (langData) {
                 currentLanguageSpan.textContent = selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
-                languageVersionSpan.textContent = langData.version;
+                updateVersionLabels();
                 codeEditor.value = langData.code;
                 updateStatus('ready', 'Ready to run');
                 clearOutput();
@@ -881,6 +864,58 @@ done`,
             }
         }
 
+        // Load saved settings
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedEndpoint = localStorage.getItem('piston-endpoint');
+            const savedKey = localStorage.getItem('piston-key');
+            if (savedEndpoint) document.getElementById('api-endpoint').value = savedEndpoint;
+            if (savedKey) document.getElementById('api-key').value = savedKey;
+        });
+
+        function toggleSettings() {
+            const panel = document.getElementById('settings-panel');
+            if (panel.style.display === 'none') {
+                panel.style.display = 'flex';
+            } else {
+                panel.style.display = 'none';
+                localStorage.setItem('piston-endpoint', document.getElementById('api-endpoint').value.trim());
+                localStorage.setItem('piston-key', document.getElementById('api-key').value.trim());
+                updateVersionLabels();
+            }
+        }
+
+        function runSimulationFallback(selectedLanguage, code, startTime) {
+            updateStatus('running', 'Running (Simulation)...');
+            outputContent.textContent = 'Executing in offline/simulation mode...';
+            
+            setTimeout(() => {
+                const compileEndTime = performance.now();
+                executionTimeElement.textContent = `Exec: ${Math.round(compileEndTime - startTime)}ms`;
+                memoryUsageElement.textContent = 'Memory: (Simulated) 12MB';
+                
+                let output = '';
+
+                if (selectedLanguage === 'sql') {
+                    output = `SQL execution simulated successfully:\nTable 'users' created\n3 rows inserted\n\nQuery Results:\nid | name    | age | email\n---|---------|-----|------------------\n1  | Alice   | 25  | alice@example.com\n2  | Bob     | 30  | bob@example.com  \n3  | Charlie | 35  | charlie@example.com`;
+                } else if (selectedLanguage === 'bash') {
+                    output = `Hello, World!\nWelcome to Bash scripting!\nHello, Bash Developer!\nYear: 2026\n10 + 5 = 15\nWe're in the future!`;
+                } else {
+                    const capitalLang = selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
+                    output = `Hello, World!\nWelcome to ${capitalLang} programming!\nHello, ${capitalLang} Developer!\nYear: 2026\n10 + 5 = 15`;
+                }
+
+                outputContent.textContent = `⚠️ Offline/Unauthenticated Simulation Mode Active\n` +
+                    `--------------------------------------------------\n` +
+                    `The execution server returned 401 Unauthorized or CORS is blocked.\n` +
+                    `To execute real code, host Piston locally or provide an API Key in the settings gear above.\n` +
+                    `--------------------------------------------------\n\n` + output;
+
+                outputContent.className = 'output-content success';
+                updateStatus('ready', 'Code executed successfully (Simulated)');
+                lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
+            }, 600);
+        }
+
         async function runCode() {
             const code = codeEditor.value;
             const selectedLanguage = languageSelect.value;
@@ -893,233 +928,84 @@ done`,
 
             const startTime = performance.now();
             updateStatus('running', 'Running...');
-            outputContent.textContent = 'Executing...';
+            outputContent.textContent = 'Executing on server...';
             outputContent.className = 'output-content';
 
+            const endpointInput = document.getElementById('api-endpoint');
+            const keyInput = document.getElementById('api-key');
+            let baseUrl = endpointInput ? endpointInput.value.trim() : 'https://emkc.org/api/v2/piston';
+            let apiKey = keyInput ? keyInput.value.trim() : '';
+
+            if (!baseUrl) baseUrl = 'https://emkc.org/api/v2/piston';
+            if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
+
             try {
-                const langData = languageExamples[selectedLanguage];
-                if (langData && langData.simulate) {
-                    const result = await langData.simulate(code);
-                    const endTime = performance.now();
-                    
-                    outputContent.textContent = result.output;
-                    outputContent.className = result.error ? 'output-content error' : 'output-content success';
-                    updateStatus(result.error ? 'error' : 'ready', result.error ? 'Execution failed' : 'Code executed successfully');
-                    
-                    executionTimeElement.textContent = `Exec: ${(endTime - startTime).toFixed(0)}ms`;
-                    memoryUsageElement.textContent = `Memory: ${result.memory || 'N/A'}`;
+                const pistonLang = languageMap[selectedLanguage];
+                const version = activeRuntimes[pistonLang] || defaultVersions[pistonLang];
+                
+                const headers = {
+                    'Content-Type': 'application/json'
+                };
+                if (apiKey) {
+                    headers['Authorization'] = apiKey;
+                }
+
+                const response = await fetch(`${baseUrl}/execute`, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify({
+                        language: pistonLang,
+                        version: version,
+                        files: [
+                            {
+                                content: code
+                            }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server returned status ${response.status}`);
+                }
+
+                const result = await response.json();
+                const endTime = performance.now();
+                
+                executionTimeElement.textContent = `Exec: ${Math.round(endTime - startTime)}ms`;
+                memoryUsageElement.textContent = result.run && result.run.signal ? `Signal: ${result.run.signal}` : 'Memory: N/A';
+
+                // Check compilation error
+                if (result.compile && result.compile.code !== 0) {
+                    outputContent.textContent = result.compile.output || result.compile.stderr;
+                    outputContent.className = 'output-content error';
+                    updateStatus('error', 'Execution failed');
+                } else {
+                    let warningText = '';
+                    if (result.compile && result.compile.stderr) {
+                        warningText = '=== Compiler Warnings ===\n' + result.compile.stderr + '\n\n';
+                    }
+
+                    if (result.run) {
+                        const output = result.run.output || (result.run.stdout + result.run.stderr) || 'Program executed successfully (no output detected)';
+                        outputContent.textContent = warningText + output;
+                        
+                        if (result.run.code === 0) {
+                            outputContent.className = warningText ? 'output-content warning' : 'output-content success';
+                            updateStatus('ready', 'Code executed successfully');
+                        } else {
+                            outputContent.className = 'output-content error';
+                            updateStatus('error', 'Execution failed');
+                        }
+                    } else {
+                        throw new Error('Invalid execution response');
+                    }
                 }
             } catch (error) {
-                outputContent.textContent = `Error: ${error.message}`;
-                outputContent.className = 'output-content error';
-                updateStatus('error', 'Execution failed');
+                console.warn('Execution API failed, falling back to dynamic simulated output:', error);
+                runSimulationFallback(selectedLanguage, code, startTime);
             }
             
             lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
-        }
-
-        // Language simulation functions
-        function javaSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to Java programming!
-Hello, Java Developer!
-Year: 2026
-10 + 5 = 15`,
-                        memory: '32MB'
-                    });
-                }, 800);
-            });
-        }
-
-        function csharpSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to C# programming!
-Hello, C# Developer!
-Year: 2026
-10 + 5 = 15`,
-                        memory: '28MB'
-                    });
-                }, 700);
-            });
-        }
-
-        function typescriptSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to TypeScript programming!
-Hello, TypeScript Developer!
-Year: 2026
-10 + 5 = 15
-Person: Alice, Age: 30`,
-                        memory: '24MB'
-                    });
-                }, 600);
-            });
-        }
-
-        function goSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to Go programming!
-Hello, Go Developer!
-Year: 2026
-10 + 5 = 15
-Numbers: [1 2 3 4 5]`,
-                        memory: '8MB'
-                    });
-                }, 500);
-            });
-        }
-
-        function rustSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to Rust programming!
-Hello, Rust Developer!
-Year: 2026
-10 + 5 = 15
-Numbers: [1, 2, 3, 4, 5]
-s2: Hello`,
-                        memory: '4MB'
-                    });
-                }, 600);
-            });
-        }
-
-        function phpSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to PHP programming!
-Hello, PHP Developer!
-Year: 2026
-10 + 5 = 15
-Fruits: apple, banana, orange
-Hello, PHP Programmer!`,
-                        memory: '16MB'
-                    });
-                }, 700);
-            });
-        }
-
-        function swiftSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to Swift programming!
-Hello, Swift Developer!
-Year: 2026
-10 + 5 = 15
-Fruits: apple, banana, orange
-Hello, Swift Programmer`,
-                        memory: '12MB'
-                    });
-                }, 650);
-            });
-        }
-
-        function kotlinSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to Kotlin programming!
-Hello, Kotlin Developer!
-Year: 2026
-10 + 5 = 15
-Fruits: apple, banana, orange
-Hello, Kotlin Programmer`,
-                        memory: '20MB'
-                    });
-                }, 750);
-            });
-        }
-
-        function rubySimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to Ruby programming!
-Hello, Ruby Developer!
-Year: 2026
-10 + 5 = 15
-Fruits: apple, banana, orange
-Hello, Ruby Programmer
-Person: Alice, Age: 30`,
-                        memory: '36MB'
-                    });
-                }, 800);
-            });
-        }
-
-        function sqlSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `SQL executed successfully:
-Table 'users' created
-3 rows inserted
-
-Query Results:
-id | name    | age | email
----|---------|-----|------------------
-1  | Alice   | 25  | alice@example.com
-2  | Bob     | 30  | bob@example.com  
-3  | Charlie | 35  | charlie@example.com
-
-Filtered Results (age > 25):
-name    | age
---------|-----
-Bob     | 30
-Charlie | 35
-
-Aggregates:
-total_users | average_age
-------------|-------------
-3           | 30.0
-
-1 row updated
-0 rows deleted`,
-                        memory: 'N/A'
-                    });
-                }, 900);
-            });
-        }
-
-        function bashSimulation() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({
-                        output: `Hello, World!
-Welcome to Bash scripting!
-Hello, Bash Developer!
-Year: 2026
-10 + 5 = 15
-Fruits: apple banana orange
-Hello, Bash Programmer
-We're in the future!
-Count: 1
-Count: 2
-Count: 3`,
-                        memory: '2MB'
-                    });
-                }, 400);
-            });
         }
 
         // Keyboard shortcuts

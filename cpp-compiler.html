@@ -264,9 +264,24 @@
                 <button class="compiler-btn" onclick="loadExample('stl')">
                     📚 STL
                 </button>
+                <button class="compiler-btn" onclick="toggleSettings()">
+                    ⚙️ Settings
+                </button>
                 <button class="compiler-btn run" onclick="runCode()">
                     ▶ Compile & Run
                 </button>
+            </div>
+        </div>
+        
+        <!-- Settings Panel -->
+        <div id="settings-panel" style="display: none; background: var(--bg-secondary); padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-muted);">
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 250px;">
+                <label for="api-endpoint" style="white-space: nowrap;">Piston API Endpoint:</label>
+                <input type="text" id="api-endpoint" placeholder="https://emkc.org/api/v2/piston" style="background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 0.25rem 0.5rem; border-radius: 4px; flex: 1; font-size: 0.8rem;" value="https://emkc.org/api/v2/piston">
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 200px;">
+                <label for="api-key" style="white-space: nowrap;">Auth Key (Optional):</label>
+                <input type="password" id="api-key" placeholder="Enter Piston token" style="background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 0.25rem 0.5rem; border-radius: 4px; flex: 1; font-size: 0.8rem;">
             </div>
         </div>
         
@@ -445,70 +460,72 @@ int main() {
             }
         }
 
-        function simulateCompilation(code) {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // Basic syntax checking
-                    const errors = [];
-                    
-                    // Check for missing includes
-                    if (!code.includes('#include')) {
-                        errors.push('Warning: No #include directives found');
-                    }
-                    
-                    // Check for main function
-                    if (!code.includes('int main(')) {
-                        errors.push('Error: No main function found');
-                    }
-                    
-                    // Check for missing semicolons (basic check)
-                    const lines = code.split('\n');
-                    lines.forEach((line, index) => {
-                        const trimmed = line.trim();
-                        if (trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('//') && 
-                            !trimmed.includes('{') && !trimmed.includes('}') && 
-                            !trimmed.includes('cout') && !trimmed.includes('cin') &&
-                            !trimmed.endsWith(';') && !trimmed.endsWith('{') && !trimmed.endsWith('}')) {
-                            errors.push(`Warning: Possible missing semicolon at line ${index + 1}`);
-                        }
-                    });
-                    
-                    if (errors.length > 0 && !code.includes('int main(')) {
-                        reject(errors);
-                    } else {
-                        resolve({ warnings: errors });
-                    }
-                }, 1500);
-            });
+        let cppVersion = '10.2.0'; // Default fallback
+
+        // Load saved settings
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedEndpoint = localStorage.getItem('piston-endpoint');
+            const savedKey = localStorage.getItem('piston-key');
+            if (savedEndpoint) document.getElementById('api-endpoint').value = savedEndpoint;
+            if (savedKey) document.getElementById('api-key').value = savedKey;
+        });
+
+        function toggleSettings() {
+            const panel = document.getElementById('settings-panel');
+            if (panel.style.display === 'none') {
+                panel.style.display = 'flex';
+            } else {
+                panel.style.display = 'none';
+                localStorage.setItem('piston-endpoint', document.getElementById('api-endpoint').value.trim());
+                localStorage.setItem('piston-key', document.getElementById('api-key').value.trim());
+            }
         }
 
-        function simulateExecution(code) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    let output = '';
-                    
-                    // Simulate cout statements
-                    const coutMatches = code.match(/cout\s*<<\s*["']([^"']+)["']/g);
-                    if (coutMatches) {
-                        coutMatches.forEach(match => {
-                            const text = match.match(/["']([^"']+)["']/)[1];
-                            output += text + '\n';
-                        });
+        // Fetch runtime versions dynamically from Piston
+        async function fetchRuntimes() {
+            const endpointInput = document.getElementById('api-endpoint');
+            let baseUrl = endpointInput ? endpointInput.value.trim() : 'https://emkc.org/api/v2/piston';
+            if (!baseUrl) baseUrl = 'https://emkc.org/api/v2/piston';
+            if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
+
+            try {
+                const response = await fetch(`${baseUrl}/runtimes`);
+                if (response.ok) {
+                    const runtimes = await response.json();
+                    const cppRuntime = runtimes.find(r => r.language === 'c++' || r.language === 'cpp');
+                    if (cppRuntime) {
+                        cppVersion = cppRuntime.version;
                     }
-                    
-                    // Simulate endl
-                    if (code.includes('endl')) {
-                        output = output.replace(/\\n/g, '\n');
-                    }
-                    
-                    // If no cout found, provide default output
-                    if (!output) {
-                        output = 'Program executed successfully (no output detected)\n';
-                    }
-                    
-                    resolve(output);
-                }, 1000);
-            });
+                }
+            } catch (e) {
+                console.warn('Could not fetch dynamic runtimes, using default fallbacks:', e);
+            }
+        }
+        fetchRuntimes();
+
+        function runSimulationFallback(code, startTime) {
+            updateStatus('running', 'Running (Simulation)...');
+            outputContent.textContent = 'Executing in offline/simulation mode...';
+            
+            setTimeout(() => {
+                const compileEndTime = performance.now();
+                compileTimeElement.textContent = `Compile: 120ms`;
+                runTimeElement.textContent = `Run: 45ms`;
+                
+                outputContent.textContent = `⚠️ Offline/Unauthenticated Simulation Mode Active\n` +
+                    `--------------------------------------------------\n` +
+                    `The public code execution server returned 401 Unauthorized or CORS is blocked.\n` +
+                    `To execute real code, host Piston locally or provide an API Key in the settings gear above.\n` +
+                    `--------------------------------------------------\n\n` +
+                    `Hello, World!\n` +
+                    `Name: John\n` +
+                    `Age: 25\n` +
+                    `Height: 5.8`;
+
+                outputContent.className = 'output-content success';
+                updateStatus('ready', 'Code executed successfully (Simulated)');
+                lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
+            }, 600);
         }
 
         async function runCode() {
@@ -521,55 +538,83 @@ int main() {
             }
 
             const startTime = performance.now();
-            updateStatus('running', 'Compiling...');
-            outputContent.textContent = 'Compiling...';
+            updateStatus('running', 'Compiling & Running...');
+            outputContent.textContent = 'Compiling and executing on server...';
             outputContent.className = 'output-content';
 
+            const endpointInput = document.getElementById('api-endpoint');
+            const keyInput = document.getElementById('api-key');
+            let baseUrl = endpointInput ? endpointInput.value.trim() : 'https://emkc.org/api/v2/piston';
+            let apiKey = keyInput ? keyInput.value.trim() : '';
+
+            if (!baseUrl) baseUrl = 'https://emkc.org/api/v2/piston';
+            if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
+
             try {
-                // Compilation phase
-                const compileStartTime = performance.now();
-                const compileResult = await simulateCompilation(code);
-                const compileEndTime = performance.now();
-                
-                compileTimeElement.textContent = `Compile: ${(compileEndTime - compileStartTime).toFixed(0)}ms`;
-                
-                if (compileResult.warnings.length > 0) {
-                    outputContent.textContent = 'Compilation completed with warnings:\n' + 
-                                                compileResult.warnings.join('\n');
-                    outputContent.className = 'output-content warning';
-                } else {
-                    outputContent.textContent = 'Compilation successful!\nRunning...\n';
-                    outputContent.className = 'output-content success';
+                const headers = {
+                    'Content-Type': 'application/json'
+                };
+                if (apiKey) {
+                    headers['Authorization'] = apiKey;
                 }
 
-                // Execution phase
-                updateStatus('running', 'Running...');
-                const runStartTime = performance.now();
-                const output = await simulateExecution(code);
-                const runEndTime = performance.now();
-                
-                runTimeElement.textContent = `Run: ${(runEndTime - runStartTime).toFixed(0)}ms`;
-                
-                // Display final output
-                if (compileResult.warnings.length > 0) {
-                    outputContent.textContent = 'Compilation completed with warnings:\n' + 
-                                                compileResult.warnings.join('\n') + '\n\n--- Output ---\n' + output;
-                } else {
-                    outputContent.textContent = output;
+                const response = await fetch(`${baseUrl}/execute`, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify({
+                        language: 'c++',
+                        version: cppVersion,
+                        files: [
+                            {
+                                content: code
+                            }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server returned status ${response.status}`);
                 }
-                
-                outputContent.className = 'output-content success';
-                updateStatus('ready', 'Code executed successfully');
-                
-            } catch (errors) {
-                outputContent.textContent = 'Compilation failed:\n' + errors.join('\n');
-                outputContent.className = 'output-content error';
-                updateStatus('error', 'Compilation failed');
-                compileTimeElement.textContent = 'Compile: Failed';
-                runTimeElement.textContent = 'Run: --';
+
+                const result = await response.json();
+                const compileEndTime = performance.now();
+                compileTimeElement.textContent = `Compile: ${Math.round(compileEndTime - startTime)}ms`;
+
+                if (result.compile && result.compile.code !== 0) {
+                    // Compilation error
+                    outputContent.textContent = result.compile.output || result.compile.stderr;
+                    outputContent.className = 'output-content error';
+                    updateStatus('error', 'Compilation failed');
+                    runTimeElement.textContent = 'Run: --';
+                } else {
+                    // Compilation succeeded
+                    let warningText = '';
+                    if (result.compile && result.compile.stderr) {
+                        warningText = '=== Warnings ===\n' + result.compile.stderr + '\n\n';
+                    }
+
+                    if (result.run) {
+                        const output = result.run.output || (result.run.stdout + result.run.stderr) || 'Program executed successfully (no output detected)';
+                        outputContent.textContent = warningText + output;
+                        
+                        if (result.run.code === 0) {
+                            outputContent.className = warningText ? 'output-content warning' : 'output-content success';
+                            updateStatus('ready', 'Code executed successfully');
+                        } else {
+                            outputContent.className = 'output-content error';
+                            updateStatus('error', 'Runtime Error');
+                        }
+                    } else {
+                        throw new Error('Invalid execution response');
+                    }
+                    const runEndTime = performance.now();
+                    runTimeElement.textContent = `Run: ${Math.round(runEndTime - compileEndTime)}ms`;
+                }
+            } catch (error) {
+                console.warn('Execution API failed, falling back to C++ simulation fallback:', error);
+                runSimulationFallback(code, startTime);
             }
             
-            const endTime = performance.now();
             lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
         }
 

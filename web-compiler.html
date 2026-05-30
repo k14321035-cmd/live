@@ -784,6 +784,7 @@ button:hover {
         function runCode() {
             updateStatus('running', 'Running code...');
             consoleMessages = [];
+            updateConsole();
             
             const html = htmlEditor.value || '<html><body><p>No HTML content</p></body></html>';
             const css = cssEditor.value || '';
@@ -813,24 +814,44 @@ button:hover {
                             console.log = function(...args) {
                                 const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
                                 messages.push({type: 'log', text: text});
+                                window.parent.postMessage({
+                                    type: 'console-log',
+                                    logType: 'log',
+                                    text: text
+                                }, '*');
                                 originalLog.apply(console, args);
                             };
                             
                             console.error = function(...args) {
                                 const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
                                 messages.push({type: 'error', text: 'ERROR: ' + text});
+                                window.parent.postMessage({
+                                    type: 'console-log',
+                                    logType: 'error',
+                                    text: 'ERROR: ' + text
+                                }, '*');
                                 originalError.apply(console, args);
                             };
                             
                             console.warn = function(...args) {
                                 const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
                                 messages.push({type: 'warn', text: 'WARN: ' + text});
+                                window.parent.postMessage({
+                                    type: 'console-log',
+                                    logType: 'warn',
+                                    text: 'WARN: ' + text
+                                }, '*');
                                 originalWarn.apply(console, args);
                             };
                             
                             console.info = function(...args) {
                                 const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
                                 messages.push({type: 'info', text: 'INFO: ' + text});
+                                window.parent.postMessage({
+                                    type: 'console-log',
+                                    logType: 'info',
+                                    text: 'INFO: ' + text
+                                }, '*');
                                 originalInfo.apply(console, args);
                             };
                             
@@ -865,6 +886,9 @@ button:hover {
         window.addEventListener('message', function(event) {
             if (event.data.type === 'console-output') {
                 consoleMessages = event.data.messages;
+                updateConsole();
+            } else if (event.data.type === 'console-log') {
+                consoleMessages.push({type: event.data.logType, text: event.data.text});
                 updateConsole();
             }
         });
