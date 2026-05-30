@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>What is Ownership in Rust? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what ownership in Rust is, how it works, and why it is the core feature that makes Rust memory-safe without a garbage collector.">
+  <meta name="keywords" content="Rust ownership, what is ownership in Rust, Rust borrowing, Rust memory management, Rust explained">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is Ownership in Rust? — Code Tutorium">
+  <meta property="og:description" content="Understand Rust ownership, borrowing, and how Rust manages memory safely without a garbage collector.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/what-is-ownership-in-rust.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is Ownership in Rust? — Code Tutorium">
+  <meta name="twitter:description" content="Rust ownership explained simply with examples and beginner-friendly explanations.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/what-is-ownership-in-rust.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root { --post-color: #f97316; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>Ownership in Rust</span>
+      </nav>
+
+      <div class="post-tag">Rust</div>
+
+      <h1 class="post-title">What is Ownership in Rust?</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick Answer -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li>Ownership is Rust’s system for managing memory safely.</li>
+          <li>Every value has one owner at a time.</li>
+          <li>When the owner goes out of scope, memory is freed automatically.</li>
+          <li>Values can be moved or borrowed instead of copied.</li>
+          <li>It prevents memory bugs without a garbage collector.</li>
+        </ul>
+      </div>
+
+      <!-- BODY -->
+      <div class="post-body">
+
+        <h2>What is Ownership in Rust?</h2>
+        <p>
+          <strong>Ownership</strong> is Rust’s core memory management system. It defines how values are stored, accessed, and cleaned up in memory without needing a garbage collector.
+        </p>
+
+        <p>
+          In simple terms: every value in Rust has a single owner, and when that owner goes out of scope, the value is automatically removed from memory.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 Simple idea</div>
+          <p>Ownership is Rust’s way of making sure memory is cleaned up safely and predictably.</p>
+        </div>
+
+        <h2>The rules of ownership</h2>
+        <ul>
+          <li>📌 Each value has exactly one owner</li>
+          <li>📌 When the owner goes out of scope, the value is dropped</li>
+          <li>📌 You can move or borrow values, but not violate ownership rules</li>
+        </ul>
+
+        <h2>Basic example</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">main.rs</span>
+          </div>
+          <pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> s = String::from(<span class="val">"hello"</span>);
+
+    println!(<span class="val">"{ }"</span>, s);
+} <span class="cmt">// memory is freed here automatically</span></pre>
+        </div>
+
+        <p>
+          When <code>s</code> goes out of scope, Rust automatically frees the memory — no manual cleanup needed.
+        </p>
+
+        <h2>Move semantics</h2>
+
+        <p>
+          In Rust, assigning a value usually <strong>moves ownership</strong> instead of copying it.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">main.rs</span>
+          </div>
+          <pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> s1 = String::from(<span class="val">"hello"</span>);
+    <span class="kw">let</span> s2 = s1;
+
+    <span class="cmt">// println!("{}", s1); ❌ error: value moved</span>
+}</pre>
+        </div>
+
+        <p>
+          After the move, <code>s1</code> is no longer valid because ownership was transferred to <code>s2</code>.
+        </p>
+
+        <h2>Borrowing in Rust</h2>
+
+        <p>
+          Instead of transferring ownership, Rust allows you to <strong>borrow</strong> values using references.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">main.rs</span>
+          </div>
+          <pre><span class="kw">fn</span> calculate_length(s: &String) -&gt; usize {
+    s.len()
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> s = String::from(<span class="val">"hello"</span>);
+    <span class="kw">let</span> len = calculate_length(&s);
+
+    println!(<span class="val">"Length: {}"</span>, len);
+}</pre>
+        </div>
+
+        <p>
+          Here, <code>&s</code> means we borrow the value without taking ownership.
+        </p>
+
+        <h2>Mutable borrowing</h2>
+
+        <p>
+          Rust also allows changing borrowed data using <strong>mutable references</strong>.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">main.rs</span>
+          </div>
+          <pre><span class="kw">fn</span> change(s: &amp;mut String) {
+    s.push_str(<span class="val">" world"</span>);
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> <span class="kw">mut</span> s = String::from(<span class="val">"hello"</span>);
+    change(&amp;mut s);
+}</pre>
+        </div>
+
+        <h2>Why ownership matters</h2>
+
+        <ul>
+          <li>🛡️ Prevents use-after-free bugs</li>
+          <li>🛡️ Prevents double free errors</li>
+          <li>🛡️ Prevents data races in concurrent code</li>
+          <li>🛡️ Ensures memory safety at compile time</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Real-world fact</div>
+          <p>Rust achieves memory safety without a garbage collector — all thanks to ownership and borrowing.</p>
+        </div>
+
+        <h2>Summary</h2>
+        <p>
+          Ownership is Rust’s system for managing memory safely and efficiently.
+          It ensures every value has one owner, and uses moves and borrows instead of manual memory control.
+        </p>
+
+        <p>
+          In short: <strong>Ownership is how Rust guarantees memory safety at compile time.</strong>
+        </p>
+
+      </div>
+
+      <!-- Related -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Rust</div>
+            <div class="related-card-title">What is borrowing in Rust?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Rust</div>
+            <div class="related-card-title">What are lifetimes in Rust?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Rust</div>
+            <div class="related-card-title">Rust vs C++ memory management</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Systems</div>
+            <div class="related-card-title">Why Rust is so fast and safe</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list">
+          <a href="#">What is Ownership?</a>
+          <a href="#">Rules of Ownership</a>
+          <a href="#">Move Semantics</a>
+          <a href="#">Borrowing</a>
+          <a href="#">Mutable Borrowing</a>
+          <a href="#">Why it matters</a>
+          <a href="#">Summary</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">🦀</div>
+          <div class="course-promo-name">Rust Fundamentals</div>
+          <div class="course-promo-desc">Learn ownership, borrowing, lifetimes, and real-world Rust patterns.</div>
+          <a href="../lessons/rust.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

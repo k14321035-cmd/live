@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>Difference Between List and Tuple — Code Tutorium</title>
+
+  <meta name="description" content="Learn the difference between list and tuple in Python with clear explanations, examples, memory behavior, performance, and real-world use cases.">
+  <meta name="keywords" content="list vs tuple, python list tuple difference, data structures python, python tutorial beginners">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Difference Between List and Tuple — Code Tutorium">
+  <meta property="og:description" content="Understand list vs tuple in Python with examples and real-world explanations.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/list-vs-tuple.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="List vs Tuple — Code Tutorium">
+  <meta name="twitter:description" content="Clear explanation of list and tuple differences in Python.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/list-vs-tuple.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+  <style>:root { --post-color: #a78bfa; }</style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">C <span>T</span></a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html" class="nav-link active">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+<article>
+
+<nav class="post-breadcrumb">
+  <a href="../index.html">Home</a>
+  <span>/</span>
+  <a href="index.html">Blog</a>
+  <span>/</span>
+  <span>List vs Tuple</span>
+</nav>
+
+<div class="post-tag">Python</div>
+
+<h1 class="post-title">Difference Between List and Tuple</h1>
+
+<div class="post-meta">
+  <span>📅 May 2026</span>
+  <span>⏱ ~5 min read</span>
+  <span>✍️ Code Tutorium</span>
+</div>
+
+<div class="post-summary">
+  <div class="post-summary-title">// Quick Answer</div>
+  <ul>
+    <li>Lists are mutable (can be changed).</li>
+    <li>Tuples are immutable (cannot be changed).</li>
+    <li>Lists are used for dynamic data.</li>
+    <li>Tuples are used for fixed data.</li>
+    <li>Tuples are faster and more memory efficient.</li>
+  </ul>
+</div>
+
+<div class="post-body">
+
+<h2 id="intro">What is List and Tuple?</h2>
+<p>
+In Python, both list and tuple are used to store multiple values in a single variable.
+They are ordered collections, but the key difference is whether the data can be modified or not.
+</p>
+
+<h2 id="difference">Key Differences</h2>
+
+<ul>
+  <li><strong>Mutability</strong> — List can be changed, tuple cannot be changed after creation.</li>
+  <li><strong>Syntax</strong> — List uses [ ], tuple uses ( ).</li>
+  <li><strong>Performance</strong> — Tuple is faster because it is immutable.</li>
+  <li><strong>Memory</strong> — Tuple uses less memory than list.</li>
+  <li><strong>Use case</strong> — List for changing data, tuple for fixed data.</li>
+</ul>
+
+<h2 id="example">Example</h2>
+
+<div class="code-block">
+  <div class="code-header">
+    <div class="code-dots"><span></span><span></span><span></span></div>
+    <span class="code-filename">example.py</span>
+  </div>
+
+<pre>
+# List (mutable)
+my_list = [10, 20, 30]
+my_list.append(40)
+my_list[0] = 99
+
+# Tuple (immutable)
+my_tuple = (10, 20, 30)
+# my_tuple[0] = 99  ❌ Error: cannot modify tuple
+</pre>
+</div>
+
+<h2 id="memory">Memory and Performance</h2>
+<p>
+Tuples are stored in a fixed memory structure, which makes them more efficient.
+Lists require extra memory because they are designed to grow and shrink dynamically.
+</p>
+
+<div class="callout">
+  <div class="callout-title">💡 Important insight</div>
+  <p>
+    Tuples are not just “smaller lists” — they are optimized for fixed data storage.
+  </p>
+</div>
+
+<h2 id="realworld">Real-world example</h2>
+
+<ul>
+  <li>🛒 List = Shopping cart (items can be added or removed)</li>
+  <li>🎟 Tuple = Aadhaar number / coordinates (fixed and cannot change)</li>
+</ul>
+
+<h2 id="when-use">When to use what?</h2>
+
+<h3>Use List when:</h3>
+<ul>
+  <li>You need to modify data</li>
+  <li>You need to add or remove items frequently</li>
+  <li>Example: student names, shopping items</li>
+</ul>
+
+<h3>Use Tuple when:</h3>
+<ul>
+  <li>Data should not change</li>
+  <li>You want better performance and safety</li>
+  <li>Example: coordinates, fixed configuration values</li>
+</ul>
+
+<h2 id="mistake">Common mistake</h2>
+<p>
+Beginners often think tuple is just a “read-only list.” That is not fully correct.
+The real difference is that tuples are designed for immutability at the system level.
+</p>
+
+<h2 id="summary">Summary</h2>
+<p>
+Lists are flexible and dynamic, while tuples are fixed and optimized.
+Use lists for changeable data and tuples for constant data to write efficient Python programs.
+</p>
+
+</div>
+
+<div class="related">
+  <div class="related-title">Related articles</div>
+  <div class="related-grid">
+    <a href="#" class="related-card">
+      <div class="related-card-tag">// Python</div>
+      <div class="related-card-title">What are Python data types?</div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-card-tag">// Python</div>
+      <div class="related-card-title">What is mutability in Python?</div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-card-tag">// Programming</div>
+      <div class="related-card-title">What is memory management?</div>
+    </a>
+  </div>
+</div>
+
+</article>
+
+<aside class="sidebar">
+
+<div class="sidebar-card">
+  <div class="sidebar-card-title">// On this page</div>
+  <nav class="toc-list">
+    <a href="#intro">Introduction</a>
+    <a href="#difference">Key Differences</a>
+    <a href="#example">Example</a>
+    <a href="#memory">Memory & Performance</a>
+    <a href="#realworld">Real World</a>
+    <a href="#when-use">When to use</a>
+    <a href="#mistake">Common mistake</a>
+    <a href="#summary">Summary</a>
+  </nav>
+</div>
+
+<div class="sidebar-card">
+  <div class="sidebar-card-title">// Free Course</div>
+  <div class="course-promo">
+    <div class="course-promo-icon">🐍</div>
+    <div class="course-promo-name">Python Basics</div>
+    <div class="course-promo-desc">Learn Python step-by-step with strong fundamentals.</div>
+    <a href="../lessons/python.html" class="course-promo-btn">Start learning →</a>
+  </div>
+</div>
+
+</aside>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#courses">Courses</a>
+    <a href="index.html">Blog</a>
+    <a href="../about.html">About</a>
+  </div>
+  <p class="footer-copy">© 2026 Code Tutorium</p>
+</footer>
+
+</body>
+</html>

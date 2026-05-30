@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What are Events in JavaScript? — Code Tutorium</title>
+
+  <meta name="description" content="Learn JavaScript events: what they are, how they work, and how to use them for interactivity in web pages.">
+
+  <meta name="keywords" content="javascript events, dom events, onclick addEventListener, js event handling, web events explained">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are Events in JavaScript? — Code Tutorium">
+  <meta property="og:description" content="Understand JavaScript events like clicks, inputs, and loads with simple examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/javascript-events.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are Events in JavaScript? — Code Tutorium">
+  <meta name="twitter:description" content="JavaScript events explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/javascript-events.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #34d399;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a JavaScript event?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An event is an action that happens in the browser, such as a click, key press, or page load."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are common JavaScript events?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click, input, submit, load, mouseover, and keydown are commonly used events."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you handle events in JavaScript?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You use addEventListener to attach a function that runs when the event happens."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>JavaScript Events</span>
+  </nav>
+
+  <div class="post-tag">JS</div>
+
+  <h1 class="post-title">What are Events in JavaScript?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~5 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>An <strong>event</strong> is something that happens in the browser.</li>
+      <li>Examples: click, scroll, typing, loading a page.</li>
+      <li>JavaScript listens and reacts to these events.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What are events?</h2>
+
+    <p>
+      In JavaScript, an <strong>event</strong> is any action or occurrence that happens in the browser window.
+    </p>
+
+    <p>
+      These events allow web pages to respond to user interactions and system changes.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>An event is like a signal — JavaScript reacts when something happens.</p>
+    </div>
+
+    <h2>Common types of events</h2>
+
+    <ul>
+      <li>🖱️ Mouse events — click, dblclick, mouseover</li>
+      <li>⌨️ Keyboard events — keydown, keyup</li>
+      <li>📄 Form events — submit, input, change</li>
+      <li>🌐 Window events — load, resize, scroll</li>
+    </ul>
+
+    <h2>Example: click event</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">// Run code when button is clicked</span>
+<span class="kw">document</span>.querySelector(<span class="val">"button"</span>).addEventListener(<span class="val">"click"</span>, function() {
+  alert(<span class="val">"Button clicked!"</span>);
+});</pre>
+
+
+    </div>
+
+    <h2>How events work</h2>
+
+    <ul>
+      <li>1. User performs an action (click, type, scroll)</li>
+      <li>2. Browser detects the event</li>
+      <li>3. JavaScript listens for it</li>
+      <li>4. A function runs in response</li>
+    </ul>
+
+    <h2>addEventListener()</h2>
+
+    <p>
+      The most common way to handle events is using <code>addEventListener</code>.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">element</span>.addEventListener(<span class="val">"event"</span>, function() {
+  <span class="cmt">// code here</span>
+});</pre>
+
+
+    </div>
+
+    <h2>Example: input event</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">let</span> input = document.querySelector(<span class="val">"input"</span>);
+
+input.addEventListener(<span class="val">"input"</span>, function() {
+  console.log(input.value);
+});</pre>
+
+
+    </div>
+
+    <h2>Why events are important</h2>
+
+    <ul>
+      <li>They make websites interactive</li>
+      <li>They respond to user actions</li>
+      <li>They are essential for modern web apps</li>
+      <li>They power buttons, forms, menus, games, and more</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Real-world fact</div>
+      <p>Every button click, menu toggle, and form submission on modern websites is powered by JavaScript events.</p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+      JavaScript events are actions that happen in the browser, and JavaScript uses them to make web pages interactive.
+    </p>
+
+    <p>
+      Without events, websites would be static and non-responsive.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-is-javascript.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What is JavaScript?</div>
+      </a>
+
+      <a href="javascript-functions.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What are Functions in JavaScript?</div>
+      </a>
+
+      <a href="dom-in-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is the DOM?</div>
+      </a>
+
+      <a href="css-position.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is Position in CSS?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Events</a>
+      <a href="#">Types</a>
+      <a href="#">Click example</a>
+      <a href="#">How it works</a>
+      <a href="#">addEventListener</a>
+      <a href="#">Importance</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🎯</div>
+      <div class="course-promo-name">JavaScript Events</div>
+      <div class="course-promo-desc">
+        Learn how to make websites interactive with real user actions.
+      </div>
+      <a href="../lessons/javascript.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

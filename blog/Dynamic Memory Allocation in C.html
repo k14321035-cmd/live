@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What is Dynamic Memory Allocation in C? — Code Tutorium</title>
+
+  <meta name="description" content="Learn dynamic memory allocation in C using malloc, calloc, realloc, and free with simple examples.">
+
+  <meta name="keywords" content="dynamic memory allocation in c, malloc calloc realloc free, c memory management, heap memory c">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Dynamic Memory Allocation in C — Code Tutorium">
+  <meta property="og:description" content="Understand how dynamic memory allocation works in C with examples of malloc, calloc, realloc, and free.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/dynamic-memory-allocation-c.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dynamic Memory Allocation in C — Code Tutorium">
+  <meta name="twitter:description" content="Memory management in C explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/dynamic-memory-allocation-c.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #60a5fa;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is dynamic memory allocation in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dynamic memory allocation is the process of allocating memory at runtime using functions like malloc, calloc, realloc, and freeing it using free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is dynamic memory allocation used?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It allows programs to use memory efficiently by allocating only when needed during execution."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which functions are used for dynamic memory in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "malloc, calloc, realloc, and free are used for dynamic memory management in C."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Dynamic Memory</span>
+  </nav>
+
+  <div class="post-tag">C</div>
+
+  <h1 class="post-title">What is Dynamic Memory Allocation in C?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~6 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li><strong>Dynamic memory allocation</strong> is memory assigned at runtime.</li>
+      <li>It uses heap memory instead of stack memory.</li>
+      <li>Functions like <code>malloc</code>, <code>calloc</code>, <code>realloc</code>, and <code>free</code> are used.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is dynamic memory allocation?</h2>
+
+    <p>
+      In C, dynamic memory allocation is the process of allocating memory during program execution (runtime), instead of compile time.
+    </p>
+
+    <p>
+      It allows programs to request memory as needed and release it when it is no longer required.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>Instead of deciding memory size beforehand, you ask for it while the program is running.</p>
+    </div>
+
+    <h2>Why do we need it?</h2>
+
+    <ul>
+      <li>📦 Handle unknown data size at runtime</li>
+      <li>⚡ Efficient memory usage</li>
+      <li>🔁 Flexible data structures (linked lists, trees)</li>
+      <li>📈 Scalable applications</li>
+    </ul>
+
+    <h2>Memory types in C</h2>
+
+    <ul>
+      <li><strong>Stack memory</strong> — static allocation</li>
+      <li><strong>Heap memory</strong> — dynamic allocation</li>
+    </ul>
+
+    <h2>malloc()</h2>
+
+    <p>
+      Allocates a single block of memory.
+    </p>
+
+    <div class="code-block">
+
+
+<pre>int *ptr = (int*) malloc(5 * sizeof(int));</pre>
+
+
+    </div>
+
+    <h2>calloc()</h2>
+
+    <p>
+      Allocates multiple blocks and initializes them to zero.
+    </p>
+
+    <div class="code-block">
+
+
+<pre>int *ptr = (int*) calloc(5, sizeof(int));</pre>
+
+
+    </div>
+
+    <h2>realloc()</h2>
+
+    <p>
+      Resizes previously allocated memory.
+    </p>
+
+    <div class="code-block">
+
+
+<pre>ptr = (int*) realloc(ptr, 10 * sizeof(int));</pre>
+
+
+    </div>
+
+    <h2>free()</h2>
+
+    <p>
+      Releases allocated memory back to the system.
+    </p>
+
+    <div class="code-block">
+
+
+<pre>free(ptr);</pre>
+
+
+    </div>
+
+    <h2>Example program</h2>
+
+    <div class="code-block">
+
+
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+  int n = 5;
+  int *arr = (int*) malloc(n * sizeof(int));
+
+  for(int i = 0; i < n; i++) {
+    arr[i] = i + 1;
+  }
+
+  for(int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
+  }
+
+  free(arr);
+  return 0;
+}</pre>
+
+
+    </div>
+
+    <h2>Advantages</h2>
+
+    <ul>
+      <li>Efficient memory usage</li>
+      <li>Flexible program design</li>
+      <li>Supports complex data structures</li>
+    </ul>
+
+    <h2>Disadvantages</h2>
+
+    <ul>
+      <li>Memory leaks if not freed</li>
+      <li>Slower than stack memory</li>
+      <li>Manual management required</li>
+    </ul>
+
+    <div class="callout warning">
+      <div class="callout-title">⚠️ Important</div>
+      <p>Always use <code>free()</code> after dynamic allocation to avoid memory leaks.</p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+      Dynamic memory allocation in C allows memory to be allocated and managed at runtime using heap memory. It is essential for flexible and efficient programs.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-are-pointers-in-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What are Pointers in C?</div>
+      </a>
+
+      <a href="what-are-arrays-in-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What are Arrays in C?</div>
+      </a>
+
+      <a href="structure-vs-union.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">Structure vs Union</div>
+      </a>
+
+      <a href="what-is-javascript.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What is JavaScript?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Dynamic memory</a>
+      <a href="#">Why needed</a>
+      <a href="#">malloc</a>
+      <a href="#">calloc</a>
+      <a href="#">realloc</a>
+      <a href="#">free</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🧠</div>
+      <div class="course-promo-name">Dynamic Memory</div>
+      <div class="course-promo-desc">
+        Learn how C manages memory at runtime using heap allocation functions.
+      </div>
+      <a href="../lessons/c.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What are Semantic Tags in HTML? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what semantic tags are in HTML, why they matter, and how semantic HTML improves accessibility, SEO, and code readability. Beginner-friendly examples included.">
+
+  <meta name="keywords" content="semantic html, semantic tags, html semantic elements, what are semantic tags, semantic html tutorial, learn html">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are Semantic Tags in HTML? — Code Tutorium">
+  <meta property="og:description" content="Learn what semantic HTML tags are and why modern websites use them for structure, accessibility, and SEO.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/semantic-html.html">
+
+  <!-- Twitter -->
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are Semantic Tags in HTML? — Code Tutorium">
+  <meta name="twitter:description" content="Semantic HTML explained simply for beginners with practical examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/semantic-html.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <!-- Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Accent -->
+
+  <style>
+    :root {
+      --post-color: #fdba74;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are semantic tags in HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Semantic tags are HTML elements that describe the meaning and purpose of content. Examples include header, nav, main, article, section, and footer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are semantic tags important?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Semantic tags improve accessibility, SEO, readability, and page structure by helping browsers, search engines, and screen readers understand content."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between div and semantic tags?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A div is a generic container with no meaning, while semantic tags describe the purpose of content, such as navigation, articles, or page sections."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are examples of semantic tags?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common semantic tags include header, nav, main, section, article, aside, footer, and figure."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://codetutorium.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://codetutorium.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Semantic HTML",
+        "item": "https://codetutorium.com/blog/semantic-html.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Article Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What are Semantic Tags in HTML?",
+    "description": "Learn what semantic tags are in HTML, how they work, and why semantic HTML is important for accessibility and SEO.",
+    "author": {
+      "@type": "Organization",
+      "name": "Code Tutorium"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://codetutorium.com/favicon.png"
+      }
+    },
+    "datePublished": "2026-05-29",
+    "dateModified": "2026-05-29",
+    "url": "https://codetutorium.com/blog/semantic-html.html"
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+
+
+<div class="nav-inner">
+
+  <a href="../index.html" class="nav-logo">
+    C <span>T</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="../index.html#courses" class="nav-link">Courses</a>
+    <a href="index.html" class="nav-link active">Blog</a>
+  </div>
+
+</div>
+
+
+  </nav>
+
+  <div class="page-wrap">
+
+
+<!-- ARTICLE -->
+<article>
+
+  <!-- Breadcrumb -->
+  <nav class="post-breadcrumb" aria-label="Breadcrumb">
+
+    <a href="../index.html">Home</a>
+
+    <span class="sep">/</span>
+
+    <a href="index.html">Blog</a>
+
+    <span class="sep">/</span>
+
+    <span>Semantic HTML</span>
+
+  </nav>
+
+  <div class="post-tag">HTML</div>
+
+  <h1 class="post-title">What are Semantic Tags in HTML?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~6 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- Quick Answer -->
+  <div class="post-summary">
+
+    <div class="post-summary-title">// Quick Answer</div>
+
+    <ul>
+      <li>Semantic tags describe the meaning of content.</li>
+      <li>They help browsers, search engines, and screen readers understand page structure.</li>
+      <li>Examples include <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, and <code>&lt;footer&gt;</code>.</li>
+      <li>Semantic HTML improves accessibility and SEO.</li>
+      <li>Modern websites use semantic tags instead of relying only on <code>&lt;div&gt;</code> elements.</li>
+    </ul>
+
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What are semantic tags?</h2>
+
+    <p>
+      <strong>Semantic tags</strong> are HTML elements that describe the meaning and purpose of content.
+    </p>
+
+    <p>
+      Instead of simply grouping elements together like a generic <code>&lt;div&gt;</code>, semantic tags explain what the content actually represents.
+    </p>
+
+    <div class="callout">
+
+      <div class="callout-title">💡 In simple terms</div>
+
+      <p>
+        Semantic tags give meaning to web page structure.
+      </p>
+
+    </div>
+
+    <h2>Why are semantic tags important?</h2>
+
+    <p>
+      Semantic HTML helps:
+    </p>
+
+    <ul>
+      <li>Search engines understand page structure</li>
+      <li>Screen readers navigate content more easily</li>
+      <li>Developers read and maintain code</li>
+      <li>Browsers interpret content correctly</li>
+    </ul>
+
+    <p>
+      Before semantic HTML became popular, developers often built entire websites using only <code>&lt;div&gt;</code> elements.
+    </p>
+
+    <div class="callout info">
+
+      <div class="callout-title">📌 Real-world fact</div>
+
+      <p>
+        Modern websites like YouTube, Amazon, and news platforms rely heavily on semantic HTML for accessibility and structure.
+      </p>
+
+    </div>
+
+    <h2>Common semantic tags</h2>
+
+    <p>
+      HTML provides many semantic elements.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">semantic-layout.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;header&gt;</span>
+<span class="tag">&lt;nav&gt;</span>
+<span class="tag">&lt;main&gt;</span>
+<span class="tag">&lt;section&gt;</span>
+<span class="tag">&lt;article&gt;</span>
+<span class="tag">&lt;aside&gt;</span>
+<span class="tag">&lt;footer&gt;</span></pre>
+
+
+    </div>
+
+    <h2>What does each semantic tag do?</h2>
+
+    <h3>&lt;header&gt;</h3>
+
+    <p>
+      Represents introductory content such as:
+    </p>
+
+    <ul>
+      <li>Logos</li>
+      <li>Site titles</li>
+      <li>Navigation menus</li>
+    </ul>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">header.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;header&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>My Website<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/header&gt;</span></pre>
+
+
+    </div>
+
+    <h3>&lt;nav&gt;</h3>
+
+    <p>
+      Defines navigation links.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">nav.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;nav&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"/"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"/about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/nav&gt;</span></pre>
+
+
+    </div>
+
+    <h3>&lt;main&gt;</h3>
+
+    <p>
+      Contains the primary content of the page.
+    </p>
+
+    <p>
+      A page should usually have only one <code>&lt;main&gt;</code> element.
+    </p>
+
+    <h3>&lt;section&gt;</h3>
+
+    <p>
+      Represents a thematic section of content.
+    </p>
+
+    <p>
+      Examples:
+    </p>
+
+    <ul>
+      <li>Features section</li>
+      <li>FAQ section</li>
+      <li>Testimonials section</li>
+    </ul>
+
+    <h3>&lt;article&gt;</h3>
+
+    <p>
+      Represents self-contained content that can stand on its own.
+    </p>
+
+    <p>
+      Examples:
+    </p>
+
+    <ul>
+      <li>Blog posts</li>
+      <li>News articles</li>
+      <li>Forum posts</li>
+    </ul>
+
+    <h3>&lt;aside&gt;</h3>
+
+    <p>
+      Contains secondary or related content.
+    </p>
+
+    <p>
+      Examples:
+    </p>
+
+    <ul>
+      <li>Sidebars</li>
+      <li>Advertisements</li>
+      <li>Related links</li>
+    </ul>
+
+    <h3>&lt;footer&gt;</h3>
+
+    <p>
+      Represents footer information such as:
+    </p>
+
+    <ul>
+      <li>Copyright text</li>
+      <li>Contact information</li>
+      <li>Footer navigation</li>
+    </ul>
+
+    <h2>Semantic tags vs div elements</h2>
+
+    <p>
+      One of the biggest beginner questions is:
+    </p>
+
+    <p>
+      Why use semantic tags instead of <code>&lt;div&gt;</code>?
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">comparison.html</span>
+
+      </div>
+
+
+<pre><span class="cmt">&lt;!-- Generic structure --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"header"</span><span class="tag">&gt;</span>
+  ...
+<span class="tag">&lt;/div&gt;</span>
+
+
+<span class="cmt">&lt;!-- Semantic structure --&gt;</span>
+<span class="tag">&lt;header&gt;</span>
+  ...
+<span class="tag">&lt;/header&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      Both approaches work visually, but semantic tags provide meaning.
+    </p>
+
+    <h2>Benefits of semantic HTML</h2>
+
+    <ul>
+      <li>Cleaner code structure</li>
+      <li>Better accessibility</li>
+      <li>Improved SEO understanding</li>
+      <li>Easier maintenance</li>
+      <li>Better screen reader support</li>
+    </ul>
+
+    <div class="callout warning">
+
+      <div class="callout-title">⚠️ Best practice</div>
+
+      <p>
+        Use semantic tags whenever the content has a clear purpose or meaning. Use <code>&lt;div&gt;</code> mainly for layout and styling.
+      </p>
+
+    </div>
+
+    <h2>Example of a semantic page layout</h2>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">layout.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;header&gt;</span>
+  ...
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;nav&gt;</span>
+  ...
+<span class="tag">&lt;/nav&gt;</span>
+
+<span class="tag">&lt;main&gt;</span>
+
+  <span class="tag">&lt;section&gt;</span>
+    ...
+  <span class="tag">&lt;/section&gt;</span>
+
+  <span class="tag">&lt;article&gt;</span>
+    ...
+  <span class="tag">&lt;/article&gt;</span>
+
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>
+  ...
+<span class="tag">&lt;/footer&gt;</span></pre>
+
+
+    </div>
+
+    <h2>Common beginner mistakes</h2>
+
+    <ul>
+      <li>Using only <code>&lt;div&gt;</code> elements everywhere</li>
+      <li>Using semantic tags incorrectly</li>
+      <li>Using multiple <code>&lt;main&gt;</code> elements</li>
+      <li>Replacing every container with <code>&lt;section&gt;</code></li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+      Semantic tags are HTML elements that describe the meaning and purpose of content.
+    </p>
+
+    <p>
+      They improve:
+    </p>
+
+    <ul>
+      <li>Accessibility</li>
+      <li>SEO</li>
+      <li>Readability</li>
+      <li>Maintainability</li>
+    </ul>
+
+    <p>
+      Modern websites combine semantic elements with regular <code>&lt;div&gt;</code> containers to create clean, accessible page structures.
+    </p>
+
+    <p>
+      Ready to learn modern HTML properly? Our free course covers semantic HTML, accessibility, forms, SEO, and real-world page layouts step-by-step.
+    </p>
+
+  </div><!-- /post-body -->
+
+  <!-- Related -->
+  <div class="related">
+
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+
+      <a href="div-vs-section.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is the difference between div and section?</div>
+      </a>
+
+      <a href="what-is-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is HTML?</div>
+      </a>
+
+      <a href="id-vs-class.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is the difference between ID and class?</div>
+      </a>
+
+      <a href="what-is-css.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS?</div>
+      </a>
+
+    </div>
+
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <!-- TOC -->
+  <div class="sidebar-card">
+
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list" aria-label="Table of contents">
+
+      <a href="#" class="toc-link">What are semantic tags?</a>
+      <a href="#" class="toc-link">Why semantic HTML matters</a>
+      <a href="#" class="toc-link">Common semantic tags</a>
+      <a href="#" class="toc-link">Tag explanations</a>
+      <a href="#" class="toc-link">Semantic tags vs div</a>
+      <a href="#" class="toc-link">Benefits</a>
+      <a href="#" class="toc-link">Page layout example</a>
+      <a href="#" class="toc-link">Summary</a>
+
+    </nav>
+
+  </div>
+
+  <!-- COURSE PROMO -->
+  <div class="sidebar-card">
+
+    <div class="sidebar-card-title">// Free Course</div>
+
+    <div class="course-promo">
+
+      <div class="course-promo-icon">📄</div>
+
+      <div class="course-promo-name">HTML Fundamentals</div>
+
+      <div class="course-promo-desc">
+        Learn semantic HTML, accessibility, forms, SEO, and modern web development from scratch.
+      </div>
+
+      <a href="../lessons/html.html" class="course-promo-btn">
+        Start learning →
+      </a>
+
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div><!-- /page-wrap -->
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+
+<div class="footer-links">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#courses">Courses</a>
+  <a href="index.html">Blog</a>
+  <a href="../about.html">About</a>
+  <a href="../privacy.html">Privacy</a>
+</div>
+
+<p class="footer-copy">
+  &copy; 2026 Code Tutorium. All rights reserved.
+</p>
+
+
+  </footer>
+
+</body>
+</html>

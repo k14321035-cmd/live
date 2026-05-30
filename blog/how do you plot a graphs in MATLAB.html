@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How do you plot graphs in MATLAB? — Code Tutorium</title>
+
+  <meta name="description" content="Learn how to plot graphs in MATLAB using plot(), scatter(), and bar(). Step-by-step beginner guide with examples.">
+  <meta name="keywords" content="how to plot in MATLAB, MATLAB plot function, MATLAB graphs, plot command MATLAB, MATLAB tutorial plotting">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How do you plot graphs in MATLAB? — Code Tutorium">
+  <meta property="og:description" content="Step-by-step guide to plotting graphs in MATLAB with simple examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/matlab-how-to-plot.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How do you plot graphs in MATLAB? — Code Tutorium">
+  <meta name="twitter:description" content="Learn how to create plots in MATLAB using simple commands like plot().">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/matlab-how-to-plot.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root { --post-color: #3b82f6; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>MATLAB Plotting</span>
+      </nav>
+
+      <div class="post-tag">MATLAB</div>
+
+      <h1 class="post-title">How do you plot graphs in MATLAB?</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick Answer -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li>You use the <code>plot()</code> function in MATLAB.</li>
+          <li>You provide x and y data as inputs.</li>
+          <li>MATLAB automatically draws the graph.</li>
+          <li>You can customize color, style, and labels.</li>
+          <li>Other functions include <code>scatter()</code> and <code>bar()</code>.</li>
+        </ul>
+      </div>
+
+      <!-- BODY -->
+      <div class="post-body">
+
+        <h2>How do you plot graphs in MATLAB?</h2>
+        <p>
+          In MATLAB, graphs are created using built-in plotting functions.
+          The most common one is <strong>plot()</strong>, which draws a line graph from data points.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 Simple idea</div>
+          <p>You give MATLAB numbers, and it draws the graph for you.</p>
+        </div>
+
+        <h2>Basic plotting syntax</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">MATLAB</span>
+          </div>
+          <pre><span class="kw">x</span> = 1:5;
+<span class="kw">y</span> = [2 4 6 8 10];
+
+plot(x, y)</pre>
+        </div>
+
+        <p>
+          This creates a simple line graph connecting the points (x, y).
+        </p>
+
+        <h2>Plotting a mathematical function</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">MATLAB</span>
+          </div>
+          <pre><span class="kw">x</span> = 0:0.1:10;
+<span class="kw">y</span> = sin(x);
+
+plot(x, y)</pre>
+        </div>
+
+        <p>
+          This plots a sine wave using continuous values.
+        </p>
+
+        <h2>Customizing your graph</h2>
+
+        <p>You can make your graph more readable using labels and styles:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">MATLAB</span>
+          </div>
+          <pre>plot(x, y, <span class="val">'r--'</span>, <span class="kw">'LineWidth'</span>, 2)
+
+xlabel(<span class="val">'Time'</span>)
+ylabel(<span class="val">'Amplitude'</span>)
+title(<span class="val">'Sine Wave'</span>)</pre>
+        </div>
+
+        <ul>
+          <li>🔴 <code>'r--'</code> = red dashed line</li>
+          <li>📏 <code>LineWidth</code> = thickness of the line</li>
+          <li>🏷️ <code>xlabel</code> / <code>ylabel</code> = axis labels</li>
+          <li>📌 <code>title</code> = graph title</li>
+        </ul>
+
+        <h2>Other types of plots</h2>
+
+        <h3>Scatter plot</h3>
+        <div class="code-block">
+          <pre>scatter(x, y)</pre>
+        </div>
+
+        <h3>Bar chart</h3>
+        <div class="code-block">
+          <pre>bar(y)</pre>
+        </div>
+
+        <h3>Multiple plots</h3>
+        <div class="code-block">
+          <pre>plot(x, sin(x))
+hold on
+plot(x, cos(x))
+hold off</pre>
+        </div>
+
+        <h2>Why plotting is important in MATLAB</h2>
+
+        <ul>
+          <li>📊 Helps visualize mathematical functions</li>
+          <li>⚙️ Used in engineering simulations</li>
+          <li>📈 Makes data analysis easier</li>
+          <li>🔬 Helps verify results visually</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Real-world fact</div>
+          <p>Engineers and scientists rely heavily on MATLAB plots to analyze signals, systems, and experimental data.</p>
+        </div>
+
+        <h2>Summary</h2>
+
+        <p>
+          You plot graphs in MATLAB using the <code>plot()</code> function by providing x and y values.
+          You can then customize the graph with labels, styles, and multiple datasets.
+        </p>
+
+        <p>
+          In short: <strong>MATLAB turns your data into visual graphs with just a few lines of code.</strong>
+        </p>
+
+      </div>
+
+      <!-- Related -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// MATLAB</div>
+            <div class="related-card-title">Why do we use MATLAB?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// MATLAB</div>
+            <div class="related-card-title">What is Simulink?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Data</div>
+            <div class="related-card-title">Data visualization basics</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Engineering</div>
+            <div class="related-card-title">Signal processing fundamentals</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list">
+          <a href="#">Basic syntax</a>
+          <a href="#">Function plotting</a>
+          <a href="#">Customization</a>
+          <a href="#">Other plot types</a>
+          <a href="#">Importance</a>
+          <a href="#">Summary</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">📊</div>
+          <div class="course-promo-name">MATLAB Beginner Course</div>
+          <div class="course-promo-desc">Learn plotting, matrices, and engineering tools step by step.</div>
+          <a href="../lessons/matlab.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

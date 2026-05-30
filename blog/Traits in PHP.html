@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>What are Traits in PHP? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what traits are in PHP, how they work, and why they are used to reuse code across classes without inheritance limits.">
+  <meta name="keywords" content="PHP traits, what are traits in PHP, PHP trait example, PHP multiple inheritance, PHP OOP traits">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are Traits in PHP? — Code Tutorium">
+  <meta property="og:description" content="Understand PHP traits, how they enable code reuse, and why they are used instead of multiple inheritance.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/php-traits.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are Traits in PHP? — Code Tutorium">
+  <meta name="twitter:description" content="PHP traits explained simply with examples and real-world use cases.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/php-traits.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root { --post-color: #f59e0b; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>PHP Traits</span>
+      </nav>
+
+      <div class="post-tag">PHP</div>
+
+      <h1 class="post-title">What are Traits in PHP?</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick Answer -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li>Traits are a way to <strong>reuse code</strong> in PHP.</li>
+          <li>They allow you to share methods between classes without inheritance.</li>
+          <li>A class can use multiple traits.</li>
+          <li>They help avoid code duplication.</li>
+          <li>They are used in object-oriented PHP programming.</li>
+        </ul>
+      </div>
+
+      <!-- BODY -->
+      <div class="post-body">
+
+        <h2>What are traits in PHP?</h2>
+        <p>
+          <strong>Traits</strong> in PHP are a mechanism for code reuse. They allow you to define methods in one place and reuse them in multiple classes without using inheritance.
+        </p>
+
+        <p>
+          Think of traits as a way to “copy and paste” functionality into different classes — but in a clean and maintainable way.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 Simple idea</div>
+          <p>Traits let you share methods between classes without forcing a parent-child relationship.</p>
+        </div>
+
+        <h2>Why do we use traits?</h2>
+
+        <ul>
+          <li>📌 Avoid code duplication</li>
+          <li>⚙️ Reuse methods across unrelated classes</li>
+          <li>🚀 Work around PHP’s single inheritance limitation</li>
+          <li>🧠 Improve code organization</li>
+        </ul>
+
+        <h2>Basic trait example</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">PHP</span>
+          </div>
+          <pre><span class="kw">trait</span> Logger {
+    <span class="kw">public function</span> log($message) {
+        echo $message;
+    }
+}
+
+<span class="kw">class</span> User {
+    <span class="kw">use</span> Logger;
+}
+
+$user = <span class="kw">new</span> User();
+$user->log(<span class="val">"User created"</span>);</pre>
+        </div>
+
+        <p>
+          In this example, the <code>Logger</code> trait is reused inside the <code>User</code> class using the <code>use</code> keyword.
+        </p>
+
+        <h2>Multiple traits in a class</h2>
+
+        <p>
+          One of the biggest advantages of traits is that a class can use more than one.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">PHP</span>
+          </div>
+          <pre><span class="kw">trait</span> Logger {
+    <span class="kw">public function</span> log() {
+        echo <span class="val">"Logging..."</span>;
+    }
+}
+
+<span class="kw">trait</span> Notifier {
+    <span class="kw">public function</span> notify() {
+        echo <span class="val">"Notifying..."</span>;
+    }
+}
+
+<span class="kw">class</span> Admin {
+    <span class="kw">use</span> Logger, Notifier;
+}</pre>
+        </div>
+
+        <p>
+          This is useful because PHP does not support multiple inheritance, but traits give a similar effect.
+        </p>
+
+        <h2>How traits work</h2>
+
+        <ul>
+          <li>Traits are not classes — you cannot instantiate them</li>
+          <li>They are included into classes using <code>use</code></li>
+          <li>If methods conflict, you must resolve them manually</li>
+          <li>They behave like “code mixins”</li>
+        </ul>
+
+        <h2>Method conflict example</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">PHP</span>
+          </div>
+          <pre><span class="kw">trait</span> A {
+    <span class="kw">public function</span> hello() {
+        echo <span class="val">"Hello from A"</span>;
+    }
+}
+
+<span class="kw">trait</span> B {
+    <span class="kw">public function</span> hello() {
+        echo <span class="val">"Hello from B"</span>;
+    }
+}
+
+<span class="kw">class</span> Test {
+    <span class="kw">use</span> A, B {
+        B::hello <span class="kw">insteadOf</span> A;
+    }
+}</pre>
+        </div>
+
+        <h2>Why traits matter</h2>
+
+        <ul>
+          <li>🛡️ Reduce duplication in large codebases</li>
+          <li>⚙️ Improve modular design</li>
+          <li>📦 Allow flexible code reuse</li>
+          <li>👥 Help teams share functionality cleanly</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Real-world fact</div>
+          <p>Frameworks like Laravel use traits heavily for reusable features like authentication, logging, and notifications.</p>
+        </div>
+
+        <h2>Summary</h2>
+        <p>
+          Traits in PHP are a way to reuse methods across multiple classes without using inheritance. They help keep code clean, modular, and DRY (Don’t Repeat Yourself).
+        </p>
+
+        <p>
+          In short: <strong>Traits let you share behavior across classes without inheritance limitations.</strong>
+        </p>
+
+      </div>
+
+      <!-- Related -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// PHP</div>
+            <div class="related-card-title">What is OOP in PHP?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// PHP</div>
+            <div class="related-card-title">What is inheritance in PHP?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// PHP</div>
+            <div class="related-card-title">Interfaces vs Traits in PHP</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Backend</div>
+            <div class="related-card-title">How PHP powers modern web apps</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list">
+          <a href="#">What are Traits?</a>
+          <a href="#">Why use Traits?</a>
+          <a href="#">Basic example</a>
+          <a href="#">Multiple traits</a>
+          <a href="#">Method conflicts</a>
+          <a href="#">Summary</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">🐘</div>
+          <div class="course-promo-name">PHP OOP Basics</div>
+          <div class="course-promo-desc">Learn classes, objects, inheritance, and modern PHP patterns.</div>
+          <a href="../lessons/php.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

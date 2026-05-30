@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What are Pointers in C? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what pointers are in C programming, how they work, and why they are important. Beginner-friendly explanation with examples.">
+
+  <meta name="keywords" content="c pointers, pointers in c explained, c programming pointers, address of operator, dereference operator">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are Pointers in C? — Code Tutorium">
+  <meta property="og:description" content="Understand pointers in C with simple examples and memory concepts.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/what-are-pointers-in-c.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are Pointers in C? — Code Tutorium">
+  <meta name="twitter:description" content="Pointers in C explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/what-are-pointers-in-c.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #fb7185;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a pointer in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A pointer is a variable that stores the memory address of another variable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are pointers used in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pointers are used for memory management, arrays, functions, and dynamic allocation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between * and & in pointers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "'&' gives the address of a variable, while '*' accesses the value at that address."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Pointers in C</span>
+  </nav>
+
+  <div class="post-tag">C</div>
+
+  <h1 class="post-title">What are Pointers in C?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~6 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>A <strong>pointer</strong> is a variable that stores a memory address.</li>
+      <li>It points to another variable in memory.</li>
+      <li>Pointers are powerful but must be used carefully.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is a pointer?</h2>
+
+    <p>
+      In C, a <strong>pointer</strong> is a variable that stores the <strong>memory address</strong> of another variable.
+    </p>
+
+    <p>
+      Instead of storing a value directly, it stores where the value is located in memory.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>A pointer is like a house address instead of the house itself.</p>
+    </div>
+
+    <h2>Why do we use pointers?</h2>
+
+    <ul>
+      <li>⚡ Efficient memory management</li>
+      <li>📦 Working with arrays and strings</li>
+      <li>🔁 Passing large data to functions efficiently</li>
+      <li>🧠 Dynamic memory allocation</li>
+      <li>🔗 Building complex data structures (linked lists, trees)</li>
+    </ul>
+
+    <h2>Pointer syntax</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">// normal variable</span>
+int x = 10;
+
+<span class="cmt">// pointer variable</span>
+int *ptr = &x;</pre>
+
+
+    </div>
+
+    <p>
+      Here:
+      <ul>
+        <li><code>&x</code> gives the address of x</li>
+        <li><code>*ptr</code> stores that address</li>
+      </ul>
+    </p>
+
+    <h2>Dereferencing a pointer</h2>
+
+    <p>
+      You can access the value stored at an address using the <code>*</code> operator.
+    </p>
+
+    <div class="code-block">
+
+
+<pre>int x = 10;
+int *ptr = &x;
+
+printf("%d", *ptr);  <span class="cmt">// prints 10</span></pre>
+
+
+    </div>
+
+    <h2>How pointers work in memory</h2>
+
+    <ul>
+      <li>Variable is stored in memory with an address</li>
+      <li>Pointer stores that address</li>
+      <li>Dereferencing accesses the value at that address</li>
+    </ul>
+
+    <h2>Pointer example</h2>
+
+    <div class="code-block">
+
+
+<pre>int a = 5;
+int *p = &a;
+
+*p = 10;
+
+printf("%d", a);  <span class="cmt">// prints 10</span></pre>
+
+
+    </div>
+
+    <p>
+      Changing <code>*p</code> changes the original variable.
+    </p>
+
+    <h2>Types of pointers</h2>
+
+    <ul>
+      <li>Null pointers</li>
+      <li>Void pointers</li>
+      <li>Wild pointers</li>
+      <li>Dangling pointers</li>
+    </ul>
+
+    <h2>Common mistakes</h2>
+
+    <ul>
+      <li>Using uninitialized pointers</li>
+      <li>Dereferencing null pointers</li>
+      <li>Memory leaks</li>
+    </ul>
+
+    <div class="callout warning">
+      <div class="callout-title">⚠️ Important</div>
+      <p>Pointers give powerful control over memory, but incorrect usage can cause crashes or undefined behavior.</p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+      Pointers in C are variables that store memory addresses instead of values. They allow direct memory access and are essential for advanced programming concepts.
+    </p>
+
+    <p>
+      Once understood, pointers unlock the full power of C programming.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-is-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What is C Programming?</div>
+      </a>
+
+      <a href="arrays-in-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What are Arrays in C?</div>
+      </a>
+
+      <a href="memory-management-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">Memory Management in C</div>
+      </a>
+
+      <a href="what-is-javascript.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What is JavaScript?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Pointer</a>
+      <a href="#">Why use pointers</a>
+      <a href="#">Syntax</a>
+      <a href="#">Dereferencing</a>
+      <a href="#">Memory concept</a>
+      <a href="#">Types</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">📍</div>
+      <div class="course-promo-name">Pointers in C</div>
+      <div class="course-promo-desc">
+        Master memory, addresses, and low-level programming concepts step by step.
+      </div>
+      <a href="../lessons/c.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

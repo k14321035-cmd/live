@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What is the CSS Box Model? — Code Tutorium</title>
+
+  <meta name="description" content="Learn the CSS Box Model in a simple way with examples. Understand content, padding, border, and margin.">
+
+  <meta name="keywords" content="css box model, padding margin border, box model explained, css tutorial, web layout basics">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is the CSS Box Model? — Code Tutorium">
+  <meta property="og:description" content="Understand the CSS Box Model with simple examples and diagrams.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/css-box-model.html">
+
+  <!-- Twitter -->
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is the CSS Box Model? — Code Tutorium">
+  <meta name="twitter:description" content="CSS Box Model explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/css-box-model.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #facc15;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the CSS Box Model?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CSS Box Model describes how every HTML element is represented as a rectangular box consisting of content, padding, border, and margin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the parts of the box model?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The box model consists of content, padding, border, and margin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the box model important?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It determines how elements are sized and spaced on a webpage."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>CSS Box Model</span>
+  </nav>
+
+  <div class="post-tag">CSS</div>
+
+  <h1 class="post-title">What is the CSS Box Model?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~5 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>Every HTML element is a rectangular box.</li>
+      <li>The box model consists of <strong>content, padding, border, and margin</strong>.</li>
+      <li>It controls spacing and layout in CSS.</li>
+      <li>It affects the total size of elements.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is the CSS Box Model?</h2>
+
+    <p>
+      The <strong>CSS Box Model</strong> describes how every HTML element is treated as a rectangular box.
+    </p>
+
+    <p>
+      Each box is made up of four layers: content, padding, border, and margin.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>Every element on a webpage is a box inside a box.</p>
+    </div>
+
+    <h2>Parts of the box model</h2>
+
+    <h3>1. Content</h3>
+    <p>
+      The actual text, image, or media inside the element.
+    </p>
+
+    <h3>2. Padding</h3>
+    <p>
+      Space between the content and the border.
+    </p>
+
+    <h3>3. Border</h3>
+    <p>
+      The line surrounding the padding and content.
+    </p>
+
+    <h3>4. Margin</h3>
+    <p>
+      Space outside the border that separates elements from each other.
+    </p>
+
+    <h2>Visual example</h2>
+
+    <div class="code-block">
+
+
+<pre>+-----------------------------+
+|          Margin             |
+|  +-----------------------+  |
+|  |       Border         |  |
+|  |  +---------------+    |  |
+|  |  |   Padding     |    |  |
+|  |  |  Content      |    |  |
+|  |  +---------------+    |  |
+|  +-----------------------+  |
++-----------------------------+</pre>
+
+
+    </div>
+
+    <h2>CSS example</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">div</span> {
+  <span class="prop">width</span>: <span class="val">200px</span>;
+  <span class="prop">padding</span>: <span class="val">20px</span>;
+  <span class="prop">border</span>: <span class="val">5px solid black</span>;
+  <span class="prop">margin</span>: <span class="val">30px</span>;
+}</pre>
+
+
+    </div>
+
+    <h2>How size is calculated</h2>
+
+    <p>
+      The total size of an element includes:
+    </p>
+
+    <ul>
+      <li>Content width + height</li>
+      <li>Padding</li>
+      <li>Border</li>
+      <li>Margin (outside space)</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Important</div>
+      <p>By default, width and height apply only to the content box (not padding or border).</p>
+    </div>
+
+    <h2>Box-sizing property</h2>
+
+    <p>
+      You can change how size is calculated using <code>box-sizing</code>:
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">*</span> {
+  <span class="prop">box-sizing</span>: <span class="val">border-box</span>;
+}</pre>
+
+
+    </div>
+
+    <p>
+      This makes layout easier because padding and border are included in the element’s width.
+    </p>
+
+    <h2>Real-world usage</h2>
+
+    <ul>
+      <li>Spacing buttons and cards</li>
+      <li>Creating layouts</li>
+      <li>Designing responsive grids</li>
+      <li>Controlling visual hierarchy</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+      The CSS Box Model is the foundation of layout in web design. Every element is a box made of content, padding, border, and margin.
+    </p>
+
+    <p>
+      Understanding it is essential for controlling spacing and building clean layouts.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-is-css.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS?</div>
+      </a>
+
+      <a href="inline-vs-block.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">Inline vs Block Elements</div>
+      </a>
+
+      <a href="css-flexbox.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is Flexbox?</div>
+      </a>
+
+      <a href="css-grid.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS Grid?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Box Model</a>
+      <a href="#">Content</a>
+      <a href="#">Padding</a>
+      <a href="#">Border</a>
+      <a href="#">Margin</a>
+      <a href="#">Box-sizing</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">📦</div>
+      <div class="course-promo-name">CSS Layout Basics</div>
+      <div class="course-promo-desc">
+        Learn how spacing, layout, Flexbox, and Grid work in modern web design.
+      </div>
+      <a href="../lessons/css.html" class="course-promo-btn">Start learning →</a>
+    </div>
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

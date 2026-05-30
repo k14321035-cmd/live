@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How do you handle Exceptions in Visual Basic? — Code Tutorium</title>
+
+  <meta name="description" content="Learn how exception handling works in Visual Basic (VB.NET) using Try, Catch, Finally with simple examples and best practices.">
+  <meta name="keywords" content="VB exception handling, Visual Basic Try Catch, VB.NET errors, exception handling VB, Try Catch Finally VB">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How do you handle Exceptions in Visual Basic? — Code Tutorium">
+  <meta property="og:description" content="Understand how to handle runtime errors in VB.NET using Try, Catch, and Finally blocks.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/vb-exceptions.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How do you handle Exceptions in Visual Basic? — Code Tutorium">
+  <meta name="twitter:description" content="VB.NET exception handling explained simply with examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/vb-exceptions.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root { --post-color: #f97316; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>VB Exceptions</span>
+      </nav>
+
+      <div class="post-tag">Visual Basic</div>
+
+      <h1 class="post-title">How do you handle Exceptions in Visual Basic?</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick Answer -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li>You handle exceptions in VB.NET using <code>Try...Catch...Finally</code>.</li>
+          <li><code>Try</code> contains code that may cause an error.</li>
+          <li><code>Catch</code> handles the error if it occurs.</li>
+          <li><code>Finally</code> runs regardless of success or failure.</li>
+          <li>It prevents programs from crashing unexpectedly.</li>
+        </ul>
+      </div>
+
+      <!-- BODY -->
+      <div class="post-body">
+
+        <h2>What is exception handling in Visual Basic?</h2>
+        <p>
+          In Visual Basic (VB.NET), <strong>exception handling</strong> is a way to manage runtime errors so that your program does not crash.
+          Instead of stopping execution, VB lets you “catch” errors and respond to them safely.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 Simple idea</div>
+          <p>Exception handling is like a safety net that catches errors before your program breaks.</p>
+        </div>
+
+        <h2>Try...Catch...Finally structure</h2>
+
+        <p>
+          VB.NET uses three main blocks for handling exceptions:
+        </p>
+
+        <ul>
+          <li>🧪 <strong>Try</strong> — code that might cause an error</li>
+          <li>⚠️ <strong>Catch</strong> — code that handles the error</li>
+          <li>🧹 <strong>Finally</strong> — code that always runs</li>
+        </ul>
+
+        <h2>Basic example</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">VB.NET</span>
+          </div>
+          <pre><span class="kw">Try</span>
+    <span class="kw">Dim</span> result = 10 / 0
+
+<span class="kw">Catch</span> ex <span class="kw">As Exception</span>
+    Console.WriteLine(ex.Message)
+
+<span class="kw">Finally</span>
+    Console.WriteLine(<span class="val">"Execution complete"</span>)
+<span class="kw">End Try</span></pre>
+        </div>
+
+        <p>
+          Here, dividing by zero causes an error, but the program catches it instead of crashing.
+        </p>
+
+        <h2>Handling specific exceptions</h2>
+
+        <p>
+          You can also catch specific error types instead of all exceptions.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">VB.NET</span>
+          </div>
+          <pre><span class="kw">Try</span>
+    <span class="kw">Dim</span> nums = New Integer() {1, 2, 3}
+    Console.WriteLine(nums(10))
+
+<span class="kw">Catch</span> ex <span class="kw">As IndexOutOfRangeException</span>
+    Console.WriteLine(<span class="val">"Index is out of range!"</span>)
+
+<span class="kw">Catch</span> ex <span class="kw">As Exception</span>
+    Console.WriteLine(<span class="val">"General error occurred"</span>)
+
+<span class="kw">Finally</span>
+    Console.WriteLine(<span class="val">"Done"</span>)
+<span class="kw">End Try</span></pre>
+        </div>
+
+        <h2>Why exception handling is important</h2>
+
+        <ul>
+          <li>🛡️ Prevents program crashes</li>
+          <li>⚙️ Improves user experience</li>
+          <li>🔍 Helps debug errors safely</li>
+          <li>📦 Makes applications more reliable</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Real-world fact</div>
+          <p>Almost all VB.NET applications (desktop apps, enterprise software) rely heavily on Try...Catch blocks for stability.</p>
+        </div>
+
+        <h2>When to use Finally</h2>
+
+        <p>
+          The <code>Finally</code> block is used for cleanup tasks like closing files, releasing resources, or disconnecting databases.
+        </p>
+
+        <div class="code-block">
+          <pre><span class="kw">Finally</span>
+    file.Close()
+<span class="kw">End Try</span></pre>
+        </div>
+
+        <h2>Summary</h2>
+
+        <p>
+          In Visual Basic, exceptions are handled using Try, Catch, and Finally blocks.
+          This ensures your program can handle errors gracefully without crashing.
+        </p>
+
+        <p>
+          In short: <strong>Try runs code, Catch handles errors, Finally always executes.</strong>
+        </p>
+
+      </div>
+
+      <!-- Related -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// VB.NET</div>
+            <div class="related-card-title">What is VB.NET used for?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Programming</div>
+            <div class="related-card-title">What is exception handling?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// C#</div>
+            <div class="related-card-title">Try Catch in C# explained</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Backend</div>
+            <div class="related-card-title">How applications handle errors</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list">
+          <a href="#">What is exception handling?</a>
+          <a href="#">Try Catch Finally</a>
+          <a href="#">Examples</a>
+          <a href="#">Specific exceptions</a>
+          <a href="#">Why it matters</a>
+          <a href="#">Summary</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">🧩</div>
+          <div class="course-promo-name">VB.NET Basics</div>
+          <div class="course-promo-desc">Learn Windows apps, error handling, and object-oriented programming.</div>
+          <a href="../lessons/vb.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

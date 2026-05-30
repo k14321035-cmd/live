@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>Stack vs Heap Memory in C — Code Tutorium</title>
+
+  <meta name="description" content="Learn the difference between stack and heap memory in C programming with simple examples and clear explanation.">
+
+  <meta name="keywords" content="stack vs heap, c memory stack heap, difference between stack and heap, memory management c">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Stack vs Heap Memory in C — Code Tutorium">
+  <meta property="og:description" content="Understand stack and heap memory in C with examples and comparison table.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/stack-vs-heap.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Stack vs Heap Memory in C — Code Tutorium">
+  <meta name="twitter:description" content="Memory concepts explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/stack-vs-heap.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #a78bfa;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is stack memory?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stack memory is a region used for static memory allocation, function calls, and local variables."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is heap memory?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Heap memory is used for dynamic memory allocation during runtime using malloc, calloc, realloc, and free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the main difference between stack and heap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stack is automatically managed and fast, while heap is manually managed and flexible."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Stack vs Heap</span>
+  </nav>
+
+  <div class="post-tag">C</div>
+
+  <h1 class="post-title">Stack vs Heap Memory in C</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~6 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li><strong>Stack</strong> is used for static memory allocation (automatic).</li>
+      <li><strong>Heap</strong> is used for dynamic memory allocation (manual).</li>
+      <li>Stack is fast but limited; heap is flexible but slower.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is stack memory?</h2>
+
+    <p>
+      Stack memory is a region of memory used for <strong>automatic storage</strong> such as function calls, local variables, and control flow.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>Stack works like a stack of plates — last in, first out (LIFO).</p>
+    </div>
+
+    <h2>What is heap memory?</h2>
+
+    <p>
+      Heap memory is a large pool of memory used for <strong>dynamic allocation</strong> during runtime.
+    </p>
+
+    <p>
+      It is managed manually using <code>malloc</code>, <code>calloc</code>, <code>realloc</code>, and <code>free</code>.
+    </p>
+
+    <h2>Stack vs Heap comparison</h2>
+
+    <div class="code-block">
+
+
+<pre>
+Feature        | Stack                     | Heap
+------------------------------------------------------------
+Allocation     | Automatic                | Manual
+Speed          | Very fast                | Slower
+Size limit     | Small                    | Large
+Management     | OS handles it           | Programmer handles it
+Lifetime       | Function scope          | Until freed manually
+</pre>
+
+
+    </div>
+
+    <h2>Stack example</h2>
+
+    <div class="code-block">
+
+
+<pre>void func() {
+  int x = 10;   <span class="cmt">// stored in stack</span>
+}</pre>
+
+
+    </div>
+
+    <h2>Heap example</h2>
+
+    <div class="code-block">
+
+
+<pre>int *ptr = (int*) malloc(sizeof(int));
+*ptr = 10;
+free(ptr);</pre>
+
+
+    </div>
+
+    <h2>How stack works</h2>
+
+    <ul>
+      <li>Memory is automatically allocated when function is called</li>
+      <li>Freed when function ends</li>
+      <li>Uses LIFO order</li>
+    </ul>
+
+    <h2>How heap works</h2>
+
+    <ul>
+      <li>Memory is allocated manually</li>
+      <li>Persists until explicitly freed</li>
+      <li>Used for dynamic data structures</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Real-world fact</div>
+      <p>Most crashes in C programs happen due to incorrect heap memory handling (like memory leaks or double free errors).</p>
+    </div>
+
+    <h2>When to use stack</h2>
+
+    <ul>
+      <li>Small, temporary variables</li>
+      <li>Function-local data</li>
+      <li>Fast execution needed</li>
+    </ul>
+
+    <h2>When to use heap</h2>
+
+    <ul>
+      <li>Large or unknown data size</li>
+      <li>Dynamic data structures</li>
+      <li>Data that must persist after function ends</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+      Stack memory is fast and automatically managed but limited in size. Heap memory is flexible and powerful but requires manual management.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="dynamic-memory-allocation-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What is Dynamic Memory Allocation?</div>
+      </a>
+
+      <a href="what-are-pointers-in-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What are Pointers in C?</div>
+      </a>
+
+      <a href="what-are-arrays-in-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What are Arrays in C?</div>
+      </a>
+
+      <a href="structure-vs-union.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">Structure vs Union</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Stack</a>
+      <a href="#">Heap</a>
+      <a href="#">Comparison</a>
+      <a href="#">Examples</a>
+      <a href="#">Use cases</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🧠</div>
+      <div class="course-promo-name">Memory in C</div>
+      <div class="course-promo-desc">
+        Understand how stack and heap work together in real C programs.
+      </div>
+      <a href="../lessons/c.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

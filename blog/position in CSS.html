@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What is Position in CSS? — Code Tutorium</title>
+
+  <meta name="description" content="Learn CSS position property (static, relative, absolute, fixed, sticky) with simple examples.">
+
+  <meta name="keywords" content="css position, relative absolute fixed sticky, css layout position explained, css tutorial">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is Position in CSS? — Code Tutorium">
+  <meta property="og:description" content="Understand CSS position property with real examples: static, relative, absolute, fixed, sticky.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/css-position.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is Position in CSS? — Code Tutorium">
+  <meta name="twitter:description" content="CSS positioning explained simply with examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/css-position.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #fb7185;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is CSS position?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CSS position property defines how an element is positioned in a document, using values like static, relative, absolute, fixed, and sticky."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is absolute positioning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolute positioning removes an element from normal flow and positions it relative to its nearest positioned ancestor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is fixed positioning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fixed positioning keeps an element fixed in the same place even when scrolling."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>CSS Position</span>
+  </nav>
+
+  <div class="post-tag">CSS</div>
+
+  <h1 class="post-title">What is Position in CSS?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~6 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>The <strong>position</strong> property controls how elements are placed on a page.</li>
+      <li>It defines whether an element follows normal flow or is positioned manually.</li>
+      <li>Main values: <strong>static, relative, absolute, fixed, sticky</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is CSS position?</h2>
+
+    <p>
+      The <strong>CSS position property</strong> defines how an element is positioned in a layout.
+    </p>
+
+    <p>
+      It controls whether an element stays in normal flow or is manually placed using coordinates like top, left, right, and bottom.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>Position decides where an element sits on the page.</p>
+    </div>
+
+    <h2>1. Static (default)</h2>
+
+    <p>
+      Every element is static by default. It follows normal document flow.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">div</span> {
+  <span class="prop">position</span>: <span class="val">static</span>;
+}</pre>
+
+
+    </div>
+
+    <h2>2. Relative</h2>
+
+    <p>
+      The element stays in normal flow but can be shifted relative to its original position.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">div</span> {
+  <span class="prop">position</span>: <span class="val">relative</span>;
+  <span class="prop">top</span>: <span class="val">10px</span>;
+  <span class="prop">left</span>: <span class="val">20px</span>;
+}</pre>
+
+
+    </div>
+
+    <h2>3. Absolute</h2>
+
+    <p>
+      The element is removed from normal flow and positioned relative to the nearest positioned ancestor.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">div</span> {
+  <span class="prop">position</span>: <span class="val">absolute</span>;
+  <span class="prop">top</span>: <span class="val">0</span>;
+  <span class="prop">right</span>: <span class="val">0</span>;
+}</pre>
+
+
+    </div>
+
+    <h2>4. Fixed</h2>
+
+    <p>
+      The element is fixed relative to the browser window and does not move when scrolling.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">div</span> {
+  <span class="prop">position</span>: <span class="val">fixed</span>;
+  <span class="prop">bottom</span>: <span class="val">20px</span>;
+  <span class="prop">right</span>: <span class="val">20px</span>;
+}</pre>
+
+
+    </div>
+
+    <h2>5. Sticky</h2>
+
+    <p>
+      Sticky elements behave like relative elements until a scroll threshold is reached, then they stick.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">div</span> {
+  <span class="prop">position</span>: <span class="val">sticky</span>;
+  <span class="prop">top</span>: <span class="val">0</span>;
+}</pre>
+
+
+    </div>
+
+    <h2>Key differences</h2>
+
+    <ul>
+      <li><strong>Static</strong> → default flow</li>
+      <li><strong>Relative</strong> → moves from original position</li>
+      <li><strong>Absolute</strong> → removed from flow</li>
+      <li><strong>Fixed</strong> → stays on screen during scroll</li>
+      <li><strong>Sticky</strong> → hybrid of relative + fixed</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Important</div>
+      <p>Absolute positioning depends on a parent element with position relative, absolute, or fixed.</p>
+    </div>
+
+    <h2>Real-world usage</h2>
+
+    <ul>
+      <li>Sticky headers</li>
+      <li>Popups and modals</li>
+      <li>Floating buttons</li>
+      <li>Tooltips</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+      CSS position controls how elements are placed on a page. Each value gives different control over layout and scrolling behavior.
+    </p>
+
+    <p>
+      Understanding positioning is essential for building modern UI layouts.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="css-box-model.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is the CSS Box Model?</div>
+      </a>
+
+      <a href="inline-vs-block.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">Inline vs Block Elements</div>
+      </a>
+
+      <a href="css-flexbox.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is Flexbox?</div>
+      </a>
+
+      <a href="css-grid.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS Grid?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Position</a>
+      <a href="#">Static</a>
+      <a href="#">Relative</a>
+      <a href="#">Absolute</a>
+      <a href="#">Fixed</a>
+      <a href="#">Sticky</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">📍</div>
+      <div class="course-promo-name">CSS Positioning</div>
+      <div class="course-promo-desc">
+        Master layout control with positioning, stacking, and real-world UI patterns.
+      </div>
+      <a href="../lessons/css.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What is the DOM in HTML? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what the DOM (Document Object Model) is in HTML, how it works, and why it is important for JavaScript and web development.">
+
+  <meta name="keywords" content="DOM in html, document object model, html dom explained, javascript dom, web development basics">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is the DOM in HTML? — Code Tutorium">
+  <meta property="og:description" content="Understand the DOM (Document Object Model) in simple terms with examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/dom-in-html.html">
+
+  <!-- Twitter -->
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is the DOM in HTML? — Code Tutorium">
+  <meta name="twitter:description" content="DOM explained simply for beginners in web development.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/dom-in-html.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #a78bfa;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the DOM in HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The DOM (Document Object Model) is a programming interface that represents HTML as a tree of objects that can be manipulated with JavaScript."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the DOM important?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The DOM allows developers to dynamically change content, structure, and styles of a web page using JavaScript."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the DOM part of HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The DOM is not HTML itself, but a representation of HTML created by the browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>DOM in HTML</span>
+  </nav>
+
+  <div class="post-tag">HTML</div>
+
+  <h1 class="post-title">What is the DOM (Document Object Model)?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~5 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>The DOM is a <strong>tree-like representation</strong> of an HTML page.</li>
+      <li>It allows JavaScript to access and change elements.</li>
+      <li>Every HTML tag becomes a <strong>node</strong> in the DOM.</li>
+      <li>It is created automatically by the browser.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is the DOM?</h2>
+
+    <p>
+      The <strong>DOM (Document Object Model)</strong> is a programming interface that represents an HTML document as a structured tree of objects.
+    </p>
+
+    <p>
+      In simple words: the browser takes your HTML and converts it into a model that JavaScript can interact with.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>HTML becomes a tree of objects that can be read and changed using JavaScript.</p>
+    </div>
+
+    <h2>How does the DOM work?</h2>
+
+    <p>
+      When a browser loads a webpage, it:
+    </p>
+
+    <ul>
+      <li>Reads the HTML file</li>
+      <li>Breaks it into elements</li>
+      <li>Creates a tree structure (DOM tree)</li>
+      <li>Allows scripts to access and modify it</li>
+    </ul>
+
+    <h2>Example DOM tree</h2>
+
+    <div class="code-block">
+
+
+<pre>Document
+ └── html
+     ├── head
+     │    └── title
+     └── body
+          ├── h1
+          └── p</pre>
+
+
+    </div>
+
+    <h2>DOM vs HTML</h2>
+
+    <ul>
+      <li><strong>HTML</strong> → the code you write</li>
+      <li><strong>DOM</strong> → the browser’s live representation of that code</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Important</div>
+      <p>The DOM can change dynamically — even after the page loads — using JavaScript.</p>
+    </div>
+
+    <h2>Why is the DOM important?</h2>
+
+    <p>
+      The DOM is what makes modern websites interactive.
+    </p>
+
+    <ul>
+      <li>Changing text without reloading the page</li>
+      <li>Showing or hiding elements</li>
+      <li>Handling user clicks and input</li>
+      <li>Updating styles dynamically</li>
+    </ul>
+
+    <h2>Example of DOM manipulation</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">// Change text using JavaScript</span>
+document.querySelector("h1").innerText = "Hello DOM!";</pre>
+
+
+    </div>
+
+    <p>
+      Here, JavaScript selects an HTML element and changes its content in real time.
+    </p>
+
+    <h2>How the DOM is structured</h2>
+
+    <p>
+      The DOM is structured like a family tree:
+    </p>
+
+    <ul>
+      <li><strong>Document</strong> → root of everything</li>
+      <li><strong>Elements</strong> → tags like &lt;html&gt;, &lt;body&gt;</li>
+      <li><strong>Nodes</strong> → every part of the page (text, attributes, elements)</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+      The DOM is a bridge between HTML and JavaScript. It turns your webpage into a structured tree that can be dynamically accessed and modified.
+    </p>
+
+    <p>
+      Without the DOM, websites would be static and non-interactive.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-is-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is HTML?</div>
+      </a>
+
+      <a href="what-is-css.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS?</div>
+      </a>
+
+      <a href="what-is-javascript.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What is JavaScript?</div>
+      </a>
+
+      <a href="semantic-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What are semantic tags?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">What is DOM?</a>
+      <a href="#">How it works</a>
+      <a href="#">DOM tree</a>
+      <a href="#">DOM vs HTML</a>
+      <a href="#">Importance</a>
+      <a href="#">Examples</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🌐</div>
+      <div class="course-promo-name">JavaScript Basics</div>
+      <div class="course-promo-desc">
+        Learn how JavaScript interacts with the DOM to create interactive websites.
+      </div>
+      <a href="../lessons/javascript.html" class="course-promo-btn">Start learning →</a>
+    </div>
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

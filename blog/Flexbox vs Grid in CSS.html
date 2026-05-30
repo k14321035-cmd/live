@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>Flexbox vs Grid — When Should You Use Each? — Code Tutorium</title>
+
+  <meta name="description" content="Learn the difference between CSS Flexbox and Grid, and when to use each for layouts. Beginner-friendly guide with examples.">
+
+  <meta name="keywords" content="flexbox vs grid, css flexbox, css grid, when to use flexbox, when to use grid, css layout">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Flexbox vs Grid — When Should You Use Each? — Code Tutorium">
+  <meta property="og:description" content="Understand when to use Flexbox and when to use Grid in CSS layouts.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/flexbox-vs-grid.html">
+
+  <!-- Twitter -->
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Flexbox vs Grid — When Should You Use Each? — Code Tutorium">
+  <meta name="twitter:description" content="Flexbox and Grid explained simply with real use cases.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/flexbox-vs-grid.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #34d399;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should you use Flexbox?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Flexbox is best used for one-dimensional layouts like rows or columns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should you use CSS Grid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grid is best used for two-dimensional layouts like full page structures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Flexbox and Grid be used together?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, modern layouts often combine Grid for structure and Flexbox for alignment inside components."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Flexbox vs Grid</span>
+  </nav>
+
+  <div class="post-tag">CSS</div>
+
+  <h1 class="post-title">Flexbox vs CSS Grid — When Should You Use Each?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~5 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li><strong>Flexbox</strong> → for 1D layouts (row OR column)</li>
+      <li><strong>Grid</strong> → for 2D layouts (rows AND columns)</li>
+      <li>Flexbox is best for components and alignment</li>
+      <li>Grid is best for page layouts</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is Flexbox?</h2>
+
+    <p>
+      <strong>Flexbox (Flexible Box Layout)</strong> is a CSS layout system designed for arranging items in a single direction — either a row or a column.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>Flexbox is like lining items up in a row or stacking them in a column.</p>
+    </div>
+
+    <h3>Flexbox use cases</h3>
+
+    <ul>
+      <li>Navigation bars</li>
+      <li>Centering elements</li>
+      <li>Button groups</li>
+      <li>Card alignment</li>
+    </ul>
+
+    <h2>What is CSS Grid?</h2>
+
+    <p>
+      <strong>CSS Grid</strong> is a layout system that works in two dimensions — rows and columns at the same time.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>Grid is like a spreadsheet layout for web pages.</p>
+    </div>
+
+    <h3>Grid use cases</h3>
+
+    <ul>
+      <li>Full page layouts</li>
+      <li>Dashboards</li>
+      <li>Image galleries</li>
+      <li>Complex UI structures</li>
+    </ul>
+
+    <h2>Flexbox vs Grid — key differences</h2>
+
+    <ul>
+      <li><strong>Flexbox</strong> → one direction (row OR column)</li>
+      <li><strong>Grid</strong> → two directions (row AND column)</li>
+      <li><strong>Flexbox</strong> → content-driven layout</li>
+      <li><strong>Grid</strong> → layout-driven design</li>
+    </ul>
+
+    <h2>Visual example</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">/* Flexbox (1D) */</span>
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+<span class="cmt">/* Grid (2D) */</span>
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}</pre>
+
+
+    </div>
+
+    <h2>When should you use Flexbox?</h2>
+
+    <p>
+      Use Flexbox when you are working with a single row or column layout.
+    </p>
+
+    <ul>
+      <li>Align items horizontally or vertically</li>
+      <li>Distribute space between elements</li>
+      <li>Build small UI components</li>
+    </ul>
+
+    <h2>When should you use Grid?</h2>
+
+    <p>
+      Use Grid when you need control over both rows and columns.
+    </p>
+
+    <ul>
+      <li>Design full page structure</li>
+      <li>Create complex layouts</li>
+      <li>Control both horizontal and vertical placement</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Pro tip</div>
+      <p>Most real-world websites use both: Grid for layout structure, Flexbox inside components.</p>
+    </div>
+
+    <h2>Can they be used together?</h2>
+
+    <p>
+      Yes — this is the modern standard.
+    </p>
+
+    <p>
+      Example: use Grid for page layout and Flexbox for aligning items inside cards.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>
+      Flexbox is best for one-dimensional layouts, while Grid is best for two-dimensional layouts. Both are powerful and often used together.
+    </p>
+
+    <p>
+      Mastering both is essential for modern web design.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="css-flexbox.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is Flexbox?</div>
+      </a>
+
+      <a href="css-grid.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS Grid?</div>
+      </a>
+
+      <a href="css-box-model.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is the CSS Box Model?</div>
+      </a>
+
+      <a href="what-is-css.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Flexbox</a>
+      <a href="#">Grid</a>
+      <a href="#">Differences</a>
+      <a href="#">Use cases</a>
+      <a href="#">Comparison</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🧩</div>
+      <div class="course-promo-name">CSS Layout Mastery</div>
+      <div class="course-promo-desc">
+        Learn Flexbox, Grid, and modern responsive layout techniques step by step.
+      </div>
+      <a href="../lessons/css.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

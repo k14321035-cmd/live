@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>Local Storage vs Session Storage — Code Tutorium</title>
+
+  <meta name="description" content="Learn the difference between localStorage and sessionStorage in JavaScript with simple examples and real-world use cases.">
+
+  <meta name="keywords" content="localStorage vs sessionStorage, web storage api, javascript storage, local storage explained, session storage explained">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Local Storage vs Session Storage — Code Tutorium">
+  <meta property="og:description" content="Understand how localStorage and sessionStorage work in JavaScript with examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/local-vs-session-storage.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Local Storage vs Session Storage — Code Tutorium">
+  <meta name="twitter:description" content="Web storage explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/local-vs-session-storage.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #38bdf8;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is localStorage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "localStorage is a browser storage that keeps data even after the browser is closed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is sessionStorage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "sessionStorage stores data only for the duration of a page session and is cleared when the tab is closed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the main difference between localStorage and sessionStorage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "localStorage persists permanently until manually cleared, while sessionStorage is temporary and cleared when the tab closes."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Web Storage</span>
+  </nav>
+
+  <div class="post-tag">JS</div>
+
+  <h1 class="post-title">Local Storage vs Session Storage</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~5 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li><strong>localStorage</strong> keeps data even after closing the browser.</li>
+      <li><strong>sessionStorage</strong> keeps data only until the tab is closed.</li>
+      <li>Both store data in the browser using key-value pairs.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is Web Storage?</h2>
+
+    <p>
+      Web Storage is a browser feature that allows websites to store data locally in the user’s browser.
+    </p>
+
+    <p>
+      It is mainly used for saving small amounts of data like preferences, login state, or form inputs.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>Think of it as a small notebook inside the browser.</p>
+    </div>
+
+    <h2>What is localStorage?</h2>
+
+    <p>
+      <strong>localStorage</strong> stores data with no expiration time. The data remains even after closing and reopening the browser.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">// Save data</span>
+localStorage.setItem("username", "Rahul");
+
+<span class="cmt">// Get data</span>
+let user = localStorage.getItem("username");</pre>
+
+
+    </div>
+
+    <h2>What is sessionStorage?</h2>
+
+    <p>
+      <strong>sessionStorage</strong> stores data only for the current browser tab session. Once the tab is closed, the data is deleted.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">// Save data</span>
+sessionStorage.setItem("theme", "dark");
+
+<span class="cmt">// Get data</span>
+let theme = sessionStorage.getItem("theme");</pre>
+
+
+    </div>
+
+    <h2>Key differences</h2>
+
+    <ul>
+      <li>🟢 <strong>Persistence</strong> — localStorage: permanent, sessionStorage: temporary</li>
+      <li>🟢 <strong>Scope</strong> — localStorage: all tabs, sessionStorage: single tab</li>
+      <li>🟢 <strong>Lifetime</strong> — localStorage: until manually cleared, sessionStorage: until tab closes</li>
+    </ul>
+
+    <h2>Comparison table</h2>
+
+    <div class="code-block">
+
+
+<pre>
+Feature            | localStorage        | sessionStorage
+---------------------------------------------------------
+Lifetime           | Permanent           | Until tab closes
+Scope              | All tabs            | Single tab
+Cleared on close   | No                  | Yes
+</pre>
+
+
+    </div>
+
+    <h2>When to use localStorage</h2>
+
+    <ul>
+      <li>Saving user preferences (theme, language)</li>
+      <li>Keeping user logged in (non-sensitive data)</li>
+      <li>Storing app settings</li>
+    </ul>
+
+    <h2>When to use sessionStorage</h2>
+
+    <ul>
+      <li>Temporary form data</li>
+      <li>Multi-step form progress</li>
+      <li>Data that should not persist after tab closes</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Real-world fact</div>
+      <p>Both storage types are synchronous and limited in size (~5–10MB depending on browser).</p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+      localStorage is for long-term browser storage, while sessionStorage is for temporary data within a single tab session.
+    </p>
+
+    <p>
+      Both are simple, powerful tools for storing small amounts of data in the browser.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-is-javascript.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What is JavaScript?</div>
+      </a>
+
+      <a href="javascript-events.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What are Events in JavaScript?</div>
+      </a>
+
+      <a href="dom-in-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is the DOM?</div>
+      </a>
+
+      <a href="css-position.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is Position in CSS?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Web Storage</a>
+      <a href="#">localStorage</a>
+      <a href="#">sessionStorage</a>
+      <a href="#">Differences</a>
+      <a href="#">Use cases</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">💾</div>
+      <div class="course-promo-name">Web Storage API</div>
+      <div class="course-promo-desc">
+        Learn how browsers store data locally using JavaScript.
+      </div>
+      <a href="../lessons/javascript.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

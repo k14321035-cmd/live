@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>What are Symbols in Ruby? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what symbols are in Ruby, how they differ from strings, and why they are used for efficiency and identifiers.">
+  <meta name="keywords" content="Ruby symbols, what are symbols in Ruby, Ruby symbol vs string, Ruby programming symbols, Ruby hash keys">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are Symbols in Ruby? — Code Tutorium">
+  <meta property="og:description" content="Understand Ruby symbols, how they work, and why they are used instead of strings in many cases.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/ruby-symbols.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are Symbols in Ruby? — Code Tutorium">
+  <meta name="twitter:description" content="Ruby symbols explained simply with examples and real-world use cases.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/ruby-symbols.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root { --post-color: #ef4444; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>Ruby Symbols</span>
+      </nav>
+
+      <div class="post-tag">Ruby</div>
+
+      <h1 class="post-title">What are Symbols in Ruby?</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick Answer -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li>Symbols are lightweight, immutable identifiers in Ruby.</li>
+          <li>They start with a colon like <code>:name</code>.</li>
+          <li>They are more memory-efficient than strings.</li>
+          <li>They are commonly used as hash keys.</li>
+          <li>They represent names or labels rather than text data.</li>
+        </ul>
+      </div>
+
+      <!-- BODY -->
+      <div class="post-body">
+
+        <h2>What are symbols in Ruby?</h2>
+        <p>
+          In Ruby, a <strong>symbol</strong> is a lightweight, immutable object used to represent names, keys, or identifiers.
+          A symbol always starts with a colon, like <code>:name</code> or <code>:age</code>.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 Simple idea</div>
+          <p>A symbol is like a label — it represents something, but is not meant to change.</p>
+        </div>
+
+        <h2>Symbols vs Strings</h2>
+
+        <p>
+          At first glance, symbols look like strings, but they behave very differently.
+        </p>
+
+        <ul>
+          <li>🔤 <strong>String:</strong> mutable, used for text data</li>
+          <li>🏷️ <strong>Symbol:</strong> immutable, used as identifiers</li>
+        </ul>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">Ruby</span>
+          </div>
+          <pre><span class="kw">name1</span> = <span class="val">"hello"</span>   <span class="cmt"># string</span>
+<span class="kw">name2</span> = :hello      <span class="cmt"># symbol</span></pre>
+        </div>
+
+        <h2>Why use symbols?</h2>
+
+        <ul>
+          <li>🚀 Faster comparison than strings</li>
+          <li>💾 Lower memory usage (only stored once)</li>
+          <li>📌 Ideal for keys and identifiers</li>
+          <li>⚙️ Common in Ruby internals and frameworks</li>
+        </ul>
+
+        <h2>Symbols in Hashes</h2>
+
+        <p>
+          Symbols are most commonly used as keys in hashes.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">Ruby</span>
+          </div>
+          <pre><span class="kw">user</span> = {
+  :name => <span class="val">"Alice"</span>,
+  :age => <span class="val">25</span>
+}</pre>
+        </div>
+
+        <p>
+          Modern Ruby also allows a shorter syntax:
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">Ruby</span>
+          </div>
+          <pre><span class="kw">user</span> = {
+  name: <span class="val">"Alice"</span>,
+  age: <span class="val">25</span>
+}</pre>
+        </div>
+
+        <h2>Are symbols mutable?</h2>
+
+        <p>
+          No. Symbols are <strong>immutable</strong>, meaning they cannot be changed after creation.
+          This makes them safe for reuse across your program.
+        </p>
+
+        <h2>How symbols work internally</h2>
+
+        <p>
+          Ruby stores each symbol only once in memory. That means every use of <code>:name</code> points to the same object.
+        </p>
+
+        <h2>Why symbols matter</h2>
+
+        <ul>
+          <li>🛡️ Efficient memory usage</li>
+          <li>⚙️ Faster performance in comparisons</li>
+          <li>📦 Clean and readable code in hashes and APIs</li>
+          <li>👥 Widely used in frameworks like Rails</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Real-world fact</div>
+          <p>Ruby on Rails heavily uses symbols for route names, parameters, and configuration keys.</p>
+        </div>
+
+        <h2>Summary</h2>
+        <p>
+          Symbols in Ruby are immutable identifiers used to represent names efficiently.
+          They are faster and more memory-friendly than strings and are commonly used as keys in hashes.
+        </p>
+
+        <p>
+          In short: <strong>Symbols are reusable labels, not editable text.</strong>
+        </p>
+
+      </div>
+
+      <!-- Related -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Ruby</div>
+            <div class="related-card-title">What is a Hash in Ruby?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Ruby</div>
+            <div class="related-card-title">Strings vs Symbols in Ruby</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Ruby</div>
+            <div class="related-card-title">What is Ruby on Rails?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Backend</div>
+            <div class="related-card-title">How web frameworks work</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list">
+          <a href="#">What are symbols?</a>
+          <a href="#">Symbols vs strings</a>
+          <a href="#">Why use symbols</a>
+          <a href="#">Symbols in hashes</a>
+          <a href="#">How they work</a>
+          <a href="#">Summary</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">💎</div>
+          <div class="course-promo-name">Ruby Basics</div>
+          <div class="course-promo-desc">Learn Ruby fundamentals, OOP, and Rails-ready concepts.</div>
+          <a href="../lessons/ruby.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

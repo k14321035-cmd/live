@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What are HTML Forms? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what HTML forms are, how they work, and how to collect user input using input fields, labels, buttons, and form attributes. Beginner-friendly HTML forms tutorial with examples.">
+
+  <meta name="keywords" content="html forms, forms in html, html input fields, html form tutorial, html form example, learn html forms">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are HTML Forms? — Code Tutorium">
+  <meta property="og:description" content="Learn how HTML forms work and how websites collect user input with text fields, buttons, checkboxes, and more.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/html-forms.html">
+
+  <!-- Twitter -->
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are HTML Forms? — Code Tutorium">
+  <meta name="twitter:description" content="HTML forms explained simply for beginners with practical examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/html-forms.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <!-- Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Accent colour -->
+
+  <style>
+    :root {
+      --post-color: #86efac;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an HTML form?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An HTML form is a section of a web page used to collect user input. Forms can contain text fields, buttons, checkboxes, radio buttons, dropdown menus, and more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the form tag in HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The form tag creates a form container that collects and sends user data to a server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are HTML forms used for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HTML forms are used for login pages, signup forms, contact forms, search bars, checkout pages, surveys, and any feature that requires user input."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between GET and POST in forms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GET sends form data through the URL and is mainly used for searches and public data. POST sends data securely inside the request body and is commonly used for passwords and sensitive information."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://codetutorium.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://codetutorium.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "HTML Forms",
+        "item": "https://codetutorium.com/blog/html-forms.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Article Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What are HTML Forms?",
+    "description": "Learn what HTML forms are, how they work, and how websites collect user input using input fields, labels, and buttons.",
+    "author": {
+      "@type": "Organization",
+      "name": "Code Tutorium"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://codetutorium.com/favicon.png"
+      }
+    },
+    "datePublished": "2026-05-29",
+    "dateModified": "2026-05-29",
+    "url": "https://codetutorium.com/blog/html-forms.html"
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+
+
+<div class="nav-inner">
+
+  <a href="../index.html" class="nav-logo">
+    C <span>T</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="../index.html#courses" class="nav-link">Courses</a>
+    <a href="index.html" class="nav-link active">Blog</a>
+  </div>
+
+</div>
+
+
+  </nav>
+
+  <div class="page-wrap">
+
+
+<!-- ARTICLE -->
+<article>
+
+  <!-- Breadcrumb -->
+  <nav class="post-breadcrumb" aria-label="Breadcrumb">
+
+    <a href="../index.html">Home</a>
+
+    <span class="sep">/</span>
+
+    <a href="index.html">Blog</a>
+
+    <span class="sep">/</span>
+
+    <span>HTML Forms</span>
+
+  </nav>
+
+  <div class="post-tag">HTML</div>
+
+  <h1 class="post-title">What are HTML Forms?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~7 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- Quick Answer -->
+  <div class="post-summary">
+
+    <div class="post-summary-title">// Quick Answer</div>
+
+    <ul>
+      <li>HTML forms collect user input on websites.</li>
+      <li>Forms use elements like <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, and <code>&lt;button&gt;</code>.</li>
+      <li>The <code>&lt;form&gt;</code> tag wraps all form controls.</li>
+      <li>Forms can send data using GET or POST requests.</li>
+      <li>Every login page, search bar, and signup page uses HTML forms.</li>
+    </ul>
+
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is an HTML form?</h2>
+
+    <p>
+      An <strong>HTML form</strong> is a section of a web page used to collect information from users.
+    </p>
+
+    <p>
+      Forms allow visitors to:
+    </p>
+
+    <ul>
+      <li>Log in to websites</li>
+      <li>Create accounts</li>
+      <li>Search content</li>
+      <li>Send messages</li>
+      <li>Place orders</li>
+      <li>Submit surveys</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-title">💡 In simple terms</div>
+
+      <p>
+        HTML forms are how websites "talk" to users and collect information.
+      </p>
+    </div>
+
+    <h2>The &lt;form&gt; element</h2>
+
+    <p>
+      Every HTML form starts with the <code>&lt;form&gt;</code> tag.
+    </p>
+
+    <p>
+      It acts as a container for all form controls like inputs, labels, buttons, and dropdown menus.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">index.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;form&gt;</span>
+
+  
+
+<span class="tag">&lt;/form&gt;</span></pre>
+
+
+    </div>
+
+    <h2>Basic HTML form example</h2>
+
+    <p>
+      Here is a simple form with a name field and submit button:
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">form.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;form&gt;</span>
+
+  <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="str">"name"</span><span class="tag">&gt;</span>
+    Name
+  <span class="tag">&lt;/label&gt;</span>
+
+  <span class="tag">&lt;input</span>
+    <span class="attr">type</span>=<span class="str">"text"</span>
+    <span class="attr">id</span>=<span class="str">"name"</span>
+    <span class="attr">name</span>=<span class="str">"name"</span>
+  <span class="tag">&gt;</span>
+
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="str">"submit"</span><span class="tag">&gt;</span>
+    Submit
+  <span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;/form&gt;</span></pre>
+
+
+    </div>
+
+    <h2>Common form elements</h2>
+
+    <p>
+      HTML provides many different form controls.
+    </p>
+
+    <ul>
+      <li><code>&lt;input&gt;</code> — text fields, passwords, emails, checkboxes</li>
+      <li><code>&lt;textarea&gt;</code> — multi-line text</li>
+      <li><code>&lt;select&gt;</code> — dropdown menus</li>
+      <li><code>&lt;option&gt;</code> — dropdown items</li>
+      <li><code>&lt;button&gt;</code> — clickable buttons</li>
+      <li><code>&lt;label&gt;</code> — accessible field labels</li>
+    </ul>
+
+    <div class="callout info">
+
+      <div class="callout-title">📌 Real-world fact</div>
+
+      <p>
+        Nearly every interactive website feature uses forms — including Google Search, Instagram login, Amazon checkout, and YouTube comments.
+      </p>
+
+    </div>
+
+    <h2>Different input types</h2>
+
+    <p>
+      The <code>type</code> attribute changes how an input behaves.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">inputs.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"text"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"email"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"password"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"checkbox"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"radio"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"date"</span><span class="tag">&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      Modern browsers automatically provide validation and special keyboards for many input types.
+    </p>
+
+    <h2>What do GET and POST mean?</h2>
+
+    <p>
+      Forms send data using the <code>method</code> attribute.
+    </p>
+
+    <h3>GET</h3>
+
+    <p>
+      GET sends data through the URL.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">search.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;form</span> <span class="attr">method</span>=<span class="str">"GET"</span><span class="tag">&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      Commonly used for:
+    </p>
+
+    <ul>
+      <li>Search bars</li>
+      <li>Filters</li>
+      <li>Public data</li>
+    </ul>
+
+    <h3>POST</h3>
+
+    <p>
+      POST sends data inside the request body instead of the URL.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">login.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;form</span> <span class="attr">method</span>=<span class="str">"POST"</span><span class="tag">&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      Commonly used for:
+    </p>
+
+    <ul>
+      <li>Login forms</li>
+      <li>Registration forms</li>
+      <li>Payments</li>
+      <li>Sensitive information</li>
+    </ul>
+
+    <div class="callout warning">
+
+      <div class="callout-title">⚠️ Important</div>
+
+      <p>
+        Never send passwords or sensitive data using GET requests because the information appears in the URL.
+      </p>
+
+    </div>
+
+    <h2>The action attribute</h2>
+
+    <p>
+      The <code>action</code> attribute tells the browser where to send form data.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">contact.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;form</span>
+  <span class="attr">action</span>=<span class="str">"/submit-form"</span>
+  <span class="attr">method</span>=<span class="str">"POST"</span>
+<span class="tag">&gt;</span></pre>
+
+
+    </div>
+
+    <h2>Why labels matter</h2>
+
+    <p>
+      Labels improve accessibility and usability.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">label.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="str">"email"</span><span class="tag">&gt;</span>
+  Email
+<span class="tag">&lt;/label&gt;</span>
+
+<span class="tag">&lt;input</span>
+  <span class="attr">type</span>=<span class="str">"email"</span>
+  <span class="attr">id</span>=<span class="str">"email"</span>
+<span class="tag">&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      Clicking the label automatically focuses the input field.
+    </p>
+
+    <h2>Basic form validation</h2>
+
+    <p>
+      HTML includes built-in validation features.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">validation.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;input</span>
+  <span class="attr">type</span>=<span class="str">"email"</span>
+  <span class="attr">required</span>
+<span class="tag">&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      The browser will automatically prevent submission if the field is empty or invalid.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>
+      HTML forms are one of the most important parts of web development.
+    </p>
+
+    <p>
+      They allow websites to collect user input using fields, buttons, dropdowns, and other controls.
+    </p>
+
+    <p>
+      Every modern website relies on forms for interaction — from login systems to search engines and checkout pages.
+    </p>
+
+    <p>
+      Ready to build real forms? Our free HTML course teaches forms, validation, accessibility, semantic HTML, and modern web development step-by-step.
+    </p>
+
+  </div><!-- /post-body -->
+
+  <!-- Related -->
+  <div class="related">
+
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+
+      <a href="what-is-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is HTML?</div>
+      </a>
+
+      <a href="html-input-types.html" class="related-card">
+        <div class="related-card-tag">// Forms</div>
+        <div class="related-card-title">HTML input types explained</div>
+      </a>
+
+      <a href="semantic-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is semantic HTML?</div>
+      </a>
+
+      <a href="html-vs-css.html" class="related-card">
+        <div class="related-card-tag">// Web Dev</div>
+        <div class="related-card-title">What is the difference between HTML and CSS?</div>
+      </a>
+
+    </div>
+
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <!-- TOC -->
+  <div class="sidebar-card">
+
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list" aria-label="Table of contents">
+
+      <a href="#" class="toc-link">What is a form?</a>
+      <a href="#" class="toc-link">The form element</a>
+      <a href="#" class="toc-link">Basic form example</a>
+      <a href="#" class="toc-link">Common form elements</a>
+      <a href="#" class="toc-link">Input types</a>
+      <a href="#" class="toc-link">GET vs POST</a>
+      <a href="#" class="toc-link">Validation</a>
+      <a href="#" class="toc-link">Summary</a>
+
+    </nav>
+
+  </div>
+
+  <!-- COURSE PROMO -->
+  <div class="sidebar-card">
+
+    <div class="sidebar-card-title">// Free Course</div>
+
+    <div class="course-promo">
+
+      <div class="course-promo-icon">📝</div>
+
+      <div class="course-promo-name">HTML Fundamentals</div>
+
+      <div class="course-promo-desc">
+        Learn forms, semantic HTML, accessibility, SEO, and modern web development from scratch.
+      </div>
+
+      <a href="../lessons/html.html" class="course-promo-btn">
+        Start learning →
+      </a>
+
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div><!-- /page-wrap -->
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+
+<div class="footer-links">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#courses">Courses</a>
+  <a href="index.html">Blog</a>
+  <a href="../about.html">About</a>
+  <a href="../privacy.html">Privacy</a>
+</div>
+
+<p class="footer-copy">
+  &copy; 2026 Code Tutorium. All rights reserved.
+</p>
+
+
+  </footer>
+
+</body>
+</html>

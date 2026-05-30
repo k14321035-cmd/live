@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>What is Null Safety in Kotlin? — Code Tutorium</title>
+
+  <meta name="description" content="Learn Kotlin null safety features, how they prevent null pointer exceptions, and why Kotlin is safer than Java for handling null values.">
+  <meta name="keywords" content="Kotlin null safety, what is null safety in Kotlin, Kotlin nullable types, Kotlin ? operator, Kotlin !! operator">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is Null Safety in Kotlin? — Code Tutorium">
+  <meta property="og:description" content="Understand Kotlin null safety, nullable types, and how Kotlin prevents null pointer exceptions.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/kotlin-null-safety.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is Null Safety in Kotlin? — Code Tutorium">
+  <meta name="twitter:description" content="Kotlin null safety explained with simple examples and real-world usage.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/kotlin-null-safety.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root { --post-color: #a78bfa; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <article>
+
+      <!-- Breadcrumb -->
+      <nav class="post-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html">Blog</a>
+        <span class="sep">/</span>
+        <span>Kotlin Null Safety</span>
+      </nav>
+
+      <div class="post-tag">Kotlin</div>
+
+      <h1 class="post-title">What is Null Safety in Kotlin?</h1>
+
+      <div class="post-meta">
+        <span>📅 May 2026</span>
+        <span>⏱ ~5 min read</span>
+        <span>✍️ Code Tutorium</span>
+      </div>
+
+      <!-- Quick Answer -->
+      <div class="post-summary">
+        <div class="post-summary-title">// Quick Answer</div>
+        <ul>
+          <li>Null safety prevents <strong>NullPointerException</strong> errors.</li>
+          <li>Kotlin distinguishes between nullable and non-nullable types.</li>
+          <li>It uses <code>?</code>, <code>!!</code>, and safe calls to handle nulls safely.</li>
+          <li>Null checks are enforced at compile time.</li>
+          <li>It makes Kotlin safer than Java in handling null values.</li>
+        </ul>
+      </div>
+
+      <!-- BODY -->
+      <div class="post-body">
+
+        <h2>What is null safety in Kotlin?</h2>
+        <p>
+          <strong>Null safety</strong> in Kotlin is a feature that helps prevent errors caused by <code>null</code> values.
+          In many languages like Java, accessing a null value causes a runtime crash. Kotlin avoids this by handling nulls at compile time.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">💡 Simple idea</div>
+          <p>Kotlin forces you to explicitly decide whether a variable can be null or not — reducing unexpected crashes.</p>
+        </div>
+
+        <h2>Nullable vs Non-nullable types</h2>
+
+        <p>
+          In Kotlin, variables are <strong>non-nullable by default</strong>. This means they cannot hold null unless you explicitly allow it.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">Kotlin</span>
+          </div>
+          <pre><span class="kw">var</span> name: String = <span class="val">"John"</span>
+name = <span class="val">null</span> <span class="cmt">// ❌ Error</span></pre>
+        </div>
+
+        <p>
+          To allow null values, you must use the <code>?</code> symbol:
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">Kotlin</span>
+          </div>
+          <pre><span class="kw">var</span> name: String? = <span class="val">"John"</span>
+name = <span class="val">null</span> <span class="cmt">// ✅ Allowed</span></pre>
+        </div>
+
+        <h2>Safe call operator (?.)</h2>
+
+        <p>
+          The safe call operator <code>?.</code> allows you to access properties safely without crashing.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">Kotlin</span>
+          </div>
+          <pre><span class="kw">val</span> name: String? = <span class="val">null</span>
+
+println(name?.length) <span class="cmt">// prints null instead of crashing</span></pre>
+        </div>
+
+        <h2>Elvis operator (?:)</h2>
+
+        <p>
+          The Elvis operator provides a default value when something is null.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">Kotlin</span>
+          </div>
+          <pre><span class="kw">val</span> name: String? = <span class="val">null</span>
+
+<span class="kw">val</span> length = name?.length ?: <span class="val">0</span>
+
+println(length) <span class="cmt">// 0</span></pre>
+        </div>
+
+        <h2>Not-null assertion (!!)</h2>
+
+        <p>
+          The <code>!!</code> operator forces Kotlin to treat a value as non-null. If it is null, your app will crash.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-filename">Kotlin</span>
+          </div>
+          <pre><span class="kw">val</span> name: String? = <span class="val">"Kotlin"</span>
+
+println(name!!.length) <span class="cmt">// use carefully</span></pre>
+        </div>
+
+        <h2>Why null safety matters</h2>
+
+        <ul>
+          <li>🛡️ Prevents NullPointerException crashes</li>
+          <li>⚙️ Forces safer code design</li>
+          <li>📘 Improves readability and clarity</li>
+          <li>🚀 Reduces runtime bugs</li>
+          <li>👥 Helps large teams avoid hidden errors</li>
+        </ul>
+
+        <div class="callout info">
+          <div class="callout-title">📌 Real-world fact</div>
+          <p>Null pointer exceptions are one of the most common crash reasons in Java apps. Kotlin was designed specifically to eliminate this class of bugs.</p>
+        </div>
+
+        <h2>Summary</h2>
+        <p>
+          Null safety in Kotlin ensures that null values are handled explicitly and safely.
+          With nullable types, safe calls, and operators like <code>?:</code>, Kotlin prevents many common runtime crashes.
+        </p>
+
+        <p>
+          In short: <strong>Kotlin makes null errors a compile-time problem instead of a runtime disaster.</strong>
+        </p>
+
+      </div>
+
+      <!-- Related -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Kotlin</div>
+            <div class="related-card-title">What are Kotlin data classes?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Kotlin</div>
+            <div class="related-card-title">What is the Elvis operator in Kotlin?</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Android</div>
+            <div class="related-card-title">Why Kotlin is used for Android development</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-tag">// Kotlin</div>
+            <div class="related-card-title">Kotlin vs Java for beginners</div>
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// On this page</div>
+        <nav class="toc-list">
+          <a href="#">What is null safety?</a>
+          <a href="#">Nullable types</a>
+          <a href="#">Safe call operator</a>
+          <a href="#">Elvis operator</a>
+          <a href="#">Not-null assertion</a>
+          <a href="#">Why it matters</a>
+          <a href="#">Summary</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">// Free Course</div>
+        <div class="course-promo">
+          <div class="course-promo-icon">🧠</div>
+          <div class="course-promo-name">Kotlin Basics</div>
+          <div class="course-promo-desc">Learn Kotlin step by step — from syntax to Android development.</div>
+          <a href="../lessons/kotlin.html" class="course-promo-btn">Start learning →</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

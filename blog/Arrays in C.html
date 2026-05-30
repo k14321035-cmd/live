@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What are Arrays in C? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what arrays are in C programming, how they work, and how to use them with simple examples.">
+
+  <meta name="keywords" content="arrays in c, c arrays explained, c programming arrays, array tutorial c, 1d array c, 2d array c">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are Arrays in C? — Code Tutorium">
+  <meta property="og:description" content="Understand arrays in C with simple examples and memory layout explanation.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/what-are-arrays-in-c.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are Arrays in C? — Code Tutorium">
+  <meta name="twitter:description" content="Arrays in C explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/what-are-arrays-in-c.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #22c55e;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an array in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An array is a collection of elements of the same data type stored in contiguous memory locations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are arrays used in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Arrays are used to store multiple values in a single variable and allow efficient data access using indices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are types of arrays in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "C supports one-dimensional, two-dimensional, and multi-dimensional arrays."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Arrays in C</span>
+  </nav>
+
+  <div class="post-tag">C</div>
+
+  <h1 class="post-title">What are Arrays in C?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~6 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>An <strong>array</strong> is a collection of elements of the same type.</li>
+      <li>All elements are stored in contiguous memory locations.</li>
+      <li>They are accessed using index numbers starting from 0.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is an array?</h2>
+
+    <p>
+      In C, an <strong>array</strong> is a data structure that stores multiple values of the same data type in a single variable.
+    </p>
+
+    <p>
+      Instead of creating many variables, you use one array to store all values together.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>An array is like a row of boxes, each holding one value.</p>
+    </div>
+
+    <h2>Why use arrays?</h2>
+
+    <ul>
+      <li>📦 Store multiple values in one variable</li>
+      <li>⚡ Faster access using indexes</li>
+      <li>🧹 Cleaner and organized code</li>
+      <li>📊 Useful for loops and data processing</li>
+    </ul>
+
+    <h2>Declaring an array</h2>
+
+    <div class="code-block">
+
+
+<pre>int numbers[5];</pre>
+
+
+    </div>
+
+    <p>
+      This creates an array that can store 5 integers.
+    </p>
+
+    <h2>Initializing an array</h2>
+
+    <div class="code-block">
+
+
+<pre>int numbers[5] = {10, 20, 30, 40, 50};</pre>
+
+
+    </div>
+
+    <h2>Accessing array elements</h2>
+
+    <p>
+      Array elements are accessed using index numbers (starting from 0).
+    </p>
+
+    <div class="code-block">
+
+
+<pre>printf("%d", numbers[0]);  <span class="cmt">// 10</span>
+printf("%d", numbers[2]);  <span class="cmt">// 30</span></pre>
+
+
+    </div>
+
+    <h2>How arrays work in memory</h2>
+
+    <ul>
+      <li>All elements are stored in consecutive memory locations</li>
+      <li>Each element has the same data type</li>
+      <li>Index helps calculate memory address</li>
+    </ul>
+
+    <h2>Looping through arrays</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">for</span>(int i = 0; i < 5; i++) {
+  printf("%d\n", numbers[i]);
+}</pre>
+
+
+    </div>
+
+    <h2>Types of arrays</h2>
+
+    <ul>
+      <li>1D arrays — single row</li>
+      <li>2D arrays — rows and columns (matrices)</li>
+      <li>Multi-dimensional arrays</li>
+    </ul>
+
+    <h2>Example of 2D array</h2>
+
+    <div class="code-block">
+
+
+<pre>int matrix[2][2] = {
+  {1, 2},
+  {3, 4}
+};</pre>
+
+
+    </div>
+
+    <h2>Common mistakes</h2>
+
+    <ul>
+      <li>Accessing out-of-bounds index</li>
+      <li>Not initializing arrays properly</li>
+      <li>Confusing size and index</li>
+    </ul>
+
+    <div class="callout warning">
+      <div class="callout-title">⚠️ Important</div>
+      <p>Array indexes in C always start from 0. Accessing invalid indexes can cause undefined behavior.</p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+      Arrays in C are used to store multiple values of the same type in a single variable, using continuous memory and index-based access.
+    </p>
+
+    <p>
+      They are one of the most important and widely used data structures in C programming.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-are-pointers-in-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What are Pointers in C?</div>
+      </a>
+
+      <a href="memory-management-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">Memory Management in C</div>
+      </a>
+
+      <a href="what-is-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What is C Programming?</div>
+      </a>
+
+      <a href="what-is-javascript.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What is JavaScript?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Array</a>
+      <a href="#">Why use arrays</a>
+      <a href="#">Declaration</a>
+      <a href="#">Accessing</a>
+      <a href="#">Memory</a>
+      <a href="#">Types</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🧩</div>
+      <div class="course-promo-name">Arrays in C</div>
+      <div class="course-promo-desc">
+        Learn how to store and manage multiple values efficiently in C programming.
+      </div>
+      <a href="../lessons/c.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

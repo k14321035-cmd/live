@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What are Lists in HTML? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what lists are in HTML, how ordered and unordered lists work, and how to use them with real examples. Beginner-friendly guide.">
+
+  <meta name="keywords" content="html lists, ordered list html, unordered list html, li tag, ul ol html, html tutorial">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are Lists in HTML? — Code Tutorium">
+  <meta property="og:description" content="Learn how HTML lists work with UL, OL, and LI tags with simple examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/html-lists.html">
+
+  <!-- Twitter -->
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are Lists in HTML? — Code Tutorium">
+  <meta name="twitter:description" content="HTML lists explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/html-lists.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <!-- Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #fbbf24;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are lists in HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HTML lists are used to group related items together in a structured format using ordered or unordered lists."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the types of HTML lists?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HTML has three main types of lists: unordered lists (ul), ordered lists (ol), and description lists (dl)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the li tag used for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The li tag defines each item inside a list."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>HTML Lists</span>
+  </nav>
+
+  <div class="post-tag">HTML</div>
+
+  <h1 class="post-title">What are Lists in HTML?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~4 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- Quick Answer -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>HTML lists group related items together.</li>
+      <li>They are used for menus, steps, features, and structured data.</li>
+      <li>There are three types: unordered, ordered, and description lists.</li>
+      <li>Each item inside a list uses the <code>&lt;li&gt;</code> tag.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What are lists in HTML?</h2>
+
+    <p>
+      <strong>HTML lists</strong> are used to group related items in a structured way.
+    </p>
+
+    <p>
+      They help organize content so it is easier to read and understand.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 In simple terms</div>
+      <p>Lists are a way to show items in order or as grouped points.</p>
+    </div>
+
+    <h2>Types of HTML lists</h2>
+
+    <h3>1. Unordered list (ul)</h3>
+
+    <p>
+      Used when order does not matter.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Apple<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Banana<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Mango<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></pre>
+
+
+    </div>
+
+    <h3>2. Ordered list (ol)</h3>
+
+    <p>
+      Used when order matters.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="tag">&lt;ol&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Wake up<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Brush teeth<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Go to school<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></pre>
+
+
+    </div>
+
+    <h3>3. Description list (dl)</h3>
+
+    <p>
+      Used for terms and descriptions.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="tag">&lt;dl&gt;</span>
+  <span class="tag">&lt;dt&gt;</span>HTML<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>Structure of a webpage<span class="tag">&lt;/dd&gt;</span>
+
+  <span class="tag">&lt;dt&gt;</span>CSS<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>Styles the webpage<span class="tag">&lt;/dd&gt;</span>
+<span class="tag">&lt;/dl&gt;</span></pre>
+
+
+    </div>
+
+    <h2>What is the &lt;li&gt; tag?</h2>
+
+    <p>
+      The <code>&lt;li&gt;</code> tag defines each item inside a list.
+    </p>
+
+    <p>
+      It is used inside both <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code>.
+    </p>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Real-world fact</div>
+      <p>Navigation menus, feature lists, and even dropdowns are built using HTML lists.</p>
+    </div>
+
+    <h2>Where are lists used?</h2>
+
+    <ul>
+      <li>Navigation menus</li>
+      <li>Step-by-step instructions</li>
+      <li>Product features</li>
+      <li>Shopping lists</li>
+      <li>Blog outlines</li>
+    </ul>
+
+    <h2>Example of a real webpage menu</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Home<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>About<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Contact<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></pre>
+
+
+    </div>
+
+    <h2>Nested lists</h2>
+
+    <p>
+      Lists can be placed inside other lists.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Fruits
+    <span class="tag">&lt;ul&gt;</span>
+      <span class="tag">&lt;li&gt;</span>Apple<span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;li&gt;</span>Banana<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+  <span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></pre>
+
+
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+      HTML lists are used to organize related items in a structured format.
+    </p>
+
+    <p>
+      They improve readability and are widely used in navigation, content structure, and UI design.
+    </p>
+
+    <p>
+      Mastering lists is an important step in learning HTML.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-is-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is HTML?</div>
+      </a>
+
+      <a href="forms-in-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What are forms in HTML?</div>
+      </a>
+
+      <a href="semantic-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What are semantic tags?</div>
+      </a>
+
+      <a href="what-is-css.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">What are lists?</a>
+      <a href="#">Types of lists</a>
+      <a href="#">Unordered list</a>
+      <a href="#">Ordered list</a>
+      <a href="#">Description list</a>
+      <a href="#">Nested lists</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// Free Course</div>
+
+    <div class="course-promo">
+      <div class="course-promo-icon">📋</div>
+      <div class="course-promo-name">HTML Fundamentals</div>
+      <div class="course-promo-desc">
+        Learn HTML structure, tags, lists, forms, and real-world layout building.
+      </div>
+      <a href="../lessons/html.html" class="course-promo-btn">Start learning →</a>
+    </div>
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>Structure vs Union in C — Code Tutorium</title>
+
+  <meta name="description" content="Learn the difference between structure and union in C programming with simple examples and memory explanation.">
+
+  <meta name="keywords" content="structure vs union in c, c structs and unions, difference between struct and union, c programming tutorial">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Structure vs Union in C — Code Tutorium">
+  <meta property="og:description" content="Understand the key differences between structure and union in C with examples and memory layout explanation.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/structure-vs-union.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Structure vs Union in C — Code Tutorium">
+  <meta name="twitter:description" content="Structures and unions in C explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/structure-vs-union.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #f97316;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a structure in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A structure is a user-defined data type that stores multiple variables of different types in separate memory locations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a union in C?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A union is a user-defined data type where all members share the same memory location."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the main difference between structure and union?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In structure, each member has separate memory; in union, all members share the same memory."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Structure vs Union</span>
+  </nav>
+
+  <div class="post-tag">C</div>
+
+  <h1 class="post-title">Difference between Structure and Union in C</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~6 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>A <strong>structure</strong> stores multiple values in separate memory locations.</li>
+      <li>A <strong>union</strong> shares the same memory location for all members.</li>
+      <li>Structures use more memory; unions use memory efficiently.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is a structure?</h2>
+
+    <p>
+      A <strong>structure</strong> in C is a user-defined data type that allows storing different types of variables under one name, each with its own memory space.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">struct</span> Student {
+  int id;
+  float marks;
+};</pre>
+
+
+    </div>
+
+    <p>
+      Each member (id, marks) has separate memory.
+    </p>
+
+    <h2>What is a union?</h2>
+
+    <p>
+      A <strong>union</strong> is similar to a structure, but all members share the same memory location.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">union</span> Data {
+  int id;
+  float marks;
+};</pre>
+
+
+    </div>
+
+    <p>
+      Only one value can be stored at a time.
+    </p>
+
+    <h2>Key differences</h2>
+
+    <div class="code-block">
+
+
+<pre>
+Feature        | Structure             | Union
+--------------------------------------------------------
+Memory         | Separate for each     | Shared memory
+Size           | Sum of all members    | Size of largest member
+Usage          | Store multiple values | Store one value at a time
+Modification   | Independent           | Overwrites previous value
+</pre>
+
+
+    </div>
+
+    <h2>Memory concept</h2>
+
+    <ul>
+      <li><strong>Structure</strong> → each variable gets its own memory block</li>
+      <li><strong>Union</strong> → all variables use the same memory block</li>
+    </ul>
+
+    <h2>Example: Structure</h2>
+
+    <div class="code-block">
+
+
+<pre>struct Student s;
+s.id = 1;
+s.marks = 95.5;</pre>
+
+
+    </div>
+
+    <h2>Example: Union</h2>
+
+    <div class="code-block">
+
+
+<pre>union Data d;
+d.id = 1;
+d.marks = 95.5;  <span class="cmt">// overwrites id</span></pre>
+
+
+    </div>
+
+    <h2>When to use structure</h2>
+
+    <ul>
+      <li>When you need to store multiple values together</li>
+      <li>When data should remain independent</li>
+    </ul>
+
+    <h2>When to use union</h2>
+
+    <ul>
+      <li>When memory efficiency is important</li>
+      <li>When only one value is needed at a time</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Real-world fact</div>
+      <p>Unions are often used in low-level programming like embedded systems where memory is very limited.</p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+      Structures store multiple values with separate memory, while unions share memory among all members. This makes structures flexible and unions memory-efficient.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-are-arrays-in-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What are Arrays in C?</div>
+      </a>
+
+      <a href="what-are-pointers-in-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">What are Pointers in C?</div>
+      </a>
+
+      <a href="memory-management-c.html" class="related-card">
+        <div class="related-card-tag">// C</div>
+        <div class="related-card-title">Memory Management in C</div>
+      </a>
+
+      <a href="what-is-javascript.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What is JavaScript?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Structure</a>
+      <a href="#">Union</a>
+      <a href="#">Differences</a>
+      <a href="#">Memory</a>
+      <a href="#">Examples</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🧠</div>
+      <div class="course-promo-name">Structures & Unions</div>
+      <div class="course-promo-desc">
+        Learn how complex data types work in C programming with memory efficiency concepts.
+      </div>
+      <a href="../lessons/c.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

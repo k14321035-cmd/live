@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What is Event Bubbling in JavaScript? — Code Tutorium</title>
+
+  <meta name="description" content="Learn what event bubbling is in JavaScript, how it works in the DOM, and how to control it with simple examples.">
+
+  <meta name="keywords" content="event bubbling javascript, dom event propagation, stopPropagation, javascript events explained">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is Event Bubbling in JavaScript? — Code Tutorium">
+  <meta property="og:description" content="Understand event bubbling in JavaScript with simple examples and real-world use cases.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/javascript-event-bubbling.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is Event Bubbling in JavaScript? — Code Tutorium">
+  <meta name="twitter:description" content="Event bubbling explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/javascript-event-bubbling.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #a78bfa;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is event bubbling in JavaScript?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Event bubbling is a type of event propagation where an event starts from the target element and moves up to its parent elements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you stop event bubbling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use event.stopPropagation() to prevent the event from bubbling up."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Event Bubbling</span>
+  </nav>
+
+  <div class="post-tag">JS</div>
+
+  <h1 class="post-title">What is Event Bubbling in JavaScript?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~5 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li><strong>Event bubbling</strong> is when an event moves from a child element up to its parents.</li>
+      <li>It happens automatically in the DOM.</li>
+      <li>You can stop it using <code>event.stopPropagation()</code>.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is event bubbling?</h2>
+
+    <p>
+      <strong>Event bubbling</strong> is a mechanism in JavaScript where an event starts at the target element and then "bubbles up" through its parent elements in the DOM tree.
+    </p>
+
+    <p>
+      This means a single click can trigger multiple event handlers — from the inner element to outer containers.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>An event first happens on the clicked element, then moves upward like bubbles rising in water.</p>
+    </div>
+
+    <h2>Example of event bubbling</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">// HTML structure</span>
+&lt;div id="parent"&gt;
+  &lt;button id="child"&gt;Click me&lt;/button&gt;
+&lt;/div&gt;
+
+<span class="cmt">// JavaScript</span>
+document.getElementById("child").addEventListener("click", function() {
+  console.log("Button clicked");
+});
+
+document.getElementById("parent").addEventListener("click", function() {
+  console.log("Parent clicked");
+});</pre>
+
+
+    </div>
+
+    <p>
+      When you click the button, both messages appear because the event bubbles up from the button to the parent.
+    </p>
+
+    <h2>How event bubbling works</h2>
+
+    <ul>
+      <li>1. Event happens on the target element</li>
+      <li>2. It moves to the parent element</li>
+      <li>3. Then to the grandparent, and so on</li>
+      <li>4. It continues until it reaches the document</li>
+    </ul>
+
+    <h2>Stopping event bubbling</h2>
+
+    <p>
+      You can stop the event from bubbling using <code>event.stopPropagation()</code>.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">document</span>.getElementById(<span class="val">"child"</span>).addEventListener(<span class="val">"click"</span>, function(event) {
+  event.stopPropagation();
+  console.log(<span class="val">"Button clicked only"</span>);
+});</pre>
+
+
+    </div>
+
+    <h2>Why event bubbling is useful</h2>
+
+    <ul>
+      <li>✔️ Event delegation (efficient event handling)</li>
+      <li>✔️ Fewer event listeners needed</li>
+      <li>✔️ Better performance in large apps</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Real-world usage</div>
+      <p>Developers often attach one event listener to a parent instead of many child elements using event bubbling.</p>
+    </div>
+
+    <h2>Event bubbling vs capturing</h2>
+
+    <ul>
+      <li><strong>Bubbling</strong> → child → parent (default)</li>
+      <li><strong>Capturing</strong> → parent → child (less common)</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+      Event bubbling is a process where events move from the target element up through its parents in the DOM tree.
+    </p>
+
+    <p>
+      It is a core concept in JavaScript event handling and is widely used in real-world web development.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="javascript-events.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What are Events in JavaScript?</div>
+      </a>
+
+      <a href="javascript-functions.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What are Functions in JavaScript?</div>
+      </a>
+
+      <a href="dom-in-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is the DOM?</div>
+      </a>
+
+      <a href="css-position.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is Position in CSS?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Event bubbling</a>
+      <a href="#">Example</a>
+      <a href="#">How it works</a>
+      <a href="#">Stop propagation</a>
+      <a href="#">Use cases</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🫧</div>
+      <div class="course-promo-name">Event Bubbling</div>
+      <div class="course-promo-desc">
+        Learn how events travel through the DOM and how to control them effectively.
+      </div>
+      <a href="../lessons/javascript.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

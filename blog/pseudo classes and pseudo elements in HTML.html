@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>Pseudo-classes vs Pseudo-elements — Code Tutorium</title>
+
+  <meta name="description" content="Learn the difference between CSS pseudo-classes and pseudo-elements with simple examples for beginners.">
+
+  <meta name="keywords" content="css pseudo classes, css pseudo elements, hover focus before after, css selectors explained">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Pseudo-classes vs Pseudo-elements — Code Tutorium">
+  <meta property="og:description" content="Understand CSS pseudo-classes and pseudo-elements with real examples.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/pseudo-classes-elements.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pseudo-classes vs Pseudo-elements — Code Tutorium">
+  <meta name="twitter:description" content="CSS selectors explained simply with examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/pseudo-classes-elements.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #60a5fa;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a pseudo-class in CSS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A pseudo-class defines a special state of an element, such as hover, focus, or first-child."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a pseudo-element in CSS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A pseudo-element lets you style specific parts of an element, such as the first letter or adding content before/after."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between pseudo-classes and pseudo-elements?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pseudo-classes target states of elements, while pseudo-elements target parts of elements."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>Pseudo classes & elements</span>
+  </nav>
+
+  <div class="post-tag">CSS</div>
+
+  <h1 class="post-title">What are Pseudo-classes and Pseudo-elements?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~5 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li><strong>Pseudo-classes</strong> style an element in a specific state.</li>
+      <li><strong>Pseudo-elements</strong> style a specific part of an element.</li>
+      <li>Pseudo-classes use <code>:</code> (single colon).</li>
+      <li>Pseudo-elements use <code>::</code> (double colon).</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What are pseudo-classes?</h2>
+
+    <p>
+      A <strong>pseudo-class</strong> is used to define the special state of an element.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>It styles an element when something happens to it.</p>
+    </div>
+
+    <h3>Common pseudo-classes</h3>
+
+    <ul>
+      <li><code>:hover</code> → when mouse is over element</li>
+      <li><code>:focus</code> → when input is selected</li>
+      <li><code>:active</code> → when element is clicked</li>
+      <li><code>:first-child</code> → first element in a group</li>
+    </ul>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">button</span>:hover {
+  <span class="prop">background</span>: <span class="val">blue</span>;
+}</pre>
+
+
+    </div>
+
+    <h2>What are pseudo-elements?</h2>
+
+    <p>
+      A <strong>pseudo-element</strong> lets you style a specific part of an element.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>It lets you style or create part of an element, not the whole thing.</p>
+    </div>
+
+    <h3>Common pseudo-elements</h3>
+
+    <ul>
+      <li><code>::before</code> → content before element</li>
+      <li><code>::after</code> → content after element</li>
+      <li><code>::first-letter</code> → first letter of text</li>
+      <li><code>::first-line</code> → first line of text</li>
+    </ul>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">p</span>::before {
+  <span class="prop">content</span>: <span class="val">"👉 "</span>;
+}</pre>
+
+
+    </div>
+
+    <h2>Key differences</h2>
+
+    <ul>
+      <li><strong>Pseudo-classes</strong> → target states (:hover, :focus)</li>
+      <li><strong>Pseudo-elements</strong> → target parts (::before, ::after)</li>
+      <li><strong>Pseudo-classes</strong> → single colon <code>:</code></li>
+      <li><strong>Pseudo-elements</strong> → double colon <code>::</code></li>
+    </ul>
+
+    <h2>Real-world usage</h2>
+
+    <ul>
+      <li>Hover effects on buttons</li>
+      <li>Form validation states</li>
+      <li>Decorative icons using ::before / ::after</li>
+      <li>Styling first letters in articles</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Important</div>
+      <p>Pseudo-elements do not exist in HTML — they are created by CSS.</p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+      Pseudo-classes style elements based on state, while pseudo-elements style specific parts of an element.
+    </p>
+
+    <p>
+      Together, they help create interactive and visually rich web designs.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-is-css.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS?</div>
+      </a>
+
+      <a href="css-position.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is Position in CSS?</div>
+      </a>
+
+      <a href="css-box-model.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is the CSS Box Model?</div>
+      </a>
+
+      <a href="inline-vs-block.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">Inline vs Block Elements</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Pseudo-classes</a>
+      <a href="#">Pseudo-elements</a>
+      <a href="#">Differences</a>
+      <a href="#">Examples</a>
+      <a href="#">Usage</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">✨</div>
+      <div class="course-promo-name">Advanced CSS Selectors</div>
+      <div class="course-promo-desc">
+        Master pseudo-classes, pseudo-elements, and advanced styling techniques.
+      </div>
+      <a href="../lessons/css.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

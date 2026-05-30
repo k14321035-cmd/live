@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What are Functions in JavaScript? — Code Tutorium</title>
+
+  <meta name="description" content="Learn JavaScript functions: what they are, how they work, and why they are important. Beginner-friendly explanation with examples.">
+
+  <meta name="keywords" content="javascript functions, js functions explained, function in javascript, javascript tutorial functions">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What are Functions in JavaScript? — Code Tutorium">
+  <meta property="og:description" content="Understand JavaScript functions with simple examples and real-world use cases.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/javascript-functions.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What are Functions in JavaScript? — Code Tutorium">
+  <meta name="twitter:description" content="JavaScript functions explained simply with examples.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/javascript-functions.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    :root {
+      --post-color: #facc15;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a function in JavaScript?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A function is a reusable block of code designed to perform a specific task."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do we use functions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Functions help avoid repetition, improve organization, and make code reusable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you call a function?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You call a function by writing its name followed by parentheses, like myFunction()."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">C <span>T</span></a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#courses" class="nav-link">Courses</a>
+        <a href="index.html" class="nav-link active">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+
+<article>
+
+  <nav class="post-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Blog</a>
+    <span class="sep">/</span>
+    <span>JS Functions</span>
+  </nav>
+
+  <div class="post-tag">JS</div>
+
+  <h1 class="post-title">What are Functions in JavaScript?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~5 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="post-summary">
+    <div class="post-summary-title">// Quick Answer</div>
+    <ul>
+      <li>A <strong>function</strong> is a reusable block of code.</li>
+      <li>It performs a specific task when called.</li>
+      <li>Functions help reduce repetition and organize code.</li>
+    </ul>
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is a function?</h2>
+
+    <p>
+      A <strong>function</strong> in JavaScript is a block of code designed to perform a specific task.
+    </p>
+
+    <p>
+      Instead of writing the same code again and again, you can write it once inside a function and reuse it whenever needed.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Simple idea</div>
+      <p>A function is like a machine: you give input, it does something, and gives output.</p>
+    </div>
+
+    <h2>Why do we use functions?</h2>
+
+    <ul>
+      <li>♻️ Reusability — write once, use many times</li>
+      <li>🧹 Clean code — better organization</li>
+      <li>🐞 Easier debugging</li>
+      <li>⚡ Less repetition</li>
+    </ul>
+
+    <h2>Function syntax</h2>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">// function declaration</span>
+<span class="kw">function</span> greet() {
+  <span class="kw">console.log</span>(<span class="val">"Hello!"</span>);
+}</pre>
+
+
+    </div>
+
+    <h2>Calling a function</h2>
+
+    <p>
+      A function only runs when you call it:
+    </p>
+
+    <div class="code-block">
+
+
+<pre>greet(); <span class="cmt">// Hello!</span></pre>
+
+
+    </div>
+
+    <h2>Functions with parameters</h2>
+
+    <p>
+      Functions can take inputs called <strong>parameters</strong>.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">function</span> greet(name) {
+  <span class="kw">console.log</span>(<span class="val">"Hello " + name</span>);
+}
+
+greet(<span class="val">"Rahul"</span>);
+greet(<span class="val">"Aisha"</span>);</pre>
+
+
+    </div>
+
+    <h2>Functions with return values</h2>
+
+    <p>
+      Functions can also return results.
+    </p>
+
+    <div class="code-block">
+
+
+<pre><span class="kw">function</span> add(a, b) {
+  <span class="kw">return</span> a + b;
+}
+
+<span class="kw">let</span> result = add(5, 3);
+<span class="kw">console.log</span>(result);</pre>
+
+
+    </div>
+
+    <h2>Types of functions</h2>
+
+    <ul>
+      <li>Function declaration</li>
+      <li>Function expression</li>
+      <li>Arrow functions</li>
+    </ul>
+
+    <div class="code-block">
+
+
+<pre><span class="cmt">// arrow function</span>
+<span class="kw">const</span> multiply = (a, b) => a * b;</pre>
+
+
+    </div>
+
+    <h2>Real-world usage</h2>
+
+    <ul>
+      <li>Handling button clicks</li>
+      <li>Form validation</li>
+      <li>Calculations</li>
+      <li>API calls</li>
+      <li>UI updates</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+      Functions are reusable blocks of code that perform tasks. They are one of the most important building blocks in JavaScript programming.
+    </p>
+
+    <p>
+      Once you understand functions, you can build much more powerful programs.
+    </p>
+
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+      <a href="what-is-javascript.html" class="related-card">
+        <div class="related-card-tag">// JS</div>
+        <div class="related-card-title">What is JavaScript?</div>
+      </a>
+
+      <a href="dom-in-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is the DOM?</div>
+      </a>
+
+      <a href="inline-vs-block.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">Inline vs Block Elements</div>
+      </a>
+
+      <a href="css-position.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is Position in CSS?</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list">
+      <a href="#">Function</a>
+      <a href="#">Why use functions</a>
+      <a href="#">Syntax</a>
+      <a href="#">Parameters</a>
+      <a href="#">Return values</a>
+      <a href="#">Types</a>
+      <a href="#">Summary</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="course-promo">
+      <div class="course-promo-icon">🧠</div>
+      <div class="course-promo-name">JavaScript Functions</div>
+      <div class="course-promo-desc">
+        Master reusable logic and start building real-world applications.
+      </div>
+      <a href="../lessons/javascript.html" class="course-promo-btn">Start learning →</a>
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#courses">Courses</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Code Tutorium. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

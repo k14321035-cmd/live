@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+
+  <title>What is the difference between ID and Class in HTML? — Code Tutorium</title>
+
+  <meta name="description" content="Learn the difference between HTML id and class attributes. Understand when to use ids vs classes, CSS selectors, JavaScript targeting, and best practices with beginner-friendly examples.">
+
+  <meta name="keywords" content="id vs class html, difference between id and class, html class attribute, html id attribute, css selectors, html tutorial">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Code Tutorium">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is the difference between ID and Class in HTML? — Code Tutorium">
+  <meta property="og:description" content="Learn when to use HTML ids and classes with practical examples and modern best practices.">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/blog/id-vs-class.html">
+
+  <!-- Twitter -->
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is the difference between ID and Class in HTML? — Code Tutorium">
+  <meta name="twitter:description" content="HTML id vs class explained simply for beginners.">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
+
+  <link rel="canonical" href="https://codetutorium.com/blog/id-vs-class.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <!-- Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Accent -->
+
+  <style>
+    :root {
+      --post-color: #f9a8d4;
+    }
+  </style>
+
+  <!-- FAQ Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between id and class in HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An id uniquely identifies one HTML element, while a class can be shared by multiple elements. IDs are used for unique targets, while classes are mainly used for reusable styling and grouping."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can multiple elements have the same id?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. An id should be unique within a page. Multiple elements should not share the same id value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can multiple elements share the same class?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Classes are designed to be reusable and can be applied to many elements on the same page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use id or class for CSS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modern CSS usually prefers classes because they are reusable and easier to maintain. IDs are mainly used for unique elements, anchors, and JavaScript targeting."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://codetutorium.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://codetutorium.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "ID vs Class",
+        "item": "https://codetutorium.com/blog/id-vs-class.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Article Schema -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is the difference between ID and Class in HTML?",
+    "description": "Learn the difference between id and class attributes in HTML, when to use each one, and best practices for CSS and JavaScript.",
+    "author": {
+      "@type": "Organization",
+      "name": "Code Tutorium"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://codetutorium.com/favicon.png"
+      }
+    },
+    "datePublished": "2026-05-29",
+    "dateModified": "2026-05-29",
+    "url": "https://codetutorium.com/blog/id-vs-class.html"
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+
+
+<div class="nav-inner">
+
+  <a href="../index.html" class="nav-logo">
+    C <span>T</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="../index.html#courses" class="nav-link">Courses</a>
+    <a href="index.html" class="nav-link active">Blog</a>
+  </div>
+
+</div>
+
+
+  </nav>
+
+  <div class="page-wrap">
+
+
+<!-- ARTICLE -->
+<article>
+
+  <!-- Breadcrumb -->
+  <nav class="post-breadcrumb" aria-label="Breadcrumb">
+
+    <a href="../index.html">Home</a>
+
+    <span class="sep">/</span>
+
+    <a href="index.html">Blog</a>
+
+    <span class="sep">/</span>
+
+    <span>ID vs Class</span>
+
+  </nav>
+
+  <div class="post-tag">HTML</div>
+
+  <h1 class="post-title">What is the difference between ID and Class in HTML?</h1>
+
+  <div class="post-meta">
+    <span>📅 May 2026</span>
+    <span>⏱ ~6 min read</span>
+    <span>✍️ Code Tutorium</span>
+  </div>
+
+  <!-- Quick Answer -->
+  <div class="post-summary">
+
+    <div class="post-summary-title">// Quick Answer</div>
+
+    <ul>
+      <li>An <code>id</code> uniquely identifies a single element.</li>
+      <li>A <code>class</code> can be reused on multiple elements.</li>
+      <li>IDs use <code>#</code> in CSS selectors.</li>
+      <li>Classes use <code>.</code> in CSS selectors.</li>
+      <li>Modern CSS usually prefers classes for styling.</li>
+    </ul>
+
+  </div>
+
+  <!-- BODY -->
+  <div class="post-body">
+
+    <h2>What is an ID in HTML?</h2>
+
+    <p>
+      The <code>id</code> attribute uniquely identifies a single HTML element on a page.
+    </p>
+
+    <p>
+      Each ID value should only appear once in a document.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">index.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;h1</span> <span class="attr">id</span>=<span class="str">"main-title"</span><span class="tag">&gt;</span>
+  Welcome
+<span class="tag">&lt;/h1&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      IDs are commonly used for:
+    </p>
+
+    <ul>
+      <li>Unique page sections</li>
+      <li>Anchor links</li>
+      <li>JavaScript targeting</li>
+      <li>Accessibility relationships</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-title">💡 Important</div>
+
+      <p>
+        An ID should be unique. Multiple elements should not share the same ID value.
+      </p>
+
+    </div>
+
+    <h2>What is a class in HTML?</h2>
+
+    <p>
+      The <code>class</code> attribute groups elements together.
+    </p>
+
+    <p>
+      Unlike IDs, classes are reusable and can appear on many elements.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">index.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>
+  Card 1
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>
+  Card 2
+<span class="tag">&lt;/div&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      Both elements share the same class and can be styled together.
+    </p>
+
+    <h2>CSS selectors for IDs and classes</h2>
+
+    <p>
+      CSS uses different selector syntax for IDs and classes.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">style.css</span>
+
+      </div>
+
+
+<pre><span class="cmt">/* ID selector */</span>
+<span class="kw">#main-title</span> {
+  <span class="prop">color</span>: <span class="val">navy</span>;
+}
+
+
+<span class="cmt">/* Class selector */</span>
+<span class="kw">.card</span> {
+  <span class="prop">padding</span>: <span class="val">1rem</span>;
+  <span class="prop">border-radius</span>: <span class="val">12px</span>;
+}</pre>
+
+
+    </div>
+
+    <ul>
+      <li><code>#</code> targets IDs</li>
+      <li><code>.</code> targets classes</li>
+    </ul>
+
+    <h2>Main difference between ID and class</h2>
+
+    <p>
+      The biggest difference is uniqueness and reusability.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">comparison.html</span>
+
+      </div>
+
+
+<pre><span class="cmt">&lt;!-- Unique element --&gt;</span>
+<span class="tag">&lt;header</span> <span class="attr">id</span>=<span class="str">"site-header"</span><span class="tag">&gt;</span>
+  ...
+<span class="tag">&lt;/header&gt;</span>
+
+
+<span class="cmt">&lt;!-- Reusable styling --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>
+  ...
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>
+  ...
+<span class="tag">&lt;/div&gt;</span></pre>
+
+
+    </div>
+
+    <h2>When should you use IDs?</h2>
+
+    <p>
+      Use IDs for unique page elements.
+    </p>
+
+    <p>Examples include:</p>
+
+    <ul>
+      <li>Main navigation</li>
+      <li>Hero section</li>
+      <li>Modal containers</li>
+      <li>Anchor links</li>
+      <li>JavaScript hooks</li>
+    </ul>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">anchor.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="str">"about"</span><span class="tag">&gt;</span>
+  ...
+<span class="tag">&lt;/section&gt;</span>
+
+
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#about"</span><span class="tag">&gt;</span>
+  About
+<span class="tag">&lt;/a&gt;</span></pre>
+
+
+    </div>
+
+    <h2>When should you use classes?</h2>
+
+    <p>
+      Use classes for reusable styling and grouping.
+    </p>
+
+    <p>
+      Most modern CSS is built almost entirely with classes.
+    </p>
+
+    <ul>
+      <li>Buttons</li>
+      <li>Cards</li>
+      <li>Layouts</li>
+      <li>Typography styles</li>
+      <li>Utility classes</li>
+    </ul>
+
+    <div class="callout info">
+
+      <div class="callout-title">📌 Real-world fact</div>
+
+      <p>
+        Frameworks like Bootstrap and Tailwind CSS rely heavily on classes rather than IDs.
+      </p>
+
+    </div>
+
+    <h2>CSS specificity differences</h2>
+
+    <p>
+      IDs have higher CSS specificity than classes.
+    </p>
+
+    <p>
+      This means ID styles are harder to override.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">specificity.css</span>
+
+      </div>
+
+
+<pre><span class="kw">#title</span> {
+  <span class="prop">color</span>: <span class="val">red</span>;
+}
+
+<span class="kw">.title</span> {
+  <span class="prop">color</span>: <span class="val">blue</span>;
+}</pre>
+
+
+    </div>
+
+    <p>
+      The ID selector will win because it has higher specificity.
+    </p>
+
+    <div class="callout warning">
+
+      <div class="callout-title">⚠️ Best practice</div>
+
+      <p>
+        Avoid styling large websites primarily with IDs because high specificity can make CSS difficult to maintain.
+      </p>
+
+    </div>
+
+    <h2>Can an element have both an ID and class?</h2>
+
+    <p>
+      Yes. Elements can use both attributes together.
+    </p>
+
+    <div class="code-block">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <span class="code-filename">combined.html</span>
+
+      </div>
+
+
+<pre><span class="tag">&lt;button</span>
+  <span class="attr">id</span>=<span class="str">"signup-btn"</span>
+  <span class="attr">class</span>=<span class="str">"btn primary-btn"</span>
+<span class="tag">&gt;</span>
+  Sign Up
+<span class="tag">&lt;/button&gt;</span></pre>
+
+
+    </div>
+
+    <p>
+      Here:
+    </p>
+
+    <ul>
+      <li>The ID uniquely identifies the button.</li>
+      <li>The classes apply reusable styles.</li>
+    </ul>
+
+    <h2>Common beginner mistakes</h2>
+
+    <ul>
+      <li>Using the same ID multiple times</li>
+      <li>Using IDs for all CSS styling</li>
+      <li>Forgetting that classes are reusable</li>
+      <li>Confusing <code>#</code> and <code>.</code> selectors</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+      IDs and classes are both important HTML attributes, but they serve different purposes.
+    </p>
+
+    <ul>
+      <li><strong>ID</strong> = unique identifier</li>
+      <li><strong>Class</strong> = reusable grouping and styling</li>
+    </ul>
+
+    <p>
+      Modern web development usually prefers classes for CSS and uses IDs mainly for unique elements, navigation anchors, and JavaScript targeting.
+    </p>
+
+    <p>
+      Ready to master HTML and CSS? Our free courses cover selectors, specificity, semantic HTML, layouts, and modern web development step-by-step.
+    </p>
+
+  </div><!-- /post-body -->
+
+  <!-- Related -->
+  <div class="related">
+
+    <div class="related-title">Related articles</div>
+
+    <div class="related-grid">
+
+      <a href="what-is-css.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">What is CSS?</div>
+      </a>
+
+      <a href="semantic-html.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is semantic HTML?</div>
+      </a>
+
+      <a href="div-vs-section.html" class="related-card">
+        <div class="related-card-tag">// HTML</div>
+        <div class="related-card-title">What is the difference between div and section?</div>
+      </a>
+
+      <a href="css-selectors.html" class="related-card">
+        <div class="related-card-tag">// CSS</div>
+        <div class="related-card-title">CSS selectors explained</div>
+      </a>
+
+    </div>
+
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <!-- TOC -->
+  <div class="sidebar-card">
+
+    <div class="sidebar-card-title">// On this page</div>
+
+    <nav class="toc-list" aria-label="Table of contents">
+
+      <a href="#" class="toc-link">What is an ID?</a>
+      <a href="#" class="toc-link">What is a class?</a>
+      <a href="#" class="toc-link">CSS selectors</a>
+      <a href="#" class="toc-link">Main differences</a>
+      <a href="#" class="toc-link">When to use IDs</a>
+      <a href="#" class="toc-link">When to use classes</a>
+      <a href="#" class="toc-link">Specificity</a>
+      <a href="#" class="toc-link">Summary</a>
+
+    </nav>
+
+  </div>
+
+  <!-- COURSE PROMO -->
+  <div class="sidebar-card">
+
+    <div class="sidebar-card-title">// Free Course</div>
+
+    <div class="course-promo">
+
+      <div class="course-promo-icon">🎨</div>
+
+      <div class="course-promo-name">CSS Fundamentals</div>
+
+      <div class="course-promo-desc">
+        Learn selectors, specificity, layouts, Flexbox, Grid, and modern CSS from scratch.
+      </div>
+
+      <a href="../lessons/css.html" class="course-promo-btn">
+        Start learning →
+      </a>
+
+    </div>
+
+  </div>
+
+</aside>
+
+
+  </div><!-- /page-wrap -->
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+
+<div class="footer-links">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#courses">Courses</a>
+  <a href="index.html">Blog</a>
+  <a href="../about.html">About</a>
+  <a href="../privacy.html">Privacy</a>
+</div>
+
+<p class="footer-copy">
+  &copy; 2026 Code Tutorium. All rights reserved.
+</p>
+
+
+  </footer>
+
+</body>
+</html>
