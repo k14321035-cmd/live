@@ -482,3 +482,84 @@
   border-color: var(--accent);
   background: var(--accent-dim);
 }
+/* ── LIGHT MODE OVERRIDES (WHITE & BLUE) ── */
+:root[data-theme="light"] {
+  --bg:           #f4f8fc;
+  --surface:      #ffffff;
+  --surface2:     #e8f0fe;
+  --border:       #d0ddf0;
+  --border2:      #b0cbe8;
+  --text:         #0c2340;
+  --muted:        #4e6582;
+  --accent:       #1a73e8; /* premium blue */
+  --accent-dim:   rgba(26, 115, 232, 0.10);
+}
+
+:root[data-theme="light"] .kw   { color: #d73a49; } /* Github-style light theme keywords */
+:root[data-theme="light"] .fn   { color: #6f42c1; }
+:root[data-theme="light"] .str  { color: #032f62; }
+:root[data-theme="light"] .cmt  { color: #6a737d; }
+:root[data-theme="light"] .num  { color: #005cc5; }
+:root[data-theme="light"] .val  { color: #e36209; }
+:root[data-theme="light"] .tag  { color: #22863a; }
+:root[data-theme="light"] .code-block pre { color: #24292e; background: #ffffff; }
+
+:root[data-theme="light"] .lesson-mega-nav, 
+:root[data-theme="light"] .nav { 
+  background: rgba(255, 255, 255, 0.85); 
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="light"] .footer { 
+  background: #f1f5f9; 
+  border-top-color: rgba(15, 23, 42, 0.08); 
+}
+
+
+/* ── FLOATING THEME TOGGLE BUTTON ── */
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  background: rgb(33, 33, 86);
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  width: 3.25rem;
+  height: 3.25rem;
+  color:white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.theme-toggle-btn:hover {
+  color: rgb(159, 175, 212);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(26, 136, 127, 0.35);
+}
+
+:root[data-theme="light"] .theme-toggle-btn {
+  background: #07268a;
+  border-color: #0f5aa9;
+  color: #ffffff;
+
+}
+
+:root[data-theme="light"] .theme-toggle-btn:hover {
+  background: #001b7d;
+  border-color: #001b7d;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(26, 115, 232, 0.4);
+}
+
+
+/* Toggle Sun/Moon icons based on theme */
+
+:root[data-theme="light"] .moon-icon { display:inline-block; }
+
