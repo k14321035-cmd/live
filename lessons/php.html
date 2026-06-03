@@ -2207,46 +2207,486 @@ header('Location: login.php');</pre>
     </div>
 </div>
                 <!-- ===================== LECTURE 10 ===================== -->
-                <div class="lecture" id="lec-9">
-                    <div class="lecture-tag">Lecture 10 · OOP & Advanced</div>
-                    <h1>Object-Oriented PHP</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~65 min</span>
-                    </div>
+             <div class="lecture" id="lec-9">
+    <div class="lecture-tag">Lecture 10 · OOP & Advanced</div>
+    <h1>Object-Oriented PHP</h1>
 
-                    <div class="code-block">
-                        <pre><span class="kw">class</span> User {
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~65 min</span>
+    </div>
+
+    <p>
+        Object-Oriented Programming (OOP) is a programming paradigm that allows developers
+        to organize code into reusable objects and classes. Instead of writing everything
+        as separate functions and variables, OOP helps group related data and behaviors
+        together. This approach makes applications easier to manage, maintain, and expand.
+    </p>
+
+    <p>
+        PHP provides powerful support for Object-Oriented Programming. Most modern PHP
+        frameworks such as Laravel, Symfony, and CodeIgniter are heavily based on OOP
+        concepts. Learning OOP is essential for building professional web applications.
+    </p>
+
+    <h2>What is a Class?</h2>
+
+    <p>
+        A class is a blueprint or template used to create objects. It defines the
+        properties (variables) and methods (functions) that an object can have.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> User {
     <span class="kw">public</span> <span class="kw">$name</span>;
-    <span class="kw">function</span> <span class="fn">__construct</span>(<span class="kw">$name</span>) { <span class="kw">$this</span>->name = <span class="kw">$name</span>; }
 }</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        In the above example, <strong>User</strong> is a class and <strong>$name</strong>
+        is a property of that class.
+    </p>
+
+    <h2>What is an Object?</h2>
+
+    <p>
+        An object is an instance of a class. Once a class is created, multiple objects
+        can be generated from it.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$user1</span> = <span class="kw">new</span> User();
+<span class="kw">$user1</span>->name = <span class="str">"John"</span>;
+
+<span class="kw">echo</span> <span class="kw">$user1</span>->name;</pre>
+    </div>
+
+    <p>
+        Here, <strong>$user1</strong> is an object created from the User class.
+    </p>
+
+    <h2>Properties and Methods</h2>
+
+    <p>
+        Properties store information about an object, while methods define actions
+        that the object can perform.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> User {
+
+    <span class="kw">public</span> <span class="kw">$name</span>;
+
+    <span class="kw">public function</span> <span class="fn">greet</span>() {
+        <span class="kw">echo</span> <span class="str">"Hello "</span> . <span class="kw">$this</span>->name;
+    }
+}</pre>
+    </div>
+
+    <p>
+        The method <strong>greet()</strong> uses the object's name property to display
+        a personalized greeting.
+    </p>
+
+    <h2>The $this Keyword</h2>
+
+    <p>
+        The <strong>$this</strong> keyword refers to the current object. It is used
+        inside a class to access properties and methods belonging to that object.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$this</span>->name</pre>
+    </div>
+
+    <p>
+        Whenever PHP encounters <strong>$this</strong>, it understands that you are
+        referring to the object that is currently executing the code.
+    </p>
+
+    <h2>Constructors</h2>
+
+    <p>
+        A constructor is a special method that runs automatically whenever an object
+        is created. Constructors are commonly used to initialize object properties.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> User {
+    <span class="kw">public</span> <span class="kw">$name</span>;
+
+    <span class="kw">function</span> <span class="fn">__construct</span>(<span class="kw">$name</span>) {
+        <span class="kw">$this</span>->name = <span class="kw">$name</span>;
+    }
+}</pre>
+    </div>
+
+    <p>
+        The constructor receives a name value and stores it inside the object's
+        property automatically during creation.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$user</span> = <span class="kw">new</span> User(<span class="str">"Alice"</span>);</pre>
+    </div>
+
+    <h2>Access Modifiers</h2>
+
+    <p>
+        Access modifiers determine where properties and methods can be accessed.
+        PHP provides three visibility levels:
+    </p>
+
+    <ul>
+        <li><strong>public</strong> – Accessible from anywhere.</li>
+        <li><strong>protected</strong> – Accessible within the class and inherited classes.</li>
+        <li><strong>private</strong> – Accessible only within the same class.</li>
+    </ul>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Account {
+    <span class="kw">private</span> <span class="kw">$balance</span> = 1000;
+}</pre>
+    </div>
+
+    <h2>Inheritance</h2>
+
+    <p>
+        Inheritance allows one class to acquire properties and methods from another
+        class. This promotes code reusability and reduces duplication.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Person {
+    <span class="kw">public</span> <span class="kw">$name</span>;
+}
+
+<span class="kw">class</span> Student <span class="kw">extends</span> Person {
+    <span class="kw">public</span> <span class="kw">$course</span>;
+}</pre>
+    </div>
+
+    <p>
+        The Student class inherits all accessible members of the Person class.
+    </p>
+
+    <h2>Method Overriding</h2>
+
+    <p>
+        A child class can redefine a method inherited from a parent class. This
+        process is known as method overriding.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Animal {
+    <span class="kw">public function</span> <span class="fn">sound</span>() {
+        <span class="kw">echo</span> <span class="str">"Animal Sound"</span>;
+    }
+}
+
+<span class="kw">class</span> Dog <span class="kw">extends</span> Animal {
+    <span class="kw">public function</span> <span class="fn">sound</span>() {
+        <span class="kw">echo</span> <span class="str">"Bark"</span>;
+    }
+}</pre>
+    </div>
+
+    <h2>Encapsulation</h2>
+
+    <p>
+        Encapsulation is the practice of hiding sensitive data and providing controlled
+        access through methods. This improves security and prevents accidental modification.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> BankAccount {
+
+    <span class="kw">private</span> <span class="kw">$balance</span> = 5000;
+
+    <span class="kw">public function</span> <span class="fn">getBalance</span>() {
+        <span class="kw">return</span> <span class="kw">$this</span>->balance;
+    }
+}</pre>
+    </div>
+
+    <h2>Polymorphism</h2>
+
+    <p>
+        Polymorphism allows different classes to use the same method name while
+        providing different implementations. This makes code more flexible and
+        easier to extend.
+    </p>
+
+    <p>
+        For example, multiple payment classes such as CreditCard, PayPal, and UPI
+        may all contain a <strong>pay()</strong> method, but each class processes
+        payments differently.
+    </p>
+
+    <h2>Static Properties and Methods</h2>
+
+    <p>
+        Static members belong to the class itself rather than individual objects.
+        They can be accessed without creating an object.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> MathUtil {
+
+    <span class="kw">public static function</span> <span class="fn">square</span>(<span class="kw">$num</span>) {
+        <span class="kw">return</span> <span class="kw">$num</span> * <span class="kw">$num</span>;
+    }
+}
+
+<span class="kw">echo</span> MathUtil::<span class="fn">square</span>(5);</pre>
+    </div>
+
+    <h2>Benefits of OOP</h2>
+
+    <ul>
+        <li>Improves code organization.</li>
+        <li>Encourages code reuse.</li>
+        <li>Makes large applications easier to maintain.</li>
+        <li>Enhances security through encapsulation.</li>
+        <li>Simplifies debugging and testing.</li>
+        <li>Supports scalable application development.</li>
+    </ul>
+
+    <h2>Real-World Example</h2>
+
+    <p>
+        Consider an online learning platform. You might create classes such as:
+    </p>
+
+    <ul>
+        <li>Student</li>
+        <li>Instructor</li>
+        <li>Course</li>
+        <li>Lesson</li>
+        <li>Quiz</li>
+    </ul>
+
+    <p>
+        Each class stores its own data and methods. This structure keeps the
+        application organized and makes future updates much easier.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> Course {
+
+    <span class="kw">public</span> <span class="kw">$title</span>;
+
+    <span class="kw">function</span> <span class="fn">__construct</span>(<span class="kw">$title</span>) {
+        <span class="kw">$this</span>->title = <span class="kw">$title</span>;
+    }
+}
+
+<span class="kw">$course</span> = <span class="kw">new</span> Course(<span class="str">"PHP Mastery"</span>);
+
+<span class="kw">echo</span> <span class="kw">$course</span>->title;</pre>
+    </div>
+
+    <h2>Summary</h2>
+
+    <p>
+        Object-Oriented Programming is one of the most important concepts in modern
+        PHP development. By using classes, objects, inheritance, encapsulation,
+        polymorphism, constructors, and static methods, developers can create
+        powerful, scalable, and maintainable web applications.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">class</span> User {
+    <span class="kw">public</span> <span class="kw">$name</span>;
+
+    <span class="kw">function</span> <span class="fn">__construct</span>(<span class="kw">$name</span>) {
+        <span class="kw">$this</span>->name = <span class="kw">$name</span>;
+    }
+}</pre>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 11 ===================== -->
-                <div class="lecture" id="lec-10">
-                    <div class="lecture-tag">Lecture 11 · OOP & Advanced</div>
-                    <h1>Namespaces & Composer</h1>
-                    <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
-                    <h2>Namespaces</h2>
-                    <div class="code-block"><pre>// src/Models/User.php
+             <div class="lecture" id="lec-10">
+    <div class="lecture-tag">Lecture 11 · OOP & Advanced</div>
+    <h1>Namespaces & Composer</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <p>
+        As PHP applications grow larger, managing files, classes, and external libraries
+        becomes increasingly challenging. Namespaces and Composer solve these problems by
+        organizing code efficiently and automatically loading required classes.
+    </p>
+
+    <p>
+        Modern PHP development heavily relies on Namespaces and Composer. Popular frameworks
+        such as Laravel, Symfony, and CodeIgniter use these concepts extensively. Learning
+        them is an important step toward professional PHP development.
+    </p>
+
+    <h2>What are Namespaces?</h2>
+
+    <p>
+        A namespace is a way of organizing related classes, interfaces, traits, and functions
+        into logical groups. Namespaces help prevent naming conflicts when different classes
+        share the same name.
+    </p>
+
+    <p>
+        For example, two developers might create a class called <strong>User</strong>.
+        Without namespaces, PHP would not know which User class to use. Namespaces solve
+        this issue by placing classes inside separate containers.
+    </p>
+
+    <div class="code-block">
+        <pre>// App\Models\User
+namespace App\Models;
+
+class User {}
+
+// App\Admin\User
+namespace App\Admin;
+
+class User {}</pre>
+    </div>
+
+    <p>
+        Even though both classes are named <strong>User</strong>, PHP can distinguish them
+        because they belong to different namespaces.
+    </p>
+
+    <h2>Namespaces</h2>
+
+    <p>
+        The <strong>namespace</strong> keyword is placed at the top of a PHP file and defines
+        the namespace to which the class belongs.
+    </p>
+
+    <div class="code-block">
+        <pre>// src/Models/User.php
 &lt;?php
 namespace App\Models;
+
 class User {
     public function __construct(public string $name) {}
 }
 
 // index.php
 require 'src/Models/User.php';
+
 use App\Models\User;
-$u = new User('Ahmed');</pre></div>
-                    <h2>Composer Setup</h2>
-                    <div class="code-block"><pre># Install Composer (one-time)
+
+$u = new User('Ahmed');</pre>
+    </div>
+
+    <p>
+        In this example, the User class belongs to the <strong>App\Models</strong>
+        namespace. The <strong>use</strong> keyword imports the class so it can be
+        referenced easily within the file.
+    </p>
+
+    <h2>Understanding the use Keyword</h2>
+
+    <p>
+        The <strong>use</strong> statement allows you to create an alias or shortcut
+        to a fully qualified class name. This improves readability and reduces the
+        need to type long namespace paths repeatedly.
+    </p>
+
+    <div class="code-block">
+        <pre>use App\Models\User;
+
+$user = new User("John");</pre>
+    </div>
+
+    <p>
+        Without the use statement, you would need to write the complete namespace path
+        whenever creating an object.
+    </p>
+
+    <div class="code-block">
+        <pre>$user = new App\Models\User("John");</pre>
+    </div>
+
+    <h2>Benefits of Namespaces</h2>
+
+    <ul>
+        <li>Avoid class naming conflicts.</li>
+        <li>Improve project organization.</li>
+        <li>Make large applications easier to manage.</li>
+        <li>Support third-party packages safely.</li>
+        <li>Provide cleaner and more maintainable code.</li>
+    </ul>
+
+    <h2>Project Structure Example</h2>
+
+    <p>
+        A typical PHP application using namespaces may have the following folder structure:
+    </p>
+
+    <div class="code-block">
+        <pre>project/
+│
+├── src/
+│   ├── Models/
+│   │   └── User.php
+│   │
+│   ├── Controllers/
+│   │   └── UserController.php
+│   │
+│   └── Services/
+│       └── EmailService.php
+│
+├── vendor/
+├── composer.json
+└── index.php</pre>
+    </div>
+
+    <p>
+        This structure keeps different parts of the application separated and easier
+        to locate during development.
+    </p>
+
+    <h2>Introduction to Composer</h2>
+
+    <p>
+        Composer is the most popular dependency manager for PHP. It allows developers
+        to install, update, and manage external packages and libraries with simple commands.
+    </p>
+
+    <p>
+        Instead of downloading libraries manually, Composer automatically handles package
+        installation, version management, and autoloading.
+    </p>
+
+    <h2>Why Use Composer?</h2>
+
+    <ul>
+        <li>Installs third-party libraries automatically.</li>
+        <li>Manages package dependencies.</li>
+        <li>Provides automatic class loading.</li>
+        <li>Keeps projects organized and maintainable.</li>
+        <li>Supports version control for packages.</li>
+    </ul>
+
+    <h2>Composer Setup</h2>
+
+    <p>
+        Composer only needs to be installed once on your system. After installation,
+        it can be used in any PHP project.
+    </p>
+
+    <div class="code-block">
+        <pre># Install Composer (one-time)
 curl -sS https://getcomposer.org/installer | php
 
 # Create composer.json
@@ -2254,9 +2694,86 @@ composer init
 
 # Install a package
 composer require monolog/monolog
-composer require --dev phpunit/phpunit</pre></div>
-                    <h2>Autoloading (PSR-4)</h2>
-                    <div class="code-block"><pre>// composer.json
+composer require --dev phpunit/phpunit</pre>
+    </div>
+
+    <p>
+        The <strong>composer init</strong> command creates a composer.json file that
+        stores project information and package dependencies.
+    </p>
+
+    <h2>Understanding composer.json</h2>
+
+    <p>
+        The composer.json file is the heart of every Composer project. It contains
+        package requirements, autoloading rules, project metadata, and configuration settings.
+    </p>
+
+    <div class="code-block">
+        <pre>{
+    "name": "mycompany/myproject",
+    "description": "Learning Composer",
+    "require": {
+        "monolog/monolog": "^3.0"
+    }
+}</pre>
+    </div>
+
+    <p>
+        Whenever packages are installed, Composer records them in this file so that
+        the project can be recreated easily on another machine.
+    </p>
+
+    <h2>Installing Packages</h2>
+
+    <p>
+        Composer packages are stored on Packagist, the official PHP package repository.
+        Thousands of libraries are available for logging, authentication, APIs, testing,
+        image processing, payments, and more.
+    </p>
+
+    <div class="code-block">
+        <pre>composer require monolog/monolog</pre>
+    </div>
+
+    <p>
+        This command downloads Monolog and all of its required dependencies into
+        the vendor directory.
+    </p>
+
+    <h2>The vendor Directory</h2>
+
+    <p>
+        After installing packages, Composer creates a vendor folder. This folder contains
+        all downloaded libraries and the autoloader used by your application.
+    </p>
+
+    <div class="code-block">
+        <pre>project/
+│
+├── vendor/
+│   ├── autoload.php
+│   └── ...
+│
+├── composer.json
+└── index.php</pre>
+    </div>
+
+    <p>
+        The vendor folder is automatically managed by Composer and generally should
+        not be edited manually.
+    </p>
+
+    <h2>Autoloading (PSR-4)</h2>
+
+    <p>
+        One of Composer's most powerful features is automatic class loading. Instead
+        of manually including every file using require or include statements, Composer
+        loads classes automatically when needed.
+    </p>
+
+    <div class="code-block">
+        <pre>// composer.json
 {
   "autoload": {
     "psr-4": {
@@ -2264,26 +2781,195 @@ composer require --dev phpunit/phpunit</pre></div>
     }
   }
 }
+
 // Then:
 composer dump-autoload
 
 // index.php
 require 'vendor/autoload.php';
-use App\Models\User;</pre></div>
-                    <div class="exercise"><div class="exercise-title">Practice</div><p>Set up a Composer project, autoload your classes with PSR-4, install Monolog and log to a file.</p></div>
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
-                    </div>
-                </div>
 
+use App\Models\User;</pre>
+    </div>
+
+    <p>
+        The PSR-4 standard maps namespaces to directories. In this example, classes
+        beginning with <strong>App\</strong> will be searched inside the <strong>src</strong>
+        directory automatically.
+    </p>
+
+    <h2>How PSR-4 Works</h2>
+
+    <p>
+        Consider the namespace below:
+    </p>
+
+    <div class="code-block">
+        <pre>namespace App\Models;</pre>
+    </div>
+
+    <p>
+        With the PSR-4 configuration:
+    </p>
+
+    <div class="code-block">
+        <pre>"App\\": "src/"</pre>
+    </div>
+
+    <p>
+        Composer automatically expects the file to exist at:
+    </p>
+
+    <div class="code-block">
+        <pre>src/Models/User.php</pre>
+    </div>
+
+    <p>
+        This convention makes large projects much easier to navigate and maintain.
+    </p>
+
+    <h2>Generating the Autoloader</h2>
+
+    <p>
+        Whenever you add new classes or modify autoload configurations, run the
+        following command:
+    </p>
+
+    <div class="code-block">
+        <pre>composer dump-autoload</pre>
+    </div>
+
+    <p>
+        Composer will regenerate the autoload files so that newly created classes
+        can be discovered automatically.
+    </p>
+
+    <h2>Real-World Example with Monolog</h2>
+
+    <p>
+        Monolog is one of the most widely used PHP logging libraries. It allows
+        applications to store logs in files, databases, cloud services, and more.
+    </p>
+
+    <div class="code-block">
+        <pre>use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+$log = new Logger('app');
+
+$log->pushHandler(
+    new StreamHandler('app.log')
+);
+
+$log->info('Application Started');</pre>
+    </div>
+
+    <p>
+        This example writes a log message to a file named app.log.
+    </p>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Always use namespaces in large projects.</li>
+        <li>Follow PSR-4 standards consistently.</li>
+        <li>Use Composer to manage dependencies.</li>
+        <li>Do not manually edit vendor files.</li>
+        <li>Keep composer.json under version control.</li>
+        <li>Update dependencies regularly.</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+        Namespaces help organize classes and prevent naming conflicts, while Composer
+        simplifies dependency management and class autoloading. Together they form the
+        foundation of modern PHP development and are used in nearly every professional
+        PHP application today.
+    </p>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+        <p>
+            Set up a Composer project, autoload your classes using PSR-4, create
+            multiple namespaces, install Monolog, and write log messages to a file.
+            Try creating a small project with Models, Controllers, and Services
+            directories to understand how namespaces and autoloading work together.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+    </div>
+</div>
                 <!-- ===================== LECTURE 12 ===================== -->
-                <div class="lecture" id="lec-11">
-                    <div class="lecture-tag">Lecture 12 · OOP & Advanced</div>
-                    <h1>Exceptions & Error Handling</h1>
-                    <div class="lecture-meta"><span class="meta-badge level-intermediate">Intermediate</span><span class="meta-badge">~45 min</span></div>
-                    <h2>Try-Catch</h2>
-                    <div class="code-block"><pre>try {
+             <div class="lecture" id="lec-11">
+    <div class="lecture-tag">Lecture 12 · OOP & Advanced</div>
+    <h1>Exceptions & Error Handling</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <p>
+        Errors are a natural part of software development. Files may be missing,
+        database connections can fail, users might enter invalid data, and external
+        APIs may become unavailable. A professional PHP application should handle
+        these situations gracefully instead of crashing unexpectedly.
+    </p>
+
+    <p>
+        PHP provides a powerful exception handling system that allows developers
+        to detect errors, respond appropriately, and maintain application stability.
+        Exception handling makes applications easier to debug, maintain, and secure.
+    </p>
+
+    <h2>What is an Exception?</h2>
+
+    <p>
+        An exception is an object that represents an error or unexpected event
+        occurring during program execution. When an exception is thrown, PHP stops
+        the normal flow of the program and searches for code that can handle the
+        exception.
+    </p>
+
+    <p>
+        Without exception handling, many runtime errors would terminate the script
+        immediately. Using exceptions allows developers to recover from errors and
+        provide meaningful feedback to users.
+    </p>
+
+    <div class="code-block">
+        <pre>throw new Exception("Something went wrong");</pre>
+    </div>
+
+    <p>
+        The <strong>throw</strong> keyword is used to create and trigger an exception.
+    </p>
+
+    <h2>Why Use Exception Handling?</h2>
+
+    <ul>
+        <li>Prevents application crashes.</li>
+        <li>Provides meaningful error messages.</li>
+        <li>Separates error-handling logic from business logic.</li>
+        <li>Improves debugging and maintenance.</li>
+        <li>Allows centralized error management.</li>
+        <li>Creates more reliable applications.</li>
+    </ul>
+
+    <h2>Try-Catch</h2>
+
+    <p>
+        The most common way to handle exceptions is through the
+        <strong>try-catch</strong> block. Code that may generate an exception
+        is placed inside the try block. If an exception occurs, PHP transfers
+        execution to the appropriate catch block.
+    </p>
+
+    <div class="code-block">
+        <pre>try {
     $result = 10 / 0;
 } catch (DivisionByZeroError $e) {
     echo "Math error: " . $e-&gt;getMessage();
@@ -2291,13 +2977,148 @@ use App\Models\User;</pre></div>
     echo "Error: " . $e-&gt;getMessage();
 } finally {
     echo "Cleanup.";
-}</pre></div>
-                    <h2>Custom Exception</h2>
-                    <div class="code-block"><pre>class InvalidUserException extends Exception {}
+}</pre>
+    </div>
+
+    <p>
+        In this example, dividing by zero triggers a
+        <strong>DivisionByZeroError</strong>. The matching catch block handles
+        the error and displays a message.
+    </p>
+
+    <h2>Understanding the Try Block</h2>
+
+    <p>
+        The try block contains code that may potentially fail. PHP continuously
+        monitors the code inside this block for exceptions.
+    </p>
+
+    <div class="code-block">
+        <pre>try {
+    connectToDatabase();
+}</pre>
+    </div>
+
+    <p>
+        If no exception occurs, the catch blocks are skipped and execution
+        continues normally.
+    </p>
+
+    <h2>Understanding the Catch Block</h2>
+
+    <p>
+        The catch block receives the exception object and allows developers
+        to handle the error appropriately.
+    </p>
+
+    <div class="code-block">
+        <pre>catch (Exception $e) {
+    echo $e-&gt;getMessage();
+}</pre>
+    </div>
+
+    <p>
+        The variable <strong>$e</strong> contains information about the exception,
+        including its message, file name, line number, and stack trace.
+    </p>
+
+    <h2>Exception Methods</h2>
+
+    <p>
+        Exception objects provide several useful methods for retrieving error details.
+    </p>
+
+    <div class="code-block">
+        <pre>try {
+    throw new Exception("Database failed");
+} catch (Exception $e) {
+
+    echo $e-&gt;getMessage();
+    echo $e-&gt;getCode();
+    echo $e-&gt;getFile();
+    echo $e-&gt;getLine();
+}</pre>
+    </div>
+
+    <ul>
+        <li><strong>getMessage()</strong> – Returns the error message.</li>
+        <li><strong>getCode()</strong> – Returns the exception code.</li>
+        <li><strong>getFile()</strong> – Returns the file where the exception occurred.</li>
+        <li><strong>getLine()</strong> – Returns the line number.</li>
+        <li><strong>getTrace()</strong> – Returns the stack trace.</li>
+    </ul>
+
+    <h2>Multiple Catch Blocks</h2>
+
+    <p>
+        PHP allows multiple catch blocks so different types of exceptions can
+        be handled differently.
+    </p>
+
+    <div class="code-block">
+        <pre>try {
+
+    // Risky operation
+
+} catch (PDOException $e) {
+
+    echo "Database Error";
+
+} catch (Exception $e) {
+
+    echo "General Error";
+}</pre>
+    </div>
+
+    <p>
+        This approach provides more precise control over application behavior.
+    </p>
+
+    <h2>The Finally Block</h2>
+
+    <p>
+        The finally block always executes regardless of whether an exception
+        occurs. It is commonly used for cleanup operations such as closing files,
+        releasing resources, or terminating database connections.
+    </p>
+
+    <div class="code-block">
+        <pre>try {
+
+    // Code
+
+} catch (Exception $e) {
+
+    // Handle Error
+
+} finally {
+
+    echo "Cleanup completed";
+}</pre>
+    </div>
+
+    <p>
+        The finally block ensures important cleanup code always runs.
+    </p>
+
+    <h2>Throwing Custom Exceptions</h2>
+
+    <p>
+        Sometimes built-in exceptions are not descriptive enough. PHP allows
+        developers to create custom exception classes tailored to application needs.
+    </p>
+
+    <h2>Custom Exception</h2>
+
+    <div class="code-block">
+        <pre>class InvalidUserException extends Exception {}
 
 function getUser(int $id): User {
     $u = User::find($id);
-    if (!$u) throw new InvalidUserException("User $id not found");
+
+    if (!$u)
+        throw new InvalidUserException("User $id not found");
+
     return $u;
 }
 
@@ -2306,206 +3127,2844 @@ try {
 } catch (InvalidUserException $e) {
     http_response_code(404);
     echo $e-&gt;getMessage();
-}</pre></div>
-                    <h2>set_error_handler</h2>
-                    <div class="code-block"><pre>set_error_handler(function($errno, $errstr, $errfile, $errline) {
+}</pre>
+    </div>
+
+    <p>
+        Creating custom exceptions makes error messages more meaningful and helps
+        identify the exact type of problem that occurred.
+    </p>
+
+    <h2>Creating Multiple Custom Exceptions</h2>
+
+    <p>
+        Large applications often define different exceptions for different scenarios.
+    </p>
+
+    <div class="code-block">
+        <pre>class UserNotFoundException extends Exception {}
+
+class ValidationException extends Exception {}
+
+class DatabaseException extends Exception {}</pre>
+    </div>
+
+    <p>
+        Each exception represents a specific problem, making debugging easier.
+    </p>
+
+    <h2>Exception Hierarchies</h2>
+
+    <p>
+        Custom exceptions can inherit from other custom exceptions. This allows
+        related errors to be grouped together.
+    </p>
+
+    <div class="code-block">
+        <pre>class ApplicationException extends Exception {}
+
+class DatabaseException extends ApplicationException {}
+
+class ValidationException extends ApplicationException {}</pre>
+    </div>
+
+    <p>
+        Catching the parent exception allows multiple related exceptions to be
+        handled together.
+    </p>
+
+    <h2>Handling Database Errors</h2>
+
+    <p>
+        Database operations frequently generate exceptions. PDO can be configured
+        to throw exceptions automatically whenever a query fails.
+    </p>
+
+    <div class="code-block">
+        <pre>$pdo-&gt;setAttribute(
+    PDO::ATTR_ERRMODE,
+    PDO::ERRMODE_EXCEPTION
+);</pre>
+    </div>
+
+    <p>
+        This makes database debugging significantly easier.
+    </p>
+
+    <h2>Logging Exceptions</h2>
+
+    <p>
+        Instead of displaying technical errors to users, production applications
+        typically log errors to files for later analysis.
+    </p>
+
+    <div class="code-block">
+        <pre>try {
+
+    // Operation
+
+} catch (Exception $e) {
+
+    error_log($e-&gt;getMessage());
+}</pre>
+    </div>
+
+    <p>
+        Logging preserves useful debugging information while protecting sensitive
+        application details.
+    </p>
+
+    <h2>Global Error Handling</h2>
+
+    <p>
+        PHP provides functions that allow developers to handle errors globally
+        throughout an application.
+    </p>
+
+    <h2>set_error_handler</h2>
+
+    <div class="code-block">
+        <pre>set_error_handler(function($errno, $errstr, $errfile, $errline) {
+
     error_log("[$errno] $errstr in $errfile:$errline");
+
     return true;
-});</pre></div>
-                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a UserRepository that throws different custom exceptions for not-found, invalid-data, and DB errors.</p></div>
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
-                    </div>
-                </div>
+});</pre>
+    </div>
+
+    <p>
+        This custom error handler intercepts PHP warnings and notices, allowing
+        them to be logged or processed centrally.
+    </p>
+
+    <h2>set_exception_handler</h2>
+
+    <p>
+        Uncaught exceptions can be handled globally using the
+        <strong>set_exception_handler()</strong> function.
+    </p>
+
+    <div class="code-block">
+        <pre>set_exception_handler(function($e) {
+
+    error_log($e-&gt;getMessage());
+
+    echo "An unexpected error occurred.";
+});</pre>
+    </div>
+
+    <p>
+        This prevents users from seeing raw exception details while ensuring
+        developers still receive diagnostic information.
+    </p>
+
+    <h2>Error Handling Best Practices</h2>
+
+    <ul>
+        <li>Use exceptions for exceptional situations.</li>
+        <li>Never expose sensitive error details to users.</li>
+        <li>Log errors for debugging purposes.</li>
+        <li>Create meaningful custom exception classes.</li>
+        <li>Handle database and API failures gracefully.</li>
+        <li>Use finally blocks for cleanup operations.</li>
+        <li>Implement global exception handlers in production.</li>
+    </ul>
+
+    <h2>Real-World Example</h2>
+
+    <p>
+        Imagine an online shopping application. When a customer places an order,
+        several things could go wrong:
+    </p>
+
+    <ul>
+        <li>The product may not exist.</li>
+        <li>The database connection may fail.</li>
+        <li>Payment processing may be unavailable.</li>
+        <li>Required customer data may be missing.</li>
+    </ul>
+
+    <p>
+        By throwing and handling custom exceptions, each problem can be managed
+        appropriately without crashing the entire application.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>
+        Exception handling is a critical part of modern PHP development. Using
+        try-catch blocks, custom exceptions, logging, and global handlers allows
+        applications to recover from errors gracefully and provide a better user
+        experience. Proper error handling leads to more secure, reliable, and
+        maintainable software.
+    </p>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+        <p>
+            Build a UserRepository that throws different custom exceptions for
+            user-not-found errors, validation failures, and database connection
+            issues. Add logging and create a global exception handler to manage
+            uncaught exceptions throughout the application.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 13 ===================== -->
-                <div class="lecture" id="lec-12">
-                    <div class="lecture-tag">Lecture 13 · OOP & Advanced</div>
-                    <h1>File I/O & Security</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
+        <div class="lecture" id="lec-12">
+    <div class="lecture-tag">Lecture 13 · OOP & Advanced</div>
+    <h1>File I/O & Security</h1>
 
-                    <p>Always sanitize your inputs using <code>htmlspecialchars()</code> to prevent XSS attacks.</p>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~50 min</span>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        File handling and application security are two critical aspects of PHP development.
+        Most real-world applications need to read files, write logs, process uploads,
+        generate reports, or store temporary data. At the same time, developers must
+        ensure that user input cannot be used to compromise the application.
+    </p>
+
+    <p>
+        In this lecture, you will learn how to work with files in PHP and understand
+        common security threats such as XSS, file upload vulnerabilities, directory
+        traversal attacks, and insecure data handling.
+    </p>
+
+    <h2>Introduction to File I/O</h2>
+
+    <p>
+        File I/O (Input/Output) refers to reading data from files and writing data
+        to files. PHP provides a variety of built-in functions that make file
+        manipulation simple and efficient.
+    </p>
+
+    <p>
+        Common use cases include:
+    </p>
+
+    <ul>
+        <li>Storing logs.</li>
+        <li>Reading configuration files.</li>
+        <li>Generating reports.</li>
+        <li>Uploading files.</li>
+        <li>Exporting data.</li>
+        <li>Importing CSV files.</li>
+    </ul>
+
+    <h2>Reading Files</h2>
+
+    <p>
+        PHP provides the <code>file_get_contents()</code> function to read an entire
+        file into a string.
+    </p>
+
+    <div class="code-block">
+        <pre>$content = file_get_contents("notes.txt");
+
+echo $content;</pre>
+    </div>
+
+    <p>
+        This function is ideal for small and medium-sized files where the entire
+        content needs to be loaded at once.
+    </p>
+
+    <h2>Reading Files Line by Line</h2>
+
+    <p>
+        For larger files, it is often better to read data one line at a time.
+    </p>
+
+    <div class="code-block">
+        <pre>$file = fopen("data.txt", "r");
+
+while (($line = fgets($file)) !== false) {
+    echo $line;
+}
+
+fclose($file);</pre>
+    </div>
+
+    <p>
+        This approach consumes less memory and is more suitable for processing
+        large files.
+    </p>
+
+    <h2>Writing Files</h2>
+
+    <p>
+        The <code>file_put_contents()</code> function can be used to create files
+        or overwrite existing file contents.
+    </p>
+
+    <div class="code-block">
+        <pre>file_put_contents(
+    "log.txt",
+    "Application Started"
+);</pre>
+    </div>
+
+    <p>
+        If the file does not exist, PHP automatically creates it.
+    </p>
+
+    <h2>Appending Data to Files</h2>
+
+    <p>
+        Sometimes you want to add new content without deleting existing data.
+        The FILE_APPEND flag makes this possible.
+    </p>
+
+    <div class="code-block">
+        <pre>file_put_contents(
+    "log.txt",
+    "New Log Entry\n",
+    FILE_APPEND
+);</pre>
+    </div>
+
+    <p>
+        This is commonly used for application logging.
+    </p>
+
+    <h2>Using fopen()</h2>
+
+    <p>
+        The <code>fopen()</code> function provides greater control over file
+        operations through various modes.
+    </p>
+
+    <div class="code-block">
+        <pre>$file = fopen("sample.txt", "w");
+
+fwrite($file, "Hello World");
+
+fclose($file);</pre>
+    </div>
+
+    <h2>Common File Modes</h2>
+
+    <table>
+        <tr>
+            <th>Mode</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>r</td>
+            <td>Read only.</td>
+        </tr>
+        <tr>
+            <td>w</td>
+            <td>Write only and overwrite.</td>
+        </tr>
+        <tr>
+            <td>a</td>
+            <td>Append data.</td>
+        </tr>
+        <tr>
+            <td>r+</td>
+            <td>Read and write.</td>
+        </tr>
+        <tr>
+            <td>w+</td>
+            <td>Read, write, and overwrite.</td>
+        </tr>
+    </table>
+
+    <h2>Checking File Existence</h2>
+
+    <p>
+        Before accessing a file, it is good practice to verify that it exists.
+    </p>
+
+    <div class="code-block">
+        <pre>if (file_exists("config.php")) {
+    echo "File Found";
+}</pre>
+    </div>
+
+    <p>
+        This prevents warnings and unexpected runtime errors.
+    </p>
+
+    <h2>Working with Directories</h2>
+
+    <p>
+        PHP also provides functions for creating and managing directories.
+    </p>
+
+    <div class="code-block">
+        <pre>mkdir("uploads");
+
+if (is_dir("uploads")) {
+    echo "Directory Exists";
+}</pre>
+    </div>
+
+    <h2>File Uploads</h2>
+
+    <p>
+        File uploads are one of the most common features in web applications.
+        PHP stores uploaded files temporarily and provides access through the
+        <code>$_FILES</code> superglobal.
+    </p>
+
+    <div class="code-block">
+        <pre>&lt;form method="POST"
+      enctype="multipart/form-data"&gt;
+
+    &lt;input type="file" name="photo"&gt;
+
+    &lt;button type="submit"&gt;
+        Upload
+    &lt;/button&gt;
+
+&lt;/form&gt;</pre>
+    </div>
+
+    <h2>Processing Uploaded Files</h2>
+
+    <div class="code-block">
+        <pre>move_uploaded_file(
+    $_FILES['photo']['tmp_name'],
+    "uploads/" . $_FILES['photo']['name']
+);</pre>
+    </div>
+
+    <p>
+        This moves the uploaded file from the temporary location to the desired
+        destination folder.
+    </p>
+
+    <h2>Security Fundamentals</h2>
+
+    <p>
+        Security should be considered from the beginning of every project.
+        Even small vulnerabilities can lead to serious consequences such as
+        data theft, account compromise, or complete server takeover.
+    </p>
+
+    <h2>Cross-Site Scripting (XSS)</h2>
+
+    <p>
+        XSS occurs when attackers inject malicious JavaScript into web pages.
+        This script may steal cookies, session data, or manipulate content
+        displayed to users.
+    </p>
+
+    <p>
+        Always sanitize your inputs using <code>htmlspecialchars()</code> to prevent XSS attacks.
+    </p>
+
+    <div class="code-block">
+        <pre>$safeName = htmlspecialchars(
+    $_POST['name']
+);
+
+echo $safeName;</pre>
+    </div>
+
+    <p>
+        This converts special characters into HTML entities, preventing scripts
+        from being executed in the browser.
+    </p>
+
+    <h2>Example of an XSS Attack</h2>
+
+    <div class="code-block">
+        <pre>&lt;script&gt;
+alert('Hacked');
+&lt;/script&gt;</pre>
+    </div>
+
+    <p>
+        Without proper sanitization, code like this could be executed in a user's
+        browser. Using <code>htmlspecialchars()</code> renders it harmless text.
+    </p>
+
+    <h2>SQL Injection Prevention</h2>
+
+    <p>
+        SQL Injection occurs when attackers manipulate database queries through
+        user input. Prepared statements should always be used when working with databases.
+    </p>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "SELECT * FROM users WHERE email = ?"
+);
+
+$stmt->execute([$email]);</pre>
+    </div>
+
+    <p>
+        Prepared statements separate SQL code from user data, making injection attacks
+        significantly more difficult.
+    </p>
+
+    <h2>File Upload Security</h2>
+
+    <p>
+        Never trust uploaded files blindly. Attackers may upload executable scripts
+        disguised as images or documents.
+    </p>
+
+    <div class="code-block">
+        <pre>$allowedTypes = [
+    'image/jpeg',
+    'image/png'
+];
+
+if (
+    in_array(
+        $_FILES['photo']['type'],
+        $allowedTypes
+    )
+) {
+    echo "Valid File";
+}</pre>
+    </div>
+
+    <h2>Validate File Extensions</h2>
+
+    <div class="code-block">
+        <pre>$extension = pathinfo(
+    $_FILES['photo']['name'],
+    PATHINFO_EXTENSION
+);
+
+$allowed = ['jpg', 'png'];
+
+if (
+    in_array($extension, $allowed)
+) {
+    echo "Allowed";
+}</pre>
+    </div>
+
+    <p>
+        Always validate both MIME types and file extensions before storing uploads.
+    </p>
+
+    <h2>Directory Traversal Attacks</h2>
+
+    <p>
+        Directory traversal attacks occur when users manipulate file paths to
+        access sensitive files outside the intended directory.
+    </p>
+
+    <div class="code-block">
+        <pre>../../../../etc/passwd</pre>
+    </div>
+
+    <p>
+        Never allow users to directly control file paths without validation.
+    </p>
+
+    <h2>Password Security</h2>
+
+    <p>
+        Passwords should never be stored in plain text. PHP provides secure
+        password hashing functions.
+    </p>
+
+    <div class="code-block">
+        <pre>$hash = password_hash(
+    $password,
+    PASSWORD_DEFAULT
+);
+
+if (
+    password_verify(
+        $password,
+        $hash
+    )
+) {
+    echo "Valid Password";
+}</pre>
+    </div>
+
+    <h2>Session Security</h2>
+
+    <p>
+        Sessions help identify authenticated users. Proper session management
+        is essential for application security.
+    </p>
+
+    <div class="code-block">
+        <pre>session_start();
+
+session_regenerate_id(true);</pre>
+    </div>
+
+    <p>
+        Regenerating session IDs helps protect against session fixation attacks.
+    </p>
+
+    <h2>Logging Security Events</h2>
+
+    <p>
+        Security-related actions should be logged for auditing and troubleshooting.
+    </p>
+
+    <div class="code-block">
+        <pre>error_log(
+    "Failed login attempt"
+);</pre>
+    </div>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Always validate user input.</li>
+        <li>Sanitize output before displaying it.</li>
+        <li>Use prepared statements for database queries.</li>
+        <li>Store passwords using password_hash().</li>
+        <li>Restrict uploaded file types.</li>
+        <li>Never trust user-provided file paths.</li>
+        <li>Keep sensitive files outside public directories.</li>
+        <li>Use HTTPS in production environments.</li>
+        <li>Log security-related events.</li>
+        <li>Regularly update PHP and dependencies.</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+        File I/O allows PHP applications to read, write, upload, and manage files
+        efficiently. However, file operations must always be implemented securely.
+        By understanding XSS prevention, secure file uploads, password hashing,
+        SQL injection protection, and safe file handling practices, developers can
+        build reliable and secure PHP applications.
+    </p>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+        <p>
+            Create a secure file upload system that accepts only image files,
+            validates file types and extensions, stores files in an uploads folder,
+            logs upload activity, and prevents XSS by sanitizing all displayed data.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 14 ===================== -->
-                <div class="lecture" id="lec-13">
-                    <div class="lecture-tag">Lecture 14 · Web & Database</div>
-                    <h1>MySQL & PDO</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
+       <div class="lecture" id="lec-13">
+    <div class="lecture-tag">Lecture 14 · Web & Database</div>
+    <h1>MySQL & PDO</h1>
 
-                    <p>Use PDO with prepared statements for secure database queries.</p>
-                    <div class="code-block">
-                        <pre><span class="kw">$stmt</span> = <span class="kw">$pdo</span>->prepare(<span class="st">'SELECT * FROM users WHERE id = ?'</span>);
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~60 min</span>
+    </div>
+
+    <p>
+        Databases are an essential part of modern web applications. They allow us
+        to store, retrieve, update, and manage data efficiently. Whether you are
+        building a blog, e-commerce website, social media platform, or learning
+        management system, a database is usually required to store application data.
+    </p>
+
+    <p>
+        MySQL is one of the most popular relational database management systems
+        (RDBMS) used with PHP. PHP communicates with MySQL through extensions such
+        as PDO (PHP Data Objects), which provides a secure and flexible way to work
+        with databases.
+    </p>
+
+    <h2>What is MySQL?</h2>
+
+    <p>
+        MySQL is an open-source relational database management system that stores
+        data in tables consisting of rows and columns. It uses Structured Query
+        Language (SQL) to manage and manipulate data.
+    </p>
+
+    <p>
+        MySQL is widely used because it is reliable, fast, scalable, and supported
+        by most hosting providers.
+    </p>
+
+    <h2>Database Terminology</h2>
+
+    <ul>
+        <li><strong>Database</strong> – A collection of organized data.</li>
+        <li><strong>Table</strong> – Stores related data in rows and columns.</li>
+        <li><strong>Row</strong> – A single record in a table.</li>
+        <li><strong>Column</strong> – A specific field of information.</li>
+        <li><strong>Primary Key</strong> – A unique identifier for each row.</li>
+        <li><strong>Foreign Key</strong> – A reference to another table.</li>
+    </ul>
+
+    <h2>Example Database Table</h2>
+
+    <p>
+        Consider a users table used in a web application.
+    </p>
+
+    <div class="code-block">
+        <pre>users
+
++----+----------+----------------------+
+| id | name     | email                |
++----+----------+----------------------+
+| 1  | Ahmed    | ahmed@email.com      |
+| 2  | Sarah    | sarah@email.com      |
++----+----------+----------------------+</pre>
+    </div>
+
+    <p>
+        Each row represents a user, and each column stores specific information
+        about that user.
+    </p>
+
+    <h2>Creating a Database</h2>
+
+    <p>
+        A database can be created using SQL commands.
+    </p>
+
+    <div class="code-block">
+        <pre>CREATE DATABASE learning_php;</pre>
+    </div>
+
+    <p>
+        After creating a database, tables can be added to store application data.
+    </p>
+
+    <h2>Creating a Table</h2>
+
+    <div class="code-block">
+        <pre>CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(255)
+);</pre>
+    </div>
+
+    <p>
+        This table contains an auto-incrementing ID, a user name, and an email address.
+    </p>
+
+    <h2>Introduction to PDO</h2>
+
+    <p>
+        PDO (PHP Data Objects) is a database abstraction layer that provides a
+        consistent interface for working with different database systems such as
+        MySQL, PostgreSQL, SQLite, and SQL Server.
+    </p>
+
+    <p>
+        Instead of writing database-specific code, developers can use PDO methods
+        that work similarly across multiple database engines.
+    </p>
+
+    <h2>Why Use PDO?</h2>
+
+    <ul>
+        <li>Supports multiple database systems.</li>
+        <li>Provides prepared statements.</li>
+        <li>Improves security.</li>
+        <li>Offers better error handling.</li>
+        <li>Encourages cleaner code.</li>
+        <li>Widely used in professional applications.</li>
+    </ul>
+
+    <h2>Connecting to MySQL Using PDO</h2>
+
+    <p>
+        Before executing queries, a connection must be established.
+    </p>
+
+    <div class="code-block">
+        <pre>$host = "localhost";
+$dbname = "learning_php";
+$username = "root";
+$password = "";
+
+$pdo = new PDO(
+    "mysql:host=$host;dbname=$dbname",
+    $username,
+    $password
+);</pre>
+    </div>
+
+    <p>
+        The PDO constructor creates a connection between PHP and the MySQL server.
+    </p>
+
+    <h2>Handling Connection Errors</h2>
+
+    <p>
+        Database connections may fail due to incorrect credentials or server issues.
+        Exception handling should always be used.
+    </p>
+
+    <div class="code-block">
+        <pre>try {
+
+    $pdo = new PDO(
+        "mysql:host=localhost;dbname=learning_php",
+        "root",
+        ""
+    );
+
+} catch (PDOException $e) {
+
+    echo $e->getMessage();
+}</pre>
+    </div>
+
+    <h2>Executing Simple Queries</h2>
+
+    <p>
+        The query() method is useful for executing SQL statements that do not
+        require user input.
+    </p>
+
+    <div class="code-block">
+        <pre>$result = $pdo->query(
+    "SELECT * FROM users"
+);</pre>
+    </div>
+
+    <h2>Fetching Records</h2>
+
+    <p>
+        Retrieved data can be fetched using different methods.
+    </p>
+
+    <div class="code-block">
+        <pre>$users = $result->fetchAll();
+
+print_r($users);</pre>
+    </div>
+
+    <p>
+        The fetchAll() method retrieves all matching records from the query result.
+    </p>
+
+    <h2>Prepared Statements</h2>
+
+    <p>
+        Use PDO with prepared statements for secure database queries.
+    </p>
+
+    <div class="code-block">
+        <pre><span class="kw">$stmt</span> = <span class="kw">$pdo</span>->prepare(<span class="st">'SELECT * FROM users WHERE id = ?'</span>);
 <span class="kw">$stmt</span>->execute([<span class="kw">$id</span>]);</pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
-                    </div>
-                </div>
+    <p>
+        Prepared statements separate SQL commands from user-provided data,
+        making applications much more secure.
+    </p>
+
+    <h2>Why Prepared Statements Matter</h2>
+
+    <p>
+        One of the biggest security risks in web applications is SQL Injection.
+        Attackers attempt to manipulate SQL queries by inserting malicious input.
+    </p>
+
+    <div class="code-block">
+        <pre>// Unsafe
+$sql = "SELECT * FROM users WHERE email = '$email'";</pre>
+    </div>
+
+    <p>
+        If user input is inserted directly into SQL statements, attackers may
+        gain unauthorized access to database records.
+    </p>
+
+    <div class="code-block">
+        <pre>// Safe
+$stmt = $pdo->prepare(
+    "SELECT * FROM users WHERE email = ?"
+);
+
+$stmt->execute([$email]);</pre>
+    </div>
+
+    <h2>Inserting Data</h2>
+
+    <p>
+        Data can be inserted into tables using prepared statements.
+    </p>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "INSERT INTO users(name, email)
+     VALUES (?, ?)"
+);
+
+$stmt->execute([
+    $name,
+    $email
+]);</pre>
+    </div>
+
+    <h2>Updating Records</h2>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "UPDATE users
+     SET name = ?
+     WHERE id = ?"
+);
+
+$stmt->execute([
+    $name,
+    $id
+]);</pre>
+    </div>
+
+    <p>
+        This query updates a user's name based on their unique ID.
+    </p>
+
+    <h2>Deleting Records</h2>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "DELETE FROM users
+     WHERE id = ?"
+);
+
+$stmt->execute([$id]);</pre>
+    </div>
+
+    <p>
+        Records can be removed safely using parameterized queries.
+    </p>
+
+    <h2>Named Parameters</h2>
+
+    <p>
+        PDO supports named parameters, which can improve query readability.
+    </p>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "SELECT * FROM users
+     WHERE email = :email"
+);
+
+$stmt->execute([
+    ':email' => $email
+]);</pre>
+    </div>
+
+    <h2>Fetch Modes</h2>
+
+    <p>
+        PDO provides several fetch modes that determine how data is returned.
+    </p>
+
+    <div class="code-block">
+        <pre>$user = $stmt->fetch(
+    PDO::FETCH_ASSOC
+);</pre>
+    </div>
+
+    <ul>
+        <li><strong>FETCH_ASSOC</strong> – Associative array.</li>
+        <li><strong>FETCH_NUM</strong> – Numeric array.</li>
+        <li><strong>FETCH_OBJ</strong> – Object.</li>
+        <li><strong>FETCH_CLASS</strong> – Class instance.</li>
+    </ul>
+
+    <h2>Transactions</h2>
+
+    <p>
+        Transactions allow multiple database operations to be treated as a single
+        unit of work. If one operation fails, all changes can be rolled back.
+    </p>
+
+    <div class="code-block">
+        <pre>try {
+
+    $pdo->beginTransaction();
+
+    // Multiple queries
+
+    $pdo->commit();
+
+} catch (Exception $e) {
+
+    $pdo->rollBack();
+}</pre>
+    </div>
+
+    <p>
+        Transactions are commonly used in banking systems, payment processing,
+        and inventory management.
+    </p>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Always use prepared statements.</li>
+        <li>Never trust user input.</li>
+        <li>Use exception handling for database operations.</li>
+        <li>Store database credentials securely.</li>
+        <li>Use transactions for critical operations.</li>
+        <li>Validate data before inserting it.</li>
+        <li>Limit database permissions whenever possible.</li>
+    </ul>
+
+    <h2>Real-World Example</h2>
+
+    <p>
+        Consider a student management system. The database may contain tables
+        such as students, courses, enrollments, and instructors. PDO can be used
+        to safely insert new students, update course information, retrieve records,
+        and generate reports while maintaining security.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>
+        MySQL is a powerful relational database system used to store and manage
+        application data. PDO provides a secure and flexible way to connect PHP
+        applications to databases. By using prepared statements, transactions,
+        exception handling, and proper validation techniques, developers can build
+        secure and reliable database-driven applications.
+    </p>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+        <p>
+            Create a student management database using MySQL. Connect to it using
+            PDO, perform CRUD operations (Create, Read, Update, Delete), implement
+            prepared statements, and use transactions for critical database updates.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 15 ===================== -->
-                <div class="lecture" id="lec-14">
-                    <div class="lecture-tag">Lecture 15 · Web & Database</div>
-                    <h1>Building REST APIs</h1>
-                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
-                    <h2>JSON Response</h2>
-                    <div class="code-block"><pre>&lt;?php
+       <div class="lecture" id="lec-14">
+    <div class="lecture-tag">Lecture 15 · Web & Database</div>
+    <h1>Building REST APIs</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <p>
+        Modern web applications rarely work alone. Mobile applications, frontend frameworks,
+        desktop software, and third-party services often need a way to communicate with a server.
+        REST APIs provide a standardized way for different systems to exchange data over HTTP.
+    </p>
+
+    <p>
+        A REST API (Representational State Transfer Application Programming Interface) allows
+        clients to send requests to a server and receive structured responses, usually in JSON format.
+        REST APIs are widely used because they are simple, scalable, and compatible with virtually
+        every programming language.
+    </p>
+
+    <h2>What is an API?</h2>
+
+    <p>
+        An API is a set of rules that allows one application to communicate with another.
+        Instead of directly accessing a database, external applications send requests to
+        an API endpoint which processes the request and returns data.
+    </p>
+
+    <p>
+        For example:
+    </p>
+
+    <ul>
+        <li>A mobile app requests user information.</li>
+        <li>An e-commerce website retrieves product data.</li>
+        <li>A payment gateway processes transactions.</li>
+        <li>A weather application fetches weather updates.</li>
+    </ul>
+
+    <h2>What is REST?</h2>
+
+    <p>
+        REST is an architectural style used to design APIs. RESTful APIs use standard
+        HTTP methods such as GET, POST, PUT, and DELETE to perform operations on resources.
+    </p>
+
+    <p>
+        A resource can be anything such as:
+    </p>
+
+    <ul>
+        <li>Users</li>
+        <li>Products</li>
+        <li>Orders</li>
+        <li>Courses</li>
+        <li>Students</li>
+    </ul>
+
+    <h2>REST API Structure</h2>
+
+    <div class="code-block">
+        <pre>GET    /api/users
+GET    /api/users/1
+POST   /api/users
+PUT    /api/users/1
+DELETE /api/users/1</pre>
+    </div>
+
+    <p>
+        Each endpoint represents a resource and each HTTP method performs a specific action.
+    </p>
+
+    <h2>HTTP Methods</h2>
+
+    <table>
+        <tr>
+            <th>Method</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>Retrieve data.</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>Create new records.</td>
+        </tr>
+        <tr>
+            <td>PUT</td>
+            <td>Update existing records.</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>Remove records.</td>
+        </tr>
+    </table>
+
+    <h2>JSON Responses</h2>
+
+    <p>
+        Most REST APIs exchange data using JSON (JavaScript Object Notation).
+        JSON is lightweight, human-readable, and supported by almost every modern language.
+    </p>
+
+    <h2>JSON Response</h2>
+
+    <div class="code-block">
+        <pre>&lt;?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
 $users = [['id'=&gt;1, 'name'=&gt;'Ahmed']];
 echo json_encode($users);
-?&gt;</pre></div>
-                    <h2>Routing by Method</h2>
-                    <div class="code-block"><pre>$method = $_SERVER['REQUEST_METHOD'];
+?&gt;</pre>
+    </div>
+
+    <p>
+        The <code>json_encode()</code> function converts PHP arrays and objects into
+        JSON format before sending them to the client.
+    </p>
+
+    <h2>Sample JSON Output</h2>
+
+    <div class="code-block">
+        <pre>[
+    {
+        "id": 1,
+        "name": "Ahmed"
+    }
+]</pre>
+    </div>
+
+    <p>
+        This JSON data can be consumed by mobile applications, JavaScript frontends,
+        or third-party systems.
+    </p>
+
+    <h2>Receiving JSON Requests</h2>
+
+    <p>
+        REST APIs often receive JSON data from clients. PHP can read incoming JSON
+        using the special input stream <code>php://input</code>.
+    </p>
+
+    <div class="code-block">
+        <pre>$data = json_decode(
+    file_get_contents('php://input'),
+    true
+);
+
+print_r($data);</pre>
+    </div>
+
+    <p>
+        The second parameter (<code>true</code>) converts JSON objects into
+        associative arrays.
+    </p>
+
+    <h2>Routing Requests</h2>
+
+    <p>
+        Routing determines which code executes when a particular URL or HTTP method
+        is requested.
+    </p>
+
+    <h2>Routing by Method</h2>
+
+    <div class="code-block">
+        <pre>$method = $_SERVER['REQUEST_METHOD'];
 $input = json_decode(file_get_contents('php://input'), true);
 
 switch ($method) {
     case 'GET':
         echo json_encode($db-&gt;all());
         break;
+
     case 'POST':
         $db-&gt;insert($input);
         http_response_code(201);
         break;
+
     case 'DELETE':
         $db-&gt;delete($_GET['id']);
         http_response_code(204);
         break;
-}</pre></div>
-                    <h2>Token Auth</h2>
-                    <div class="code-block"><pre>$token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+}</pre>
+    </div>
+
+    <p>
+        The REQUEST_METHOD variable contains the HTTP method used by the client.
+        This allows a single endpoint to handle multiple operations.
+    </p>
+
+    <h2>HTTP Status Codes</h2>
+
+    <p>
+        APIs should always return appropriate status codes so clients understand
+        the result of a request.
+    </p>
+
+    <table>
+        <tr>
+            <th>Code</th>
+            <th>Meaning</th>
+        </tr>
+        <tr>
+            <td>200</td>
+            <td>Success.</td>
+        </tr>
+        <tr>
+            <td>201</td>
+            <td>Resource created.</td>
+        </tr>
+        <tr>
+            <td>204</td>
+            <td>No content returned.</td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>Bad request.</td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td>Unauthorized.</td>
+        </tr>
+        <tr>
+            <td>404</td>
+            <td>Resource not found.</td>
+        </tr>
+        <tr>
+            <td>500</td>
+            <td>Server error.</td>
+        </tr>
+    </table>
+
+    <h2>Creating Resources with POST</h2>
+
+    <p>
+        The POST method is used to create new resources.
+    </p>
+
+    <div class="code-block">
+        <pre>if ($method === 'POST') {
+
+    $db-&gt;insert($input);
+
+    http_response_code(201);
+
+    echo json_encode([
+        'message' =&gt; 'User Created'
+    ]);
+}</pre>
+    </div>
+
+    <h2>Updating Resources with PUT</h2>
+
+    <p>
+        PUT requests are used to modify existing records.
+    </p>
+
+    <div class="code-block">
+        <pre>if ($method === 'PUT') {
+
+    $db-&gt;update(
+        $_GET['id'],
+        $input
+    );
+
+    echo json_encode([
+        'message' =&gt; 'User Updated'
+    ]);
+}</pre>
+    </div>
+
+    <h2>Deleting Resources</h2>
+
+    <p>
+        DELETE requests remove resources from the system.
+    </p>
+
+    <div class="code-block">
+        <pre>if ($method === 'DELETE') {
+
+    $db-&gt;delete($_GET['id']);
+
+    http_response_code(204);
+}</pre>
+    </div>
+
+    <h2>API Authentication</h2>
+
+    <p>
+        Most APIs should be protected so only authorized users can access resources.
+        Authentication verifies the identity of a client before allowing requests.
+    </p>
+
+    <h2>Token Authentication</h2>
+
+    <div class="code-block">
+        <pre>$token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+
 if (!str_starts_with($token, 'Bearer ')) {
+
     http_response_code(401);
-    exit(json_encode(['error' =&gt; 'Unauthorized']));
-}</pre></div>
-                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a /api/products REST endpoint with GET/POST/PUT/DELETE.</p></div>
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
-                    </div>
-                </div>
+
+    exit(json_encode([
+        'error' =&gt; 'Unauthorized'
+    ]));
+}</pre>
+    </div>
+
+    <p>
+        Bearer tokens are commonly used in REST APIs because they are simple and
+        work well with web and mobile applications.
+    </p>
+
+    <h2>What is CORS?</h2>
+
+    <p>
+        Cross-Origin Resource Sharing (CORS) controls whether browsers allow
+        requests from different domains.
+    </p>
+
+    <div class="code-block">
+        <pre>header(
+    'Access-Control-Allow-Origin: *'
+);</pre>
+    </div>
+
+    <p>
+        This header allows requests from any domain. In production environments,
+        you should restrict access to trusted domains whenever possible.
+    </p>
+
+    <h2>Error Responses</h2>
+
+    <p>
+        APIs should return structured error messages rather than plain text.
+    </p>
+
+    <div class="code-block">
+        <pre>http_response_code(404);
+
+echo json_encode([
+    'error' =&gt; 'User Not Found'
+]);</pre>
+    </div>
+
+    <p>
+        Consistent error formats make API integration easier for client developers.
+    </p>
+
+    <h2>API Versioning</h2>
+
+    <p>
+        As APIs evolve, changes may break existing clients. Versioning allows
+        developers to introduce new features while maintaining compatibility.
+    </p>
+
+    <div class="code-block">
+        <pre>/api/v1/users
+/api/v2/users</pre>
+    </div>
+
+    <p>
+        API versioning is a common practice in enterprise applications.
+    </p>
+
+    <h2>REST API Best Practices</h2>
+
+    <ul>
+        <li>Use meaningful resource names.</li>
+        <li>Always return JSON responses.</li>
+        <li>Use proper HTTP status codes.</li>
+        <li>Validate all incoming data.</li>
+        <li>Implement authentication.</li>
+        <li>Handle errors consistently.</li>
+        <li>Document endpoints clearly.</li>
+        <li>Use versioning for long-term maintenance.</li>
+    </ul>
+
+    <h2>Real-World Example</h2>
+
+    <p>
+        Consider an online store API. The frontend application requests product
+        information using GET requests, creates orders using POST requests,
+        updates inventory using PUT requests, and removes discontinued products
+        using DELETE requests. All communication occurs through JSON-based
+        REST endpoints.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>
+        REST APIs are the foundation of modern web development. They enable
+        communication between applications using HTTP methods and JSON data.
+        By implementing proper routing, authentication, validation, status codes,
+        and error handling, developers can create scalable and secure APIs that
+        serve web, mobile, and third-party applications efficiently.
+    </p>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+        <p>
+            Build a complete <code>/api/products</code> REST endpoint supporting
+            GET, POST, PUT, and DELETE requests. Return JSON responses, use proper
+            HTTP status codes, validate incoming data, and protect the API using
+            Bearer token authentication.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 16 ===================== -->
-                <div class="lecture" id="lec-15">
-                    <div class="lecture-tag">Lecture 16 · Web & Database</div>
-                    <h1>Laravel Basics</h1>
-                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
-                    <h2>Install Laravel</h2>
-                    <div class="code-block"><pre>composer create-project laravel/laravel myapp
+           <div class="lecture" id="lec-15">
+    <div class="lecture-tag">Lecture 16 · Web & Database</div>
+    <h1>Laravel Basics</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <p>
+        Laravel is one of the most popular PHP frameworks used for building modern,
+        scalable, and secure web applications. It follows the MVC (Model-View-Controller)
+        architecture and provides powerful tools for routing, database management,
+        authentication, validation, caching, APIs, and much more.
+    </p>
+
+    <p>
+        Laravel helps developers write clean, maintainable code by providing elegant
+        syntax and a rich ecosystem of built-in features. Many professional companies
+        use Laravel to develop enterprise applications, e-commerce platforms,
+        learning management systems, and REST APIs.
+    </p>
+
+    <h2>Why Laravel?</h2>
+
+    <p>
+        While PHP can be used without a framework, Laravel simplifies development
+        by handling many common tasks automatically.
+    </p>
+
+    <ul>
+        <li>Clean and elegant syntax.</li>
+        <li>MVC architecture.</li>
+        <li>Built-in authentication system.</li>
+        <li>Powerful ORM called Eloquent.</li>
+        <li>Database migrations.</li>
+        <li>API development support.</li>
+        <li>Security features.</li>
+        <li>Large community and ecosystem.</li>
+    </ul>
+
+    <h2>What is MVC?</h2>
+
+    <p>
+        Laravel follows the Model-View-Controller architecture pattern.
+        MVC separates application logic into different layers, making projects
+        easier to manage and maintain.
+    </p>
+
+    <ul>
+        <li><strong>Model</strong> – Handles database operations.</li>
+        <li><strong>View</strong> – Displays data to users.</li>
+        <li><strong>Controller</strong> – Processes requests and coordinates models and views.</li>
+    </ul>
+
+    <div class="code-block">
+        <pre>User Request
+      ↓
+Controller
+      ↓
+Model
+      ↓
+Database
+      ↓
+View
+      ↓
+Response</pre>
+    </div>
+
+    <h2>Install Laravel</h2>
+
+    <p>
+        Laravel can be installed using Composer. Composer automatically downloads
+        Laravel and all required dependencies.
+    </p>
+
+    <div class="code-block">
+        <pre>composer create-project laravel/laravel myapp
+
 cd myapp
-php artisan serve  # http://localhost:8000</pre></div>
-                    <h2>Routes</h2>
-                    <div class="code-block"><pre>// routes/web.php
+
+php artisan serve
+# http://localhost:8000</pre>
+    </div>
+
+    <p>
+        After installation, the built-in development server can be started using
+        the Artisan command-line tool.
+    </p>
+
+    <h2>Project Structure</h2>
+
+    <p>
+        Laravel projects contain several important directories.
+    </p>
+
+    <div class="code-block">
+        <pre>myapp/
+│
+├── app/
+├── bootstrap/
+├── config/
+├── database/
+├── public/
+├── resources/
+├── routes/
+├── storage/
+├── tests/
+└── vendor/</pre>
+    </div>
+
+    <ul>
+        <li><strong>app/</strong> – Application logic.</li>
+        <li><strong>routes/</strong> – Route definitions.</li>
+        <li><strong>resources/</strong> – Views and frontend assets.</li>
+        <li><strong>database/</strong> – Migrations and seeders.</li>
+        <li><strong>public/</strong> – Publicly accessible files.</li>
+    </ul>
+
+    <h2>Laravel Artisan</h2>
+
+    <p>
+        Artisan is Laravel's command-line interface. It provides commands for
+        generating controllers, models, migrations, jobs, events, and many
+        other application components.
+    </p>
+
+    <div class="code-block">
+        <pre>php artisan list</pre>
+    </div>
+
+    <p>
+        This command displays all available Artisan commands.
+    </p>
+
+    <h2>Routes</h2>
+
+    <p>
+        Routes determine how Laravel responds to incoming HTTP requests.
+        Route definitions are usually stored inside the routes directory.
+    </p>
+
+    <div class="code-block">
+        <pre>// routes/web.php
 Route::get('/', fn() =&gt; view('welcome'));
+
 Route::get('/users', [UserController::class, 'index']);
-Route::resource('posts', PostController::class);</pre></div>
-                    <h2>Controller</h2>
-                    <div class="code-block"><pre>// php artisan make:controller PostController --resource
+
+Route::resource('posts', PostController::class);</pre>
+    </div>
+
+    <p>
+        The Route facade allows developers to define endpoints that map URLs
+        to controller methods or closures.
+    </p>
+
+    <h2>Common Route Types</h2>
+
+    <div class="code-block">
+        <pre>Route::get('/users', ...);
+
+Route::post('/users', ...);
+
+Route::put('/users/{id}', ...);
+
+Route::delete('/users/{id}', ...);</pre>
+    </div>
+
+    <p>
+        Different HTTP methods are used for different operations within a web application.
+    </p>
+
+    <h2>Route Parameters</h2>
+
+    <p>
+        Route parameters allow dynamic values to be passed through URLs.
+    </p>
+
+    <div class="code-block">
+        <pre>Route::get('/users/{id}', function ($id) {
+    return $id;
+});</pre>
+    </div>
+
+    <p>
+        Visiting <code>/users/5</code> would return the value 5.
+    </p>
+
+    <h2>Controllers</h2>
+
+    <p>
+        Controllers contain request-handling logic. Instead of placing application
+        logic directly inside routes, Laravel encourages developers to use controllers.
+    </p>
+
+    <h2>Controller</h2>
+
+    <div class="code-block">
+        <pre>// php artisan make:controller PostController --resource
+
 class PostController extends Controller {
+
     public function index() {
         return Post::all();
     }
+
     public function store(Request $r) {
-        $r-&gt;validate(['title' =&gt; 'required']);
+
+        $r-&gt;validate([
+            'title' =&gt; 'required'
+        ]);
+
         return Post::create($r-&gt;all());
     }
-}</pre></div>
-                    <h2>Eloquent Model</h2>
-                    <div class="code-block"><pre>// php artisan make:model Post -m
+}</pre>
+    </div>
+
+    <p>
+        Resource controllers provide standardized methods for CRUD operations,
+        making application development faster and more organized.
+    </p>
+
+    <h2>Generating Controllers</h2>
+
+    <div class="code-block">
+        <pre>php artisan make:controller UserController</pre>
+    </div>
+
+    <p>
+        Laravel automatically creates the controller file in the appropriate location.
+    </p>
+
+    <h2>Views and Blade Templates</h2>
+
+    <p>
+        Laravel uses the Blade templating engine for creating dynamic HTML pages.
+        Blade provides a clean syntax for displaying data and controlling layouts.
+    </p>
+
+    <div class="code-block">
+        <pre>&lt;h1&gt;{{ $title }}&lt;/h1&gt;
+
+@if($user)
+    Welcome {{ $user->name }}
+@endif</pre>
+    </div>
+
+    <p>
+        Blade automatically escapes output to help prevent XSS attacks.
+    </p>
+
+    <h2>Eloquent ORM</h2>
+
+    <p>
+        Eloquent is Laravel's Object Relational Mapper (ORM). It allows developers
+        to work with database records as PHP objects rather than writing raw SQL queries.
+    </p>
+
+    <h2>Eloquent Model</h2>
+
+    <div class="code-block">
+        <pre>// php artisan make:model Post -m
+
 class Post extends Model {
-    protected $fillable = ['title', 'body'];
+
+    protected $fillable = [
+        'title',
+        'body'
+    ];
+
     public function user() {
         return $this-&gt;belongsTo(User::class);
     }
 }
 
-Post::where('published', true)-&gt;latest()-&gt;take(10)-&gt;get();</pre></div>
-                    <div class="exercise"><div class="exercise-title">Practice</div><p>Build a Laravel blog with posts, categories, and Eloquent relationships.</p></div>
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button>
-                    </div>
-                </div>
+Post::where('published', true)
+    -&gt;latest()
+    -&gt;take(10)
+    -&gt;get();</pre>
+    </div>
+
+    <p>
+        Eloquent provides a powerful query builder that allows complex database
+        operations to be written using expressive PHP syntax.
+    </p>
+
+    <h2>Creating Records</h2>
+
+    <div class="code-block">
+        <pre>Post::create([
+    'title' =&gt; 'Laravel Basics',
+    'body' =&gt; 'Learning Eloquent'
+]);</pre>
+    </div>
+
+    <p>
+        The create() method inserts a new record into the database.
+    </p>
+
+    <h2>Retrieving Records</h2>
+
+    <div class="code-block">
+        <pre>$posts = Post::all();
+
+$post = Post::find(1);
+
+$publishedPosts = Post::where(
+    'published',
+    true
+)-&gt;get();</pre>
+    </div>
+
+    <p>
+        Eloquent provides multiple methods for retrieving records efficiently.
+    </p>
+
+    <h2>Updating Records</h2>
+
+    <div class="code-block">
+        <pre>$post = Post::find(1);
+
+$post-&gt;title = "Updated Title";
+
+$post-&gt;save();</pre>
+    </div>
+
+    <h2>Deleting Records</h2>
+
+    <div class="code-block">
+        <pre>$post = Post::find(1);
+
+$post-&gt;delete();</pre>
+    </div>
+
+    <h2>Database Migrations</h2>
+
+    <p>
+        Migrations allow developers to manage database structures using PHP code.
+        Instead of manually creating tables, migrations provide version control
+        for databases.
+    </p>
+
+    <div class="code-block">
+        <pre>php artisan make:migration create_posts_table</pre>
+    </div>
+
+    <p>
+        After creating a migration, run:
+    </p>
+
+    <div class="code-block">
+        <pre>php artisan migrate</pre>
+    </div>
+
+    <h2>Relationships</h2>
+
+    <p>
+        Eloquent makes it easy to define relationships between models.
+    </p>
+
+    <div class="code-block">
+        <pre>class User extends Model {
+
+    public function posts() {
+        return $this-&gt;hasMany(Post::class);
+    }
+}</pre>
+    </div>
+
+    <p>
+        A user can have multiple posts, while each post belongs to a single user.
+    </p>
+
+    <h2>Validation</h2>
+
+    <p>
+        Laravel provides a powerful validation system that ensures user input
+        meets application requirements before processing.
+    </p>
+
+    <div class="code-block">
+        <pre>$request-&gt;validate([
+    'title' =&gt; 'required|min:3',
+    'email' =&gt; 'required|email'
+]);</pre>
+    </div>
+
+    <h2>Laravel Security Features</h2>
+
+    <p>
+        Laravel includes many built-in security protections.
+    </p>
+
+    <ul>
+        <li>CSRF protection.</li>
+        <li>Password hashing.</li>
+        <li>Input validation.</li>
+        <li>Authentication scaffolding.</li>
+        <li>XSS protection through Blade.</li>
+        <li>SQL Injection protection via Eloquent.</li>
+    </ul>
+
+    <h2>Real-World Example</h2>
+
+    <p>
+        Consider a blogging platform built with Laravel. Routes define URLs,
+        controllers process requests, models communicate with the database,
+        Blade templates render views, and Eloquent manages relationships
+        between users, posts, comments, and categories.
+    </p>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Keep controllers focused and lightweight.</li>
+        <li>Use Eloquent relationships whenever possible.</li>
+        <li>Validate all incoming requests.</li>
+        <li>Use migrations for database changes.</li>
+        <li>Follow Laravel naming conventions.</li>
+        <li>Separate business logic into services when applications grow.</li>
+    </ul>
+
+    <h2>Summary</h2>
+
+    <p>
+        Laravel is a powerful PHP framework that simplifies web development through
+        MVC architecture, routing, controllers, Blade templates, Eloquent ORM,
+        migrations, and built-in security features. Mastering Laravel enables
+        developers to build modern, maintainable, and scalable web applications
+        much faster than using plain PHP alone.
+    </p>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+        <p>
+            Build a Laravel blog application with posts, categories, comments,
+            migrations, controllers, Blade views, and Eloquent relationships.
+            Implement validation and CRUD functionality for all major resources.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 17 ===================== -->
-                <div class="lecture" id="lec-16">
-                    <div class="lecture-tag">Lecture 17 · Web & Database</div>
-                    <h1>Authentication & Deployment</h1>
-                    <div class="lecture-meta"><span class="meta-badge level-advanced">Advanced</span><span class="meta-badge">~45 min</span></div>
-                    <h2>Password Hashing</h2>
-                    <div class="code-block"><pre>// Hash on signup
-$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+          <div class="lecture" id="lec-16">
+    <div class="lecture-tag">Lecture 17 · Web & Database</div>
+    <h1>Authentication & Deployment</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~45 min</span>
+    </div>
+
+    <p>
+        Authentication and deployment are two of the most important stages of
+        web application development. Authentication ensures that users are who
+        they claim to be, while deployment makes an application available to
+        real users on the internet.
+    </p>
+
+    <p>
+        In this lecture, you will learn how PHP applications securely handle
+        passwords, sessions, authentication tokens, and deployment to both
+        shared hosting environments and VPS servers.
+    </p>
+
+    <h2>What is Authentication?</h2>
+
+    <p>
+        Authentication is the process of verifying a user's identity before
+        granting access to protected resources.
+    </p>
+
+    <p>
+        Common authentication methods include:
+    </p>
+
+    <ul>
+        <li>Username and password login.</li>
+        <li>Session-based authentication.</li>
+        <li>JWT token authentication.</li>
+        <li>OAuth authentication.</li>
+        <li>Multi-factor authentication (MFA).</li>
+    </ul>
+
+    <h2>Authentication Workflow</h2>
+
+    <div class="code-block">
+        <pre>User Login
+     ↓
+Enter Credentials
+     ↓
+Server Verification
+     ↓
+Session / Token Created
+     ↓
+Access Granted</pre>
+    </div>
+
+    <p>
+        Once authenticated, the application stores information that identifies
+        the user during future requests.
+    </p>
+
+    <h2>Password Security</h2>
+
+    <p>
+        Passwords should never be stored in plain text. If a database is compromised,
+        plain-text passwords can immediately expose user accounts.
+    </p>
+
+    <p>
+        PHP provides built-in password hashing functions that automatically use
+        secure hashing algorithms and salting mechanisms.
+    </p>
+
+    <h2>Password Hashing</h2>
+
+    <div class="code-block">
+        <pre>// Hash on signup
+$hash = password_hash(
+    $_POST['password'],
+    PASSWORD_DEFAULT
+);
 
 // Verify on login
-if (password_verify($_POST['password'], $user-&gt;password_hash)) {
+if (
+    password_verify(
+        $_POST['password'],
+        $user-&gt;password_hash
+    )
+) {
     $_SESSION['user_id'] = $user-&gt;id;
-}</pre></div>
-                    <h2>JWT Tokens</h2>
-                    <div class="code-block"><pre>// composer require firebase/php-jwt
+}</pre>
+    </div>
+
+    <p>
+        The <code>password_hash()</code> function creates a secure hash, while
+        <code>password_verify()</code> checks whether a provided password matches
+        the stored hash.
+    </p>
+
+    <h2>Why Hashing is Important</h2>
+
+    <p>
+        Consider the following unsafe example:
+    </p>
+
+    <div class="code-block">
+        <pre>// Never do this
+$password = "mypassword123";</pre>
+    </div>
+
+    <p>
+        If passwords are stored directly, anyone with database access can view
+        them. Hashing converts passwords into irreversible values that cannot
+        easily be recovered.
+    </p>
+
+    <h2>Using Sessions</h2>
+
+    <p>
+        Session-based authentication is commonly used in traditional web applications.
+        After a successful login, PHP stores information inside a session.
+    </p>
+
+    <div class="code-block">
+        <pre>session_start();
+
+$_SESSION['user_id'] = 5;</pre>
+    </div>
+
+    <p>
+        The session data remains available until the user logs out or the session expires.
+    </p>
+
+    <h2>Checking Authentication</h2>
+
+    <div class="code-block">
+        <pre>session_start();
+
+if (!isset($_SESSION['user_id'])) {
+
+    header("Location: login.php");
+
+    exit;
+}</pre>
+    </div>
+
+    <p>
+        This ensures that only authenticated users can access protected pages.
+    </p>
+
+    <h2>Logging Out Users</h2>
+
+    <p>
+        Logging out typically involves destroying the current session.
+    </p>
+
+    <div class="code-block">
+        <pre>session_start();
+
+session_destroy();
+
+header("Location: login.php");</pre>
+    </div>
+
+    <h2>Session Security</h2>
+
+    <p>
+        To reduce session hijacking risks, regenerate session IDs after login.
+    </p>
+
+    <div class="code-block">
+        <pre>session_start();
+
+session_regenerate_id(true);</pre>
+    </div>
+
+    <p>
+        This creates a new session identifier and invalidates the previous one.
+    </p>
+
+    <h2>Introduction to JWT</h2>
+
+    <p>
+        JWT (JSON Web Token) is a compact authentication mechanism commonly used
+        in REST APIs and mobile applications.
+    </p>
+
+    <p>
+        Unlike sessions, JWTs are stored on the client side and sent with every request.
+    </p>
+
+    <h2>JWT Structure</h2>
+
+    <div class="code-block">
+        <pre>HEADER.PAYLOAD.SIGNATURE</pre>
+    </div>
+
+    <ul>
+        <li><strong>Header</strong> – Token type and algorithm.</li>
+        <li><strong>Payload</strong> – User information and claims.</li>
+        <li><strong>Signature</strong> – Security verification.</li>
+    </ul>
+
+    <h2>JWT Tokens</h2>
+
+    <div class="code-block">
+        <pre>// composer require firebase/php-jwt
+
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-$payload = ['user_id' =&gt; 1, 'exp' =&gt; time() + 3600];
-$jwt = JWT::encode($payload, $secret, 'HS256');
+$payload = [
+    'user_id' =&gt; 1,
+    'exp' =&gt; time() + 3600
+];
+
+$jwt = JWT::encode(
+    $payload,
+    $secret,
+    'HS256'
+);
 
 // Decode
-$decoded = JWT::decode($jwt, new Key($secret, 'HS256'));</pre></div>
-                    <h2>Deploy to Shared Hosting</h2>
-                    <div class="code-block"><pre># Upload via FTP/SFTP
+$decoded = JWT::decode(
+    $jwt,
+    new Key($secret, 'HS256')
+);</pre>
+    </div>
+
+    <p>
+        The token contains encoded user information and an expiration time.
+    </p>
+
+    <h2>JWT Authentication Flow</h2>
+
+    <div class="code-block">
+        <pre>User Login
+      ↓
+Credentials Verified
+      ↓
+JWT Generated
+      ↓
+Client Stores Token
+      ↓
+Token Sent With Requests
+      ↓
+Server Validates Token</pre>
+    </div>
+
+    <h2>Authorization Header</h2>
+
+    <p>
+        JWT tokens are usually transmitted using the Authorization header.
+    </p>
+
+    <div class="code-block">
+        <pre>Authorization: Bearer eyJhbGciOi...</pre>
+    </div>
+
+    <p>
+        The server validates the token before allowing access to protected resources.
+    </p>
+
+    <h2>Authentication Best Practices</h2>
+
+    <ul>
+        <li>Always hash passwords.</li>
+        <li>Use HTTPS in production.</li>
+        <li>Regenerate session IDs after login.</li>
+        <li>Set token expiration times.</li>
+        <li>Validate all authentication tokens.</li>
+        <li>Implement account lockout protection.</li>
+        <li>Use multi-factor authentication when possible.</li>
+    </ul>
+
+    <h2>What is Deployment?</h2>
+
+    <p>
+        Deployment is the process of moving an application from a development
+        environment to a live server where users can access it through the internet.
+    </p>
+
+    <p>
+        Before deployment, applications should be tested thoroughly to ensure
+        functionality, security, and performance.
+    </p>
+
+    <h2>Deployment Checklist</h2>
+
+    <ul>
+        <li>Configure production database.</li>
+        <li>Enable HTTPS.</li>
+        <li>Set secure environment variables.</li>
+        <li>Disable debugging mode.</li>
+        <li>Optimize application performance.</li>
+        <li>Create backups.</li>
+        <li>Test authentication features.</li>
+    </ul>
+
+    <h2>Deploy to Shared Hosting</h2>
+
+    <p>
+        Shared hosting is often the simplest and most affordable deployment option
+        for small PHP applications.
+    </p>
+
+    <div class="code-block">
+        <pre># Upload via FTP/SFTP
 # Set document root to /public
 # Configure .htaccess for clean URLs
-# Update .env with production database</pre></div>
-                    <h2>Deploy to VPS</h2>
-                    <div class="code-block"><pre># Ubuntu + Nginx + PHP-FPM
+# Update .env with production database</pre>
+    </div>
+
+    <p>
+        Many hosting providers include PHP, MySQL, email services, and file management tools.
+    </p>
+
+    <h2>Understanding .env Files</h2>
+
+    <p>
+        Environment files store sensitive configuration values separately from code.
+    </p>
+
+    <div class="code-block">
+        <pre>DB_HOST=localhost
+DB_DATABASE=myapp
+DB_USERNAME=root
+DB_PASSWORD=secret</pre>
+    </div>
+
+    <p>
+        Environment variables should never be committed to public repositories.
+    </p>
+
+    <h2>Deploy to VPS</h2>
+
+    <p>
+        A VPS (Virtual Private Server) provides greater flexibility and control
+        compared to shared hosting.
+    </p>
+
+    <div class="code-block">
+        <pre># Ubuntu + Nginx + PHP-FPM
+
 sudo apt install nginx php-fpm php-mysql composer
+
 sudo nano /etc/nginx/sites-available/myapp
+
 # Set fastcgi_pass to PHP-FPM
-sudo systemctl restart nginx</pre></div>
-                    <div class="exercise"><div class="exercise-title">Practice</div><p>Add JWT authentication to your REST API and deploy to a VPS or Heroku.</p></div>
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button>
-                    </div>
-                </div>
+
+sudo systemctl restart nginx</pre>
+    </div>
+
+    <p>
+        VPS environments are commonly used for medium and large-scale applications.
+    </p>
+
+    <h2>Nginx and PHP-FPM</h2>
+
+    <p>
+        Nginx acts as the web server while PHP-FPM processes PHP requests efficiently.
+        This combination is widely used in production environments.
+    </p>
+
+    <div class="code-block">
+        <pre>Browser
+   ↓
+Nginx
+   ↓
+PHP-FPM
+   ↓
+PHP Application
+   ↓
+Database</pre>
+    </div>
+
+    <h2>Production Security</h2>
+
+    <p>
+        Security becomes even more important once an application is publicly accessible.
+    </p>
+
+    <ul>
+        <li>Disable error display.</li>
+        <li>Use firewall protection.</li>
+        <li>Restrict SSH access.</li>
+        <li>Use strong database credentials.</li>
+        <li>Install SSL certificates.</li>
+        <li>Keep software updated.</li>
+    </ul>
+
+    <h2>Monitoring and Logging</h2>
+
+    <p>
+        Production applications should log important events and errors.
+        Logs help identify bugs, performance issues, and security threats.
+    </p>
+
+    <div class="code-block">
+        <pre>error_log(
+    "User login successful"
+);</pre>
+    </div>
+
+    <h2>Backup Strategies</h2>
+
+    <p>
+        Regular backups protect applications against accidental deletion,
+        server failures, and security incidents.
+    </p>
+
+    <ul>
+        <li>Database backups.</li>
+        <li>Application file backups.</li>
+        <li>Configuration backups.</li>
+        <li>Automated backup schedules.</li>
+    </ul>
+
+    <h2>Real-World Example</h2>
+
+    <p>
+        Consider an online learning platform. Users authenticate using securely
+        hashed passwords and JWT tokens. The application runs on a VPS with Nginx,
+        PHP-FPM, and MySQL. HTTPS protects communication while automated backups
+        ensure data safety.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>
+        Authentication verifies user identities and protects application resources.
+        PHP provides secure tools such as password_hash(), password_verify(),
+        sessions, and JWT authentication. After development is complete,
+        applications can be deployed to shared hosting or VPS servers where
+        security, monitoring, backups, and performance optimization become
+        essential for long-term success.
+    </p>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice</div>
+        <p>
+            Add secure authentication to your application using password hashing,
+            session management, and JWT tokens. Deploy the application to a VPS,
+            configure Nginx and PHP-FPM, enable HTTPS, and implement automated backups.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button>
+    </div>
+</div>
 
                 <!-- ===================== LECTURE 18 ===================== -->
-                <div class="lecture" id="lec-17">
-                    <div class="lecture-tag">Lecture 18 · Capstone</div>
-                    <h1>Capstone Project: Blog System</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~180 min</span>
-                    </div>
+          <div class="lecture" id="lec-17">
+    <div class="lecture-tag">Lecture 18 · Capstone</div>
+    <h1>Capstone Project: Blog System</h1>
 
-                    <p>Build a fully functional blog system with user authentication, post creation, and database storage.</p>
-                    <div class="code-block">
-                        <pre><span class="cm">// Project requirements:</span>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~180 min</span>
+    </div>
+
+    <p>
+        Congratulations! You have reached the final project of this PHP course.
+        This capstone project combines everything you have learned throughout the
+        course, including PHP fundamentals, Object-Oriented Programming, MySQL,
+        PDO, authentication, file uploads, security, and application architecture.
+    </p>
+
+    <p>
+        Your goal is to build a complete blog management system where users can
+        register, log in, create blog posts, upload images, edit content,
+        manage posts, and store data securely in a database.
+    </p>
+
+    <p>
+        This project simulates a real-world web application and will help reinforce
+        the practical skills required to build professional PHP applications.
+    </p>
+
+    <h2>Project Overview</h2>
+
+    <p>
+        The Blog System should allow users to:
+    </p>
+
+    <ul>
+        <li>Create an account.</li>
+        <li>Log into the application.</li>
+        <li>Create blog posts.</li>
+        <li>Edit existing posts.</li>
+        <li>Delete posts.</li>
+        <li>Upload post images.</li>
+        <li>View posts from other users.</li>
+        <li>Manage their profile.</li>
+    </ul>
+
+    <h2>Project Requirements</h2>
+
+    <div class="code-block">
+        <pre><span class="cm">// Project requirements:</span>
 <span class="cm">// 1. Database schema for users and posts</span>
 <span class="cm">// 2. Login/Register system</span>
 <span class="cm">// 3. Post CRUD functionality</span>
 <span class="cm">// 4. File uploads for post images</span></pre>
-                    </div>
+    </div>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-                    </div>
-                </div>
+    <p>
+        These requirements form the foundation of the application. Additional
+        features can be added as bonus challenges after completing the core functionality.
+    </p>
+
+    <h2>Application Features</h2>
+
+    <ul>
+        <li>User Registration.</li>
+        <li>User Login.</li>
+        <li>User Logout.</li>
+        <li>Password Hashing.</li>
+        <li>Session Authentication.</li>
+        <li>Create Posts.</li>
+        <li>Read Posts.</li>
+        <li>Update Posts.</li>
+        <li>Delete Posts.</li>
+        <li>Image Upload Support.</li>
+        <li>Profile Management.</li>
+        <li>Database Integration.</li>
+    </ul>
+
+    <h2>Project Structure</h2>
+
+    <p>
+        Organizing files properly is important for maintainability.
+    </p>
+
+    <div class="code-block">
+        <pre>blog-system/
+│
+├── config/
+│   └── database.php
+│
+├── classes/
+│   ├── User.php
+│   ├── Post.php
+│   └── Auth.php
+│
+├── uploads/
+│
+├── views/
+│
+├── assets/
+│
+├── login.php
+├── register.php
+├── dashboard.php
+├── create-post.php
+├── edit-post.php
+├── delete-post.php
+└── index.php</pre>
+    </div>
+
+    <h2>Database Design</h2>
+
+    <p>
+        A well-designed database is the backbone of any application.
+    </p>
+
+    <h2>Users Table</h2>
+
+    <div class="code-block">
+        <pre>CREATE TABLE users (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    name VARCHAR(100),
+
+    email VARCHAR(255) UNIQUE,
+
+    password_hash VARCHAR(255),
+
+    created_at TIMESTAMP
+);</pre>
+    </div>
+
+    <p>
+        This table stores information about registered users.
+    </p>
+
+    <h2>Posts Table</h2>
+
+    <div class="code-block">
+        <pre>CREATE TABLE posts (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    user_id INT,
+
+    title VARCHAR(255),
+
+    content TEXT,
+
+    image VARCHAR(255),
+
+    created_at TIMESTAMP,
+
+    FOREIGN KEY (user_id)
+    REFERENCES users(id)
+);</pre>
+    </div>
+
+    <p>
+        Each post belongs to a user through the user_id foreign key.
+    </p>
+
+    <h2>Application Workflow</h2>
+
+    <div class="code-block">
+        <pre>User Registers
+      ↓
+User Logs In
+      ↓
+Session Created
+      ↓
+Create Post
+      ↓
+Save to Database
+      ↓
+Display on Homepage</pre>
+    </div>
+
+    <h2>User Registration</h2>
+
+    <p>
+        The registration system should allow new users to create accounts securely.
+    </p>
+
+    <div class="code-block">
+        <pre>$hash = password_hash(
+    $_POST['password'],
+    PASSWORD_DEFAULT
+);
+
+$stmt = $pdo->prepare(
+    "INSERT INTO users
+     (name, email, password_hash)
+     VALUES (?, ?, ?)"
+);
+
+$stmt->execute([
+    $name,
+    $email,
+    $hash
+]);</pre>
+    </div>
+
+    <p>
+        Passwords should always be hashed before being stored in the database.
+    </p>
+
+    <h2>User Login</h2>
+
+    <p>
+        Users must authenticate before accessing protected pages.
+    </p>
+
+    <div class="code-block">
+        <pre>if (
+    password_verify(
+        $_POST['password'],
+        $user['password_hash']
+    )
+) {
+
+    $_SESSION['user_id'] =
+        $user['id'];
+}</pre>
+    </div>
+
+    <h2>Authentication Middleware</h2>
+
+    <p>
+        Protected pages should verify that users are logged in before displaying content.
+    </p>
+
+    <div class="code-block">
+        <pre>session_start();
+
+if (!isset($_SESSION['user_id'])) {
+
+    header("Location: login.php");
+
+    exit;
+}</pre>
+    </div>
+
+    <h2>Creating Posts</h2>
+
+    <p>
+        Authenticated users should be able to publish new blog posts.
+    </p>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "INSERT INTO posts
+     (user_id, title, content)
+     VALUES (?, ?, ?)"
+);
+
+$stmt->execute([
+    $_SESSION['user_id'],
+    $title,
+    $content
+]);</pre>
+    </div>
+
+    <h2>Displaying Posts</h2>
+
+    <p>
+        Blog posts should be displayed on the homepage.
+    </p>
+
+    <div class="code-block">
+        <pre>$posts = $pdo
+    ->query("SELECT * FROM posts")
+    ->fetchAll();</pre>
+    </div>
+
+    <p>
+        Each post can be displayed inside a card layout containing the title,
+        image, author information, and content preview.
+    </p>
+
+    <h2>Editing Posts</h2>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "UPDATE posts
+     SET title = ?, content = ?
+     WHERE id = ?"
+);
+
+$stmt->execute([
+    $title,
+    $content,
+    $id
+]);</pre>
+    </div>
+
+    <p>
+        Users should only be allowed to edit their own posts.
+    </p>
+
+    <h2>Deleting Posts</h2>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "DELETE FROM posts
+     WHERE id = ?"
+);
+
+$stmt->execute([$id]);</pre>
+    </div>
+
+    <h2>File Uploads</h2>
+
+    <p>
+        Blog posts often contain featured images. Users should be able to upload images safely.
+    </p>
+
+    <div class="code-block">
+        <pre>move_uploaded_file(
+    $_FILES['image']['tmp_name'],
+    "uploads/" .
+    $_FILES['image']['name']
+);</pre>
+    </div>
+
+    <p>
+        Always validate file types and extensions before storing uploaded files.
+    </p>
+
+    <h2>Image Validation</h2>
+
+    <div class="code-block">
+        <pre>$allowed = [
+    'jpg',
+    'jpeg',
+    'png'
+];
+
+$ext = strtolower(
+    pathinfo(
+        $_FILES['image']['name'],
+        PATHINFO_EXTENSION
+    )
+);
+
+if (
+    in_array($ext, $allowed)
+) {
+    // Upload file
+}</pre>
+    </div>
+
+    <h2>Search Feature (Optional)</h2>
+
+    <p>
+        Enhance the blog system by allowing users to search for posts.
+    </p>
+
+    <div class="code-block">
+        <pre>$stmt = $pdo->prepare(
+    "SELECT *
+     FROM posts
+     WHERE title LIKE ?"
+);
+
+$stmt->execute([
+    "%$keyword%"
+]);</pre>
+    </div>
+
+    <h2>Categories Feature (Optional)</h2>
+
+    <p>
+        Categories help organize blog content.
+    </p>
+
+    <div class="code-block">
+        <pre>Technology
+Programming
+Design
+Business
+Education</pre>
+    </div>
+
+    <h2>Security Checklist</h2>
+
+    <ul>
+        <li>Use prepared statements.</li>
+        <li>Hash passwords.</li>
+        <li>Validate user input.</li>
+        <li>Sanitize output using htmlspecialchars().</li>
+        <li>Protect pages with authentication.</li>
+        <li>Validate uploaded files.</li>
+        <li>Use secure session management.</li>
+    </ul>
+
+    <h2>Testing Your Application</h2>
+
+    <p>
+        Before deployment, thoroughly test every feature.
+    </p>
+
+    <ul>
+        <li>User registration.</li>
+        <li>User login.</li>
+        <li>User logout.</li>
+        <li>Post creation.</li>
+        <li>Post editing.</li>
+        <li>Post deletion.</li>
+        <li>Image uploads.</li>
+        <li>Database connectivity.</li>
+        <li>Error handling.</li>
+    </ul>
+
+    <h2>Deployment Goals</h2>
+
+    <p>
+        Once development is complete, deploy the application to a live server.
+    </p>
+
+    <ul>
+        <li>Configure production database.</li>
+        <li>Enable HTTPS.</li>
+        <li>Upload project files.</li>
+        <li>Secure configuration settings.</li>
+        <li>Test all routes and features.</li>
+    </ul>
+
+    <h2>Bonus Challenges</h2>
+
+    <ul>
+        <li>Add comments to blog posts.</li>
+        <li>Add likes and reactions.</li>
+        <li>Create an admin dashboard.</li>
+        <li>Implement REST API endpoints.</li>
+        <li>Add email verification.</li>
+        <li>Add password reset functionality.</li>
+        <li>Implement pagination.</li>
+        <li>Add post categories and tags.</li>
+    </ul>
+
+    <h2>Learning Outcomes</h2>
+
+    <p>
+        By completing this capstone project, you will gain hands-on experience with:
+    </p>
+
+    <ul>
+        <li>PHP Programming.</li>
+        <li>Object-Oriented Development.</li>
+        <li>MySQL Databases.</li>
+        <li>PDO and Prepared Statements.</li>
+        <li>Authentication Systems.</li>
+        <li>File Upload Handling.</li>
+        <li>Application Security.</li>
+        <li>Project Architecture.</li>
+        <li>Deployment Techniques.</li>
+    </ul>
+
+    <h2>Final Summary</h2>
+
+    <p>
+        This Blog System capstone project serves as a complete practical application
+        of everything learned throughout the course. By building authentication,
+        database integration, CRUD functionality, image uploads, and secure user
+        management, you will create a professional-grade PHP application that closely
+        resembles real-world projects developed in the industry.
+    </p>
+
+    <div class="exercise">
+        <div class="exercise-title">Final Challenge</div>
+        <p>
+            Build the complete Blog System from scratch. Implement user registration,
+            login, authentication, CRUD operations, image uploads, security validation,
+            and deployment. Then extend the application with at least three bonus
+            features such as comments, categories, likes, REST APIs, or an admin panel.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(16)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+    </div>
+</div>
 
             </div>
 
