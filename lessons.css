@@ -132,26 +132,25 @@ body {
 .lesson-mega-item:hover .lesson-mega-trigger svg { transform: rotate(180deg); }
 
 .lesson-mega-dropdown {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  background: #fff;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-lg);
-  padding: 1rem;
-  min-width: 520px;
-  box-shadow: var(--shadow-lg);
-  opacity: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
-  transition: all var(--transition);
-}
-.lesson-mega-item:hover .lesson-mega-dropdown {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+   
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: 0 0 8px 8px;
+    padding: 1.5rem;
+    width: 600px;
+    opacity: 0;
+    background: #ffffff;
+    visibility: hidden;
+    transition: all 0.2s ease;
 }
 
+.lesson-mega-item:hover .lesson-mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+}
 .lesson-mega-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
