@@ -13,7 +13,6 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Dark editor tokens */
         :root {
             --ed-bg:      #0d1117;
             --ed-surface: #161b27;
@@ -33,211 +32,112 @@
             --font-code:  'DM Mono', 'Fira Code', monospace;
         }
 
-        html, body {
-            height: 100%;
-            overflow: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+        html, body { height: 100%; overflow: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* ── Page layout ── */
         body { display: flex; flex-direction: column; padding-top: var(--topbar-h); }
 
-        .compiler-page {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            min-height: 0;
-        }
+        .compiler-page { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
 
-        /* ── Sub-topbar ── */
         .compiler-topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding: .5rem 1.25rem;
-            min-height: 48px;
-            background: var(--ed-surface);
-            border-bottom: 1px solid var(--ed-border2);
-            flex-shrink: 0;
-            gap: .5rem;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+            padding: .5rem 1.25rem; min-height: 48px; background: var(--ed-surface);
+            border-bottom: 1px solid var(--ed-border2); flex-shrink: 0; gap: .5rem;
         }
-
         .compiler-topbar-left { display: flex; align-items: center; gap: .75rem; }
-
-        .compiler-page-title {
-            font-size: .85rem;
-            font-weight: 700;
-            color: var(--ed-text);
-            letter-spacing: -.01em;
-        }
-
+        .compiler-page-title { font-size: .85rem; font-weight: 700; color: var(--ed-text); letter-spacing: -.01em; }
         .compiler-page-title::before {
-            content: '';
-            display: inline-block;
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: var(--ed-accent);
-            box-shadow: 0 0 7px var(--ed-accent);
-            margin-right: .45rem;
-            vertical-align: middle;
+            content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+            background: var(--ed-accent); box-shadow: 0 0 7px var(--ed-accent); margin-right: .45rem; vertical-align: middle;
         }
-
-        .compiler-hint {
-            font-size: .72rem;
-            color: var(--ed-muted);
-            font-family: var(--font-code);
-        }
-
+        .compiler-hint { font-size: .72rem; color: var(--ed-muted); font-family: var(--font-code); }
         .compiler-actions { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
 
-        /* ── Language selector ── */
         .language-selector {
-            appearance: none;
-            background: var(--ed-surface2);
-            border: 1px solid var(--ed-border2);
-            border-radius: 6px;
-            color: var(--ed-text);
-            padding: .3rem 2rem .3rem .7rem;
-            font-size: .75rem;
-            font-weight: 500;
-            cursor: pointer;
-            font-family: var(--font-body, 'Outfit', sans-serif);
+            appearance: none; background: var(--ed-surface2); border: 1px solid var(--ed-border2);
+            border-radius: 6px; color: var(--ed-text); padding: .3rem 2rem .3rem .7rem; font-size: .75rem;
+            font-weight: 500; cursor: pointer; font-family: var(--font-body, 'Outfit', sans-serif);
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%237a8499' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right .55rem center;
-            transition: border-color .14s;
+            background-repeat: no-repeat; background-position: right .55rem center; transition: border-color .14s;
         }
         .language-selector:focus { outline: none; border-color: var(--ed-accent); }
-        .language-selector option { background: #1e2336; color: var(--ed-text); }
+        .language-selector option, .language-selector optgroup { background: #1e2336; color: var(--ed-text); }
 
-        /* ── Buttons ── */
         .compiler-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: .3rem;
-            padding: .32rem .8rem;
-            background: var(--ed-surface2);
-            border: 1px solid var(--ed-border2);
-            border-radius: 6px;
-            color: var(--ed-muted);
-            font-size: .75rem;
-            font-weight: 500;
-            cursor: pointer;
+            display: inline-flex; align-items: center; gap: .3rem; padding: .32rem .8rem;
+            background: var(--ed-surface2); border: 1px solid var(--ed-border2); border-radius: 6px;
+            color: var(--ed-muted); font-size: .75rem; font-weight: 500; cursor: pointer;
             transition: background .14s, color .14s, transform .12s;
-            font-family: var(--font-body, 'Outfit', sans-serif);
-            white-space: nowrap;
+            font-family: var(--font-body, 'Outfit', sans-serif); white-space: nowrap;
         }
-        .compiler-btn:hover { background: var(--ed-surface3); color: var(--ed-text); }
+        .compiler-btn:hover:not(:disabled) { background: var(--ed-surface3); color: var(--ed-text); }
+        .compiler-btn:disabled { opacity: .45; cursor: not-allowed; }
         .compiler-btn.run {
-            background: var(--ed-green); border-color: var(--ed-green);
-            color: #000; font-weight: 700; padding: .32rem 1rem;
-            box-shadow: 0 0 12px rgba(34,197,94,.22);
+            background: var(--ed-green); border-color: var(--ed-green); color: #000; font-weight: 700;
+            padding: .32rem 1rem; box-shadow: 0 0 12px rgba(34,197,94,.22);
         }
-        .compiler-btn.run:hover {
+        .compiler-btn.run:hover:not(:disabled) {
             background: var(--ed-green2); border-color: var(--ed-green2);
             box-shadow: 0 0 18px rgba(74,222,128,.3); transform: translateY(-1px);
         }
+        .compiler-btn.run:disabled { box-shadow: none; }
 
-        /* ── Main grid ── */
-        .compiler-layout {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            overflow: hidden;
-            min-height: 0;
-        }
+        .compiler-layout { flex: 1; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; min-height: 0; }
+        .editor-section { display: flex; flex-direction: column; border-right: 1px solid var(--ed-border2); min-height: 0; }
+        .output-section { display: flex; flex-direction: column; min-height: 0; }
 
-        .editor-section {
-            display: flex; flex-direction: column;
-            border-right: 1px solid var(--ed-border2);
-            min-height: 0;
-        }
-
-        .output-section {
-            display: flex; flex-direction: column;
-            min-height: 0;
-        }
-
-        /* ── Panel headers ── */
         .panel-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: .48rem 1rem;
-            background: var(--ed-surface2);
-            border-bottom: 1px solid var(--ed-border2);
-            font-size: .74rem;
-            font-weight: 600;
-            color: var(--ed-muted);
-            flex-shrink: 0;
-            font-family: var(--font-body, 'Outfit', sans-serif);
-            letter-spacing: .03em;
-            text-transform: uppercase;
+            display: flex; align-items: center; justify-content: space-between; padding: .48rem 1rem;
+            background: var(--ed-surface2); border-bottom: 1px solid var(--ed-border2); font-size: .74rem;
+            font-weight: 600; color: var(--ed-muted); flex-shrink: 0; font-family: var(--font-body, 'Outfit', sans-serif);
+            letter-spacing: .03em; text-transform: uppercase;
         }
-
         .language-info, .execution-info {
-            display: flex;
-            align-items: center;
-            gap: .4rem;
-            font-size: .7rem;
-            color: var(--ed-muted);
-            font-family: var(--font-code);
-            font-weight: 400;
-            text-transform: none;
-            letter-spacing: 0;
+            display: flex; align-items: center; gap: .4rem; font-size: .7rem; color: var(--ed-muted);
+            font-family: var(--font-code); font-weight: 400; text-transform: none; letter-spacing: 0;
         }
 
-        /* ── Editor ── */
         .editor-textarea {
-            flex: 1;
-            border: none;
-            padding: 1rem 1.2rem;
-            font-family: var(--font-code); font-size: 13px; line-height: 1.75;
-            resize: none; outline: none;
-            background: var(--ed-bg); color: #c9d2e8;
-            tab-size: 4; overflow: auto; -webkit-font-smoothing: antialiased;
-            min-height: 0;
+            flex: 1; border: none; padding: 1rem 1.2rem; font-family: var(--font-code); font-size: 13px;
+            line-height: 1.75; resize: none; outline: none; background: var(--ed-bg); color: #c9d2e8;
+            tab-size: 4; overflow: auto; -webkit-font-smoothing: antialiased; min-height: 0;
         }
         .editor-textarea:focus { box-shadow: inset 2px 0 0 var(--ed-accent); }
 
-        /* ── Output ── */
         .output-content {
-            flex: 1;
-            padding: 1rem 1.2rem;
-            font-family: var(--font-code); font-size: 13px; line-height: 1.7;
-            background: var(--ed-bg); color: #c9d2e8;
-            overflow-y: auto; white-space: pre-wrap; word-wrap: break-word;
+            flex: 1; padding: 1rem 1.2rem; font-family: var(--font-code); font-size: 13px; line-height: 1.7;
+            background: var(--ed-bg); color: #c9d2e8; overflow-y: auto; white-space: pre-wrap; word-wrap: break-word;
             min-height: 0;
         }
         .output-content.error   { color: var(--ed-red); }
         .output-content.success { color: var(--ed-green2); }
         .output-content.warning { color: var(--ed-yellow); }
+        .output-content.muted   { color: var(--ed-muted); }
 
-        /* ── Status bar ── */
         .compiler-status {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: .28rem 1.25rem;
-            background: var(--ed-surface2); border-top: 1px solid var(--ed-border);
-            font-size: .7rem; color: var(--ed-muted); font-family: var(--font-code);
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: space-between; padding: .28rem 1.25rem;
+            background: var(--ed-surface2); border-top: 1px solid var(--ed-border); font-size: .7rem;
+            color: var(--ed-muted); font-family: var(--font-code); flex-shrink: 0; flex-wrap: wrap; gap: .4rem;
         }
-        .status-left { display: flex; align-items: center; gap: .5rem; }
-        .status-dot  { width: 7px; height: 7px; border-radius: 50%; background: var(--ed-muted); transition: background .25s, box-shadow .25s; }
+        .status-left { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+        .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ed-muted); transition: background .25s, box-shadow .25s; }
         .status-dot.ready   { background: var(--ed-green);  box-shadow: 0 0 6px rgba(34,197,94,.5); }
+        .status-dot.loading { background: var(--ed-yellow); animation: blink 1s infinite; }
         .status-dot.running { background: var(--ed-yellow); animation: blink 1s infinite; }
         .status-dot.error   { background: var(--ed-red);    box-shadow: 0 0 6px rgba(248,113,113,.5); }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-        /* ── Footer ── */
+        .runtime-badge {
+            display: inline-flex; align-items: center; gap: .3rem; font-size: .68rem; color: var(--ed-green2);
+            font-family: var(--font-code); padding: .2rem .55rem; border: 1px solid rgba(74,222,128,.3);
+            border-radius: 4px; background: rgba(74,222,128,.06);
+        }
+        .runtime-badge.unsupported {
+            color: var(--ed-yellow); border-color: rgba(251,191,36,.3); background: rgba(251,191,36,.06);
+        }
+
         .compiler-footer {
-            flex-shrink: 0;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: .65rem 1.5rem;
-            background: #0a0f1a;
-            border-top: 1px solid var(--ed-border2);
-            gap: 1rem;
+            flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+            padding: .65rem 1.5rem; background: #0a0f1a; border-top: 1px solid var(--ed-border2); gap: 1rem;
         }
         .compiler-footer-copy { font-size: .72rem; color: var(--ed-muted); font-family: var(--font-code); }
         .compiler-footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
@@ -247,76 +147,36 @@
         }
         .compiler-footer-links a:hover { color: rgba(255,255,255,.9); }
 
-        /* ── Scrollbar ── */
         ::-webkit-scrollbar       { width:5px; height:5px; }
         ::-webkit-scrollbar-track { background:transparent; }
         ::-webkit-scrollbar-thumb { background:var(--ed-surface3); border-radius:99px; }
         ::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,.22); }
 
-        /* ── Responsive ── */
-
-        /* Tablet: stack editor + output */
         @media (max-width:1024px) {
-            .compiler-layout {
-                grid-template-columns: 1fr;
-                overflow-y: auto;
-            }
+            .compiler-layout { grid-template-columns: 1fr; overflow-y: auto; }
             .editor-section { height:48vh; min-height:260px; border-right:none; border-bottom:1px solid var(--ed-border2); }
             .output-section { height:48vh; min-height:260px; }
         }
 
-        /* Mobile: scrollable page, touch-friendly controls */
         @media (max-width:768px) {
             html, body { height:auto; overflow:auto; }
-
             .compiler-page { overflow:visible; height:auto; }
-
-            .compiler-layout {
-                grid-template-columns: 1fr;
-                overflow: visible;
-                height: auto;
-            }
-
+            .compiler-layout { grid-template-columns: 1fr; overflow: visible; height: auto; }
             .editor-section { height:50vmax; min-height:300px; border-right:none; border-bottom:1px solid var(--ed-border2); }
             .output-section { height:45vmax; min-height:260px; }
-
-            /* Prevent iOS zoom on textarea focus */
             .editor-textarea { font-size:16px; }
-
             .compiler-topbar { padding:.5rem .75rem; gap:.4rem; }
             .compiler-hint   { display:none; }
-
             .compiler-actions { flex-wrap:wrap; gap:.35rem; width:100%; }
-
-            .language-selector {
-                flex: 2;
-                min-width: 120px;
-                font-size: .8rem;
-                padding: .4rem 2rem .4rem .65rem;
-            }
-            .compiler-btn {
-                padding: .42rem .7rem;
-                font-size: .78rem;
-                flex: 1;
-                justify-content: center;
-                min-width: 60px;
-            }
+            .language-selector { flex: 2; min-width: 120px; font-size: .8rem; padding: .4rem 2rem .4rem .65rem; }
+            .compiler-btn { padding: .42rem .7rem; font-size: .78rem; flex: 1; justify-content: center; min-width: 60px; }
             .compiler-btn.run { flex: 2; }
-
             .panel-header { padding:.4rem .75rem; font-size:.7rem; }
-
             .compiler-status { padding:.3rem .75rem; font-size:.68rem; }
-
-            .compiler-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: .5rem;
-                padding: .75rem;
-            }
+            .compiler-footer { flex-direction: column; align-items: flex-start; gap: .5rem; padding: .75rem; }
             .compiler-footer-links { gap:.6rem; flex-wrap:wrap; }
         }
 
-        /* Small phones */
         @media (max-width:420px) {
             .compiler-btn { font-size:.72rem; padding:.38rem .5rem; }
             .compiler-page-title { font-size:.78rem; }
@@ -326,9 +186,6 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     SITE-WIDE MEGA NAV
-════════════════════════════════════════════════ -->
 <nav class="lesson-mega-nav">
     <div class="lesson-nav-container">
         <div class="lesson-nav-left">
@@ -375,108 +232,73 @@
     </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════
-     COMPILER PAGE
-════════════════════════════════════════════════ -->
 <div class="compiler-page">
 
-    <!-- Sub-topbar -->
     <div class="compiler-topbar">
         <div class="compiler-topbar-left">
             <span class="compiler-page-title">Multi-Language Compiler</span>
-            <span class="compiler-hint">Java · C# · Go · Rust · PHP · Swift · Kotlin · Ruby · SQL · Bash</span>
+            <span class="compiler-hint">JS · TS · SQL · Ruby · PHP run for real in your browser — no server</span>
         </div>
         <div class="compiler-actions">
             <select id="language-select" class="language-selector" onchange="switchLanguage()">
-                <option value="java">Java</option>
-                <option value="csharp">C#</option>
-                <option value="typescript">TypeScript</option>
-                <option value="go">Go</option>
-                <option value="rust">Rust</option>
-                <option value="php">PHP</option>
-                <option value="swift">Swift</option>
-                <option value="kotlin">Kotlin</option>
-                <option value="ruby">Ruby</option>
-                <option value="sql">SQL</option>
-                <option value="bash">Bash</option>
+                <optgroup label="Runs for real in your browser">
+                    <option value="javascript">JavaScript</option>
+                    <option value="typescript">TypeScript</option>
+                    <option value="sql">SQL (SQLite)</option>
+                    <option value="ruby">Ruby</option>
+                    <option value="php">PHP</option>
+                </optgroup>
+                <optgroup label="Needs a real backend (view-only here)">
+                    <option value="java">Java</option>
+                    <option value="csharp">C#</option>
+                    <option value="go">Go</option>
+                    <option value="rust">Rust</option>
+                    <option value="swift">Swift</option>
+                    <option value="kotlin">Kotlin</option>
+                    <option value="bash">Bash</option>
+                </optgroup>
             </select>
             <button class="compiler-btn" onclick="loadExample()">Load Example</button>
             <button class="compiler-btn" onclick="clearCode()">Clear</button>
-            <button class="compiler-btn" onclick="toggleSettings()">⚙️ Settings</button>
-            <button class="compiler-btn run" onclick="runCode()">▶ Run</button>
+            <button class="compiler-btn run" id="run-btn" onclick="runCode()">▶ Run</button>
         </div>
     </div>
 
-    <!-- Settings Panel -->
-    <div id="settings-panel" style="display: none; background: var(--ed-surface2); padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--ed-border2); gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; font-size: 0.8rem; color: var(--ed-muted); flex-shrink: 0;">
-        <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 250px;">
-            <label for="api-endpoint" style="white-space: nowrap;">Piston API Endpoint:</label>
-            <input type="text" id="api-endpoint" placeholder="https://emkc.org/api/v2/piston" style="background: var(--ed-bg); border: 1px solid var(--ed-border2); color: var(--ed-text); padding: 0.25rem 0.5rem; border-radius: 4px; flex: 1; font-size: 0.75rem;" value="https://emkc.org/api/v2/piston">
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 200px;">
-            <label for="api-key" style="white-space: nowrap;">Auth Key (Optional):</label>
-            <input type="password" id="api-key" placeholder="Enter Piston token" style="background: var(--ed-bg); border: 1px solid var(--ed-border2); color: var(--ed-text); padding: 0.25rem 0.5rem; border-radius: 4px; flex: 1; font-size: 0.75rem;">
-        </div>
-    </div>
-
-    <!-- Editor + Output grid -->
     <div class="compiler-layout">
 
-        <!-- Editor Section -->
         <div class="editor-section">
             <div class="panel-header">
                 <span>Code Editor</span>
                 <div class="language-info">
-                    <span id="current-language">Java</span>
-                    <span>·</span>
-                    <span id="language-version">Java 17</span>
+                    <span id="current-language">JavaScript</span>
                 </div>
             </div>
-            <textarea id="code-editor" class="editor-textarea" placeholder="Write your code here...">// Java Example - Hello World
-public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-        System.out.println("Welcome to Java programming!");
-        
-        // Variables
-        String name = "Java Developer";
-        int year = 2026;
-        
-        System.out.println("Hello, " + name + "!");
-        System.out.println("Year: " + year);
-    }
-}</textarea>
+            <textarea id="code-editor" class="editor-textarea" placeholder="Write your code here..." spellcheck="false"></textarea>
         </div>
 
-        <!-- Output Section -->
         <div class="output-section">
             <div class="panel-header">
                 <span>Output</span>
                 <div class="execution-info">
                     <span id="execution-time">Exec: --</span>
-                    <span>·</span>
-                    <span id="memory-usage">Memory: --</span>
                 </div>
             </div>
-            <div id="output-content" class="output-content">Click "Run" to execute your code...</div>
+            <div id="output-content" class="output-content muted">Click "Run" to execute your code...</div>
         </div>
 
     </div>
 
-    <!-- Status bar -->
     <div class="compiler-status">
         <div class="status-left">
             <div id="status-dot" class="status-dot ready"></div>
             <span id="status-text">Ready to run</span>
+            <span id="runtime-badge" class="runtime-badge">⚡ Real JS (your browser's own engine)</span>
         </div>
         <div id="last-run">Last run: Never</div>
     </div>
 
-</div><!-- /.compiler-page -->
+</div>
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════ -->
 <footer class="compiler-footer">
     <span class="compiler-footer-copy">© 2025 Code Tutorium — Multi-Language Compiler</span>
     <div class="compiler-footer-links">
@@ -497,227 +319,68 @@ public class HelloWorld {
         const lastRunElement = document.getElementById('last-run');
         const languageSelect = document.getElementById('language-select');
         const currentLanguageSpan = document.getElementById('current-language');
-        const languageVersionSpan = document.getElementById('language-version');
         const executionTimeElement = document.getElementById('execution-time');
-        const memoryUsageElement = document.getElementById('memory-usage');
+        const runtimeBadge = document.getElementById('runtime-badge');
+        const runBtn = document.getElementById('run-btn');
 
-        const languageExamples = {
-            java: {
-                version: 'Java 17',
-                code: `// Java Example - Hello World
-public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-        System.out.println("Welcome to Java programming!");
-        
-        // Variables
-        String name = "Java Developer";
-        int year = 2026;
-        
-        System.out.println("Hello, " + name + "!");
-        System.out.println("Year: " + year);
-        
-        // Simple calculation
-        int a = 10, b = 5;
-        System.out.println(a + " + " + b + " = " + (a + b));
-    }
-}`
-            },
-            csharp: {
-                version: 'C# 10',
-                code: `// C# Example - Hello World
-using System;
+        // ──────────────────────────────────────────────────────────────
+        // Language definitions. `engine` decides how runCode() executes it.
+        // Every engine except 'unsupported' runs a REAL interpreter/compiler
+        // entirely client-side — nothing is sent to a server, and nothing
+        // is faked with regex pattern-matching.
+        // ──────────────────────────────────────────────────────────────
+        const LANGS = {
+            javascript: {
+                label: 'JavaScript',
+                engine: 'javascript',
+                badge: "⚡ Real JS — your browser's own engine",
+                example: `// JavaScript — runs directly in the browser's real JS engine
+console.log("Hello, World!");
+console.log("Welcome to JavaScript!");
 
-class Program {
-    static void Main() {
-        Console.WriteLine("Hello, World!");
-        Console.WriteLine("Welcome to C# programming!");
-        
-        // Variables
-        string name = "C# Developer";
-        int year = 2026;
-        
-        Console.WriteLine($"Hello, {name}!");
-        Console.WriteLine($"Year: {year}");
-        
-        // Simple calculation
-        int a = 10, b = 5;
-        Console.WriteLine($"{a} + {b} = {a + b}");
-    }
+const name = "JS Developer";
+const year = 2026;
+console.log(\`Hello, \${name}!\`);
+console.log(\`Year: \${year}\`);
+
+const a = 10, b = 5;
+console.log(\`\${a} + \${b} = \${a + b}\`);
+
+// Real error handling
+try {
+  JSON.parse("{ not valid json");
+} catch (e) {
+  console.log("Caught a real error:", e.message);
 }`
             },
             typescript: {
-                version: 'TypeScript 5.0',
-                code: `// TypeScript Example - Hello World
-
+                label: 'TypeScript',
+                engine: 'typescript',
+                badge: '⚡ Real tsc transpile, then real JS execution',
+                example: `// TypeScript — transpiled by the real TypeScript compiler (loaded from CDN),
+// then the resulting JS runs in your browser's real engine.
 function greet(name: string): string {
     return \`Hello, \${name}!\`;
 }
 
 const year: number = 2026;
-const message: string = greet("TypeScript Developer");
-
 console.log("Hello, World!");
-console.log("Welcome to TypeScript programming!");
-console.log(message);
+console.log(greet("TypeScript Developer"));
 console.log(\`Year: \${year}\`);
 
-// Simple calculation
-const a = 10, b = 5;
-console.log(\`\${a} + \${b} = \${a + b}\`);
-
-// Type-safe object
 interface Person {
     name: string;
     age: number;
 }
 
-const person: Person = {
-    name: "Alice",
-    age: 30
-};
-
+const person: Person = { name: "Alice", age: 30 };
 console.log(\`Person: \${person.name}, Age: \${person.age}\`);`
             },
-            go: {
-                version: 'Go 1.21',
-                code: `// Go Example - Hello World
-package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Hello, World!")
-    fmt.Println("Welcome to Go programming!")
-    
-    // Variables
-    name := "Go Developer"
-    year := 2026
-    
-    fmt.Printf("Hello, %s!\\n", name)
-    fmt.Printf("Year: %d\\n", year)
-    
-    // Simple calculation
-    a, b := 10, 5
-    fmt.Printf("%d + %d = %d\\n", a, b, a+b)
-    
-    // Slice example
-    numbers := []int{1, 2, 3, 4, 5}
-    fmt.Printf("Numbers: %v\\n", numbers)
-}`
-            },
-            rust: {
-                version: 'Rust 1.70',
-                code: `// Rust Example - Hello World
-fn main() {
-    println!("Hello, World!");
-    println!("Welcome to Rust programming!");
-    
-    // Variables
-    let name = "Rust Developer";
-    let year = 2026;
-    
-    println!("Hello, {}!", name);
-    println!("Year: {}", year);
-    
-    // Simple calculation
-    let a = 10;
-    let b = 5;
-    println!("{} + {} = {}", a, b, a + b);
-    
-    // Vector example
-    let numbers = vec![1, 2, 3, 4, 5];
-    println!("Numbers: {:?}", numbers);
-}`
-            },
-            php: {
-                version: 'PHP 8.2',
-                code: `<?php
-// PHP Example - Hello World
-echo "Hello, World!\\n";
-echo "Welcome to PHP programming!\\n";
-
-// Variables
-$name = "PHP Developer";
-$year = 2026;
-
-echo "Hello, $name!\\n";
-echo "Year: $year\\n";
-
-// Simple calculation
-$a = 10;
-$b = 5;
-echo "$a + $b = " . ($a + $b) . "\\n";
-
-// Array example
-$fruits = ["apple", "banana", "orange"];
-echo "Fruits: " . implode(", ", $fruits) . "\\n";
-?>`
-            },
-            swift: {
-                version: 'Swift 5.8',
-                code: `// Swift Example - Hello World
-import Foundation
-
-print("Hello, World!")
-print("Welcome to Swift programming!")
-
-// Variables
-let name = "Swift Developer"
-var year = 2026
-
-print("Hello, \\(name)!")
-print("Year: \\(year)")
-
-// Simple calculation
-let a = 10
-let b = 5
-print("\\(a) + \\(b) = \\(a + b)")`
-            },
-            kotlin: {
-                version: 'Kotlin 1.9',
-                code: `// Kotlin Example - Hello World
-fun main() {
-    println("Hello, World!")
-    println("Welcome to Kotlin programming!")
-    
-    // Variables
-    val name = "Kotlin Developer"
-    val year = 2026
-    
-    println("Hello, $name!")
-    println("Year: $year")
-    
-    // Simple calculation
-    val a = 10
-    val b = 5
-    println("$a + $b = \${a + b}")
-}`
-            },
-            ruby: {
-                version: 'Ruby 3.2',
-                code: `# Ruby Example - Hello World
-puts "Hello, World!"
-puts "Welcome to Ruby programming!"
-
-# Variables
-name = "Ruby Developer"
-year = 2026
-
-puts "Hello, #{name}!"
-puts "Year: #{year}"
-
-# Simple calculation
-a = 10
-b = 5
-puts "#{a} + #{b} = #{a + b}"`
-            },
             sql: {
-                version: 'SQLite 3',
-                code: `-- SQL Example - Basic Queries
--- This executes against an in-memory SQLite database
-
--- Create a simple table
+                label: 'SQL (SQLite)',
+                engine: 'sql',
+                badge: '⚡ Real SQLite compiled to WebAssembly (sql.js)',
+                example: `-- Runs against a REAL in-memory SQLite database (sql.js / WebAssembly)
 CREATE TABLE users (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
@@ -725,290 +388,380 @@ CREATE TABLE users (
     email TEXT
 );
 
--- Insert some sample data
-INSERT INTO users (name, age, email) VALUES 
+INSERT INTO users (name, age, email) VALUES
     ('Alice', 25, 'alice@example.com'),
     ('Bob', 30, 'bob@example.com'),
     ('Charlie', 35, 'charlie@example.com');
 
--- Query all users
 SELECT * FROM users;
 
--- Query with conditions
 SELECT name, age FROM users WHERE age > 25;
 
--- Aggregate functions
-SELECT COUNT(*) as total_users, 
-       AVG(age) as average_age 
-FROM users;`
+SELECT COUNT(*) AS total_users, AVG(age) AS average_age FROM users;`
+            },
+            ruby: {
+                label: 'Ruby',
+                engine: 'ruby',
+                badge: '⚡ Real CRuby compiled to WebAssembly (ruby.wasm)',
+                example: `# Real CRuby, compiled to WebAssembly (ruby.wasm), running in your browser
+puts "Hello, World!"
+puts "Welcome to Ruby programming!"
+
+name = "Ruby Developer"
+year = 2026
+puts "Hello, #{name}!"
+puts "Year: #{year}"
+
+a = 10
+b = 5
+puts "#{a} + #{b} = #{a + b}"`
+            },
+            php: {
+                label: 'PHP',
+                engine: 'php',
+                badge: '⚡ Real PHP compiled to WebAssembly (php-wasm)',
+                example: `<?php
+// Real PHP, compiled to WebAssembly (php-wasm), running in your browser
+echo "Hello, World!\\n";
+echo "Welcome to PHP programming!\\n";
+
+$name = "PHP Developer";
+$year = 2026;
+echo "Hello, $name!\\n";
+echo "Year: $year\\n";
+
+$a = 10;
+$b = 5;
+echo "$a + $b = " . ($a + $b) . "\\n";
+
+$fruits = ["apple", "banana", "orange"];
+echo "Fruits: " . implode(", ", $fruits) . "\\n";
+?>`
+            },
+            java: {
+                label: 'Java', engine: 'unsupported',
+                example: `// Java needs a real JDK (javac + JVM) to compile and run.
+// There is no lightweight, reliable way to do that fully client-side,
+// so this editor is view/edit-only for Java until connected to a backend.
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}`
+            },
+            csharp: {
+                label: 'C#', engine: 'unsupported',
+                example: `// C# needs the .NET SDK (or Blazor's much heavier WASM runtime) to run.
+// View/edit-only here until connected to a backend.
+using System;
+
+class Program {
+    static void Main() {
+        Console.WriteLine("Hello, World!");
+    }
+}`
+            },
+            go: {
+                label: 'Go', engine: 'unsupported',
+                example: `// Go needs the Go toolchain to compile. No practical drop-in
+// client-side compiler exists yet, so this is view/edit-only.
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}`
+            },
+            rust: {
+                label: 'Rust', engine: 'unsupported',
+                example: `// Rust needs rustc + LLVM to compile — far too heavy to ship
+// as an in-browser WASM download. View/edit-only here.
+fn main() {
+    println!("Hello, World!");
+}`
+            },
+            swift: {
+                label: 'Swift', engine: 'unsupported',
+                example: `// Swift needs the Swift toolchain. View/edit-only here
+// until connected to a backend.
+import Foundation
+print("Hello, World!")`
+            },
+            kotlin: {
+                label: 'Kotlin', engine: 'unsupported',
+                example: `// Kotlin needs the Kotlin compiler (kotlinc) or Kotlin/JS build step.
+// View/edit-only here until connected to a backend.
+fun main() {
+    println("Hello, World!")
+}`
             },
             bash: {
-                version: 'Bash 5.2',
-                code: `#!/bin/bash
-# Bash Script Example - Hello World
-
-echo "Hello, World!"
-echo "Welcome to Bash scripting!"
-
-# Variables
-name="Bash Developer"
-year=2026
-
-echo "Hello, $name!"
-echo "Year: $year"
-
-# Simple calculation
-a=10
-b=5
-result=$((a + b))
-echo "$a + $b = $result"`
+                label: 'Bash', engine: 'unsupported',
+                example: `#!/bin/bash
+# There's no reliable, lightweight WASM shell that faithfully runs
+# arbitrary Bash in a browser tab, so this is view/edit-only here.
+echo "Hello, World!"`
             }
         };
 
-        const languageMap = {
-            java: 'java',
-            csharp: 'csharp',
-            typescript: 'typescript',
-            go: 'go',
-            rust: 'rust',
-            php: 'php',
-            swift: 'swift',
-            kotlin: 'kotlin',
-            ruby: 'ruby',
-            sql: 'sqlite3',
-            bash: 'bash'
-        };
-
-        const defaultVersions = {
-            java: '15.0.2',
-            csharp: '6.12.0',
-            typescript: '5.0.3',
-            go: '1.16.2',
-            rust: '1.68.2',
-            php: '8.2.3',
-            swift: '5.7.3',
-            kotlin: '1.8.20',
-            ruby: '3.2.1',
-            sqlite3: '3.36.0',
-            bash: '5.2.0'
-        };
-
-        let activeRuntimes = {};
-
-        async function fetchRuntimes() {
-            try {
-                const response = await fetch('https://emkc.org/api/v2/piston/runtimes');
-                if (response.ok) {
-                    const runtimes = await response.json();
-                    runtimes.forEach(r => {
-                        activeRuntimes[r.language] = r.version;
-                        if (r.aliases) {
-                            r.aliases.forEach(alias => {
-                                activeRuntimes[alias] = r.version;
-                            });
-                        }
-                    });
-                }
-            } catch (e) {
-                console.warn('Could not fetch dynamic runtimes, using default fallbacks:', e);
-            }
-            updateVersionLabels();
-        }
-        fetchRuntimes();
-
-        function updateVersionLabels() {
-            const selectedLanguage = languageSelect.value;
-            const pistonLang = languageMap[selectedLanguage];
-            const version = activeRuntimes[pistonLang] || defaultVersions[pistonLang];
-            languageVersionSpan.textContent = selectedLanguage === 'sql' ? 'SQLite 3' : `${selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)} ${version}`;
-        }
+        // ── Lazily-loaded runtime handles (fetched once, cached) ──
+        let sqlJsPromise = null;
+        let rubyVmPromise = null;
+        let phpWebCtorPromise = null;
+        let tsCompilerPromise = null;
 
         function updateStatus(status, text) {
             statusDot.className = `status-dot ${status}`;
             statusText.textContent = text;
         }
 
+        function setOutput(text, cls) {
+            outputContent.className = `output-content ${cls || ''}`.trim();
+            outputContent.textContent = text;
+        }
+
+        function currentLang() {
+            return LANGS[languageSelect.value];
+        }
+
         function switchLanguage() {
-            const selectedLanguage = languageSelect.value;
-            const langData = languageExamples[selectedLanguage];
-            
-            if (langData) {
-                currentLanguageSpan.textContent = selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
-                updateVersionLabels();
-                codeEditor.value = langData.code;
+            const lang = currentLang();
+            currentLanguageSpan.textContent = lang.label;
+            codeEditor.value = lang.example;
+            setOutput('Click "Run" to execute your code...', 'muted');
+            executionTimeElement.textContent = 'Exec: --';
+
+            if (lang.engine === 'unsupported') {
+                runtimeBadge.textContent = '⚠ No client-side runtime — view/edit only';
+                runtimeBadge.classList.add('unsupported');
+                runBtn.disabled = true;
+                updateStatus('ready', 'This language needs a real backend to execute');
+            } else {
+                runtimeBadge.textContent = lang.badge;
+                runtimeBadge.classList.remove('unsupported');
+                runBtn.disabled = false;
                 updateStatus('ready', 'Ready to run');
-                clearOutput();
             }
         }
 
         function clearCode() {
             codeEditor.value = '';
-            clearOutput();
-            updateStatus('ready', 'Ready to run');
-        }
-
-        function clearOutput() {
-            outputContent.textContent = 'Click "Run" to execute your code...';
-            outputContent.className = 'output-content';
+            setOutput('Code cleared. Write something and click Run!', 'muted');
             executionTimeElement.textContent = 'Exec: --';
-            memoryUsageElement.textContent = 'Memory: --';
         }
 
         function loadExample() {
-            const selectedLanguage = languageSelect.value;
-            const langData = languageExamples[selectedLanguage];
-            
-            if (langData) {
-                codeEditor.value = langData.code;
-                updateStatus('ready', 'Example loaded');
+            codeEditor.value = currentLang().example;
+            setOutput('Example loaded.', 'muted');
+        }
+
+        // ── Runtime loaders ──────────────────────────────────────────
+
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const s = document.createElement('script');
+                s.src = src;
+                s.onload = resolve;
+                s.onerror = () => reject(new Error(`Failed to load ${src}`));
+                document.head.appendChild(s);
+            });
+        }
+
+        async function getTsCompiler() {
+            if (!tsCompilerPromise) {
+                tsCompilerPromise = (async () => {
+                    await loadScript('https://cdn.jsdelivr.net/npm/typescript@5.4.5/lib/typescript.js');
+                    return window.ts;
+                })();
+            }
+            return tsCompilerPromise;
+        }
+
+        async function getSqlJs() {
+            if (!sqlJsPromise) {
+                sqlJsPromise = (async () => {
+                    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js');
+                    return await window.initSqlJs({
+                        locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/${file}`
+                    });
+                })();
+            }
+            return sqlJsPromise;
+        }
+
+        async function getRubyVm() {
+            if (!rubyVmPromise) {
+                rubyVmPromise = (async () => {
+                    const { DefaultRubyVM } = await import(
+                        'https://cdn.jsdelivr.net/npm/@ruby/3.2-wasm-wasi@2.7.1/dist/browser.esm.js'
+                    );
+                    const resp = await fetch(
+                        'https://cdn.jsdelivr.net/npm/@ruby/3.2-wasm-wasi@2.7.1/dist/ruby.wasm'
+                    );
+                    const buffer = await resp.arrayBuffer();
+                    const module = await WebAssembly.compile(buffer);
+                    const { vm } = await DefaultRubyVM(module);
+                    return vm;
+                })();
+            }
+            return rubyVmPromise;
+        }
+
+        async function getPhpWebCtor() {
+            if (!phpWebCtorPromise) {
+                phpWebCtorPromise = (async () => {
+                    const mod = await import('https://cdn.jsdelivr.net/npm/php-wasm/PhpWeb.mjs');
+                    return mod.PhpWeb;
+                })();
+            }
+            return phpWebCtorPromise;
+        }
+
+        // ── Execution engines ───────────────────────────────────────
+
+        async function runJavaScript(code) {
+            const lines = [];
+            const origLog = console.log, origErr = console.error, origWarn = console.warn;
+            const capture = (...args) => lines.push(args.map(a =>
+                typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(' '));
+            console.log = capture; console.error = capture; console.warn = capture;
+            try {
+                const runner = new Function(`
+                    return (async () => { ${code} })();
+                `);
+                await runner();
+                return { text: lines.join('\n') || '(no output)', ok: true };
+            } catch (err) {
+                lines.push(String(err && err.stack ? err.stack : err));
+                return { text: lines.join('\n'), ok: false };
+            } finally {
+                console.log = origLog; console.error = origErr; console.warn = origWarn;
             }
         }
 
-        // Load saved settings
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedEndpoint = localStorage.getItem('piston-endpoint');
-            const savedKey = localStorage.getItem('piston-key');
-            if (savedEndpoint) document.getElementById('api-endpoint').value = savedEndpoint;
-            if (savedKey) document.getElementById('api-key').value = savedKey;
-        });
-
-        function toggleSettings() {
-            const panel = document.getElementById('settings-panel');
-            if (panel.style.display === 'none') {
-                panel.style.display = 'flex';
-            } else {
-                panel.style.display = 'none';
-                localStorage.setItem('piston-endpoint', document.getElementById('api-endpoint').value.trim());
-                localStorage.setItem('piston-key', document.getElementById('api-key').value.trim());
-                updateVersionLabels();
-            }
+        async function runTypeScript(code) {
+            const ts = await getTsCompiler();
+            const transpiled = ts.transpileModule(code, {
+                compilerOptions: { target: ts.ScriptTarget.ES2017, module: ts.ModuleKind.None }
+            }).outputText;
+            return runJavaScript(transpiled);
         }
 
-        function runSimulationFallback(selectedLanguage, code, startTime) {
-            updateStatus('running', 'Running (Simulation)...');
-            outputContent.textContent = 'Executing in offline/simulation mode...';
-            
-            setTimeout(() => {
-                const compileEndTime = performance.now();
-                executionTimeElement.textContent = `Exec: ${Math.round(compileEndTime - startTime)}ms`;
-                memoryUsageElement.textContent = 'Memory: (Simulated) 12MB';
-                
-                let output = '';
-
-                if (selectedLanguage === 'sql') {
-                    output = `SQL execution simulated successfully:\nTable 'users' created\n3 rows inserted\n\nQuery Results:\nid | name    | age | email\n---|---------|-----|------------------\n1  | Alice   | 25  | alice@example.com\n2  | Bob     | 30  | bob@example.com  \n3  | Charlie | 35  | charlie@example.com`;
-                } else if (selectedLanguage === 'bash') {
-                    output = `Hello, World!\nWelcome to Bash scripting!\nHello, Bash Developer!\nYear: 2026\n10 + 5 = 15\nWe're in the future!`;
-                } else {
-                    const capitalLang = selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
-                    output = `Hello, World!\nWelcome to ${capitalLang} programming!\nHello, ${capitalLang} Developer!\nYear: 2026\n10 + 5 = 15`;
+        async function runSql(code) {
+            const SQL = await getSqlJs();
+            const db = new SQL.Database();
+            try {
+                const results = db.exec(code); // real SQLite execution
+                if (results.length === 0) {
+                    return { text: 'Query executed successfully (no rows returned).', ok: true };
                 }
-
-                outputContent.textContent = `⚠️ Offline/Unauthenticated Simulation Mode Active\n` +
-                    `--------------------------------------------------\n` +
-                    `The execution server returned 401 Unauthorized or CORS is blocked.\n` +
-                    `To execute real code, host Piston locally or provide an API Key in the settings gear above.\n` +
-                    `--------------------------------------------------\n\n` + output;
-
-                outputContent.className = 'output-content success';
-                updateStatus('ready', 'Code executed successfully (Simulated)');
-                lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
-            }, 600);
+                const blocks = results.map(r => {
+                    const header = r.columns.join(' | ');
+                    const rule = r.columns.map(c => '-'.repeat(Math.max(c.length, 3))).join('-|-');
+                    const rows = r.values.map(row => row.map(v => v === null ? 'NULL' : String(v)).join(' | '));
+                    return [header, rule, ...rows].join('\n');
+                });
+                return { text: blocks.join('\n\n'), ok: true };
+            } finally {
+                db.close();
+            }
         }
+
+        async function runRuby(code) {
+            const vm = await getRubyVm();
+            const lines = [];
+            const origLog = console.log;
+            console.log = (...args) => lines.push(args.join(' '));
+            try {
+                const result = vm.eval(code);
+                const printed = lines.join('\n');
+                const returned = result && result.toString ? result.toString() : '';
+                const text = printed || (returned && returned !== 'nil' ? returned : '(no output)');
+                return { text, ok: true };
+            } catch (err) {
+                return { text: String(err && err.message ? err.message : err), ok: false };
+            } finally {
+                console.log = origLog;
+            }
+        }
+
+        async function runPhp(code) {
+            const PhpWeb = await getPhpWebCtor();
+            const php = new PhpWeb();
+            const lines = [];
+            php.addEventListener('output', (e) => {
+                const detail = Array.isArray(e.detail) ? e.detail.join('') : e.detail;
+                lines.push(detail);
+            });
+            php.addEventListener('error', (e) => {
+                const detail = Array.isArray(e.detail) ? e.detail.join('') : e.detail;
+                lines.push(detail);
+            });
+            try {
+                await php.run(code);
+                return { text: lines.join('') || '(no output)', ok: true };
+            } catch (err) {
+                lines.push(String(err && err.message ? err.message : err));
+                return { text: lines.join(''), ok: false };
+            }
+        }
+
+        const ENGINES = {
+            javascript: runJavaScript,
+            typescript: runTypeScript,
+            sql: runSql,
+            ruby: runRuby,
+            php: runPhp,
+        };
 
         async function runCode() {
             const code = codeEditor.value;
-            const selectedLanguage = languageSelect.value;
-            
-            if (!code.trim()) {
-                outputContent.textContent = 'Please write some code first!';
-                outputContent.className = 'output-content error';
+            const lang = currentLang();
+
+            if (lang.engine === 'unsupported') {
+                setOutput(
+                    `${lang.label} can't run client-side in a browser tab — it needs a real ` +
+                    `compiler/toolchain (not something a WASM download can stand in for). ` +
+                    `This editor is view/edit-only for ${lang.label} until it's wired up to an ` +
+                    `actual backend that has ${lang.label} installed.`,
+                    'warning'
+                );
                 return;
             }
 
-            const startTime = performance.now();
-            updateStatus('running', 'Running...');
-            outputContent.textContent = 'Executing on server...';
-            outputContent.className = 'output-content';
-
-            const endpointInput = document.getElementById('api-endpoint');
-            const keyInput = document.getElementById('api-key');
-            let baseUrl = endpointInput ? endpointInput.value.trim() : 'https://emkc.org/api/v2/piston';
-            let apiKey = keyInput ? keyInput.value.trim() : '';
-
-            if (!baseUrl) baseUrl = 'https://emkc.org/api/v2/piston';
-            if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
-
-            try {
-                const pistonLang = languageMap[selectedLanguage];
-                const version = activeRuntimes[pistonLang] || defaultVersions[pistonLang];
-                
-                const headers = {
-                    'Content-Type': 'application/json'
-                };
-                if (apiKey) {
-                    headers['Authorization'] = apiKey;
-                }
-
-                const response = await fetch(`${baseUrl}/execute`, {
-                    method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify({
-                        language: pistonLang,
-                        version: version,
-                        files: [
-                            {
-                                content: code
-                            }
-                        ]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Server returned status ${response.status}`);
-                }
-
-                const result = await response.json();
-                const endTime = performance.now();
-                
-                executionTimeElement.textContent = `Exec: ${Math.round(endTime - startTime)}ms`;
-                memoryUsageElement.textContent = result.run && result.run.signal ? `Signal: ${result.run.signal}` : 'Memory: N/A';
-
-                // Check compilation error
-                if (result.compile && result.compile.code !== 0) {
-                    outputContent.textContent = result.compile.output || result.compile.stderr;
-                    outputContent.className = 'output-content error';
-                    updateStatus('error', 'Execution failed');
-                } else {
-                    let warningText = '';
-                    if (result.compile && result.compile.stderr) {
-                        warningText = '=== Compiler Warnings ===\n' + result.compile.stderr + '\n\n';
-                    }
-
-                    if (result.run) {
-                        const output = result.run.output || (result.run.stdout + result.run.stderr) || 'Program executed successfully (no output detected)';
-                        outputContent.textContent = warningText + output;
-                        
-                        if (result.run.code === 0) {
-                            outputContent.className = warningText ? 'output-content warning' : 'output-content success';
-                            updateStatus('ready', 'Code executed successfully');
-                        } else {
-                            outputContent.className = 'output-content error';
-                            updateStatus('error', 'Execution failed');
-                        }
-                    } else {
-                        throw new Error('Invalid execution response');
-                    }
-                }
-            } catch (error) {
-                console.warn('Execution API failed, falling back to dynamic simulated output:', error);
-                runSimulationFallback(selectedLanguage, code, startTime);
+            if (!code.trim()) {
+                setOutput('Please write some code first!', 'error');
+                return;
             }
-            
-            lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
+
+            runBtn.disabled = true;
+            updateStatus('loading', `Loading the ${lang.label} runtime (first run only)…`);
+            setOutput('Setting up runtime…', 'muted');
+
+            const startTime = performance.now();
+            try {
+                updateStatus('running', 'Running…');
+                const { text, ok } = await ENGINES[lang.engine](code);
+                const elapsed = Math.round(performance.now() - startTime);
+                executionTimeElement.textContent = `Exec: ${elapsed}ms`;
+                setOutput(text, ok ? 'success' : 'error');
+                updateStatus(ok ? 'ready' : 'error', ok ? 'Code executed successfully' : 'Execution raised an error');
+            } catch (err) {
+                const elapsed = Math.round(performance.now() - startTime);
+                executionTimeElement.textContent = `Exec: ${elapsed}ms`;
+                setOutput(
+                    `Couldn't load or run the ${lang.label} runtime: ${err && err.message ? err.message : err}\n\n` +
+                    `This needs network access to fetch the WebAssembly runtime from its CDN on first use.`,
+                    'error'
+                );
+                updateStatus('error', 'Runtime failed to load');
+            } finally {
+                runBtn.disabled = false;
+                lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
+            }
         }
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.key === 'Enter') {
                 e.preventDefault();
@@ -1016,14 +769,13 @@ echo "$a + $b = $result"`
             }
         });
 
-        // Auto-resize textarea
         codeEditor.addEventListener('input', () => {
             codeEditor.style.height = 'auto';
             codeEditor.style.height = codeEditor.scrollHeight + 'px';
         });
 
-        // Initialize
-        updateStatus('ready', 'Ready to run');
+        // Initialize on the first (JavaScript) language
+        switchLanguage();
     </script>
 </body>
 </html>

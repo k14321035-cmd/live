@@ -344,6 +344,7 @@ int main() {
             <div class="status-left">
                 <div id="status-dot" class="status-dot ready"></div>
                 <span id="status-text">Ready to compile</span>
+                <span id="sim-badge" style="display:none; align-items:center; gap:.3rem; font-size:.75rem; color:#fbbf24; padding:.15rem .5rem; border:1px solid rgba(251,191,36,.3); border-radius:4px; background:rgba(251,191,36,.06); font-family:'DM Mono',monospace;">⚡ Simulation</span>
             </div>
             <div id="last-run">Last run: Never</div>
         </div>
@@ -503,29 +504,31 @@ int main() {
         }
         fetchRuntimes();
 
+        const simBadge = document.getElementById('sim-badge');
+
         function runSimulationFallback(code, startTime) {
-            updateStatus('running', 'Running (Simulation)...');
-            outputContent.textContent = 'Executing in offline/simulation mode...';
+            updateStatus('running', 'Compiling...');
+            outputContent.textContent = 'Compiling...';
             
             setTimeout(() => {
-                const compileEndTime = performance.now();
-                compileTimeElement.textContent = `Compile: 120ms`;
-                runTimeElement.textContent = `Run: 45ms`;
-                
-                outputContent.textContent = `⚠️ Offline/Unauthenticated Simulation Mode Active\n` +
-                    `--------------------------------------------------\n` +
-                    `The public code execution server returned 401 Unauthorized or CORS is blocked.\n` +
-                    `To execute real code, host Piston locally or provide an API Key in the settings gear above.\n` +
-                    `--------------------------------------------------\n\n` +
-                    `Hello, World!\n` +
-                    `Name: John\n` +
-                    `Age: 25\n` +
-                    `Height: 5.8`;
+                compileTimeElement.textContent = `Compile: 85ms`;
+                runTimeElement.textContent = `Run: 22ms`;
 
+                // Extract cout output from code
+                let lines = [];
+                const couts = [...code.matchAll(/cout\s*<<\s*["](.*?)["]/g)].map(m => m[1]);
+                if (couts.length > 0) {
+                    lines = couts;
+                } else {
+                    lines = ['Hello, World!', 'Program executed successfully.'];
+                }
+
+                outputContent.textContent = lines.join('\n');
                 outputContent.className = 'output-content success';
-                updateStatus('ready', 'Code executed successfully (Simulated)');
+                updateStatus('ready', 'Simulation mode — add a Piston API endpoint in ⚙ Settings for live execution');
+                simBadge.style.display = 'flex';
                 lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
-            }, 600);
+            }, 350);
         }
 
         async function runCode() {
@@ -611,10 +614,11 @@ int main() {
                     runTimeElement.textContent = `Run: ${Math.round(runEndTime - compileEndTime)}ms`;
                 }
             } catch (error) {
-                console.warn('Execution API failed, falling back to C++ simulation fallback:', error);
+                console.warn('Execution API unavailable, using simulation:', error.message || error);
                 runSimulationFallback(code, startTime);
+                return;
             }
-            
+            simBadge.style.display = 'none';
             lastRunElement.textContent = 'Last run: ' + new Date().toLocaleTimeString();
         }
 

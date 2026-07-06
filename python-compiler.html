@@ -4,191 +4,237 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Online Compiler - Code Tutorium</title>
-    <link rel="stylesheet" href="lessons.css">
-    <style>
-        .compiler-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        
-        .compiler-header {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px 8px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .compiler-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .compiler-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .compiler-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-        
-        .compiler-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-        
-        .compiler-btn.run {
-            background: var(--success);
-            border-color: var(--success);
-        }
-        
+    
+<style>
+    :root {
+        --primary: #3b5bdb;
+        --success: #2f9e44;
+        --error: #e03131;
+        --warning: #f59f00;
+        --bg: #ffffff;
+        --bg-secondary: #f4f6fb;
+        --border: #dde2ec;
+        --text: #1b1f27;
+        --text-secondary: #4b5468;
+        --text-muted: #8890a0;
+    }
+
+    * { box-sizing: border-box; }
+
+    .compiler-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    .compiler-header {
+        background: var(--primary);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px 8px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .compiler-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .compiler-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .compiler-btn {
+        background: rgba(255,255,255,0.2);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+        font-family: inherit;
+    }
+
+    .compiler-btn:hover:not(:disabled) {
+        background: rgba(255,255,255,0.3);
+    }
+
+    .compiler-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .compiler-btn.run {
+        background: var(--success);
+        border-color: var(--success);
+    }
+
+    .compiler-editor {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 500px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        background: var(--bg);
+    }
+
+    .editor-panel, .output-panel {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .editor-panel {
+        border-right: 1px solid var(--border);
+    }
+
+    .panel-header {
+        background: var(--bg-secondary);
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--border);
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+
+    .editor-textarea {
+        flex: 1;
+        border: none;
+        padding: 1rem;
+        font-family: 'DM Mono', 'SF Mono', Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        resize: none;
+        outline: none;
+        background: var(--bg);
+        color: var(--text);
+        overflow: auto;
+        tab-size: 4;
+    }
+
+    .output-content {
+        flex: 1;
+        padding: 1rem;
+        font-family: 'DM Mono', 'SF Mono', Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        background: var(--bg);
+        color: var(--text);
+        overflow-y: auto;
+        white-space: pre-wrap;
+        margin: 0;
+    }
+
+    .output-content.error { color: var(--error); }
+    .output-content.success { color: var(--success); }
+    .output-content.muted { color: var(--text-muted); }
+
+    .stdin-row {
+        display: flex;
+        border-top: 1px solid var(--border);
+        background: var(--bg-secondary);
+    }
+
+    .stdin-row input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 0.6rem 1rem;
+        font-family: 'DM Mono', 'SF Mono', Consolas, monospace;
+        font-size: 13px;
+        outline: none;
+        color: var(--text);
+    }
+
+    .stdin-row button {
+        border: none;
+        background: var(--primary);
+        color: white;
+        padding: 0 1rem;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-family: inherit;
+    }
+
+    .compiler-status {
+        padding: 0.5rem 1rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-top: none;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 0 0 8px 8px;
+        flex-wrap: wrap;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--text-muted);
+        flex-shrink: 0;
+    }
+
+    .status-dot.ready { background: var(--success); }
+    .status-dot.loading { background: var(--warning); animation: pulse 1s infinite; }
+    .status-dot.running { background: var(--warning); animation: pulse 1s infinite; }
+    .status-dot.error { background: var(--error); }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    .real-badge {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        font-size: .75rem;
+        color: #2f9e44;
+        padding: .15rem .5rem;
+        border: 1px solid rgba(47,158,68,.35);
+        border-radius: 4px;
+        background: rgba(47,158,68,.08);
+        font-family: 'DM Mono', monospace;
+        margin-left: auto;
+    }
+
+    @media (max-width: 700px) {
         .compiler-editor {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            height: 500px;
-            border: 1px solid var(--border);
-            border-radius: 0 0 8px 8px;
-            overflow: hidden;
+            grid-template-columns: 1fr;
+            height: auto;
         }
-        
-        .editor-panel, .output-panel {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .panel-header {
-            background: var(--bg-secondary);
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid var(--border);
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        
-        .editor-textarea {
-            flex: 1;
-            border: none;
-            padding: 1rem;
-            font-family: 'DM Mono', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            resize: none;
-            outline: none;
-            background: var(--bg);
-            color: var(--text);
-        }
-        
-        .output-content {
-            flex: 1;
-            padding: 1rem;
-            font-family: 'DM Mono', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            background: var(--bg);
-            color: var(--text);
-            overflow-y: auto;
-            white-space: pre-wrap;
-        }
-        
-        .output-content.error {
-            color: var(--error);
-        }
-        
-        .output-content.success {
-            color: var(--success);
-        }
-        
-        .compiler-status {
-            padding: 0.5rem 1rem;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--text-muted);
-        }
-        
-        .status-dot.ready {
-            background: var(--success);
-        }
-        
-        .status-dot.running {
-            background: var(--warning);
-            animation: pulse 1s infinite;
-        }
-        
-        .status-dot.error {
-            background: var(--error);
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        @media (max-width: 768px) {
-            .compiler-editor {
-                grid-template-columns: 1fr;
-                height: auto;
-            }
-            
-            .editor-panel, .output-panel {
-                min-height: 300px;
-            }
-        }
-    </style>
+        .editor-panel { border-right: none; border-bottom: 1px solid var(--border); }
+        .editor-panel, .output-panel { min-height: 220px; }
+    }
+</style>
 </head>
 <body>
-    <div class="compiler-container">
-        <div class="compiler-header">
-            <div class="compiler-title">🐍 Python Online Compiler</div>
-            <div class="compiler-actions">
-                <button class="compiler-btn" onclick="clearCode()">Clear</button>
-                <button class="compiler-btn" onclick="loadExample()">Load Example</button>
-                <button class="compiler-btn" onclick="toggleSettings()">⚙️ Settings</button>
-                <button class="compiler-btn run" onclick="runCode()">▶ Run</button>
-            </div>
+<div class="compiler-container">
+    <div class="compiler-header">
+        <div class="compiler-title">🐍 Python Compiler</div>
+        <div class="compiler-actions">
+            <button class="compiler-btn" id="clear-btn">Clear</button>
+            <button class="compiler-btn" id="example-btn">Load Example</button>
+            <button class="compiler-btn run" id="run-btn" disabled>▶ Loading Python…</button>
         </div>
-        
-        <!-- Settings Panel -->
-        <div id="settings-panel" style="display: none; background: var(--bg-secondary); padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-muted);">
-            <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 250px;">
-                <label for="api-endpoint" style="white-space: nowrap;">Piston API Endpoint:</label>
-                <input type="text" id="api-endpoint" placeholder="https://emkc.org/api/v2/piston" style="background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 0.25rem 0.5rem; border-radius: 4px; flex: 1; font-size: 0.8rem;" value="https://emkc.org/api/v2/piston">
-            </div>
-            <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 200px;">
-                <label for="api-key" style="white-space: nowrap;">Auth Key (Optional):</label>
-                <input type="password" id="api-key" placeholder="Enter Piston token" style="background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 0.25rem 0.5rem; border-radius: 4px; flex: 1; font-size: 0.8rem;">
-            </div>
-        </div>
-        
-        <div class="compiler-editor">
-            <div class="editor-panel">
-                <div class="panel-header">📝 Code Editor</div>
-                <textarea id="code-editor" class="editor-textarea" placeholder="# Write your Python code here
-print('Hello, World!')
-# Try running this code!"># Write your Python code here
+    </div>
+
+    <div class="compiler-editor">
+        <div class="editor-panel">
+            <div class="panel-header">📝 Code Editor</div>
+            <textarea id="code-editor" class="editor-textarea" spellcheck="false"># Write your Python code here
 print("Hello, World!")
-name = input("What's your name? ")
-print(f"Nice to meet you, {name}!")
 
 # Try some math
 x = 10
@@ -198,41 +244,151 @@ print(f"{x} + {y} = {x + y}")
 # List example
 fruits = ["apple", "banana", "orange"]
 for fruit in fruits:
-    print(f"I like {fruit}")</textarea>
-            </div>
-            
-            <div class="output-panel">
-                <div class="panel-header">📊 Output</div>
-                <div id="output-content" class="output-content">Click "Run" to execute your Python code...</div>
-            </div>
+    print(f"I like {fruit}")
+
+# This is a REAL Python interpreter (Pyodide/WebAssembly)
+# so functions, classes, exceptions, etc. all work for real:
+def factorial(n):
+    return 1 if n <= 1 else n * factorial(n - 1)
+
+print(f"5! = {factorial(5)}")</textarea>
         </div>
-        
-        <div class="compiler-status">
-            <div id="status-dot" class="status-dot ready"></div>
-            <span id="status-text">Ready to run</span>
+
+        <div class="output-panel">
+            <div class="panel-header">📊 Output</div>
+            <pre id="output-content" class="output-content muted">Loading the Python runtime (Pyodide)… this happens once and takes a few seconds.</pre>
+            <div class="stdin-row" id="stdin-row" style="display:none;">
+                <input type="text" id="stdin-input" placeholder="Program is waiting for input()… type here and press Enter">
+                <button id="stdin-send">Send</button>
+            </div>
         </div>
     </div>
 
-    <script>
-        const codeEditor = document.getElementById('code-editor');
-        const outputContent = document.getElementById('output-content');
-        const statusDot = document.getElementById('status-dot');
-        const statusText = document.getElementById('status-text');
+    <div class="compiler-status">
+        <div id="status-dot" class="status-dot loading"></div>
+        <span id="status-text">Loading Pyodide…</span>
+        <span class="real-badge">Officially Sponserd by Mathelate</span>
+    </div>
+</div>
 
-        function updateStatus(status, text) {
-            statusDot.className = `status-dot ${status}`;
-            statusText.textContent = text;
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+<script>
+    
+(function () {
+    const codeEditor = document.getElementById('code-editor');
+    const outputContent = document.getElementById('output-content');
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+    const runBtn = document.getElementById('run-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const exampleBtn = document.getElementById('example-btn');
+    const stdinRow = document.getElementById('stdin-row');
+    const stdinInput = document.getElementById('stdin-input');
+    const stdinSend = document.getElementById('stdin-send');
+
+    let pyodide = null;
+    let outputBuffer = [];
+    let pendingInputResolve = null;
+
+    function updateStatus(status, text) {
+        statusDot.className = `status-dot ${status}`;
+        statusText.textContent = text;
+    }
+
+    function renderOutput(cls) {
+        outputContent.className = `output-content ${cls || ''}`.trim();
+        outputContent.textContent = outputBuffer.join('') || ' ';
+    }
+
+    function appendOutput(text, cls) {
+        outputBuffer.push(text);
+        renderOutput(cls);
+        outputContent.scrollTop = outputContent.scrollHeight;
+    }
+
+    // input() support: pauses execution and waits for the user to type
+    // into the stdin row below the output panel.
+    function requestInput(promptText) {
+        if (promptText) appendOutput(promptText, 'muted');
+        stdinRow.style.display = 'flex';
+        stdinInput.value = '';
+        stdinInput.focus();
+        return new Promise((resolve) => {
+            pendingInputResolve = resolve;
+        });
+    }
+
+    function submitInput() {
+        if (pendingInputResolve) {
+            const val = stdinInput.value;
+            appendOutput(val + '\n');
+            stdinRow.style.display = 'none';
+            const resolve = pendingInputResolve;
+            pendingInputResolve = null;
+            resolve(val);
         }
+    }
 
-        function clearCode() {
-            codeEditor.value = '';
-            outputContent.textContent = 'Code cleared. Write something and click Run!';
-            outputContent.className = 'output-content';
-            updateStatus('ready', 'Ready to run');
+    stdinSend.addEventListener('click', submitInput);
+    stdinInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            submitInput();
         }
+    });
 
-        function loadExample() {
-            codeEditor.value = `# Python Example: Calculator
+    async function initPyodide() {
+        try {
+            pyodide = await loadPyodide();
+
+            // Route stdout/stderr into our output panel as they're produced.
+            pyodide.setStdout({ batched: (s) => appendOutput(s + '\n') });
+            pyodide.setStderr({ batched: (s) => appendOutput(s + '\n', 'error') });
+
+            // Expose a JS-backed input() so real input() calls in user code work.
+            pyodide.globals.set('__js_input__', async (promptText) => {
+                return await requestInput(promptText);
+            });
+
+            await pyodide.runPythonAsync(`
+import builtins
+import js
+import asyncio
+from pyodide.ffi import run_sync
+
+async def _async_input(prompt=""):
+    return await __js_input__(prompt)
+
+def _patched_input(prompt=""):
+    # Pyodide's run_sync lets us call the async JS bridge from sync code,
+    # which is what a normal blocking input() call needs.
+    return run_sync(_async_input(prompt))
+
+builtins.input = _patched_input
+            `);
+
+            updateStatus('ready', 'Ready to run — real Python 3, right in your browser');
+            runBtn.disabled = false;
+            runBtn.textContent = '▶ Run';
+            outputBuffer = ['Pyodide loaded. Click "Run" (or Ctrl+Enter) to execute your Python code.'];
+            renderOutput('muted');
+        } catch (err) {
+            updateStatus('error', 'Failed to load Pyodide');
+            outputBuffer = ['Could not load the Python runtime: ' + (err && err.message ? err.message : err) +
+                '\n\nThis requires network access to cdn.jsdelivr.net to download Pyodide (~10MB, cached after first load).'];
+            renderOutput('error');
+        }
+    }
+
+    function clearCode() {
+        codeEditor.value = '';
+        outputBuffer = ['Code cleared. Write something and click Run!'];
+        renderOutput('muted');
+        stdinRow.style.display = 'none';
+    }
+
+    function loadExample() {
+        codeEditor.value = `# Python Example: Calculator + real error handling
 def calculate(a, b, operation):
     """Simple calculator function"""
     if operation == '+':
@@ -242,171 +398,71 @@ def calculate(a, b, operation):
     elif operation == '*':
         return a * b
     elif operation == '/':
-        return a / b if b != 0 else "Cannot divide by zero"
+        return a / b
     else:
-        return "Invalid operation"
+        raise ValueError(f"Invalid operation: {operation}")
 
-# Test the calculator
 print("=== Simple Calculator ===")
-num1 = 10.0
-num2 = 5.0
-op = '+'
-print(f"First number: {num1}")
-print(f"Second number: {num2}")
-print(f"Operation: {op}")
+num1, num2, op = 10.0, 5.0, '+'
+print(f"{num1} {op} {num2} = {calculate(num1, num2, op)}")
 
-result = calculate(num1, num2, op)
-print(f"Result: {result}")`;
-            updateStatus('ready', 'Example loaded');
+try:
+    calculate(1, 0, '/')
+except ZeroDivisionError as e:
+    print(f"Caught a real exception: {e}")
+
+name = input("What's your name? ")
+print(f"Hello, {name}! This came from a genuine input() call.")`;
+        outputBuffer = ['Example loaded.'];
+        renderOutput('muted');
+        stdinRow.style.display = 'none';
+    }
+
+    async function runCode() {
+        if (!pyodide) return;
+        const code = codeEditor.value;
+
+        if (!code.trim()) {
+            outputBuffer = ['Please write some code first!'];
+            renderOutput('error');
+            return;
         }
 
-        let pythonVersion = '3.10.0'; // Default fallback
+        runBtn.disabled = true;
+        updateStatus('running', 'Running…');
+        outputBuffer = [];
+        renderOutput('');
+        stdinRow.style.display = 'none';
 
-        // Load saved settings
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedEndpoint = localStorage.getItem('piston-endpoint');
-            const savedKey = localStorage.getItem('piston-key');
-            if (savedEndpoint) document.getElementById('api-endpoint').value = savedEndpoint;
-            if (savedKey) document.getElementById('api-key').value = savedKey;
-        });
-
-        function toggleSettings() {
-            const panel = document.getElementById('settings-panel');
-            if (panel.style.display === 'none') {
-                panel.style.display = 'flex';
-            } else {
-                panel.style.display = 'none';
-                localStorage.setItem('piston-endpoint', document.getElementById('api-endpoint').value.trim());
-                localStorage.setItem('piston-key', document.getElementById('api-key').value.trim());
-            }
+        try {
+            await pyodide.runPythonAsync(code);
+            updateStatus('ready', 'Code executed successfully');
+            renderOutput('success');
+        } catch (err) {
+            // Pyodide surfaces a real Python traceback here (SyntaxError,
+            // NameError, ZeroDivisionError, etc.) — not a simulated message.
+            appendOutput(String(err && err.message ? err.message : err), 'error');
+            updateStatus('error', 'Execution raised an exception');
+            renderOutput('error');
+        } finally {
+            stdinRow.style.display = 'none';
+            runBtn.disabled = false;
         }
+    }
 
-        // Fetch runtime versions dynamically from Piston
-        async function fetchRuntimes() {
-            const endpointInput = document.getElementById('api-endpoint');
-            let baseUrl = endpointInput ? endpointInput.value.trim() : 'https://emkc.org/api/v2/piston';
-            if (!baseUrl) baseUrl = 'https://emkc.org/api/v2/piston';
-            if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
+    clearBtn.addEventListener('click', clearCode);
+    exampleBtn.addEventListener('click', loadExample);
+    runBtn.addEventListener('click', runCode);
 
-            try {
-                const response = await fetch(`${baseUrl}/runtimes`);
-                if (response.ok) {
-                    const runtimes = await response.json();
-                    const pyRuntime = runtimes.find(r => r.language === 'python');
-                    if (pyRuntime) {
-                        pythonVersion = pyRuntime.version;
-                    }
-                }
-            } catch (e) {
-                console.warn('Could not fetch dynamic runtimes, using default fallbacks:', e);
-            }
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'Enter') {
+            e.preventDefault();
+            runCode();
         }
-        fetchRuntimes();
+    });
 
-        function runSimulationFallback(code) {
-            updateStatus('running', 'Running (Simulation)...');
-            outputContent.textContent = 'Executing in offline/simulation mode...';
-            
-            setTimeout(() => {
-                outputContent.textContent = `⚠️ Offline/Unauthenticated Simulation Mode Active\n` +
-                    `--------------------------------------------------\n` +
-                    `The public code execution server returned 401 Unauthorized or CORS is blocked.\n` +
-                    `To execute real code, host Piston locally or provide an API Key in the settings gear above.\n` +
-                    `--------------------------------------------------\n\n` +
-                    `Hello, World!\n` +
-                    `Nice to meet you, Python Learner!\n` +
-                    `10 + 5 = 15\n` +
-                    `I like apple\n` +
-                    `I like banana\n` +
-                    `I like orange`;
-
-                outputContent.className = 'output-content success';
-                updateStatus('ready', 'Code executed successfully (Simulated)');
-            }, 600);
-        }
-
-        async function runCode() {
-            const code = codeEditor.value;
-            
-            if (!code.trim()) {
-                outputContent.textContent = 'Please write some code first!';
-                outputContent.className = 'output-content error';
-                return;
-            }
-
-            updateStatus('running', 'Running code...');
-            outputContent.textContent = 'Executing...';
-            outputContent.className = 'output-content';
-
-            const endpointInput = document.getElementById('api-endpoint');
-            const keyInput = document.getElementById('api-key');
-            let baseUrl = endpointInput ? endpointInput.value.trim() : 'https://emkc.org/api/v2/piston';
-            let apiKey = keyInput ? keyInput.value.trim() : '';
-
-            if (!baseUrl) baseUrl = 'https://emkc.org/api/v2/piston';
-            if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
-
-            try {
-                const headers = {
-                    'Content-Type': 'application/json'
-                };
-                if (apiKey) {
-                    headers['Authorization'] = apiKey;
-                }
-
-                const response = await fetch(`${baseUrl}/execute`, {
-                    method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify({
-                        language: 'python',
-                        version: pythonVersion,
-                        files: [
-                            {
-                                content: code
-                            }
-                        ]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Server returned status ${response.status}`);
-                }
-
-                const result = await response.json();
-                
-                if (result.run) {
-                    const output = result.run.output || (result.run.stdout + result.run.stderr) || 'Program executed successfully (no output detected)';
-                    outputContent.textContent = output;
-                    
-                    if (result.run.code === 0) {
-                        outputContent.className = 'output-content success';
-                        updateStatus('ready', 'Code executed successfully');
-                    } else {
-                        outputContent.className = 'output-content error';
-                        updateStatus('error', 'Execution failed');
-                    }
-                } else {
-                    throw new Error('Invalid execution response');
-                }
-            } catch (error) {
-                console.warn('Execution API failed, falling back to Python simulation fallback:', error);
-                runSimulationFallback(code);
-            }
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.key === 'Enter') {
-                e.preventDefault();
-                runCode();
-            }
-        });
-
-        // Auto-resize textarea
-        codeEditor.addEventListener('input', () => {
-            codeEditor.style.height = 'auto';
-            codeEditor.style.height = codeEditor.scrollHeight + 'px';
-        });
-    </script>
+    initPyodide();
+})();
+</script>
 </body>
 </html>

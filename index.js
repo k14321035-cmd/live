@@ -1,544 +1,140 @@
-const courses = {
-  python: {
-    emoji: '🐍',
-    title: 'Python Programming',
-    desc: 'Python is the world\'s most popular beginner language — and also one of the most powerful. This course takes you from writing your first line to building real applications using OOP, file handling, and popular libraries.',
-    curriculum: [
-      'Introduction to Python & installing tools',
-      'Variables, data types, and operators',
-      'Control flow: if, loops, and conditions',
-      'Functions, scope, and recursion',
-      'Lists, tuples, dictionaries, sets',
-      'Object-Oriented Programming (OOP)',
-      'File I/O and exception handling',
-      'Working with libraries (os, math, datetime)',
-      'Introduction to NumPy and Pandas',
-      'Capstone: Build a CLI task manager',
-    ],
-    btn: 'linear-gradient(135deg, #ffd43b, #ffaa00)'
-  },
-  cpp: {
-    emoji: '⚙️',
-    title: 'C++ Programming',
-    desc: 'C++ is where performance meets power. This course teaches you low-level programming concepts including memory management, pointers, and the Standard Template Library — essential for systems, game dev, and competitive programming.',
-    curriculum: [
-      'C++ syntax, variables, and I/O',
-      'Control structures and functions',
-      'Arrays, strings, and references',
-      'Pointers and memory management',
-      'Object-Oriented Programming in C++',
-      'Inheritance, polymorphism, and abstraction',
-      'Templates and generic programming',
-      'STL: vectors, maps, sets, queues',
-      'File handling and error management',
-      'Capstone: Build a student record system',
-    ],
-    btn: 'linear-gradient(135deg, #6495ed, #4169e1)'
-  },
-  html: {
-    emoji: '🌐',
-    title: 'HTML Fundamentals',
-    desc: 'HTML is the language every website is built on. This course covers everything from your first tags to semantic HTML5 elements, forms, accessibility, and how browsers interpret your markup.',
-    curriculum: [
-      'What is HTML and how browsers work',
-      'Document structure and basic tags',
-      'Headings, paragraphs, and text elements',
-      'Links, images, and media',
-      'Lists and tables',
-      'Semantic HTML5 elements',
-      'HTML Forms and input types',
-      'Accessibility with ARIA and alt text',
-      'SEO basics with meta tags',
-      'Capstone: Build a personal portfolio page',
-    ],
-    btn: 'linear-gradient(135deg, #ff6b35, #e63900)'
-  },
-  css: {
-    emoji: '🎨',
-    title: 'CSS & Styling',
-    desc: 'CSS transforms plain HTML into beautiful, responsive experiences. Learn everything from the box model to animations, Flexbox, CSS Grid, and modern techniques used by professional frontend developers.',
-    curriculum: [
-      'CSS syntax, selectors, and specificity',
-      'Box model: margin, padding, border',
-      'Colors, backgrounds, and typography',
-      'Display, position, and float',
-      'Flexbox layout in depth',
-      'CSS Grid layout in depth',
-      'Responsive design and media queries',
-      'CSS variables and custom properties',
-      'Transitions and keyframe animations',
-      'Capstone: Build a responsive landing page',
-    ],
-    btn: 'linear-gradient(135deg, #29b6f6, #0288d1)'
-  },
-  java: {
-    emoji: '☕',
-    title: 'Java Programming',
-    desc: 'Java is everywhere — from enterprise backends to Android apps. This comprehensive course covers Java\'s powerful OOP model, multithreading, collections framework, and best practices used in industry.',
-    curriculum: [
-      'Java syntax and the JVM',
-      'Variables, types, and operators',
-      'Control flow and methods',
-      'Object-Oriented Programming in Java',
-      'Inheritance, interfaces, and abstract classes',
-      'Java Collections Framework',
-      'Exception handling and custom exceptions',
-      'File I/O with Java NIO',
-      'Multithreading and concurrency',
-      'Capstone: Build a banking console app',
-    ],
-    btn: 'linear-gradient(135deg, #ff5959, #cc2200)'
-  },
-  js: {
-    emoji: '✨',
-    title: 'JavaScript',
-    desc: 'JavaScript is the only language that runs in every browser. From DOM manipulation to building REST APIs with Node.js, this is the most versatile language course we offer — and the most in-demand skill on the job market.',
-    curriculum: [
-      'JavaScript basics and variables (ES6+)',
-      'Functions, scope, and closures',
-      'Arrays, objects, and destructuring',
-      'DOM manipulation and events',
-      'Async JS: callbacks, promises, async/await',
-      'Fetch API and working with REST APIs',
-      'Error handling and debugging',
-      'Modules (import/export)',
-      'Intro to Node.js and npm',
-      'Capstone: Build a weather dashboard app',
-    ],
-    btn: 'linear-gradient(135deg, #f7df1e, #d4a800)'
-  },
-  c: {
-    emoji: '🧭',
-    title: 'C Language',
-    desc: 'C gives you direct control over memory, teaches you how computers really work, and underpins virtually every operating system, embedded device, and high-performance application in the world.',
-    curriculum: [
-      'Intro to C',
-      'Variables & Data Types',
-      'Operators & Expressions',
-      'Control Flow & Functions',
-      'Arrays & Strings',
-      'Pointers',
-      'Structures & Unions',
-      'File I/O & Dynamic Memory',
-      'Preprocessor & Macros',
-      'Capstone Project'
-    ],
-    btn: 'linear-gradient(135deg, #a8b9cc, #657b98)'
-  },
-  cc: {
-    emoji: '♯',
-    title: 'C# Programming',
-    desc: 'C# is Microsoft\'s flagship language for .NET development. Build Windows apps, web APIs, games with Unity, and enterprise software with this powerful, type-safe language.',
-    curriculum: [
-      'Introduction to C# and .NET',
-      'Variables, types, and operators',
-      'Control flow and methods',
-      'Object-Oriented Programming in C#',
-      'Inheritance and interfaces',
-      'Delegates, events, and LINQ',
-      'Asynchronous programming with async/await',
-      'Working with collections',
-      'File I/O and serialization',
-      'Capstone: Build a task management app'
-    ],
-    btn: 'linear-gradient(135deg, #9b59b6, #6a0dad)'
-  },
-  typescript: {
-    emoji: '🔷',
-    title: 'TypeScript',
-    desc: 'TypeScript adds static typing to JavaScript, making your code more reliable and maintainable. Essential for large-scale applications and modern frontend development.',
-    curriculum: [
-      'Introduction to TypeScript',
-      'Basic types and type inference',
-      'Interfaces and type aliases',
-      'Classes and OOP in TypeScript',
-      'Generics and advanced types',
-      'Modules and namespaces',
-      'Decorators and metadata',
-      'Working with React and TypeScript',
-      'Build tools and configuration',
-      'Capstone: Build a typed REST API client'
-    ],
-    btn: 'linear-gradient(135deg, #3178c6, #235a97)'
-  },
-  go: {
-    emoji: '🐹',
-    title: 'Go Programming',
-    desc: 'Go (Golang) is Google\'s language for building fast, reliable, and efficient software. Perfect for cloud services, microservices, and backend development with excellent concurrency support.',
-    curriculum: [
-      'Introduction to Go',
-      'Variables, types, and constants',
-      'Control structures and functions',
-      'Arrays, slices, and maps',
-      'Structs and methods',
-      'Interfaces and composition',
-      'Goroutines and channels',
-      'Error handling and testing',
-      'Building CLI tools',
-      'Capstone: Build a concurrent web server'
-    ],
-    btn: 'linear-gradient(135deg, #00add8, #007d9c)'
-  },
-  rust: {
-    emoji: '🦀',
-    title: 'Rust Programming',
-    desc: 'Rust provides memory safety without garbage collection, making it perfect for systems programming, web assembly, and high-performance applications. Loved by developers worldwide.',
-    curriculum: [
-      'Introduction to Rust and ownership',
-      'Borrowing and references',
-      'Structs and enums',
-      'Pattern matching',
-      'Traits and generics',
-      'Error handling with Result and Option',
-      'Collections and iterators',
-      'Concurrency with threads',
-      'Cargo and package management',
-      'Capstone: Build a command-line tool'
-    ],
-    btn: 'linear-gradient(135deg, #dea584, #b84a28)'
-  },
-  kotlin: {
-    emoji: '🟣',
-    title: 'Kotlin',
-    desc: 'Kotlin is the modern language for Android development and multiplatform apps. Concise, safe, and interoperable with Java — the preferred language for Android developers.',
-    curriculum: [
-      'Introduction to Kotlin',
-      'Variables and basic types',
-      'Control flow and functions',
-      'Null safety in Kotlin',
-      'Classes and inheritance',
-      'Interfaces and data classes',
-      'Collections and functional operations',
-      'Coroutines for async programming',
-      'Android basics with Kotlin',
-      'Capstone: Build a simple Android app'
-    ],
-    btn: 'linear-gradient(135deg, #7f52ff, #5b3bb5)'
-  },
-  swift: {
-    emoji: '🟠',
-    title: 'Swift',
-    desc: 'Swift is Apple\'s powerful and intuitive language for iOS, macOS, watchOS, and tvOS development. Modern syntax with performance that rivals C-based languages.',
-    curriculum: [
-      'Introduction to Swift',
-      'Variables, constants, and types',
-      'Operators and control flow',
-      'Functions and closures',
-      'Optionals and error handling',
-      'Structs, classes, and enums',
-      'Protocols and extensions',
-      'Generics in Swift',
-      'Memory management with ARC',
-      'Capstone: Build an iOS calculator app'
-    ],
-    btn: 'linear-gradient(135deg, #f05138, #b53522)'
-  },
-  php: {
-    emoji: '🐘',
-    title: 'PHP',
-    desc: 'PHP powers over 75% of the web including WordPress and Laravel. Learn server-side scripting, database integration, and modern PHP development practices.',
-    curriculum: [
-      'Introduction to PHP',
-      'Variables, types, and operators',
-      'Control structures and functions',
-      'Arrays and strings',
-      'Working with forms and GET/POST',
-      'MySQL database integration',
-      'Sessions and cookies',
-      'Object-Oriented PHP',
-      'Introduction to Laravel framework',
-      'Capstone: Build a blog system'
-    ],
-    btn: 'linear-gradient(135deg, #777bb4, #4f5b93)'
-  },
-  sql: {
-    emoji: '🗄️',
-    title: 'SQL',
-    desc: 'SQL is the standard language for managing relational databases. Essential for backend developers, data analysts, and anyone working with structured data.',
-    curriculum: [
-      'Introduction to databases and SQL',
-      'SELECT queries and filtering',
-      'Sorting and limiting results',
-      'Aggregate functions and GROUP BY',
-      'Joins: INNER, LEFT, RIGHT, FULL',
-      'Subqueries and CTEs',
-      'Inserting, updating, and deleting data',
-      'Creating tables and constraints',
-      'Indexes and query optimization',
-      'Capstone: Design a complete database schema'
-    ],
-    btn: 'linear-gradient(135deg, #f29111, #c46708)'
-  },
-  r: {
-    emoji: '📊',
-    title: 'R Programming',
-    desc: 'R is the leading language for statistical computing and data visualization. Essential for data scientists, statisticians, and researchers working with data analysis.',
-    curriculum: [
-      'Introduction to R and RStudio',
-      'Vectors, matrices, and data frames',
-      'Data manipulation with dplyr',
-      'Data visualization with ggplot2',
-      'Statistical analysis basics',
-      'Hypothesis testing in R',
-      'Working with real datasets',
-      'Creating functions and packages',
-      'R Markdown for reproducible research',
-      'Capstone: Analyze and visualize a dataset'
-    ],
-    btn: 'linear-gradient(135deg, #276dc3, #1b4f8f)'
-  },
-  dart: {
-    emoji: '🎯',
-    title: 'Dart',
-    desc: 'Dart is Google\'s language optimized for building fast apps on any platform. The language behind Flutter for beautiful cross-platform mobile, web, and desktop apps.',
-    curriculum: [
-      'Introduction to Dart',
-      'Variables and built-in types',
-      'Functions and operators',
-      'Control flow statements',
-      'Classes and objects',
-      'Inheritance and mixins',
-      'Asynchronous programming: Futures and Streams',
-      'Collections and generics',
-      'Error handling',
-      'Capstone: Build a console calculator'
-    ],
-    btn: 'linear-gradient(135deg, #00b4ab, #007a73)'
-  },
-  ruby: {
-    emoji: '💎',
-    title: 'Ruby',
-    desc: 'Ruby is a dynamic, elegant language focused on simplicity and productivity. Known for its beautiful syntax and the powerful Rails framework for web development.',
-    curriculum: [
-      'Introduction to Ruby',
-      'Variables, types, and operators',
-      'Control structures and methods',
-      'Arrays, hashes, and symbols',
-      'Object-Oriented Programming in Ruby',
-      'Modules and mixins',
-      'Blocks, procs, and lambdas',
-      'File I/O and regular expressions',
-      'Introduction to Ruby on Rails',
-      'Capstone: Build a simple web app'
-    ],
-    btn: 'linear-gradient(135deg, #cc342d, #9a2822)'
-  },
-  matlab: {
-    emoji: '📐',
-    title: 'MATLAB',
-    desc: 'MATLAB is the industry-standard platform for numerical computing, algorithm development, and data visualization. Essential for engineers, scientists, and researchers.',
-    curriculum: [
-      'Introduction to MATLAB environment',
-      'Variables, arrays, and matrices',
-      'Matrix operations and linear algebra',
-      'Plotting and visualization',
-      'Control flow and functions',
-      'Data import and export',
-      'Signal processing basics',
-      'Image processing fundamentals',
-      'Simulink introduction',
-      'Capstone: Analyze and visualize scientific data'
-    ],
-    btn: 'linear-gradient(135deg, #0076a8, #004e6e)'
-  },
-  visualbasic: {
-    emoji: '🔵',
-    title: 'Visual Basic .NET',
-    desc: 'VB.NET is Microsoft\'s approachable, object-oriented language. Perfect for Windows desktop applications, automation, and rapid application development with .NET.',
-    curriculum: [
-      'Introduction to VB.NET',
-      'Variables, types, and operators',
-      'Control structures and procedures',
-      'Arrays and collections',
-      'Object-Oriented Programming',
-      'Windows Forms and UI design',
-      'Event-driven programming',
-      'File I/O and database access',
-      'LINQ and data manipulation',
-      'Capstone: Build a Windows desktop app'
-    ],
-    btn: 'linear-gradient(135deg, #00539c, #003d75)'
-  },
-  shell: {
-    emoji: '🐚',
-    title: 'Shell Scripting',
-    desc: 'Shell scripting automates command-line tasks on Unix/Linux systems. Essential for system administrators, DevOps engineers, and developers working in Linux environments.',
-    curriculum: [
-      'Introduction to shell scripting',
-      'Variables and environment',
-      'Control structures: if, case, loops',
-      'Functions and parameters',
-      'Working with files and text',
-      'Process management',
-      'Regular expressions with sed and awk',
-      'System administration tasks',
-      'Creating robust scripts',
-      'Capstone: Build a system monitoring script'
-    ],
-    btn: 'linear-gradient(135deg, #4e9a06, #2d5a04)'
-  },
-  ethicalhacking: {
-    emoji: '🛡️',
-    title: 'Ethical Hacking',
-    desc: 'Learn the art of ethical hacking and penetration testing. Understand security vulnerabilities, network security, and how to protect systems from cyber threats.',
-    curriculum: [
-      'Introduction to ethical hacking',
-      'Footprinting and reconnaissance',
-      'Scanning networks and systems',
-      'Enumeration techniques',
-      'Vulnerability analysis',
-      'System hacking methodology',
-      'Malware threats and analysis',
-      'Social engineering',
-      'Web application security',
-      'Capstone: Conduct a penetration test'
-    ],
-    btn: 'linear-gradient(135deg, #2ecc71, #27ae60)'
-  },
-  bash: {
-    emoji: '🖥️',
-    title: 'Bash Scripting',
-    desc: 'Bash is the default shell on most Linux systems. Master Bash to automate workflows, manage systems, and write powerful command-line tools for daily tasks.',
-    curriculum: [
-      'Introduction to Bash and the shell',
-      'Variables and environment setup',
-      'Operators: arithmetic, comparison, file test',
-      'Control flow: if, case, loops',
-      'Functions and parameters',
-      'Arrays and string manipulation',
-      'File operations and redirection',
-      'Process management and signals',
-      'Regular expressions and text processing',
-      'Capstone: Build a system administration toolkit'
-    ],
-    btn: 'linear-gradient(135deg, #293137, #1a1f23)'
-  }
-};
 
-function openModal(id) {
-  const c = courses[id];
-  document.getElementById('modal-emoji').textContent = c.emoji;
-  document.getElementById('modal-title').textContent = c.title;
-  document.getElementById('modal-desc').textContent = c.desc;
+const languages = [
+  {name:'Python', file:'hello_world.py', href:'lessons/python.html', accent:'--python-a', desc:'beginner-friendly · data science · AI', cmt:'#', lessons:22, emoji:'🐍', curriculum:['Syntax, variables & data types','Control flow & functions','Lists, dicts & comprehensions','OOP in Python','Capstone: build a CLI app']},
+  {name:'C++', file:'hello_world.cpp', href:'lessons/c++.html', accent:'--cpp-a', desc:'performance · systems · games', cmt:'//', lessons:20, emoji:'⚙️', curriculum:['Syntax & memory model','Pointers & references','STL containers','Classes & templates','Capstone: build a small game engine']},
+  {name:'HTML', file:'index.html', href:'lessons/html.html', accent:'--html-a', desc:'web structure · semantic · SEO', cmt:'<!--', lessons:16, emoji:'🌐', curriculum:['Tags & document structure','Semantic HTML','Forms & accessibility','Metadata & SEO basics','Capstone: build a portfolio page']},
+  {name:'CSS', file:'style.css', href:'lessons/css.html', accent:'--css-a', desc:'styling · flexbox · animations', cmt:'/*', lessons:16, emoji:'🎨', curriculum:['Selectors & the box model','Flexbox & Grid','Responsive design','Transitions & animation','Capstone: style the portfolio page']},
+  {name:'Java', file:'Hello.java', href:'lessons/java.html', accent:'--java-a', desc:'OOP · enterprise · Android', cmt:'//', lessons:22, emoji:'☕', curriculum:['Syntax & OOP basics','Interfaces & inheritance','Collections framework','Exception handling','Capstone: build an Android app']},
+  {name:'JavaScript', file:'app.js', href:'lessons/javascript.html', accent:'--js-a', desc:'web dev · Node.js · full stack', cmt:'//', lessons:22, emoji:'✨', curriculum:['Syntax & the DOM','Async & fetch','ES6+ features','Node.js basics','Capstone: build a full-stack app']},
+  {name:'C Language', file:'hello.c', href:'lessons/c.html', accent:'--c-a', desc:'systems · embedded · memory', cmt:'//', lessons:18, emoji:'🔧', curriculum:['Syntax & compilation','Pointers & memory','Structs & arrays','File I/O','Capstone: build a memory allocator']},
+  {name:'C#', file:'Hello.cs', href:'lessons/cc.html', accent:'--csharp-a', desc:'.NET · Unity · enterprise apps', cmt:'//', lessons:18, emoji:'🎮', curriculum:['Syntax & OOP','.NET fundamentals','LINQ & collections','Async/await','Capstone: build a Unity mini-game']},
+  {name:'TypeScript', file:'app.ts', href:'lessons/typescript.html', accent:'--ts-a', desc:'typed JS · scale · modern dev', cmt:'//', lessons:18, emoji:'🔷', curriculum:['Types & interfaces','Generics','Type narrowing','Working with JS libraries','Capstone: type a real app']},
+  {name:'Go', file:'main.go', href:'lessons/go.html', accent:'--go-a', desc:'concurrency · cloud · CLI tools', cmt:'//', lessons:18, emoji:'🐹', curriculum:['Syntax & structs','Goroutines & channels','Error handling','Packages & modules','Capstone: build a CLI tool']},
+  {name:'Rust', file:'main.rs', href:'lessons/rust.html', accent:'--rust-a', desc:'safety · speed · systems', cmt:'//', lessons:18, emoji:'🦀', curriculum:['Ownership & borrowing','Structs & enums','Error handling','Traits & generics','Capstone: build a systems tool']},
+  {name:'Kotlin', file:'Hello.kt', href:'lessons/kotlin.html', accent:'--kotlin-a', desc:'Android · multiplatform · JVM', cmt:'//', lessons:16, emoji:'📱', curriculum:['Syntax & null safety','Classes & data classes','Coroutines','Android basics','Capstone: build an Android app']},
+  {name:'Swift', file:'main.swift', href:'lessons/swift.html', accent:'--swift-a', desc:'iOS · macOS · Apple ecosystem', cmt:'//', lessons:16, emoji:'🍎', curriculum:['Syntax & optionals','Structs & classes','SwiftUI basics','Networking','Capstone: build an iOS app']},
+  {name:'PHP', file:'index.php', href:'lessons/php.html', accent:'--php-a', desc:'server-side · WordPress · APIs', cmt:'//', lessons:18, emoji:'🐘', curriculum:['Syntax & forms','Sessions & cookies','MySQL integration','Building APIs','Capstone: build a CRUD app']},
+  {name:'SQL', file:'query.sql', href:'lessons/sql.html', accent:'--sql-a', desc:'databases · queries · analytics', cmt:'--', lessons:16, emoji:'🗄️', curriculum:['SELECT & filtering','Joins','Aggregations & grouping','Subqueries & CTEs','Capstone: analyze a real dataset']},
+  {name:'R', file:'script.R', href:'lessons/r.html', accent:'--r-a', desc:'statistics · data science · viz', cmt:'#', lessons:14, emoji:'📊', curriculum:['Vectors & data frames','Statistics basics','ggplot2 visualization','Data cleaning','Capstone: build a data report']},
+  {name:'Bash', file:'script.sh', href:'lessons/bash.html', accent:'--bash-a', desc:'scripting · automation · linux', cmt:'#', lessons:14, emoji:'🐚', curriculum:['Shell basics','Variables & loops','Pipes & redirection','Writing scripts','Capstone: automate a workflow']},
+  {name:'Dart', file:'main.dart', href:'lessons/dart.html', accent:'--dart-a', desc:'Flutter · mobile · cross-platform', cmt:'//', lessons:18, emoji:'🎯', curriculum:['Syntax & null safety','Widgets & layout','State management','Navigation','Capstone: build a Flutter app']},
+  {name:'Ruby', file:'main.rb', href:'lessons/ruby.html', accent:'--ruby-a', desc:'Rails · scripting · web apps', cmt:'#', lessons:18, emoji:'💎', curriculum:['Syntax & blocks','OOP in Ruby','Rails basics','ActiveRecord','Capstone: build a Rails app']},
+  {name:'MATLAB', file:'script.m', href:'lessons/matlab.html', accent:'--matlab-a', desc:'engineering · simulations · math', cmt:'%', lessons:14, emoji:'📐', curriculum:['Matrices & vectors','Plotting','Control flow','Functions & scripts','Capstone: simulate a system']},
+  {name:'Visual Basic', file:'Module1.vb', href:'lessons/visualbasic.html', accent:'--vb-a', desc:'.NET · desktop · automation', cmt:"'", lessons:18, emoji:'🪟', curriculum:['Syntax basics','Forms & controls','.NET integration','Event handling','Capstone: build a desktop tool']},
+  {name:'Shell', file:'script.sh', href:'lessons/shell.html', accent:'--shell-a', desc:'Unix · DevOps · scripting', cmt:'#', lessons:14, emoji:'🖥️', curriculum:['POSIX basics','Process management','Text processing','DevOps scripting','Capstone: build a deploy script']},
+ {name:'Machine Learning', file:'script.py', href:'lessons/machinelearning.html', accent:'--shell-a', desc:'data science · algorithms · AI', cmt:'#', lessons:14, emoji:'🤖', curriculum:['Python basics','Data preprocessing','Model training','Evaluation & deployment','Capstone: build a ML model']},
+ {name:'NumPy', file:'script.py', href:'lessons/numpy.html', accent:'--shell-a', desc:'Python · data science · arrays', cmt:'#', lessons:14, emoji:'📊', curriculum:['Arrays & matrices','Data manipulation','Linear algebra','Statistical functions','Capstone: analyze a dataset']},
+{name:'Deep Learning', file:'script.py', href:'lessons/deeplearning.html', accent:'--shell-a', desc:'neural networks · TensorFlow · PyTorch', cmt:'#', lessons:14, emoji:'🧠', curriculum:['Neural network basics','TensorFlow fundamentals','PyTorch basics','Model deployment','Capstone: build a deep learning model']},
+
+  {name:'Ethical Hacking', file:'recon.sh', href:'lessons/ethicalhacking.html', accent:'--eth-a', desc:'cybersecurity · pentesting · CTF', cmt:'#', lessons:16, emoji:'🛡️', curriculum:['Networking fundamentals','Reconnaissance','Common vulnerabilities','Web app pentesting','Capstone: solve a CTF challenge']},
+];
+
+// subheader
+const subheader = document.getElementById('course-subheader');
+languages.forEach(l => {
+  const a = document.createElement('a');
+  a.href = l.href; a.textContent = l.name;
+  subheader.appendChild(a);
+});
+
+// marquee
+const marquee = document.getElementById('marquee');
+const names = languages.map(l => l.name);
+[...names, ...names].forEach(n => {
+  const s = document.createElement('span'); s.textContent = n; marquee.appendChild(s);
+});
+
+// course grid
+const grid = document.getElementById('course-grid');
+languages.forEach((l, idx) => {
+  const a = document.createElement('button');
+  a.className = 'course-card';
+  a.style.setProperty('--lang', `var(${l.accent})`);
+  a.innerHTML = `
+    <div class="course-tab">${l.file}</div>
+    <div class="course-name">${l.name}</div>
+    <div class="course-desc"><span class="cmt">${l.cmt}</span> ${l.desc}</div>
+    <div class="course-meta"><span>${l.lessons} lessons · free</span><span class="arrow">→</span></div>
+  `;
+  a.onclick = () => openModal(idx);
+  grid.appendChild(a);
+});
+
+// footer course lists (split in half)
+const half = Math.ceil(languages.length / 2);
+const fc1 = document.getElementById('footer-courses-1');
+const fc2 = document.getElementById('footer-courses-2');
+languages.slice(0, half).forEach(l => { const li = document.createElement('li'); li.innerHTML = `<a href="${l.href}">${l.name}</a>`; fc1.appendChild(li); });
+languages.slice(half).forEach(l => { const li = document.createElement('li'); li.innerHTML = `<a href="${l.href}">${l.name}</a>`; fc2.appendChild(li); });
+
+// mobile nav courses
+const mnc = document.getElementById('mobile-nav-courses');
+languages.forEach(l => { const a = document.createElement('a'); a.href = l.href; a.textContent = l.name; a.onclick = toggleMenu; mnc.appendChild(a); });
+
+// modal
+function openModal(idx){
+  const l = languages[idx];
+  document.getElementById('modal-emoji').textContent = l.emoji;
+  document.getElementById('modal-title').textContent = l.name;
+  document.getElementById('modal-desc').textContent = l.desc + ' — ' + l.lessons + ' lessons, completely free.';
   const ul = document.getElementById('modal-curriculum');
-  ul.innerHTML = c.curriculum.map(item => `<li>${item}</li>`).join('');
-  document.getElementById('modal-btn').style.background = c.btn;
-  document.getElementById('modal-btn').style.color = (id === 'python' || id === 'js') ? '#1a1000' : '#fff';
-  
-  const linkMap = {
-    'cpp': 'c++.html',
-    'js': 'javascript.html'
-  };
-  const fileName = linkMap[id] || `${id}.html`;
-  document.getElementById('modal-btn').onclick = function() { window.location.href = `lessons/${fileName}`; };
-
+  ul.innerHTML = '';
+  l.curriculum.forEach(c => { const li = document.createElement('li'); li.textContent = c; ul.appendChild(li); });
+  document.getElementById('modal-btn').href = l.href;
   document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
+function closeModal(e){ if(e.target.id === 'modal-overlay') closeModalDirect(); }
+function closeModalDirect(){ document.getElementById('modal-overlay').classList.remove('open'); }
 
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
-}
-function closeModalDirect() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
-// ── Sign In Toast ──────────────────────────────────────────────────────────
-function showSignInToast() {
-  let toast = document.getElementById('signin-toast');
-  if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3200); return; }
-  toast = document.createElement('div');
-  toast.id = 'signin-toast';
-  toast.innerHTML = `<span style="font-size:1.1rem">🚧</span> Sign in is coming soon — stay tuned!`;
-  toast.style.cssText = [
-    'position:fixed','bottom:2rem','left:50%','transform:translateX(-50%) translateY(120%)',
-    'background:#1e293b','color:#f1f5f9','font-family:Outfit,sans-serif',
-    'font-size:0.92rem','padding:0.85rem 1.6rem','border-radius:12px',
-    'border:1px solid rgba(59,130,246,0.35)','box-shadow:0 8px 32px rgba(0,0,0,0.25)',
-    'z-index:9999','display:flex','align-items:center','gap:0.6rem',
-    'transition:transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.35s','opacity:0'
-  ].join(';');
-  document.body.appendChild(toast);
-  requestAnimationFrame(() => {
-    toast.style.transform = 'translateX(-50%) translateY(0)';
-    toast.style.opacity = '1';
-    toast.classList.add('show');
-  });
-  setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(120%)'; toast.style.opacity = '0'; }, 3200);
-}
-
-// ── Coming-Soon handler for placeholder links ──────────────────────────────
-function showComingSoon(label) {
-  let toast = document.getElementById('cs-toast');
-  if (toast) { toast.querySelector('span.cs-label').textContent = label + ' is coming soon!'; toast.classList.add('show'); clearTimeout(toast._timer); toast._timer = setTimeout(() => toast.classList.remove('show'), 2800); return; }
-  toast = document.createElement('div');
-  toast.id = 'cs-toast';
-  toast.innerHTML = `<span style="font-size:1.1rem">⏳</span><span class="cs-label">${label} is coming soon!</span>`;
-  toast.style.cssText = [
-    'position:fixed','bottom:5rem','left:50%','transform:translateX(-50%) translateY(120%)',
-    'background:#1e293b','color:#f1f5f9','font-family:Outfit,sans-serif',
-    'font-size:0.92rem','padding:0.85rem 1.6rem','border-radius:12px',
-    'border:1px solid rgba(96,165,250,0.3)','box-shadow:0 8px 32px rgba(0,0,0,0.25)',
-    'z-index:9999','display:flex','align-items:center','gap:0.6rem',
-    'transition:transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.35s','opacity:0'
-  ].join(';');
-  document.body.appendChild(toast);
-  requestAnimationFrame(() => { toast.style.transform = 'translateX(-50%) translateY(0)'; toast.style.opacity = '1'; });
-  toast._timer = setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(120%)'; toast.style.opacity = '0'; }, 2800);
-}
-
-// ── Mobile menu toggle (new lesson nav) ────────────────────────────────────
-function toggleMenu() {
-  const menu = document.getElementById('mobile-nav-overlay');
-  const btn  = document.getElementById('menu-toggle');
-  if (!menu) return;
-  const open = menu.classList.toggle('open');
-  if (btn) btn.setAttribute('aria-expanded', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-
-// ── Mobile menu toggle (old - keep for compatibility) ────────────────────────
-function toggleMobileMenu() {
-  const menu = document.getElementById('mobile-nav-overlay');
-  const btn  = document.getElementById('hamburger-btn');
-  if (!menu) return;
-  const open = menu.classList.toggle('open');
-  btn.setAttribute('aria-expanded', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-function closeMobileMenu() {
-  const menu = document.getElementById('mobile-nav-overlay');
-  const btn  = document.getElementById('hamburger-btn');
-  if (menu) { menu.classList.remove('open'); btn && btn.setAttribute('aria-expanded', 'false'); }
-  document.body.style.overflow = '';
-}
-
-// ── Animate cards on scroll ────────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      e.target.style.animationDelay = (i * 0.08) + 's';
-      e.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.course-card').forEach(card => observer.observe(card));
-
-// ── Course nav active state handling ────────────────────────────────────────
-document.querySelectorAll('.course-link').forEach(link => {
-  link.addEventListener('click', function(e) {
-    document.querySelectorAll('.course-link').forEach(l => l.classList.remove('active'));
-    this.classList.add('active');
-  });
+// search
+const searchToggle = document.getElementById('search-toggle');
+const searchOverlay = document.getElementById('search-overlay');
+const searchBox = document.getElementById('search-box');
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+function openSearch(){ searchOverlay.classList.add('open'); searchBox.classList.add('open'); searchInput.focus(); }
+function closeSearch(){ searchOverlay.classList.remove('open'); searchBox.classList.remove('open'); searchInput.value=''; renderSearchHint(); }
+function renderSearchHint(){ searchResults.innerHTML = '<div class="search-hint-row"><span class="sh-icon">🐍</span> Try "python", "rust", "sql"…</div>'; }
+searchToggle.addEventListener('click', openSearch);
+document.addEventListener('keydown', (e) => {
+  if((e.ctrlKey || e.metaKey) && e.key === 'k'){ e.preventDefault(); openSearch(); }
+  if(e.key === 'Escape'){ closeSearch(); }
+});
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if(!q){ renderSearchHint(); return; }
+  const matches = languages.filter(l => l.name.toLowerCase().includes(q) || l.desc.toLowerCase().includes(q));
+  if(matches.length === 0){ searchResults.innerHTML = '<div class="search-hint-row">No courses found.</div>'; return; }
+  searchResults.innerHTML = matches.map(l => `<a class="search-result-item" href="${l.href}">${l.emoji} ${l.name} — ${l.desc}</a>`).join('');
 });
 
-// ── Sign In button handler ─────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', function() {
-  const signInBtn = document.querySelector('.btn-signin');
-  if (signInBtn) {
-    signInBtn.addEventListener('click', showSignInToast);
+// mobile menu
+function toggleMenu(){ document.getElementById('mobile-nav-overlay').classList.toggle('open'); }
+
+// terminal typing effect
+const snippets = [
+  {lang:'hello_world.py', code:'print("hello, world")'},
+  {lang:'app.js', code:'console.log("hello, world")'},
+  {lang:'main.rs', code:'println!("hello, world");'},
+  {lang:'main.go', code:'fmt.Println("hello, world")'},
+  {lang:'Hello.java', code:'System.out.println("hello, world");'},
+];
+const termLang = document.getElementById('term-lang');
+const termOutput = document.getElementById('term-output');
+let i = 0, j = 0, deleting = false;
+function typeLoop(){
+  const current = snippets[i];
+  termLang.textContent = current.lang;
+  if(!deleting){
+    termOutput.innerHTML = current.code.slice(0, j) + '<span class="term-cursor"></span>';
+    j++;
+    if(j > current.code.length + 14){ deleting = true; j = current.code.length; }
+  } else {
+    termOutput.innerHTML = current.code.slice(0, j) + '<span class="term-cursor"></span>';
+    j--;
+    if(j < 0){ deleting = false; j = 0; i = (i + 1) % snippets.length; }
   }
-});
+  setTimeout(typeLoop, deleting ? 25 : 55);
+}
+typeLoop();
 
