@@ -24,11 +24,16 @@
   <meta name="twitter:image" content="../favicon.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../favicon.png">
-  <link rel="apple-touch-icon" href="../favicon.png">
+  
+  
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://codetutorium.com/lessons/java.html">
+      <link rel="icon" type="image/png" sizes="16x16" href="../favicon_16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon_512.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="canonical" href="https://codetutorium.com/lessons/java.html">
 
   <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,7 +155,7 @@
             <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span
                     class="dot"></span>Concurrency</button>
             <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span
-                    class="dot"></span>Capstone Project</button>
+                    class="dot"></span>Swing Library</button>
             <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span
                     class="dot"></span>Interfaces & Abstract Classes</button>
             <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span
@@ -3636,170 +3641,670 @@ nums.stream()
         </div>
 
         <!-- ===================== LECTURE 12 ===================== -->
-        <div class="lecture" id="lec-11">
-            <div class="lecture-tag">Lecture 12 · Capstone</div>
-            <h1>Capstone Project – Console To‑Do List</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-advanced">Advanced</span>
-                <span class="meta-badge">~90 min</span>
-                <span class="meta-badge">Requires: All Lectures</span>
-            </div>
+   <div class="lecture" id="lec-11">
+    <div class="lecture-tag">Lecture 12 · Swing FULL INTERFACE</div>
+    <h1>Java Swing GUI Development</h1>
 
-            <p>Build a **single‑file** console application that lets the user manage a to‑do list. The program should
-                let you:</p>
-            <ul>
-                <li>Add a task (string description).</li>
-                <li>Mark a task as completed.</li>
-                <li>Delete a task.</li>
-                <li>Display all tasks with status.</li>
-                <li>Persist tasks to a plain‑text file on exit and reload them on start.</li>
-            </ul>
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~90 min</span>
+        <span class="meta-badge">Requires: All Lectures</span>
+    </div>
 
-            <h2>Suggested Architecture</h2>
-            <ol>
-                <li><strong>Model</strong> – a <code>Task</code> class with <code>id</code>, <code>description</code>
-                    and <code>completed</code> flag.</li>
-                <li><strong>Repository</strong> – a <code>List&lt;Task&gt;</code> stored in memory; use
-                    <code>Files</code> API for persistence.</li>
-                <li><strong>Service</strong> – static methods for add/save/load/delete.</li>
-                <li><strong>UI loop</strong> – a <code>while(true)</code> menu that reads user input with
-                    <code>Scanner</code>.</li>
-            </ol>
+    <div class="box info">
+        <div class="box-title">What is Swing?</div>
+        <p>
+            Swing is Java's built-in GUI (Graphical User Interface) toolkit.
+            It allows developers to create windows, buttons, menus, forms,
+            tables, dialogs, and complete desktop applications.
+        </p>
+        <p>
+            Swing is part of the <code>javax.swing</code> package and works
+            on Windows, Linux, and macOS.
+        </p>
+    </div>
 
-            <h2>Starter Code (you’ll flesh it out)</h2>
-            <div class="code-block">
-                <div class="code-header">
-                    <div class="code-dots"><span></span><span></span><span></span></div><span
-                        class="filename">TodoApp.java</span>
-                </div>
-                <pre><span class="kw">import</span> <span class="kw">java.util</span>.*;
-<span class="kw">import</span> <span class="kw">java.nio.file</span>.*;
+    <h2>Why Use Swing?</h2>
 
-<span class="kw">class</span> <span class="tag">Task</span> {
-    <span class="kw">private static int</span> <span class="nm">counter</span> = <span class="nm">1</span>;
-    <span class="kw">private final int</span> <span class="nm">id</span>;
-    <span class="kw">private String</span> <span class="nm">description</span>;
-    <span class="kw">private boolean</span> <span class="nm">done</span>;
+    <ul>
+        <li>Create desktop applications.</li>
+        <li>Build forms and data-entry systems.</li>
+        <li>Create calculators and management systems.</li>
+        <li>Develop educational software.</li>
+        <li>Build database-driven applications.</li>
+    </ul>
 
-    <span class="kw">public Task</span>(<span class="kw">String</span> description) {
-        <span class="kw">this</span>.<span class="nm">id</span> = <span class="nm">counter</span>++;
-        <span class="kw">this</span>.<span class="nm">description</span> = description;
-        <span class="kw">this</span>.<span class="nm">done</span> = <span class="kw">false</span>;
+    <h2>Common Swing Components</h2>
+
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>JFrame</td>
+            <td>Main application window</td>
+        </tr>
+        <tr>
+            <td>JPanel</td>
+            <td>Container for components</td>
+        </tr>
+        <tr>
+            <td>JButton</td>
+            <td>Clickable button</td>
+        </tr>
+        <tr>
+            <td>JLabel</td>
+            <td>Display text</td>
+        </tr>
+        <tr>
+            <td>JTextField</td>
+            <td>Single-line input</td>
+        </tr>
+        <tr>
+            <td>JPasswordField</td>
+            <td>Password input</td>
+        </tr>
+        <tr>
+            <td>JTextArea</td>
+            <td>Multi-line input</td>
+        </tr>
+        <tr>
+            <td>JCheckBox</td>
+            <td>Selection box</td>
+        </tr>
+        <tr>
+            <td>JRadioButton</td>
+            <td>Single-choice option</td>
+        </tr>
+        <tr>
+            <td>JComboBox</td>
+            <td>Dropdown menu</td>
+        </tr>
+        <tr>
+            <td>JTable</td>
+            <td>Display tabular data</td>
+        </tr>
+    </table>
+
+    <h2>Your First Swing Program</h2>
+
+<pre><code>import javax.swing.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame("My First Window");
+
+        frame.setSize(500, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
+}</code></pre>
 
-    <span class="kw">public int</span> <span class="fn">getId</span>() { <span class="kw">return</span> <span class="nm">id</span>; }
-    <span class="kw">public String</span> <span class="fn">getDescription</span>() { <span class="kw">return</span> <span class="nm">description</span>; }
-    <span class="kw">public boolean</span> <span class="fn">isDone</span>() { <span class="kw">return</span> <span class="nm">done</span>; }
-    <span class="kw">public void</span> <span class="fn">toggle</span>() { <span class="nm">done</span> = !<span class="nm">done</span>; }
+    <h2>Understanding JFrame</h2>
 
-    <span class="kw">public String</span> <span class="fn">serialize</span>() {
-        <span class="kw">return</span> id + <span class="val">","</span> + description.replaceAll(<span class="val">","</span>, <span class="val">"\\,"</span>) + <span class="val">","</span> + done;
+    <table>
+        <tr>
+            <th>Method</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>setSize()</td>
+            <td>Set window size</td>
+        </tr>
+        <tr>
+            <td>setTitle()</td>
+            <td>Set title</td>
+        </tr>
+        <tr>
+            <td>setVisible()</td>
+            <td>Show window</td>
+        </tr>
+        <tr>
+            <td>setLocationRelativeTo()</td>
+            <td>Center window</td>
+        </tr>
+        <tr>
+            <td>setResizable()</td>
+            <td>Enable/disable resizing</td>
+        </tr>
+        <tr>
+            <td>add()</td>
+            <td>Add component</td>
+        </tr>
+    </table>
+
+    <h2>Adding a Label</h2>
+
+<pre><code>import javax.swing.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame();
+
+        JLabel label =
+            new JLabel("Welcome to Swing");
+
+        frame.add(label);
+
+        frame.setSize(400,200);
+        frame.setVisible(true);
     }
+}</code></pre>
 
-    <span class="kw">public static Task</span> <span class="fn">deserialize</span>(<span class="kw">String</span> line) {
-        <span class="kw">String</span>[] parts = line.split(<span class="val">","</span>, 3);
-        Task t = <span class="kw">new</span> <span class="tag">Task</span>(parts[<span class="nm">1</span>]);
-        t.<span class="nm">id</span> = Integer.parseInt(parts[<span class="nm">0</span>]);          <span class="cm">// reset id</span>
-        t.<span class="nm">done</span> = Boolean.parseBoolean(parts[<span class="nm">2</span>]);
-        <span class="kw">return</span> t;
+    <h2>Creating a Button</h2>
+
+<pre><code>import javax.swing.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame();
+
+        JButton btn =
+            new JButton("Click Me");
+
+        frame.add(btn);
+
+        frame.setSize(400,200);
+        frame.setVisible(true);
+    }
+}</code></pre>
+
+    <h2>Event Handling</h2>
+
+    <p>
+        Event handling allows Swing applications to react when users click buttons,
+        type text, select menu items, or interact with components.
+    </p>
+
+<pre><code>import javax.swing.*;
+import java.awt.event.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame();
+
+        JButton btn =
+            new JButton("Click");
+
+        btn.addActionListener(
+            new ActionListener() {
+
+                public void actionPerformed(
+                        ActionEvent e) {
+
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Button Clicked!"
+                    );
+                }
+            });
+
+        frame.add(btn);
+
+        frame.setSize(400,200);
+        frame.setVisible(true);
+    }
+}</code></pre>
+
+    <h2>JTextField Example</h2>
+
+<pre><code>import javax.swing.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame();
+
+        JTextField txt =
+            new JTextField();
+
+        txt.setBounds(50,50,200,30);
+
+        frame.add(txt);
+
+        frame.setLayout(null);
+        frame.setSize(400,300);
+        frame.setVisible(true);
+    }
+}</code></pre>
+
+    <h2>Layouts</h2>
+
+    <p>
+        Layout Managers automatically position components.
+    </p>
+
+    <table>
+        <tr>
+            <th>Layout</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>FlowLayout</td>
+            <td>Left to right</td>
+        </tr>
+        <tr>
+            <td>BorderLayout</td>
+            <td>North, South, East, West, Center</td>
+        </tr>
+        <tr>
+            <td>GridLayout</td>
+            <td>Rows and columns</td>
+        </tr>
+        <tr>
+            <td>BoxLayout</td>
+            <td>Vertical or horizontal arrangement</td>
+        </tr>
+        <tr>
+            <td>null Layout</td>
+            <td>Manual positioning</td>
+        </tr>
+    </table>
+
+    <h2>FlowLayout Example</h2>
+
+<pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame();
+
+        frame.setLayout(new FlowLayout());
+
+        frame.add(new JButton("One"));
+        frame.add(new JButton("Two"));
+        frame.add(new JButton("Three"));
+
+        frame.setSize(400,200);
+        frame.setVisible(true);
+    }
+}</code></pre>
+
+    <h2>JCheckBox Example</h2>
+
+<pre><code>JCheckBox java =
+    new JCheckBox("Java");
+
+JCheckBox python =
+    new JCheckBox("Python");
+
+frame.add(java);
+frame.add(python);</code></pre>
+
+    <h2>JRadioButton Example</h2>
+
+<pre><code>JRadioButton male =
+    new JRadioButton("Male");
+
+JRadioButton female =
+    new JRadioButton("Female");
+
+ButtonGroup group =
+    new ButtonGroup();
+
+group.add(male);
+group.add(female);</code></pre>
+
+    <h2>JComboBox Example</h2>
+
+<pre><code>String[] countries = {
+    "India",
+    "Zimbabwe",
+    "South Africa"
+};
+
+JComboBox box =
+    new JComboBox(countries);
+
+frame.add(box);</code></pre>
+
+    <h2>JTextArea Example</h2>
+
+<pre><code>JTextArea area =
+    new JTextArea();
+
+frame.add(area);</code></pre>
+
+    <h2>Message Dialogs</h2>
+
+<pre><code>JOptionPane.showMessageDialog(
+    null,
+    "Operation Successful"
+);</code></pre>
+
+    <h2>Input Dialog</h2>
+
+<pre><code>String name =
+    JOptionPane.showInputDialog(
+        "Enter Name"
+    );</code></pre>
+
+    <h2>Confirm Dialog</h2>
+
+<pre><code>int result =
+    JOptionPane.showConfirmDialog(
+        null,
+        "Delete Record?"
+    );</code></pre>
+
+    <h2>Menu Bar Example</h2>
+
+<pre><code>JMenuBar menuBar =
+    new JMenuBar();
+
+JMenu file =
+    new JMenu("File");
+
+JMenuItem exit =
+    new JMenuItem("Exit");
+
+file.add(exit);
+menuBar.add(file);
+
+frame.setJMenuBar(menuBar);</code></pre>
+
+    <h2>Building a Login Form</h2>
+
+<pre><code>JLabel user =
+    new JLabel("Username");
+
+JTextField txtUser =
+    new JTextField();
+
+JLabel pass =
+    new JLabel("Password");
+
+JPasswordField txtPass =
+    new JPasswordField();
+
+JButton login =
+    new JButton("Login");</code></pre>
+
+    <div class="box success">
+        <div class="box-title">Mini Project Ideas</div>
+        <ul>
+            <li>Calculator</li>
+            <li>Student Registration System</li>
+            <li>Library Management System</li>
+            <li>Inventory System</li>
+            <li>Banking Application</li>
+            <li>Login System</li>
+            <li>Quiz Application</li>
+        </ul>
+    </div>
+
+    <div class="box warning">
+        <div class="box-title">Exam Tips</div>
+        <ul>
+            <li>Know all major Swing components.</li>
+            <li>Understand event handling.</li>
+            <li>Practice JFrame creation.</li>
+            <li>Learn layout managers.</li>
+            <li>Understand dialogs and forms.</li>
+        </ul>
+    </div>
+
+    <div class="box success">
+        <div class="box-title">Lecture Summary</div>
+        <ul>
+            <li>Swing is Java's GUI toolkit.</li>
+            <li>JFrame is the main window.</li>
+            <li>Components are added to containers.</li>
+            <li>Layouts organize components.</li>
+            <li>Events make applications interactive.</li>
+            <li>Swing is commonly used for desktop applications.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
+    </div>
+</div>
+
+        <!-- ===================== LECTURE 13 ===================== -->
+     <div class="lecture" id="lec-12">
+    <div class="lecture-tag">Lecture 13 · Advanced</div>
+    <h1>Interfaces & Abstract Classes</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+        <span class="meta-badge">Requires: Lecture 12</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Lesson Overview</div>
+        <p>
+            Interfaces and abstract classes are important concepts in Object-Oriented
+            Programming (OOP). They help create flexible, reusable, and maintainable
+            code by defining common behavior for multiple classes.
+        </p>
+    </div>
+
+    <h2>What is an Abstract Class?</h2>
+
+    <p>
+        An abstract class is a class that cannot be instantiated directly.
+        It serves as a blueprint for other classes.
+    </p>
+
+    <div class="box warning">
+        <div class="box-title">Key Features of Abstract Classes</div>
+        <ul>
+            <li>Declared using the <code>abstract</code> keyword.</li>
+            <li>Cannot create objects directly.</li>
+            <li>Can contain abstract and normal methods.</li>
+            <li>Can have constructors and variables.</li>
+            <li>Used when classes share common functionality.</li>
+        </ul>
+    </div>
+
+    <h2>Abstract Method</h2>
+
+    <p>
+        An abstract method has no body and must be implemented by subclasses.
+    </p>
+
+<pre><code>abstract class Animal {
+    abstract void makeSound();
+}</code></pre>
+
+    <h2>Example: Abstract Class</h2>
+
+<pre><code>abstract class Animal {
+
+    abstract void makeSound();
+
+    void sleep() {
+        System.out.println("Sleeping...");
     }
 }
 
-<span class="kw">public class</span> <span class="tag">TodoApp</span> {
-    <span class="kw">private static final Path</span> FILE = Paths.<span class="fn">get</span>(<span class="val">"tasks.txt"</span>);
-    <span class="kw">private static final List&lt;Task&gt;</span> tasks = <span class="kw">new</span> <span class="tag">ArrayList</span>&lt;&gt;();
+class Dog extends Animal {
 
-    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="kw">String</span>[] args) <span class="kw">throws</span> Exception {
-        load();
-        Scanner sc = <span class="kw">new</span> <span class="tag">Scanner</span>(System.<span class="fn">in</span>);
-        <span class="kw">while</span> (<span class="kw">true</span>) {
-            System.out.println(<span class="val">"\n--- To‑Do List ---"</span>);
-            tasks.<span class="fn">forEach</span>(t -&gt; System.out.println(t.<span class="fn">getId</span>() + <span class="val">". ["</span> + (t.<span class="fn">isDone</span>() ? <span class="val">"x"</span> : <span class="val">" "</span>) + <span class="val">"] "</span> + t.<span class="fn">getDescription</span>()));
-            System.out.println(<span class="val">"\nChoose: (a)dd, (t)oggle, (d)elete, (q)uit"</span>);
-            String cmd = sc.<span class="fn">nextLine</span>().trim().toLowerCase();
-            <span class="kw">switch</span> (cmd) {
-                <span class="kw">case</span> <span class="val">"a"</span>:
-                    System.out.print(<span class="val">"Enter description: "</span>);
-                    String desc = sc.<span class="fn">nextLine</span>();
-                    tasks.<span class="fn">add</span>(<span class="kw">new</span> <span class="tag">Task</span>(desc));
-                    <span class="kw">break</span>;
-                <span class="kw">case</span> <span class="val">"t"</span>:
-                    System.out.print(<span class="val">"Id to toggle: "</span>);
-                    <span class="kw">int</span> id = Integer.<span class="fn">parseInt</span>(sc.<span class="fn">nextLine</span>());
-                    tasks.<span class="fn">stream</span>()
-                         .<span class="fn">filter</span>(t -&gt; t.<span class="fn">getId</span>() == id)
-                         .<span class="fn">findFirst</span>()
-                         .<span class="fn">ifPresent</span>(Task::<span class="fn">toggle</span>);
-                    <span class="kw">break</span>;
-                <span class="kw">case</span> <span class="val">"d"</span>:
-                    System.out.print(<span class="val">"Id to delete: "</span>);
-                    <span class="kw">int</span> delId = Integer.<span class="fn">parseInt</span>(sc.<span class="fn">nextLine</span>());
-                    tasks.<span class="fn">removeIf</span>(t -&gt; t.<span class="fn">getId</span>() == delId);
-                    <span class="kw">break</span>;
-                <span class="kw">case</span> <span class="val">"q"</span>:
-                    save();
-                    System.out.println(<span class="val">"Good‑bye!"</span>);
-                    <span class="kw">return</span>;
-                <span class="kw">default</span>:
-                    System.out.println(<span class="val">"Unknown command"</span>);
-            }
-        }
+    void makeSound() {
+        System.out.println("Bark");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Dog d = new Dog();
+
+        d.makeSound();
+        d.sleep();
+    }
+}</code></pre>
+
+    <h2>Output</h2>
+
+<pre><code>Bark
+Sleeping...</code></pre>
+
+    <h2>What is an Interface?</h2>
+
+    <p>
+        An interface is a completely abstract blueprint that defines what a class
+        must do without specifying how it does it.
+    </p>
+
+    <div class="box success">
+        <div class="box-title">Key Features of Interfaces</div>
+        <ul>
+            <li>Declared using the <code>interface</code> keyword.</li>
+            <li>Contains abstract methods by default.</li>
+            <li>Supports multiple inheritance.</li>
+            <li>Cannot create objects directly.</li>
+            <li>Implemented using the <code>implements</code> keyword.</li>
+        </ul>
+    </div>
+
+    <h2>Creating an Interface</h2>
+
+<pre><code>interface Vehicle {
+    void start();
+}</code></pre>
+
+    <h2>Implementing an Interface</h2>
+
+<pre><code>interface Vehicle {
+    void start();
+}
+
+class Car implements Vehicle {
+
+    public void start() {
+        System.out.println("Car Started");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Car c = new Car();
+        c.start();
+    }
+}</code></pre>
+
+    <h2>Output</h2>
+
+<pre><code>Car Started</code></pre>
+
+    <h2>Multiple Interface Implementation</h2>
+
+    <p>
+        A class can implement multiple interfaces, which helps achieve multiple inheritance.
+    </p>
+
+<pre><code>interface Camera {
+    void takePhoto();
+}
+
+interface MusicPlayer {
+    void playMusic();
+}
+
+class Smartphone implements Camera, MusicPlayer {
+
+    public void takePhoto() {
+        System.out.println("Photo Taken");
     }
 
-    <span class="kw">private static void</span> <span class="fn">load</span>() <span class="kw">throws</span> Exception {
-        <span class="kw">if</span> (Files.<span class="fn">exists</span>(FILE)) {
-            Files.<span class="fn">lines</span>(FILE).forEach(l -&gt; tasks.<span class="fn">add</span>(Task.<span class="fn">deserialize</span>(l)));
-        }
+    public void playMusic() {
+        System.out.println("Playing Music");
     }
+}</code></pre>
 
-    <span class="kw">private static void</span> <span class="fn">save</span>() <span class="kw">throws</span> Exception {
-        List&lt;<span class="kw">String</span>&gt; lines = <span class="kw">new</span> <span class="tag">ArrayList</span>&lt;&gt;();
-        tasks.<span class="fn">forEach</span>(t -&gt; lines.<span class="fn">add</span>(t.<span class="fn">serialize</span>()));
-        Files.<span class="fn">write</span>(FILE, lines);
-    }
-}</pre>
-            </div>
+    <h2>Abstract Class vs Interface</h2>
 
-            <h2>What You’ll Demonstrate</h2>
-            <ul>
-                <li>Class design &amp; encapsulation.</li>
-                <li>Collections (ArrayList) and streaming operations.</li>
-                <li>File I/O with NIO.</li>
-                <li>Basic console UI handling.</li>
-                <li>Exception handling for I/O and parsing errors.</li>
-            </ul>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Abstract Class</th>
+            <th>Interface</th>
+        </tr>
+        <tr>
+            <td>Methods</td>
+            <td>Abstract + Concrete</td>
+            <td>Mainly Abstract</td>
+        </tr>
+        <tr>
+            <td>Variables</td>
+            <td>Normal Variables Allowed</td>
+            <td>Constants Only</td>
+        </tr>
+        <tr>
+            <td>Constructors</td>
+            <td>Allowed</td>
+            <td>Not Allowed</td>
+        </tr>
+        <tr>
+            <td>Inheritance</td>
+            <td>Single Inheritance</td>
+            <td>Multiple Inheritance</td>
+        </tr>
+        <tr>
+            <td>Keyword</td>
+            <td>extends</td>
+            <td>implements</td>
+        </tr>
+    </table>
 
-            <div class="exercise">
-                <div class="exercise-title">🎯 Final Challenge</div>
-                <p>Extend the app with:</p>
-                <ol>
-                    <li>A priority field (enum <code>LOW/MEDIUM/HIGH</code>) and sort the output by priority.</li>
-                    <li>Use <code>java.time.LocalDate</code> to add a due‑date, and display overdue tasks.</li>
-                    <li>Write JUnit tests for the <code>Task</code> class and the persistence logic.</li>
-                </ol>
-            </div>
+    <h2>When to Use an Abstract Class</h2>
 
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
-            </div>
-        </div>
+    <ul>
+        <li>When classes share common code.</li>
+        <li>When you want partial implementation.</li>
+        <li>When subclasses should inherit state and behavior.</li>
+    </ul>
 
-        <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Interfaces & Abstract Classes</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~50 min</span>
-                <span class="meta-badge">Requires: Lecture 12</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
-        </div>
+    <h2>When to Use an Interface</h2>
+
+    <ul>
+        <li>When unrelated classes need common behavior.</li>
+        <li>When multiple inheritance is required.</li>
+        <li>When defining a contract for classes.</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">Real-World Examples</div>
+        <ul>
+            <li><strong>Abstract Class:</strong> Animal, Vehicle, Employee</li>
+            <li><strong>Interface:</strong> Printable, Runnable, Comparable</li>
+            <li><strong>Smartphone:</strong> Camera + Music Player + Internet Device</li>
+        </ul>
+    </div>
+
+    <div class="box success">
+        <div class="box-title">Key Takeaways</div>
+        <ul>
+            <li>Abstract classes provide partial implementation.</li>
+            <li>Interfaces define contracts for classes.</li>
+            <li>Abstract methods must be implemented by subclasses.</li>
+            <li>Interfaces support multiple inheritance.</li>
+            <li>Both improve flexibility and code reusability.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
         <div class="lecture" id="lec-13">
@@ -3818,52 +4323,980 @@ nums.stream()
         </div>
 
         <!-- ===================== LECTURE 15 ===================== -->
-        <div class="lecture" id="lec-14">
-            <div class="lecture-tag">Lecture 15 · Advanced</div>
-            <h1>File I/O & NIO</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~50 min</span>
-                <span class="meta-badge">Requires: Lecture 14</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
-            </div>
-        </div>
+      <div class="lecture" id="lec-14">
+    <div class="lecture-tag">Lecture 15 · Advanced</div>
+    <h1>File I/O & NIO</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~50 min</span>
+        <span class="meta-badge">Requires: Lecture 14</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Lesson Overview</div>
+        <p>
+            File I/O (Input/Output) allows Java programs to read and write data
+            from files. Java provides two major approaches:
+        </p>
+        <ul>
+            <li>Classic File I/O (java.io package)</li>
+            <li>NIO (New Input/Output - java.nio package)</li>
+        </ul>
+    </div>
+
+    <h2>Why File Handling?</h2>
+
+    <ul>
+        <li>Store data permanently.</li>
+        <li>Read configuration files.</li>
+        <li>Save application settings.</li>
+        <li>Create logs and reports.</li>
+        <li>Process large datasets.</li>
+    </ul>
+
+    <h2>Java File Class</h2>
+
+    <p>
+        The <code>File</code> class represents files and directories.
+    </p>
+
+<pre><code>import java.io.File;
+
+public class Main {
+    public static void main(String[] args) {
+
+        File file = new File("student.txt");
+
+        System.out.println(file.exists());
+    }
+}</code></pre>
+
+    <h2>Creating a File</h2>
+
+<pre><code>import java.io.File;
+import java.io.IOException;
+
+public class Main {
+
+    public static void main(String[] args)
+            throws IOException {
+
+        File file =
+            new File("data.txt");
+
+        if(file.createNewFile()) {
+            System.out.println("File Created");
+        } else {
+            System.out.println("Already Exists");
+        }
+    }
+}</code></pre>
+
+    <h2>Writing to a File (FileWriter)</h2>
+
+<pre><code>import java.io.FileWriter;
+
+public class Main {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        FileWriter writer =
+            new FileWriter("notes.txt");
+
+        writer.write("Hello Java!");
+
+        writer.close();
+
+        System.out.println("Written Successfully");
+    }
+}</code></pre>
+
+    <h2>Appending Data</h2>
+
+<pre><code>FileWriter writer =
+    new FileWriter("notes.txt", true);
+
+writer.write("\nNew Line Added");
+
+writer.close();</code></pre>
+
+    <h2>Reading Files (Scanner)</h2>
+
+<pre><code>import java.io.File;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        File file =
+            new File("notes.txt");
+
+        Scanner sc =
+            new Scanner(file);
+
+        while(sc.hasNextLine()) {
+            System.out.println(sc.nextLine());
+        }
+
+        sc.close();
+    }
+}</code></pre>
+
+    <h2>BufferedWriter</h2>
+
+    <p>
+        BufferedWriter improves performance by reducing disk access.
+    </p>
+
+<pre><code>import java.io.*;
+
+BufferedWriter writer =
+    new BufferedWriter(
+        new FileWriter("data.txt")
+    );
+
+writer.write("Fast Writing");
+
+writer.close();</code></pre>
+
+    <h2>BufferedReader</h2>
+
+<pre><code>import java.io.*;
+
+BufferedReader reader =
+    new BufferedReader(
+        new FileReader("data.txt")
+    );
+
+String line;
+
+while((line = reader.readLine()) != null) {
+    System.out.println(line);
+}
+
+reader.close();</code></pre>
+
+    <h2>Binary Files</h2>
+
+    <p>
+        Binary files store raw bytes instead of text.
+    </p>
+
+    <h3>FileOutputStream</h3>
+
+<pre><code>import java.io.*;
+
+FileOutputStream out =
+    new FileOutputStream("file.bin");
+
+out.write(65);
+
+out.close();</code></pre>
+
+    <h3>FileInputStream</h3>
+
+<pre><code>import java.io.*;
+
+FileInputStream in =
+    new FileInputStream("file.bin");
+
+int data = in.read();
+
+System.out.println(data);
+
+in.close();</code></pre>
+
+    <h2>Introduction to NIO</h2>
+
+    <div class="box success">
+        <div class="box-title">What is NIO?</div>
+        <p>
+            NIO (New Input/Output) was introduced to provide faster,
+            more scalable file operations and better support for large files.
+        </p>
+    </div>
+
+    <h2>Important NIO Classes</h2>
+
+    <table>
+        <tr>
+            <th>Class</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Path</td>
+            <td>Represents a file path</td>
+        </tr>
+        <tr>
+            <td>Paths</td>
+            <td>Create Path objects</td>
+        </tr>
+        <tr>
+            <td>Files</td>
+            <td>File operations</td>
+        </tr>
+        <tr>
+            <td>DirectoryStream</td>
+            <td>Directory traversal</td>
+        </tr>
+    </table>
+
+    <h2>Creating a Path</h2>
+
+<pre><code>import java.nio.file.*;
+
+Path path =
+    Paths.get("data.txt");
+
+System.out.println(path);</code></pre>
+
+    <h2>Writing Files with NIO</h2>
+
+<pre><code>import java.nio.file.*;
+import java.util.*;
+
+Path path =
+    Paths.get("data.txt");
+
+Files.write(
+    path,
+    Arrays.asList(
+        "Java",
+        "Python",
+        "C++"
+    )
+);</code></pre>
+
+    <h2>Reading Files with NIO</h2>
+
+<pre><code>import java.nio.file.*;
+import java.util.*;
+
+Path path =
+    Paths.get("data.txt");
+
+List&lt;String&gt; lines =
+    Files.readAllLines(path);
+
+for(String line : lines) {
+    System.out.println(line);
+}</code></pre>
+
+    <h2>Copying Files</h2>
+
+<pre><code>Path source =
+    Paths.get("source.txt");
+
+Path target =
+    Paths.get("backup.txt");
+
+Files.copy(
+    source,
+    target
+);</code></pre>
+
+    <h2>Moving Files</h2>
+
+<pre><code>Files.move(
+    Paths.get("old.txt"),
+    Paths.get("new.txt")
+);</code></pre>
+
+    <h2>Deleting Files</h2>
+
+<pre><code>Files.delete(
+    Paths.get("temp.txt")
+);</code></pre>
+
+    <h2>Creating Directories</h2>
+
+<pre><code>Files.createDirectory(
+    Paths.get("Students")
+);</code></pre>
+
+    <h2>Exception Handling Example</h2>
+
+<pre><code>try {
+
+    Files.delete(
+        Paths.get("data.txt")
+    );
+
+} catch(IOException e) {
+
+    System.out.println(
+        "Error: " + e.getMessage()
+    );
+}</code></pre>
+
+    <h2>File I/O vs NIO</h2>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>File I/O</th>
+            <th>NIO</th>
+        </tr>
+        <tr>
+            <td>Package</td>
+            <td>java.io</td>
+            <td>java.nio</td>
+        </tr>
+        <tr>
+            <td>Performance</td>
+            <td>Good</td>
+            <td>Better</td>
+        </tr>
+        <tr>
+            <td>Large Files</td>
+            <td>Limited</td>
+            <td>Excellent</td>
+        </tr>
+        <tr>
+            <td>Modern API</td>
+            <td>No</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    <div class="box warning">
+        <div class="box-title">Best Practices</div>
+        <ul>
+            <li>Always close file resources.</li>
+            <li>Use try-with-resources when possible.</li>
+            <li>Handle exceptions properly.</li>
+            <li>Prefer NIO for modern applications.</li>
+            <li>Validate file paths before access.</li>
+        </ul>
+    </div>
+
+    <h2>Try-With-Resources Example</h2>
+
+<pre><code>try(BufferedReader reader =
+        new BufferedReader(
+            new FileReader("data.txt"))) {
+
+    String line;
+
+    while((line = reader.readLine()) != null) {
+        System.out.println(line);
+    }
+
+} catch(IOException e) {
+    e.printStackTrace();
+}</code></pre>
+
+    <div class="box success">
+        <div class="box-title">Key Takeaways</div>
+        <ul>
+            <li>File I/O enables reading and writing files.</li>
+            <li>FileWriter and Scanner are common text-file tools.</li>
+            <li>BufferedReader and BufferedWriter improve performance.</li>
+            <li>NIO provides modern, efficient file operations.</li>
+            <li>Files and Paths simplify file management.</li>
+            <li>Always handle exceptions and close resources.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 16 ===================== -->
-        <div class="lecture" id="lec-15">
-            <div class="lecture-tag">Lecture 16 · Advanced</div>
-            <h1>Networking & Sockets</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~55 min</span>
-                <span class="meta-badge">Requires: Lecture 15</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button>
-            </div>
-        </div>
+     <div class="lecture" id="lec-15">
+    <div class="lecture-tag">Lecture 16 · Advanced</div>
+    <h1>Networking & Sockets</h1>
 
+    <div class="lecture-meta">
+        <span class="meta-badge level-intermediate">Intermediate</span>
+        <span class="meta-badge">~55 min</span>
+        <span class="meta-badge">Requires: Lecture 15</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Lesson Overview</div>
+        <p>
+            Networking allows Java applications to communicate over a network.
+            Java provides powerful networking APIs for creating client-server
+            applications, chat systems, file transfer applications, and web services.
+        </p>
+    </div>
+
+    <h2>What is Networking?</h2>
+
+    <p>
+        Networking is the process of exchanging data between computers or devices.
+        Java supports networking through the <code>java.net</code> package.
+    </p>
+
+    <h2>Common Networking Terms</h2>
+
+    <table>
+        <tr>
+            <th>Term</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>IP Address</td>
+            <td>Unique address of a device on a network</td>
+        </tr>
+        <tr>
+            <td>Port</td>
+            <td>Communication endpoint on a device</td>
+        </tr>
+        <tr>
+            <td>Protocol</td>
+            <td>Rules for communication</td>
+        </tr>
+        <tr>
+            <td>Client</td>
+            <td>Requests services</td>
+        </tr>
+        <tr>
+            <td>Server</td>
+            <td>Provides services</td>
+        </tr>
+        <tr>
+            <td>Socket</td>
+            <td>Endpoint for communication</td>
+        </tr>
+    </table>
+
+    <h2>What is a Socket?</h2>
+
+    <p>
+        A socket is a communication endpoint that allows two programs to
+        exchange data over a network.
+    </p>
+
+    <div class="box success">
+        <div class="box-title">Socket Communication</div>
+        <ol>
+            <li>Server starts and listens on a port.</li>
+            <li>Client connects to the server.</li>
+            <li>Data is exchanged between client and server.</li>
+            <li>Connection is closed.</li>
+        </ol>
+    </div>
+
+    <h2>Important Networking Classes</h2>
+
+    <table>
+        <tr>
+            <th>Class</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>InetAddress</td>
+            <td>Represents IP addresses</td>
+        </tr>
+        <tr>
+            <td>Socket</td>
+            <td>Client-side communication</td>
+        </tr>
+        <tr>
+            <td>ServerSocket</td>
+            <td>Server-side communication</td>
+        </tr>
+        <tr>
+            <td>URL</td>
+            <td>Represents web resources</td>
+        </tr>
+        <tr>
+            <td>URLConnection</td>
+            <td>Connection to URL resources</td>
+        </tr>
+    </table>
+
+    <h2>Getting Local Host Information</h2>
+
+<pre><code>import java.net.*;
+
+public class Main {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        InetAddress ip =
+            InetAddress.getLocalHost();
+
+        System.out.println(ip);
+        System.out.println(ip.getHostName());
+        System.out.println(ip.getHostAddress());
+    }
+}</code></pre>
+
+    <h2>Getting Website IP Address</h2>
+
+<pre><code>import java.net.*;
+
+public class Main {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        InetAddress ip =
+            InetAddress.getByName("google.com");
+
+        System.out.println(ip);
+    }
+}</code></pre>
+
+    <h2>Client-Server Architecture</h2>
+
+    <div class="box info">
+        <div class="box-title">How It Works</div>
+        <p>
+            The server waits for connections. The client connects to the server.
+            Once connected, both can exchange information.
+        </p>
+    </div>
+
+    <h2>Creating a Server</h2>
+
+<pre><code>import java.net.*;
+import java.io.*;
+
+public class Server {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        ServerSocket server =
+            new ServerSocket(5000);
+
+        System.out.println("Server Started");
+
+        Socket socket =
+            server.accept();
+
+        System.out.println("Client Connected");
+
+        server.close();
+    }
+}</code></pre>
+
+    <h2>Creating a Client</h2>
+
+<pre><code>import java.net.*;
+
+public class Client {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        Socket socket =
+            new Socket("localhost", 5000);
+
+        System.out.println(
+            "Connected to Server"
+        );
+
+        socket.close();
+    }
+}</code></pre>
+
+    <h2>Sending Data from Client</h2>
+
+<pre><code>PrintWriter out =
+    new PrintWriter(
+        socket.getOutputStream(),
+        true
+    );
+
+out.println("Hello Server");</code></pre>
+
+    <h2>Receiving Data on Server</h2>
+
+<pre><code>BufferedReader in =
+    new BufferedReader(
+        new InputStreamReader(
+            socket.getInputStream()
+        )
+    );
+
+String message =
+    in.readLine();
+
+System.out.println(message);</code></pre>
+
+    <h2>Simple Chat Example</h2>
+
+<pre><code>// Client sends
+out.println("Hello!");
+
+// Server receives
+String msg = in.readLine();
+System.out.println(msg);</code></pre>
+
+    <h2>Reading Data from a URL</h2>
+
+<pre><code>import java.net.*;
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        URL url =
+            new URL(
+                "https://example.com"
+            );
+
+        BufferedReader reader =
+            new BufferedReader(
+                new InputStreamReader(
+                    url.openStream()
+                )
+            );
+
+        String line;
+
+        while((line = reader.readLine())
+                != null) {
+
+            System.out.println(line);
+        }
+
+        reader.close();
+    }
+}</code></pre>
+
+    <h2>UDP vs TCP</h2>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>TCP</th>
+            <th>UDP</th>
+        </tr>
+        <tr>
+            <td>Connection</td>
+            <td>Required</td>
+            <td>Not Required</td>
+        </tr>
+        <tr>
+            <td>Reliability</td>
+            <td>High</td>
+            <td>Lower</td>
+        </tr>
+        <tr>
+            <td>Speed</td>
+            <td>Slower</td>
+            <td>Faster</td>
+        </tr>
+        <tr>
+            <td>Examples</td>
+            <td>Web, Email, Banking</td>
+            <td>Gaming, Streaming</td>
+        </tr>
+    </table>
+
+    <h2>Creating a UDP Socket</h2>
+
+<pre><code>import java.net.*;
+
+DatagramSocket socket =
+    new DatagramSocket();</code></pre>
+
+    <h2>Sending UDP Data</h2>
+
+<pre><code>byte[] data =
+    "Hello".getBytes();
+
+InetAddress ip =
+    InetAddress.getByName(
+        "localhost"
+    );
+
+DatagramPacket packet =
+    new DatagramPacket(
+        data,
+        data.length,
+        ip,
+        6000
+    );
+
+socket.send(packet);</code></pre>
+
+    <h2>Exception Handling</h2>
+
+<pre><code>try {
+
+    Socket socket =
+        new Socket(
+            "localhost",
+            5000
+        );
+
+} catch(IOException e) {
+
+    System.out.println(
+        "Connection Failed"
+    );
+}</code></pre>
+
+    <div class="box warning">
+        <div class="box-title">Networking Best Practices</div>
+        <ul>
+            <li>Always close sockets after use.</li>
+            <li>Handle exceptions properly.</li>
+            <li>Validate incoming data.</li>
+            <li>Use threads for multiple clients.</li>
+            <li>Never trust external network input.</li>
+        </ul>
+    </div>
+
+    <h2>Real-World Applications</h2>
+
+    <ul>
+        <li>Chat Applications</li>
+        <li>Online Games</li>
+        <li>File Sharing Systems</li>
+        <li>Web Browsers</li>
+        <li>Email Services</li>
+        <li>Video Streaming Platforms</li>
+        <li>Banking Systems</li>
+    </ul>
+
+    <div class="box success">
+        <div class="box-title">Key Takeaways</div>
+        <ul>
+            <li>Java networking is provided by the java.net package.</li>
+            <li>Sockets enable communication between applications.</li>
+            <li>ServerSocket creates servers.</li>
+            <li>Socket creates client connections.</li>
+            <li>TCP is reliable while UDP is faster.</li>
+            <li>Networking powers modern internet applications.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button>
+    </div>
+</div>
         <!-- ===================== LECTURE 17 ===================== -->
-        <div class="lecture" id="lec-16">
-            <div class="lecture-tag">Lecture 17 · Professional</div>
-            <h1>JDBC & Databases</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge level-advanced">Advanced</span>
-                <span class="meta-badge">~60 min</span>
-                <span class="meta-badge">Requires: Lecture 16</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button>
-            </div>
-        </div>
+   <div class="lecture" id="lec-16">
+    <div class="lecture-tag">Lecture 17 · Professional</div>
+    <h1>JDBC & Databases</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge level-advanced">Advanced</span>
+        <span class="meta-badge">~60 min</span>
+        <span class="meta-badge">Requires: Lecture 16</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">What is JDBC?</div>
+        <p>
+            JDBC (Java Database Connectivity) is a Java API that allows Java
+            applications to communicate with databases such as MySQL,
+            PostgreSQL, Oracle, and SQLite. JDBC acts as a bridge between
+            Java programs and relational databases.
+        </p>
+    </div>
+
+    <h2>Why Use Databases?</h2>
+    <ul>
+        <li>Store data permanently.</li>
+        <li>Manage large amounts of information efficiently.</li>
+        <li>Perform searches and filtering using SQL.</li>
+        <li>Support multi-user applications.</li>
+        <li>Provide data security and integrity.</li>
+    </ul>
+
+    <div class="box success">
+        <div class="box-title">JDBC Architecture</div>
+        <ol>
+            <li>Java Application</li>
+            <li>JDBC API</li>
+            <li>JDBC Driver</li>
+            <li>Database Server</li>
+        </ol>
+    </div>
+
+    <h2>Steps to Connect Java with MySQL</h2>
+
+    <div class="box warning">
+        <div class="box-title">Prerequisites</div>
+        <ul>
+            <li>Java JDK installed</li>
+            <li>MySQL Server installed</li>
+            <li>MySQL Connector/J JDBC Driver</li>
+            <li>Database created in MySQL</li>
+        </ul>
+    </div>
+
+    <h3>Step 1: Import JDBC Package</h3>
+
+<pre><code>import java.sql.*;</code></pre>
+
+    <h3>Step 2: Establish Connection</h3>
+
+<pre><code>String url = "jdbc:mysql://localhost:3306/school";
+String username = "root";
+String password = "";
+
+Connection con =
+    DriverManager.getConnection(url, username, password);</code></pre>
+
+    <h3>Step 3: Create Statement</h3>
+
+<pre><code>Statement stmt = con.createStatement();</code></pre>
+
+    <h3>Step 4: Execute SQL Query</h3>
+
+<pre><code>ResultSet rs =
+    stmt.executeQuery("SELECT * FROM students");</code></pre>
+
+    <h3>Step 5: Process Results</h3>
+
+<pre><code>while(rs.next()) {
+    System.out.println(
+        rs.getInt("id") + " " +
+        rs.getString("name")
+    );
+}</code></pre>
+
+    <h3>Step 6: Close Resources</h3>
+
+<pre><code>rs.close();
+stmt.close();
+con.close();</code></pre>
+
+    <h2>Complete Example</h2>
+
+<pre><code>import java.sql.*;
+
+public class JDBCExample {
+    public static void main(String[] args) {
+
+        try {
+            String url =
+                "jdbc:mysql://localhost:3306/school";
+
+            Connection con =
+                DriverManager.getConnection(
+                    url, "root", ""
+                );
+
+            Statement stmt =
+                con.createStatement();
+
+            ResultSet rs =
+                stmt.executeQuery(
+                    "SELECT * FROM students"
+                );
+
+            while(rs.next()) {
+                System.out.println(
+                    rs.getInt("id") + " - " +
+                    rs.getString("name")
+                );
+            }
+
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+}</code></pre>
+
+    <h2>CRUD Operations</h2>
+
+    <table>
+        <tr>
+            <th>Operation</th>
+            <th>SQL Command</th>
+        </tr>
+        <tr>
+            <td>Create</td>
+            <td>INSERT</td>
+        </tr>
+        <tr>
+            <td>Read</td>
+            <td>SELECT</td>
+        </tr>
+        <tr>
+            <td>Update</td>
+            <td>UPDATE</td>
+        </tr>
+        <tr>
+            <td>Delete</td>
+            <td>DELETE</td>
+        </tr>
+    </table>
+
+    <h2>Insert Example</h2>
+
+<pre><code>String sql =
+    "INSERT INTO students(name) VALUES('John')";
+
+stmt.executeUpdate(sql);</code></pre>
+
+    <h2>Update Example</h2>
+
+<pre><code>String sql =
+    "UPDATE students SET name='Mike' WHERE id=1";
+
+stmt.executeUpdate(sql);</code></pre>
+
+    <h2>Delete Example</h2>
+
+<pre><code>String sql =
+    "DELETE FROM students WHERE id=1";
+
+stmt.executeUpdate(sql);</code></pre>
+
+    <div class="box danger">
+        <div class="box-title">Security Warning</div>
+        <p>
+            Avoid building SQL queries by directly concatenating user input.
+            This can lead to SQL Injection attacks. Use
+            <strong>PreparedStatement</strong> instead.
+        </p>
+    </div>
+
+    <h2>PreparedStatement Example</h2>
+
+<pre><code>String sql =
+    "SELECT * FROM students WHERE id=?";
+
+PreparedStatement ps =
+    con.prepareStatement(sql);
+
+ps.setInt(1, 5);
+
+ResultSet rs = ps.executeQuery();</code></pre>
+
+    <div class="box success">
+        <div class="box-title">Key Takeaways</div>
+        <ul>
+            <li>JDBC connects Java applications to databases.</li>
+            <li>Connections are created using DriverManager.</li>
+            <li>Statements execute SQL commands.</li>
+            <li>ResultSet stores query results.</li>
+            <li>PreparedStatement improves security and performance.</li>
+            <li>Always close database resources after use.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button>
+    </div>
+</div>
 
         <!-- ===================== LECTURE 18 ===================== -->
         <div class="lecture" id="lec-17">

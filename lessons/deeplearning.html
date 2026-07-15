@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+    <title>Deep Learning Mastery — Complete Course</title>
+    <meta name="description" content="Learn Deep Learning for free online. Master Neural Networks, CNNs, LSTMs, Transformers, PyTorch, and TensorFlow. Best Deep Learning course for beginners.">
+    <meta name="keywords" content="learn deep learning, deep learning tutorial, neural networks, tensorflow, pytorch, cnns, rnns, transformers, ai course, artificial intelligence">
+    <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Deep Learning Mastery — Complete Course">
+  <meta property="og:description" content="Learn Deep Learning for free online. Master Neural Networks, CNNs, Transformers, and PyTorch.">
+  <meta property="og:image" content="../favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/lessons/deep-learning.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Deep Learning Mastery — Complete Course">
+  <meta name="twitter:description" content="Learn Deep Learning for free online. Master Neural Networks, CNNs, and Transformers.">
+  <meta name="twitter:image" content="../favicon.png">
+
+  
+  
+
+      <link rel="icon" type="image/png" sizes="16x16" href="../favicon_16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon_512.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="canonical" href="https://codetutorium.com/lessons/deep-learning.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+    
+</head>
+
+<body>
+
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+            
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                          <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link">Python</a>
+                            <a href="machine-learning" class="lesson-mega-link">Machine Learning</a>
+                            <a href="deep-learning" class="lesson-mega-link active">Deep Learning</a>
+                            <a href="c++" class="lesson-mega-link">C++</a>
+                            <a href="html" class="lesson-mega-link">HTML</a>
+                            <a href="css" class="lesson-mega-link">CSS</a>
+                            <a href="java" class="lesson-mega-link">Java</a>
+                            <a href="javascript" class="lesson-mega-link">JavaScript</a>
+                            <a href="c" class="lesson-mega-link">C Language</a>
+                            <a href="cc" class="lesson-mega-link">C#</a>
+                            <a href="sql" class="lesson-mega-link">SQL</a>
+                            <a href="r" class="lesson-mega-link">R</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><span>D</span> L </div>
+            <p>// Deep Learning Syllabus</p>
+            <a href="https://play.google.com/store/apps/details?id=com.dlmasterclass.app" target="_blank" rel="noopener" class="sidebar-app-link">📱 Get the Android App</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit I - Neural Network Foundations</div>
+            <button class="nav-item syllabus-topic active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>What is Deep Learning?</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Artificial Neural Networks (ANNs)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>The Perceptron</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Activation Functions</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Forward Propagation</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit II - Training Deep Networks</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Loss Functions</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Gradient Descent & Backpropagation</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Optimizers (Adam, RMSprop)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Handling Overfitting (Dropout)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Batch Normalization</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit III - Computer Vision (CNNs)</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Introduction to CNNs</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Convolution Operations</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>Pooling Layers</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>Famous CNN Architectures (ResNet)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Transfer Learning</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit IV - Sequence Models (RNNs)</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Sequence Data & RNNs</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>The Vanishing Gradient Problem</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Long Short-Term Memory (LSTM)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Gated Recurrent Units (GRUs)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(19)"><span class="num">20</span><span class="dot"></span>Sequence-to-Sequence Models</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit V - Advanced DL & Transformers</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(20)"><span class="num">21</span><span class="dot"></span>Attention Mechanisms</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(21)"><span class="num">22</span><span class="dot"></span>The Transformer Architecture</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(22)"><span class="num">23</span><span class="dot"></span>Autoencoders</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(23)"><span class="num">24</span><span class="dot"></span>Variational Autoencoders (VAEs)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(24)"><span class="num">25</span><span class="dot"></span>Generative Adversarial Networks (GANs)</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit VI - Frameworks & Deployment</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(25)"><span class="num">26</span><span class="dot"></span>Deep Q-Networks (RL Basics)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(26)"><span class="num">27</span><span class="dot"></span>Introduction to PyTorch</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(27)"><span class="num">28</span><span class="dot"></span>Introduction to TensorFlow & Keras</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(28)"><span class="num">29</span><span class="dot"></span>Model Deployment Strategies</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(29)"><span class="num">30</span><span class="dot"></span>Ethics in Deep Learning</button>
+        </div>
+
+    </nav>
+   <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>Deep Learning</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">What is Deep Learning?</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 30</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:3.33%"></div>
+                </div>
+            </div>
+            <button class="share-btn" onclick="copyLectureLink()" title="Copy link to this lecture">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Share
+            </button>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="content-column">
+        
+
+    <div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Topic 01 - Unit I - Neural Network Foundations</div>
+    <h1>What is Deep Learning?</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+        <span class="meta-badge">Template</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Definition</div>
+        <p>
+            <strong>Deep Learning (DL)</strong> is a specialized subset of Machine Learning based on artificial neural networks. The "deep" in deep learning refers to the use of multiple layers in the network. These algorithms attempt to simulate the behavior of the human brain to "learn" from large amounts of data.
+        </p>
+    </div>
+
+    <h2>Machine Learning vs. Deep Learning</h2>
+    <p>While both are branches of AI, their approach to data processing differs significantly:</p>
+
+    <ul>
+        <li><strong>Machine Learning:</strong> Usually requires <em>manual feature extraction</em>. A human expert must tell the algorithm what data points (features) to look at to make a decision.</li>
+        <li><strong>Deep Learning:</strong> Performs <em>automatic feature extraction</em>. You feed the raw data (like pixels of an image) directly into the network, and the hidden layers automatically learn which features are important.</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 Why Now?</div>
+        <p>
+            The math behind deep learning has existed since the 1980s. It only became a dominant force recently due to two factors: the explosion of <strong>Big Data</strong> (to train the models) and the advancement of <strong>GPUs</strong> (to perform the massive matrix calculations quickly).
+        </p>
+    </div>
+
+    <h2>Real World Applications</h2>
+    <p>Deep Learning drives the most cutting-edge technologies we use today:</p>
+    <ul>
+        <li><strong>Computer Vision:</strong> Facial recognition, medical image analysis (detecting tumors), and object detection.</li>
+        <li><strong>Natural Language Processing (NLP):</strong> ChatGPT, language translation, and sentiment analysis.</li>
+        <li><strong>Speech Recognition:</strong> Virtual assistants like Siri and Alexa.</li>
+    </ul>
+
+    <h2>A Quick Look at Keras/TensorFlow</h2>
+    <p>Building a deep neural network is remarkably accessible with modern frameworks. Here is a conceptual peek at creating a simple multi-layer network:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">intro_dl.py</span>
+        </div>
+<pre><span class="cm"># 1. Import TensorFlow/Keras</span>
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+<span class="cm"># 2. Initialize a Sequential model (a linear stack of layers)</span>
+model = Sequential()
+
+<span class="cm"># 3. Add 'Deep' Layers to the network</span>
+model.add(Dense(128, activation='relu', input_shape=(784,))) <span class="cm"># Hidden Layer 1</span>
+model.add(Dense(64, activation='relu'))                      <span class="cm"># Hidden Layer 2</span>
+model.add(Dense(10, activation='softmax'))                   <span class="cm"># Output Layer</span>
+
+<span class="cm"># 4. Compile the model ready for training</span>
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])</pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <p>
+            Research the difference between <strong>TensorFlow</strong> and <strong>PyTorch</strong>. What are the pros and cons of each framework, and which one is generally preferred in academia versus industry?
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Topic</button>
+    </div>
+</div>
+
+        <div class="lecture" id="lec-1">
+            <div class="lecture-tag">Topic 02 - Unit I - Neural Network Foundations</div>
+            <h1>Artificial Neural Networks (ANNs)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Artificial Neural Networks (ANNs)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(0)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(2)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-2">
+            <div class="lecture-tag">Topic 03 - Unit I - Neural Network Foundations</div>
+            <h1>The Perceptron</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>The Perceptron</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(1)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(3)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-3">
+            <div class="lecture-tag">Topic 04 - Unit I - Neural Network Foundations</div>
+            <h1>Activation Functions</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Activation Functions</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(2)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(4)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-4">
+            <div class="lecture-tag">Topic 05 - Unit I - Neural Network Foundations</div>
+            <h1>Forward Propagation</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Forward Propagation</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(3)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(5)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-5">
+            <div class="lecture-tag">Topic 06 - Unit II - Training Deep Networks</div>
+            <h1>Loss Functions</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Loss Functions</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(4)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-6">
+            <div class="lecture-tag">Topic 07 - Unit II - Training Deep Networks</div>
+            <h1>Gradient Descent & Backpropagation</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Gradient Descent & Backpropagation</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(5)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(7)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-7">
+            <div class="lecture-tag">Topic 08 - Unit II - Training Deep Networks</div>
+            <h1>Optimizers (Adam, RMSprop)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Optimizers (Adam, RMSprop)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(6)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(8)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-8">
+            <div class="lecture-tag">Topic 09 - Unit II - Training Deep Networks</div>
+            <h1>Handling Overfitting (Dropout)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Handling Overfitting (Dropout)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(7)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(9)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-9">
+            <div class="lecture-tag">Topic 10 - Unit II - Training Deep Networks</div>
+            <h1>Batch Normalization</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Batch Normalization</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(8)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(10)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-10">
+            <div class="lecture-tag">Topic 11 - Unit III - Computer Vision (CNNs)</div>
+            <h1>Introduction to CNNs</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Introduction to CNNs</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(9)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(11)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-11">
+            <div class="lecture-tag">Topic 12 - Unit III - Computer Vision (CNNs)</div>
+            <h1>Convolution Operations</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Convolution Operations</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(10)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(12)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-12">
+            <div class="lecture-tag">Topic 13 - Unit III - Computer Vision (CNNs)</div>
+            <h1>Pooling Layers</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Pooling Layers</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(11)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(13)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-13">
+            <div class="lecture-tag">Topic 14 - Unit III - Computer Vision (CNNs)</div>
+            <h1>Famous CNN Architectures (ResNet)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Famous CNN Architectures (ResNet)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(12)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(14)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-14">
+            <div class="lecture-tag">Topic 15 - Unit III - Computer Vision (CNNs)</div>
+            <h1>Transfer Learning</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Transfer Learning</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(13)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(15)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-15">
+            <div class="lecture-tag">Topic 16 - Unit IV - Sequence Models (RNNs)</div>
+            <h1>Sequence Data & RNNs</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Sequence Data & RNNs</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(14)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(16)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-16">
+            <div class="lecture-tag">Topic 17 - Unit IV - Sequence Models (RNNs)</div>
+            <h1>The Vanishing Gradient Problem</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>The Vanishing Gradient Problem</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(17)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-17">
+            <div class="lecture-tag">Topic 18 - Unit IV - Sequence Models (RNNs)</div>
+            <h1>Long Short-Term Memory (LSTM)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Long Short-Term Memory (LSTM)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(16)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(18)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Unit IV - Sequence Models (RNNs)</div>
+            <h1>Gated Recurrent Units (GRUs)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Gated Recurrent Units (GRUs)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(19)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-19">
+            <div class="lecture-tag">Topic 20 - Unit IV - Sequence Models (RNNs)</div>
+            <h1>Sequence-to-Sequence Models</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Sequence-to-Sequence Models</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(18)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(20)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-20">
+            <div class="lecture-tag">Topic 21 - Unit V - Advanced DL & Transformers</div>
+            <h1>Attention Mechanisms</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Attention Mechanisms</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(19)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(21)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-21">
+            <div class="lecture-tag">Topic 22 - Unit V - Advanced DL & Transformers</div>
+            <h1>The Transformer Architecture</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>The Transformer Architecture</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(20)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(22)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-22">
+            <div class="lecture-tag">Topic 23 - Unit V - Advanced DL & Transformers</div>
+            <h1>Autoencoders</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Autoencoders</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(21)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(23)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-23">
+            <div class="lecture-tag">Topic 24 - Unit V - Advanced DL & Transformers</div>
+            <h1>Variational Autoencoders (VAEs)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Variational Autoencoders (VAEs)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(22)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(25)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-24">
+            <div class="lecture-tag">Topic 25 - Unit V - Advanced DL & Transformers</div>
+            <h1>Generative Adversarial Networks (GANs)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Generative Adversarial Networks (GANs)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(23)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(25)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-25">
+            <div class="lecture-tag">Topic 26 - Unit VI - Frameworks & Deployment</div>
+            <h1>Deep Q-Networks (RL Basics)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Deep Q-Networks (RL Basics)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(24)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(26)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-26">
+            <div class="lecture-tag">Topic 27 - Unit VI - Frameworks & Deployment</div>
+            <h1>Introduction to PyTorch</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Introduction to PyTorch</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(25)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(27)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-27">
+            <div class="lecture-tag">Topic 28 - Unit VI - Frameworks & Deployment</div>
+            <h1>Introduction to TensorFlow & Keras</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Introduction to TensorFlow & Keras</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(26)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(28)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-28">
+            <div class="lecture-tag">Topic 29 - Unit VI - Frameworks & Deployment</div>
+            <h1>Model Deployment Strategies</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Model Deployment Strategies</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(27)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(29)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-29">
+            <div class="lecture-tag">Topic 30 - Unit VI - Frameworks & Deployment</div>
+            <h1>Ethics in Deep Learning</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Ethics in Deep Learning</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(28)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+        </div></div></div><script>
+        const titles = [
+            "What is Deep Learning?",
+            "Artificial Neural Networks (ANNs)",
+            "The Perceptron",
+            "Activation Functions",
+            "Forward Propagation",
+            "Loss Functions",
+            "Gradient Descent & Backpropagation",
+            "Optimizers (Adam, RMSprop)",
+            "Handling Overfitting (Dropout)",
+            "Batch Normalization",
+            "Introduction to CNNs",
+            "Convolution Operations",
+            "Pooling Layers",
+            "Famous CNN Architectures (ResNet)",
+            "Transfer Learning",
+            "Sequence Data & RNNs",
+            "The Vanishing Gradient Problem",
+            "Long Short-Term Memory (LSTM)",
+            "Gated Recurrent Units (GRUs)",
+            "Sequence-to-Sequence Models",
+            "Attention Mechanisms",
+            "The Transformer Architecture",
+            "Autoencoders",
+            "Variational Autoencoders (VAEs)",
+            "Generative Adversarial Networks (GANs)",
+            "Deep Q-Networks (RL Basics)",
+            "Introduction to PyTorch",
+            "Introduction to TensorFlow & Keras",
+            "Model Deployment Strategies",
+            "Ethics in Deep Learning"
+        ];
+
+        initLessons(titles);
+    </script>
+  <footer id="footer-grid">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>C <span style="color:#60a5fa">T</span></h3>
+          <p>Learn to code for free. Quality programming education for everyone.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Courses</h3>
+          <ul>
+            <li><a href="../lessons/python.html">Python</a></li>
+            <li><a href="../lessons/machine-learning.html">Machine Learning</a></li>
+            <li><a href="../lessons/deep-learning.html">Deep Learning</a></li>
+            <li><a href="../lessons/c++.html">C++</a></li>
+            <li><a href="../lessons/html.html">HTML</a></li>
+            <li><a href="../lessons/css.html">CSS</a></li>
+            <li><a href="../lessons/java.html">Java</a></li>
+            <li><a href="../lessons/javascript.html">JavaScript</a></li>
+            <li><a href="../lessons/c.html">C Language</a></li>
+            <li><a href="../lessons/cc.html">C#</a></li>
+            <li><a href="../lessons/sql.html">SQL</a></li>
+            <li><a href="../lessons/r.html">R</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Code Tutorium. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

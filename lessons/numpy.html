@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+    <title>Python Data Science: NumPy & Pandas — Complete Course</title>
+    <meta name="description" content="Learn Python Data Science for free online. Master NumPy arrays, Pandas DataFrames, data cleaning, and data analysis. Best Python data course for beginners.">
+    <meta name="keywords" content="learn python, python data science, numpy tutorial, pandas tutorial, learn to code, data analysis python, python pandas course, data cleaning, python course">
+    <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python Data Science: NumPy & Pandas — Complete Course">
+  <meta property="og:description" content="Learn Python Data Science for free online. Master NumPy arrays, Pandas DataFrames, and data analysis.">
+  <meta property="og:image" content="../favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/lessons/python-data-science.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python Data Science: NumPy & Pandas — Complete Course">
+  <meta name="twitter:description" content="Learn Python Data Science for free online. Master NumPy arrays, Pandas DataFrames, and data analysis.">
+  <meta name="twitter:image" content="../favicon.png">
+
+  
+  
+
+      <link rel="icon" type="image/png" sizes="16x16" href="../favicon_16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon_512.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="canonical" href="https://codetutorium.com/lessons/python-data-science.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+    
+</head>
+
+<body>
+
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+            
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                          <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link active">Python</a>
+                            <a href="c++" class="lesson-mega-link">C++</a>
+                            <a href="html" class="lesson-mega-link">HTML</a>
+                            <a href="css" class="lesson-mega-link">CSS</a>
+                            <a href="java" class="lesson-mega-link">Java</a>
+                            <a href="javascript" class="lesson-mega-link">JavaScript</a>
+                            <a href="c" class="lesson-mega-link">C Language</a>
+                            <a href="cc" class="lesson-mega-link">C#</a>
+                            <a href="typescript" class="lesson-mega-link">TypeScript</a>
+                            <a href="go" class="lesson-mega-link">Go</a>
+                            <a href="rust" class="lesson-mega-link">Rust</a>
+                            <a href="kotlin" class="lesson-mega-link">Kotlin</a>
+                            <a href="swift" class="lesson-mega-link">Swift</a>
+                            <a href="php" class="lesson-mega-link">PHP</a>
+                            <a href="sql" class="lesson-mega-link">SQL</a>
+                            <a href="r" class="lesson-mega-link">R</a>
+                            <a href="bash" class="lesson-mega-link">Bash</a>
+                            <a href="dart" class="lesson-mega-link">Dart</a>
+                            <a href="ruby" class="lesson-mega-link">Ruby</a>
+                            <a href="matlab" class="lesson-mega-link">MATLAB</a>
+                            <a href="visualbasic" class="lesson-mega-link">Visual Basic</a>
+                            <a href="shell" class="lesson-mega-link">Shell</a>
+                            <a href="ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><span>Data</span> Sci </div>
+            <p>// Python: NumPy & Pandas</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit I - Introduction to NumPy</div>
+            <button class="nav-item syllabus-topic active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>What is NumPy?</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Installation & Setup</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Creating Ndarrays</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Array Dimensions & Shapes</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Array Indexing & Slicing</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>NumPy Data Types</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit II - Advanced NumPy Operations</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Copy vs View</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Array Reshaping</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Iterating Arrays</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Joining & Splitting Arrays</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Searching & Sorting</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Random Numbers in NumPy</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>Universal Functions (ufuncs)</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit III - Introduction to Pandas</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>Pandas Overview</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Pandas Series</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Pandas DataFrames</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Reading CSV Files</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Reading JSON Files</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Analyzing Data (head, tail, info)</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit IV - Data Cleaning</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(19)"><span class="num">20</span><span class="dot"></span>Data Cleaning Overview</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(20)"><span class="num">21</span><span class="dot"></span>Handling Missing Data (Empty Cells)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(21)"><span class="num">22</span><span class="dot"></span>Cleaning Wrong Formats</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(22)"><span class="num">23</span><span class="dot"></span>Fixing Wrong Data</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(23)"><span class="num">24</span><span class="dot"></span>Removing Duplicates</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit V - Advanced Pandas & Analysis</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(24)"><span class="num">25</span><span class="dot"></span>Data Correlations</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(25)"><span class="num">26</span><span class="dot"></span>Plotting with Pandas</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(26)"><span class="num">27</span><span class="dot"></span>GroupBy Operations</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(27)"><span class="num">28</span><span class="dot"></span>Merging & Concatenating</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(28)"><span class="num">29</span><span class="dot"></span>Pivot Tables</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(29)"><span class="num">30</span><span class="dot"></span>Time Series Analysis</button>
+        </div>
+
+    </nav>
+   <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>Python Data Science</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">What is NumPy?</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 30</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:3.33%"></div>
+                </div>
+            </div>
+            <button class="share-btn" onclick="copyLectureLink()" title="Copy link to this lecture">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Share
+            </button>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="content-column">
+        
+
+```html
+<div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Topic 01 - Unit I - Introduction to NumPy</div>
+    <h1>What is NumPy?</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+        <span class="meta-badge">Template</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Lecture Template</div>
+        <p>
+            <strong>NumPy</strong> (Numerical Python) is a powerful, open-source Python library used extensively in data science, engineering, artificial intelligence, machine learning, scientific computing, statistics, and mathematics. It provides support for large, multi-dimensional arrays and matrices, along with a vast collection of high-level mathematical functions that allow you to perform complex calculations efficiently.
+        </p>
+
+        <p>
+            Before NumPy was created, Python programmers mainly relied on lists for storing collections of data. Although Python lists are flexible and easy to use, they are not optimized for numerical calculations. NumPy was specifically designed to solve this problem by providing a much faster and more efficient way to work with numbers.
+        </p>
+
+        <p>
+            Today, NumPy is considered one of the most important libraries in the Python ecosystem. Many other popular libraries such as <strong>Pandas</strong>, <strong>SciPy</strong>, <strong>Matplotlib</strong>, <strong>Scikit-learn</strong>, and even some deep learning frameworks rely on NumPy internally for performing mathematical operations.
+        </p>
+    </div>
+
+    <h2>Why Learn NumPy?</h2>
+
+    <p>
+        If you plan to work in fields such as data science, machine learning, artificial intelligence, finance, engineering, or scientific research, learning NumPy is essential. It serves as the foundation for numerical computing in Python.
+    </p>
+
+    <ul>
+        <li>Perform mathematical calculations much faster than regular Python code.</li>
+        <li>Store large amounts of numerical data efficiently.</li>
+        <li>Work with one-dimensional, two-dimensional, and multi-dimensional datasets.</li>
+        <li>Carry out statistical calculations with minimal code.</li>
+        <li>Create data that can easily be visualized using plotting libraries.</li>
+        <li>Prepare datasets for machine learning algorithms.</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 Real-World Example</div>
+        <p>
+            Imagine a school stores the marks of 100,000 students. Performing calculations such as finding the average score, highest mark, lowest mark, or standard deviation using Python lists can take considerably longer. NumPy performs these operations much faster because its arrays are optimized for numerical processing.
+        </p>
+    </div>
+
+    <h2>Why Use NumPy Over Python Lists?</h2>
+
+    <p>
+        In standard Python, we use <code>lists</code> to store collections of values. While lists are flexible and can contain different types of data, they become inefficient when working with very large datasets or performing mathematical operations repeatedly.
+    </p>
+
+    <p>
+        NumPy arrays are specifically designed for numerical computation. Since every element in a NumPy array has the same data type and is stored in continuous memory locations, calculations become much faster and require less memory.
+    </p>
+
+    <ul>
+        <li><strong>Speed:</strong> NumPy arrays can be up to 50 times faster than ordinary Python lists for numerical operations.</li>
+        <li><strong>Memory Efficiency:</strong> NumPy stores data in contiguous memory blocks, reducing memory usage and improving processing speed.</li>
+        <li><strong>Built-in Mathematical Functions:</strong> Hundreds of mathematical, statistical, and scientific functions are already available.</li>
+        <li><strong>Easy Calculations:</strong> You can perform operations on an entire array without writing loops.</li>
+        <li><strong>Scalability:</strong> NumPy easily handles thousands or even millions of values efficiently.</li>
+    </ul>
+
+    <div class="box info">
+        <div class="box-title">Python List vs NumPy Array</div>
+
+        <table>
+            <tr>
+                <th>Python List</th>
+                <th>NumPy Array</th>
+            </tr>
+            <tr>
+                <td>Can store different data types</td>
+                <td>Stores one data type for maximum efficiency</td>
+            </tr>
+            <tr>
+                <td>Slower for mathematical operations</td>
+                <td>Highly optimized for calculations</td>
+            </tr>
+            <tr>
+                <td>Consumes more memory</td>
+                <td>Uses memory efficiently</td>
+            </tr>
+            <tr>
+                <td>Requires loops for many operations</td>
+                <td>Supports vectorized operations without loops</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Did You Know?</div>
+        <p>
+            The core of NumPy is written mainly in <strong>C</strong> and <strong>C++</strong>. These low-level languages execute much faster than pure Python, allowing NumPy to perform millions of calculations in a very short time.
+        </p>
+
+        <p>
+            Although you write NumPy code using Python syntax, many of the heavy mathematical computations are actually performed by highly optimized C/C++ code behind the scenes.
+        </p>
+    </div>
+
+    <h2>Installing NumPy</h2>
+
+    <p>
+        Before using NumPy, you must install it on your computer. If you are using Anaconda or Jupyter Notebook, NumPy is usually pre-installed. Otherwise, you can install it using Python's package manager.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">Terminal</span>
+        </div>
+<pre>pip install numpy</pre>
+    </div>
+
+    <div class="box note">
+        <div class="box-title">Note</div>
+        <p>
+            After installation, you only need to import NumPy once at the beginning of your Python program using the <code>import</code> statement.
+        </p>
+    </div>
+
+    <h2>Importing NumPy</h2>
+
+    <p>
+        NumPy is almost always imported using the alias <code>np</code>. The alias makes your code shorter and follows the standard convention used by Python programmers around the world.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">main.py</span>
+        </div>
+<pre>import numpy as np</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Why Use "np"?</div>
+        <p>
+            Writing <code>np.array()</code> is much shorter and cleaner than writing <code>numpy.array()</code> every time. Nearly every NumPy tutorial, book, and professional project uses this naming convention.
+        </p>
+    </div>
+
+    <h2>The NumPy Array Object</h2>
+
+    <p>
+        The most important object in NumPy is the <code>ndarray</code>, which stands for <strong>N-dimensional array</strong>. An ndarray is a collection of elements arranged in one or more dimensions.
+    </p>
+
+    <p>
+        Every element inside an ndarray has the same data type, making memory usage predictable and allowing the processor to perform calculations much more efficiently than with Python lists.
+    </p>
+
+    <p>
+        Arrays can contain one dimension (like a list), two dimensions (like a table), or multiple dimensions (used in machine learning, image processing, and scientific simulations).
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Remember</div>
+        <p>
+            Think of an ndarray as a smarter and faster version of a Python list that is specially built for mathematical operations.
+        </p>
+    </div>
+
+    <h2>Example: Your First NumPy Array</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">main.py</span>
+        </div>
+<pre><span class="cm"># Import the library (commonly aliased as 'np')</span>
+import numpy as np
+
+<span class="cm"># Create an ndarray from a Python list</span>
+arr = np.array([1, 2, 3, 4, 5])
+
+print("Array:", arr)
+print("Type:", type(arr))</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Explanation</div>
+
+        <ul>
+            <li><code>import numpy as np</code> imports the NumPy library.</li>
+            <li><code>np.array()</code> converts a Python list into a NumPy array.</li>
+            <li>The variable <code>arr</code> stores the newly created ndarray.</li>
+            <li><code>print(arr)</code> displays the values inside the array.</li>
+            <li><code>type(arr)</code> confirms that the object is a NumPy ndarray.</li>
+        </ul>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>
+Array: [1 2 3 4 5]
+Type: &lt;class 'numpy.ndarray'&gt;
+        </pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Observation</div>
+        <p>
+            Notice that the printed array does not contain commas between the numbers. This is the standard display format used by NumPy arrays and is perfectly normal.
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li>NumPy stands for Numerical Python.</li>
+        <li>It is the most widely used numerical computing library in Python.</li>
+        <li>NumPy arrays are faster and more memory-efficient than Python lists.</li>
+        <li>The main object in NumPy is the <code>ndarray</code>.</li>
+        <li>NumPy is used extensively in data science, machine learning, artificial intelligence, engineering, and scientific computing.</li>
+        <li>Most Python data science libraries are built on top of NumPy.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+
+        <p>
+            Open your Python environment or a Jupyter Notebook and complete the following exercises:
+        </p>
+
+        <ul>
+            <li>Import the <code>numpy</code> library as <code>np</code>.</li>
+            <li>Create a NumPy array containing the numbers 10 through 50.</li>
+            <li>Print the array.</li>
+            <li>Verify its type using Python's <code>type()</code> function.</li>
+            <li>Create another NumPy array containing five decimal numbers.</li>
+            <li>Create an array containing your five favorite numbers.</li>
+            <li>Observe how NumPy displays arrays compared to Python lists.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Topic</button>
+    </div>
+</div>
+```
+
+
+     <div class="lecture" id="lec-1">
+    <div class="lecture-tag">Topic 02 - Unit I - Introduction to NumPy</div>
+    <h1>Installation & Setup</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Installing and Configuring NumPy</div>
+
+        <p>Before using NumPy for numerical computing and data analysis, it must be installed and properly configured in your Python environment. NumPy is distributed as a Python package and can be installed using Python's package manager, <strong>pip</strong>.</p>
+
+        <p>NumPy is one of the most important libraries in the Python ecosystem. Many popular libraries such as Pandas, Scikit-Learn, TensorFlow, Matplotlib, and SciPy are built on top of NumPy. Therefore, learning how to install and configure NumPy correctly is the first step toward becoming proficient in Data Science, Machine Learning, and Scientific Computing.</p>
+
+        <hr>
+
+        <h3>Prerequisites for NumPy Installation</h3>
+
+        <p>Before installing NumPy, ensure that Python is already installed on your system.</p>
+
+        <p>You can verify your Python installation by opening the terminal or command prompt and executing the following command:</p>
+
+        <pre>python --version</pre>
+
+        <p>If Python is installed successfully, the system will display the installed Python version.</p>
+
+        <p>Example Output:</p>
+
+        <pre>Python 3.12.2</pre>
+
+        <p>It is recommended to use Python 3.x because modern versions of NumPy are optimized for current Python releases.</p>
+
+        <hr>
+
+        <h3>Checking pip Installation</h3>
+
+        <p>pip is Python's package manager and is used to download, install, update, and remove Python libraries.</p>
+
+        <p>To check whether pip is available, run:</p>
+
+        <pre>pip --version</pre>
+
+        <p>Example Output:</p>
+
+        <pre>pip 24.0 from ...</pre>
+
+        <p>If pip is not installed, it can usually be installed by updating Python or using Python's installation tools.</p>
+
+        <hr>
+
+        <h3>Installing NumPy Using pip</h3>
+
+        <p>The simplest way to install NumPy is through pip.</p>
+
+        <p>Execute the following command:</p>
+
+        <pre>pip install numpy</pre>
+
+        <p>The package manager will automatically download and install the latest stable version of NumPy along with its dependencies.</p>
+
+        <p>After installation, a message similar to the following may appear:</p>
+
+        <pre>Successfully installed numpy</pre>
+
+        <div class="info-box">
+            <strong>Important Note</strong>
+            <p>Always install packages from trusted sources such as the official Python Package Index (PyPI) to ensure security and compatibility.</p>
+        </div>
+
+        <hr>
+
+        <h3>Installing a Specific Version of NumPy</h3>
+
+        <p>In professional projects, developers sometimes need a specific version of NumPy to maintain compatibility with other libraries.</p>
+
+        <p>To install a particular version:</p>
+
+        <pre>pip install numpy==1.26.4</pre>
+
+        <p>This command installs version 1.26.4 instead of the latest release.</p>
+
+        <hr>
+
+        <h3>Verifying the Installation</h3>
+
+        <p>After installation, it is important to verify that NumPy is working correctly.</p>
+
+        <p>Open the Python interpreter:</p>
+
+        <pre>python</pre>
+
+        <p>Then execute:</p>
+
+        <pre>
+import numpy as np
+
+print(np.__version__)
+        </pre>
+
+        <p>If NumPy is installed correctly, Python will display the installed version number.</p>
+
+        <p>Example:</p>
+
+        <pre>2.0.1</pre>
+
+        <p>This confirms that NumPy has been installed successfully.</p>
+
+        <hr>
+
+        <h3>Installing NumPy in Jupyter Notebook</h3>
+
+        <p>Many Data Scientists use Jupyter Notebook for interactive coding and experimentation.</p>
+
+        <p>If NumPy is not available in Jupyter Notebook, install it using:</p>
+
+        <pre>
+!pip install numpy
+        </pre>
+
+        <p>The exclamation mark allows terminal commands to be executed directly inside notebook cells.</p>
+
+        <hr>
+
+        <h3>Installing NumPy Using Anaconda</h3>
+
+        <p>Anaconda is a popular Python distribution used for Data Science and Machine Learning.</p>
+
+        <p>NumPy is often included by default with Anaconda. However, it can also be installed manually using:</p>
+
+        <pre>conda install numpy</pre>
+
+        <p>Conda automatically manages dependencies and package compatibility.</p>
+
+        <hr>
+
+        <h3>Importing NumPy</h3>
+
+        <p>After installation, NumPy must be imported into Python programs before its functions can be used.</p>
+
+        <p>The standard convention is:</p>
+
+        <pre>
+import numpy as np
+        </pre>
+
+        <p>Here, <strong>np</strong> acts as an alias for NumPy and is widely used by developers around the world.</p>
+
+        <p>Instead of writing:</p>
+
+        <pre>
+numpy.array()
+        </pre>
+
+        <p>We can simply write:</p>
+
+        <pre>
+np.array()
+        </pre>
+
+        <p>This makes code shorter and easier to read.</p>
+
+        <hr>
+
+        <h3>Your First NumPy Program</h3>
+
+        <p>After importing NumPy, let's create a simple array.</p>
+
+        <pre>
+import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+print(numbers)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[10 20 30 40 50]
+        </pre>
+
+        <p>This is your first NumPy array. Arrays are the core data structure of NumPy and form the foundation for all future operations.</p>
+
+        <hr>
+
+        <h3>Common Installation Errors</h3>
+
+        <h4>1. ModuleNotFoundError</h4>
+
+        <pre>
+ModuleNotFoundError: No module named 'numpy'
+        </pre>
+
+        <p>This error occurs when NumPy has not been installed in the current Python environment.</p>
+
+        <p>Solution:</p>
+
+        <pre>pip install numpy</pre>
+
+        <h4>2. pip Not Recognized</h4>
+
+        <pre>
+'pip' is not recognized as an internal or external command
+        </pre>
+
+        <p>This usually indicates that Python or pip is not added to the system PATH.</p>
+
+        <p>Reinstall Python and ensure the "Add Python to PATH" option is selected during installation.</p>
+
+        <h4>3. Version Compatibility Issues</h4>
+
+        <p>Some older projects require older NumPy versions.</p>
+
+        <p>In such cases, install the required version using:</p>
+
+        <pre>
+pip install numpy==version_number
+        </pre>
+
+        <hr>
+
+        <h3>Best Practices for Environment Setup</h3>
+
+        <ul>
+            <li>Always use the latest stable Python version.</li>
+            <li>Keep NumPy updated for performance improvements and bug fixes.</li>
+            <li>Use virtual environments to isolate project dependencies.</li>
+            <li>Verify installation immediately after setup.</li>
+            <li>Follow the standard import convention <strong>import numpy as np</strong>.</li>
+        </ul>
+
+        <hr>
+
+        <h3>Why NumPy is Essential</h3>
+
+        <p>NumPy provides high-performance multidimensional arrays and mathematical functions that are significantly faster than traditional Python lists.</p>
+
+        <p>It serves as the foundation for many advanced fields including:</p>
+
+        <ul>
+            <li>Machine Learning</li>
+            <li>Artificial Intelligence</li>
+            <li>Data Science</li>
+            <li>Scientific Computing</li>
+            <li>Deep Learning</li>
+            <li>Computer Vision</li>
+            <li>Data Visualization</li>
+        </ul>
+
+        <p>Mastering NumPy installation and setup ensures that you are ready to explore powerful numerical computing techniques in the upcoming lectures.</p>
+
+        <hr>
+
+        <h3>Key Takeaways</h3>
+
+        <ul>
+            <li>NumPy is installed using the pip package manager.</li>
+            <li>The command <code>pip install numpy</code> installs the latest version.</li>
+            <li>The library is typically imported using <code>import numpy as np</code>.</li>
+            <li>Installation should always be verified after setup.</li>
+            <li>NumPy arrays form the foundation of numerical computing in Python.</li>
+            <li>Many popular Data Science and Machine Learning libraries depend on NumPy.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Topic</button>
+    </div>
+</div>
+
+   <div class="lecture" id="lec-2">
+    <div class="lecture-tag">Topic 03 - Unit I - Introduction to NumPy</div>
+    <h1>Creating Ndarrays</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Introduction to NumPy Arrays</div>
+
+        <p>The core data structure of NumPy is the <strong>ndarray</strong>, which stands for <strong>N-Dimensional Array</strong>. An ndarray is a collection of elements stored in a fixed-size grid. Unlike Python lists, NumPy arrays are optimized for numerical operations and provide significantly better performance.</p>
+
+        <p>Every data science, machine learning, and scientific computing project that uses NumPy relies heavily on ndarrays. Therefore, understanding how to create arrays is one of the most important skills when learning NumPy.</p>
+
+        <div class="info-box">
+            <strong>Key Concept</strong>
+            <p>An ndarray can store data in one dimension, two dimensions, or multiple dimensions while allowing fast mathematical operations on entire datasets.</p>
+        </div>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Creating an Array from a Python List</div>
+
+        <p>The simplest way to create an ndarray is by converting an existing Python list into a NumPy array using the <code>array()</code> function.</p>
+
+        <pre>
+import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+print(numbers)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[10 20 30 40 50]
+        </pre>
+
+        <p>NumPy automatically converts the list into an ndarray object that supports efficient mathematical computations.</p>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Creating a Two-Dimensional Array</div>
+
+        <p>A two-dimensional array can be created by passing a list of lists to the <code>array()</code> function.</p>
+
+        <pre>
+import numpy as np
+
+matrix = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+
+print(matrix)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+        </pre>
+
+        <p>This structure resembles a table with rows and columns and is commonly used for datasets.</p>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Understanding Array Dimensions</div>
+
+        <p>NumPy arrays can have different dimensions.</p>
+
+        <ul>
+            <li><strong>1D Array:</strong> Single row of values.</li>
+            <li><strong>2D Array:</strong> Rows and columns.</li>
+            <li><strong>3D Array:</strong> Multiple matrices stacked together.</li>
+            <li><strong>N-Dimensional Array:</strong> Higher-dimensional structures.</li>
+        </ul>
+
+        <p>You can check the number of dimensions using the <code>ndim</code> attribute.</p>
+
+        <pre>
+arr = np.array([[1,2],[3,4]])
+
+print(arr.ndim)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+2
+        </pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Creating Arrays with Zeros</div>
+
+        <p>Sometimes we need an array initialized with zeros. NumPy provides the <code>zeros()</code> function for this purpose.</p>
+
+        <pre>
+import numpy as np
+
+arr = np.zeros(5)
+
+print(arr)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[0. 0. 0. 0. 0.]
+        </pre>
+
+        <p>To create a two-dimensional zero matrix:</p>
+
+        <pre>
+arr = np.zeros((3,4))
+        </pre>
+
+        <p>This creates 3 rows and 4 columns filled with zeros.</p>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Creating Arrays with Ones</div>
+
+        <p>The <code>ones()</code> function creates arrays where every element is initialized to 1.</p>
+
+        <pre>
+import numpy as np
+
+arr = np.ones(5)
+
+print(arr)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[1. 1. 1. 1. 1.]
+        </pre>
+
+        <p>This function is useful when creating default values for calculations and machine learning models.</p>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Creating Arrays with a Range of Values</div>
+
+        <p>NumPy provides the <code>arange()</code> function for generating sequences of numbers.</p>
+
+        <pre>
+import numpy as np
+
+arr = np.arange(1, 11)
+
+print(arr)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[1 2 3 4 5 6 7 8 9 10]
+        </pre>
+
+        <p>The syntax follows:</p>
+
+        <pre>
+np.arange(start, stop, step)
+        </pre>
+
+        <p>Example:</p>
+
+        <pre>
+np.arange(0, 20, 2)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[0 2 4 6 8 10 12 14 16 18]
+        </pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Creating Arrays Using linspace()</div>
+
+        <p>The <code>linspace()</code> function generates evenly spaced values between two numbers.</p>
+
+        <pre>
+import numpy as np
+
+arr = np.linspace(0, 100, 5)
+
+print(arr)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[  0.  25.  50.  75. 100.]
+        </pre>
+
+        <p>This function is frequently used in scientific computing and graph plotting.</p>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Creating Identity Matrices</div>
+
+        <p>An identity matrix is a square matrix in which all diagonal elements are 1 and all other elements are 0.</p>
+
+        <pre>
+import numpy as np
+
+arr = np.eye(4)
+
+print(arr)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[[1. 0. 0. 0.]
+ [0. 1. 0. 0.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+        </pre>
+
+        <p>Identity matrices are widely used in linear algebra and machine learning algorithms.</p>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Creating Random Arrays</div>
+
+        <p>NumPy includes functions for generating random numbers.</p>
+
+        <h4>Random Decimal Values</h4>
+
+        <pre>
+import numpy as np
+
+arr = np.random.rand(5)
+
+print(arr)
+        </pre>
+
+        <h4>Random Integer Values</h4>
+
+        <pre>
+arr = np.random.randint(1, 100, 5)
+
+print(arr)
+        </pre>
+
+        <p>Random arrays are commonly used for simulations, testing, and machine learning experiments.</p>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Specifying Data Types</div>
+
+        <p>NumPy allows developers to explicitly define the data type of array elements.</p>
+
+        <pre>
+import numpy as np
+
+arr = np.array([1, 2, 3], dtype=float)
+
+print(arr)
+        </pre>
+
+        <p>Output:</p>
+
+        <pre>
+[1. 2. 3.]
+        </pre>
+
+        <p>Common data types include:</p>
+
+        <ul>
+            <li>int</li>
+            <li>float</li>
+            <li>bool</li>
+            <li>complex</li>
+            <li>str</li>
+        </ul>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Comparing NumPy Arrays and Python Lists</div>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Python List</th>
+                <th>NumPy Array</th>
+            </tr>
+            <tr>
+                <td>Speed</td>
+                <td>Slower</td>
+                <td>Faster</td>
+            </tr>
+            <tr>
+                <td>Memory Usage</td>
+                <td>Higher</td>
+                <td>Lower</td>
+            </tr>
+            <tr>
+                <td>Mathematical Operations</td>
+                <td>Limited</td>
+                <td>Optimized</td>
+            </tr>
+            <tr>
+                <td>Multi-Dimensional Support</td>
+                <td>Basic</td>
+                <td>Excellent</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Key Takeaways</div>
+
+        <ul>
+            <li>ndarray is the primary data structure in NumPy.</li>
+            <li>Arrays can be created from Python lists using <code>np.array()</code>.</li>
+            <li><code>zeros()</code> creates arrays filled with zeros.</li>
+            <li><code>ones()</code> creates arrays filled with ones.</li>
+            <li><code>arange()</code> generates sequences of values.</li>
+            <li><code>linspace()</code> generates evenly spaced numbers.</li>
+            <li><code>eye()</code> creates identity matrices.</li>
+            <li>Random arrays can be generated using NumPy's random module.</li>
+            <li>NumPy arrays are faster and more efficient than Python lists.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Topic</button>
+    </div>
+</div>
+
+        <div class="lecture" id="lec-3">
+            <div class="lecture-tag">Topic 04 - Unit I - Introduction to NumPy</div>
+            <h1>Array Dimensions & Shapes</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Array Dimensions & Shapes</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(2)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(4)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-4">
+            <div class="lecture-tag">Topic 05 - Unit I - Introduction to NumPy</div>
+            <h1>Array Indexing & Slicing</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Array Indexing & Slicing</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(3)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(5)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-5">
+            <div class="lecture-tag">Topic 06 - Unit I - Introduction to NumPy</div>
+            <h1>NumPy Data Types</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>NumPy Data Types</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(4)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-6">
+            <div class="lecture-tag">Topic 07 - Unit II - Advanced NumPy Operations</div>
+            <h1>Copy vs View</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Copy vs View</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(5)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(7)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-7">
+            <div class="lecture-tag">Topic 08 - Unit II - Advanced NumPy Operations</div>
+            <h1>Array Reshaping</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Array Reshaping</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(6)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(8)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-8">
+            <div class="lecture-tag">Topic 09 - Unit II - Advanced NumPy Operations</div>
+            <h1>Iterating Arrays</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Iterating Arrays</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(7)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(9)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-9">
+            <div class="lecture-tag">Topic 10 - Unit II - Advanced NumPy Operations</div>
+            <h1>Joining & Splitting Arrays</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Joining & Splitting Arrays</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(8)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(10)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-10">
+            <div class="lecture-tag">Topic 11 - Unit II - Advanced NumPy Operations</div>
+            <h1>Searching & Sorting</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Searching & Sorting</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(9)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(11)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-11">
+            <div class="lecture-tag">Topic 12 - Unit II - Advanced NumPy Operations</div>
+            <h1>Random Numbers in NumPy</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Random Numbers in NumPy</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(10)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(12)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-12">
+            <div class="lecture-tag">Topic 13 - Unit II - Advanced NumPy Operations</div>
+            <h1>Universal Functions (ufuncs)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Universal Functions (ufuncs)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(11)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(13)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-13">
+            <div class="lecture-tag">Topic 14 - Unit III - Introduction to Pandas</div>
+            <h1>Pandas Overview</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Pandas Overview</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(12)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(14)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-14">
+            <div class="lecture-tag">Topic 15 - Unit III - Introduction to Pandas</div>
+            <h1>Pandas Series</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Pandas Series</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(13)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(15)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-15">
+            <div class="lecture-tag">Topic 16 - Unit III - Introduction to Pandas</div>
+            <h1>Pandas DataFrames</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Pandas DataFrames</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(14)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(16)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-16">
+            <div class="lecture-tag">Topic 17 - Unit III - Introduction to Pandas</div>
+            <h1>Reading CSV Files</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Reading CSV Files</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(17)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-17">
+            <div class="lecture-tag">Topic 18 - Unit III - Introduction to Pandas</div>
+            <h1>Reading JSON Files</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Reading JSON Files</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(16)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(18)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Unit III - Introduction to Pandas</div>
+            <h1>Analyzing Data (head, tail, info)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Analyzing Data (head, tail, info)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(19)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-19">
+            <div class="lecture-tag">Topic 20 - Unit IV - Data Cleaning</div>
+            <h1>Data Cleaning Overview</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Data Cleaning Overview</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(18)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(20)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-20">
+            <div class="lecture-tag">Topic 21 - Unit IV - Data Cleaning</div>
+            <h1>Handling Missing Data (Empty Cells)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Handling Missing Data (Empty Cells)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(19)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(21)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-21">
+            <div class="lecture-tag">Topic 22 - Unit IV - Data Cleaning</div>
+            <h1>Cleaning Wrong Formats</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Cleaning Wrong Formats</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(20)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(22)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-22">
+            <div class="lecture-tag">Topic 23 - Unit IV - Data Cleaning</div>
+            <h1>Fixing Wrong Data</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Fixing Wrong Data</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(21)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(23)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-23">
+            <div class="lecture-tag">Topic 24 - Unit IV - Data Cleaning</div>
+            <h1>Removing Duplicates</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Removing Duplicates</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(22)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(24)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-24">
+            <div class="lecture-tag">Topic 25 - Unit V - Advanced Pandas & Analysis</div>
+            <h1>Data Correlations</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Data Correlations</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(23)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(25)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-25">
+            <div class="lecture-tag">Topic 26 - Unit V - Advanced Pandas & Analysis</div>
+            <h1>Plotting with Pandas</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Plotting with Pandas</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(24)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(26)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-26">
+            <div class="lecture-tag">Topic 27 - Unit V - Advanced Pandas & Analysis</div>
+            <h1>GroupBy Operations</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>GroupBy Operations</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(25)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(27)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-27">
+            <div class="lecture-tag">Topic 28 - Unit V - Advanced Pandas & Analysis</div>
+            <h1>Merging & Concatenating</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Merging & Concatenating</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(26)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(28)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-28">
+            <div class="lecture-tag">Topic 29 - Unit V - Advanced Pandas & Analysis</div>
+            <h1>Pivot Tables</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Pivot Tables</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(27)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(29)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-29">
+            <div class="lecture-tag">Topic 30 - Unit V - Advanced Pandas & Analysis</div>
+            <h1>Time Series Analysis</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Time Series Analysis</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(28)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+        </div></div></div><script>
+        const titles = [
+            "What is NumPy?",
+            "Installation & Setup",
+            "Creating Ndarrays",
+            "Array Dimensions & Shapes",
+            "Array Indexing & Slicing",
+            "NumPy Data Types",
+            "Copy vs View",
+            "Array Reshaping",
+            "Iterating Arrays",
+            "Joining & Splitting Arrays",
+            "Searching & Sorting",
+            "Random Numbers in NumPy",
+            "Universal Functions (ufuncs)",
+            "Pandas Overview",
+            "Pandas Series",
+            "Pandas DataFrames",
+            "Reading CSV Files",
+            "Reading JSON Files",
+            "Analyzing Data (head, tail, info)",
+            "Data Cleaning Overview",
+            "Handling Missing Data (Empty Cells)",
+            "Cleaning Wrong Formats",
+            "Fixing Wrong Data",
+            "Removing Duplicates",
+            "Data Correlations",
+            "Plotting with Pandas",
+            "GroupBy Operations",
+            "Merging & Concatenating",
+            "Pivot Tables",
+            "Time Series Analysis"
+        ];
+
+        initLessons(titles);
+    </script>
+  <footer id="footer-grid">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>C <span style="color:#60a5fa">T</span></h3>
+          <p>Learn to code for free. Quality programming education for everyone.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Courses</h3>
+          <ul>
+            <li><a href="../lessons/python.html">Python</a></li>
+            <li><a href="../lessons/c++.html">C++</a></li>
+            <li><a href="../lessons/html.html">HTML</a></li>
+            <li><a href="../lessons/css.html">CSS</a></li>
+            <li><a href="../lessons/java.html">Java</a></li>
+            <li><a href="../lessons/javascript.html">JavaScript</a></li>
+            <li><a href="../lessons/c.html">C Language</a></li>
+            <li><a href="../lessons/cc.html">C#</a></li>
+            <li><a href="../lessons/typescript.html">TypeScript</a></li>
+            <li><a href="../lessons/go.html">Go</a></li>
+            <li><a href="../lessons/rust.html">Rust</a></li>
+            <li><a href="../lessons/swift.html">Swift</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>More Courses</h3>
+          <ul>
+            <li><a href="../lessons/kotlin.html">Kotlin</a></li>
+            <li><a href="../lessons/php.html">PHP</a></li>
+            <li><a href="../lessons/sql.html">SQL</a></li>
+            <li><a href="../lessons/r.html">R</a></li>
+            <li><a href="../lessons/bash.html">Bash</a></li>
+            <li><a href="../lessons/dart.html">Dart</a></li>
+            <li><a href="../lessons/ruby.html">Ruby</a></li>
+            <li><a href="../lessons/matlab.html">MATLAB</a></li>
+            <li><a href="../lessons/visualbasic.html">Visual Basic</a></li>
+            <li><a href="../lessons/shell.html">Shell</a></li>
+            <li><a href="../lessons/ethicalhacking.html">Ethical Hacking</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Code Tutorium. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

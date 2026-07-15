@@ -1,0 +1,3172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2970695859332311">
+    <title>Machine Learning Mastery — Complete Course</title>
+    <meta name="description" content="Learn Machine Learning for free online. Master algorithms, Scikit-Learn, regression, classification, clustering, and data preprocessing. Best ML course for beginners.">
+    <meta name="keywords" content="learn machine learning, ml tutorial, machine learning course, scikit-learn tutorial, data science, python machine learning, regression, classification, learn ai">
+    <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Machine Learning Mastery — Complete Course">
+  <meta property="og:description" content="Learn Machine Learning for free online. Master algorithms, Scikit-Learn, and predictive modeling.">
+  <meta property="og:image" content="../favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/lessons/machine-learning.html">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Machine Learning Mastery — Complete Course">
+  <meta name="twitter:description" content="Learn Machine Learning for free online. Master Scikit-Learn, regression, and classification.">
+  <meta name="twitter:image" content="../favicon.png">
+
+  
+  
+
+      <link rel="icon" type="image/png" sizes="16x16" href="../favicon_16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon_512.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="canonical" href="https://codetutorium.com/lessons/machine-learning.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../lessons.css">
+    <script src="../lessons.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+    
+</head>
+
+<body>
+
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+            
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                          <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link">Python</a>
+                            <a href="machine-learning" class="lesson-mega-link active">Machine Learning</a>
+                            <a href="c++" class="lesson-mega-link">C++</a>
+                            <a href="html" class="lesson-mega-link">HTML</a>
+                            <a href="css" class="lesson-mega-link">CSS</a>
+                            <a href="java" class="lesson-mega-link">Java</a>
+                            <a href="javascript" class="lesson-mega-link">JavaScript</a>
+                            <a href="c" class="lesson-mega-link">C Language</a>
+                            <a href="cc" class="lesson-mega-link">C#</a>
+                            <a href="sql" class="lesson-mega-link">SQL</a>
+                            <a href="r" class="lesson-mega-link">R</a>
+                            <a href="bash" class="lesson-mega-link">Bash</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><span>M</span> L </div>
+            <p>// Machine Learning Syllabus</p>
+            <a href="https://play.google.com/store/apps/details?id=com.mlmasterclass.app" target="_blank" rel="noopener" class="sidebar-app-link">📱 Get the Android App</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit I - Introduction to ML</div>
+            <button class="nav-item syllabus-topic active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>What is Machine Learning?</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Types of Machine Learning</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Supervised vs. Unsupervised</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Reinforcement Learning Overview</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Setting up the ML Environment</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit II - Data Preprocessing</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Handling Missing Data</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Feature Scaling</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Categorical Data Encoding</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Splitting Data (Train/Test)</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit III - Supervised Learning (Regression)</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Simple Linear Regression</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Multiple Linear Regression</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Polynomial Regression</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>Support Vector Regression (SVR)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>Decision Tree Regression</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Random Forest Regression</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Evaluating Regression Models</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit IV - Supervised Learning (Classification)</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Logistic Regression</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>K-Nearest Neighbors (K-NN)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Support Vector Machines (SVM)</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(19)"><span class="num">20</span><span class="dot"></span>Naive Bayes</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(20)"><span class="num">21</span><span class="dot"></span>Decision Tree Classification</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(21)"><span class="num">22</span><span class="dot"></span>Random Forest Classification</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(22)"><span class="num">23</span><span class="dot"></span>Evaluating Classification Models</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit V - Unsupervised Learning</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(23)"><span class="num">24</span><span class="dot"></span>K-Means Clustering</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(24)"><span class="num">25</span><span class="dot"></span>Hierarchical Clustering</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(25)"><span class="num">26</span><span class="dot"></span>Principal Component Analysis (PCA)</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit VI - Model Selection & Advanced</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(26)"><span class="num">27</span><span class="dot"></span>K-Fold Cross Validation</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(27)"><span class="num">28</span><span class="dot"></span>Hyperparameter Tuning</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(28)"><span class="num">29</span><span class="dot"></span>Intro to Neural Networks</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(29)"><span class="num">30</span><span class="dot"></span>Model Deployment Overview</button>
+        </div>
+
+    </nav>
+   <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>Machine Learning</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">What is Machine Learning?</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 30</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:3.33%"></div>
+                </div>
+            </div>
+            <button class="share-btn" onclick="copyLectureLink()" title="Copy link to this lecture">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Share
+            </button>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="content-column">
+        
+
+    <div class="lecture active" id="lec-0">
+    <div class="lecture-tag">Topic 01 - Unit I - Introduction to ML</div>
+    <h1>What is Machine Learning?</h1>
+
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+        <span class="meta-badge">Template</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Definition</div>
+        <p>
+            <strong>Machine Learning (ML)</strong> is a subfield of Artificial Intelligence (AI) that focuses on building systems that can learn from and make decisions based on data. 
+            Instead of explicitly programming a computer to solve a problem step-by-step, we feed the computer data and let it figure out the patterns on its own.
+        </p>
+    </div>
+
+    <h2>Traditional Programming vs. Machine Learning</h2>
+    <p>To understand ML, it helps to compare it to traditional software development:</p>
+
+    <ul>
+        <li><strong>Traditional Programming:</strong> Data + Rules = Answers. (You write the exact logic and rules to process inputs into outputs).</li>
+        <li><strong>Machine Learning:</strong> Data + Answers = Rules. (You provide the inputs and the desired outputs, and the algorithm figures out the logic/rules connecting them).</li>
+    </ul>
+
+    <div class="box tip">
+        <div class="box-title">💡 The Arthur Samuel Definition</div>
+        <p>
+            In 1959, Arthur Samuel defined Machine Learning as the: <em>"field of study that gives computers the ability to learn without being explicitly programmed."</em>
+        </p>
+    </div>
+
+    <h2>Real World Applications</h2>
+    <p>Machine Learning is everywhere today. Some common applications include:</p>
+    <ul>
+        <li><strong>Spam Filtering:</strong> Email providers use ML to classify emails as spam or inbox based on millions of previous examples.</li>
+        <li><strong>Recommendation Systems:</strong> Netflix and YouTube predicting what you want to watch next.</li>
+        <li><strong>Fraud Detection:</strong> Banks analyzing transaction patterns to spot stolen credit cards instantly.</li>
+        <li><strong>Self-Driving Cars:</strong> Vehicles processing visual data in real-time to navigate safely.</li>
+    </ul>
+
+    <h2>A Quick Look at Scikit-Learn</h2>
+    <p>Throughout this course, we will heavily rely on <strong>Scikit-Learn (sklearn)</strong>, the premier ML library for Python. Here is a conceptual peek at how simple it is to train a model in Python:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">intro.py</span>
+        </div>
+<pre><span class="cm"># 1. Import the ML algorithm</span>
+from sklearn.linear_model import LinearRegression
+
+<span class="cm"># 2. Create the model object</span>
+model = LinearRegression()
+
+<span class="cm"># 3. 'Train' the model by giving it Data (X) and Answers (y)</span>
+model.fit(X_train, y_train)
+
+<span class="cm"># 4. Use the newly learned rules to make predictions on new data</span>
+predictions = model.predict(X_new)</pre>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <p>
+            Think about your daily life. Identify <strong>three</strong> different services or apps you use that rely on Machine Learning. For each one, try to identify what "Data" it collects and what "Answer" it is trying to predict.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn primary" onclick="showLecture(1)">Next Topic</button>
+    </div>
+</div>
+
+<div class="lecture" id="lec-1">
+    <div class="lecture-tag">Topic 02 - Unit I - Introduction to ML</div>
+    <h1>Types of Machine Learning</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <section>
+        <h2>Introduction to Machine Learning Types</h2>
+
+        <p>Machine Learning is a branch of Artificial Intelligence (AI) that enables computers to learn from data and improve their performance without being explicitly programmed. Depending on the type of data available and the learning approach used, Machine Learning can be divided into different categories.</p>
+
+        <p>Understanding these categories is important because each type of Machine Learning is designed to solve different kinds of problems. Some algorithms learn from labeled examples, some discover hidden patterns on their own, while others learn through interaction and experience.</p>
+
+        <div class="info-box">
+            <strong>Key Concept</strong>
+            <p>Machine Learning algorithms learn in different ways depending on the information provided during training. This leads to three major types of Machine Learning: Supervised Learning, Unsupervised Learning, and Reinforcement Learning.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>The Three Main Types of Machine Learning</h2>
+
+        <p>Machine Learning is generally categorized into three major paradigms:</p>
+
+        <ul>
+            <li>Supervised Learning</li>
+            <li>Unsupervised Learning</li>
+            <li>Reinforcement Learning</li>
+        </ul>
+
+        <p>Each type uses a different learning strategy and is suitable for different real-world applications.</p>
+    </section>
+
+    <section>
+        <h2>1. Supervised Learning</h2>
+
+        <p>Supervised Learning is the most commonly used type of Machine Learning. In this approach, the algorithm is trained using a <strong>labeled dataset</strong>.</p>
+
+        <p>A labeled dataset contains both the input data and the correct output. During training, the model learns the relationship between inputs and outputs so that it can make predictions on new data.</p>
+
+        <h3 class="sub-title">How It Works</h3>
+
+        <ol>
+            <li>Provide input data along with correct answers.</li>
+            <li>The algorithm learns patterns from the training data.</li>
+            <li>The model makes predictions on unseen data.</li>
+            <li>Prediction errors are used to improve performance.</li>
+        </ol>
+
+        <h3 class="sub-title">Examples</h3>
+
+        <ul>
+            <li>Predicting house prices.</li>
+            <li>Email spam detection.</li>
+            <li>Student result prediction.</li>
+            <li>Weather forecasting.</li>
+            <li>Medical diagnosis systems.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Real-World Example</strong>
+            <p>If a model is trained using thousands of emails labeled as "Spam" or "Not Spam", it can learn to classify future emails automatically.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Types of Supervised Learning Problems</h2>
+
+        <h3 class="sub-title">Classification</h3>
+
+        <p>Classification is used when the output belongs to predefined categories.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+            <li>Spam or Not Spam</li>
+            <li>Disease or No Disease</li>
+            <li>Pass or Fail</li>
+        </ul>
+
+        <h3 class="sub-title">Regression</h3>
+
+        <p>Regression is used when the output is a continuous numerical value.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+            <li>House price prediction.</li>
+            <li>Temperature prediction.</li>
+            <li>Sales forecasting.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>2. Unsupervised Learning</h2>
+
+        <p>In Unsupervised Learning, the algorithm is trained using <strong>unlabeled data</strong>. Unlike supervised learning, the correct answers are not provided.</p>
+
+        <p>The objective is to discover hidden structures, patterns, relationships, or groups within the data.</p>
+
+        <h3 class="sub-title">How It Works</h3>
+
+        <ol>
+            <li>Provide data without labels.</li>
+            <li>The algorithm analyzes similarities and differences.</li>
+            <li>Patterns and structures are discovered automatically.</li>
+            <li>The model groups or organizes data accordingly.</li>
+        </ol>
+
+        <h3 class="sub-title">Examples</h3>
+
+        <ul>
+            <li>Customer segmentation.</li>
+            <li>Market basket analysis.</li>
+            <li>Recommendation systems.</li>
+            <li>Fraud detection.</li>
+            <li>Social network analysis.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Real-World Example</strong>
+            <p>An online shopping platform may automatically group customers with similar purchasing habits to provide personalized recommendations.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Types of Unsupervised Learning</h2>
+
+        <h3 class="sub-title">Clustering</h3>
+
+        <p>Clustering groups similar data points together.</p>
+
+        <p>Examples include customer grouping, image segmentation, and social media analysis.</p>
+
+        <h3 class="sub-title">Association</h3>
+
+        <p>Association discovers relationships between items in a dataset.</p>
+
+        <p>Example: Customers who buy bread often buy butter as well.</p>
+
+        <h3 class="sub-title">Dimensionality Reduction</h3>
+
+        <p>This technique reduces the number of input variables while preserving important information.</p>
+
+        <p>It helps improve computational efficiency and visualization.</p>
+    </section>
+
+    <section>
+        <h2>3. Reinforcement Learning</h2>
+
+        <p>Reinforcement Learning is inspired by the way humans and animals learn through experience.</p>
+
+        <p>In this approach, an intelligent agent interacts with an environment and learns by receiving rewards or penalties based on its actions.</p>
+
+        <p>The objective is to maximize rewards while minimizing penalties over time.</p>
+
+        <h3 class="sub-title">Key Components</h3>
+
+        <ul>
+            <li><strong>Agent:</strong> The learner or decision-maker.</li>
+            <li><strong>Environment:</strong> The world in which the agent operates.</li>
+            <li><strong>Action:</strong> A decision taken by the agent.</li>
+            <li><strong>Reward:</strong> Feedback received after an action.</li>
+            <li><strong>Policy:</strong> Strategy used by the agent.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Simple Example</strong>
+            <p>Imagine teaching a dog tricks. When the dog performs the correct action, it receives a reward. Over time, the dog learns which actions lead to positive outcomes.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Applications of Reinforcement Learning</h2>
+
+        <ul>
+            <li>Self-driving cars.</li>
+            <li>Game-playing AI.</li>
+            <li>Robotics.</li>
+            <li>Industrial automation.</li>
+            <li>Traffic management systems.</li>
+            <li>Resource optimization.</li>
+        </ul>
+
+        <p>Some of the most advanced AI systems today use Reinforcement Learning to make intelligent decisions in complex environments.</p>
+    </section>
+
+    <section>
+        <h2>Comparison of Machine Learning Types</h2>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Supervised Learning</th>
+                <th>Unsupervised Learning</th>
+                <th>Reinforcement Learning</th>
+            </tr>
+            <tr>
+                <td>Training Data</td>
+                <td>Labeled</td>
+                <td>Unlabeled</td>
+                <td>Reward-Based</td>
+            </tr>
+            <tr>
+                <td>Goal</td>
+                <td>Prediction</td>
+                <td>Pattern Discovery</td>
+                <td>Decision Making</td>
+            </tr>
+            <tr>
+                <td>Human Guidance</td>
+                <td>High</td>
+                <td>Low</td>
+                <td>Feedback-Based</td>
+            </tr>
+            <tr>
+                <td>Examples</td>
+                <td>Spam Detection</td>
+                <td>Customer Segmentation</td>
+                <td>Self-Driving Cars</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Advantages and Challenges</h2>
+
+        <h3 class="sub-title">Advantages</h3>
+
+        <ul>
+            <li>Can automate complex tasks.</li>
+            <li>Improves decision-making.</li>
+            <li>Finds hidden insights in data.</li>
+            <li>Provides accurate predictions.</li>
+        </ul>
+
+        <h3 class="sub-title">Challenges</h3>
+
+        <ul>
+            <li>Requires large amounts of data.</li>
+            <li>Training can be computationally expensive.</li>
+            <li>Data quality directly affects performance.</li>
+            <li>Some models are difficult to interpret.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Machine Learning can be classified into Supervised, Unsupervised, and Reinforcement Learning.</li>
+            <li>Supervised Learning uses labeled data for prediction.</li>
+            <li>Unsupervised Learning discovers hidden patterns in unlabeled data.</li>
+            <li>Reinforcement Learning learns through rewards and penalties.</li>
+            <li>Each type is designed for specific problem domains.</li>
+            <li>Understanding these paradigms is essential before studying Machine Learning algorithms.</li>
+        </ul>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Practice Exercise</div>
+        <p><strong>Objective:</strong> Identify the correct Machine Learning type for different real-world scenarios.</p>
+
+        <ol>
+            <li>Classify whether house price prediction is Supervised or Unsupervised Learning.</li>
+            <li>Determine which learning type is used in customer segmentation.</li>
+            <li>Identify how a chess-playing AI learns strategies.</li>
+            <li>Create three real-world examples for each Machine Learning category.</li>
+            <li>Explain why labeled data is important in Supervised Learning.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(0)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(2)">Next Topic</button>
+    </div>
+</div>
+
+        <div class="lecture" id="lec-2">
+    <div class="lecture-tag">Topic 03 - Unit I - Introduction to ML</div>
+    <h1>Supervised vs. Unsupervised</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Understanding Learning Approaches</div>
+
+        <p>Machine Learning algorithms learn patterns from data. Depending on whether the training data contains the correct answers (labels) or not, machine learning techniques are broadly divided into two major categories: <strong>Supervised Learning</strong> and <strong>Unsupervised Learning</strong>.</p>
+
+        <p>These two approaches form the foundation of modern machine learning systems and are used in a wide range of real-world applications such as recommendation systems, spam detection, customer segmentation, fraud detection, medical diagnosis, and image recognition.</p>
+
+        <p>The primary difference between them lies in the type of data provided to the learning algorithm during training.</p>
+
+        <hr>
+
+        <h3>What is Supervised Learning?</h3>
+
+        <p><strong>Supervised Learning</strong> is a machine learning technique in which the model is trained using <strong>labeled data</strong>. Labeled data means that every training example contains both an input and the correct output.</p>
+
+        <p>The goal of supervised learning is to learn the relationship between inputs and outputs so that the model can accurately predict outcomes for new data it has never seen before.</p>
+
+        <p>It is called "supervised" because the learning process is guided by known answers, similar to how a teacher guides students by providing questions along with correct solutions.</p>
+
+        <h4>Example</h4>
+
+        <p>Suppose we want to build a machine learning system that predicts whether an email is spam.</p>
+
+        <ul>
+            <li>Email 1 → Spam</li>
+            <li>Email 2 → Not Spam</li>
+            <li>Email 3 → Spam</li>
+            <li>Email 4 → Not Spam</li>
+        </ul>
+
+        <p>The algorithm studies thousands of such examples and learns patterns that distinguish spam emails from legitimate ones.</p>
+
+        <h4>Applications of Supervised Learning</h4>
+
+        <ul>
+            <li>Email spam detection</li>
+            <li>House price prediction</li>
+            <li>Weather forecasting</li>
+            <li>Medical diagnosis</li>
+            <li>Handwriting recognition</li>
+            <li>Sentiment analysis</li>
+            <li>Credit risk assessment</li>
+        </ul>
+
+        <h4>Major Types of Supervised Learning</h4>
+
+        <p><strong>1. Classification</strong></p>
+
+        <p>Classification is used when the output belongs to a specific category or class.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+            <li>Spam or Not Spam</li>
+            <li>Pass or Fail</li>
+            <li>Disease Present or Not Present</li>
+            <li>Cat or Dog Image Recognition</li>
+        </ul>
+
+        <p><strong>2. Regression</strong></p>
+
+        <p>Regression is used when the output is a continuous numerical value.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+            <li>Predicting house prices</li>
+            <li>Predicting temperature</li>
+            <li>Estimating sales revenue</li>
+            <li>Forecasting stock prices</li>
+        </ul>
+
+        <hr>
+
+        <h3>What is Unsupervised Learning?</h3>
+
+        <p><strong>Unsupervised Learning</strong> is a machine learning technique in which the training data does not contain labels or predefined answers.</p>
+
+        <p>The algorithm must independently analyze the data and discover hidden structures, relationships, or patterns without external guidance.</p>
+
+        <p>Unlike supervised learning, there is no teacher providing correct outputs. The model learns by exploring similarities and differences within the dataset.</p>
+
+        <h4>Example</h4>
+
+        <p>Imagine an online shopping company has information about thousands of customers but does not know which customers belong to which category.</p>
+
+        <p>An unsupervised learning algorithm can analyze customer behavior and automatically create groups such as:</p>
+
+        <ul>
+            <li>Frequent buyers</li>
+            <li>Occasional shoppers</li>
+            <li>High-spending customers</li>
+            <li>Discount-focused customers</li>
+        </ul>
+
+        <p>No labels were provided beforehand. The algorithm discovered these patterns on its own.</p>
+
+        <h4>Applications of Unsupervised Learning</h4>
+
+        <ul>
+            <li>Customer segmentation</li>
+            <li>Market basket analysis</li>
+            <li>Recommendation systems</li>
+            <li>Social network analysis</li>
+            <li>Anomaly detection</li>
+            <li>Data compression</li>
+            <li>Pattern discovery</li>
+        </ul>
+
+        <h4>Major Types of Unsupervised Learning</h4>
+
+        <p><strong>1. Clustering</strong></p>
+
+        <p>Clustering groups similar data points together based on shared characteristics.</p>
+
+        <p>Examples include customer grouping, image segmentation, and document categorization.</p>
+
+        <p><strong>2. Association</strong></p>
+
+        <p>Association discovers relationships between different items in a dataset.</p>
+
+        <p>A common example is market basket analysis, where retailers identify products that are frequently purchased together.</p>
+
+        <p>For example:</p>
+
+        <blockquote>
+            Customers who buy bread often buy butter as well.
+        </blockquote>
+
+        <hr>
+
+        <h3>Supervised vs. Unsupervised Learning</h3>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Supervised Learning</th>
+                <th>Unsupervised Learning</th>
+            </tr>
+            <tr>
+                <td>Training Data</td>
+                <td>Labeled Data</td>
+                <td>Unlabeled Data</td>
+            </tr>
+            <tr>
+                <td>Correct Answers Available</td>
+                <td>Yes</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Main Goal</td>
+                <td>Prediction</td>
+                <td>Pattern Discovery</td>
+            </tr>
+            <tr>
+                <td>Human Guidance</td>
+                <td>Required</td>
+                <td>Not Required</td>
+            </tr>
+            <tr>
+                <td>Examples</td>
+                <td>Spam Detection, Price Prediction</td>
+                <td>Customer Segmentation, Clustering</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h3>When Should Each Method Be Used?</h3>
+
+        <p>Use <strong>Supervised Learning</strong> when historical data contains known outputs and you want to predict future outcomes.</p>
+
+        <p>Use <strong>Unsupervised Learning</strong> when you have large amounts of data but do not know the categories or relationships within that data.</p>
+
+        <p>In practice, organizations often combine both approaches. For example, customer groups may first be identified using unsupervised learning, and then supervised learning may be used to predict future customer behavior.</p>
+
+        <hr>
+
+        <h3>Key Takeaways</h3>
+
+        <ul>
+            <li>Machine Learning can be broadly categorized into Supervised and Unsupervised Learning.</li>
+            <li>Supervised Learning uses labeled data and learns from known answers.</li>
+            <li>Classification and Regression are the two major supervised learning tasks.</li>
+            <li>Unsupervised Learning works with unlabeled data and discovers hidden patterns.</li>
+            <li>Clustering and Association are common unsupervised learning techniques.</li>
+            <li>Choosing the correct approach depends on the availability of labeled data and the problem being solved.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(1)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(3)">Next Topic</button>
+    </div>
+</div>
+
+        <div class="lecture" id="lec-3">
+    <div class="lecture-tag">Topic 04 - Unit I - Introduction to ML</div>
+    <h1>Reinforcement Learning Overview</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Introduction to Reinforcement Learning</div>
+
+        <p><strong>Reinforcement Learning (RL)</strong> is a branch of Machine Learning in which an intelligent agent learns how to make decisions by interacting with an environment. Instead of learning from labeled examples like supervised learning, the agent learns through trial and error by receiving rewards or penalties for its actions.</p>
+
+        <p>The main objective of reinforcement learning is to enable an agent to discover the best sequence of actions that maximizes its total reward over time. Through continuous interaction and feedback, the agent gradually improves its performance and learns an optimal strategy.</p>
+
+        <p>Reinforcement Learning is inspired by the way humans and animals learn from experience. For example, a child learns to ride a bicycle by repeatedly trying, making mistakes, correcting them, and eventually mastering the skill.</p>
+
+        <hr>
+
+        <h3>Why Reinforcement Learning is Different</h3>
+
+        <p>Traditional machine learning methods often rely on historical datasets containing examples and answers. Reinforcement Learning works differently because the agent must learn while interacting with its environment.</p>
+
+        <p>There are no direct answers provided. Instead, the agent receives feedback in the form of rewards and penalties, which guide future decisions.</p>
+
+        <ul>
+            <li>Supervised Learning learns from labeled data.</li>
+            <li>Unsupervised Learning finds hidden patterns in unlabeled data.</li>
+            <li>Reinforcement Learning learns through interaction and feedback.</li>
+        </ul>
+
+        <p>This makes reinforcement learning particularly useful for situations where decisions must be made continuously in changing environments.</p>
+
+        <hr>
+
+        <h3>Core Components of Reinforcement Learning</h3>
+
+        <p>Every reinforcement learning system consists of several important components that work together during the learning process.</p>
+
+        <h4>1. Agent</h4>
+
+        <p>The <strong>Agent</strong> is the learner or decision-maker. It observes the environment, takes actions, and learns from the results.</p>
+
+        <p>Examples of agents include:</p>
+
+        <ul>
+            <li>A robot navigating a room.</li>
+            <li>A self-driving car making driving decisions.</li>
+            <li>An AI player in a video game.</li>
+            <li>A recommendation system selecting content for users.</li>
+        </ul>
+
+        <h4>2. Environment</h4>
+
+        <p>The <strong>Environment</strong> is everything the agent interacts with. It responds to the agent's actions and provides feedback.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+            <li>A chess board for a chess-playing AI.</li>
+            <li>A road network for a self-driving vehicle.</li>
+            <li>A game world for a gaming agent.</li>
+            <li>A financial market for an automated trading system.</li>
+        </ul>
+
+        <h4>3. State</h4>
+
+        <p>A <strong>State</strong> represents the current situation of the environment at a given moment.</p>
+
+        <p>For example, in a chess game, the arrangement of all pieces on the board represents the current state.</p>
+
+        <h4>4. Action</h4>
+
+        <p>An <strong>Action</strong> is a decision made by the agent.</p>
+
+        <p>Examples include:</p>
+
+        <ul>
+            <li>Moving a chess piece.</li>
+            <li>Turning a vehicle left or right.</li>
+            <li>Jumping in a video game.</li>
+            <li>Recommending a product to a customer.</li>
+        </ul>
+
+        <h4>5. Reward</h4>
+
+        <p>A <strong>Reward</strong> is feedback received after performing an action.</p>
+
+        <p>Rewards help the agent determine whether an action was beneficial or harmful.</p>
+
+        <ul>
+            <li>Positive Reward → Good action.</li>
+            <li>Negative Reward (Penalty) → Poor action.</li>
+        </ul>
+
+        <p>The ultimate goal is to maximize cumulative rewards over time.</p>
+
+        <hr>
+
+        <h3>How Reinforcement Learning Works</h3>
+
+        <p>The reinforcement learning process follows a continuous cycle:</p>
+
+        <ol>
+            <li>The agent observes the current state.</li>
+            <li>The agent selects an action.</li>
+            <li>The environment responds to that action.</li>
+            <li>A reward or penalty is given.</li>
+            <li>The environment transitions to a new state.</li>
+            <li>The agent updates its knowledge and repeats the process.</li>
+        </ol>
+
+        <p>Over many iterations, the agent learns which actions lead to the highest rewards and develops an effective strategy.</p>
+
+        <hr>
+
+        <h3>Simple Real-World Example</h3>
+
+        <p>Consider a robot trying to navigate a maze.</p>
+
+        <ul>
+            <li>Finding the exit gives a reward of +100.</li>
+            <li>Hitting a wall gives a penalty of -10.</li>
+            <li>Taking too many steps may result in a small penalty.</li>
+        </ul>
+
+        <p>Initially, the robot moves randomly and makes many mistakes. Over time, it learns which paths lead to success and begins reaching the exit more efficiently.</p>
+
+        <p>This learning process occurs without any human providing explicit instructions for every situation.</p>
+
+        <hr>
+
+        <h3>Exploration vs Exploitation</h3>
+
+        <p>One of the biggest challenges in Reinforcement Learning is balancing <strong>Exploration</strong> and <strong>Exploitation</strong>.</p>
+
+        <h4>Exploration</h4>
+
+        <p>The agent tries new actions to discover potentially better strategies.</p>
+
+        <p>Example: Trying a different route in a maze to see if it is shorter.</p>
+
+        <h4>Exploitation</h4>
+
+        <p>The agent uses existing knowledge to maximize rewards.</p>
+
+        <p>Example: Following the best-known route to the maze exit.</p>
+
+        <p>A successful reinforcement learning system must balance both approaches. Too much exploration wastes time, while too much exploitation may prevent discovering better solutions.</p>
+
+        <hr>
+
+        <h3>Applications of Reinforcement Learning</h3>
+
+        <p>Reinforcement Learning has achieved remarkable success in many industries and research areas.</p>
+
+        <ul>
+            <li><strong>Game Playing:</strong> Chess, Go, Poker, and video games.</li>
+            <li><strong>Robotics:</strong> Navigation, object handling, and automation.</li>
+            <li><strong>Self-Driving Cars:</strong> Learning safe driving decisions.</li>
+            <li><strong>Recommendation Systems:</strong> Personalized content recommendations.</li>
+            <li><strong>Healthcare:</strong> Treatment planning and decision support.</li>
+            <li><strong>Finance:</strong> Portfolio optimization and algorithmic trading.</li>
+            <li><strong>Industrial Automation:</strong> Process optimization and resource management.</li>
+        </ul>
+
+        <hr>
+
+        <h3>Advantages of Reinforcement Learning</h3>
+
+        <ul>
+            <li>Learns directly from interaction with the environment.</li>
+            <li>Can solve highly complex decision-making problems.</li>
+            <li>Improves performance over time through experience.</li>
+            <li>Does not require labeled training data.</li>
+            <li>Can adapt to dynamic and changing environments.</li>
+        </ul>
+
+        <hr>
+
+        <h3>Limitations of Reinforcement Learning</h3>
+
+        <ul>
+            <li>Requires large amounts of training time.</li>
+            <li>Learning can be computationally expensive.</li>
+            <li>Designing effective reward functions can be difficult.</li>
+            <li>Poor rewards may lead to undesirable behavior.</li>
+            <li>Real-world environments can be complex and unpredictable.</li>
+        </ul>
+
+        <hr>
+
+        <h3>Key Takeaways</h3>
+
+        <ul>
+            <li>Reinforcement Learning is a machine learning approach based on trial-and-error learning.</li>
+            <li>An agent learns by interacting with an environment and receiving rewards or penalties.</li>
+            <li>The major components are Agent, Environment, State, Action, and Reward.</li>
+            <li>The objective is to maximize long-term cumulative rewards.</li>
+            <li>Exploration and Exploitation are fundamental concepts in RL.</li>
+            <li>Reinforcement Learning powers modern applications such as robotics, self-driving cars, recommendation systems, and advanced game-playing AI.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Topic</button>
+    </div>
+</div>
+<div class="lecture" id="lec-4">
+    <div class="lecture-tag">Topic 05 - Unit I - Introduction to ML</div>
+    <h1>Setting up the ML Environment</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Introduction to the Machine Learning Environment</div>
+
+        <p>Before building Machine Learning models, it is important to create a proper development environment. A Machine Learning environment consists of the software tools, programming language, libraries, and packages required to develop, train, test, and deploy machine learning applications.</p>
+
+        <p>A well-configured environment helps developers write code efficiently, manage datasets, visualize results, and train machine learning models without compatibility issues.</p>
+
+        <p>In modern Machine Learning development, Python has become the most widely used programming language due to its simplicity, extensive libraries, and strong community support.</p>
+
+        <hr>
+
+        <h3>Why Python for Machine Learning?</h3>
+
+        <p>Python is considered the industry standard for Machine Learning because it provides powerful libraries and frameworks that simplify complex mathematical and computational tasks.</p>
+
+        <p>Some reasons for Python's popularity include:</p>
+
+        <ul>
+            <li>Easy-to-read syntax.</li>
+            <li>Large collection of ML libraries.</li>
+            <li>Excellent community support.</li>
+            <li>Cross-platform compatibility.</li>
+            <li>Integration with AI, Data Science, and Deep Learning tools.</li>
+        </ul>
+
+        <p>Most modern Machine Learning frameworks such as TensorFlow, PyTorch, and Scikit-Learn are built with Python support.</p>
+
+        <hr>
+
+        <h3>Essential Software Requirements</h3>
+
+        <p>To begin Machine Learning development, the following software components are commonly required:</p>
+
+        <ul>
+            <li><strong>Python</strong> – Programming language used for ML development.</li>
+            <li><strong>IDE or Code Editor</strong> – Used for writing and managing code.</li>
+            <li><strong>Package Manager</strong> – Used for installing required libraries.</li>
+            <li><strong>Jupyter Notebook</strong> – Interactive environment for experiments and data analysis.</li>
+            <li><strong>Machine Learning Libraries</strong> – Tools that provide ML algorithms and utilities.</li>
+        </ul>
+
+        <hr>
+
+        <h3>Step 1: Installing Python</h3>
+
+        <p>The first step is to install Python on your computer.</p>
+
+        <ol>
+            <li>Download Python from the official Python website.</li>
+            <li>Run the installer.</li>
+            <li>Select the option <strong>"Add Python to PATH"</strong>.</li>
+            <li>Complete the installation process.</li>
+        </ol>
+
+        <p>After installation, open the terminal or command prompt and verify the installation using:</p>
+
+        <pre>
+python --version
+        </pre>
+
+        <p>If Python is installed correctly, the version number will be displayed.</p>
+
+        <hr>
+
+        <h3>Step 2: Installing a Code Editor</h3>
+
+        <p>A code editor helps developers write and manage Python programs efficiently.</p>
+
+        <p>Popular choices include:</p>
+
+        <ul>
+            <li><strong>Visual Studio Code (VS Code)</strong></li>
+            <li><strong>PyCharm</strong></li>
+            <li><strong>Jupyter Notebook</strong></li>
+            <li><strong>Spyder</strong></li>
+        </ul>
+
+        <p>Among these, VS Code is one of the most popular editors because it is lightweight, powerful, and supports numerous extensions.</p>
+
+        <hr>
+
+        <h3>Step 3: Installing Jupyter Notebook</h3>
+
+        <p>Jupyter Notebook is an interactive development environment widely used in Data Science and Machine Learning.</p>
+
+        <p>It allows developers to:</p>
+
+        <ul>
+            <li>Write code in small sections called cells.</li>
+            <li>Execute code instantly.</li>
+            <li>Display graphs and visualizations.</li>
+            <li>Combine code, text, equations, and images in one document.</li>
+        </ul>
+
+        <p>Install Jupyter Notebook using:</p>
+
+        <pre>
+pip install notebook
+        </pre>
+
+        <p>Launch Jupyter Notebook using:</p>
+
+        <pre>
+jupyter notebook
+        </pre>
+
+        <hr>
+
+        <h3>Step 4: Installing Essential ML Libraries</h3>
+
+        <p>Machine Learning development relies heavily on specialized Python libraries. These libraries provide pre-built functions and algorithms that simplify development.</p>
+
+        <h4>NumPy</h4>
+
+        <p>NumPy is used for numerical computations and mathematical operations involving arrays and matrices.</p>
+
+        <pre>
+pip install numpy
+        </pre>
+
+        <h4>Pandas</h4>
+
+        <p>Pandas is used for data manipulation, cleaning, filtering, and analysis.</p>
+
+        <pre>
+pip install pandas
+        </pre>
+
+        <h4>Matplotlib</h4>
+
+        <p>Matplotlib is used for creating graphs, charts, and visualizations.</p>
+
+        <pre>
+pip install matplotlib
+        </pre>
+
+        <h4>Scikit-Learn</h4>
+
+        <p>Scikit-Learn provides a wide range of Machine Learning algorithms such as classification, regression, clustering, and model evaluation tools.</p>
+
+        <pre>
+pip install scikit-learn
+        </pre>
+
+        <hr>
+
+        <h3>Understanding the Role of ML Libraries</h3>
+
+        <table>
+            <tr>
+                <th>Library</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>NumPy</td>
+                <td>Numerical Computing</td>
+            </tr>
+            <tr>
+                <td>Pandas</td>
+                <td>Data Analysis and Manipulation</td>
+            </tr>
+            <tr>
+                <td>Matplotlib</td>
+                <td>Data Visualization</td>
+            </tr>
+            <tr>
+                <td>Scikit-Learn</td>
+                <td>Machine Learning Algorithms</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h3>Step 5: Creating Your First ML Project Folder</h3>
+
+        <p>Professional developers organize their projects in dedicated folders.</p>
+
+        <p>A simple Machine Learning project structure may look like this:</p>
+
+        <pre>
+ML_Project/
+│
+├── data/
+├── notebooks/
+├── models/
+├── scripts/
+└── main.py
+        </pre>
+
+        <ul>
+            <li><strong>data/</strong> stores datasets.</li>
+            <li><strong>notebooks/</strong> stores Jupyter notebooks.</li>
+            <li><strong>models/</strong> stores trained models.</li>
+            <li><strong>scripts/</strong> contains Python programs.</li>
+            <li><strong>main.py</strong> serves as the primary application file.</li>
+        </ul>
+
+        <hr>
+
+        <h3>Testing the Installation</h3>
+
+        <p>After installing the required libraries, create a Python file and test whether everything works correctly.</p>
+
+        <pre>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import sklearn
+
+print("Machine Learning Environment Ready!")
+        </pre>
+
+        <p>If the program runs without errors, the Machine Learning environment has been configured successfully.</p>
+
+        <hr>
+
+        <h3>Best Practices for ML Environment Setup</h3>
+
+        <ul>
+            <li>Keep Python updated to a stable version.</li>
+            <li>Organize project files properly.</li>
+            <li>Install only required libraries.</li>
+            <li>Use virtual environments for project isolation.</li>
+            <li>Regularly update important packages.</li>
+            <li>Document installed dependencies.</li>
+        </ul>
+
+        <hr>
+
+        <h3>Common Setup Issues</h3>
+
+        <ul>
+            <li>Python not added to PATH.</li>
+            <li>Incorrect package installation.</li>
+            <li>Version compatibility issues.</li>
+            <li>Missing dependencies.</li>
+            <li>Permission-related installation errors.</li>
+        </ul>
+
+        <p>Most installation issues can be resolved by checking package versions and ensuring Python is properly configured.</p>
+
+        <hr>
+
+        <h3>Key Takeaways</h3>
+
+        <ul>
+            <li>A Machine Learning environment provides the tools required for ML development.</li>
+            <li>Python is the most widely used language for Machine Learning.</li>
+            <li>Jupyter Notebook provides an interactive workspace for experimentation.</li>
+            <li>NumPy, Pandas, Matplotlib, and Scikit-Learn are essential ML libraries.</li>
+            <li>A structured project setup improves productivity and maintainability.</li>
+            <li>Testing the installation ensures all components are functioning correctly.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Topic</button>
+    </div>
+</div>
+  
+
+    <div class="lecture" id="lec-5">
+            <div class="lecture-tag">Topic 06 - Unit II - Data Preprocessing</div>
+            <h1>Handling Missing Data</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">Why Does Data Go Missing?</div>
+                <p>Welcome to one of the most common headaches in data science and application development! Missing data occurs when no value is stored for a variable in a given observation. This can happen for many reasons: human error during data entry, equipment malfunction, or users simply skipping questions on a form. In programming languages like Python, these gaps often show up as <code>NaN</code> (Not a Number) or <code>None</code>.</p>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">The Problem with Missing Data</div>
+                <p>You cannot simply ignore missing data. Most machine learning algorithms and backend data processing pipelines will throw an error if you attempt to feed them datasets with missing values. Furthermore, ignoring these gaps can lead to biased models, skewed analytics, and inaccurate predictions. We have to explicitly handle them before our data is ready for production.</p>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">Strategy 1: Deletion</div>
+                <p>The simplest approach is to remove the missing data entirely. However, you should use this approach with caution so you don't lose valuable information.</p>
+                <ul>
+                    <li><strong>Row Deletion (Listwise):</strong> Drop any row that contains a missing value. This is best used when your dataset is very large and the missing values only make up a tiny fraction (e.g., less than 5%).</li>
+                    <li><strong>Column Deletion:</strong> If a specific column is missing a massive amount of its data (e.g., 70% missing), it might be safest to drop the entire feature entirely rather than trying to guess the values.</li>
+                </ul>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">Strategy 2: Imputation</div>
+                <p>Instead of throwing data away, we can try to logically fill in the blanks. This process is called <strong>imputation</strong>.</p>
+                <ul>
+                    <li><strong>Mean / Median / Mode Imputation:</strong> Replace missing values with the average (mean), the middle value (median), or the most frequent value (mode) of that specific column. Median is usually preferred over the mean if your data has extreme outliers.</li>
+                    <li><strong>Constant Imputation:</strong> Replace all missing values with a specific placeholder, such as <code>0</code> for numerical data or <code>"Unknown"</code> for categorical string data.</li>
+                </ul>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">Code Example (Python & Pandas)</div>
+                <p>Here is a quick look at how we handle missing data programmatically using Python's Pandas library, a standard tool for backend data processing.</p>
+                <pre><code>import pandas as pd
+
+# 1. Load the dataset
+df = pd.read_csv('user_data.csv')
+
+# 2. Strategy: Deletion
+# Drop any rows that contain missing values
+df_cleaned = df.dropna()
+
+# 3. Strategy: Imputation
+# Fill missing 'age' values with the column's mean average
+df['age'] = df['age'].fillna(df['age'].mean())</code></pre>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(4)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
+            </div>
+        </div>
+
+  <div class="lecture" id="lec-6">
+    <div class="lecture-tag">Topic 07 - Unit II - Data Preprocessing</div>
+    <h1>Feature Scaling</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <section>
+        <h2>What is Feature Scaling?</h2>
+
+        <p>Feature Scaling is a data preprocessing technique used to standardize or normalize the range of independent variables (features) in a dataset. In many real-world datasets, different features may have vastly different scales and units.</p>
+
+        <p>For example, consider a dataset containing information about houses:</p>
+
+        <ul>
+            <li>House Area: 500 – 5000 square feet</li>
+            <li>Number of Bedrooms: 1 – 10</li>
+            <li>Age of House: 1 – 100 years</li>
+        </ul>
+
+        <p>Notice that the values of House Area are much larger than the values of Bedrooms or Age. Machine Learning algorithms may incorrectly assume that larger values are more important, which can negatively affect model performance.</p>
+
+        <div class="info-box">
+            <strong>Key Idea</strong>
+            <p>Feature Scaling ensures that all features contribute equally to the learning process by bringing them to a similar range.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Why is Feature Scaling Important?</h2>
+
+        <p>Many Machine Learning algorithms calculate distances between data points. If one feature has much larger values than others, it can dominate the calculations and lead to inaccurate results.</p>
+
+        <p>Feature Scaling helps improve:</p>
+
+        <ul>
+            <li>Model accuracy</li>
+            <li>Training speed</li>
+            <li>Algorithm convergence</li>
+            <li>Prediction performance</li>
+            <li>Numerical stability</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Real-World Example</strong>
+            <p>Imagine comparing students based on their age and annual family income. Age may range from 18 to 25, while income may range from ₹100,000 to ₹2,000,000. Without scaling, income values dominate the calculations and age contributes very little to the model.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Algorithms That Require Feature Scaling</h2>
+
+        <p>Not all Machine Learning algorithms require scaling. Algorithms based on distance calculations are particularly sensitive to feature magnitudes.</p>
+
+        <h3 class="sub-title">Algorithms That Benefit from Scaling</h3>
+
+        <ul>
+            <li>K-Nearest Neighbors (KNN)</li>
+            <li>K-Means Clustering</li>
+            <li>Support Vector Machines (SVM)</li>
+            <li>Logistic Regression</li>
+            <li>Linear Regression (sometimes)</li>
+            <li>Neural Networks</li>
+            <li>Principal Component Analysis (PCA)</li>
+        </ul>
+
+        <h3 class="sub-title">Algorithms Less Affected by Scaling</h3>
+
+        <ul>
+            <li>Decision Trees</li>
+            <li>Random Forests</li>
+            <li>XGBoost</li>
+            <li>Gradient Boosting Trees</li>
+        </ul>
+
+        <p>Tree-based algorithms split data based on conditions rather than distances, making them less sensitive to feature scales.</p>
+    </section>
+
+    <section>
+        <h2>Methods of Feature Scaling</h2>
+
+        <p>There are several techniques used to scale features. The two most common methods are Normalization and Standardization.</p>
+
+        <h3 class="sub-title">1. Normalization (Min-Max Scaling)</h3>
+
+        <p>Normalization transforms feature values into a fixed range, usually between 0 and 1.</p>
+
+        <p>The Min-Max Scaling formula is:</p>
+
+        :contentReference[oaicite:0]{index=0}
+
+        <p>Where:</p>
+
+        <ul>
+            <li>x = Original value</li>
+            <li>x<sub>min</sub> = Minimum value of the feature</li>
+            <li>x<sub>max</sub> = Maximum value of the feature</li>
+        </ul>
+
+        <p>After normalization, all values fall between 0 and 1.</p>
+
+        <div class="info-box">
+            <strong>When to Use Normalization?</strong>
+            <p>Normalization is commonly used when data does not follow a normal distribution and when algorithms require bounded input values, such as Neural Networks.</p>
+        </div>
+
+        <h3 class="sub-title">2. Standardization (Z-Score Scaling)</h3>
+
+        <p>Standardization transforms data so that it has a mean of 0 and a standard deviation of 1.</p>
+
+        
+::contentReference[oaicite:1]{index=1}
+
+
+        <p>Where:</p>
+
+        <ul>
+            <li>x = Original value</li>
+            <li>μ = Mean of the feature</li>
+            <li>σ = Standard deviation of the feature</li>
+        </ul>
+
+        <p>Unlike normalization, standardized values are not restricted to a specific range.</p>
+
+        <div class="info-box">
+            <strong>When to Use Standardization?</strong>
+            <p>Standardization is preferred when data follows a normal distribution and is widely used in algorithms such as Logistic Regression, SVM, and PCA.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Example of Feature Scaling</h2>
+
+        <p>Consider the following feature values representing salaries:</p>
+
+        <table>
+            <tr>
+                <th>Employee</th>
+                <th>Salary (₹)</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>20,000</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>40,000</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>60,000</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>80,000</td>
+            </tr>
+        </table>
+
+        <p>After applying Min-Max Scaling, these values may become:</p>
+
+        <table>
+            <tr>
+                <th>Employee</th>
+                <th>Normalized Salary</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>0.00</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>0.33</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>0.67</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>1.00</td>
+            </tr>
+        </table>
+
+        <p>The relative differences remain the same, but all values now fall within a consistent range.</p>
+    </section>
+
+    <section>
+        <h2>Feature Scaling in Python</h2>
+
+        <p>Python's Scikit-Learn library provides built-in tools for feature scaling.</p>
+
+        <h3 class="sub-title">Min-Max Scaling Example</h3>
+
+        <pre>
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+
+scaled_data = scaler.fit_transform(data)
+        </pre>
+
+        <h3 class="sub-title">Standardization Example</h3>
+
+        <pre>
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+scaled_data = scaler.fit_transform(data)
+        </pre>
+
+        <p>These tools automatically calculate the required values and transform the dataset.</p>
+    </section>
+
+    <section>
+        <h2>Best Practices</h2>
+
+        <ul>
+            <li>Apply scaling after handling missing values.</li>
+            <li>Split the dataset into training and testing sets before scaling.</li>
+            <li>Fit the scaler only on training data.</li>
+            <li>Use the same scaler parameters for test data.</li>
+            <li>Choose the scaling technique based on the algorithm and data distribution.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Common Mistake</strong>
+            <p>Many beginners scale the entire dataset before splitting into training and testing sets. This causes data leakage and can lead to overly optimistic model performance.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Feature Scaling standardizes the range of input features.</li>
+            <li>It prevents features with large values from dominating the learning process.</li>
+            <li>Normalization scales data to a fixed range, usually 0 to 1.</li>
+            <li>Standardization transforms data using mean and standard deviation.</li>
+            <li>Distance-based algorithms strongly benefit from feature scaling.</li>
+            <li>Proper scaling often improves model accuracy and training efficiency.</li>
+        </ul>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Practice Exercise</div>
+        <p><strong>Objective:</strong> Understand the impact of feature scaling on machine learning data.</p>
+
+        <ol>
+            <li>Create a dataset containing Age and Salary features.</li>
+            <li>Observe the difference in their value ranges.</li>
+            <li>Apply Min-Max Scaling using Scikit-Learn.</li>
+            <li>Apply Standardization using StandardScaler.</li>
+            <li>Compare the transformed values and analyze the results.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(5)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(7)">Next Topic</button>
+    </div>
+</div>
+
+   <div class="lecture" id="lec-7">
+            <div class="lecture-tag">Topic 08 - Unit II - Data Preprocessing</div>
+            <h1>Categorical Data Encoding</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge level-intermediate">Intermediate</span>
+                <span class="meta-badge">~45 min</span>
+                <span class="meta-badge">Requires: Handling Missing Data</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">Why Encode Categorical Data?</div>
+                <p>Machine learning models are essentially massive mathematical equations. They excel at crunching numbers, but they cannot inherently understand raw text strings like <code>"Red"</code>, <code>"India"</code>, or <code>"Subscribed"</code>. <strong>Categorical Data Encoding</strong> is the vital preprocessing step where we translate these text-based categories into a numerical format that algorithms can actually process, without losing the underlying meaning of the data.</p>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">Nominal vs. Ordinal Categories</div>
+                <p>Before we encode, we must understand the <em>type</em> of category we are dealing with. Choosing the wrong encoding method can severely damage your model's accuracy.</p>
+                <ul>
+                    <li><strong>Ordinal Data:</strong> Categories that have a logical, built-in order or ranking. <em>(Example: "Low", "Medium", "High" or "Bachelor's", "Master's", "PhD")</em>.</li>
+                    <li><strong>Nominal Data:</strong> Categories with no inherent mathematical order or ranking. <em>(Example: "Apple", "Banana", "Cherry" or "Punjab", "Maharashtra", "Kerala")</em>.</li>
+                </ul>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">Technique 1: Label / Ordinal Encoding</div>
+                <p>For <strong>Ordinal Data</strong>, we assign a unique integer to each category based on its rank. For instance, we might map "Low" to 0, "Medium" to 1, and "High" to 2. This preserves the hierarchical relationship, allowing the model's logic to understand that "High" is mathematically greater than "Low".</p>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">Technique 2: One-Hot Encoding</div>
+                <p>We absolutely cannot use Label Encoding for <strong>Nominal Data</strong>. If we encode colors as Red=1, Blue=2, and Green=3, the algorithm will incorrectly assume that Green is mathematically "greater" than Red. </p>
+                <p>Instead, we use <strong>One-Hot Encoding</strong>. This technique creates a new binary column (0 or 1) for <em>every</em> unique category. If a row is "Blue", the "is_Blue" column gets a 1, and all other color columns get a 0. This prevents the model from assuming false hierarchies.</p>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">Code Example (Python & Pandas)</div>
+                <p>Here is how you handle both types of encoding using Pandas, setting up your data perfectly for backend processing.</p>
+                <pre><code>import pandas as pd
+
+# 1. Sample Dataset
+data = {'Size': ['Small', 'Medium', 'Large'], 'Color': ['Red', 'Green', 'Blue']}
+df = pd.DataFrame(data)
+
+# 2. Ordinal Encoding (Mapping values manually based on logical rank)
+size_map = {'Small': 1, 'Medium': 2, 'Large': 3}
+df['Size_Encoded'] = df['Size'].map(size_map)
+
+# 3. One-Hot Encoding (Creating dummy binary columns for Nominal data)
+# This will drop the original 'Color' column and create 'Color_Red', 'Color_Green', etc.
+df_encoded = pd.get_dummies(df, columns=['Color'])</code></pre>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(8)">Next Topic →</button>
+            </div>
+        </div>
+
+    <div class="lecture" id="lec-8">
+    <div class="lecture-tag">Topic 09 - Unit II - Data Preprocessing</div>
+    <h1>Categorical Data Encoding</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <section>
+        <h2>Introduction to Categorical Data</h2>
+
+        <p>In real-world datasets, not all information is represented as numbers. Many features contain text values such as city names, genders, product categories, education levels, or customer types. These are known as <strong>Categorical Data</strong>.</p>
+
+        <p>Categorical data represents groups, labels, or categories rather than numerical quantities. Since most Machine Learning algorithms perform mathematical calculations, they cannot directly understand text values. Therefore, categorical data must be converted into numerical form before training a model.</p>
+
+        <div class="info-box">
+            <strong>Why Encoding is Necessary</strong>
+            <p>Machine Learning algorithms work with numbers, not text. Categorical Data Encoding transforms textual categories into numerical values that algorithms can process effectively.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Types of Categorical Data</h2>
+
+        <p>Before choosing an encoding technique, it is important to understand the two main types of categorical data.</p>
+
+        <h3 class="sub-title">1. Nominal Data</h3>
+
+        <p>Nominal data consists of categories that have no natural order or ranking.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+            <li>Color: Red, Blue, Green</li>
+            <li>Country: India, USA, Canada</li>
+            <li>Department: HR, Sales, Finance</li>
+            <li>Blood Group: A, B, AB, O</li>
+        </ul>
+
+        <p>There is no meaningful relationship indicating that one category is greater or smaller than another.</p>
+
+        <h3 class="sub-title">2. Ordinal Data</h3>
+
+        <p>Ordinal data consists of categories that have a meaningful order or ranking.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+            <li>Education: High School, Bachelor's, Master's, PhD</li>
+            <li>Customer Rating: Poor, Average, Good, Excellent</li>
+            <li>T-Shirt Size: Small, Medium, Large</li>
+        </ul>
+
+        <p>Unlike nominal data, ordinal categories have a logical sequence.</p>
+    </section>
+
+    <section>
+        <h2>Common Encoding Techniques</h2>
+
+        <p>Several encoding methods are used in Machine Learning depending on the type of categorical data and the algorithm being used.</p>
+
+        <h3 class="sub-title">1. Label Encoding</h3>
+
+        <p>Label Encoding assigns a unique numerical value to each category.</p>
+
+        <p>Example:</p>
+
+        <table>
+            <tr>
+                <th>Color</th>
+                <th>Encoded Value</th>
+            </tr>
+            <tr>
+                <td>Red</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Blue</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Green</td>
+                <td>2</td>
+            </tr>
+        </table>
+
+        <p>After encoding, the machine learning model sees numbers instead of text.</p>
+
+        <div class="info-box">
+            <strong>Important Note</strong>
+            <p>Label Encoding is most suitable for ordinal data because the numerical values may imply an order or ranking.</p>
+        </div>
+
+        <h3 class="sub-title">Advantages of Label Encoding</h3>
+
+        <ul>
+            <li>Simple and easy to implement.</li>
+            <li>Requires less memory.</li>
+            <li>Works well with ordinal categories.</li>
+            <li>Suitable for tree-based algorithms.</li>
+        </ul>
+
+        <h3 class="sub-title">Limitations of Label Encoding</h3>
+
+        <ul>
+            <li>May introduce artificial relationships between categories.</li>
+            <li>Not ideal for nominal data.</li>
+            <li>Can mislead some machine learning algorithms.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>One-Hot Encoding</h2>
+
+        <p>One-Hot Encoding is one of the most commonly used techniques for encoding nominal categorical data.</p>
+
+        <p>Instead of assigning numbers to categories, it creates a separate binary column for each category.</p>
+
+        <p>Consider the following feature:</p>
+
+        <table>
+            <tr>
+                <th>Color</th>
+            </tr>
+            <tr>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <td>Blue</td>
+            </tr>
+            <tr>
+                <td>Green</td>
+            </tr>
+        </table>
+
+        <p>After One-Hot Encoding:</p>
+
+        <table>
+            <tr>
+                <th>Red</th>
+                <th>Blue</th>
+                <th>Green</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+        </table>
+
+        <p>Each category receives its own column, and only one value is marked as 1 while the others remain 0.</p>
+
+        <div class="info-box">
+            <strong>Why One-Hot Encoding Works</strong>
+            <p>One-Hot Encoding prevents the algorithm from assuming that categories have any numerical order, making it ideal for nominal data.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Dummy Variable Trap</h2>
+
+        <p>When using One-Hot Encoding, creating a column for every category may introduce redundancy because one category can often be predicted from the others.</p>
+
+        <p>This situation is known as the <strong>Dummy Variable Trap</strong>.</p>
+
+        <p>To avoid this issue, one column is typically removed during encoding.</p>
+
+        <p>For example, if we have three categories:</p>
+
+        <ul>
+            <li>Red</li>
+            <li>Blue</li>
+            <li>Green</li>
+        </ul>
+
+        <p>Only two columns may be stored, and the third category can be inferred automatically.</p>
+    </section>
+
+    <section>
+        <h2>Ordinal Encoding</h2>
+
+        <p>Ordinal Encoding is specifically designed for ordinal data where categories have a meaningful order.</p>
+
+        <p>Example:</p>
+
+        <table>
+            <tr>
+                <th>Education Level</th>
+                <th>Encoded Value</th>
+            </tr>
+            <tr>
+                <td>High School</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Bachelor's</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Master's</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>PhD</td>
+                <td>4</td>
+            </tr>
+        </table>
+
+        <p>Because the categories naturally follow a progression, numerical ordering makes sense in this case.</p>
+    </section>
+
+    <section>
+        <h2>Encoding Using Python</h2>
+
+        <h3 class="sub-title">Label Encoding Example</h3>
+
+        <pre>
+from sklearn.preprocessing import LabelEncoder
+
+encoder = LabelEncoder()
+
+data['Color'] = encoder.fit_transform(data['Color'])
+        </pre>
+
+        <h3 class="sub-title">One-Hot Encoding Example</h3>
+
+        <pre>
+import pandas as pd
+
+encoded_data = pd.get_dummies(
+    data,
+    columns=['Color']
+)
+        </pre>
+
+        <p>Scikit-Learn and Pandas provide powerful tools for handling categorical data efficiently.</p>
+    </section>
+
+    <section>
+        <h2>Choosing the Right Encoding Method</h2>
+
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Recommended Encoding</th>
+            </tr>
+            <tr>
+                <td>Nominal Data</td>
+                <td>One-Hot Encoding</td>
+            </tr>
+            <tr>
+                <td>Ordinal Data</td>
+                <td>Ordinal / Label Encoding</td>
+            </tr>
+            <tr>
+                <td>Binary Categories</td>
+                <td>Label Encoding</td>
+            </tr>
+        </table>
+
+        <p>Selecting the appropriate encoding technique is important because it directly affects model accuracy and performance.</p>
+    </section>
+
+    <section>
+        <h2>Best Practices</h2>
+
+        <ul>
+            <li>Identify whether data is nominal or ordinal before encoding.</li>
+            <li>Use One-Hot Encoding for nominal categories.</li>
+            <li>Use Ordinal Encoding when categories have a meaningful order.</li>
+            <li>Be cautious of the Dummy Variable Trap.</li>
+            <li>Apply the same encoding process to both training and testing datasets.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Common Mistake</strong>
+            <p>Many beginners use Label Encoding on nominal data such as colors or city names. This may incorrectly imply that one category is greater than another, leading to misleading results.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Categorical data contains text-based categories rather than numerical values.</li>
+            <li>Machine Learning algorithms require numerical input.</li>
+            <li>Encoding converts categorical data into machine-readable form.</li>
+            <li>Label Encoding assigns unique numbers to categories.</li>
+            <li>One-Hot Encoding creates separate binary columns for each category.</li>
+            <li>Ordinal Encoding is useful when categories have a natural order.</li>
+            <li>Choosing the correct encoding method improves model performance and accuracy.</li>
+        </ul>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Practice Exercise</div>
+        <p><strong>Objective:</strong> Apply categorical data encoding techniques to a dataset.</p>
+
+        <ol>
+            <li>Create a dataset containing Gender, City, and Education Level features.</li>
+            <li>Identify which features are nominal and which are ordinal.</li>
+            <li>Apply Label Encoding to Education Level.</li>
+            <li>Apply One-Hot Encoding to City.</li>
+            <li>Compare the resulting dataset before and after encoding.</li>
+            <li>Analyze how categorical values have been transformed into numerical features.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Topic</button>
+    </div>
+</div>
+
+        <div class="lecture" id="lec-9">
+    <div class="lecture-tag">Topic 10 - Unit III - Supervised Learning (Regression)</div>
+    <h1>Simple Linear Regression</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <section>
+        <h2>Introduction to Simple Linear Regression</h2>
+
+        <p>Simple Linear Regression is one of the most fundamental and widely used algorithms in Machine Learning. It belongs to the category of <strong>Supervised Learning</strong> because it learns from labeled training data.</p>
+
+        <p>The goal of Simple Linear Regression is to find a relationship between one independent variable (input feature) and one dependent variable (target variable). Once this relationship is learned, the model can be used to predict future values.</p>
+
+        <p>For example, if we know the number of hours a student studies, we may be able to predict their exam score. Similarly, we can predict house prices based on area, sales based on advertising expenditure, or salary based on years of experience.</p>
+
+        <div class="info-box">
+            <strong>Key Idea</strong>
+            <p>Simple Linear Regression attempts to find the best-fitting straight line through a set of data points so that future values can be predicted accurately.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Understanding Regression</h2>
+
+        <p>Regression is a supervised learning technique used when the target variable is continuous and numerical. Unlike classification, which predicts categories, regression predicts quantities.</p>
+
+        <p>Examples of regression problems include:</p>
+
+        <ul>
+            <li>Predicting house prices.</li>
+            <li>Estimating employee salaries.</li>
+            <li>Forecasting sales revenue.</li>
+            <li>Predicting temperature.</li>
+            <li>Estimating stock market values.</li>
+        </ul>
+
+        <p>Simple Linear Regression specifically deals with one input variable and one output variable.</p>
+    </section>
+
+    <section>
+        <h2>Linear Relationship Between Variables</h2>
+
+        <p>A linear relationship exists when a change in one variable causes a proportional change in another variable.</p>
+
+        <p>Consider the following example:</p>
+
+        <table>
+            <tr>
+                <th>Hours Studied</th>
+                <th>Exam Score</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>45</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>55</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>65</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>75</td>
+            </tr>
+        </table>
+
+        <p>As the number of study hours increases, exam scores also increase. This indicates a positive linear relationship between the variables.</p>
+    </section>
+
+    <section>
+        <h2>The Linear Regression Equation</h2>
+
+        <p>Simple Linear Regression represents the relationship between variables using a straight-line equation.</p>
+
+        <p>The mathematical model is:</p>
+
+        
+::contentReference[oaicite:0]{index=0}
+
+
+        <p>Where:</p>
+
+        <ul>
+            <li><strong>y</strong> = Predicted output (dependent variable)</li>
+            <li><strong>x</strong> = Input feature (independent variable)</li>
+            <li><strong>m</strong> = Slope of the line</li>
+            <li><strong>c</strong> = Intercept (value of y when x = 0)</li>
+        </ul>
+
+        <p>The slope determines how much the output changes when the input changes. The intercept determines where the line crosses the y-axis.</p>
+
+        <div class="info-box">
+            <strong>Interpretation</strong>
+            <p>If the slope is positive, the variables increase together. If the slope is negative, one variable decreases as the other increases.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>How the Regression Line is Determined</h2>
+
+        <p>The regression algorithm searches for the line that best fits the data points. This line is called the <strong>Line of Best Fit</strong>.</p>
+
+        <p>Since not all data points lie perfectly on a straight line, the algorithm minimizes the difference between actual values and predicted values.</p>
+
+        <p>The difference between an actual value and its predicted value is known as the <strong>Residual Error</strong>.</p>
+
+        <p>The most commonly used technique is the <strong>Least Squares Method</strong>, which minimizes the sum of squared errors.</p>
+
+        <div class="info-box">
+            <strong>Why Squared Errors?</strong>
+            <p>Squaring ensures that positive and negative errors do not cancel each other and gives greater importance to larger errors.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Assumptions of Simple Linear Regression</h2>
+
+        <p>For accurate results, Simple Linear Regression assumes certain conditions about the data.</p>
+
+        <ul>
+            <li>There should be a linear relationship between variables.</li>
+            <li>The observations should be independent.</li>
+            <li>The variance of errors should remain constant.</li>
+            <li>The residuals should be approximately normally distributed.</li>
+            <li>Outliers should be minimal.</li>
+        </ul>
+
+        <p>Violating these assumptions may reduce the accuracy of the regression model.</p>
+    </section>
+
+    <section>
+        <h2>Training a Linear Regression Model</h2>
+
+        <p>The process of building a Simple Linear Regression model generally involves the following steps:</p>
+
+        <ol>
+            <li>Collect the dataset.</li>
+            <li>Preprocess and clean the data.</li>
+            <li>Split data into training and testing sets.</li>
+            <li>Train the regression model.</li>
+            <li>Evaluate the model's performance.</li>
+            <li>Use the model for predictions.</li>
+        </ol>
+
+        <p>During training, the model learns the optimal slope and intercept values that best represent the relationship between the variables.</p>
+    </section>
+
+    <section>
+        <h2>Implementing Simple Linear Regression in Python</h2>
+
+        <p>Scikit-Learn provides a simple way to implement Linear Regression.</p>
+
+        <pre>
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+        </pre>
+
+        <p>The <code>fit()</code> method trains the model, while <code>predict()</code> generates predictions for new data.</p>
+    </section>
+
+    <section>
+        <h2>Evaluating Regression Models</h2>
+
+        <p>After training a model, it is important to measure its performance.</p>
+
+        <h3 class="sub-title">Common Evaluation Metrics</h3>
+
+        <ul>
+            <li><strong>Mean Absolute Error (MAE)</strong></li>
+            <li><strong>Mean Squared Error (MSE)</strong></li>
+            <li><strong>Root Mean Squared Error (RMSE)</strong></li>
+            <li><strong>R² Score (Coefficient of Determination)</strong></li>
+        </ul>
+
+        <p>A lower error value generally indicates better predictions, while a higher R² score suggests that the model explains more variance in the data.</p>
+    </section>
+
+    <section>
+        <h2>Advantages of Simple Linear Regression</h2>
+
+        <ul>
+            <li>Easy to understand and implement.</li>
+            <li>Computationally efficient.</li>
+            <li>Provides interpretable results.</li>
+            <li>Works well when a linear relationship exists.</li>
+            <li>Forms the foundation for advanced regression techniques.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Limitations of Simple Linear Regression</h2>
+
+        <ul>
+            <li>Only models linear relationships.</li>
+            <li>Sensitive to outliers.</li>
+            <li>May perform poorly with complex datasets.</li>
+            <li>Cannot capture nonlinear patterns.</li>
+            <li>Assumes a single independent variable.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Important Note</strong>
+            <p>If multiple input features are involved, the technique is called Multiple Linear Regression, which extends the concepts of Simple Linear Regression.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Real-World Applications</h2>
+
+        <ul>
+            <li>Predicting house prices based on area.</li>
+            <li>Estimating employee salaries from experience.</li>
+            <li>Forecasting product sales.</li>
+            <li>Predicting energy consumption.</li>
+            <li>Analyzing economic and financial trends.</li>
+        </ul>
+
+        <p>Because of its simplicity and interpretability, Linear Regression remains one of the most important predictive modeling techniques in Machine Learning.</p>
+    </section>
+
+    <section>
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Simple Linear Regression is a supervised learning algorithm used for prediction.</li>
+            <li>It models the relationship between one independent variable and one dependent variable.</li>
+            <li>The model uses the equation y = mx + c.</li>
+            <li>The line of best fit is determined using the Least Squares Method.</li>
+            <li>Regression predicts continuous numerical values.</li>
+            <li>Evaluation metrics help measure prediction accuracy.</li>
+            <li>Linear Regression is widely used in business, finance, healthcare, and data science.</li>
+        </ul>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Practice Exercise</div>
+        <p><strong>Objective:</strong> Build a Simple Linear Regression model using Python.</p>
+
+        <ol>
+            <li>Create a dataset containing Hours Studied and Exam Scores.</li>
+            <li>Split the dataset into training and testing sets.</li>
+            <li>Train a Linear Regression model using Scikit-Learn.</li>
+            <li>Predict exam scores for new study-hour values.</li>
+            <li>Calculate evaluation metrics such as MAE and R² Score.</li>
+            <li>Analyze how the regression line represents the relationship between variables.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(8)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(10)">Next Topic</button>
+    </div>
+</div>
+
+  <div class="lecture" id="lec-10">
+    <div class="lecture-tag">Topic 11 - Unit III - Supervised Learning (Regression)</div>
+    <h1>Multiple Linear Regression</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <section>
+        <h2>Introduction to Multiple Linear Regression</h2>
+
+        <p>In the previous topic, we learned that <strong>Simple Linear Regression</strong> predicts a target value using only one independent variable. However, real-world problems are often influenced by multiple factors. In such situations, we use <strong>Multiple Linear Regression (MLR)</strong>.</p>
+
+        <p>Multiple Linear Regression is a supervised learning algorithm that predicts a continuous target variable using two or more independent variables. By considering multiple features simultaneously, the model can make more accurate predictions and better represent real-world relationships.</p>
+
+        <div class="info-box">
+            <strong>Key Idea</strong>
+            <p>Multiple Linear Regression extends Simple Linear Regression by using several input features to predict a single output value.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Why Do We Need Multiple Linear Regression?</h2>
+
+        <p>Many real-world outcomes depend on multiple factors rather than a single variable.</p>
+
+        <p>Consider predicting the price of a house. The price may depend on:</p>
+
+        <ul>
+            <li>Area of the house</li>
+            <li>Number of bedrooms</li>
+            <li>Location</li>
+            <li>Age of the property</li>
+            <li>Availability of parking</li>
+        </ul>
+
+        <p>If we use only one feature, such as area, the prediction may not be accurate. Multiple Linear Regression allows the model to consider all important factors together.</p>
+    </section>
+
+    <section>
+        <h2>Understanding the Concept</h2>
+
+        <p>Imagine trying to predict a student's final exam score. The score may be influenced by:</p>
+
+        <ul>
+            <li>Hours studied</li>
+            <li>Attendance percentage</li>
+            <li>Number of assignments completed</li>
+            <li>Class participation</li>
+        </ul>
+
+        <p>Instead of relying on a single factor, Multiple Linear Regression evaluates the combined effect of all these variables to generate a prediction.</p>
+
+        <p>This makes the model more realistic and often more accurate than Simple Linear Regression.</p>
+    </section>
+
+    <section>
+        <h2>The Multiple Linear Regression Equation</h2>
+
+        <p>The mathematical representation of Multiple Linear Regression is:</p>
+
+        :contentReference[oaicite:0]{index=0}
+
+        <p>Where:</p>
+
+        <ul>
+            <li><strong>y</strong> = Predicted value (dependent variable)</li>
+            <li><strong>b₀</strong> = Intercept or constant term</li>
+            <li><strong>b₁, b₂, b₃ ... bₙ</strong> = Regression coefficients</li>
+            <li><strong>x₁, x₂, x₃ ... xₙ</strong> = Independent variables (features)</li>
+        </ul>
+
+        <p>Each coefficient represents the influence of a particular feature on the final prediction.</p>
+
+        <div class="info-box">
+            <strong>Interpretation</strong>
+            <p>A positive coefficient indicates that the target value increases as the feature increases, while a negative coefficient indicates an inverse relationship.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Example of Multiple Linear Regression</h2>
+
+        <p>Suppose a company wants to predict employee salary using years of experience and education level.</p>
+
+        <table>
+            <tr>
+                <th>Experience (Years)</th>
+                <th>Education Score</th>
+                <th>Salary (₹)</th>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>5</td>
+                <td>30000</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>6</td>
+                <td>45000</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>8</td>
+                <td>65000</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>9</td>
+                <td>85000</td>
+            </tr>
+        </table>
+
+        <p>In this case:</p>
+
+        <ul>
+            <li>Experience = First independent variable</li>
+            <li>Education Score = Second independent variable</li>
+            <li>Salary = Dependent variable</li>
+        </ul>
+
+        <p>The model learns how both factors contribute to salary prediction.</p>
+    </section>
+
+    <section>
+        <h2>How the Model Learns</h2>
+
+        <p>During training, the algorithm analyzes the dataset and determines the best coefficient values for each feature.</p>
+
+        <p>The objective is to find the combination of coefficients that minimizes prediction errors.</p>
+
+        <p>Just like Simple Linear Regression, Multiple Linear Regression commonly uses the <strong>Least Squares Method</strong> to minimize the difference between actual and predicted values.</p>
+
+        <p>The resulting equation becomes the model that can be used for future predictions.</p>
+    </section>
+
+    <section>
+        <h2>Assumptions of Multiple Linear Regression</h2>
+
+        <p>For the model to perform effectively, several assumptions should be satisfied.</p>
+
+        <ul>
+            <li>There should be a linear relationship between features and the target variable.</li>
+            <li>Observations should be independent.</li>
+            <li>Residual errors should be normally distributed.</li>
+            <li>Variance of errors should remain constant.</li>
+            <li>Features should not be highly correlated with each other.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Multicollinearity Warning</strong>
+            <p>When two or more independent variables are strongly correlated, it becomes difficult for the model to determine their individual impact. This problem is known as multicollinearity.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Advantages of Multiple Linear Regression</h2>
+
+        <ul>
+            <li>Provides more accurate predictions than Simple Linear Regression.</li>
+            <li>Can analyze the influence of multiple variables simultaneously.</li>
+            <li>Easy to understand and interpret.</li>
+            <li>Useful for forecasting and trend analysis.</li>
+            <li>Widely used in business and scientific research.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Limitations of Multiple Linear Regression</h2>
+
+        <ul>
+            <li>Assumes a linear relationship between variables.</li>
+            <li>Sensitive to outliers.</li>
+            <li>Performance decreases when assumptions are violated.</li>
+            <li>Can suffer from multicollinearity.</li>
+            <li>May not capture complex nonlinear patterns.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Applications of Multiple Linear Regression</h2>
+
+        <p>Multiple Linear Regression is used extensively across various industries.</p>
+
+        <ul>
+            <li>House price prediction.</li>
+            <li>Employee salary estimation.</li>
+            <li>Sales forecasting.</li>
+            <li>Medical risk prediction.</li>
+            <li>Stock market analysis.</li>
+            <li>Demand forecasting.</li>
+            <li>Business performance analysis.</li>
+        </ul>
+
+        <p>Because many real-world outcomes depend on multiple factors, Multiple Linear Regression remains one of the most important predictive modeling techniques.</p>
+    </section>
+
+    <section>
+        <h2>Implementing Multiple Linear Regression in Python</h2>
+
+        <p>Scikit-Learn provides a straightforward implementation of Multiple Linear Regression.</p>
+
+        <pre>
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+        </pre>
+
+        <p>Here, <code>X_train</code> contains multiple independent variables, while <code>y_train</code> contains the target values.</p>
+    </section>
+
+    <section>
+        <h2>Evaluating the Model</h2>
+
+        <p>After training, the model should be evaluated to determine how accurately it predicts unseen data.</p>
+
+        <h3 class="sub-title">Common Evaluation Metrics</h3>
+
+        <ul>
+            <li>Mean Absolute Error (MAE)</li>
+            <li>Mean Squared Error (MSE)</li>
+            <li>Root Mean Squared Error (RMSE)</li>
+            <li>R² Score (Coefficient of Determination)</li>
+        </ul>
+
+        <p>These metrics help quantify prediction accuracy and compare different regression models.</p>
+    </section>
+
+    <section>
+        <h2>Simple vs Multiple Linear Regression</h2>
+
+        <table>
+            <tr>
+                <th>Simple Linear Regression</th>
+                <th>Multiple Linear Regression</th>
+            </tr>
+            <tr>
+                <td>Uses one independent variable</td>
+                <td>Uses multiple independent variables</td>
+            </tr>
+            <tr>
+                <td>Simpler model</td>
+                <td>More realistic model</td>
+            </tr>
+            <tr>
+                <td>Lower complexity</td>
+                <td>Higher complexity</td>
+            </tr>
+            <tr>
+                <td>Suitable for simple relationships</td>
+                <td>Suitable for complex real-world problems</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Multiple Linear Regression predicts a continuous value using multiple independent variables.</li>
+            <li>It is an extension of Simple Linear Regression.</li>
+            <li>The model learns coefficients for each feature.</li>
+            <li>It provides more realistic predictions for real-world problems.</li>
+            <li>Multicollinearity can negatively affect model performance.</li>
+            <li>It is widely used in business, finance, healthcare, and scientific research.</li>
+            <li>Scikit-Learn makes implementation simple and efficient.</li>
+        </ul>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Practice Exercise</div>
+        <p><strong>Objective:</strong> Build a Multiple Linear Regression model using multiple features.</p>
+
+        <ol>
+            <li>Create a dataset containing house area, number of bedrooms, and house age.</li>
+            <li>Use house price as the target variable.</li>
+            <li>Split the dataset into training and testing sets.</li>
+            <li>Train a Multiple Linear Regression model using Scikit-Learn.</li>
+            <li>Predict house prices for new data.</li>
+            <li>Evaluate the model using MAE, RMSE, and R² Score.</li>
+            <li>Analyze how each feature affects the predicted price.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(9)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(11)">Next Topic</button>
+    </div>
+</div>
+
+       <div class="lecture" id="lec-11">
+    <div class="lecture-tag">Topic 12 - Unit III - Supervised Learning (Regression)</div>
+    <h1>Polynomial Regression</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <section>
+        <h2>Introduction to Polynomial Regression</h2>
+
+        <p>In previous topics, we studied Simple Linear Regression and Multiple Linear Regression. Both techniques assume that the relationship between input variables and the target variable is linear. However, many real-world datasets do not follow a straight-line pattern.</p>
+
+        <p>When the relationship between variables is curved or nonlinear, Linear Regression may produce poor predictions. In such situations, <strong>Polynomial Regression</strong> is used to model complex relationships more effectively.</p>
+
+        <p>Polynomial Regression is a supervised learning algorithm that transforms linear regression into a nonlinear model by introducing polynomial terms of the independent variable.</p>
+
+        <div class="info-box">
+            <strong>Key Idea</strong>
+            <p>Polynomial Regression fits a curved line to the data instead of a straight line, allowing the model to capture nonlinear patterns and trends.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Why Do We Need Polynomial Regression?</h2>
+
+        <p>Not all datasets follow a linear relationship. In many practical situations, the target variable changes at varying rates as the input variable increases.</p>
+
+        <p>Consider the following examples:</p>
+
+        <ul>
+            <li>Population growth over time.</li>
+            <li>Vehicle fuel consumption at different speeds.</li>
+            <li>Employee experience versus salary growth.</li>
+            <li>Advertising expenditure versus sales revenue.</li>
+            <li>Temperature changes throughout the day.</li>
+        </ul>
+
+        <p>In these scenarios, a straight line may not accurately represent the relationship between variables. A curved model often provides better predictions.</p>
+    </section>
+
+    <section>
+        <h2>Understanding Nonlinear Relationships</h2>
+
+        <p>A nonlinear relationship exists when the change in the dependent variable is not proportional to the change in the independent variable.</p>
+
+        <p>For example, salary growth may initially increase rapidly with experience, then slow down after many years. Such behavior cannot be captured effectively by a simple straight-line equation.</p>
+
+        <p>Polynomial Regression solves this problem by introducing additional powers of the input feature.</p>
+    </section>
+
+    <section>
+        <h2>The Polynomial Regression Equation</h2>
+
+        <p>Unlike Simple Linear Regression, Polynomial Regression includes higher-degree terms of the independent variable.</p>
+
+        <p>A second-degree polynomial equation is represented as:</p>
+
+        :contentReference[oaicite:0]{index=0}
+
+        <p>A third-degree polynomial equation is represented as:</p>
+
+        :contentReference[oaicite:1]{index=1}
+
+        <p>Where:</p>
+
+        <ul>
+            <li><strong>y</strong> = Predicted value</li>
+            <li><strong>x</strong> = Independent variable</li>
+            <li><strong>b₀</strong> = Intercept</li>
+            <li><strong>b₁, b₂, b₃</strong> = Coefficients</li>
+        </ul>
+
+        <p>By adding powers such as x², x³, and higher, the model can fit curves instead of straight lines.</p>
+    </section>
+
+    <section>
+        <h2>How Polynomial Regression Works</h2>
+
+        <p>Polynomial Regression does not directly fit a nonlinear model. Instead, it creates additional polynomial features and then applies Linear Regression to those transformed features.</p>
+
+        <p>For example, if the original feature is:</p>
+
+        <table>
+            <tr>
+                <th>x</th>
+            </tr>
+            <tr>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+            </tr>
+        </table>
+
+        <p>After polynomial transformation (degree 2):</p>
+
+        <table>
+            <tr>
+                <th>x</th>
+                <th>x²</th>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>16</td>
+            </tr>
+        </table>
+
+        <p>The regression model then learns from both x and x² to create a curved prediction line.</p>
+    </section>
+
+    <section>
+        <h2>Degree of a Polynomial</h2>
+
+        <p>The degree determines the complexity of the curve fitted by the model.</p>
+
+        <table>
+            <tr>
+                <th>Degree</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Linear Regression (Straight Line)</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Quadratic Curve</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Cubic Curve</td>
+            </tr>
+            <tr>
+                <td>4 and Above</td>
+                <td>More Complex Curves</td>
+            </tr>
+        </table>
+
+        <p>As the degree increases, the model becomes more flexible and can capture increasingly complex relationships.</p>
+
+        <div class="info-box">
+            <strong>Important Observation</strong>
+            <p>Higher-degree polynomials are not always better. Very high degrees may cause the model to memorize training data instead of learning general patterns.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Underfitting and Overfitting</h2>
+
+        <h3 class="sub-title">Underfitting</h3>
+
+        <p>Underfitting occurs when the model is too simple to capture the true relationship in the data.</p>
+
+        <ul>
+            <li>Low model complexity.</li>
+            <li>Poor training performance.</li>
+            <li>Poor prediction accuracy.</li>
+        </ul>
+
+        <h3 class="sub-title">Overfitting</h3>
+
+        <p>Overfitting occurs when the model becomes excessively complex and starts learning noise from the training data.</p>
+
+        <ul>
+            <li>Very high polynomial degree.</li>
+            <li>Excellent training performance.</li>
+            <li>Poor performance on new data.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Model Selection</strong>
+            <p>The goal is to choose a polynomial degree that balances model complexity and prediction accuracy.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Advantages of Polynomial Regression</h2>
+
+        <ul>
+            <li>Captures nonlinear relationships effectively.</li>
+            <li>Provides more accurate predictions when data is curved.</li>
+            <li>Easy to implement using existing regression techniques.</li>
+            <li>Works well for many real-world prediction problems.</li>
+            <li>Extends the power of linear regression models.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Limitations of Polynomial Regression</h2>
+
+        <ul>
+            <li>Can easily overfit if the degree is too high.</li>
+            <li>Sensitive to outliers.</li>
+            <li>Requires careful selection of polynomial degree.</li>
+            <li>May become computationally expensive for large datasets.</li>
+            <li>Less interpretable than simple linear models.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Applications of Polynomial Regression</h2>
+
+        <p>Polynomial Regression is useful whenever data exhibits curved patterns.</p>
+
+        <ul>
+            <li>Population growth prediction.</li>
+            <li>Weather forecasting.</li>
+            <li>Economic trend analysis.</li>
+            <li>Stock market trend modeling.</li>
+            <li>Sales and revenue forecasting.</li>
+            <li>Engineering and scientific research.</li>
+            <li>Medical and biological data analysis.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Implementing Polynomial Regression in Python</h2>
+
+        <p>Scikit-Learn provides tools for generating polynomial features and training a regression model.</p>
+
+        <pre>
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+
+poly = PolynomialFeatures(degree=2)
+
+X_poly = poly.fit_transform(X)
+
+model = LinearRegression()
+
+model.fit(X_poly, y)
+        </pre>
+
+        <p>The <code>PolynomialFeatures</code> class automatically creates additional polynomial terms required for the model.</p>
+    </section>
+
+    <section>
+        <h2>Evaluating Polynomial Regression Models</h2>
+
+        <p>Like other regression algorithms, Polynomial Regression should be evaluated using suitable performance metrics.</p>
+
+        <ul>
+            <li>Mean Absolute Error (MAE)</li>
+            <li>Mean Squared Error (MSE)</li>
+            <li>Root Mean Squared Error (RMSE)</li>
+            <li>R² Score</li>
+        </ul>
+
+        <p>These metrics help determine whether the chosen polynomial degree provides a good balance between accuracy and generalization.</p>
+    </section>
+
+    <section>
+        <h2>Linear Regression vs Polynomial Regression</h2>
+
+        <table>
+            <tr>
+                <th>Linear Regression</th>
+                <th>Polynomial Regression</th>
+            </tr>
+            <tr>
+                <td>Fits a straight line</td>
+                <td>Fits a curve</td>
+            </tr>
+            <tr>
+                <td>Models linear relationships</td>
+                <td>Models nonlinear relationships</td>
+            </tr>
+            <tr>
+                <td>Simpler model</td>
+                <td>More flexible model</td>
+            </tr>
+            <tr>
+                <td>Lower risk of overfitting</td>
+                <td>Higher risk of overfitting</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Polynomial Regression is an extension of Linear Regression used for nonlinear relationships.</li>
+            <li>It creates polynomial features such as x² and x³.</li>
+            <li>The degree of the polynomial controls model complexity.</li>
+            <li>Higher degrees can improve accuracy but may lead to overfitting.</li>
+            <li>Polynomial Regression is widely used when data follows curved patterns.</li>
+            <li>Scikit-Learn provides built-in tools for implementation.</li>
+            <li>Proper evaluation is necessary to select the optimal polynomial degree.</li>
+        </ul>
+    </section>
+
+    <div class="exercise">
+        <div class="exercise-title">🎯 Practice Exercise</div>
+        <p><strong>Objective:</strong> Build and compare Polynomial Regression models with different degrees.</p>
+
+        <ol>
+            <li>Create a dataset representing years of experience and salary.</li>
+            <li>Train a Linear Regression model and observe the results.</li>
+            <li>Create Polynomial Features with degree 2 and degree 3.</li>
+            <li>Train Polynomial Regression models using these features.</li>
+            <li>Compare the prediction curves visually.</li>
+            <li>Evaluate each model using R² Score and RMSE.</li>
+            <li>Determine which degree provides the best balance between accuracy and generalization.</li>
+        </ol>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(10)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(12)">Next Topic</button>
+    </div>
+</div>
+
+        <div class="lecture" id="lec-12">
+            <div class="lecture-tag">Topic 13 - Unit III - Supervised Learning (Regression)</div>
+            <h1>Support Vector Regression (SVR)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Support Vector Regression (SVR)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(11)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(13)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-13">
+            <div class="lecture-tag">Topic 14 - Unit III - Supervised Learning (Regression)</div>
+            <h1>Decision Tree Regression</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Decision Tree Regression</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(12)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(14)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-14">
+            <div class="lecture-tag">Topic 15 - Unit III - Supervised Learning (Regression)</div>
+            <h1>Random Forest Regression</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Random Forest Regression</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(13)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(15)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-15">
+            <div class="lecture-tag">Topic 16 - Unit III - Supervised Learning (Regression)</div>
+            <h1>Evaluating Regression Models</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Evaluating Regression Models</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(14)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(16)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-16">
+            <div class="lecture-tag">Topic 17 - Unit IV - Supervised Learning (Classification)</div>
+            <h1>Logistic Regression</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Logistic Regression</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(17)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-17">
+            <div class="lecture-tag">Topic 18 - Unit IV - Supervised Learning (Classification)</div>
+            <h1>K-Nearest Neighbors (K-NN)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>K-Nearest Neighbors (K-NN)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(16)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(18)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Unit IV - Supervised Learning (Classification)</div>
+            <h1>Support Vector Machines (SVM)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Support Vector Machines (SVM)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(19)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-19">
+            <div class="lecture-tag">Topic 20 - Unit IV - Supervised Learning (Classification)</div>
+            <h1>Naive Bayes</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Naive Bayes</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(18)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(20)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-20">
+            <div class="lecture-tag">Topic 21 - Unit IV - Supervised Learning (Classification)</div>
+            <h1>Decision Tree Classification</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Decision Tree Classification</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(19)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(21)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-21">
+            <div class="lecture-tag">Topic 22 - Unit IV - Supervised Learning (Classification)</div>
+            <h1>Random Forest Classification</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Random Forest Classification</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(20)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(22)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-22">
+            <div class="lecture-tag">Topic 23 - Unit IV - Supervised Learning (Classification)</div>
+            <h1>Evaluating Classification Models</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Evaluating Classification Models</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(21)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(23)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-23">
+            <div class="lecture-tag">Topic 24 - Unit V - Unsupervised Learning</div>
+            <h1>K-Means Clustering</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>K-Means Clustering</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(22)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(24)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-24">
+            <div class="lecture-tag">Topic 25 - Unit V - Unsupervised Learning</div>
+            <h1>Hierarchical Clustering</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Hierarchical Clustering</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(23)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(25)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-25">
+            <div class="lecture-tag">Topic 26 - Unit V - Unsupervised Learning</div>
+            <h1>Principal Component Analysis (PCA)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Principal Component Analysis (PCA)</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(24)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(26)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-26">
+            <div class="lecture-tag">Topic 27 - Unit VI - Model Selection & Advanced</div>
+            <h1>K-Fold Cross Validation</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>K-Fold Cross Validation</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(25)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(27)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-27">
+            <div class="lecture-tag">Topic 28 - Unit VI - Model Selection & Advanced</div>
+            <h1>Hyperparameter Tuning</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Hyperparameter Tuning</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(26)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(28)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-28">
+            <div class="lecture-tag">Topic 29 - Unit VI - Model Selection & Advanced</div>
+            <h1>Intro to Neural Networks</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Intro to Neural Networks</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(27)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(29)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-29">
+            <div class="lecture-tag">Topic 30 - Unit VI - Model Selection & Advanced</div>
+            <h1>Model Deployment Overview</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Syllabus Topic</span>
+            </div>
+            <div class="box info">
+                <div class="box-title">Placeholder</div>
+                <p>Content for <strong>Model Deployment Overview</strong> goes here.</p>
+            </div>
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(28)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+        </div></div></div><script>
+        const titles = [
+            "What is Machine Learning?",
+            "Types of Machine Learning",
+            "Supervised vs. Unsupervised",
+            "Reinforcement Learning Overview",
+            "Setting up the ML Environment",
+            "Handling Missing Data",
+            "Feature Scaling",
+            "Categorical Data Encoding",
+            "Splitting Data (Train/Test)",
+            "Simple Linear Regression",
+            "Multiple Linear Regression",
+            "Polynomial Regression",
+            "Support Vector Regression (SVR)",
+            "Decision Tree Regression",
+            "Random Forest Regression",
+            "Evaluating Regression Models",
+            "Logistic Regression",
+            "K-Nearest Neighbors (K-NN)",
+            "Support Vector Machines (SVM)",
+            "Naive Bayes",
+            "Decision Tree Classification",
+            "Random Forest Classification",
+            "Evaluating Classification Models",
+            "K-Means Clustering",
+            "Hierarchical Clustering",
+            "Principal Component Analysis (PCA)",
+            "K-Fold Cross Validation",
+            "Hyperparameter Tuning",
+            "Intro to Neural Networks",
+            "Model Deployment Overview"
+        ];
+
+        initLessons(titles);
+    </script>
+  <footer id="footer-grid">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>C <span style="color:#60a5fa">T</span></h3>
+          <p>Learn to code for free. Quality programming education for everyone.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Courses</h3>
+          <ul>
+            <li><a href="../lessons/python.html">Python</a></li>
+            <li><a href="../lessons/machine-learning.html">Machine Learning</a></li>
+            <li><a href="../lessons/c++.html">C++</a></li>
+            <li><a href="../lessons/html.html">HTML</a></li>
+            <li><a href="../lessons/css.html">CSS</a></li>
+            <li><a href="../lessons/java.html">Java</a></li>
+            <li><a href="../lessons/javascript.html">JavaScript</a></li>
+            <li><a href="../lessons/c.html">C Language</a></li>
+            <li><a href="../lessons/cc.html">C#</a></li>
+            <li><a href="../lessons/sql.html">SQL</a></li>
+            <li><a href="../lessons/r.html">R</a></li>
+            <li><a href="../lessons/bash.html">Bash</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Code Tutorium. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

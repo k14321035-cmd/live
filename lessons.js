@@ -45,6 +45,9 @@ function initLessons(titles) {
 
     // Initialize theme toggle
     initThemeToggle();
+
+    // Initialize horizontal courses scroll bar
+    initCoursesScroll();
 }
 
 /**
@@ -98,20 +101,23 @@ function showLecture(index) {
         progressFill.style.width = percentage + '%';
     }
     
-    // Update URL hash
-    window.location.hash = 'lec-' + index;
+    // Update URL hash without triggering native browser jump/scroll
+    history.replaceState(null, null, '#lec-' + index);
     
     // Update state
     currentLecture = index;
     
-    // Close mobile sidebar if open
+    // Close mobile sidebar if open — disabled per request to not hide navigation
+    /*
     const sidebar = document.getElementById('sidebar');
     if (sidebar) {
         sidebar.classList.remove('open');
+        document.body.classList.remove('sidebar-open');
     }
+    */
     
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to top — disabled per request to prevent layout jumps/scrolling
+    // window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /**
@@ -168,6 +174,7 @@ function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     if (sidebar) {
         sidebar.classList.toggle('open');
+        document.body.classList.toggle('sidebar-open');
     }
 }
 
@@ -317,6 +324,7 @@ document.addEventListener('click', function(e) {
         
         if (sidebar.classList.contains('open') && !isClickInsideSidebar && !isClickOnToggle) {
             sidebar.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
         }
     }
 });
@@ -326,8 +334,22 @@ document.addEventListener('click', function(e) {
 // ═══════════════════════════════════════════════════════════════════════
 
 // ═══════════════════════════════════════════════════════════════════════
-// COPY CODE
+// COPY CODE — auto-inject buttons into every .code-block
 // ═══════════════════════════════════════════════════════════════════════
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.code-block').forEach(function (block) {
+        const header = block.querySelector('.code-header');
+        if (!header) return;
+        if (header.querySelector('.copy-btn')) return; // already injected
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = '📋 Copy';
+        btn.setAttribute('aria-label', 'Copy code');
+        btn.onclick = function () { copyCode(btn); };
+        header.appendChild(btn);
+    });
+});
 
 /**
  * Copy code block content to clipboard
@@ -389,8 +411,8 @@ function initPersistentCompiler() {
     const type = _detectCompilerType();
     const src  = type === 'web' ? '../web-compiler.html' : '../multi-language-compiler.html';
 
-    const topbar = document.getElementById('topbar');
-    if (!topbar) return;
+    const navSearch = document.querySelector('.lesson-nav-search');
+    if (!navSearch) return;
 
     const btn = document.createElement('button');
     btn.id        = 'compiler-toggle-btn';
@@ -399,12 +421,23 @@ function initPersistentCompiler() {
     btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Compiler';
     btn.onclick   = function() { window.open(src, '_blank'); };
 
-    const shareBtn = topbar.querySelector('.share-btn');
-    shareBtn ? topbar.insertBefore(btn, shareBtn) : topbar.appendChild(btn);
+    navSearch.insertBefore(btn, navSearch.firstChild);
 }
 
-// Inject social links into the lesson footer
+// Inject social links into the lesson footer and move share button
 document.addEventListener('DOMContentLoaded', function() {
+    // Move share button to top nav header search container
+    const shareBtn = document.querySelector('#topbar .share-btn') || document.querySelector('.share-btn');
+    const navSearch = document.querySelector('.lesson-nav-search');
+    if (shareBtn && navSearch) {
+        const searchToggle = document.getElementById('search-toggle');
+        if (searchToggle) {
+            navSearch.insertBefore(shareBtn, searchToggle);
+        } else {
+            navSearch.appendChild(shareBtn);
+        }
+    }
+
     const copyright = document.querySelector('#footer-grid .copyright');
     if (copyright && !document.getElementById('footer-social')) {
         const social = document.createElement('div');
@@ -682,3 +715,107 @@ function _setLessonThemeIcon(btn) {
         ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
         : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
 }
+
+// ═══════════════════════════════════════════════════════════════════════
+// HORIZONTAL COURSES SCROLL BAR
+// ═══════════════════════════════════════════════════════════════════════
+
+function initCoursesScroll() {
+    const mainDiv = document.getElementById('main');
+    if (!mainDiv) return;
+
+    // Define all courses
+    const courses = [
+        { id: 'python', name: 'Python' },
+        { id: 'c++', name: 'C++' },
+        { id: 'html', name: 'HTML' },
+        { id: 'css', name: 'CSS' },
+        { id: 'java', name: 'Java' },
+        { id: 'javascript', name: 'JavaScript' },
+        { id: 'c', name: 'C Language' },
+        { id: 'cc', name: 'C#' },
+        { id: 'typescript', name: 'TypeScript' },
+        { id: 'go', name: 'Go' },
+        { id: 'rust', name: 'Rust' },
+        { id: 'kotlin', name: 'Kotlin' },
+        { id: 'swift', name: 'Swift' },
+        { id: 'php', name: 'PHP' },
+        { id: 'sql', name: 'SQL' },
+        { id: 'r', name: 'R' },
+        { id: 'bash', name: 'Bash' },
+        { id: 'dart', name: 'Dart' },
+        { id: 'ruby', name: 'Ruby' },
+        { id: 'matlab', name: 'MATLAB' },
+        { id: 'visualbasic', name: 'Visual Basic' },
+        { id: 'shell', name: 'Shell' },
+        { id: 'ethicalhacking', name: 'Ethical Hacking' }
+    ];
+
+    const path = window.location.pathname.toLowerCase();
+    
+    // Create DOM structure
+    const bar = document.createElement('div');
+    bar.className = 'courses-scroll-bar';
+    
+    const inner = document.createElement('div');
+    inner.className = 'courses-scroll-inner';
+    
+    courses.forEach(function(course) {
+        const item = document.createElement('a');
+        item.className = 'courses-scroll-item';
+        item.href = course.id + '.html';
+        item.textContent = course.name;
+        
+        const isActive = path.endsWith('/' + course.id + '.html') || path.endsWith('/' + course.id);
+        if (isActive) {
+            item.classList.add('active');
+        }
+        
+        inner.appendChild(item);
+    });
+    
+    const leftBtn = document.createElement('button');
+    leftBtn.className = 'courses-scroll-arrow left';
+    leftBtn.setAttribute('aria-label', 'Scroll left');
+    leftBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>';
+    
+    const rightBtn = document.createElement('button');
+    rightBtn.className = 'courses-scroll-arrow right';
+    rightBtn.setAttribute('aria-label', 'Scroll right');
+    rightBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>';
+    
+    leftBtn.onclick = function() {
+        inner.scrollBy({ left: -220, behavior: 'smooth' });
+    };
+    
+    rightBtn.onclick = function() {
+        inner.scrollBy({ left: 220, behavior: 'smooth' });
+    };
+
+    bar.appendChild(leftBtn);
+    bar.appendChild(inner);
+    bar.appendChild(rightBtn);
+    
+    mainDiv.insertBefore(bar, mainDiv.firstChild);
+
+    function updateArrows() {
+        const scrollLeft = inner.scrollLeft;
+        const maxScroll = inner.scrollWidth - inner.clientWidth;
+        leftBtn.classList.toggle('visible', scrollLeft > 5);
+        rightBtn.classList.toggle('visible', scrollLeft < maxScroll - 5);
+    }
+    
+    inner.addEventListener('scroll', updateArrows);
+    window.addEventListener('resize', updateArrows);
+
+    setTimeout(function() {
+        const activeItem = inner.querySelector('.courses-scroll-item.active');
+        if (activeItem) {
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+        updateArrows();
+    }, 150);
+}
+
+
+
