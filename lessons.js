@@ -9,6 +9,30 @@
   if (t) document.documentElement.setAttribute('data-theme', t);
 })();
 
+// Auth Check: Redirect to home page if not logged in
+(function () {
+  // Inject Supabase CDN script dynamically
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+  script.onload = async () => {
+    try {
+      // Initialize a temporary local Supabase client to fetch the user session
+      const client = supabase.createClient("https://chwxjjeqgubqavwxoyzl.supabase.co", "sb_publishable_NhS83dmkyY3WxVNQLiJD2w_CXtuhWwL");
+      const { data: { session }, error } = await client.auth.getSession();
+      if (error || !session || !session.user) {
+        window.location.href = '../login.html?auth_trigger=login';
+      }
+    } catch (err) {
+      console.error("Auth check failed:", err);
+      window.location.href = '../login.html?auth_trigger=login';
+    }
+  };
+  script.onerror = () => {
+    window.location.href = '../login.html?auth_trigger=login';
+  };
+  document.head.appendChild(script);
+})();
+
 // Global state
 let currentLecture = 0;
 let lectureTitles = [];
@@ -748,7 +772,10 @@ function initCoursesScroll() {
         { id: 'matlab', name: 'MATLAB' },
         { id: 'visualbasic', name: 'Visual Basic' },
         { id: 'shell', name: 'Shell' },
-        { id: 'ethicalhacking', name: 'Ethical Hacking' }
+        { id: 'ethicalhacking', name: 'Ethical Hacking' },
+        { id: 'numpy', name: 'NumPy' },
+        { id: 'machinelearning', name: 'Machine Learning' },
+        { id: 'deeplearning', name: 'Deep Learning' }
     ];
 
     const path = window.location.pathname.toLowerCase();

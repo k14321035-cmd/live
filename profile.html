@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile — Code Tutorium</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="profile.css">
+  
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top">
+  <a href="index.html" class="logo">code<span class="cursor"></span>tutorium</a>
+  <div class="nav-right">
+    <button class="hamburger-btn" id="menu-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="login.html" class="nav-cta hidden" id="nav-auth-btn">log_in()</a>
+    <a href="blog/index.html" class="nav-cta">blog</a>
+  </div>
+</nav>
+
+<!-- PROFILE SECTION -->
+<main class="profile-container">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="profile-avatar-area">
+        <span class="avatar-icon">🧑‍💻</span>
+      </div>
+      <div class="profile-meta-info">
+        <h1 class="profile-title">user_profile()</h1>
+        <p class="profile-subtitle">manage_your_credentials(you)</p>
+      </div>
+    </div>
+    
+    <div id="profile-loading-overlay" class="loading-overlay">
+      <div class="spinner"></div>
+      <p>fetching_profile_data()...</p>
+    </div>
+
+    <form id="profile-form" class="hidden" onsubmit="handleProfileSubmit(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="profile-name">full_name</label>
+          <input type="text" id="profile-name" required placeholder="John Doe">
+        </div>
+        
+        <div class="form-group">
+          <label for="profile-age">age</label>
+          <input type="number" id="profile-age" min="1" max="120" placeholder="21">
+        </div>
+
+        <div class="form-group">
+          <label for="profile-profession">profession</label>
+          <select id="profile-profession" required>
+            <option value="" disabled selected>Select profession...</option>
+            <option value="high_school">High School Student</option>
+            <option value="undergraduate">Undergraduate Student</option>
+            <option value="graduate">Graduate Student</option>
+            <option value="working_professional">Working Professional</option>
+            <option value="self_employed">Self-Employed</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="profile-experience">programming_experience</label>
+          <select id="profile-experience" required>
+            <option value="" disabled selected>Select experience...</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="profile-github">github_username</label>
+          <div class="input-prefix-wrap">
+            <span class="prefix">github.com/</span>
+            <input type="text" id="profile-github" placeholder="username">
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="profile-bio">bio</label>
+          <textarea id="profile-bio" rows="4" placeholder="A short bio about your learning goals..."></textarea>
+        </div>
+      </div>
+
+      <div id="profile-error-msg" class="auth-message error hidden"></div>
+      <div id="profile-success-msg" class="auth-message success hidden"></div>
+
+      <div class="form-actions">
+        <button type="submit" class="enroll-btn" id="profile-submit-btn">
+          <span class="btn-text">save_changes()</span>
+          <span class="btn-loader hidden">⌛</span>
+        </button>
+        <a href="index.html" class="btn-ghost">cancel</a>
+      </div>
+    </form>
+
+    <!-- UNAUTHENTICATED NOTICE -->
+    <div id="profile-unauth-box" class="unauth-box hidden">
+      <div class="unauth-icon">🔒</div>
+      <h2 class="unauth-title">authentication_required()</h2>
+      <p class="unauth-text">You must be signed in to access and edit your learning profile details.</p>
+      <div class="unauth-actions">
+        <a href="login.html" class="enroll-btn">log_in()</a>
+        <a href="index.html" class="btn-ghost">back_home</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="profile-footer">
+  <p>© 2026 Code Tutorium. All rights reserved.</p>
+</footer>
+
+
+<!-- MOBILE NAV -->
+<div id="mobile-nav-overlay" class="mobile-nav-overlay" onclick="if(event.target===this)toggleMenu()">
+  <nav class="mobile-nav-panel">
+    <div class="mobile-nav-top">
+      <a href="index.html" class="logo">code<span class="cursor"></span>tutorium</a>
+      <button class="menu-close-btn" onclick="toggleMenu()">✕</button>
+    </div>
+    <p class="mobile-nav-section-label" style="margin-top:1rem;">// account</p>
+    <div class="mobile-nav-auth" id="mobile-nav-auth" style="margin-top:1rem;">
+      <a href="login.html" class="nav-cta" style="width: 100%; text-align: center; display: block;" onclick="toggleMenu();">log_in()</a>
+    </div>
+  </nav>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-auth.js"></script>
+<script src="profile.js"></script>
+
+</body>
+</html>

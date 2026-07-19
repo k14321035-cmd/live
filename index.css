@@ -227,3 +227,205 @@
     .hero{grid-template-columns:1fr; padding-top:3rem;}
     .footer-grid{grid-template-columns:repeat(2,1fr);}
   }
+
+  /* ===== AUTH MODAL & FORM ===== */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: left;
+  }
+  .form-group label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+  .form-group input {
+    background: var(--bg-raised-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 0.9rem;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+  }
+  .form-group input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+  .auth-message {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .auth-message.error {
+    background: rgba(255, 92, 92, 0.08);
+    color: var(--eth-a);
+    border: 1px solid rgba(255, 92, 92, 0.15);
+  }
+  .auth-message.success {
+    background: rgba(40, 200, 64, 0.08);
+    color: #28c840;
+    border: 1px solid rgba(40, 200, 64, 0.15);
+  }
+  
+  /* ===== DROPDOWN MENU ===== */
+  .nav-user-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 0.5rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    z-index: 70;
+    overflow: hidden;
+  }
+  .dropdown-menu.open {
+    display: block;
+    animation: fadeIn 0.15s ease-out;
+  }
+  .dropdown-email {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    word-break: break-all;
+  }
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.7rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    background: none;
+    border: none;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .dropdown-item:hover {
+    background: var(--bg-raised-2);
+    color: var(--accent);
+  }
+  .dropdown-divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Spacing Utilities */
+  .mt-1 {
+    margin-top: 1rem !important;
+  }
+  .mt-2 {
+    margin-top: 1.5rem !important;
+  }
+
+  /* Modal & Card Form Custom Select */
+  .modal-body select, .auth-page-card select {
+    background: var(--bg-raised-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 0.9rem;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%235a6070' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+  }
+  .modal-body select:focus, .auth-page-card select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+
+  /* Standalone Auth Pages Layout */
+  .auth-page-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+  }
+  .auth-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    background: radial-gradient(circle at top, rgba(96, 165, 250, 0.03) 0%, transparent 70%);
+  }
+  .auth-page-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 440px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
+  .auth-page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .auth-icon {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .auth-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .auth-subtitle {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .auth-switch-box {
+    margin-top: 1.8rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .auth-switch-box a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.3rem;
+    transition: color 0.15s;
+  }
+  .auth-switch-box a:hover {
+    color: var(--text);
+  }

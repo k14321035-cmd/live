@@ -88,7 +88,7 @@
     <button class="hamburger-btn" id="menu-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
-    <a href="#" class="nav-cta">sign_in()</a>
+    <a href="login.html" class="nav-cta" id="nav-auth-btn">log_in()</a>
     <a href="blog/index.html" class="nav-cta">blog</a>
   </div>
 </nav>
@@ -268,8 +268,17 @@
     </div>
     <p class="mobile-nav-section-label">// all courses</p>
     <div class="mobile-nav-courses" id="mobile-nav-courses"></div>
+    <p class="mobile-nav-section-label" style="margin-top:2rem;">// account</p>
+    <div class="mobile-nav-auth" id="mobile-nav-auth" style="margin-top:1rem;">
+      <a href="login.html" class="nav-cta" style="width: 100%; text-align: center; display: block;" onclick="toggleMenu();">log_in()</a>
+    </div>
   </nav>
 </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-auth.js"></script>
 <script src="index.js"></script>
 
 </body>
