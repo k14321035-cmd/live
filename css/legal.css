@@ -1,0 +1,226 @@
+/**
+ * Code Tutorium - Legal and Info Pages Stylesheet
+ * Used by about.html, contact.html, privacy.html, and terms.html
+ */
+
+.legal-page {
+  padding: 5rem 1.5rem;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.legal-page h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.last-updated {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+
+.legal-section {
+  margin-bottom: 3rem;
+}
+
+.legal-section h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.legal-section h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--text);
+}
+
+.legal-section p {
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  font-size: 1.02rem;
+}
+
+.legal-section ul, 
+.legal-section ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal-section li {
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.65;
+  margin-bottom: 0.6rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.legal-section a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent);
+  transition: all 0.15s ease;
+}
+
+.legal-section a:hover {
+  color: var(--text);
+  border-bottom-style: solid;
+}
+
+/* Values Grid (About Us) */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.8rem;
+}
+
+.value-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.8rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.value-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--accent);
+}
+
+.value-card p {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Contact Page Styles */
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.8rem;
+}
+
+.contact-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.8rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.contact-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--accent);
+}
+
+.contact-card p {
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.contact-link {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed var(--accent);
+  transition: all 0.15s ease;
+}
+
+.contact-link:hover {
+  color: var(--text);
+  border-bottom-style: solid;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.8rem;
+}
+
+.faq-item {
+  background: var(--bg-raised-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.faq-item h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.faq-item p {
+  font-size: 0.98rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 3rem 1.2rem;
+  }
+  .legal-page h1 {
+    font-size: 2.4rem;
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}

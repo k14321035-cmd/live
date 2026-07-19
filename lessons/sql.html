@@ -72,8 +72,8 @@
                     </button>
                     <div class="lesson-mega-dropdown">
                        <div class="lesson-mega-grid">
-                            <a href="python" class="lesson-mega-link ">Python</a>
-                            <a href="c++" class="lesson-mega-link active">C++</a>
+                            <a href="python" class="lesson-mega-link">Python</a>
+                            <a href="c++" class="lesson-mega-link">C++</a>
                             <a href="html" class="lesson-mega-link">HTML</a>
                             <a href="css" class="lesson-mega-link">CSS</a>
                             <a href="java" class="lesson-mega-link">Java</a>
@@ -86,7 +86,7 @@
                             <a href="kotlin" class="lesson-mega-link">Kotlin</a>
                             <a href="swift" class="lesson-mega-link">Swift</a>
                             <a href="php" class="lesson-mega-link">PHP</a>
-                            <a href="sql" class="lesson-mega-link">SQL</a>
+                            <a href="sql" class="lesson-mega-link active">SQL</a>
                             <a href="r" class="lesson-mega-link">R</a>
                             <a href="bash" class="lesson-mega-link">Bash</a>
                             <a href="dart" class="lesson-mega-link">Dart</a>
@@ -95,6 +95,9 @@
                             <a href="visualbasic" class="lesson-mega-link">Visual Basic</a>
                             <a href="shell" class="lesson-mega-link">Shell</a>
                             <a href="ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
+                            <a href="numpy" class="lesson-mega-link">NumPy</a>
+                            <a href="machinelearning" class="lesson-mega-link">Machine Learning</a>
+                            <a href="deeplearning" class="lesson-mega-link">Deep Learning</a>
                         </div>
                     </div>
                 </div>
@@ -107,13 +110,6 @@
 
     <!-- SIDEBAR -->
     <nav id="sidebar">
-        <div class="sidebar-header">
-            <a href="/" class="logo">
-                <span class="logo-icon">🗄️</span>
-                SQL Mastery
-            </a>
-            <p>Complete Course — 16 Lessons</p>
-        </div>
 
         <div class="nav-section">
             <div class="nav-section-label">Fundamentals</div>
@@ -183,10 +179,6 @@
     =============================================================== -->
     <div class="lecture-tag">Lecture 01 · Fundamentals</div>
     <h1>Introduction to SQL &amp; Setup</h1>
-    <div class="lecture-meta">
-        <span class="meta-badge level-beginner">Beginner</span>
-        <span class="meta-badge">~45 min</span>
-    </div>
 
     <!-- ==============================================================
          0️⃣ What is SQL? – Expanded Introduction
@@ -492,7 +484,7 @@ DELETE FROM departments WHERE name = 'Marketing';
     <h3>Why Indexes Matter</h3>
     <ul>
         <li>They are data structures (usually B‑trees) that let the engine locate rows without scanning the whole table.</li>
-        <li>Typical usage: columns in <code>WHERE</code>, <code>JOIN</code>, <code>ORDER BY</b>, <code>GROUP BY</code>.</li>
+        <li>Typical usage: columns in <code>WHERE</code>, <code>JOIN</code>, <code>ORDER BY</code>, <code>GROUP BY</code>.</li>
         <li>Trade‑off: faster reads, slower writes (INSERT/UPDATE) and extra storage.</li>
     </ul>
 
@@ -691,10 +683,6 @@ $res  = $stmt-&gt;fetchAll();</pre>
     ============================================================== -->
     <div class="lecture-tag">Lecture 02 · Fundamentals</div>
     <h1>Basic SELECT Queries</h1>
-    <div class="lecture-meta">
-        <span class="meta-badge level-beginner">Beginner</span>
-        <span class="meta-badge">~40 min</span>
-    </div>
 
     <!-- ==============================================================
          1️⃣ What SELECT Does
@@ -789,11 +777,11 @@ $res  = $stmt-&gt;fetchAll();</pre>
             <tr><th>Function</th><th>Description</th><th>Example</th></tr>
         </thead>
         <tbody>
-            <tr><td><code>COUNT(col)</code></td><td>Number of non‑NULL values</td><td><code>SELECT COUNT(*) FROM orders;</code></tr>
-            <tr><td><code>SUM(col)</code></td><td>Total of numeric column</td><td><code>SELECT SUM(amount) FROM sales;</code></tr>
-            <tr><td><code>AVG(col)</code></td><td>Mean value</td><td><code>SELECT AVG(salary) FROM employees;</code></tr>
-            <tr><td><code>MIN(col)</code></td><td>Smallest value</td><td><code>SELECT MIN(price) FROM products;</code></tr>
-            <tr><td><code>MAX(col)</code></td><td>Largest value</td><td><code>SELECT MAX(price) FROM products;</code></tr>
+            <tr><td><code>COUNT(col)</code></td><td>Number of non‑NULL values</td><td><code>SELECT COUNT(*) FROM orders;</code></td></tr>
+            <tr><td><code>SUM(col)</code></td><td>Total of numeric column</td><td><code>SELECT SUM(amount) FROM sales;</code></td></tr>
+            <tr><td><code>AVG(col)</code></td><td>Mean value</td><td><code>SELECT AVG(salary) FROM employees;</code></td></tr>
+            <tr><td><code>MIN(col)</code></td><td>Smallest value</td><td><code>SELECT MIN(price) FROM products;</code></td></tr>
+            <tr><td><code>MAX(col)</code></td><td>Largest value</td><td><code>SELECT MAX(price) FROM products;</code></td></tr>
         </tbody>
     </table>
 
@@ -1123,10 +1111,6 @@ for r in rows:
     ============================================================== -->
     <div class="lecture-tag">Lecture 03 · Fundamentals</div>
     <h1>Filtering &amp; Sorting</h1>
-    <div class="lecture-meta">
-        <span class="meta-badge level-beginner">Beginner</span>
-        <span class="meta-badge">~45 min</span>
-    </div>
 
     <!-- ==============================================================
          1️⃣ What Is Filtering?
@@ -1149,16 +1133,16 @@ for r in rows:
                 <tr><th>Operator</th><th>Description</th><th>Example</th></tr>
             </thead>
             <tbody>
-                <tr><td><code>=</code></td><td>Equality</td><td><code>price = 199.99</code></tr>
-                <tr><td><code>&lt;&gt; or !=</code></td><td>Inequality</td><td><code>category <> 'Books'</code></tr>
-                <tr><td><code>&gt; &lt; &gt;= &lt;=</code></td><td>Numeric / date comparison</td><td><code>age &gt;= 21</code></tr>
-                <tr><td><code>BETWEEN … AND …</code></td><td>Inclusive range</td><td><code>price BETWEEN 50 AND 150</code></tr>
-                <tr><td><code>IN ( … )</code></td><td>Set membership</td><td><code>status IN ('active','pending')</code></tr>
-                <tr><td><code>LIKE / ILIKE</code></td><td>Pattern matching (wildcards <code>%</code> and <code>_</code>)</td><td><code>email LIKE '%@example.com'</code></tr>
-                <tr><td><code>IS NULL / IS NOT NULL</code></td><td>Null test (cannot use <code>= NULL</code>)</td><td><code>last_login IS NULL</code></tr>
-                <tr><td><code>AND / OR / NOT</code></td><td>Boolean combinators</td><td><code>country = 'USA' AND age &gt;= 18</code></tr>
-                <tr><td><code>EXISTS (sub‑query)</code></td><td>True if sub‑query returns at least one row</td><td><code>WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.id)</code></tr>
-                <tr><td><code>ANY / ALL</code></td><td>Compare to a set of values</td><td><code>salary &gt; ANY (SELECT salary FROM employees WHERE department = 'HR')</code></tr>
+                <tr><td><code>=</code></td><td>Equality</td><td><code>price = 199.99</code></td></tr>
+                <tr><td><code>&lt;&gt; or !=</code></td><td>Inequality</td><td><code>category <> 'Books'</code></td></tr>
+                <tr><td><code>&gt; &lt; &gt;= &lt;=</code></td><td>Numeric / date comparison</td><td><code>age &gt;= 21</code></td></tr>
+                <tr><td><code>BETWEEN … AND …</code></td><td>Inclusive range</td><td><code>price BETWEEN 50 AND 150</code></td></tr>
+                <tr><td><code>IN ( … )</code></td><td>Set membership</td><td><code>status IN ('active','pending')</code></td></tr>
+                <tr><td><code>LIKE / ILIKE</code></td><td>Pattern matching (wildcards <code>%</code> and <code>_</code>)</td><td><code>email LIKE '%@example.com'</code></td></tr>
+                <tr><td><code>IS NULL / IS NOT NULL</code></td><td>Null test (cannot use <code>= NULL</code>)</td><td><code>last_login IS NULL</code></td></tr>
+                <tr><td><code>AND / OR / NOT</code></td><td>Boolean combinators</td><td><code>country = 'USA' AND age &gt;= 18</code></td></tr>
+                <tr><td><code>EXISTS (sub‑query)</code></td><td>True if sub‑query returns at least one row</td><td><code>WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.id)</code></td></tr>
+                <tr><td><code>ANY / ALL</code></td><td>Compare to a set of values</td><td><code>salary &gt; ANY (SELECT salary FROM employees WHERE department = 'HR')</code></td></tr>
             </tbody>
         </table>
     </div>
@@ -1532,10 +1516,6 @@ WHERE salary BETWEEN 50000 AND 60000;</pre><br>
     ============================================================== -->
     <div class="lecture-tag">Lecture 04 · Fundamentals</div>
     <h1>Joins – Combining Data From Multiple Tables</h1>
-    <div class="lecture-meta">
-        <span class="meta-badge level-beginner">Beginner</span>
-        <span class="meta-badge">~55 min</span>
-    </div>
 
     <!-- ==============================================================
          0️⃣ Why Joins Matter
@@ -1931,10 +1911,6 @@ WHERE u.country = 'USA';</code></pre>
     ============================================================== -->
     <div class="lecture-tag">Lecture 05 · Fundamentals</div>
     <h1>Aggregation &amp; <code>GROUP BY</code></h1>
-    <div class="lecture-meta">
-        <span class="meta-badge level-beginner">Beginner</span>
-        <span class="meta-badge">~50 min</span>
-    </div>
 
     <!-- ==============================================================
          0️⃣ Why Aggregation Is a Core Skill
@@ -2002,14 +1978,14 @@ WHERE u.country = 'USA';</code></pre>
                 <tr><th>Function</th><th>What It Does</th><th>Typical Example</th></tr>
             </thead>
             <tbody>
-                <tr><td><code>COUNT(*)</code></td><td>Counts rows (includes NULLs)</td><td><code>SELECT COUNT(*) FROM products;</code></tr>
-                <tr><td><code>COUNT(col)</code></td><td>Counts non‑NULL values of <code>col</code></td><td><code>SELECT COUNT(email) FROM users;</code></tr>
-                <tr><td><code>SUM(col)</code></td><td>Adds all numeric values</td><td><code>SELECT SUM(stock) FROM products;</code></tr>
-                <tr><td><code>AVG(col)</code></td><td>Average (arithmetic mean)</td><td><code>SELECT AVG(price) FROM products;</code></tr>
-                <tr><td><code>MIN(col)</code></td><td>Smallest value</td><td><code>SELECT MIN(order_date) FROM orders;</code></tr>
-                <tr><td><code>MAX(col)</code></td><td>Largest value</td><td><code>SELECT MAX(price) FROM products;</code></tr>
-                <tr><td><code>STRING_AGG(col, ', ')</code> (Postgres) / <code>GROUP_CONCAT(col SEPARATOR ', ')</code> (MySQL)</td><td>Concatenates strings per group</td><td><code>SELECT country, STRING_AGG(name, ', ') FROM users GROUP BY country;</code></tr>
-                <tr><td><code>JSON_AGG(col)</code> (Postgres)</td><td>Returns a JSON array per group</td><td><code>SELECT JSON_AGG(row_to_json(p)) FROM products p GROUP BY category;</code></tr>
+                <tr><td><code>COUNT(*)</code></td><td>Counts rows (includes NULLs)</td><td><code>SELECT COUNT(*) FROM products;</code></td></tr>
+                <tr><td><code>COUNT(col)</code></td><td>Counts non‑NULL values of <code>col</code></td><td><code>SELECT COUNT(email) FROM users;</code></td></tr>
+                <tr><td><code>SUM(col)</code></td><td>Adds all numeric values</td><td><code>SELECT SUM(stock) FROM products;</code></td></tr>
+                <tr><td><code>AVG(col)</code></td><td>Average (arithmetic mean)</td><td><code>SELECT AVG(price) FROM products;</code></td></tr>
+                <tr><td><code>MIN(col)</code></td><td>Smallest value</td><td><code>SELECT MIN(order_date) FROM orders;</code></td></tr>
+                <tr><td><code>MAX(col)</code></td><td>Largest value</td><td><code>SELECT MAX(price) FROM products;</code></td></tr>
+                <tr><td><code>STRING_AGG(col, ', ')</code> (Postgres) / <code>GROUP_CONCAT(col SEPARATOR ', ')</code> (MySQL)</td><td>Concatenates strings per group</td><td><code>SELECT country, STRING_AGG(name, ', ') FROM users GROUP BY country;</code></td></tr>
+                <tr><td><code>JSON_AGG(col)</code> (Postgres)</td><td>Returns a JSON array per group</td><td><code>SELECT JSON_AGG(row_to_json(p)) FROM products p GROUP BY category;</code></td></tr>
             </tbody>
         </table>
     </div>
@@ -2376,11 +2352,6 @@ GROUP BY country;</code></pre>
 
     <h1>Subqueries & CTEs</h1>
 
-    <div class="lecture-meta">
-        <span class="meta-badge level-intermediate">Intermediate</span>
-        <span class="meta-badge">~60 min</span>
-    </div>
-
     <h2>Introduction to Subqueries</h2>
     <p>A subquery is a query written inside another SQL query. Subqueries allow developers to break complex problems into smaller logical steps.</p>
 
@@ -2641,11 +2612,6 @@ top_customers <span class="kw">AS</span> (
             <div class="lecture" id="lec-6">
     <div class="lecture-tag">Lecture 07 · Core Concepts</div>
     <h1>Data Modification</h1>
-
-    <div class="lecture-meta">
-        <span class="meta-badge level-intermediate">Intermediate</span>
-        <span class="meta-badge">~45 min</span>
-    </div>
 
     <h2>Introduction to Data Modification</h2>
 
@@ -2957,11 +2923,6 @@ top_customers <span class="kw">AS</span> (
 
     <h1>Constraints & Indexes</h1>
 
-    <div class="lecture-meta">
-        <span class="meta-badge level-intermediate">Intermediate</span>
-        <span class="meta-badge">~50 min</span>
-    </div>
-
     <h2>Introduction to Constraints</h2>
     <p>Constraints are rules applied to database tables to ensure data accuracy, consistency, and integrity.</p>
 
@@ -3258,10 +3219,6 @@ top_customers <span class="kw">AS</span> (
                 <div class="lecture" id="lec-8">
                     <div class="lecture-tag">Lecture 09 · Advanced</div>
                     <h1>Transactions & ACID</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~50 min</span>
-                    </div>
 
                     <h2>All or Nothing</h2>
                     <div class="code-block">
@@ -3281,10 +3238,6 @@ top_customers <span class="kw">AS</span> (
                 <div class="lecture" id="lec-9">
                     <div class="lecture-tag">Lecture 10 · Advanced</div>
                     <h1>Stored Procedures</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~60 min</span>
-                    </div>
 
                     <p>Functions and procedures allow you to save SQL logic on the database server.</p>
 
@@ -3298,10 +3251,6 @@ top_customers <span class="kw">AS</span> (
                 <div class="lecture" id="lec-10">
                     <div class="lecture-tag">Lecture 11 · Advanced</div>
                     <h1>Window Functions</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~65 min</span>
-                    </div>
 
                     <h2>Advanced Analytics</h2>
                     <div class="code-block">
@@ -3320,10 +3269,6 @@ top_customers <span class="kw">AS</span> (
                 <div class="lecture" id="lec-11">
                     <div class="lecture-tag">Lecture 12 · Capstone</div>
                     <h1>Capstone Project: E-commerce DB</h1>
-                    <div class="lecture-meta">
-                        <span class="meta-badge level-advanced">Advanced</span>
-                        <span class="meta-badge">~150 min</span>
-                    </div>
 
                     <p>Design and implement a database schema for an e-commerce platform, including products, users, orders, and reviews.</p>
                     <div class="code-block">
@@ -3345,8 +3290,6 @@ top_customers <span class="kw">AS</span> (
             <div class="lecture-tag">Lecture 13 · Advanced</div>
             <h1>Database Design & Normalization</h1>
             <div class="lecture-meta">
-                <span class="meta-badge level-intermediate">Intermediate</span>
-                <span class="meta-badge">~50 min</span>
                 <span class="meta-badge">Requires: Lecture 12</span>
             </div>
             <p><em>Content coming soon...</em></p>
@@ -3361,8 +3304,6 @@ top_customers <span class="kw">AS</span> (
             <div class="lecture-tag">Lecture 14 · Advanced</div>
             <h1>Performance & Query Optimization</h1>
             <div class="lecture-meta">
-                <span class="meta-badge level-advanced">Advanced</span>
-                <span class="meta-badge">~55 min</span>
                 <span class="meta-badge">Requires: Lecture 13</span>
             </div>
             <p><em>Content coming soon...</em></p>
@@ -3377,8 +3318,6 @@ top_customers <span class="kw">AS</span> (
             <div class="lecture-tag">Lecture 15 · Advanced</div>
             <h1>Security & Access Control</h1>
             <div class="lecture-meta">
-                <span class="meta-badge level-advanced">Advanced</span>
-                <span class="meta-badge">~45 min</span>
                 <span class="meta-badge">Requires: Lecture 14</span>
             </div>
             <p><em>Content coming soon...</em></p>
@@ -3393,8 +3332,6 @@ top_customers <span class="kw">AS</span> (
             <div class="lecture-tag">Lecture 16 · Professional</div>
             <h1>Final Project — Enterprise Database</h1>
             <div class="lecture-meta">
-                <span class="meta-badge level-advanced">Advanced</span>
-                <span class="meta-badge">~90 min</span>
                 <span class="meta-badge">Requires: All Previous</span>
             </div>
             <p><em>Content coming soon...</em></p>
