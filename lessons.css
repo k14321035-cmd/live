@@ -540,6 +540,154 @@ ol li { margin-bottom: 0.6rem; }
   flex-shrink: 0;
 }
 
+.blog-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.blog-nav-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.blog-nav-btn:hover {
+  background: var(--primary-subtle);
+  border-color: var(--primary);
+  color: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+/* Projects Dropdown */
+.projects-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.projects-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+
+.projects-dropdown-trigger:hover {
+  background: var(--primary-subtle);
+  border-color: var(--primary);
+  color: var(--primary-light);
+}
+
+.projects-dropdown-trigger svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.projects-dropdown:hover .projects-dropdown-trigger svg.arrow-svg {
+  transform: rotate(180deg);
+}
+
+.projects-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 260px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg), var(--glow);
+  padding: 0.5rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.projects-dropdown:hover .projects-dropdown-menu,
+.projects-dropdown:focus-within .projects-dropdown-menu {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.8rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.projects-dropdown-menu a:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.projects-dropdown-menu .proj-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.projects-dropdown-menu .proj-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.projects-dropdown-menu .proj-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.projects-dropdown-menu .proj-desc {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+.projects-dropdown-menu .dropdown-section-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  font-weight: 600;
+  padding: 0.4rem 0.8rem 0.2rem;
+}
+
+.projects-dropdown-menu .dropdown-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.4rem 0;
+}
+
 .share-btn {
   display: inline-flex;
   align-items: center;
@@ -1201,13 +1349,17 @@ pre {
 #footer-grid {
   background: var(--surface);
   border-top: 1px solid var(--border);
-  margin-left: calc(var(--sidebar-w) + 2.5rem);
+  margin-left: 0;
   padding: 3rem 0 1.5rem;
   transition: background var(--transition-slow), margin var(--transition-slow);
 }
 
+#sidebar ~ #footer-grid {
+  margin-left: calc(var(--sidebar-w) + 2.5rem);
+}
+
 #footer-grid .container {
-  max-width: 860px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2.5rem;
 }
@@ -1355,7 +1507,9 @@ pre {
   .progress-bar-wrap { max-width: 100%; }
 
   .lesson-nav-search .share-btn,
-  .lesson-nav-search .compiler-toggle-btn {
+  .lesson-nav-search .compiler-toggle-btn,
+  .lesson-nav-search .blog-nav-btn,
+  .lesson-nav-search .projects-dropdown-trigger {
     font-size: 0 !important;
     padding: 0.5rem !important;
     min-width: 36px;
@@ -1366,11 +1520,19 @@ pre {
     width: auto !important;
   }
 
+  .lesson-nav-search .projects-dropdown-trigger span,
+  .lesson-nav-search .projects-dropdown-trigger svg.arrow-svg {
+    display: none !important;
+  }
+
   .lesson-nav-search .share-btn svg,
-  .lesson-nav-search .compiler-toggle-btn svg {
+  .lesson-nav-search .compiler-toggle-btn svg,
+  .lesson-nav-search .blog-nav-btn svg,
+  .lesson-nav-search .projects-dropdown-trigger svg:first-child {
     margin: 0 !important;
     width: 16px;
     height: 16px;
+    display: inline-block !important;
   }
 
   .courses-scroll-bar {

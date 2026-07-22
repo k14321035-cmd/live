@@ -141,6 +141,7 @@
   .cta-section h2{font-family:'JetBrains Mono', monospace; font-size:clamp(1.8rem,3.5vw,2.6rem); margin-bottom:1rem;}
   .cta-section h2 em{color:var(--accent); font-style:normal;}
   .cta-section p{color:var(--muted); margin-bottom:2rem;}
+  .cta-btn-large{font-size:1rem; padding:1rem 2.5rem;}
 
   /* ===== APPS ===== */
   .apps-section{border-top:1px solid var(--border); padding:5rem 2.5rem; text-align:center;}
@@ -428,4 +429,161 @@
   }
   .auth-switch-box a:hover {
     color: var(--text);
+  }
+
+  /* Projects Dropdown */
+  .projects-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .projects-dropdown-trigger {
+    font-family:'JetBrains Mono', monospace; font-size:0.82rem; border:1px solid var(--border);
+    padding:0.5rem 1rem; border-radius:6px; color:var(--text); text-decoration:none;
+    transition:border-color .15s, background .15s; background:none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+  }
+  .projects-dropdown-trigger:hover {
+    border-color:var(--accent); background:var(--accent-dim);
+  }
+  .projects-dropdown-trigger svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .projects-dropdown:hover .projects-dropdown-trigger svg.arrow-svg {
+    transform: rotate(180deg);
+  }
+  .projects-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    width: 260px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 0.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .projects-dropdown:hover .projects-dropdown-menu,
+  .projects-dropdown:focus-within .projects-dropdown-menu {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .projects-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+  .projects-dropdown-menu a:hover {
+    background: var(--bg-raised-2);
+    color: var(--text);
+  }
+  .projects-dropdown-menu .proj-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+  .projects-dropdown-menu .proj-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .projects-dropdown-menu .proj-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .projects-dropdown-menu .proj-desc {
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .projects-dropdown-menu .dropdown-section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    font-weight: 600;
+    padding: 0.4rem 0.8rem 0.2rem;
+  }
+  .projects-dropdown-menu .dropdown-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0.4rem 0;
+  }
+
+  /* Responsive Projects Trigger for Mobile */
+  @media (max-width: 600px) {
+    .projects-dropdown-trigger span,
+    .projects-dropdown-trigger svg.arrow-svg {
+      display: none !important;
+    }
+    .projects-dropdown-trigger {
+      padding: 0.5rem;
+      width: 2.3rem;
+      height: 2.3rem;
+      justify-content: center;
+    }
+    .projects-dropdown-trigger svg:first-child {
+      margin: 0 !important;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  /* ===== MOBILE RESPONSIVENESS ===== */
+  @media (max-width: 860px) {
+    nav.top { padding: 0.9rem 1.25rem; }
+    .hero { grid-template-columns: 1fr; padding: 3.5rem 1.25rem 2.5rem; gap: 2.5rem; }
+    .hero-sub { max-width: 100%; }
+    .features { padding: 3rem 1.25rem; }
+    .courses { padding: 1.5rem 1.25rem 2.5rem; }
+    .process { padding: 3rem 1.25rem; }
+    .cta-section { padding: 3rem 1.25rem; }
+    .apps-section { padding: 3rem 1.25rem; }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    footer { padding: 3rem 1.25rem 1.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    nav.top { padding: 0.75rem 1rem; }
+    .logo { font-size: 1.05rem; }
+    .nav-right { gap: 0.5rem; }
+    .nav-cta { padding: 0.4rem 0.65rem; font-size: 0.76rem; }
+    .subheader { padding: 0.6rem 1rem; }
+    .hero { padding: 2.5rem 1rem 2rem; }
+    h1 { font-size: clamp(1.7rem, 6.5vw, 2.4rem); }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 0.8rem 1rem; }
+    .hero-stats { gap: 1rem; justify-content: space-between; }
+    .stat-num { font-size: 1.3rem; }
+    .stat-label { font-size: 0.7rem; }
+    .term-body { padding: 1rem; font-size: 0.85rem; min-height: 180px; }
+    .courses-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .apps-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .copyright { flex-direction: column; text-align: center; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; }
+    .footer-social { justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-cta { display: none !important; }
+    .projects-dropdown-menu { right: -60px; width: 250px; }
   }

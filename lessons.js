@@ -64,6 +64,12 @@ function initLessons(titles) {
     // Initialize persistent compiler panel
     initPersistentCompiler();
 
+    // Initialize blog button
+    initBlogButton();
+
+    // Initialize projects dropdown
+    initProjectsDropdown();
+
     // Initialize search overlay
     initSearch();
 
@@ -446,6 +452,116 @@ function initPersistentCompiler() {
     btn.onclick   = function() { window.open(src, '_blank'); };
 
     navSearch.insertBefore(btn, navSearch.firstChild);
+}
+
+/**
+ * Add a "Blog" or "Lessons" button to the topbar.
+ * Automatically displays "Lessons" on blog pages so users can return to lessons.
+ */
+function initBlogButton() {
+    if (document.getElementById('blog-nav-btn')) return;
+
+    const navSearch = document.querySelector('.lesson-nav-search');
+    if (!navSearch) return;
+
+    const isBlogPage = window.location.pathname.includes('/blog/') || window.location.pathname.endsWith('blog');
+
+    const btn = document.createElement('a');
+    btn.id        = 'blog-nav-btn';
+    btn.className = 'blog-nav-btn';
+
+    if (isBlogPage) {
+        btn.title     = 'Explore lessons & courses';
+        btn.href      = '../lessons/python.html';
+        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Lessons';
+    } else {
+        btn.title     = 'Read our blog';
+        btn.href      = '../blog/index.html';
+        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Blog';
+    }
+
+    const compilerBtn = document.getElementById('compiler-toggle-btn');
+    if (compilerBtn && compilerBtn.nextSibling) {
+        navSearch.insertBefore(btn, compilerBtn.nextSibling);
+    } else {
+        navSearch.appendChild(btn);
+    }
+}
+
+/**
+ * Add a "Completed Projects" dropdown to the topbar.
+ * Called automatically by initLessons() — works on all lesson pages.
+ */
+function initProjectsDropdown() {
+    if (document.getElementById('projects-dropdown')) return;
+
+    const navSearch = document.querySelector('.lesson-nav-search');
+    if (!navSearch) return;
+
+    const container = document.createElement('div');
+    container.id = 'projects-dropdown';
+    container.className = 'projects-dropdown';
+    container.innerHTML = `
+        <button class="projects-dropdown-trigger" title="Completed Projects">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <span>Projects</span>
+            <svg class="arrow-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="projects-dropdown-menu">
+            <div class="dropdown-section-label">Learning Apps</div>
+            <a href="https://play.google.com/store/apps/details?id=com.pymaster.app" target="_blank" rel="noopener">
+                <span class="proj-icon">🐍</span>
+                <div class="proj-info">
+                    <div class="proj-name">Python Master</div>
+                    <div class="proj-desc">Python with interactive exercises</div>
+                </div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.webdev.academy" target="_blank" rel="noopener">
+                <span class="proj-icon">🌐</span>
+                <div class="proj-info">
+                    <div class="proj-name">Web Dev Academy</div>
+                    <div class="proj-desc">HTML, CSS & JS structured course</div>
+                </div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.ccmasterclass.app" target="_blank" rel="noopener">
+                <span class="proj-icon">⚙️</span>
+                <div class="proj-info">
+                    <div class="proj-name">C/C++ Masterclass</div>
+                    <div class="proj-desc">Master C & C++ coding challenges</div>
+                </div>
+            </a>
+            
+            <div class="dropdown-divider"></div>
+            
+            <div class="dropdown-section-label">Completed Projects</div>
+            <a href="https://play.google.com/store/apps/details?id=com.lingolearn.app" target="_blank" rel="noopener">
+                <span class="proj-icon">🗣️</span>
+                <div class="proj-info">
+                    <div class="proj-name">Learn Shona & Hindi</div>
+                    <div class="proj-desc">Interactive language learning</div>
+                </div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.mathelate.app" target="_blank" rel="noopener">
+                <span class="proj-icon">➕</span>
+                <div class="proj-info">
+                    <div class="proj-name">Mathlete</div>
+                    <div class="proj-desc">Play mathematics games</div>
+                </div>
+            </a>
+        </div>
+    `;
+
+    const blogBtn = document.getElementById('blog-nav-btn');
+    if (blogBtn && blogBtn.nextSibling) {
+        navSearch.insertBefore(container, blogBtn.nextSibling);
+    } else {
+        const compilerBtn = document.getElementById('compiler-toggle-btn');
+        if (compilerBtn && compilerBtn.nextSibling) {
+            navSearch.insertBefore(container, compilerBtn.nextSibling);
+        } else {
+            navSearch.appendChild(container);
+        }
+    }
 }
 
 // Inject social links into the lesson footer and move share button
@@ -843,6 +959,13 @@ function initCoursesScroll() {
         updateArrows();
     }, 150);
 }
+
+// Auto-initialize header components on page load
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof initBlogButton === 'function') initBlogButton();
+    if (typeof initProjectsDropdown === 'function') initProjectsDropdown();
+    if (typeof initSearch === 'function') initSearch();
+});
 
 
 
