@@ -78,6 +78,12 @@ function initLessons(titles) {
 
     // Initialize horizontal courses scroll bar
     initCoursesScroll();
+
+    // Initialize copy code buttons
+    initCopyCodeButtons();
+
+    // Restore completed lectures checkmarks
+    restoreCompletedLectures();
 }
 
 /**
@@ -111,6 +117,9 @@ function showLecture(index) {
     } else if (navItems[index]) {
         navItems[index].classList.add('active');
     }
+    
+    // Mark lecture completed & show checkmark
+    markLectureCompleted(index);
     
     // Update breadcrumb
     const breadcrumb = document.getElementById('breadcrumb-current');
@@ -965,7 +974,91 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typeof initBlogButton === 'function') initBlogButton();
     if (typeof initProjectsDropdown === 'function') initProjectsDropdown();
     if (typeof initSearch === 'function') initSearch();
+    if (typeof initCopyCodeButtons === 'function') initCopyCodeButtons();
+    if (typeof restoreCompletedLectures === 'function') restoreCompletedLectures();
 });
+
+/**
+ * 1-Click Copy Code Button Injector
+ */
+function initCopyCodeButtons() {
+    const blocks = document.querySelectorAll('.code-block, pre');
+    blocks.forEach(block => {
+        if (block.querySelector('.copy-code-btn')) return;
+        const pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
+        if (!pre) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-code-btn';
+        btn.type = 'button';
+        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span>';
+
+        btn.onclick = function (e) {
+            e.stopPropagation();
+            const text = pre.innerText || pre.textContent;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Copied!</span>';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span>';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            }
+        };
+
+        if (block.classList.contains('code-block')) {
+            block.style.position = 'relative';
+            block.appendChild(btn);
+        } else {
+            const parent = pre.parentElement;
+            if (parent) {
+                parent.style.position = 'relative';
+                parent.appendChild(btn);
+            }
+        }
+    });
+}
+
+/**
+ * Progress & Completion Checkmarks Tracking
+ */
+function markLectureCompleted(index) {
+    const pageKey = window.location.pathname;
+    try {
+        let completed = JSON.parse(localStorage.getItem('completed_' + pageKey) || '[]');
+        if (!completed.includes(index)) {
+            completed.push(index);
+            localStorage.setItem('completed_' + pageKey, JSON.stringify(completed));
+        }
+        updateCompletedNavItems(completed);
+    } catch (e) {}
+}
+
+function restoreCompletedLectures() {
+    const pageKey = window.location.pathname;
+    try {
+        let completed = JSON.parse(localStorage.getItem('completed_' + pageKey) || '[]');
+        updateCompletedNavItems(completed);
+    } catch (e) {}
+}
+
+function updateCompletedNavItems(completed) {
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach((item, idx) => {
+        if (completed.includes(idx)) {
+            item.classList.add('completed');
+            if (!item.querySelector('.check-icon')) {
+                const check = document.createElement('span');
+                check.className = 'check-icon';
+                check.innerHTML = '✓';
+                check.title = 'Completed';
+                item.appendChild(check);
+            }
+        }
+    });
+}
 
 
 

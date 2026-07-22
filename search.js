@@ -212,8 +212,41 @@ function initSearch() {
     if ((e.key === 'k' || e.key === 'K') && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       box.classList.contains('open') ? closeSearch() : openSearch();
+      return;
     }
-    if (e.key === 'Escape') closeSearch();
+
+    if (!box.classList.contains('open')) return;
+
+    if (e.key === 'Escape') {
+      closeSearch();
+      return;
+    }
+
+    const items = Array.from(list.querySelectorAll('.search-result-item, .search-item'));
+    if (!items.length) return;
+
+    let selectedIndex = items.findIndex(item => item.classList.contains('selected'));
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (selectedIndex >= 0) items[selectedIndex].classList.remove('selected');
+      selectedIndex = (selectedIndex + 1) % items.length;
+      items[selectedIndex].classList.add('selected');
+      items[selectedIndex].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (selectedIndex >= 0) items[selectedIndex].classList.remove('selected');
+      selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+      items[selectedIndex].classList.add('selected');
+      items[selectedIndex].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (selectedIndex >= 0 && items[selectedIndex]) {
+        items[selectedIndex].click();
+      } else if (items[0]) {
+        items[0].click();
+      }
+    }
   });
 }
 
