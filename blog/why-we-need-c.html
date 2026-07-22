@@ -2,6 +2,9 @@
 
 <html lang="en">
 <head>
+  <script src="../lessons.js"></script>
+  <link rel="stylesheet" href="../lessons.css">
+  <script src="blog-auth.js"></script>
   <script>
     (function() {
       const savedTheme = localStorage.getItem('blog-theme') || 'dark';
@@ -59,26 +62,66 @@
 
   <!-- NAVBAR -->
 
-  <nav class="nav" role="navigation" aria-label="Main Navigation">
+      <!-- MEGA NAVIGATION -->
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
 
-<div class="nav-inner">
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9" />
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                        <div class="lesson-mega-grid">
+                            <a href="../lessons/python.html" class="lesson-mega-link">Python</a>
+                            <a href="../lessons/c++.html" class="lesson-mega-link">C++</a>
+                            <a href="../lessons/html.html" class="lesson-mega-link">HTML</a>
+                            <a href="../lessons/css.html" class="lesson-mega-link">CSS</a>
+                            <a href="../lessons/java.html" class="lesson-mega-link">Java</a>
+                            <a href="../lessons/javascript.html" class="lesson-mega-link">JavaScript</a>
+                            <a href="../lessons/c.html" class="lesson-mega-link">C Language</a>
+                            <a href="../lessons/cc.html" class="lesson-mega-link">C#</a>
+                            <a href="../lessons/typescript.html" class="lesson-mega-link">TypeScript</a>
+                            <a href="../lessons/go.html" class="lesson-mega-link">Go</a>
+                            <a href="../lessons/rust.html" class="lesson-mega-link">Rust</a>
+                            <a href="../lessons/kotlin.html" class="lesson-mega-link">Kotlin</a>
+                            <a href="../lessons/swift.html" class="lesson-mega-link">Swift</a>
+                            <a href="../lessons/php.html" class="lesson-mega-link">PHP</a>
+                            <a href="../lessons/sql.html" class="lesson-mega-link">SQL</a>
+                            <a href="../lessons/r.html" class="lesson-mega-link">R</a>
+                            <a href="../lessons/bash.html" class="lesson-mega-link">Bash</a>
+                            <a href="../lessons/dart.html" class="lesson-mega-link">Dart</a>
+                            <a href="../lessons/ruby.html" class="lesson-mega-link">Ruby</a>
+                            <a href="../lessons/matlab.html" class="lesson-mega-link">MATLAB</a>
+                            <a href="../lessons/visualbasic.html" class="lesson-mega-link">Visual Basic</a>
+                            <a href="../lessons/shell.html" class="lesson-mega-link">Shell</a>
+                            <a href="../lessons/ethicalhacking.html" class="lesson-mega-link">Ethical Hacking</a>
+                            <a href="../lessons/numpy.html" class="lesson-mega-link">NumPy</a>
+                            <a href="../lessons/machinelearning.html" class="lesson-mega-link">Machine Learning</a>
+                            <a href="../lessons/deeplearning.html" class="lesson-mega-link">Deep Learning</a>
+                        </div>
+                    </div>
+                </div>
 
-  <a href="../index.html" class="nav-logo">
-    C <span>T</span>
-  </a>
-
-  <div class="nav-links">
-    <a href="../index.html" class="nav-link">Home</a>
-    <a href="../index.html#courses" class="nav-link">Courses</a>
-    <a href="index.html" class="nav-link active">Blog</a>
-  
-
-</div>
-
-</div>
-
-
-  </nav>
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
 
   <div class="page-wrap">
 
@@ -311,6 +354,29 @@
 
   </div>
 
+
+      <!-- Related articles -->
+      <div class="related">
+        <div class="related-title">Related articles</div>
+        <div class="related-grid">
+          <a href="Arrays%20in%20C.html" class="related-card">
+            <div class="related-card-tag">// C</div>
+            <div class="related-card-title">What are Arrays in C?</div>
+          </a>
+          <a href="best.html" class="related-card">
+            <div class="related-card-tag">// Internet</div>
+            <div class="related-card-title">Top 20 Most Popular Websites in the World</div>
+          </a>
+          <a href="diff.html" class="related-card">
+            <div class="related-card-tag">// JavaScript</div>
+            <div class="related-card-title">Difference Between const, let and var in JavaScript</div>
+          </a>
+          <a href="DOM%20in%20HTML.html" class="related-card">
+            <div class="related-card-tag">// HTML</div>
+            <div class="related-card-title">What is the DOM (Document Object Model)?</div>
+          </a>
+        </div>
+      </div>
 </article>
 
 <!-- SIDEBAR -->
@@ -371,28 +437,60 @@
 
   <!-- FOOTER -->
 
-  <footer class="footer">
-
-
-<div class="footer-links">
-
-  <a href="../index.html">Home</a>
-
-  <a href="../index.html#courses">Courses</a>
-
-  <a href="index.html">Blog</a>
-
-  <a href="../about.html">About</a>
-
-  <a href="../privacy.html">Privacy</a>
-
-</div>
-
-<p class="footer-copy">
-  &copy; 2026 Code Tutorium. All rights reserved.
-</p>
-
-
+    <footer id="footer-grid">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>C <span style="color:#60a5fa">T</span></h3>
+          <p>Learn to code for free. Quality programming education for everyone.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Courses</h3>
+          <ul>
+            <li><a href="../lessons/python.html">Python</a></li>
+            <li><a href="../lessons/c++.html">C++</a></li>
+            <li><a href="../lessons/html.html">HTML</a></li>
+            <li><a href="../lessons/css.html">CSS</a></li>
+            <li><a href="../lessons/java.html">Java</a></li>
+            <li><a href="../lessons/javascript.html">JavaScript</a></li>
+            <li><a href="../lessons/c.html">C Language</a></li>
+            <li><a href="../lessons/cc.html">C#</a></li>
+            <li><a href="../lessons/typescript.html">TypeScript</a></li>
+            <li><a href="../lessons/go.html">Go</a></li>
+            <li><a href="../lessons/rust.html">Rust</a></li>
+            <li><a href="../lessons/swift.html">Swift</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>More Courses</h3>
+          <ul>
+            <li><a href="../lessons/kotlin.html">Kotlin</a></li>
+            <li><a href="../lessons/php.html">PHP</a></li>
+            <li><a href="../lessons/sql.html">SQL</a></li>
+            <li><a href="../lessons/r.html">R</a></li>
+            <li><a href="../lessons/bash.html">Bash</a></li>
+            <li><a href="../lessons/dart.html">Dart</a></li>
+            <li><a href="../lessons/ruby.html">Ruby</a></li>
+            <li><a href="../lessons/matlab.html">MATLAB</a></li>
+            <li><a href="../lessons/visualbasic.html">Visual Basic</a></li>
+            <li><a href="../lessons/shell.html">Shell</a></li>
+            <li><a href="../lessons/ethicalhacking.html">Ethical Hacking</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Code Tutorium. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
 
