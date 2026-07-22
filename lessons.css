@@ -363,7 +363,7 @@ ol li { margin-bottom: 0.6rem; }
   top: calc(var(--nav-h) + 40px + 1rem);
   left: 1.25rem;
   width: var(--sidebar-w);
-  height: calc(50vh - var(--nav-h) - 40px - 1rem);
+  height: calc(100vh - var(--nav-h) - 40px - 2.5rem);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -1445,16 +1445,17 @@ pre {
   #sidebar {
     top: calc(var(--nav-h) + 40px);
     left: 0;
+    width: min(300px, 82vw);
     height: calc(100vh - var(--nav-h) - 40px);
     border-radius: 0;
     border: none;
     border-right: 1px solid var(--border);
     transform: translateX(-100%);
-    z-index: 940;
+    z-index: 980;
     box-shadow: var(--shadow-lg);
     padding: 1.5rem 1rem 2rem;
   }
-  #sidebar.open { transform: translateX(0); }
+  #sidebar.open { transform: translateX(0) !important; }
 
   #main {
     margin-left: 0;
@@ -1462,7 +1463,11 @@ pre {
     max-width: 100%;
   }
 
-  #footer-grid { margin-left: 0; }
+  #footer-grid,
+  #sidebar ~ #footer-grid {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
 
   .mobile-menu-btn { display: inline-flex; }
 
@@ -1491,10 +1496,15 @@ pre {
 @media (max-width: 760px) {
   :root { --nav-h: 56px; }
 
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
   .lesson-nav-container { padding: 0 1rem; }
   .lesson-mega-menu { display: none; }
 
-  #main { padding: 1.25rem 1rem 3rem; }
+  #main { padding: 1.25rem 1rem 3rem; width: 100%; max-width: 100vw; box-sizing: border-box; }
 
   .content-column { padding: 1.5rem 1.25rem; }
 
@@ -1566,18 +1576,72 @@ pre {
   }
   .nav-btn { justify-content: center; }
 
+  /* Mobile Footer */
+  #footer-grid,
+  #sidebar ~ #footer-grid {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 2.5rem 0 1.5rem !important;
+  }
+
+  #footer-grid .container {
+    padding: 0 1.25rem !important;
+    max-width: 100% !important;
+  }
+
   .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 1.75rem !important;
   }
-  .footer-col ul {
-    padding: 0;
-  }
-  .copyright {
+
+  .footer-col {
+    display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1rem;
+  }
+
+  .footer-col h3 {
+    text-align: center !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .footer-col p {
+    text-align: center !important;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .footer-col ul {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-col ul li {
+    text-align: center !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .copyright {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1rem !important;
+    padding-top: 1.5rem !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+  }
+
+  .footer-social {
+    justify-content: center !important;
+    width: 100% !important;
+    display: flex !important;
+    gap: 0.6rem !important;
+    margin-top: 0.25rem !important;
   }
 
   .back-to-top { bottom: 1rem; right: 1rem; }
@@ -1586,7 +1650,23 @@ pre {
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.15rem; }
 
-  .code-block pre { font-size: 0.8rem; padding: 1rem 0.85rem; }
+  .code-block pre { font-size: 0.8rem; padding: 1rem 0.85rem; overflow-x: auto; }
+}
+
+@media (max-width: 480px) {
+  #footer-grid .container {
+    padding: 0 1rem !important;
+  }
+  .footer-grid {
+    gap: 1.25rem !important;
+  }
+  .social-link {
+    width: 36px;
+    height: 36px;
+  }
+  .lesson-nav-logo {
+    font-size: 1.2rem;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -1601,7 +1681,7 @@ pre {
     background: rgba(0,0,0,0.5);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
-    z-index: 940;
+    z-index: 975;
   }
 }
 
