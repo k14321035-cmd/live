@@ -975,7 +975,22 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typeof initProjectsDropdown === 'function') initProjectsDropdown();
     if (typeof initSearch === 'function') initSearch();
     if (typeof restoreCompletedLectures === 'function') restoreCompletedLectures();
+    if (typeof wrapTables === 'function') wrapTables();
 });
+
+/**
+ * Auto-wrap tables in responsive scroll wrappers
+ */
+function wrapTables() {
+    document.querySelectorAll('table').forEach(tbl => {
+        const parent = tbl.parentElement;
+        if (!parent || parent.classList.contains('table-wrapper') || parent.classList.contains('tbl-wrap')) return;
+        const wrap = document.createElement('div');
+        wrap.className = 'table-wrapper';
+        parent.insertBefore(wrap, tbl);
+        wrap.appendChild(tbl);
+    });
+}
 
 /**
  * Progress & Completion Checkmarks Tracking
