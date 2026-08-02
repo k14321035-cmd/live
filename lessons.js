@@ -155,8 +155,17 @@ function showLecture(index) {
     }
     */
     
-    // Scroll to top — disabled per request to prevent layout jumps/scrolling
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to top of the newly selected lecture
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (targetLecture) {
+        // Scroll the top of the lecture into view smoothly
+        const topbar = document.getElementById('topbar');
+        if (topbar) {
+            topbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            targetLecture.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
 }
 
 /**
