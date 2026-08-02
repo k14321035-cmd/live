@@ -1,33 +1,22 @@
-/* Shared CSS for privacy policies — updated header to match site variables */
-:root{
-    --bg: #f7f8fa;
-    --text: #14171b;
-    --muted: #5a6070;
-    --border: rgba(0,0,0,0.09);
-    --accent: #2f6fed;
-
-    --surface: #ffffff;
-    --surface2: #eef0f3;
-
-    --text-2: var(--muted);
-    --font-display: 'JetBrains Mono', monospace;
-    --nav-h: 60px;
-    --radius-md: 12px;
-}
+/* Shared CSS for app privacy policies and lesson pages */
+@import url('../lessons.css');
 
 body {
     background-color: var(--bg);
     color: var(--text);
+    overflow-x: hidden;
 }
+
 .privacy-container {
     max-width: 800px;
-    margin: calc(var(--nav-h, 60px) + 40px) auto 40px;
+    margin: calc(var(--nav-h, 60px) + 50px) auto 40px;
     background: var(--surface);
     padding: 40px;
     border-radius: var(--radius-md, 12px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border: 1px solid var(--border);
 }
+
 .privacy-container h1 {
     font-family: var(--font-display);
     color: var(--text);
@@ -35,35 +24,98 @@ body {
     border-bottom: 2px solid var(--border);
     padding-bottom: 20px;
 }
+
 .privacy-container h2 {
     font-family: var(--font-display);
-    color: var(--accent, #60a5fa);
+    color: var(--primary-light, #60a5fa);
     margin-top: 25px;
     font-size: 1.4rem;
 }
+
 .privacy-container .effective-date {
     text-align: center;
     font-style: italic;
-    color: var(--muted);
+    color: var(--text-muted);
     margin-bottom: 30px;
 }
+
 .privacy-container p, .privacy-container li {
     font-size: 1rem;
-    color: var(--text-2, var(--muted));
+    color: var(--text-muted);
+    line-height: 1.6;
 }
+
 .privacy-container ul {
     padding-left: 20px;
 }
+
 .privacy-container .contact-info,
 .privacy-container .highlight {
-    background: var(--surface2);
+    background: var(--surface-2);
     padding: 15px;
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--primary-light, #60a5fa);
+    border-radius: 4px;
     margin-top: 10px;
 }
-@media (max-width: 600px) {
+
+/* App Subheader Courses Navigation */
+.courses-subheader {
+    position: fixed;
+    top: var(--nav-h, 60px);
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: rgba(22, 24, 31, 0.85);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 950;
+    display: flex;
+    align-items: center;
+}
+
+[data-theme="light"] .courses-subheader {
+    background: rgba(244, 246, 252, 0.88);
+}
+
+.courses-subheader-container {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 1rem;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.courses-subheader-container::-webkit-scrollbar {
+    display: none;
+}
+
+.course-link {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 6px;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.course-link:hover {
+    background: var(--primary-subtle);
+    border-color: var(--primary);
+    color: var(--primary-light);
+}
+
+@media (max-width: 760px) {
     .privacy-container {
-        margin: calc(var(--nav-h, 60px) + 20px) 20px 20px;
-        padding: 20px;
+        margin: calc(var(--nav-h, 56px) + 45px) 1rem 2rem;
+        padding: 1.5rem 1rem;
     }
 }
