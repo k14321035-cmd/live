@@ -394,11 +394,11 @@ function updateNavbarState(user) {
         <div class="dropdown-menu" id="dropdown-menu">
           <div class="dropdown-email" id="dropdown-email" title="${cleanEmail}"></div>
           <div class="dropdown-divider"></div>
-          <a href="profile.html" class="dropdown-item" style="text-decoration: none; display: block;">view_profile()</a>
+          <a href="/profile" class="dropdown-item" style="text-decoration: none; display: block;">view_profile()</a>
           <button class="dropdown-item" onclick="handleSignOut()">log_out()</button>
         </div>
       `;
-      const blogBtn = desktopAuthArea.querySelector('a[href="blog/index.html"]');
+      const blogBtn = desktopAuthArea.querySelector('a[href="/blog/index"]');
       if (blogBtn) {
         desktopAuthArea.insertBefore(userDropdown, blogBtn);
       } else {
@@ -422,7 +422,7 @@ function updateNavbarState(user) {
       signInBtn.className = 'nav-cta';
       signInBtn.id = 'nav-auth-btn';
       signInBtn.textContent = 'log_in()';
-      const blogBtn = desktopAuthArea.querySelector('a[href="blog/index.html"]');
+      const blogBtn = desktopAuthArea.querySelector('a[href="/blog/index"]');
       if (blogBtn) {
         desktopAuthArea.insertBefore(signInBtn, blogBtn);
       } else {
@@ -442,12 +442,12 @@ function updateNavbarState(user) {
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.8rem; word-break: break-all; background: var(--bg-raised-2); padding: 0.5rem 0.75rem; border-radius: 6px; border: 1px solid var(--border);">
           email: "${user.email}"
         </div>
-        <a href="profile.html" class="nav-cta" style="width: 100%; text-align: center; display: block; margin-bottom: 0.6rem;" onclick="toggleMenu();">view_profile()</a>
+        <a href="/profile" class="nav-cta" style="width: 100%; text-align: center; display: block; margin-bottom: 0.6rem;" onclick="toggleMenu();">view_profile()</a>
         <button class="nav-cta" style="width: 100%; text-align: center;" onclick="handleSignOut(); toggleMenu();">log_out()</button>
       `;
     } else {
       mobileAuthArea.innerHTML = `
-        <a href="login.html" class="nav-cta" style="width: 100%; text-align: center; display: block;" onclick="toggleMenu();">log_in()</a>
+        <a href="/login" class="nav-cta" style="width: 100%; text-align: center; display: block;" onclick="toggleMenu();">log_in()</a>
       `;
     }
   }
