@@ -5324,11 +5324,92 @@ ResultSet rs = ps.executeQuery();</code></pre>
         <!-- ===================== LECTURE 22 ===================== -->
         <div class="lecture" id="lec-21">
             <div class="lecture-tag">Lecture 22 · Professional</div>
-            <h1>Final Project — Enterprise Java App</h1>
+            <h1>Final Project — Multithreaded Banking & Transaction Engine</h1>
             <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
+                <span class="meta-badge">Enterprise Java</span>
+                <span class="meta-badge">ExecutorService</span>
+                <span class="meta-badge">Thread-Safe Locks</span>
             </div>
-            <p><em>Content coming soon...</em></p>
+
+            <div class="box info">
+                <div class="box-title">Enterprise Capstone Goal</div>
+                <p>
+                    In this capstone, you will design and implement a thread-safe high-throughput financial transaction processing engine. You will apply OOP design patterns, concurrent collections, <code>ReentrantLock</code> for thread synchronization, and Java 8+ Streams for audit reporting.
+                </p>
+            </div>
+
+            <h2>Complete Production Source Code</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">BankSystem.java</span></div>
+<pre><span class="kn">import</span> java.util.*;
+<span class="kn">import</span> java.util.concurrent.*;
+<span class="kn">import</span> java.util.concurrent.locks.*;
+<span class="kn">import</span> java.util.stream.Collectors;
+
+<span class="kd">class</span> <span class="nc">BankAccount</span> {
+    <span class="kd">private</span> <span class="kd">final</span> String accountId;
+    <span class="kd">private</span> <span class="kt">double</span> balance;
+    <span class="kd">private</span> <span class="kd">final</span> ReentrantLock lock = <span class="kw">new</span> ReentrantLock();
+
+    <span class="kd">public</span> BankAccount(String accountId, <span class="kt">double</span> initialBalance) {
+        <span class="kw">this</span>.accountId = accountId;
+        <span class="kw">this</span>.balance = initialBalance;
+    }
+
+    <span class="kd">public</span> String getAccountId() { <span class="kw">return</span> accountId; }
+    <span class="kd">public</span> <span class="kt">double</span> getBalance() { <span class="kw">return</span> balance; }
+
+    <span class="kd">public</span> <span class="kt">boolean</span> transferTo(BankAccount target, <span class="kt">double</span> amount) {
+        <span class="c1">// Prevent deadlock by acquiring locks in deterministic hash code order</span>
+        BankAccount firstLock = <span class="kw">this</span>.accountId.compareTo(target.accountId) &lt; 0 ? <span class="kw">this</span> : target;
+        BankAccount secondLock = <span class="kw">this</span>.accountId.compareTo(target.accountId) &lt; 0 ? target : <span class="kw">this</span>;
+
+        firstLock.lock.lock();
+        <span class="kw">try</span> {
+            secondLock.lock.lock();
+            <span class="kw">try</span> {
+                <span class="kw">if</span> (<span class="kw">this</span>.balance &gt;= amount) {
+                    <span class="kw">this</span>.balance -= amount;
+                    target.balance += amount;
+                    <span class="kw">return</span> <span class="kc">true</span>;
+                }
+                <span class="kw">return</span> <span class="kc">false</span>;
+            } <span class="kw">finally</span> {
+                secondLock.lock.unlock();
+            }
+        } <span class="kw">finally</span> {
+            firstLock.lock.unlock();
+        }
+    }
+}
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BankSystem</span> {
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> main(String[] args) <span class="kd">throws</span> InterruptedException {
+        BankAccount acc1 = <span class="kw">new</span> BankAccount(<span class="s">"ACC-101"</span>, 5000.0);
+        BankAccount acc2 = <span class="kw">new</span> BankAccount(<span class="s">"ACC-102"</span>, 3000.0);
+
+        ExecutorService executor = Executors.newFixedThreadPool(4);
+
+        <span class="c1">// Concurrent transfers executing in parallel</span>
+        executor.submit(() -&gt; acc1.transferTo(acc2, 500.0));
+        executor.submit(() -&gt; acc2.transferTo(acc1, 200.0));
+        executor.submit(() -&gt; acc1.transferTo(acc2, 1000.0));
+
+        executor.shutdown();
+        executor.awaitTermination(5, TimeUnit.SECONDS);
+
+        System.out.println(<span class="s">"=== Final Account Balances ==="</span>);
+        System.out.printf(<span class="s">"Account %s: $%.2f%n"</span>, acc1.getAccountId(), acc1.getBalance());
+        System.out.printf(<span class="s">"Account %s: $%.2f%n"</span>, acc2.getAccountId(), acc2.getBalance());
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Mastery Accomplished</div>
+                <p>Congratulations! You have completed the Java Mastery Course, spanning Core Syntax, OOP Principles, Collections, Multithreading, Enterprise Patterns, and Spring Boot.</p>
+            </div>
+
             <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(20)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>

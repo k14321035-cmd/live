@@ -557,197 +557,24 @@ predictions = model.predict(X_new)</pre>
         <span class="meta-badge">Syllabus Topic</span>
     </div>
 
-    <div class="box info">
-        <div class="box-title">Understanding Learning Approaches</div>
-
-        <p>Machine Learning algorithms learn patterns from data. Depending on whether the training data contains the correct answers (labels) or not, machine learning techniques are broadly divided into two major categories: <strong>Supervised Learning</strong> and <strong>Unsupervised Learning</strong>.</p>
-
-        <p>These two approaches form the foundation of modern machine learning systems and are used in a wide range of real-world applications such as recommendation systems, spam detection, customer segmentation, fraud detection, medical diagnosis, and image recognition.</p>
-
-        <p>The primary difference between them lies in the type of data provided to the learning algorithm during training.</p>
-
-        <hr>
-
-        <h3>What is Supervised Learning?</h3>
-
-        <p><strong>Supervised Learning</strong> is a machine learning technique in which the model is trained using <strong>labeled data</strong>. Labeled data means that every training example contains both an input and the correct output.</p>
-
-        <p>The goal of supervised learning is to learn the relationship between inputs and outputs so that the model can accurately predict outcomes for new data it has never seen before.</p>
-
-        <p>It is called "supervised" because the learning process is guided by known answers, similar to how a teacher guides students by providing questions along with correct solutions.</p>
-
-        <h4>Example</h4>
-
-        <p>Suppose we want to build a machine learning system that predicts whether an email is spam.</p>
-
-        <ul>
-            <li>Email 1 → Spam</li>
-            <li>Email 2 → Not Spam</li>
-            <li>Email 3 → Spam</li>
-            <li>Email 4 → Not Spam</li>
-        </ul>
-
-        <p>The algorithm studies thousands of such examples and learns patterns that distinguish spam emails from legitimate ones.</p>
-
-        <h4>Applications of Supervised Learning</h4>
-
-        <ul>
-            <li>Email spam detection</li>
-            <li>House price prediction</li>
-            <li>Weather forecasting</li>
-            <li>Medical diagnosis</li>
-            <li>Handwriting recognition</li>
-            <li>Sentiment analysis</li>
-            <li>Credit risk assessment</li>
-        </ul>
-
-        <h4>Major Types of Supervised Learning</h4>
-
-        <p><strong>1. Classification</strong></p>
-
-        <p>Classification is used when the output belongs to a specific category or class.</p>
-
-        <p>Examples:</p>
-
-        <ul>
-            <li>Spam or Not Spam</li>
-            <li>Pass or Fail</li>
-            <li>Disease Present or Not Present</li>
-            <li>Cat or Dog Image Recognition</li>
-        </ul>
-
-        <p><strong>2. Regression</strong></p>
-
-        <p>Regression is used when the output is a continuous numerical value.</p>
-
-        <p>Examples:</p>
-
-        <ul>
-            <li>Predicting house prices</li>
-            <li>Predicting temperature</li>
-            <li>Estimating sales revenue</li>
-            <li>Forecasting stock prices</li>
-        </ul>
-
-        <hr>
-
-        <h3>What is Unsupervised Learning?</h3>
-
-        <p><strong>Unsupervised Learning</strong> is a machine learning technique in which the training data does not contain labels or predefined answers.</p>
-
-        <p>The algorithm must independently analyze the data and discover hidden structures, relationships, or patterns without external guidance.</p>
-
-        <p>Unlike supervised learning, there is no teacher providing correct outputs. The model learns by exploring similarities and differences within the dataset.</p>
-
-        <h4>Example</h4>
-
-        <p>Imagine an online shopping company has information about thousands of customers but does not know which customers belong to which category.</p>
-
-        <p>An unsupervised learning algorithm can analyze customer behavior and automatically create groups such as:</p>
-
-        <ul>
-            <li>Frequent buyers</li>
-            <li>Occasional shoppers</li>
-            <li>High-spending customers</li>
-            <li>Discount-focused customers</li>
-        </ul>
-
-        <p>No labels were provided beforehand. The algorithm discovered these patterns on its own.</p>
-
-        <h4>Applications of Unsupervised Learning</h4>
-
-        <ul>
-            <li>Customer segmentation</li>
-            <li>Market basket analysis</li>
-            <li>Recommendation systems</li>
-            <li>Social network analysis</li>
-            <li>Anomaly detection</li>
-            <li>Data compression</li>
-            <li>Pattern discovery</li>
-        </ul>
-
-        <h4>Major Types of Unsupervised Learning</h4>
-
-        <p><strong>1. Clustering</strong></p>
-
-        <p>Clustering groups similar data points together based on shared characteristics.</p>
-
-        <p>Examples include customer grouping, image segmentation, and document categorization.</p>
-
-        <p><strong>2. Association</strong></p>
-
-        <p>Association discovers relationships between different items in a dataset.</p>
-
-        <p>A common example is market basket analysis, where retailers identify products that are frequently purchased together.</p>
-
-        <p>For example:</p>
-
-        <blockquote>
-            Customers who buy bread often buy butter as well.
-        </blockquote>
-
-        <hr>
-
-        <h3>Supervised vs. Unsupervised Learning</h3>
-
-        <table>
-            <tr>
-                <th>Feature</th>
-                <th>Supervised Learning</th>
-                <th>Unsupervised Learning</th>
-            </tr>
-            <tr>
-                <td>Training Data</td>
-                <td>Labeled Data</td>
-                <td>Unlabeled Data</td>
-            </tr>
-            <tr>
-                <td>Correct Answers Available</td>
-                <td>Yes</td>
-                <td>No</td>
-            </tr>
-            <tr>
-                <td>Main Goal</td>
-                <td>Prediction</td>
-                <td>Pattern Discovery</td>
-            </tr>
-            <tr>
-                <td>Human Guidance</td>
-                <td>Required</td>
-                <td>Not Required</td>
-            </tr>
-            <tr>
-                <td>Examples</td>
-                <td>Spam Detection, Price Prediction</td>
-                <td>Customer Segmentation, Clustering</td>
-            </tr>
-        </table>
-
-        <hr>
-
-        <h3>When Should Each Method Be Used?</h3>
-
-        <p>Use <strong>Supervised Learning</strong> when historical data contains known outputs and you want to predict future outcomes.</p>
-
-        <p>Use <strong>Unsupervised Learning</strong> when you have large amounts of data but do not know the categories or relationships within that data.</p>
-
-        <p>In practice, organizations often combine both approaches. For example, customer groups may first be identified using unsupervised learning, and then supervised learning may be used to predict future customer behavior.</p>
-
-        <hr>
-
-        <h3>Key Takeaways</h3>
-
-        <ul>
-            <li>Machine Learning can be broadly categorized into Supervised and Unsupervised Learning.</li>
-            <li>Supervised Learning uses labeled data and learns from known answers.</li>
-            <li>Classification and Regression are the two major supervised learning tasks.</li>
-            <li>Unsupervised Learning works with unlabeled data and discovers hidden patterns.</li>
-            <li>Clustering and Association are common unsupervised learning techniques.</li>
-            <li>Choosing the correct approach depends on the availability of labeled data and the problem being solved.</li>
-        </ul>
-    </div>
-
-    <div class="lecture-nav">
+    <div class="lecture-meta">
+            <span class="meta-badge">Supervised, Unsupervised & Reinforcement</span>
+        </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">Labeled vs Unlabeled Data</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Data Representation</div>
+            <p>Supervised algorithms learn from labeled dataset pairs (X, y), whereas Unsupervised algorithms extract latent patterns directly from feature matrices X.</p>
+        </div>
+        <h2>Key Differences</h2>
+<table>
+    <tr><th>Criteria</th><th>Supervised Learning</th><th>Unsupervised Learning</th></tr>
+    <tr><td>Data Input</td><td>Features + Target Labels (X, y)</td><td>Features Only (X)</td></tr>
+    <tr><td>Task Types</td><td>Regression, Classification</td><td>Clustering, Dimensionality Reduction</td></tr>
+    <tr><td>Goal</td><td>Predict outcomes for unseen data</td><td>Discover hidden patterns/groupings</td></tr>
+</table>
+        <div class="lecture-nav">
         <button class="nav-btn" onclick="showLecture(1)">Previous</button>
         <button class="nav-btn primary" onclick="showLecture(3)">Next Topic</button>
     </div>
@@ -1237,52 +1064,29 @@ print("Machine Learning Environment Ready!")
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
             
-            <div class="box info">
-                <div class="box-title">Why Does Data Go Missing?</div>
-                <p>Welcome to one of the most common headaches in data science and application development! Missing data occurs when no value is stored for a variable in a given observation. This can happen for many reasons: human error during data entry, equipment malfunction, or users simply skipping questions on a form. In programming languages like Python, these gaps often show up as <code>NaN</code> (Not a Number) or <code>None</code>.</p>
-            </div>
+            <div class="lecture-meta">
+            <span class="meta-badge">Imputation Techniques</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Data Cleaning & Imputation</div>
+            <p>Real-world datasets frequently contain missing values (NaNs). Properly handling missing data prevents model crashes and bias.</p>
+        </div>
+        <h2>Using SimpleImputer in Scikit-Learn</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">missing_data.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">from</span> sklearn.impute <span class="kn">import</span> SimpleImputer
 
-            <div class="box info">
-                <div class="box-title">The Problem with Missing Data</div>
-                <p>You cannot simply ignore missing data. Most machine learning algorithms and backend data processing pipelines will throw an error if you attempt to feed them datasets with missing values. Furthermore, ignoring these gaps can lead to biased models, skewed analytics, and inaccurate predictions. We have to explicitly handle them before our data is ready for production.</p>
-            </div>
+<span class="cm"># Create dataset with NaNs</span>
+X = np.array([[1, 2], [np.nan, 3], [7, 6], [4, np.nan]])
 
-            <div class="box info">
-                <div class="box-title">Strategy 1: Deletion</div>
-                <p>The simplest approach is to remove the missing data entirely. However, you should use this approach with caution so you don't lose valuable information.</p>
-                <ul>
-                    <li><strong>Row Deletion (Listwise):</strong> Drop any row that contains a missing value. This is best used when your dataset is very large and the missing values only make up a tiny fraction (e.g., less than 5%).</li>
-                    <li><strong>Column Deletion:</strong> If a specific column is missing a massive amount of its data (e.g., 70% missing), it might be safest to drop the entire feature entirely rather than trying to guess the values.</li>
-                </ul>
-            </div>
-
-            <div class="box info">
-                <div class="box-title">Strategy 2: Imputation</div>
-                <p>Instead of throwing data away, we can try to logically fill in the blanks. This process is called <strong>imputation</strong>.</p>
-                <ul>
-                    <li><strong>Mean / Median / Mode Imputation:</strong> Replace missing values with the average (mean), the middle value (median), or the most frequent value (mode) of that specific column. Median is usually preferred over the mean if your data has extreme outliers.</li>
-                    <li><strong>Constant Imputation:</strong> Replace all missing values with a specific placeholder, such as <code>0</code> for numerical data or <code>"Unknown"</code> for categorical string data.</li>
-                </ul>
-            </div>
-
-            <div class="box info">
-                <div class="box-title">Code Example (Python & Pandas)</div>
-                <p>Here is a quick look at how we handle missing data programmatically using Python's Pandas library, a standard tool for backend data processing.</p>
-                <pre><code>import pandas as pd
-
-# 1. Load the dataset
-df = pd.read_csv('user_data.csv')
-
-# 2. Strategy: Deletion
-# Drop any rows that contain missing values
-df_cleaned = df.dropna()
-
-# 3. Strategy: Imputation
-# Fill missing 'age' values with the column's mean average
-df['age'] = df['age'].fillna(df['age'].mean())</code></pre>
-            </div>
-
-            <div class="lecture-nav">
+<span class="cm"># Impute missing values with column mean</span>
+imputer = SimpleImputer(strategy=<span class="s">'mean'</span>)
+X_clean = imputer.fit_transform(X)
+print(<span class="s">"Cleaned Feature Matrix:
+"</span>, X_clean)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(4)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
             </div>
@@ -1558,50 +1362,29 @@ scaled_data = scaler.fit_transform(data)
                 <span class="meta-badge">Requires: Handling Missing Data</span>
             </div>
             
-            <div class="box info">
-                <div class="box-title">Why Encode Categorical Data?</div>
-                <p>Machine learning models are essentially massive mathematical equations. They excel at crunching numbers, but they cannot inherently understand raw text strings like <code>"Red"</code>, <code>"India"</code>, or <code>"Subscribed"</code>. <strong>Categorical Data Encoding</strong> is the vital preprocessing step where we translate these text-based categories into a numerical format that algorithms can actually process, without losing the underlying meaning of the data.</p>
-            </div>
+            <div class="lecture-meta">
+            <span class="meta-badge">StandardScaler & MinMaxScaler</span>
+        </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">OneHotEncoder & LabelEncoder</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Encoding Non-Numeric Features</div>
+            <p>Machine Learning models require numerical arrays. Categorical variables (strings, categories) must be encoded before model training.</p>
+        </div>
+        <h2>One-Hot vs Label Encoding</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">encoding.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+<span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> OneHotEncoder
 
-            <div class="box info">
-                <div class="box-title">Nominal vs. Ordinal Categories</div>
-                <p>Before we encode, we must understand the <em>type</em> of category we are dealing with. Choosing the wrong encoding method can severely damage your model's accuracy.</p>
-                <ul>
-                    <li><strong>Ordinal Data:</strong> Categories that have a logical, built-in order or ranking. <em>(Example: "Low", "Medium", "High" or "Bachelor's", "Master's", "PhD")</em>.</li>
-                    <li><strong>Nominal Data:</strong> Categories with no inherent mathematical order or ranking. <em>(Example: "Apple", "Banana", "Cherry" or "Punjab", "Maharashtra", "Kerala")</em>.</li>
-                </ul>
-            </div>
-
-            <div class="box info">
-                <div class="box-title">Technique 1: Label / Ordinal Encoding</div>
-                <p>For <strong>Ordinal Data</strong>, we assign a unique integer to each category based on its rank. For instance, we might map "Low" to 0, "Medium" to 1, and "High" to 2. This preserves the hierarchical relationship, allowing the model's logic to understand that "High" is mathematically greater than "Low".</p>
-            </div>
-
-            <div class="box info">
-                <div class="box-title">Technique 2: One-Hot Encoding</div>
-                <p>We absolutely cannot use Label Encoding for <strong>Nominal Data</strong>. If we encode colors as Red=1, Blue=2, and Green=3, the algorithm will incorrectly assume that Green is mathematically "greater" than Red. </p>
-                <p>Instead, we use <strong>One-Hot Encoding</strong>. This technique creates a new binary column (0 or 1) for <em>every</em> unique category. If a row is "Blue", the "is_Blue" column gets a 1, and all other color columns get a 0. This prevents the model from assuming false hierarchies.</p>
-            </div>
-
-            <div class="box info">
-                <div class="box-title">Code Example (Python & Pandas)</div>
-                <p>Here is how you handle both types of encoding using Pandas, setting up your data perfectly for backend processing.</p>
-                <pre><code>import pandas as pd
-
-# 1. Sample Dataset
-data = {'Size': ['Small', 'Medium', 'Large'], 'Color': ['Red', 'Green', 'Blue']}
-df = pd.DataFrame(data)
-
-# 2. Ordinal Encoding (Mapping values manually based on logical rank)
-size_map = {'Small': 1, 'Medium': 2, 'Large': 3}
-df['Size_Encoded'] = df['Size'].map(size_map)
-
-# 3. One-Hot Encoding (Creating dummy binary columns for Nominal data)
-# This will drop the original 'Color' column and create 'Color_Red', 'Color_Green', etc.
-df_encoded = pd.get_dummies(df, columns=['Color'])</code></pre>
-            </div>
-
-            <div class="lecture-nav">
+df = pd.DataFrame({<span class="s">'Color'</span>: [<span class="s">'Red'</span>, <span class="s">'Blue'</span>, <span class="s">'Green'</span>, <span class="s">'Red'</span>]})
+encoder = OneHotEncoder(sparse_output=<span class="kc">False</span>)
+encoded_cols = encoder.fit_transform(df[[<span class="s">'Color'</span>]])
+print(<span class="s">"One-Hot Encrypted Columns:
+"</span>, encoded_cols)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(8)">Next Topic →</button>
             </div>
@@ -2820,11 +2603,33 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Support Vector Regression (SVR)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">train_test_split</span>
+        </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">Ordinary Least Squares</span>
+        </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">Multivariate Regression</span>
+        </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">Non-Linear Curves</span>
+        </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">Kernel Trick & Margin</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Margin-Based Regression</div>
+            <p>SVR fits continuous values within an $\epsilon$-insensitive tube while minimizing margin errors.</p>
+        </div>
+        <h2>SVR Implementation</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">svr.py</span></div>
+<pre><span class="kn">from</span> sklearn.svm <span class="kn">import</span> SVR
+svr = SVR(kernel=<span class="s">'rbf'</span>, C=100, epsilon=0.1)
+svr.fit(X, y)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(11)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(13)">Next Topic</button>
             </div>
@@ -2836,11 +2641,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Decision Tree Regression</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Non-Parametric Splits</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Tree Partitioning</div>
+            <p>Splits data iteratively into localized feature subsets based on Variance Reduction.</p>
+        </div>
+        <h2>DecisionTreeRegressor Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tree_reg.py</span></div>
+<pre><span class="kn">from</span> sklearn.tree <span class="kn">import</span> DecisionTreeRegressor
+tree = DecisionTreeRegressor(max_depth=3).fit(X, y)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(12)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(14)">Next Topic</button>
             </div>
@@ -2852,11 +2666,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Random Forest Regression</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Ensemble Bagging</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Bootstrap Aggregation</div>
+            <p>Combines predictions across dozens of decision trees to eliminate variance and overfitting.</p>
+        </div>
+        <h2>RandomForestRegressor Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">rf_reg.py</span></div>
+<pre><span class="kn">from</span> sklearn.ensemble <span class="kn">import</span> RandomForestRegressor
+rf = RandomForestRegressor(n_estimators=100, random_state=42).fit(X, y)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(13)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(15)">Next Topic</button>
             </div>
@@ -2868,11 +2691,21 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Evaluating Regression Models</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Error Metrics</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Measuring Regression Performance</div>
+            <p>Evaluates regression models using Mean Squared Error (MSE), Root MSE, and R-Squared ($R^2$) score.</p>
+        </div>
+        <h2>Metrics Implementation</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">metrics.py</span></div>
+<pre><span class="kn">from</span> sklearn.metrics <span class="kn">import</span> mean_squared_error, r2_score
+print("MSE:", mean_squared_error(y_true, y_pred))
+print("R2 Score:", r2_score(y_true, y_pred))</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(14)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(16)">Next Topic</button>
             </div>
@@ -2884,11 +2717,21 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Logistic Regression</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Sigmoid Activation</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Binary Classification</div>
+            <p>Logistic Regression maps real-valued linear outputs to probability scores between 0 and 1 via Sigmoid function.</p>
+        </div>
+        <h2>Logistic Regression Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">logistic.py</span></div>
+<pre><span class="kn">from</span> sklearn.linear_model <span class="kn">import</span> LogisticRegression
+clf = LogisticRegression().fit(X_train, y_train)
+probs = clf.predict_proba(X_test)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(15)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(17)">Next Topic</button>
             </div>
@@ -2900,11 +2743,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>K-Nearest Neighbors (K-NN)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Instance-Based Learning</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Distance Voting</div>
+            <p>Classifies data points based on majority voting among the k-closest Euclidean distance neighbors.</p>
+        </div>
+        <h2>K-NN Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">knn.py</span></div>
+<pre><span class="kn">from</span> sklearn.neighbors <span class="kn">import</span> KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=5).fit(X_train, y_train)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(16)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(18)">Next Topic</button>
             </div>
@@ -2916,11 +2768,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Support Vector Machines (SVM)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Max-Margin Hyperplane</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Optimal Hyperplane</div>
+            <p>Finds the decision boundary hyperplane that maximizes the margin distance between target class clusters.</p>
+        </div>
+        <h2>SVC Implementation</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">svm.py</span></div>
+<pre><span class="kn">from</span> sklearn.svm <span class="kn">import</span> SVC
+svc = SVC(kernel=<span class="s">'linear'</span>, C=1.0).fit(X_train, y_train)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(17)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(19)">Next Topic</button>
             </div>
@@ -2932,11 +2793,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Naive Bayes</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Bayes Theorem</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Probabilistic Classifiers</div>
+            <p>Applies Bayes Theorem under the strong assumption of conditional independence between input features.</p>
+        </div>
+        <h2>GaussianNB Implementation</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">naive_bayes.py</span></div>
+<pre><span class="kn">from</span> sklearn.naive_bayes <span class="kn">import</span> GaussianNB
+nb = GaussianNB().fit(X_train, y_train)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(18)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(20)">Next Topic</button>
             </div>
@@ -2948,11 +2818,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Decision Tree Classification</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Gini Impurity & Information Gain</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Entropy Splits</div>
+            <p>Splits data based on Gini Impurity or Information Gain Entropy metrics.</p>
+        </div>
+        <h2>DecisionTreeClassifier Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tree_clf.py</span></div>
+<pre><span class="kn">from</span> sklearn.tree <span class="kn">import</span> DecisionTreeClassifier
+dt = DecisionTreeClassifier(criterion=<span class="s">'gini'</span>, max_depth=4).fit(X_train, y_train)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(19)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(21)">Next Topic</button>
             </div>
@@ -2964,11 +2843,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Random Forest Classification</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Ensemble Voting</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Bagging Ensemble</div>
+            <p>Combines majority votes across an ensemble of individual Decision Trees.</p>
+        </div>
+        <h2>RandomForestClassifier Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">rf_clf.py</span></div>
+<pre><span class="kn">from</span> sklearn.ensemble <span class="kn">import</span> RandomForestClassifier
+rf = RandomForestClassifier(n_estimators=100).fit(X_train, y_train)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(20)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(22)">Next Topic</button>
             </div>
@@ -2980,11 +2868,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Evaluating Classification Models</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Precision, Recall & F1-Score</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Classification Metrics</div>
+            <p>Evaluates classification accuracy using Confusion Matrices, Precision, Recall, F1-Score, and ROC-AUC curves.</p>
+        </div>
+        <h2>Classification Report Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">eval_clf.py</span></div>
+<pre><span class="kn">from</span> sklearn.metrics <span class="kn">import</span> classification_report, confusion_matrix
+print(classification_report(y_test, y_pred))</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(21)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(23)">Next Topic</button>
             </div>
@@ -2996,11 +2893,21 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>K-Means Clustering</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Centroid Clustering</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Unsupervised K-Means</div>
+            <p>Partitions data points into K clusters by iteratively minimizing the sum of squared distances to cluster centroids.</p>
+        </div>
+        <h2>KMeans Implementation</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">kmeans.py</span></div>
+<pre><span class="kn">from</span> sklearn.cluster <span class="kn">import</span> KMeans
+kmeans = KMeans(n_clusters=3, random_state=42).fit(X)
+labels = kmeans.labels_</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(22)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(24)">Next Topic</button>
             </div>
@@ -3012,11 +2919,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Hierarchical Clustering</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Dendrograms</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Agglomerative Clustering</div>
+            <p>Builds a nested tree hierarchy of clusters using Agglomerative bottom-up merging.</p>
+        </div>
+        <h2>AgglomerativeClustering Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">hierarchical.py</span></div>
+<pre><span class="kn">from</span> sklearn.cluster <span class="kn">import</span> AgglomerativeClustering
+agg = AgglomerativeClustering(n_clusters=3).fit(X)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(23)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(25)">Next Topic</button>
             </div>
@@ -3028,11 +2944,22 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Principal Component Analysis (PCA)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Dimensionality Reduction</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Orthogonal Compression</div>
+            <p>Reduces high-dimensional feature spaces while preserving maximum variance along orthogonal principal components.</p>
+        </div>
+        <h2>PCA Implementation</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pca.py</span></div>
+<pre><span class="kn">from</span> sklearn.decomposition <span class="kn">import</span> PCA
+pca = PCA(n_components=2)
+X_reduced = pca.fit_transform(X)
+print("Explained Variance Ratio:", pca.explained_variance_ratio_)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(24)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(26)">Next Topic</button>
             </div>
@@ -3044,11 +2971,21 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>K-Fold Cross Validation</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Cross Validation</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Resampling Technique</div>
+            <p>Splits training data into K equal folds to validate stability across multiple train/val iterations.</p>
+        </div>
+        <h2>cross_val_score Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cross_val.py</span></div>
+<pre><span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> cross_val_score
+scores = cross_val_score(model, X, y, cv=5)
+print("CV Mean Accuracy:", scores.mean())</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(25)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(27)">Next Topic</button>
             </div>
@@ -3060,11 +2997,22 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Hyperparameter Tuning</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">GridSearch</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Optimization Search</div>
+            <p>Searches hyperparameter spaces to discover optimal parameter configurations.</p>
+        </div>
+        <h2>GridSearchCV Implementation</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">grid_search.py</span></div>
+<pre><span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> GridSearchCV
+param_grid = {<span class="s">'C'</span>: [0.1, 1, 10], <span class="s">'kernel'</span>: [<span class="s">'linear'</span>, <span class="s">'rbf'</span>]}
+grid = GridSearchCV(SVC(), param_grid, cv=5).fit(X_train, y_train)
+print("Best Params:", grid.best_params_)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(26)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(28)">Next Topic</button>
             </div>
@@ -3076,11 +3024,20 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Intro to Neural Networks</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Perceptron & MLP</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Multi-Layer Perceptrons</div>
+            <p>Introduces feedforward neural networks and Multi-Layer Perceptrons (MLP).</p>
+        </div>
+        <h2>MLPClassifier Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mlp.py</span></div>
+<pre><span class="kn">from</span> sklearn.neural_network <span class="kn">import</span> MLPClassifier
+mlp = MLPClassifier(hidden_layer_sizes=(64, 32), max_iter=300).fit(X_train, y_train)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(27)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(29)">Next Topic</button>
             </div>
@@ -3092,11 +3049,23 @@ model.fit(X_poly, y)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Model Deployment Overview</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Serialization</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Saving ML Artifacts</div>
+            <p>Serializes trained Scikit-Learn pipelines to disk using Joblib for production inference services.</p>
+        </div>
+        <h2>Joblib Serialization Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">deploy.py</span></div>
+<pre><span class="kn">import</span> joblib
+<span class="cm"># Save model</span>
+joblib.dump(model, <span class="s">'model_pipeline.joblib'</span>)
+<span class="cm"># Load model for production prediction</span>
+loaded_model = joblib.load(<span class="s">'model_pipeline.joblib'</span>)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(28)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
             </div>

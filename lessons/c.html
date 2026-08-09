@@ -174,6 +174,709 @@
         <div class="content-wrapper">
             <div class="content-column">
 
+                
+                <!-- LECTURE 01 -->
+                <div class="lecture active" id="lec-0">
+                    <div class="lecture-tag">Lecture 01 · Basics</div>
+                    <h1>Introduction to C &amp; Setup</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Procedural Programming</span>
+                        <span class="meta-badge">GCC Compiler</span>
+                    </div>
+
+                    <div class="box info">
+                        <div class="box-title">What is C?</div>
+                        <p>
+                            C is a low-level, highly efficient procedural programming language created by Dennis Ritchie in 1972 at Bell Labs to build the Unix operating system. It remains the foundation of operating systems (Linux, Windows kernel), database engines (PostgreSQL, SQLite), embedded devices, and modern runtime compilers.
+                        </p>
+                    </div>
+
+                    <h2>Why Learn C?</h2>
+                    <ul>
+                        <li><strong>Direct Memory Control:</strong> Manage bytes directly with pointers and raw address space.</li>
+                        <li><strong>Extreme Execution Speed:</strong> Compiles directly to native machine instructions without virtual machine overhead.</li>
+                        <li><strong>Base of Modern Languages:</strong> C++, C#, Java, Python, Go, and Rust borrow heavily from C syntax and semantics.</li>
+                    </ul>
+
+                    <h2>First Program: Hello World</h2>
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">hello.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="cm">// Print text to stdout</span>
+    printf(<span class="s">"Hello, World!
+"</span>);
+    <span class="kw">return</span> 0; <span class="cm">// Return 0 indicates successful execution</span>
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 02 -->
+                <div class="lecture" id="lec-1">
+                    <div class="lecture-tag">Lecture 02 · Basics</div>
+                    <h1>Variables &amp; Data Types</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Primitives</span>
+                        <span class="meta-badge">Format Specifiers</span>
+                    </div>
+
+                    <h2>Fundamental Primitive Types</h2>
+                    <table>
+                        <tr><th>Type</th><th>Size (32/64-bit)</th><th>Format Specifier</th><th>Range</th></tr>
+                        <tr><td><code>char</code></td><td>1 Byte</td><td><code>%c</code> / <code>%d</code></td><td>-128 to 127</td></tr>
+                        <tr><td><code>int</code></td><td>4 Bytes</td><td><code>%d</code></td><td>-2,147,483,648 to 2,147,483,647</td></tr>
+                        <tr><td><code>float</code></td><td>4 Bytes</td><td><code>%f</code></td><td>6 decimal digits precision</td></tr>
+                        <tr><td><code>double</code></td><td>8 Bytes</td><td><code>%lf</code></td><td>15 decimal digits precision</td></tr>
+                    </table>
+
+                    <h2>Variable Declarations &amp; Format Printing</h2>
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">variables.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> age = 25;
+    <span class="kt">double</span> salary = 75400.50;
+    <span class="kt">char</span> grade = <span class="st">'A'</span>;
+
+    printf(<span class="s">"Age: %d years
+"</span>, age);
+    printf(<span class="s">"Salary: $%.2lf
+"</span>, salary);
+    printf(<span class="s">"Grade: %c
+"</span>, grade);
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 03 -->
+                <div class="lecture" id="lec-2">
+                    <div class="lecture-tag">Lecture 03 · Basics</div>
+                    <h1>Operators &amp; Expressions</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Arithmetic</span>
+                        <span class="meta-badge">Logical &amp; Relational</span>
+                    </div>
+
+                    <h2>Operators Overview</h2>
+                    <ul>
+                        <li><strong>Arithmetic:</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (modulo returns integer remainder)</li>
+                        <li><strong>Relational:</strong> <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
+                        <li><strong>Logical:</strong> <code>&amp;&amp;</code> (AND), <code>||</code> (OR), <code>!</code> (NOT)</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">operators.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> a = 17, b = 5;
+    printf(<span class="s">"Quotient: %d
+"</span>, a / b);   <span class="cm">// 3 (integer division)</span>
+    printf(<span class="s">"Remainder: %d
+"</span>, a % b);  <span class="cm">// 2</span>
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 04 -->
+                <div class="lecture" id="lec-3">
+                    <div class="lecture-tag">Lecture 04 · Control Flow</div>
+                    <h1>Control Flow — Conditional Branching</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">if / else</span>
+                        <span class="meta-badge">switch / case</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">conditionals.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> score = 85;
+    <span class="kw">if</span> (score &gt;= 90) {
+        printf(<span class="s">"Grade: A
+"</span>);
+    } <span class="kw">else if</span> (score &gt;= 80) {
+        printf(<span class="s">"Grade: B
+"</span>);
+    } <span class="kw">else</span> {
+        printf(<span class="s">"Grade: C
+"</span>);
+    }
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 05 -->
+                <div class="lecture" id="lec-4">
+                    <div class="lecture-tag">Lecture 05 · Control Flow</div>
+                    <h1>Loops &amp; Iteration</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">for loop</span>
+                        <span class="meta-badge">while / do-while</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">loops.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="cm">// For loop iteration</span>
+    <span class="kw">for</span> (<span class="kt">int</span> i = 1; i &lt;= 5; i++) {
+        printf(<span class="s">"Count: %d
+"</span>, i);
+    }
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 06 -->
+                <div class="lecture" id="lec-5">
+                    <div class="lecture-tag">Lecture 06 · Basics</div>
+                    <h1>Functions, Scope &amp; Recursion</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Pass-by-Value</span>
+                        <span class="meta-badge">Recursion</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">recursion.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">long long</span> factorial(<span class="kt">int</span> n) {
+    <span class="kw">if</span> (n &lt;= 1) <span class="kw">return</span> 1;
+    <span class="kw">return</span> n * factorial(n - 1);
+}
+
+<span class="kt">int</span> main() {
+    printf(<span class="s">"Factorial of 5: %lld
+"</span>, factorial(5));
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 07 -->
+                <div class="lecture" id="lec-6">
+                    <div class="lecture-tag">Lecture 07 · Memory &amp; Structures</div>
+                    <h1>Arrays &amp; Multidimensional Matrices</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Contiguous Memory</span>
+                        <span class="meta-badge">2D Matrices</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">matrix.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> matrix[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+    printf(<span class="s">"Matrix[1][2] = %d
+"</span>, matrix[1][2]);
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 08 -->
+                <div class="lecture" id="lec-7">
+                    <div class="lecture-tag">Lecture 08 · Memory &amp; Structures</div>
+                    <h1>Pointers &amp; Memory Addresses</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Addresses &amp; Dereferencing</span>
+                        <span class="meta-badge">Pointer Arithmetic</span>
+                    </div>
+
+                    <div class="box info">
+                        <div class="box-title">Understanding Pointers</div>
+                        <p>
+                            A pointer variable holds the direct memory address of another variable. Using <code>&amp;</code> extracts addresses, and <code>*</code> dereferences addresses to inspect or modify stored memory directly.
+                        </p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pointers.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">void</span> swap(<span class="kt">int</span> *x, <span class="kt">int</span> *y) {
+    <span class="kt">int</span> temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> a = 10, b = 20;
+    swap(&amp;a, &amp;b);
+    printf(<span class="s">"Swapped: a=%d, b=%d
+"</span>, a, b); <span class="cm">// a=20, b=10</span>
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 09 -->
+                <div class="lecture" id="lec-8">
+                    <div class="lecture-tag">Lecture 09 · Memory &amp; Structures</div>
+                    <h1>Strings &amp; Character Arrays</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Null Terminator '\0'</span>
+                        <span class="meta-badge">string.h Functions</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">strings.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;string.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">char</span> msg[50] = <span class="s">"Code Tutorium"</span>;
+    printf(<span class="s">"String length: %zu
+"</span>, strlen(msg));
+    strcat(msg, <span class="s">" - C Course"</span>);
+    printf(<span class="s">"Combined: %s
+"</span>, msg);
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 10 -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · Memory &amp; Structures</div>
+                    <h1>Structures (struct) &amp; Unions</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Custom Types</span>
+                        <span class="meta-badge">Arrow Operator -&gt;</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">structures.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kd">typedef struct</span> {
+    <span class="kt">int</span> id;
+    <span class="kt">char</span> name[50];
+    <span class="kt">double</span> gpa;
+} Student;
+
+<span class="kt">int</span> main() {
+    Student s1 = {101, <span class="s">"Alice"</span>, 3.92};
+    Student *ptr = &amp;s1;
+
+    printf(<span class="s">"Student: %s (ID: %d, GPA: %.2f)
+"</span>, ptr-&gt;name, ptr-&gt;id, ptr-&gt;gpa);
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 11 -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · Memory &amp; Structures</div>
+                    <h1>Dynamic Memory Allocation (malloc, calloc, free)</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Heap Allocation</span>
+                        <span class="meta-badge">Preventing Memory Leaks</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">heap.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;stdlib.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> n = 5;
+    <span class="kt">int</span> *arr = (<span class="kt">int</span>*) malloc(n * <span class="kw">sizeof</span>(<span class="kt">int</span>));
+    <span class="kw">if</span> (!arr) <span class="kw">return</span> 1;
+
+    <span class="kw">for</span> (<span class="kt">int</span> i = 0; i &lt; n; i++) arr[i] = (i + 1) * 10;
+    
+    <span class="kw">for</span> (<span class="kt">int</span> i = 0; i &lt; n; i++) printf(<span class="s">"%d "</span>, arr[i]);
+    printf(<span class="s">"
+"</span>);
+
+    free(arr); <span class="cm">// Free allocated heap block</span>
+    arr = NULL;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 12 -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · Advanced &amp; Systems</div>
+                    <h1>Preprocessor Directives &amp; Macros</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">#define Macros</span>
+                        <span class="meta-badge">Conditional Compilation</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">preprocessor.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kn">#define</span> PI 3.14159
+<span class="kn">#define</span> SQUARE(x) ((x) * (x))
+
+<span class="kt">int</span> main() {
+    printf(<span class="s">"Area of radius 5 circle: %.2f
+"</span>, PI * SQUARE(5));
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 13 -->
+                <div class="lecture" id="lec-12">
+                    <div class="lecture-tag">Lecture 13 · Advanced &amp; Systems</div>
+                    <h1>File Handling (fopen, fread, fwrite, fclose)</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">File I/O</span>
+                        <span class="meta-badge">Binary &amp; Text Modes</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">files.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    FILE *fp = fopen(<span class="s">"log.txt"</span>, <span class="s">"w"</span>);
+    <span class="kw">if</span> (fp == NULL) <span class="kw">return</span> 1;
+
+    fprintf(fp, <span class="s">"System Log Entry: Application started successfully.
+"</span>);
+    fclose(fp);
+    printf(<span class="s">"Data written to log.txt
+"</span>);
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 14 -->
+                <div class="lecture" id="lec-13">
+                    <div class="lecture-tag">Lecture 14 · Advanced &amp; Systems</div>
+                    <h1>Storage Classes (auto, register, static, extern)</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Scope &amp; Lifetime</span>
+                        <span class="meta-badge">Static Variables</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">storage.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">void</span> counter() {
+    <span class="kd">static int</span> count = 0; <span class="cm">// Persists value across calls</span>
+    count++;
+    printf(<span class="s">"Call count: %d
+"</span>, count);
+}
+
+<span class="kt">int</span> main() {
+    counter(); <span class="cm">// 1</span>
+    counter(); <span class="cm">// 2</span>
+    counter(); <span class="cm">// 3</span>
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 15 -->
+                <div class="lecture" id="lec-14">
+                    <div class="lecture-tag">Lecture 15 · Advanced &amp; Systems</div>
+                    <h1>Bitwise Operations &amp; Masking</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Bit Operators</span>
+                        <span class="meta-badge">Bit Shift &amp; Flags</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bitwise.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">unsigned int</span> flags = 1 &lt;&lt; 3; <span class="cm">// Set bit 3 (Value 8)</span>
+    printf(<span class="s">"Bitmask value: %u
+"</span>, flags);
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 16 -->
+                <div class="lecture" id="lec-15">
+                    <div class="lecture-tag">Lecture 16 · Professional</div>
+                    <h1>Final Capstone Project — Dynamic Student Management System</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Dynamic Memory</span>
+                        <span class="meta-badge">File I/O Persistence</span>
+                        <span class="meta-badge">Struct Pointers</span>
+                    </div>
+
+                    <div class="box info">
+                        <div class="box-title">Capstone Overview</div>
+                        <p>
+                            Build a production-level Student Record Management CLI application in C incorporating dynamic array resizing (realloc), binary/text file persistence, pointer manipulation, and interactive menu control.
+                        </p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">student_system.c</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;stdio.h&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;stdlib.h&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;string.h&gt;</span>
+
+<span class="kd">typedef struct</span> {
+    <span class="kt">int</span> id;
+    <span class="kt">char</span> name[50];
+    <span class="kt">float</span> gpa;
+} Student;
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> capacity = 2;
+    <span class="kt">int</span> count = 0;
+    Student *db = (Student*) malloc(capacity * <span class="kw">sizeof</span>(Student));
+
+    <span class="cm">// Add Student 1</span>
+    db[count++] = (Student){1, <span class="s">"John Doe"</span>, 3.85};
+    db[count++] = (Student){2, <span class="s">"Jane Smith"</span>, 3.95};
+
+    printf(<span class="s">"=== Student Database ===
+"</span>);
+    <span class="kw">for</span> (<span class="kt">int</span> i = 0; i &lt; count; i++) {
+        printf(<span class="s">"[%d] %s - GPA: %.2f
+"</span>, db[i].id, db[i].name, db[i].gpa);
+    }
+
+    free(db);
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">Mastery Completed</div>
+                        <p>Congratulations! You have completed the C Language Mastery Course!</p>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+                    </div>
+                </div>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+
+<body>
+
+    <!-- MEGA NAVIGATION -->
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9" />
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                        <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link">Python</a>
+                            <a href="c++" class="lesson-mega-link">C++</a>
+                            <a href="html" class="lesson-mega-link">HTML</a>
+                            <a href="css" class="lesson-mega-link">CSS</a>
+                            <a href="java" class="lesson-mega-link">Java</a>
+                            <a href="javascript" class="lesson-mega-link">JavaScript</a>
+                            <a href="c" class="lesson-mega-link active">C Language</a>
+                            <a href="cc" class="lesson-mega-link">C#</a>
+                            <a href="typescript" class="lesson-mega-link">TypeScript</a>
+                            <a href="go" class="lesson-mega-link">Go</a>
+                            <a href="rust" class="lesson-mega-link">Rust</a>
+                            <a href="kotlin" class="lesson-mega-link">Kotlin</a>
+                            <a href="swift" class="lesson-mega-link">Swift</a>
+                            <a href="php" class="lesson-mega-link">PHP</a>
+                            <a href="sql" class="lesson-mega-link">SQL</a>
+                            <a href="r" class="lesson-mega-link">R</a>
+                            <a href="bash" class="lesson-mega-link">Bash</a>
+                            <a href="dart" class="lesson-mega-link">Dart</a>
+                            <a href="ruby" class="lesson-mega-link">Ruby</a>
+                            <a href="matlab" class="lesson-mega-link">MATLAB</a>
+                            <a href="visualbasic" class="lesson-mega-link">Visual Basic</a>
+                            <a href="shell" class="lesson-mega-link">Shell</a>
+                            <a href="ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
+                            <a href="numpy" class="lesson-mega-link">NumPy</a>
+                            <a href="machinelearning" class="lesson-mega-link">Machine Learning</a>
+                            <a href="deeplearning" class="lesson-mega-link">Deep Learning</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+
+        <div class="nav-section">
+            <div class="nav-section-label">Basics</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Operators & Expressions</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Loops & Iteration</button>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Functions & Scope</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Memory & Structures</div>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Arrays & Matrices</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Pointers & Memory</button>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>Strings & Character Arrays</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>Structures & Unions</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>Dynamic Memory Allocation</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced & Systems</div>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Preprocessor Directives</button>
+            <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>File Handling</button>
+            <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>Storage Classes</button>
+            <button class="nav-item" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Bitwise & Type Casting</button>
+            <button class="nav-item" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Final Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>C Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">Introduction & Setup</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 16</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:6.25%"></div>
+                </div>
+            </div>
+            <button class="share-btn" onclick="copyLectureLink()" title="Copy link to this lecture">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Share
+            </button>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="content-column">
+
                 <!-- LECTURE 01 -->
                 <div class="lecture active" id="lec-0">
                     <div class="lecture-tag">Lecture 01 · Basics</div>

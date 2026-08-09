@@ -190,7 +190,7 @@
             <div class="content-column">
         
 
-```html
+
 <div class="lecture active" id="lec-0">
     <div class="lecture-tag">Topic 01 - Unit I - Introduction to NumPy</div>
     <h1>What is NumPy?</h1>
@@ -439,7 +439,7 @@ Type: &lt;class 'numpy.ndarray'&gt;
         <button class="nav-btn primary" onclick="showLecture(1)">Next Topic</button>
     </div>
 </div>
-```
+
 
 
      <div class="lecture" id="lec-1">
@@ -1055,165 +1055,3103 @@ print(arr)
     </div>
 </div>
 
-        <div class="lecture" id="lec-3">
-            <div class="lecture-tag">Topic 04 - Unit I - Introduction to NumPy</div>
-            <h1>Array Dimensions & Shapes</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Syllabus Topic</span>
-            </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Array Dimensions & Shapes</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(2)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(4)">Next Topic</button>
-            </div>
-        </div>
+<div class="lecture" id="lec-3">
+    <div class="lecture-tag">Topic 04 - Unit I - Introduction to NumPy</div>
+    <h1>Array Dimensions & Shapes</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
 
-        <div class="lecture" id="lec-4">
-            <div class="lecture-tag">Topic 05 - Unit I - Introduction to NumPy</div>
-            <h1>Array Indexing & Slicing</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Syllabus Topic</span>
-            </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Array Indexing & Slicing</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(3)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(5)">Next Topic</button>
-            </div>
-        </div>
+    <div class="box info">
+        <div class="box-title">Understanding Array Dimensions</div>
+        <p>
+            In NumPy, an array can have any number of <strong>dimensions</strong>. Dimensions are also referred to as <strong>axes</strong>. Understanding dimensions is critical because the shape and structure of your data determines how you access, manipulate, and perform calculations on it.
+        </p>
+        <p>
+            A dimension represents a level of depth in the array. A simple list of numbers has one dimension, a table of rows and columns has two dimensions, and a stack of tables has three dimensions. NumPy can work with arrays of any number of dimensions.
+        </p>
+    </div>
 
-        <div class="lecture" id="lec-5">
-            <div class="lecture-tag">Topic 06 - Unit I - Introduction to NumPy</div>
-            <h1>NumPy Data Types</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Syllabus Topic</span>
-            </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>NumPy Data Types</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(4)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
-            </div>
-        </div>
+    <h2>0-D Arrays (Scalars)</h2>
 
-        <div class="lecture" id="lec-6">
-            <div class="lecture-tag">Topic 07 - Unit II - Advanced NumPy Operations</div>
-            <h1>Copy vs View</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Syllabus Topic</span>
-            </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Copy vs View</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(5)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(7)">Next Topic</button>
-            </div>
-        </div>
+    <p>
+        A 0-dimensional array contains a single value. These are also known as <strong>scalars</strong>. Each element inside a regular array is technically a 0-D array.
+    </p>
 
-        <div class="lecture" id="lec-7">
-            <div class="lecture-tag">Topic 08 - Unit II - Advanced NumPy Operations</div>
-            <h1>Array Reshaping</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Syllabus Topic</span>
-            </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Array Reshaping</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(6)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(8)">Next Topic</button>
-            </div>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">scalar.py</span>
         </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
 
-        <div class="lecture" id="lec-8">
-            <div class="lecture-tag">Topic 09 - Unit II - Advanced NumPy Operations</div>
-            <h1>Iterating Arrays</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Syllabus Topic</span>
-            </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Iterating Arrays</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(7)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(9)">Next Topic</button>
-            </div>
+<span class="cm"># Create a 0-D array (scalar)</span>
+arr = np.array(42)
+
+print("Array:", arr)
+print("Dimensions:", arr.ndim)
+print("Shape:", arr.shape)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Array: 42
+Dimensions: 0
+Shape: ()
+</pre>
+    </div>
+
+    <h2>1-D Arrays (Vectors)</h2>
+
+    <p>
+        A 1-dimensional array is the most common type. It is simply a collection of elements arranged in a single row, similar to a Python list. In mathematics, a 1-D array is called a <strong>vector</strong>.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">vector.py</span>
         </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
 
-        <div class="lecture" id="lec-9">
-            <div class="lecture-tag">Topic 10 - Unit II - Advanced NumPy Operations</div>
-            <h1>Joining & Splitting Arrays</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Syllabus Topic</span>
-            </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Joining & Splitting Arrays</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(8)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(10)">Next Topic</button>
-            </div>
+<span class="cm"># Create a 1-D array</span>
+arr = np.array([10, 20, 30, 40, 50])
+
+print("Array:", arr)
+print("Dimensions:", arr.ndim)
+print("Shape:", arr.shape)
+print("Size:", arr.size)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Array: [10 20 30 40 50]
+Dimensions: 1
+Shape: (5,)
+Size: 5
+</pre>
+    </div>
+
+    <h2>2-D Arrays (Matrices)</h2>
+
+    <p>
+        A 2-dimensional array has rows and columns, forming a table-like structure. In mathematics, this is called a <strong>matrix</strong>. 2-D arrays are extremely common in data science for storing datasets where each row represents a record and each column represents a feature.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">matrix.py</span>
         </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
 
-        <div class="lecture" id="lec-10">
+<span class="cm"># Create a 2-D array (matrix)</span>
+arr = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print("Array:\n", arr)
+print("Dimensions:", arr.ndim)
+print("Shape:", arr.shape)
+print("Size:", arr.size)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Array:
+ [[1 2 3]
+ [4 5 6]]
+Dimensions: 2
+Shape: (2, 3)
+Size: 6
+</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Reading the Shape</div>
+        <p>
+            The shape <code>(2, 3)</code> means 2 rows and 3 columns. Always read shape tuples from the outermost dimension to the innermost: <strong>rows first, then columns</strong>.
+        </p>
+    </div>
+
+    <h2>3-D Arrays (Tensors)</h2>
+
+    <p>
+        A 3-dimensional array can be thought of as a collection of 2-D matrices stacked together. These are commonly used in <strong>image processing</strong> (height × width × color channels) and <strong>deep learning</strong>.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">tensor.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># Create a 3-D array</span>
+arr = np.array([
+    [[1, 2], [3, 4]],
+    [[5, 6], [7, 8]]
+])
+
+print("Array:\n", arr)
+print("Dimensions:", arr.ndim)
+print("Shape:", arr.shape)
+print("Size:", arr.size)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Array:
+ [[[1 2]
+  [3 4]]
+
+ [[5 6]
+  [7 8]]]
+Dimensions: 3
+Shape: (2, 2, 2)
+Size: 8
+</pre>
+    </div>
+
+    <h2>Key Array Attributes</h2>
+
+    <p>
+        NumPy provides several useful attributes to inspect any array:
+    </p>
+
+    <div class="box info">
+        <div class="box-title">Array Inspection Attributes</div>
+        <table>
+            <tr>
+                <th>Attribute</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><code>ndim</code></td>
+                <td>Number of dimensions (axes)</td>
+                <td><code>arr.ndim</code> → 2</td>
+            </tr>
+            <tr>
+                <td><code>shape</code></td>
+                <td>Tuple of dimension sizes</td>
+                <td><code>arr.shape</code> → (2, 3)</td>
+            </tr>
+            <tr>
+                <td><code>size</code></td>
+                <td>Total number of elements</td>
+                <td><code>arr.size</code> → 6</td>
+            </tr>
+            <tr>
+                <td><code>dtype</code></td>
+                <td>Data type of elements</td>
+                <td><code>arr.dtype</code> → int64</td>
+            </tr>
+            <tr>
+                <td><code>itemsize</code></td>
+                <td>Size of each element in bytes</td>
+                <td><code>arr.itemsize</code> → 8</td>
+            </tr>
+            <tr>
+                <td><code>nbytes</code></td>
+                <td>Total memory used in bytes</td>
+                <td><code>arr.nbytes</code> → 48</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Creating Higher-Dimensional Arrays</h2>
+
+    <p>
+        You can create an array with any number of dimensions using the <code>ndmin</code> parameter:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">ndmin.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># Force 5 dimensions</span>
+arr = np.array([1, 2, 3, 4], ndmin=5)
+
+print("Array:", arr)
+print("Dimensions:", arr.ndim)
+print("Shape:", arr.shape)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Array: [[[[[1 2 3 4]]]]]
+Dimensions: 5
+Shape: (1, 1, 1, 1, 4)
+</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Real-World Applications</div>
+        <p>
+            <strong>1-D arrays</strong> are used for time series data (stock prices, temperatures).<br>
+            <strong>2-D arrays</strong> are used for spreadsheets, tables, and grayscale images.<br>
+            <strong>3-D arrays</strong> are used for color images (RGB) and video frames.<br>
+            <strong>4-D+ arrays</strong> are used in deep learning for batches of images and complex scientific simulations.
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li>NumPy arrays can have 0, 1, 2, 3, or more dimensions.</li>
+        <li>Use <code>ndim</code> to check the number of dimensions.</li>
+        <li>Use <code>shape</code> to see the size of each dimension as a tuple.</li>
+        <li>Use <code>size</code> to get the total number of elements.</li>
+        <li>Use <code>ndmin</code> to create arrays with a specific minimum number of dimensions.</li>
+        <li>0-D = scalar, 1-D = vector, 2-D = matrix, 3-D+ = tensor.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Create a 0-D array containing the value 99. Print its <code>ndim</code> and <code>shape</code>.</li>
+            <li>Create a 1-D array with 8 elements. Print its shape and size.</li>
+            <li>Create a 2-D array with 3 rows and 4 columns. Verify the shape is <code>(3, 4)</code>.</li>
+            <li>Create a 3-D array and print all its attributes: <code>ndim</code>, <code>shape</code>, <code>size</code>, <code>dtype</code>.</li>
+            <li>Use <code>ndmin=6</code> to create a 6-dimensional array from a simple list.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(2)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(4)">Next Topic</button>
+    </div>
+</div>
+
+<div class="lecture" id="lec-4">
+    <div class="lecture-tag">Topic 05 - Unit I - Introduction to NumPy</div>
+    <h1>Array Indexing &amp; Slicing</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Accessing Array Elements</div>
+        <p>
+            <strong>Indexing</strong> means accessing individual elements in an array by their position number. <strong>Slicing</strong> means extracting a portion (sub-array) from an existing array. These are two of the most fundamental operations you will perform with NumPy arrays.
+        </p>
+        <p>
+            NumPy uses <strong>zero-based indexing</strong>, meaning the first element is at index 0, the second at index 1, and so on. NumPy also supports negative indexing, where -1 refers to the last element, -2 to the second-last, and so on.
+        </p>
+    </div>
+
+    <h2>1-D Array Indexing</h2>
+
+    <p>
+        Accessing elements in a 1-D array works exactly like accessing elements in a Python list:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">indexing_1d.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50])
+
+print("First element:", arr[0])
+print("Third element:", arr[2])
+print("Last element:", arr[-1])
+print("Second-last element:", arr[-2])</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+First element: 10
+Third element: 30
+Last element: 50
+Second-last element: 40
+</pre>
+    </div>
+
+    <h2>2-D Array Indexing</h2>
+
+    <p>
+        In a 2-D array, you need two indices: one for the <strong>row</strong> and one for the <strong>column</strong>. The syntax is <code>arr[row, column]</code>.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">indexing_2d.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.array([
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+])
+
+print("Element at row 0, col 1:", matrix[0, 1])
+print("Element at row 2, col 2:", matrix[2, 2])
+print("Last element:", matrix[-1, -1])</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Element at row 0, col 1: 20
+Element at row 2, col 2: 90
+Last element: 90
+</pre>
+    </div>
+
+    <h2>1-D Array Slicing</h2>
+
+    <p>
+        Slicing extracts a portion of the array using the syntax <code>arr[start:stop:step]</code>. The <code>start</code> index is inclusive, the <code>stop</code> index is exclusive, and <code>step</code> defines the interval between elements.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">slicing_1d.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50, 60, 70])
+
+print("Elements 1 to 4:", arr[1:5])
+print("From index 2 onward:", arr[2:])
+print("Up to index 4:", arr[:4])
+print("Every 2nd element:", arr[::2])
+print("Reversed array:", arr[::-1])</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Elements 1 to 4: [20 30 40 50]
+From index 2 onward: [30 40 50 60 70]
+Up to index 4: [10 20 30 40]
+Every 2nd element: [10 30 50 70]
+Reversed array: [70 60 50 40 30 20 10]
+</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Remember</div>
+        <p>
+            The <code>stop</code> index is always <strong>excluded</strong> from the result. <code>arr[1:5]</code> returns elements at indices 1, 2, 3, and 4 — but not 5.
+        </p>
+    </div>
+
+    <h2>2-D Array Slicing</h2>
+
+    <p>
+        For 2-D arrays, you can slice rows and columns independently using <code>arr[row_start:row_stop, col_start:col_stop]</code>.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">slicing_2d.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.array([
+    [10, 20, 30, 40],
+    [50, 60, 70, 80],
+    [90, 100, 110, 120]
+])
+
+<span class="cm"># First two rows, last two columns</span>
+print("Sub-matrix:\n", matrix[0:2, 2:4])
+
+<span class="cm"># All rows, column index 1</span>
+print("Column 1:", matrix[:, 1])
+
+<span class="cm"># Row index 2, all columns</span>
+print("Row 2:", matrix[2, :])</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Sub-matrix:
+ [[ 30  40]
+ [ 70  80]]
+Column 1: [ 20  60 100]
+Row 2: [ 90 100 110 120]
+</pre>
+    </div>
+
+    <h2>Boolean Indexing</h2>
+
+    <p>
+        You can use a <strong>boolean condition</strong> to filter elements from an array. This is one of the most powerful features of NumPy and is heavily used in data analysis.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">boolean_index.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([15, 22, 8, 33, 41, 5, 19])
+
+<span class="cm"># Get all elements greater than 20</span>
+filtered = arr[arr > 20]
+print("Elements > 20:", filtered)
+
+<span class="cm"># Get all even elements</span>
+evens = arr[arr % 2 == 0]
+print("Even elements:", evens)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Elements > 20: [22 33 41]
+Even elements: [22  8]
+</pre>
+    </div>
+
+    <h2>Fancy Indexing</h2>
+
+    <p>
+        <strong>Fancy indexing</strong> allows you to access multiple elements at specific positions by passing a list of indices:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">fancy_index.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50, 60])
+
+<span class="cm"># Access elements at indices 0, 2, and 5</span>
+selected = arr[[0, 2, 5]]
+print("Selected elements:", selected)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Selected elements: [10 30 60]
+</pre>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li>NumPy uses zero-based indexing. The first element is at index 0.</li>
+        <li>Negative indices count from the end of the array.</li>
+        <li>Slicing syntax is <code>arr[start:stop:step]</code> — stop is exclusive.</li>
+        <li>2-D slicing uses <code>arr[rows, cols]</code> with independent ranges.</li>
+        <li>Boolean indexing filters elements based on conditions.</li>
+        <li>Fancy indexing selects elements at specific index positions.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Create a 1-D array of numbers 1 through 20. Slice to get every 3rd element.</li>
+            <li>Create a 3×4 matrix. Extract the first two rows and last two columns.</li>
+            <li>Use boolean indexing to find all elements greater than 10 in an array.</li>
+            <li>Use fancy indexing to select the 1st, 4th, and 7th elements from an array.</li>
+            <li>Reverse a 1-D array using slicing.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(3)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(5)">Next Topic</button>
+    </div>
+</div>
+
+<div class="lecture" id="lec-5">
+    <div class="lecture-tag">Topic 06 - Unit I - Introduction to NumPy</div>
+    <h1>NumPy Data Types</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Understanding Data Types in NumPy</div>
+        <p>
+            Unlike Python lists which can hold different types of data (integers, strings, floats) in the same list, NumPy arrays are <strong>homogeneous</strong> — every element has the same data type. This uniformity is what makes NumPy so fast and memory-efficient.
+        </p>
+        <p>
+            NumPy provides its own set of data types that map directly to C data types. These types give you precise control over how much memory each element uses and what kind of values it can store.
+        </p>
+    </div>
+
+    <h2>Common NumPy Data Types</h2>
+
+    <div class="box info">
+        <div class="box-title">NumPy dtype Reference</div>
+        <table>
+            <tr>
+                <th>Type Code</th>
+                <th>NumPy Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>i</code></td>
+                <td>int32</td>
+                <td>Signed 32-bit integer</td>
+            </tr>
+            <tr>
+                <td><code>i8</code></td>
+                <td>int64</td>
+                <td>Signed 64-bit integer</td>
+            </tr>
+            <tr>
+                <td><code>f</code></td>
+                <td>float32</td>
+                <td>32-bit floating point</td>
+            </tr>
+            <tr>
+                <td><code>f8</code></td>
+                <td>float64</td>
+                <td>64-bit floating point (default)</td>
+            </tr>
+            <tr>
+                <td><code>b</code></td>
+                <td>bool</td>
+                <td>Boolean (True or False)</td>
+            </tr>
+            <tr>
+                <td><code>U</code></td>
+                <td>str</td>
+                <td>Unicode string</td>
+            </tr>
+            <tr>
+                <td><code>c16</code></td>
+                <td>complex128</td>
+                <td>Complex number</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Checking the Data Type</h2>
+
+    <p>
+        Every NumPy array has a <code>dtype</code> attribute that tells you the data type of its elements:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">check_dtype.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+int_arr = np.array([1, 2, 3, 4])
+float_arr = np.array([1.5, 2.5, 3.5])
+str_arr = np.array(["apple", "banana", "cherry"])
+
+print("Integer array dtype:", int_arr.dtype)
+print("Float array dtype:", float_arr.dtype)
+print("String array dtype:", str_arr.dtype)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Integer array dtype: int64
+Float array dtype: float64
+String array dtype: &lt;U6
+</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 What Does &lt;U6 Mean?</div>
+        <p>
+            The <code>&lt;U6</code> dtype means Unicode string with a maximum length of 6 characters. The <code>&lt;</code> indicates little-endian byte order, <code>U</code> means Unicode, and <code>6</code> is the length of the longest string in the array.
+        </p>
+    </div>
+
+    <h2>Creating Arrays with a Specific Data Type</h2>
+
+    <p>
+        You can explicitly set the data type when creating an array using the <code>dtype</code> parameter:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">set_dtype.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># Create float array from integers</span>
+arr1 = np.array([1, 2, 3, 4], dtype=float)
+print("Float array:", arr1)
+print("Dtype:", arr1.dtype)
+
+<span class="cm"># Create 32-bit integer array</span>
+arr2 = np.array([10, 20, 30], dtype=np.int32)
+print("Int32 array:", arr2)
+print("Dtype:", arr2.dtype)
+
+<span class="cm"># Create boolean array</span>
+arr3 = np.array([1, 0, 1, 0, 1], dtype=bool)
+print("Boolean array:", arr3)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Float array: [1. 2. 3. 4.]
+Dtype: float64
+Int32 array: [10 20 30]
+Dtype: int32
+Boolean array: [ True False  True False  True]
+</pre>
+    </div>
+
+    <h2>Converting Data Types with astype()</h2>
+
+    <p>
+        The <code>astype()</code> method creates a <strong>new array</strong> with a different data type. The original array remains unchanged. This is called <strong>type casting</strong>.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">astype_demo.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># Float to Integer (truncates decimals)</span>
+float_arr = np.array([1.7, 2.3, 3.9, 4.1])
+int_arr = float_arr.astype(int)
+print("Original:", float_arr)
+print("Converted:", int_arr)
+
+<span class="cm"># Integer to Float</span>
+int_arr2 = np.array([10, 20, 30])
+float_arr2 = int_arr2.astype(np.float64)
+print("Float version:", float_arr2)
+
+<span class="cm"># Integer to String</span>
+str_arr = int_arr2.astype(str)
+print("String version:", str_arr)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Original: [1.7 2.3 3.9 4.1]
+Converted: [1 2 3 4]
+Float version: [10. 20. 30.]
+String version: ['10' '20' '30']
+</pre>
+    </div>
+
+    <div class="box note">
+        <div class="box-title">Note</div>
+        <p>
+            When converting from float to integer, the decimal part is <strong>truncated</strong> (not rounded). For example, 3.9 becomes 3, not 4. If you need rounding, use <code>np.round()</code> before converting.
+        </p>
+    </div>
+
+    <h2>Memory Usage Comparison</h2>
+
+    <p>
+        Choosing the right data type can significantly reduce memory usage. This matters when working with very large datasets.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">memory_compare.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr_64 = np.array([1, 2, 3, 4, 5], dtype=np.int64)
+arr_32 = np.array([1, 2, 3, 4, 5], dtype=np.int32)
+arr_16 = np.array([1, 2, 3, 4, 5], dtype=np.int16)
+
+print(f"int64: {arr_64.nbytes} bytes")
+print(f"int32: {arr_32.nbytes} bytes")
+print(f"int16: {arr_16.nbytes} bytes")</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+int64: 40 bytes
+int32: 20 bytes
+int16: 10 bytes
+</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Best Practice</div>
+        <p>
+            When your values are small (e.g., ages 0–120, scores 0–100), use <code>int8</code> or <code>int16</code> instead of the default <code>int64</code>. This can reduce memory usage by up to 8× when working with millions of records.
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li>NumPy arrays are homogeneous — all elements share the same data type.</li>
+        <li>Use <code>dtype</code> to check an array's data type.</li>
+        <li>Set the type during creation with <code>dtype=</code> parameter.</li>
+        <li>Convert between types using <code>astype()</code> — this creates a new array.</li>
+        <li>Float to int conversion truncates (does not round).</li>
+        <li>Choosing smaller dtypes saves memory for large datasets.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Create an array of integers and check its <code>dtype</code>.</li>
+            <li>Convert a float array <code>[1.1, 2.5, 3.9]</code> to integers. Observe what happens to the decimal values.</li>
+            <li>Create an array with <code>dtype=np.int8</code>. Try storing the value 300 — what happens?</li>
+            <li>Compare the <code>nbytes</code> of an array with <code>int64</code> vs <code>int16</code> dtype for 1000 elements.</li>
+            <li>Create a boolean array from <code>[0, 1, 2, 0, -1]</code> using <code>dtype=bool</code>.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(4)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
+    </div>
+</div>
+
+<div class="lecture" id="lec-6">
+    <div class="lecture-tag">Topic 07 - Unit II - Advanced NumPy Operations</div>
+    <h1>Copy vs View</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+    
+    <div class="box info">
+    <div class="box-title">Understanding Copy vs View</div>
+    <p>
+        When you work with NumPy arrays, it is essential to understand the difference between a <strong>copy</strong> and a <strong>view</strong>. This concept directly affects how your data is stored in memory and whether changes to one array affect another.
+    </p>
+    <p>
+        A <strong>view</strong> is a new array object that looks at the same data as the original array. Changing the view <em>will</em> change the original array. A <strong>copy</strong> is a completely independent array with its own data. Changing the copy will <em>not</em> affect the original.
+    </p>
+    <p>
+        This distinction becomes especially important when working with large datasets. NumPy is designed to work efficiently with memory, so it often avoids creating unnecessary copies of data. Instead, operations such as slicing can create views that reference the existing data.
+    </p>
+    <p>
+        Understanding this behavior helps you avoid unexpected changes to your arrays. If you accidentally modify a view, you may also modify the original data without realizing it.
+    </p>
+    <p>
+        A simple way to remember the difference is: a <strong>view looks at the same data</strong>, while a <strong>copy owns separate data</strong>.
+    </p>
+</div>
+
+<h2>Creating a View</h2>
+
+<p>
+    When you slice a NumPy array, the result is commonly a <strong>view</strong>, not a new independent array. The view shares the same underlying data as the original array:
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span class="filename">view_demo.py</span>
+    </div>
+    <pre><code>import numpy as np
+
+original = np.array([10, 20, 30, 40, 50])
+
+# Create a view using slicing
+
+view_arr = original[1:4]
+
+print("Original:", original)
+print("View:", view_arr)
+
+# Modify the view
+
+view_arr[0] = 999
+
+print("After changing the view:")
+print("Original:", original)
+print("View:", view_arr)</code></pre>
+
+</div>
+
+<div class="box info">
+    <div class="box-title">Output</div>
+    <pre><code>Original: [10 20 30 40 50]
+View: [20 30 40]
+
+After changing the view:
+Original: [ 10 999  30  40  50]
+View: [999  30  40]</code></pre>
+
+</div>
+
+<p>
+    The expression <code>original[1:4]</code> selects the elements from index <code>1</code> up to, but not including, index <code>4</code>. The resulting array contains <code>[20, 30, 40]</code>.
+</p>
+
+<p>
+    However, NumPy does not necessarily create a completely new block of memory for these values. Instead, the sliced array can reference the same underlying data as <code>original</code>.
+</p>
+
+<p>
+    Therefore, when we execute <code>view_arr[0] = 999</code>, we are changing the data that the original array also uses. The value <code>20</code> in <code>original</code> is therefore changed to <code>999</code>.
+</p>
+
+<div class="box tip">
+    <div class="box-title">💡 Important</div>
+    <p>
+        Notice that changing <code>view_arr[0]</code> also changed <code>original[1]</code>. This is because the view and the original share the same underlying data in memory.
+    </p>
+    <p>
+        This behavior is useful when you intentionally want to work with part of an array without creating another copy of the data. However, it can cause unexpected results if you forget that the slice is connected to the original array.
+    </p>
+    <p>
+        For example, if you have a large array containing millions of values, using a view can save memory because NumPy does not need to duplicate all those values.
+    </p>
+</div>
+
+<h2>Creating a Copy</h2>
+
+<p>
+    To create a completely independent array, use the <code>copy()</code> method. The copy owns its own data and modifications will not affect the original:
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span class="filename">copy_demo.py</span>
+    </div>
+    <pre><code>import numpy as np
+
+original = np.array([10, 20, 30, 40, 50])
+
+# Create an independent copy
+
+copy_arr = original[1:4].copy()
+
+print("Original:", original)
+print("Copy:", copy_arr)
+
+# Modify the copy
+
+copy_arr[0] = 999
+
+print("After changing the copy:")
+print("Original:", original)
+print("Copy:", copy_arr)</code></pre>
+
+</div>
+
+<div class="box info">
+    <div class="box-title">Output</div>
+    <pre><code>Original: [10 20 30 40 50]
+Copy: [20 30 40]
+
+After changing the copy:
+Original: [10 20 30 40 50]
+Copy: [999  30  40]</code></pre>
+
+</div>
+
+<p>
+    This time, changing <code>copy_arr[0]</code> does not change <code>original</code>. The reason is that <code>copy()</code> creates a separate array with its own data.
+</p>
+
+<p>
+    A common pattern is to combine slicing with <code>copy()</code>. For example, <code>original[1:4].copy()</code> first selects a portion of the original array and then creates an independent copy of that selected data.
+</p>
+
+<p>
+    Use a copy when you plan to modify the selected data and you want to make sure the original array remains unchanged.
+</p>
+
+<div class="box tip">
+    <div class="box-title">💡 When Should You Use copy()?</div>
+    <p>
+        Use <code>copy()</code> when you need to safely modify an array without affecting the source array. This is especially useful when preparing datasets, transforming data, creating temporary arrays, or passing data between different parts of a program.
+    </p>
+    <p>
+        The main trade-off is memory usage. Because a copy stores its own data, creating many large copies can consume significantly more memory than using views.
+    </p>
+</div>
+
+<h2>Checking Ownership with base</h2>
+
+<p>
+    You can check whether an array owns its data or is a view of another array using the <code>base</code> attribute. If <code>base</code> is <code>None</code>, the array owns its data. Otherwise, <code>base</code> references the object that provides the underlying data.
+</p>
+
+<p>
+    This can be useful when debugging your program and trying to understand why changing one array also changes another array.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span class="filename">base_check.py</span>
+    </div>
+    <pre><code>import numpy as np
+
+original = np.array([10, 20, 30, 40, 50])
+
+view_arr = original[1:4]
+copy_arr = original[1:4].copy()
+
+print("View base:")
+print(view_arr.base)
+
+print("\nCopy base:")
+print(copy_arr.base)
+
+print("\nOriginal base:")
+print(original.base is None)</code></pre>
+
+</div>
+
+<div class="box info">
+    <div class="box-title">Output</div>
+    <pre><code>View base:
+[10 20 30 40 50]
+
+Copy base:
+None
+
+Original base:
+True</code></pre>
+
+</div>
+
+<p>
+    The <code>view_arr.base</code> value shows that the view is connected to another array containing the original data. The copied array has <code>None</code> as its base because it owns its own data.
+</p>
+
+<p>
+    You can also use a simple condition to check whether an array has a base object:
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span class="filename">check_view.py</span>
+    </div>
+    <pre><code>if view_arr.base is not None:
+    print("view_arr is based on another array")
+else:
+    print("view_arr owns its data")
+
+if copy_arr.base is not None:
+print("copy_arr is based on another array")
+else:
+print("copy_arr owns its data")</code></pre>
+
+</div>
+
+<p>
+    Remember that <code>base</code> is primarily a way to inspect the relationship between an array and its underlying data. It is useful for understanding memory sharing, especially when working with slicing and other NumPy operations.
+</p>
+
+<div class="box info">
+    <div class="box-title">Copy vs View Comparison</div>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>View</th>
+            <th>Copy</th>
+        </tr>
+        <tr>
+            <td>Shares memory with original</td>
+            <td>Yes</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Changes affect original</td>
+            <td>Yes</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Created by</td>
+            <td>Slicing, <code>view()</code></td>
+            <td><code>copy()</code></td>
+        </tr>
+        <tr>
+            <td><code>base</code> attribute</td>
+            <td>Usually points to the source data</td>
+            <td><code>None</code></td>
+        </tr>
+        <tr>
+            <td>Memory usage</td>
+            <td>Efficient (no duplication)</td>
+            <td>Uses additional memory</td>
+        </tr>
+        <tr>
+            <td>Modification safety</td>
+            <td>Changes may affect the source</td>
+            <td>Changes are isolated</td>
+        </tr>
+        <tr>
+            <td>Best used when</td>
+            <td>You want efficient access to existing data</td>
+            <td>You need an independent array</td>
+        </tr>
+    </table>
+</div>
+
+<h2>Why This Difference Matters</h2>
+
+<p>
+    Copying and viewing are not just technical details. They can affect the behavior and performance of real programs. Imagine that you have a large NumPy array containing thousands or millions of values.
+</p>
+
+<p>
+    If NumPy created a complete copy every time you selected a small portion of an array, your program could use much more memory than necessary. Views help NumPy work efficiently by allowing multiple array objects to access the same underlying data.
+</p>
+
+<p>
+    On the other hand, sharing memory can become dangerous when you expect two arrays to be completely independent. If one array is modified through a view, the original data may change as well.
+</p>
+
+<p>
+    Therefore, the choice between a view and a copy depends on what your program needs. If you only need to inspect or temporarily work with existing data, a view can be efficient. If you need to modify the data independently, creating a copy is usually safer.
+</p>
+
+<h2>Using view() Explicitly</h2>
+
+<p>
+    NumPy also provides the <code>view()</code> method when you want to explicitly create another array object that references the same underlying data:
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span class="filename">explicit_view.py</span>
+    </div>
+    <pre><code>import numpy as np
+
+original = np.array([10, 20, 30, 40])
+
+view_arr = original.view()
+
+view_arr[0] = 100
+
+print("Original:", original)
+print("View:", view_arr)</code></pre>
+
+</div>
+
+<p>
+    Both arrays now show the changed value because they refer to the same underlying data. The <code>view()</code> method makes your intention clearer when you specifically want another array object without duplicating the data.
+</p>
+
+<h2>Summary</h2>
+
+<ul>
+    <li>A <strong>view</strong> shares memory with the original array — changes can propagate to the original.</li>
+    <li>A <strong>copy</strong> is independent — changes do not affect the original.</li>
+    <li>Slicing commonly creates a view instead of duplicating the data.</li>
+    <li>Use <code>.copy()</code> when you need a separate, independent array.</li>
+    <li>Use <code>.view()</code> when you intentionally want another array object that shares the same data.</li>
+    <li>Use the <code>.base</code> attribute to inspect whether an array is based on another array.</li>
+    <li>Views can save memory because the underlying data does not need to be duplicated.</li>
+    <li>Copies require additional memory but provide safer isolation when modifying data.</li>
+    <li>Understanding memory sharing helps prevent unexpected changes in NumPy programs.</li>
+</ul>
+
+<div class="exercise">
+    <div class="exercise-title">Practice Task</div>
+    <ul>
+        <li>Create an array and a view from it. Modify the view and verify that the original changed.</li>
+        <li>Create an array and a copy. Modify the copy and verify that the original is unchanged.</li>
+        <li>Use the <code>base</code> attribute to determine if an array is a view or a copy.</li>
+        <li>Create a 2-D array, slice a sub-matrix, and check whether it is a view.</li>
+        <li>Use <code>view()</code> to explicitly create a view and modify one of the arrays.</li>
+        <li>Create a slice using <code>array[1:4]</code>, then create another slice using <code>array[1:4].copy()</code>. Modify both and compare the results.</li>
+        <li>Experiment with a large NumPy array and compare the purpose of using a view versus creating a copy.</li>
+        <li>Write a small program that prints the <code>base</code> attribute for an original array, a sliced array, and a copied array.</li>
+    </ul>
+</div>
+
+<div class="lecture-nav">
+    <button class="nav-btn" onclick="showLecture(5)">Previous</button>
+    <button class="nav-btn primary" onclick="showLecture(7)">Next Topic</button>
+</div>
+
+
+
+</div>
+
+<div class="lecture" id="lec-7">
+    <div class="lecture-tag">Topic 08 - Unit II - Advanced NumPy Operations</div>
+    <h1>Array Reshaping</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Reshaping Arrays</div>
+        <p>
+            <strong>Reshaping</strong> means changing the shape (dimensions) of an array without changing its data. For example, you can convert a 1-D array of 12 elements into a 3×4 matrix, a 2×6 matrix, or a 4×3 matrix — as long as the total number of elements remains the same.
+        </p>
+        <p>
+            Reshaping is one of the most frequently used operations in data science and machine learning because datasets often need to be restructured before being processed by algorithms.
+        </p>
+    </div>
+
+    <h2>Using reshape()</h2>
+
+    <p>
+        The <code>reshape()</code> method returns a new view of the array with a different shape:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">reshape_demo.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.arange(1, 13)
+print("Original 1-D array:", arr)
+
+<span class="cm"># Reshape to 3 rows, 4 columns</span>
+matrix = arr.reshape(3, 4)
+print("Reshaped 3x4:\n", matrix)
+
+<span class="cm"># Reshape to 2 rows, 6 columns</span>
+matrix2 = arr.reshape(2, 6)
+print("Reshaped 2x6:\n", matrix2)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Original 1-D array: [ 1  2  3  4  5  6  7  8  9 10 11 12]
+Reshaped 3x4:
+ [[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]
+Reshaped 2x6:
+ [[ 1  2  3  4  5  6]
+ [ 7  8  9 10 11 12]]
+</pre>
+    </div>
+
+    <div class="box note">
+        <div class="box-title">Note</div>
+        <p>
+            The total number of elements must remain the same. An array with 12 elements can be reshaped to (3,4), (4,3), (2,6), (6,2), (2,2,3), etc. — but not to (3,5) because 3×5 = 15 ≠ 12.
+        </p>
+    </div>
+
+    <h2>Using -1 for Automatic Dimension</h2>
+
+    <p>
+        You can pass <code>-1</code> for one dimension and NumPy will calculate it automatically:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">auto_reshape.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.arange(12)
+
+<span class="cm"># NumPy calculates columns automatically</span>
+result = arr.reshape(3, -1)
+print("Shape:", result.shape)
+print(result)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Shape: (3, 4)
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+</pre>
+    </div>
+
+    <h2>Flattening Arrays</h2>
+
+    <p>
+        <strong>Flattening</strong> converts a multi-dimensional array into a 1-D array. NumPy provides two methods: <code>flatten()</code> (returns a copy) and <code>ravel()</code> (returns a view when possible).
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">flatten_demo.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.array([[1, 2, 3], [4, 5, 6]])
+
+<span class="cm"># flatten() returns a copy</span>
+flat = matrix.flatten()
+print("Flattened:", flat)
+
+<span class="cm"># ravel() returns a view (more memory efficient)</span>
+raveled = matrix.ravel()
+print("Raveled:", raveled)
+
+<span class="cm"># Verify: flatten is a copy, ravel is a view</span>
+print("flatten is copy?", flat.base is None)
+print("ravel is view?", raveled.base is not None)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Flattened: [1 2 3 4 5 6]
+Raveled: [1 2 3 4 5 6]
+flatten is copy? True
+ravel is view? True
+</pre>
+    </div>
+
+    <h2>Transposing Arrays</h2>
+
+    <p>
+        The <code>transpose()</code> method or <code>.T</code> property swaps rows and columns in a 2-D array:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">transpose_demo.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print("Original shape:", matrix.shape)
+print("Transposed shape:", matrix.T.shape)
+print("Transposed:\n", matrix.T)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Original shape: (2, 3)
+Transposed shape: (3, 2)
+Transposed:
+ [[1 4]
+ [2 5]
+ [3 6]]
+</pre>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li><code>reshape()</code> changes array dimensions without changing data.</li>
+        <li>Total elements must match between old and new shapes.</li>
+        <li>Use <code>-1</code> to let NumPy auto-calculate one dimension.</li>
+        <li><code>flatten()</code> returns a 1-D copy; <code>ravel()</code> returns a 1-D view.</li>
+        <li><code>.T</code> or <code>transpose()</code> swaps rows and columns.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Create a 1-D array of 24 elements and reshape it to (4, 6), (6, 4), and (2, 3, 4).</li>
+            <li>Use <code>-1</code> to reshape a 20-element array into 4 rows with automatic columns.</li>
+            <li>Flatten a 3×3 matrix using both <code>flatten()</code> and <code>ravel()</code>. Verify which is a copy and which is a view.</li>
+            <li>Transpose a 2×5 matrix and print its new shape.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(6)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Topic</button>
+    </div>
+</div>
+
+<div class="lecture" id="lec-8">
+    <div class="lecture-tag">Topic 09 - Unit II - Advanced NumPy Operations</div>
+    <h1>Iterating Arrays</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Iterating Through NumPy Arrays</div>
+        <p>
+            <strong>Iterating</strong> means going through elements one by one. While NumPy is designed for vectorized operations (avoiding loops), there are situations where you need to iterate through array elements — for example, when performing custom operations or debugging.
+        </p>
+    </div>
+
+    <h2>Iterating 1-D Arrays</h2>
+
+    <p>Iterating a 1-D array is straightforward using a standard <code>for</code> loop:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">iter_1d.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50])
+
+<span class="kw">for</span> element <span class="kw">in</span> arr:
+    print(element, end=" ")</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>10 20 30 40 50 </pre>
+    </div>
+
+    <h2>Iterating 2-D Arrays</h2>
+
+    <p>When iterating a 2-D array, a standard <code>for</code> loop iterates over <strong>rows</strong>:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">iter_2d.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.array([[1, 2, 3], [4, 5, 6]])
+
+<span class="cm"># Iterates over rows</span>
+<span class="kw">for</span> row <span class="kw">in</span> matrix:
+    print("Row:", row)
+
+<span class="cm"># To get individual elements, use nested loops</span>
+<span class="kw">for</span> row <span class="kw">in</span> matrix:
+    <span class="kw">for</span> element <span class="kw">in</span> row:
+        print(element, end=" ")
+    print()</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Row: [1 2 3]
+Row: [4 5 6]
+1 2 3 
+4 5 6 
+</pre>
+    </div>
+
+    <h2>Using nditer()</h2>
+
+    <p>
+        The <code>np.nditer()</code> function provides an efficient way to iterate through every element of a multi-dimensional array without nested loops:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">nditer_demo.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+<span class="cm"># Iterate through all elements</span>
+<span class="kw">for</span> x <span class="kw">in</span> np.nditer(matrix):
+    print(x, end=" ")</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>1 2 3 4 5 6 7 8 9 </pre>
+    </div>
+
+    <h2>Using ndenumerate()</h2>
+
+    <p>
+        <code>np.ndenumerate()</code> provides both the <strong>index</strong> and the <strong>value</strong> of each element, similar to Python's <code>enumerate()</code>:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">ndenumerate_demo.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.array([[10, 20], [30, 40]])
+
+<span class="kw">for</span> index, value <span class="kw">in</span> np.ndenumerate(matrix):
+    print(f"Index {index}: Value {value}")</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Index (0, 0): Value 10
+Index (0, 1): Value 20
+Index (1, 0): Value 30
+Index (1, 1): Value 40
+</pre>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Best Practice</div>
+        <p>
+            Avoid using loops with NumPy whenever possible. <strong>Vectorized operations</strong> (like <code>arr * 2</code>) are significantly faster than iterating element by element. Use iteration only when a vectorized approach is not feasible.
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li>A <code>for</code> loop on a 2-D array iterates over rows.</li>
+        <li>Use nested loops or <code>nditer()</code> to access individual elements.</li>
+        <li><code>ndenumerate()</code> gives both index and value.</li>
+        <li>Prefer vectorized operations over loops for performance.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Create a 3×3 matrix and iterate through all elements using <code>nditer()</code>.</li>
+            <li>Use <code>ndenumerate()</code> to print each element with its index.</li>
+            <li>Create a 3-D array and iterate through all scalar values.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(7)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(9)">Next Topic</button>
+    </div>
+</div>
+
+<div class="lecture" id="lec-9">
+    <div class="lecture-tag">Topic 10 - Unit II - Advanced NumPy Operations</div>
+    <h1>Joining &amp; Splitting Arrays</h1>
+    <div class="lecture-meta">
+        <span class="meta-badge">Syllabus Topic</span>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Combining and Dividing Arrays</div>
+        <p>
+            NumPy provides powerful functions for <strong>joining</strong> (combining) multiple arrays into one and <strong>splitting</strong> one array into multiple parts. These operations are essential when preparing datasets for analysis or machine learning.
+        </p>
+    </div>
+
+    <h2>Joining Arrays with concatenate()</h2>
+
+    <p>The <code>concatenate()</code> function joins arrays along an existing axis:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">concat_demo.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+<span class="cm"># Join 1-D arrays</span>
+result = np.concatenate((a, b))
+print("Concatenated:", result)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>Concatenated: [1 2 3 4 5 6]</pre>
+    </div>
+
+    <h2>Stacking Arrays</h2>
+
+    <p>NumPy provides specialized stacking functions:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">stacking.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+<span class="cm"># Vertical stack (creates rows)</span>
+print("vstack:\n", np.vstack((a, b)))
+
+<span class="cm"># Horizontal stack (side by side)</span>
+print("hstack:", np.hstack((a, b)))
+
+<span class="cm"># Stack along a new axis</span>
+print("stack:\n", np.stack((a, b), axis=1))</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+vstack:
+ [[1 2 3]
+ [4 5 6]]
+hstack: [1 2 3 4 5 6]
+stack:
+ [[1 4]
+ [2 5]
+ [3 6]]
+</pre>
+    </div>
+
+    <h2>Splitting Arrays</h2>
+
+    <p><code>array_split()</code> divides an array into the specified number of sub-arrays:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">split_demo.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([1, 2, 3, 4, 5, 6])
+
+<span class="cm"># Split into 3 equal parts</span>
+result = np.array_split(arr, 3)
+<span class="kw">for</span> i, part <span class="kw">in</span> enumerate(result):
+    print(f"Part {i}: {part}")
+
+<span class="cm"># Split into uneven parts</span>
+result2 = np.array_split(arr, 4)
+print("\nUneven split:")
+<span class="kw">for</span> part <span class="kw">in</span> result2:
+    print(part)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Part 0: [1 2]
+Part 1: [3 4]
+Part 2: [5 6]
+
+Uneven split:
+[1 2]
+[3 4]
+[5]
+[6]
+</pre>
+    </div>
+
+    <h2>Splitting 2-D Arrays</h2>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">split_2d.py</span>
+        </div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+
+<span class="cm"># Vertical split (split rows)</span>
+top, bottom = np.vsplit(matrix, 2)
+print("Top half:\n", top)
+print("Bottom half:\n", bottom)
+
+<span class="cm"># Horizontal split (split columns)</span>
+left, right = np.hsplit(matrix, [1])
+print("Left column:\n", left)</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+<pre>
+Top half:
+ [[1 2 3]
+ [4 5 6]]
+Bottom half:
+ [[ 7  8  9]
+ [10 11 12]]
+Left column:
+ [[ 1]
+ [ 4]
+ [ 7]
+ [10]]
+</pre>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li><code>concatenate()</code> joins arrays along an existing axis.</li>
+        <li><code>vstack()</code> stacks vertically (rows), <code>hstack()</code> stacks horizontally.</li>
+        <li><code>stack()</code> joins arrays along a new axis.</li>
+        <li><code>array_split()</code> splits arrays into sub-arrays (handles uneven splits).</li>
+        <li><code>vsplit()</code> and <code>hsplit()</code> split 2-D arrays vertically and horizontally.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Concatenate three 1-D arrays into one.</li>
+            <li>Use <code>vstack()</code> to combine two 1-D arrays into a 2×N matrix.</li>
+            <li>Split a 12-element array into 4 equal parts.</li>
+            <li>Create a 4×6 matrix and split it into left and right halves using <code>hsplit()</code>.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn" onclick="showLecture(8)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(10)">Next Topic</button>
+    </div>
+</div>
+<div class="lecture" id="lec-10">
             <div class="lecture-tag">Topic 11 - Unit II - Advanced NumPy Operations</div>
             <h1>Searching & Sorting</h1>
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Searching & Sorting</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(9)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(11)">Next Topic</button>
-            </div>
+            <div class="lecture-meta">
+            <span class="meta-badge">Searching & Index Lookup</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Locating Elements</div>
+            <p>Searching an array means finding elements that satisfy a particular condition or locating the position of a specific value. NumPy provides several powerful functions for searching arrays efficiently.</p>
+            <p>The <code>np.where()</code> function is one of the most commonly used tools for locating elements based on conditions. Instead of checking every element manually with a Python loop, NumPy can perform the operation efficiently across the entire array.</p>
+            <p>When <code>np.where()</code> is used with a condition, it returns the <strong>index positions</strong> where that condition is <code>True</code>.</p>
         </div>
 
-        <div class="lecture" id="lec-11">
+
+    <h2>np.where Code</h2>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">where.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 25, 30, 45, 50])
+idx = np.where(arr % 2 == 0)
+print("Indices of even numbers:", idx[0])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Indices of even numbers: [0 2 4]</pre>
+    </div>
+
+    <p>
+        The condition <code>arr % 2 == 0</code> checks every element in the array to determine whether it is evenly divisible by 2.
+    </p>
+
+    <p>
+        The values <code>10</code>, <code>30</code>, and <code>50</code> are even. Their index positions are <code>0</code>, <code>2</code>, and <code>4</code>, so <code>np.where()</code> returns those positions.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Remember</div>
+        <p>
+            NumPy arrays use <strong>zero-based indexing</strong>. This means the first element has index <code>0</code>, the second has index <code>1</code>, and so on.
+        </p>
+        <p>
+            <code>np.where()</code> does not return the matching values directly in this example. It returns the positions where the condition is true.
+        </p>
+    </div>
+
+    <h2>Searching for a Specific Value</h2>
+
+    <p>
+        You can use <code>np.where()</code> to find the position of a specific value. Simply compare the array with the value you are looking for.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">find_value.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 30])
+
+positions = np.where(arr == 30)
+
+print("Positions:", positions[0])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Positions: [2 4]</pre>
+    </div>
+
+    <p>
+        In this example, the value <code>30</code> appears twice. The first occurrence is at index <code>2</code>, while the second occurrence is at index <code>4</code>.
+    </p>
+
+    <p>
+        This is an important advantage of <code>np.where()</code>: it can return <strong>all matching positions</strong>, not just the first one.
+    </p>
+
+    <h2>Searching with Greater Than and Less Than</h2>
+
+    <p>
+        You can use comparison operators such as <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, and <code>&lt;=</code> to search for values that meet numerical conditions.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">conditional_search.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 25, 30, 45, 50])
+
+idx = np.where(arr > 30)
+
+print("Indices:", idx[0])
+print("Values:", arr[idx])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Indices: [3 4]
+
+
+Values: [45 50]</pre> </div>
+
+
+    <p>
+        The expression <code>arr &gt; 30</code> checks every element and produces a Boolean condition. Only the values <code>45</code> and <code>50</code> satisfy the condition, so their positions are returned.
+    </p>
+
+    <p>
+        Notice that we can use the returned indices to access the original array. The expression <code>arr[idx]</code> retrieves the elements located at those positions.
+    </p>
+
+    <h2>Searching for Multiple Conditions</h2>
+
+    <p>
+        NumPy also allows you to combine multiple conditions when searching an array. For example, you may want to find values that are greater than <code>20</code> and less than <code>50</code>.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">multiple_conditions.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 25, 30, 45, 50, 60])
+
+idx = np.where((arr > 20) & (arr < 50))
+
+print("Indices:", idx[0])
+print("Values:", arr[idx])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Indices: [2 3 4]
+
+
+Values: [25 30 45]</pre> </div>
+
+
+    <p>
+        When combining conditions in NumPy, use <code>&amp;</code> for logical AND and <code>|</code> for logical OR. Each condition should normally be enclosed in parentheses.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Important</div>
+        <p>
+            Do not use the Python keywords <code>and</code> and <code>or</code> when combining NumPy array conditions. Use <code>&amp;</code> and <code>|</code> instead.
+        </p>
+    </div>
+
+    <h2>np.where() with Two Results</h2>
+
+    <p>
+        The <code>np.where()</code> function can also be used to choose between two values depending on whether a condition is true or false.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">where_choice.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 25, 30, 45, 50])
+
+result = np.where(arr >= 30, "Pass", "Fail")
+
+print(result)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>['Fail' 'Fail' 'Pass' 'Pass' 'Pass']</pre>
+    </div>
+
+    <p>
+        Here, <code>np.where()</code> checks whether each value is greater than or equal to <code>30</code>. If the condition is true, it places <code>"Pass"</code> in the result. Otherwise, it places <code>"Fail"</code>.
+    </p>
+
+    <p>
+        This form of <code>np.where()</code> is useful for categorizing data. For example, you could classify temperatures as hot or cold, students as pass or fail, or products as expensive or affordable.
+    </p>
+
+    <h2>Searching in a 2-D Array</h2>
+
+    <p>
+        <code>np.where()</code> can also search two-dimensional arrays. In this case, it returns the row and column positions of elements that satisfy the condition.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">search_2d.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([
+[10, 20, 30],
+[40, 50, 60],
+[70, 80, 90]
+])
+
+rows, columns = np.where(arr > 50)
+
+print("Rows:", rows)
+print("Columns:", columns)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Rows: [1 2 2 2]
+
+
+Columns: [2 0 1 2]</pre> </div>
+
+
+    <p>
+        In a two-dimensional array, each matching element has two coordinates: a <strong>row index</strong> and a <strong>column index</strong>.
+    </p>
+
+    <p>
+        For example, the value <code>60</code> is located at row <code>1</code>, column <code>2</code>. The value <code>70</code> is located at row <code>2</code>, column <code>0</code>.
+    </p>
+
+    <h2>Finding the First Matching Position</h2>
+
+    <p>
+        Sometimes you only need the first position where a condition is satisfied. You can obtain the result from <code>np.where()</code> and then select the first index.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">first_match.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 25, 30, 25, 40])
+
+positions = np.where(arr == 25)
+
+print("First position:", positions[0][0])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>First position: 1</pre>
+    </div>
+
+    <p>
+        The expression <code>positions[0]</code> contains all matching positions, which are <code>[1, 3]</code>. Selecting <code>[0]</code> from that result gives the first matching position, which is <code>1</code>.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Important</div>
+        <p>
+            If there are no matching elements, <code>np.where()</code> returns an empty array of indices. Always consider this possibility when writing programs that depend on a search result.
+        </p>
+    </div>
+
+    <h2>Searching and Extracting Values</h2>
+
+    <p>
+        Searching for an index is useful, but often you also want the actual values that match the condition. NumPy makes this easy by using the returned indices to access the original array.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">search_values.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([5, 15, 25, 35, 45])
+
+idx = np.where(arr > 20)
+
+print("Matching indices:", idx[0])
+print("Matching values:", arr[idx])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Matching indices: [2 3 4]
+
+
+Matching values: [25 35 45]</pre> </div>
+
+
+    <p>
+        This technique is useful when you need both the <strong>location</strong> and the <strong>data</strong> that matched your search condition.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">Searching in NumPy</div>
+        <table>
+            <tr>
+                <th>Operation</th>
+                <th>Purpose</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>Find matching indices</td>
+                <td>Locate elements satisfying a condition</td>
+                <td><code>np.where(arr &gt; 20)</code></td>
+            </tr>
+            <tr>
+                <td>Find a specific value</td>
+                <td>Locate occurrences of a value</td>
+                <td><code>np.where(arr == 30)</code></td>
+            </tr>
+            <tr>
+                <td>Find values greater than a number</td>
+                <td>Search using a numerical condition</td>
+                <td><code>np.where(arr &gt; 30)</code></td>
+            </tr>
+            <tr>
+                <td>Combine conditions</td>
+                <td>Perform more specific searches</td>
+                <td><code>np.where((arr &gt; 20) &amp; (arr &lt; 50))</code></td>
+            </tr>
+            <tr>
+                <td>Choose values</td>
+                <td>Return one value when true and another when false</td>
+                <td><code>np.where(condition, x, y)</code></td>
+            </tr>
+            <tr>
+                <td>Search 2-D arrays</td>
+                <td>Find row and column positions</td>
+                <td><code>np.where(arr &gt; 50)</code></td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Why Use NumPy Searching?</h2>
+
+    <p>
+        Searching with NumPy is particularly useful when working with large collections of numerical data. Instead of writing a Python loop that checks each element individually, NumPy allows you to express the condition directly on the array.
+    </p>
+
+    <p>
+        This approach is known as <strong>vectorized operation</strong>. NumPy is designed to perform operations on entire arrays efficiently, making code shorter, easier to read, and often faster than manually processing each element with a Python loop.
+    </p>
+
+    <p>
+        For example, if you need to find all temperatures above a certain value, all students whose scores exceed a threshold, or all products whose prices fall within a range, <code>np.where()</code> can perform the search efficiently.
+    </p>
+
+    <h2>Common Mistakes</h2>
+
+    <p>
+        One common mistake is confusing the <strong>index positions</strong> returned by <code>np.where()</code> with the actual values in the array. Always remember that the basic form <code>np.where(condition)</code> returns locations where the condition is true.
+    </p>
+
+    <p>
+        Another common mistake occurs when combining multiple conditions. NumPy requires operators such as <code>&amp;</code> and <code>|</code>, and each individual condition should be enclosed in parentheses.
+    </p>
+
+    <p>
+        For example, write <code>(arr &gt; 10) &amp; (arr &lt; 50)</code> instead of trying to use Python's <code>and</code> operator.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Key Idea</div>
+        <p>
+            Think of <code>np.where()</code> as a tool that answers the question: <strong>"Where in this array is my condition true?"</strong>
+        </p>
+        <p>
+            Once you have those positions, you can use them to inspect, extract, replace, or process the matching elements.
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li><code>np.where()</code> is used to search NumPy arrays based on conditions.</li>
+        <li>When used with one condition, it returns the <strong>index positions</strong> where the condition is true.</li>
+        <li>You can search for a specific value using expressions such as <code>arr == 30</code>.</li>
+        <li>You can search using comparison operators such as <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, and <code>&lt;=</code>.</li>
+        <li>Multiple conditions can be combined using <code>&amp;</code> for AND and <code>|</code> for OR.</li>
+        <li>Use <code>arr[idx]</code> to retrieve the values located at the returned indices.</li>
+        <li>For two-dimensional arrays, <code>np.where()</code> can return row and column positions.</li>
+        <li><code>np.where(condition, x, y)</code> can select between two values depending on a condition.</li>
+        <li>NumPy searching is useful for efficiently processing large datasets.</li>
+        <li>Always remember that NumPy indexing starts at <code>0</code>.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Create a NumPy array containing at least 10 numbers and use <code>np.where()</code> to find the indices of all even numbers.</li>
+            <li>Search for a specific number and display all the positions where it occurs.</li>
+            <li>Find all values greater than <code>50</code> and display both their indices and values.</li>
+            <li>Find all values between <code>20</code> and <code>80</code> using two conditions.</li>
+            <li>Create a two-dimensional array and use <code>np.where()</code> to find the row and column positions of values greater than <code>50</code>.</li>
+            <li>Use <code>np.where()</code> to classify numbers as <code>"Positive"</code> or <code>"Negative"</code>.</li>
+            <li>Create an array of student marks and use <code>np.where()</code> to label each student as <code>"Pass"</code> or <code>"Fail"</code>.</li>
+            <li>Search for a value that does not exist in an array and observe what <code>np.where()</code> returns.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+            <button class="nav-btn" onclick="showLecture(9)">Previous</button>
+            <button class="nav-btn primary" onclick="showLecture(11)">Next Topic</button>
+        </div>
+    </div>     
+
+
+<div class="lecture" id="lec-11">
             <div class="lecture-tag">Topic 12 - Unit II - Advanced NumPy Operations</div>
             <h1>Random Numbers in NumPy</h1>
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Random Numbers in NumPy</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(10)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(12)">Next Topic</button>
-            </div>
+            <div class="lecture-meta">
+            <span class="meta-badge">Sorting</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Array Sorting</div>
+            <p>Sorting means arranging the elements of an array in a particular order, usually from smallest to largest or from largest to smallest. NumPy provides several tools for efficiently sorting numerical arrays.</p>
+            <p>The <code>np.sort()</code> function returns a sorted version of an array without changing the original array. NumPy also provides <code>np.argsort()</code>, which returns the index positions that would arrange the array in sorted order.</p>
+            <p>Sorting is useful when working with data such as student marks, prices, temperatures, rankings, measurements, and many other types of numerical information.</p>
         </div>
 
-        <div class="lecture" id="lec-12">
+
+    <h2>Sorting Code</h2>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sort.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([40, 10, 30, 20])
+
+print("Original Array:", arr)
+print("Sorted Array:", np.sort(arr))
+print("Sorted Indices:", np.argsort(arr))</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Original Array: [40 10 30 20]
+
+
+Sorted Array: [10 20 30 40]
+Sorted Indices: [1 3 2 0]</pre> </div>
+
+
+    <p>
+        The function <code>np.sort(arr)</code> returns the values in ascending order. The original array remains unchanged.
+    </p>
+
+    <p>
+        The function <code>np.argsort(arr)</code> works differently. Instead of returning the sorted values, it returns the <strong>indices</strong> that would produce the sorted array.
+    </p>
+
+    <p>
+        In this example, the smallest value <code>10</code> is at index <code>1</code>, <code>20</code> is at index <code>3</code>, <code>30</code> is at index <code>2</code>, and <code>40</code> is at index <code>0</code>. Therefore, <code>np.argsort()</code> returns <code>[1, 3, 2, 0]</code>.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Important</div>
+        <p>
+            Remember the difference between <code>sort()</code> and <code>argsort()</code>: <code>np.sort()</code> gives you the <strong>sorted values</strong>, while <code>np.argsort()</code> gives you the <strong>indices that produce the sorted order</strong>.
+        </p>
+    </div>
+
+    <h2>Sorting in Ascending Order</h2>
+
+    <p>
+        By default, <code>np.sort()</code> arranges numerical values from the smallest value to the largest value. This is called <strong>ascending order</strong>.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-dots"><span></span><span></span><span></span></div><span class="filename">ascending.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+marks = np.array([75, 42, 91, 63, 88])
+
+sorted_marks = np.sort(marks)
+
+print("Sorted Marks:", sorted_marks)</pre>
+
+
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Sorted Marks: [42 63 75 88 91]</pre>
+    </div>
+
+    <p>
+        The smallest mark, <code>42</code>, appears first, while the largest mark, <code>91</code>, appears last.
+    </p>
+
+    <h2>Sorting in Descending Order</h2>
+
+    <p>
+        NumPy's <code>np.sort()</code> function sorts numerical values in ascending order by default. To sort values from largest to smallest, you can sort first and then reverse the result using slicing.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">descending.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([40, 10, 30, 20, 50])
+
+descending = np.sort(arr)[::-1]
+
+print("Descending:", descending)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Descending: [50 40 30 20 10]</pre>
+    </div>
+
+    <p>
+        The expression <code>[::-1]</code> reverses the sorted array. First, <code>np.sort(arr)</code> creates <code>[10, 20, 30, 40, 50]</code>, and then <code>[::-1]</code> reverses it to produce descending order.
+    </p>
+
+    <h2>Sorting Without Changing the Original</h2>
+
+    <p>
+        One important feature of <code>np.sort()</code> is that it returns a new sorted array. The original array is not modified.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">original_array.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([30, 10, 20])
+
+sorted_arr = np.sort(arr)
+
+print("Original:", arr)
+print("Sorted:", sorted_arr)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Original: [30 10 20]
+
+
+Sorted: [10 20 30]</pre> </div>
+
+
+    <p>
+        This behavior is useful when you need to keep the original order while also creating a sorted version of the data.
+    </p>
+
+    <h2>Sorting In-Place with sort()</h2>
+
+    <p>
+        NumPy arrays also have a <code>sort()</code> method. Unlike <code>np.sort()</code>, the array method modifies the existing array directly.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">inplace_sort.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([40, 10, 30, 20])
+
+arr.sort()
+
+print("Sorted Array:", arr)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Sorted Array: [10 20 30 40]</pre>
+    </div>
+
+    <p>
+        The statement <code>arr.sort()</code> changes the contents of <code>arr</code> itself. There is no separate sorted array created by the method.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 np.sort() vs array.sort()</div>
+        <p>
+            Use <code>np.sort(arr)</code> when you want a sorted result while keeping the original array unchanged. Use <code>arr.sort()</code> when you are comfortable modifying the original array directly.
+        </p>
+    </div>
+
+    <h2>Understanding argsort()</h2>
+
+    <p>
+        <code>np.argsort()</code> is especially useful when the order of the original data matters. Instead of moving the values immediately, it tells you which positions should be visited to obtain sorted order.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">argsort.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([50, 20, 40, 10, 30])
+
+indices = np.argsort(arr)
+
+print("Sorted Indices:", indices)
+print("Sorted Values:", arr[indices])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Sorted Indices: [3 1 4 2 0]
+
+
+Sorted Values: [10 20 30 40 50]</pre> </div>
+
+
+    <p>
+        The indices tell NumPy which elements to select first, second, third, and so on.
+    </p>
+
+    <p>
+        This makes <code>argsort()</code> extremely useful when you have multiple arrays that need to remain connected. For example, you might have one array containing student marks and another containing student names. You can sort the marks while using the same indices to reorder the names.
+    </p>
+
+    <h2>Sorting Related Data</h2>
+
+    <p>
+        Suppose you have student names and their marks stored in separate arrays. If you sort only the marks, the names could become disconnected from their corresponding marks. <code>argsort()</code> helps solve this problem.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">students.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+names = np.array(["Alice", "Bob", "Charlie", "David"])
+marks = np.array([75, 92, 68, 85])
+
+order = np.argsort(marks)
+
+print("Names:", names[order])
+print("Marks:", marks[order])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Names: ['Charlie' 'Alice' 'David' 'Bob']
+
+
+Marks: [68 75 85 92]</pre> </div>
+
+
+    <p>
+        The indices generated by <code>np.argsort(marks)</code> are used on both arrays. This keeps each student's name connected to the correct mark while sorting the students by their marks.
+    </p>
+
+    <h2>Sorting a 2-D Array</h2>
+
+    <p>
+        NumPy can also sort multidimensional arrays. The <code>axis</code> parameter controls the direction in which the sorting takes place.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sort_2d.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([
+[30, 10, 20],
+[60, 40, 50]
+])
+
+print("Sort each row:")
+print(np.sort(arr, axis=1))
+
+print("Sort each column:")
+print(np.sort(arr, axis=0))</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Sort each row:
+
+
+[[10 20 30]
+[40 50 60]]
+
+Sort each column:
+[[30 10 20]
+[60 40 50]]</pre> </div>
+
+
+    <p>
+        With <code>axis=1</code>, NumPy sorts the values across each row independently. With <code>axis=0</code>, NumPy sorts values down each column.
+    </p>
+
+    <p>
+        Understanding the <code>axis</code> parameter becomes very important when working with two-dimensional and higher-dimensional arrays.
+    </p>
+
+    <h2>Sorting Strings</h2>
+
+    <p>
+        NumPy can also sort arrays containing strings. String values are sorted according to their ordering.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sort_strings.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+names = np.array(["David", "Alice", "Charlie", "Bob"])
+
+print("Sorted Names:", np.sort(names))</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Sorted Names: ['Alice' 'Bob' 'Charlie' 'David']</pre>
+    </div>
+
+    <p>
+        This allows sorting to be used not only for numerical datasets but also for text-based data.
+    </p>
+
+    <h2>Finding the Smallest and Largest Values</h2>
+
+    <p>
+        Sometimes you do not need to sort an entire array. If your goal is simply to find the smallest or largest value, NumPy provides more direct functions.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">min_max.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([40, 10, 30, 20, 50])
+
+print("Minimum:", np.min(arr))
+print("Maximum:", np.max(arr))</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Minimum: 10
+
+
+Maximum: 50</pre> </div>
+
+
+    <p>
+        If you only need the minimum or maximum value, using <code>np.min()</code> or <code>np.max()</code> is more direct than sorting the entire array first.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">Sorting Functions Comparison</div>
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Purpose</th>
+                <th>Changes Original?</th>
+            </tr>
+            <tr>
+                <td><code>np.sort()</code></td>
+                <td>Returns sorted values</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><code>arr.sort()</code></td>
+                <td>Sorts the array directly</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><code>np.argsort()</code></td>
+                <td>Returns indices for sorted order</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><code>np.min()</code></td>
+                <td>Finds the smallest value</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><code>np.max()</code></td>
+                <td>Finds the largest value</td>
+                <td>No</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Why argsort() Is Useful</h2>
+
+    <p>
+        The real power of <code>argsort()</code> appears when sorting one piece of information while keeping related information synchronized.
+    </p>
+
+    <p>
+        For example, imagine a dataset containing product names and prices. If you want to display products from cheapest to most expensive, you can use <code>argsort()</code> on the prices and then apply the resulting indices to the product names.
+    </p>
+
+    <p>
+        This technique is commonly used in data analysis, ranking systems, machine learning, and scientific computing where different arrays contain related information.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Key Idea</div>
+        <p>
+            Think of <code>np.sort()</code> as saying <strong>"Give me the values in sorted order."</strong>
+        </p>
+        <p>
+            Think of <code>np.argsort()</code> as saying <strong>"Tell me which positions I should use to get the values in sorted order."</strong>
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li><code>np.sort()</code> returns a sorted version of an array.</li>
+        <li><code>np.sort()</code> does not modify the original array.</li>
+        <li><code>arr.sort()</code> sorts the existing array in-place.</li>
+        <li><code>np.argsort()</code> returns the indices that produce sorted order.</li>
+        <li>Use <code>argsort()</code> when you need to sort related arrays while keeping their relationships intact.</li>
+        <li>By default, NumPy sorts numerical values in ascending order.</li>
+        <li>You can reverse a sorted array using <code>[::-1]</code> to obtain descending order.</li>
+        <li>The <code>axis</code> parameter controls the direction of sorting in multidimensional arrays.</li>
+        <li><code>np.min()</code> and <code>np.max()</code> are useful when you only need the smallest or largest value.</li>
+        <li>Sorting is useful for rankings, data analysis, searching, and organizing datasets.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Create a NumPy array containing at least 8 random numbers and sort it using <code>np.sort()</code>.</li>
+            <li>Sort an array in descending order using <code>[::-1]</code>.</li>
+            <li>Use <code>arr.sort()</code> and observe how it changes the original array.</li>
+            <li>Use <code>np.argsort()</code> to find the indices that would sort an array.</li>
+            <li>Create two arrays containing student names and marks. Use <code>argsort()</code> to display students from lowest mark to highest mark.</li>
+            <li>Modify the previous program to display students from highest mark to lowest mark.</li>
+            <li>Create a 2-D array and use <code>axis=0</code> and <code>axis=1</code> to observe the difference in sorting direction.</li>
+            <li>Create an array of product prices and use <code>argsort()</code> to display the products from cheapest to most expensive.</li>
+            <li>Use <code>np.min()</code> and <code>np.max()</code> to find the smallest and largest values without sorting the array.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+            <button class="nav-btn" onclick="showLecture(10)">Previous</button>
+            <button class="nav-btn primary" onclick="showLecture(12)">Next Topic</button>
+        </div>
+    </div>
+   
+<div class="lecture" id="lec-12">
             <div class="lecture-tag">Topic 13 - Unit II - Advanced NumPy Operations</div>
             <h1>Universal Functions (ufuncs)</h1>
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Universal Functions (ufuncs)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Topic</button>
-            </div>
+            <div class="lecture-meta">
+            <span class="meta-badge">Masking</span>
         </div>
+        <div class="box info">
+            <div class="box-title">Filtering Data with Masks</div>
+            <p>Boolean masking is a powerful NumPy technique used to select, filter, or modify elements of an array based on a condition.</p>
+            <p>A <strong>mask</strong> is an array of Boolean values containing <code>True</code> or <code>False</code>. Each Boolean value corresponds to an element in the original array.</p>
+            <p>When a condition is applied to a NumPy array, NumPy automatically creates a Boolean array. This Boolean array can then be used to select only the elements that satisfy the condition.</p>
+            <p>Masking is extremely useful when working with datasets because it allows you to filter large amounts of data without manually checking each element with a Python loop.</p>
+        </div>
+
+
+    <h2>Masking Code</h2>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">masking.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 15, 20, 25, 30])
+
+mask = arr > 18
+
+print("Mask:", mask)
+print("Filtered Values (> 18):", arr[mask])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Mask: [False False  True  True  True]
+
+
+Filtered Values (> 18): [20 25 30]</pre> </div>
+
+
+    <p>
+        The expression <code>arr &gt; 18</code> compares every element in the array with <code>18</code>. For each element, NumPy produces either <code>True</code> or <code>False</code>.
+    </p>
+
+    <p>
+        The values <code>20</code>, <code>25</code>, and <code>30</code> are greater than <code>18</code>, so their positions contain <code>True</code>. The values <code>10</code> and <code>15</code> do not satisfy the condition, so their positions contain <code>False</code>.
+    </p>
+
+    <p>
+        When we write <code>arr[mask]</code>, NumPy selects only the elements whose corresponding mask value is <code>True</code>.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Important</div>
+        <p>
+            A Boolean mask has the same shape as the array it is being used with. Each <code>True</code> position means "include this value", while each <code>False</code> position means "ignore this value".
+        </p>
+        <p>
+            You can think of a mask as a filter placed over the array. Only the values that pass the filter are selected.
+        </p>
+    </div>
+
+    <h2>Creating a Mask Directly</h2>
+
+    <p>
+        You do not always need to store the mask in a separate variable. You can place the condition directly inside the square brackets.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">direct_mask.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([5, 10, 15, 20, 25, 30])
+
+print(arr[arr > 15])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>[20 25 30]</pre>
+    </div>
+
+    <p>
+        The expression <code>arr[arr &gt; 15]</code> first creates the Boolean condition and then immediately uses it as a mask.
+    </p>
+
+    <p>
+        This is a very common NumPy pattern and is especially useful when the filtering condition is simple.
+    </p>
+
+    <h2>Filtering Values Less Than a Number</h2>
+
+    <p>
+        Masks can be created using different comparison operators. For example, you can select values that are smaller than a particular number using <code>&lt;</code>.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">less_than.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50])
+
+result = arr[arr < 35]
+
+print("Values below 35:", result)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Values below 35: [10 20 30]</pre>
+    </div>
+
+    <p>
+        Only the values smaller than <code>35</code> are selected. This demonstrates that the same masking technique can be used with different comparison operators.
+    </p>
+
+    <h2>Filtering Using Multiple Conditions</h2>
+
+    <p>
+        You can combine multiple conditions to create more specific filters. For example, you may want values that are greater than <code>20</code> and less than <code>50</code>.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">multiple_masks.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 25, 30, 40, 50, 60])
+
+mask = (arr > 20) & (arr < 50)
+
+print("Filtered Values:", arr[mask])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Filtered Values: [25 30 40]</pre>
+    </div>
+
+    <p>
+        The first condition checks whether values are greater than <code>20</code>. The second checks whether they are less than <code>50</code>. The <code>&amp;</code> operator requires both conditions to be true.
+    </p>
+
+    <div class="box tip">
+        <div class="box-title">💡 Important</div>
+        <p>
+            When combining NumPy conditions, use <code>&amp;</code> for AND and <code>|</code> for OR. Put each condition inside parentheses.
+        </p>
+        <p>
+            Do not use Python's <code>and</code> or <code>or</code> operators with NumPy arrays for element-by-element conditions.
+        </p>
+    </div>
+
+    <h2>Using OR Conditions</h2>
+
+    <p>
+        The <code>|</code> operator can be used when you want an element to satisfy at least one of multiple conditions.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">or_mask.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50])
+
+mask = (arr < 20) | (arr > 40)
+
+print("Filtered Values:", arr[mask])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Filtered Values: [10 50]</pre>
+    </div>
+
+    <p>
+        Here, a value is selected if it is either less than <code>20</code> or greater than <code>40</code>.
+    </p>
+
+    <h2>Using NOT with a Mask</h2>
+
+    <p>
+        You can also reverse a Boolean condition using the <code>~</code> operator. This changes <code>True</code> values to <code>False</code> and <code>False</code> values to <code>True</code>.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">not_mask.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50])
+
+mask = arr > 25
+
+print("Values greater than 25:", arr[mask])
+print("Values not greater than 25:", arr[~mask])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Values greater than 25: [30 40 50]
+
+
+Values not greater than 25: [10 20]</pre> </div>
+
+
+    <p>
+        The <code>~</code> operator reverses the Boolean mask. This is useful when you want to select everything that does <strong>not</strong> satisfy a particular condition.
+    </p>
+
+    <h2>Modifying Values Using a Mask</h2>
+
+    <p>
+        Boolean masking is not limited to selecting values. You can also use a mask to modify selected elements.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">modify_mask.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50])
+
+arr[arr > 25] = 0
+
+print("Modified Array:", arr)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Modified Array: [10 20  0  0  0]</pre>
+    </div>
+
+    <p>
+        The expression <code>arr &gt; 25</code> creates a mask that identifies values greater than <code>25</code>. The assignment then changes all matching elements to <code>0</code>.
+    </p>
+
+    <p>
+        This is one of the most useful features of masking because it allows you to modify many elements at once without writing a loop.
+    </p>
+
+    <h2>Replacing Values with a Condition</h2>
+
+    <p>
+        Masks can be used to replace values that meet a particular condition. For example, values above a certain limit can be replaced with another value.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">replace_values.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+temperatures = np.array([20, 25, 30, 35, 40])
+
+temperatures[temperatures > 30] = 30
+
+print("Updated Temperatures:", temperatures)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Updated Temperatures: [20 25 30 30 30]</pre>
+    </div>
+
+    <p>
+        In this example, every temperature above <code>30</code> is replaced with <code>30</code>. This type of operation can be useful when cleaning or limiting data.
+    </p>
+
+    <h2>Masking with Student Marks</h2>
+
+    <p>
+        Boolean masking becomes easier to understand when applied to a realistic example. Suppose an array contains student marks and we want to select students who passed an examination.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">student_marks.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+marks = np.array([35, 72, 48, 90, 55, 28])
+
+passed = marks[marks >= 50]
+
+print("Passing Marks:", passed)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Passing Marks: [72 90 55]</pre>
+    </div>
+
+    <p>
+        The condition <code>marks &gt;= 50</code> creates a mask that identifies all marks that meet the passing requirement. Applying that mask extracts only the passing marks.
+    </p>
+
+    <h2>Integer Indexing and Masking</h2>
+
+    <p>
+        NumPy also allows arrays to be selected using integer index lists. Instead of specifying a condition, you provide the exact positions you want to retrieve.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index_mask.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40, 50])
+
+indices = [0, 2, 4]
+
+print("Selected Values:", arr[indices])</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Selected Values: [10 30 50]</pre>
+    </div>
+
+    <p>
+        Here, the index list <code>[0, 2, 4]</code> tells NumPy to select the first, third, and fifth elements.
+    </p>
+
+    <p>
+        Boolean masking and integer indexing are related but serve different purposes. A Boolean mask selects elements based on a <strong>condition</strong>, while integer indexing selects elements based on specific <strong>positions</strong>.
+    </p>
+
+    <h2>Masking a 2-D Array</h2>
+
+    <p>
+        Boolean masking can also be applied to two-dimensional arrays. The condition is evaluated against every element in the array.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mask_2d.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([
+[10, 20, 30],
+[40, 50, 60],
+[70, 80, 90]
+])
+
+result = arr[arr > 50]
+
+print("Values greater than 50:", result)</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Values greater than 50: [60 70 80 90]</pre>
+    </div>
+
+    <p>
+        Even though the original array has two dimensions, Boolean indexing returns the matching elements as a one-dimensional result.
+    </p>
+
+    <h2>Counting Values that Match a Condition</h2>
+
+    <p>
+        Masks can also help you count how many elements satisfy a particular condition. One simple approach is to use the mask with <code>np.sum()</code>.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">count_mask.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 25, 30, 15, 40, 50])
+
+mask = arr > 20
+
+print("Number of values above 20:", np.sum(mask))</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Number of values above 20: 4</pre>
+    </div>
+
+    <p>
+        Boolean values can be treated numerically in this situation: <code>True</code> behaves like <code>1</code> and <code>False</code> behaves like <code>0</code>. Therefore, summing the mask counts how many values satisfy the condition.
+    </p>
+
+    <h2>Checking Whether Any or All Values Match</h2>
+
+    <p>
+        NumPy provides <code>np.any()</code> and <code>np.all()</code> for working with Boolean conditions. <code>np.any()</code> checks whether at least one value is true, while <code>np.all()</code> checks whether every value is true.
+    </p>
+
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">any_all.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40])
+
+print("Any value greater than 35:", np.any(arr > 35))
+print("All values greater than 5:", np.all(arr > 5))</pre>
+
+</div>
+
+
+    <div class="box info">
+        <div class="box-title">Output</div>
+        <pre>Any value greater than 35: True
+
+
+All values greater than 5: True</pre> </div>
+
+
+    <p>
+        These functions are useful when you do not need the actual matching values but simply need to know whether a condition exists or is true for the entire array.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">Masking Operations Comparison</div>
+        <table>
+            <tr>
+                <th>Operation</th>
+                <th>Purpose</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>Boolean mask</td>
+                <td>Select values based on a condition</td>
+                <td><code>arr[arr &gt; 20]</code></td>
+            </tr>
+            <tr>
+                <td>Multiple conditions</td>
+                <td>Apply more than one filter</td>
+                <td><code>arr[(arr &gt; 10) &amp; (arr &lt; 50)]</code></td>
+            </tr>
+            <tr>
+                <td>Modify using mask</td>
+                <td>Change matching values</td>
+                <td><code>arr[arr &gt; 20] = 0</code></td>
+            </tr>
+            <tr>
+                <td>Integer indexing</td>
+                <td>Select exact positions</td>
+                <td><code>arr[[0, 2, 4]]</code></td>
+            </tr>
+            <tr>
+                <td><code>np.sum()</code></td>
+                <td>Count true conditions</td>
+                <td><code>np.sum(arr &gt; 20)</code></td>
+            </tr>
+            <tr>
+                <td><code>np.any()</code></td>
+                <td>Check whether any value matches</td>
+                <td><code>np.any(arr &gt; 20)</code></td>
+            </tr>
+            <tr>
+                <td><code>np.all()</code></td>
+                <td>Check whether all values match</td>
+                <td><code>np.all(arr &gt; 20)</code></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box tip">
+        <div class="box-title">💡 Key Idea</div>
+        <p>
+            Boolean masking allows you to treat an entire NumPy array like a filtered dataset. Instead of asking about one element at a time, you can define a condition and let NumPy apply it to every element.
+        </p>
+        <p>
+            This makes masking one of the most important techniques for data cleaning, data analysis, scientific computing, and machine learning.
+        </p>
+    </div>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li>A <strong>Boolean mask</strong> is an array containing <code>True</code> and <code>False</code> values.</li>
+        <li>Conditions such as <code>arr &gt; 18</code> automatically create Boolean masks.</li>
+        <li>Use <code>arr[mask]</code> to select elements where the mask is <code>True</code>.</li>
+        <li>You can place the condition directly inside the brackets, such as <code>arr[arr &gt; 18]</code>.</li>
+        <li>Use <code>&amp;</code> to combine conditions with AND.</li>
+        <li>Use <code>|</code> to combine conditions with OR.</li>
+        <li>Use <code>~</code> to reverse a Boolean mask.</li>
+        <li>Boolean masks can be used to modify selected elements.</li>
+        <li>Integer indexing allows you to select specific positions directly.</li>
+        <li>Masking can be used with one-dimensional and multidimensional arrays.</li>
+        <li><code>np.sum()</code> can be used to count how many elements satisfy a condition.</li>
+        <li><code>np.any()</code> checks whether at least one condition is true.</li>
+        <li><code>np.all()</code> checks whether every condition is true.</li>
+        <li>Masking is an efficient alternative to manually checking array elements with loops.</li>
+    </ul>
+
+    <div class="exercise">
+        <div class="exercise-title">Practice Task</div>
+        <ul>
+            <li>Create a NumPy array containing at least 10 numbers and use a Boolean mask to select values greater than <code>50</code>.</li>
+            <li>Create a mask that selects all values smaller than <code>30</code>.</li>
+            <li>Use two conditions to select values between <code>20</code> and <code>80</code>.</li>
+            <li>Use the <code>|</code> operator to select values that are either below <code>20</code> or above <code>80</code>.</li>
+            <li>Use the <code>~</code> operator to select values that do not satisfy a particular condition.</li>
+            <li>Create an array of student marks and use masking to select all passing marks.</li>
+            <li>Use masking to replace all values greater than <code>100</code> with <code>100</code>.</li>
+            <li>Create a 2-D NumPy array and use a Boolean mask to extract all values greater than <code>50</code>.</li>
+            <li>Use <code>np.sum()</code> to count how many values in an array are greater than a chosen number.</li>
+            <li>Use <code>np.any()</code> to determine whether an array contains at least one negative number.</li>
+            <li>Use <code>np.all()</code> to determine whether all values in an array are positive.</li>
+            <li>Compare Boolean masking with integer indexing by selecting the same values using both techniques.</li>
+        </ul>
+    </div>
+
+    <div class="lecture-nav">
+            <button class="nav-btn" onclick="showLecture(11)">Previous</button>
+            <button class="nav-btn primary" onclick="showLecture(13)">Next Topic</button>
+        </div>
+    </div>
+
+
+
+
+
 
         <div class="lecture" id="lec-13">
             <div class="lecture-tag">Topic 14 - Unit III - Introduction to Pandas</div>
@@ -1221,11 +4159,24 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Pandas Overview</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Element-wise Operations</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Fast C-Level Loops</div>
+            <p>Vectorization replaces explicit Python loops with C-compiled SIMD operations across arrays.</p>
+        </div>
+        <h2>Vectorization Speed Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">vectorized.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+a = np.array([1, 2, 3])
+b = np.array([10, 20, 30])
+print("Element-wise sum:", a + b)
+print("Element-wise product:", a * b)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(12)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(14)">Next Topic</button>
             </div>
@@ -1237,11 +4188,24 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Pandas Series</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Broadcasting</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Compatible Dimensions</div>
+            <p>Broadcasting allows arithmetic operations between arrays of different shapes without copying data.</p>
+        </div>
+        <h2>Broadcasting Example</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">broadcasting.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+matrix = np.ones((3, 3))
+vector = np.array([1, 2, 3])
+print("Broadcasted Addition:
+", matrix + vector)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(13)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(15)">Next Topic</button>
             </div>
@@ -1253,11 +4217,22 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Pandas DataFrames</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">ufuncs</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Fast Math Functions</div>
+            <p>Universal functions provide fast element-wise trigonometric, logarithmic, and exponential operations.</p>
+        </div>
+        <h2>ufunc Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ufuncs.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+angles = np.array([0, np.pi/2, np.pi])
+print("Sine values:", np.sin(angles))</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(14)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(16)">Next Topic</button>
             </div>
@@ -1269,11 +4244,23 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Reading CSV Files</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Statistics</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Array Statistics</div>
+            <p>Compute summary statistics along specified array axes.</p>
+        </div>
+        <h2>Statistical Aggregation Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">stats.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+print("Mean across columns (axis=0):", arr.mean(axis=0))
+print("Standard Deviation:", arr.std())</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(15)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(17)">Next Topic</button>
             </div>
@@ -1285,11 +4272,24 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Reading JSON Files</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Random Generators</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Stochastic Sampling</div>
+            <p>Generate random samples from Uniform, Normal, Binomial, and Poisson distributions.</p>
+        </div>
+        <h2>np.random Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">random_demo.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+rng = np.random.default_rng(seed=42)
+normal_samples = rng.normal(loc=0.0, scale=1.0, size=(2, 3))
+print("Gaussian Samples:
+", normal_samples)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(16)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(18)">Next Topic</button>
             </div>
@@ -1301,11 +4301,26 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Analyzing Data (head, tail, info)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Dot Product & Matrix Inverse</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Matrix Computations</div>
+            <p>Perform matrix multiplications (@), determinants, and matrix inverses using LAPACK routines.</p>
+        </div>
+        <h2>Linear Algebra Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">linalg.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+
+print("Matrix Multiplication (A @ B):
+", A @ B)
+print("Matrix Determinant:", np.linalg.det(A))</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(17)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(19)">Next Topic</button>
             </div>
@@ -1317,11 +4332,23 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Data Cleaning Overview</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Spectral Decomposition</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Eigen Decomposition</div>
+            <p>Compute eigenvalues and eigenvectors for matrix transformations using np.linalg.eig().</p>
+        </div>
+        <h2>Eigen Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">eigen.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+A = np.array([[4, -2], [1,  1]])
+eigenvals, eigenvecs = np.linalg.eig(A)
+print("Eigenvalues:", eigenvals)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(18)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(20)">Next Topic</button>
             </div>
@@ -1333,11 +4360,26 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Handling Missing Data (Empty Cells)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">np.linalg.solve</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Linear Systems (Ax = b)</div>
+            <p>Solve system of linear equations Ax = b efficiently.</p>
+        </div>
+        <h2>Solving Equations Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">solve_linear.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># 2x + y = 8</span>
+<span class="cm"># x + 3y = 14</span>
+A = np.array([[2, 1], [1, 3]])
+b = np.array([8, 14])
+x = np.linalg.solve(A, b)
+print("Solution [x, y]:", x)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(19)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(21)">Next Topic</button>
             </div>
@@ -1349,11 +4391,23 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Cleaning Wrong Formats</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Structured Arrays</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">C-Style Struct Arrays</div>
+            <p>Define multi-field compound data types containing different data types per field.</p>
+        </div>
+        <h2>Structured Array Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">struct_arr.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+dt = np.dtype([(<span class="s">'name'</span>, <span class="s">'U10'</span>), (<span class="s">'age'</span>, <span class="s">'i4'</span>), (<span class="s">'gpa'</span>, <span class="s">'f8'</span>)])
+students = np.array([(<span class="s">'Alice'</span>, 21, 3.9), (<span class="s">'Bob'</span>, 22, 3.5)], dtype=dt)
+print("Names:", students[<span class="s">'name'</span>])</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(20)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(22)">Next Topic</button>
             </div>
@@ -1365,11 +4419,23 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Fixing Wrong Data</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">NumPy Datetimes</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Fast Date Mathematics</div>
+            <p>Represent date and time data types with uniform nanosecond precision.</p>
+        </div>
+        <h2>Datetime Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dates.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+today = np.datetime64(<span class="s">'2026-08-06'</span>)
+next_week = today + np.timedelta64(7, <span class="s">'D'</span>)
+print("Date next week:", next_week)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(21)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(23)">Next Topic</button>
             </div>
@@ -1381,11 +4447,24 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Removing Duplicates</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Disk Persistence</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Binary & Text File I/O</div>
+            <p>Save arrays to binary .npy / .npz files or delimited .csv text files.</p>
+        </div>
+        <h2>File I/O Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">file_io.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+arr = np.array([10, 20, 30, 40])
+np.save(<span class="s">'my_array.npy'</span>, arr)
+loaded = np.load(<span class="s">'my_array.npy'</span>)
+print("Loaded Binary Array:", loaded)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(22)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(24)">Next Topic</button>
             </div>
@@ -1397,11 +4476,24 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Data Correlations</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Polynomial Fitting</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Fitting Curves</div>
+            <p>Evaluate, differentiate, and fit polynomial functions.</p>
+        </div>
+        <h2>Polynomial Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">poly.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+x = np.array([0, 1, 2, 3])
+y = np.array([1, 3, 7, 13])
+poly_coeffs = np.polyfit(x, y, deg=2)
+print("Fitted Polynomial Coefficients:", poly_coeffs)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(23)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(25)">Next Topic</button>
             </div>
@@ -1413,11 +4505,24 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Plotting with Pandas</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Memory Contiguity</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">C vs Fortran Layouts</div>
+            <p>Understand row-major (C) versus column-major (Fortran) memory striding.</p>
+        </div>
+        <h2>Contiguity Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">memory.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+c_arr = np.array([[1, 2], [3, 4]], order=<span class="s">'C'</span>)
+f_arr = np.array([[1, 2], [3, 4]], order=<span class="s">'F'</span>)
+print("C-contiguous:", c_arr.flags[<span class="s">'C_CONTIGUOUS'</span>])
+print("F-contiguous:", f_arr.flags[<span class="s">'F_CONTIGUOUS'</span>])</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(24)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(26)">Next Topic</button>
             </div>
@@ -1429,11 +4534,23 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>GroupBy Operations</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Custom ufuncs</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Custom Vectorization</div>
+            <p>Convert arbitrary Python scalar functions into universal NumPy vector functions.</p>
+        </div>
+        <h2>Custom ufunc Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">custom_ufunc.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="kd">def</span> custom_add(x, y): <span class="kw">return</span> x * 2 + y
+vec_func = np.frompyfunc(custom_add, 2, 1)
+print("Custom Vectorized Output:", vec_func([1, 2], [5, 10]))</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(25)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(27)">Next Topic</button>
             </div>
@@ -1445,11 +4562,23 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Merging & Concatenating</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Pandas Interop</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Interop with DataFrames</div>
+            <p>Seamlessly extract underlying NumPy ndarrays from Pandas DataFrames using .values or .to_numpy().</p>
+        </div>
+        <h2>Pandas Integration Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pandas_interop.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+df = pd.DataFrame({<span class="s">'A'</span>: [1, 2, 3], <span class="s">'B'</span>: [4, 5, 6]})
+np_matrix = df.to_numpy()
+print("Underlying ndarray:
+", np_matrix)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(26)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(28)">Next Topic</button>
             </div>
@@ -1461,11 +4590,25 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Pivot Tables</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Plotting Arrays</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Visualizing Vectors</div>
+            <p>Plot NumPy mathematical functions and matrices using Matplotlib.</p>
+        </div>
+        <h2>Plotting Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">plot_demo.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">import</span> matplotlib.pyplot <span class="kn">as</span> plt
+
+x = np.linspace(0, 2*np.pi, 100)
+y = np.sin(x)
+plt.plot(x, y)
+plt.title("Sine Wave Generated via NumPy")</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(27)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(29)">Next Topic</button>
             </div>
@@ -1477,11 +4620,36 @@ print(arr)
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Time Series Analysis</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">NumPy Capstone</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Complete NumPy Capstone</div>
+            <p>Build a high-speed data processing pipeline performing matrix transformations, normalization, filtering, and statistical analysis.</p>
+        </div>
+        <h2>Complete Capstone Source Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">signal_engine.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># 1. Generate synthetic noisy signal</span>
+t = np.linspace(0, 10, 1000)
+clean_signal = np.sin(2 * np.pi * 0.5 * t)
+noise = np.random.normal(0, 0.2, size=1000)
+raw_signal = clean_signal + noise
+
+<span class="cm"># 2. Vectorized Moving Average Filter</span>
+window_size = 10
+weights = np.ones(window_size) / window_size
+smoothed_signal = np.convolve(raw_signal, weights, mode=<span class="s">'same'</span>)
+
+<span class="cm"># 3. Z-score Normalization</span>
+normalized_signal = (smoothed_signal - np.mean(smoothed_signal)) / np.std(smoothed_signal)
+
+print("Signal Processing Pipeline Completed Successfully!")
+print(f"Raw Signal Std: {np.std(raw_signal):.3f} | Normalized Std: {np.std(normalized_signal):.3f}")</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(28)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
             </div>

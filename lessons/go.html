@@ -2706,15 +2706,116 @@ ENTRYPOINT ["/myapp"]</pre></div>
                 <!-- ===================== LECTURE 18 ===================== -->
                 <div class="lecture" id="lec-17">
                     <div class="lecture-tag">Lecture 18 · Capstone Project</div>
-                    <h1>Capstone: Concurrent CLI Tool</h1>
+                    <h1>Capstone: High-Performance Concurrent API Scraper & Health Checker</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Goroutines & Channels</span>
+                        <span class="meta-badge">Worker Pool Pattern</span>
+                        <span class="meta-badge">Context & Timeouts</span>
+                    </div>
 
-                    <p>Build a tool that fetches data from multiple APIs concurrently using goroutines and channels.</p>
+                    <div class="box info">
+                        <div class="box-title">Project Goal</div>
+                        <p>
+                            Build a robust, concurrent CLI monitoring tool in Go. The application concurrently pings multiple microservice endpoints, collects performance statistics, handles context timeouts, and safely processes incoming results via worker pools and channels.
+                        </p>
+                    </div>
+
+                    <h2>Complete Source Code Solution</h2>
                     <div class="code-block">
-                        <pre><span class="cm">// Requirements:</span>
-<span class="cm">// 1. Use net/http to fetch data</span>
-<span class="cm">// 2. Use goroutines for parallel requests</span>
-<span class="cm">// 3. Collect results via channels</span>
-<span class="cm">// 4. Use context for timeouts</span></pre>
+                        <div class="code-header">
+                            <div class="code-dots"><span></span><span></span><span></span></div>
+                            <span class="filename">main.go</span>
+                        </div>
+<pre><span class="kn">package</span> main
+
+<span class="kn">import</span> (
+    <span class="s">"context"</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"net/http"</span>
+    <span class="s">"sync"</span>
+    <span class="s">"time"</span>
+)
+
+<span class="cm">// Result represents the health status of an HTTP target</span>
+<span class="kd">type</span> Result <span class="kd">struct</span> {
+    URL        <span class="kt">string</span>
+    StatusCode <span class="kt">int</span>
+    Duration   time.Duration
+    Err        <span class="kt">error</span>
+}
+
+<span class="kd">func</span> checkURL(ctx context.Context, url <span class="kt">string</span>) Result {
+    start := time.Now()
+    req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, <span class="kc">nil</span>)
+    <span class="kd">if</span> err != <span class="kc">nil</span> {
+        <span class="kd">return</span> Result{URL: url, Err: err}
+    }
+
+    client := http.Client{Timeout: <span class="mn">3</span> * time.Second}
+    resp, err := client.Do(req)
+    duration := time.Since(start)
+
+    <span class="kd">if</span> err != <span class="kc">nil</span> {
+        <span class="kd">return</span> Result{URL: url, Duration: duration, Err: err}
+    }
+    <span class="kd">defer</span> resp.Body.Close()
+
+    <span class="kd">return</span> Result{URL: url, StatusCode: resp.StatusCode, Duration: duration}
+}
+
+<span class="kd">func</span> worker(ctx context.Context, jobs &lt;-<span class="kd">chan</span> <span class="kt">string</span>, results <span class="chan">chan</span>&lt;- Result, wg *sync.WaitGroup) {
+    <span class="kd">defer</span> wg.Done()
+    <span class="kd">for</span> url := <span class="kd">range</span> jobs {
+        results &lt;- checkURL(ctx, url)
+    }
+}
+
+<span class="kd">func</span> main() {
+    targets := []<span class="kt">string</span>{
+        <span class="s">"https://golang.org"</span>,
+        <span class="s">"https://api.github.com"</span>,
+        <span class="s">"https://httpbin.org/delay/1"</span>,
+    }
+
+    ctx, cancel := context.WithTimeout(context.Background(), <span class="mn">5</span>*time.Second)
+    <span class="kd">defer</span> cancel()
+
+    numWorkers := <span class="mn">3</span>
+    jobs := make(<span class="kd">chan</span> <span class="kt">string</span>, len(targets))
+    results := make(<span class="kd">chan</span> Result, len(targets))
+
+    <span class="kd">var</span> wg sync.WaitGroup
+    <span class="kd">for</span> w := <span class="mn">1</span>; w &lt;= numWorkers; w++ {
+        wg.Add(<span class="mn">1</span>)
+        <span class="kd">go</span> worker(ctx, jobs, results, &amp;wg)
+    }
+
+    <span class="kd">for</span> _, url := <span class="kd">range</span> targets {
+        jobs &lt;- url
+    }
+    close(jobs)
+
+    wg.Wait()
+    close(results)
+
+    fmt.Println(<span class="s">"=== Health Check Summary ==="</span>)
+    <span class="kd">for</span> res := <span class="kd">range</span> results {
+        <span class="kd">if</span> res.Err != <span class="kc">nil</span> {
+            fmt.Printf(<span class="s">"[FAIL] %s - Error: %v\n"</span>, res.URL, res.Err)
+        } <span class="kd">else</span> {
+            fmt.Printf(<span class="s">"[OK]   %s - Status: %d (%v)\n"</span>, res.URL, res.StatusCode, res.Duration)
+        }
+    }
+}</pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">Key Learnings & Next Steps</div>
+                        <ul>
+                            <li><strong>Channels:</strong> Safely send data across concurrent goroutines without lock contention.</li>
+                            <li><strong>Context:</strong> Prevent hanging resources by setting strict request timeouts.</li>
+                            <li><strong>WaitGroup:</strong> Coordinate clean goroutine termination before closing channels.</li>
+                        </ul>
                     </div>
 
                     <div class="lecture-nav">

@@ -279,11 +279,36 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Artificial Neural Networks (ANNs)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">ANN Architecture</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Structure of an ANN</div>
+            <p>An Artificial Neural Network consists of an Input Layer, multiple Hidden Layers, and an Output Layer of interconnected artificial neurons (perceptrons).</p>
+        </div>
+        <h2>PyTorch Multi-Layer Perceptron (MLP)</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ann_pytorch.py</span></div>
+<pre><span class="kn">import</span> torch
+<span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+
+<span class="kd">class</span> <span class="nc">ANN</span>(nn.Module):
+    <span class="kd">def</span> <span class="nf">__init__</span>(self, input_dim, hidden_dim, output_dim):
+        super(ANN, self).__init__()
+        self.fc1 = nn.Linear(input_dim, hidden_dim)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_dim, output_dim)
+        
+    <span class="kd">def</span> <span class="nf">forward</span>(self, x):
+        out = self.fc1(x)
+        out = self.relu(out)
+        out = self.fc2(out)
+        <span class="kw">return</span> out
+
+model = ANN(input_dim=784, hidden_dim=128, output_dim=10)
+print(model)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(0)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(2)">Next Topic</button>
             </div>
@@ -295,11 +320,16 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>The Perceptron</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Linear Discriminant</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Single Neuron Model</div>
+            <p>The Perceptron computes a weighted sum of inputs plus a bias ($z = \sum w_i x_i + b$) passed through a step activation function.</p>
+        </div>
+        <h2>Perceptron Equation</h2>
+<p>$y = f(w_1 x_1 + w_2 x_2 + ... + b)$</p>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(1)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(3)">Next Topic</button>
             </div>
@@ -311,11 +341,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Activation Functions</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Non-Linearities</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Enabling Non-Linear Representations</div>
+            <p>Activation functions introduce non-linear transformations, allowing neural networks to approximate arbitrary complex functions.</p>
+        </div>
+        <h2>Common Activation Functions</h2>
+<ul>
+    <li><strong>ReLU (Rectified Linear Unit):</strong> $f(x) = \max(0, x)$ — prevents vanishing gradients in deep networks.</li>
+    <li><strong>Sigmoid:</strong> $f(x) = \frac{1}{1 + e^{-x}}$ — maps outputs to probabilities (0 to 1).</li>
+    <li><strong>Softmax:</strong> Converts a vector of raw logits into a normalized probability distribution across multiple classes.</li>
+</ul>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(2)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(4)">Next Topic</button>
             </div>
@@ -327,11 +366,27 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Forward Propagation</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Tensor Multiplication</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Information Flow</div>
+            <p>Forward propagation computes layer-by-layer matrix multiplications and non-linear activation passes from inputs to final predictions.</p>
+        </div>
+        <h2>Forward Pass Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">forward_pass.py</span></div>
+<pre><span class="kn">import</span> torch
+
+X = torch.randn(32, 784) <span class="cm"># Batch of 32 images</span>
+W1 = torch.randn(784, 128)
+b1 = torch.zeros(128)
+
+Z1 = torch.matmul(X, W1) + b1
+A1 = torch.relu(Z1)
+print("Forward Pass Tensor Shape:", A1.shape)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(3)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(5)">Next Topic</button>
             </div>
@@ -343,11 +398,22 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Loss Functions</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Loss Computation</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Quantifying Prediction Error</div>
+            <p>Loss functions measure the discrepancy between model predictions $\hat{y}$ and true ground-truth targets $y$.</p>
+        </div>
+        <h2>Loss Functions Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">loss_fn.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+
+criterion_clf = nn.CrossEntropyLoss() <span class="cm"># Classification</span>
+criterion_reg = nn.MSELoss()          <span class="cm"># Regression</span></pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(4)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
             </div>
@@ -359,11 +425,24 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Gradient Descent & Backpropagation</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Chain Rule & Autograd</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Updating Model Weights</div>
+            <p>Backpropagation calculates partial derivatives of the Loss function with respect to every weight using the Calculus Chain Rule.</p>
+        </div>
+        <h2>PyTorch Autograd Backprop</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">backprop.py</span></div>
+<pre><span class="kn">import</span> torch
+
+x = torch.tensor(2.0, requires_grad=<span class="kc">True</span>)
+y = x**2 + 3*x + 1
+y.backward() <span class="cm">// Computes dy/dx = 2x + 3</span>
+print("Gradient at x=2.0:", x.grad.item()) <span class="cm">// 7.0</span></pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(5)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(7)">Next Topic</button>
             </div>
@@ -375,11 +454,24 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Optimizers (Adam, RMSprop)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Optimization Algorithms</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Weight Update Rules</div>
+            <p>Optimizers update network weights using computed gradients. Adam (Adaptive Moment Estimation) combines momentum and adaptive learning rates.</p>
+        </div>
+        <h2>Optimizer Configuration Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">optimizer.py</span></div>
+<pre><span class="kn">import</span> torch.optim <span class="kn">as</span> optim
+
+optimizer = optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4)
+optimizer.zero_grad()
+loss.backward()
+optimizer.step()</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(6)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(8)">Next Topic</button>
             </div>
@@ -391,11 +483,24 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Handling Overfitting (Dropout)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Regularization</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Preventing Overfitting</div>
+            <p>Dropout randomly deactivates a fraction $p$ of neurons during training, forcing the network to learn redundant robust features.</p>
+        </div>
+        <h2>Dropout Layer Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dropout.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+layer = nn.Sequential(
+    nn.Linear(128, 64),
+    nn.Dropout(p=0.5), <span class="cm"># 50% dropout probability</span>
+    nn.ReLU()
+)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(7)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(9)">Next Topic</button>
             </div>
@@ -407,11 +512,24 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Batch Normalization</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Internal Covariate Shift</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Standardizing Layer Activations</div>
+            <p>Batch Normalization normalizes activations across mini-batches, stabilizing training and enabling higher learning rates.</p>
+        </div>
+        <h2>BatchNorm Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">batch_norm.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+layer = nn.Sequential(
+    nn.Linear(128, 64),
+    nn.BatchNorm1d(64),
+    nn.ReLU()
+)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(8)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(10)">Next Topic</button>
             </div>
@@ -423,11 +541,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Introduction to CNNs</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Computer Vision</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Grid-Structured Spatial Data</div>
+            <p>CNNs use spatial weight sharing to preserve spatial grid hierarchies in image and video processing.</p>
+        </div>
+        <h2>PyTorch Conv2d Layer</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cnn_intro.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+conv = nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=1, padding=1)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(9)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(11)">Next Topic</button>
             </div>
@@ -439,11 +566,22 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Convolution Operations</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Feature Maps</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Convolution Filters</div>
+            <p>Kernels slide across input channels to detect edges, textures, and higher-level visual patterns.</p>
+        </div>
+        <h2>Convolution Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">conv_ops.py</span></div>
+<pre><span class="kn">import</span> torch
+input_img = torch.randn(1, 3, 64, 64)
+output_map = conv(input_img)
+print("Output Feature Map Shape:", output_map.shape)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(10)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(12)">Next Topic</button>
             </div>
@@ -455,11 +593,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Pooling Layers</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Downsampling</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Spatial Dimension Reduction</div>
+            <p>Pooling downsamples spatial dimensions, reducing computational parameter load and providing translation invariance.</p>
+        </div>
+        <h2>MaxPool2d Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pooling.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+pool = nn.MaxPool2d(kernel_size=2, stride=2)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(11)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(13)">Next Topic</button>
             </div>
@@ -471,11 +618,16 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Famous CNN Architectures (ResNet)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Deep Architectures</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Residual Skip Connections</div>
+            <p>ResNet introduced Skip Connections ($y = F(x) + x$) to train ultra-deep networks (152+ layers) without gradient degradation.</p>
+        </div>
+        <h2>Residual Block Architecture</h2>
+<p>$y = \mathcal{F}(x, \{W_i\}) + x$</p>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(12)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(14)">Next Topic</button>
             </div>
@@ -487,11 +639,28 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Transfer Learning</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Pre-Trained Models</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Reusing Feature Extractor Weights</div>
+            <p>Transfer learning leverages models pre-trained on ImageNet to achieve high accuracy on specialized custom datasets with minimal training data.</p>
+        </div>
+        <h2>PyTorch Transfer Learning Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">transfer_learning.py</span></div>
+<pre><span class="kn">import</span> torchvision.models <span class="kn">as</span> models
+<span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+
+resnet = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+<span class="cm"># Freeze convolutional backbone</span>
+<span class="kw">for</span> param <span class="kw">in</span> resnet.parameters():
+    param.requires_grad = <span class="kc">False</span>
+
+<span class="cm"># Replace classification head</span>
+resnet.fc = nn.Linear(resnet.fc.in_features, 2) <span class="cm"># 2 custom classes</span></pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(13)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(15)">Next Topic</button>
             </div>
@@ -503,11 +672,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Sequence Data & RNNs</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Sequence Modeling</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Temporal Memory</div>
+            <p>RNNs process sequential time-series and natural language inputs by passing hidden state memory $h_t$ across time steps.</p>
+        </div>
+        <h2>PyTorch RNN Layer</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">rnn.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+rnn = nn.RNN(input_size=10, hidden_size=20, num_layers=2, batch_first=<span class="kc">True</span>)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(14)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(16)">Next Topic</button>
             </div>
@@ -519,11 +697,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>The Vanishing Gradient Problem</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Gradient Instability</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Long Sequences Challenge</div>
+            <p>Repeated matrix multiplications over long time steps cause gradients to decay exponentially to 0 or explode to infinity.</p>
+        </div>
+        <h2>Gradient Clipping Remedy</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">clip_grad.py</span></div>
+<pre><span class="kn">import</span> torch.nn.utils <span class="kn">as</span> utils
+utils.clip_grad_norm_(model.parameters(), max_norm=1.0)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(15)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(17)">Next Topic</button>
             </div>
@@ -535,11 +722,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Long Short-Term Memory (LSTM)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Gated Memory Cells</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Forget, Input & Output Gates</div>
+            <p>LSTMs solve vanishing gradients using a persistent Cell State $C_t$ governed by Forget, Input, and Output gates.</p>
+        </div>
+        <h2>PyTorch LSTM Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">lstm.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+lstm = nn.LSTM(input_size=64, hidden_size=128, batch_first=<span class="kc">True</span>)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(16)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(18)">Next Topic</button>
             </div>
@@ -551,11 +747,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Gated Recurrent Units (GRUs)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">GRU Architecture</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Streamlined Sequential Memory</div>
+            <p>GRUs simplify LSTM architecture by combining cell state and hidden state into a single state managed by Update and Reset gates.</p>
+        </div>
+        <h2>PyTorch GRU Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">gru.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+gru = nn.GRU(input_size=64, hidden_size=128, batch_first=<span class="kc">True</span>)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(17)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(19)">Next Topic</button>
             </div>
@@ -567,11 +772,16 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Sequence-to-Sequence Models</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Encoder-Decoder</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Seq2Seq Architecture</div>
+            <p>Seq2Seq uses an Encoder to condense source sequences into context vectors and a Decoder to generate target outputs (used in Machine Translation).</p>
+        </div>
+        <h2>Encoder-Decoder Overview</h2>
+<p>Encodes variable-length input sequences $X_1..X_N$ into context vector $C$, decoding into target $Y_1..Y_M$.</p>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(18)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(20)">Next Topic</button>
             </div>
@@ -583,11 +793,16 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Attention Mechanisms</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Attention Mechanism</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Dynamic Context Weights</div>
+            <p>Attention allows models to dynamically focus on relevant parts of input sequences regardless of distance.</p>
+        </div>
+        <h2>Attention Equation</h2>
+<p>$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$</p>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(19)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(21)">Next Topic</button>
             </div>
@@ -599,11 +814,21 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>The Transformer Architecture</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Transformers & Self-Attention</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Parallel Sequence Processing</div>
+            <p>Transformers replace recurrent loops completely with Multi-Head Self-Attention and Positional Encodings, enabling massive parallel pre-training (GPT, BERT, LLMs).</p>
+        </div>
+        <h2>PyTorch TransformerEncoder</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">transformer.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+encoder_layer = nn.TransformerEncoderLayer(d_model=512, nhead=8)
+transformer = nn.TransformerEncoder(encoder_layer, num_layers=6)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(20)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(22)">Next Topic</button>
             </div>
@@ -615,11 +840,24 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Autoencoders</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Unsupervised Representation</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Dimension Bottleneck</div>
+            <p>Autoencoders compress inputs into a low-dimensional bottleneck code $Z$ before reconstructing the original input $\hat{X}$.</p>
+        </div>
+        <h2>Autoencoder Reconstruction</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">autoencoder.py</span></div>
+<pre><span class="kn">import</span> torch.nn <span class="kn">as</span> nn
+<span class="kd">class</span> <span class="nc">Autoencoder</span>(nn.Module):
+    <span class="kd">def</span> <span class="nf">__init__</span>(self):
+        super().__init__()
+        self.encoder = nn.Sequential(nn.Linear(784, 32), nn.ReLU())
+        self.decoder = nn.Sequential(nn.Linear(32, 784), nn.Sigmoid())</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(21)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(23)">Next Topic</button>
             </div>
@@ -631,11 +869,16 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Variational Autoencoders (VAEs)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Generative Latent Space</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Probabilistic Latent Sampling</div>
+            <p>VAEs enforce a continuous Gaussian latent distribution $(\mu, \sigma)$ allowing smooth generative sampling of new images/data.</p>
+        </div>
+        <h2>Reparameterization Trick</h2>
+<p>$z = \mu + \sigma \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)$</p>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(22)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(25)">Next Topic</button>
             </div>
@@ -647,11 +890,16 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Generative Adversarial Networks (GANs)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Generator vs Discriminator</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Adversarial Training Game</div>
+            <p>GANs pit a Generator $G$ (creating fake data) against a Discriminator $D$ (spotting real vs fake) in a minimax game.</p>
+        </div>
+        <h2>Minimax Objective Equation</h2>
+<p>$\min_G \max_D V(D, G) = \mathbb{E}_{x}[\log D(x)] + \mathbb{E}_{z}[\log(1 - D(G(z)))]$</p>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(23)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(25)">Next Topic</button>
             </div>
@@ -663,11 +911,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Deep Q-Networks (RL Basics)</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Deep RL</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Q-Learning with Neural Nets</div>
+            <p>DQNs approximate optimal action-value functions $Q(s, a)$ using deep neural networks to play games and control autonomous agents.</p>
+        </div>
+        <h2>DQN Bellman Loss Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dqn.py</span></div>
+<pre><span class="kn">import</span> torch
+target_q = reward + gamma * torch.max(next_q_values)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(24)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(26)">Next Topic</button>
             </div>
@@ -679,11 +936,23 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Introduction to PyTorch</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Tensors & Autograd</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Dynamic Computational Graphs</div>
+            <p>PyTorch features dynamic computational graphs (eager execution), GPU acceleration via CUDA, and Pythonic debugging.</p>
+        </div>
+        <h2>PyTorch Basics Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pytorch_intro.py</span></div>
+<pre><span class="kn">import</span> torch
+device = torch.device(<span class="s">"cuda"</span> <span class="kw">if</span> torch.cuda.is_available() <span class="kw">else</span> <span class="s">"cpu"</span>)
+tensor = torch.randn(3, 3).to(device)
+print("Device Tensor:
+", tensor)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(25)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(27)">Next Topic</button>
             </div>
@@ -695,11 +964,23 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Introduction to TensorFlow & Keras</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">tf.keras Sequential API</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">High-Level Deep Learning API</div>
+            <p>TensorFlow 2.x and Keras provide production-grade model building APIs with instant export to mobile (TF Lite) and web (TF.js).</p>
+        </div>
+        <h2>Keras Model Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">keras_intro.py</span></div>
+<pre><span class="kn">import</span> tensorflow <span class="kn">as</span> tf
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(64, activation=<span class="s">'relu'</span>, input_shape=(784,)),
+    tf.keras.layers.Dense(10, activation=<span class="s">'softmax'</span>)
+])</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(26)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(28)">Next Topic</button>
             </div>
@@ -711,11 +992,21 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Model Deployment Strategies</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">Model Serving</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Production Inference Pipelines</div>
+            <p>Convert trained deep learning models into optimized ONNX or TorchScript binaries and serve inference via REST APIs (FastAPI).</p>
+        </div>
+        <h2>TorchScript Export Code</h2>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">export_model.py</span></div>
+<pre><span class="kn">import</span> torch
+traced_script_module = torch.jit.trace(model, example_input)
+traced_script_module.save(<span class="s">"model_traced.pt"</span>)</pre>
+</div>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(27)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(29)">Next Topic</button>
             </div>
@@ -727,11 +1018,20 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
-            <div class="box info">
-                <div class="box-title">Placeholder</div>
-                <p>Content for <strong>Ethics in Deep Learning</strong> goes here.</p>
-            </div>
-            <div class="lecture-nav">
+            <div class="lecture-meta">
+            <span class="meta-badge">AI Ethics & Safety</span>
+        </div>
+        <div class="box info">
+            <div class="box-title">Responsible AI</div>
+            <p>Addresses algorithmic bias, data privacy, model explainability (SHAP/LIME), and safety guardrails in AI deployment.</p>
+        </div>
+        <h2>Responsible AI Practices</h2>
+<ul>
+    <li>Auditing training datasets for demographic representation bias.</li>
+    <li>Explaining model predictions using SHAP (SHapley Additive exPlanations).</li>
+    <li>Ensuring differential privacy and user data protection.</li>
+</ul>
+        <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(28)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
             </div>

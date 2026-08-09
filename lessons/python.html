@@ -2983,7 +2983,9 @@ doubled = list(map(lambda x: x * 2, numbers)) # [2, 4, 6, 8, 10, 12]</pre>
 
                     <div class="code-block">
                         <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">project_stub.py</span></div>
-                        <pre>class Contact:
+                        <pre>import json
+
+class Contact:
     def __init__(self, name, phone, email):
         self.name = name
         self.phone = phone
@@ -2993,14 +2995,66 @@ doubled = list(map(lambda x: x * 2, numbers)) # [2, 4, 6, 8, 10, 12]</pre>
         return f"{self.name} | Phone: {self.phone} | Email: {self.email}"
 
 class ContactBook:
-    def __init__(self):
-        self.contacts = []
-    
+    def __init__(self, filename="contacts.json"):
+        self.filename = filename
+        self.contacts = self.load_contacts()
+
+    def load_contacts(self):
+        try:
+            with open(self.filename, "r") as f:
+                data = json.load(f)
+                return [Contact(**item) for item in data]
+        except (FileNotFoundError, json.JSONDecodeError):
+            return []
+
+    def save_contacts(self):
+        with open(self.filename, "w") as f:
+            json.dump([c.__dict__ for c in self.contacts], f, indent=4)
+        print("Contacts saved to file.")
+
     def add_contact(self, contact):
         self.contacts.append(contact)
+        self.save_contacts()
         print("Contact added successfully.")
 
-# Implement the rest of the ContactBook logic and main menu loop</pre>
+    def search_contact(self, query):
+        results = [c for c in self.contacts if query.lower() in c.name.lower()]
+        return results
+
+    def display_all(self):
+        if not self.contacts:
+            print("No contacts found.")
+            return
+        for i, contact in enumerate(self.contacts, 1):
+            print(f"{i}. {contact}")
+
+def main():
+    book = ContactBook()
+    while True:
+        print("\n--- CONTACT BOOK MENU ---")
+        print("1. View All Contacts\n2. Add Contact\n3. Search Contact\n4. Exit")
+        choice = input("Enter choice (1-4): ").strip()
+
+        if choice == "1":
+            book.display_all()
+        elif choice == "2":
+            name = input("Name: ")
+            phone = input("Phone: ")
+            email = input("Email: ")
+            book.add_contact(Contact(name, phone, email))
+        elif choice == "3":
+            query = input("Search Name: ")
+            matches = book.search_contact(query)
+            for m in matches:
+                print(m)
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice, please try again.")
+
+if __name__ == "__main__":
+    main()</pre>
                     </div>
 
                     <div class="exercise">

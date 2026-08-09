@@ -174,6 +174,709 @@
         <div class="content-wrapper">
             <div class="content-column">
 
+                
+                <!-- LECTURE 01 -->
+                <div class="lecture active" id="lec-0">
+                    <div class="lecture-tag">Lecture 01 · Basics</div>
+                    <h1>Introduction to C++ &amp; Setup</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">OOP &amp; Systems</span>
+                        <span class="meta-badge">g++ / Clang</span>
+                    </div>
+
+                    <div class="box info">
+                        <div class="box-title">What is C++?</div>
+                        <p>
+                            C++ was created by Bjarne Stroustrup in 1979 as an extension of the C language ("C with Classes"). It combines high performance and zero-cost abstractions with Object-Oriented Programming (OOP), Generic Templates, and RAII memory management.
+                        </p>
+                    </div>
+
+                    <h2>Hello World in C++</h2>
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">hello.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+
+<span class="kt">int</span> main() {
+    std::cout &lt;&lt; <span class="s">"Hello, Modern C++!"</span> &lt;&lt; std::endl;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn primary" onclick="showLecture(1)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 02 -->
+                <div class="lecture" id="lec-1">
+                    <div class="lecture-tag">Lecture 02 · Basics</div>
+                    <h1>Variables, Types &amp; std::cin / std::cout</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Streams</span>
+                        <span class="meta-badge">Type Safety</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">io.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;string&gt;</span>
+
+<span class="kt">int</span> main() {
+    std::string name;
+    <span class="kt">int</span> age;
+
+    std::cout &lt;&lt; <span class="s">"Enter your name: "</span>;
+    std::cin &gt;&gt; name;
+    std::cout &lt;&lt; <span class="s">"Enter your age: "</span>;
+    std::cin &gt;&gt; age;
+
+    std::cout &lt;&lt; <span class="s">"Welcome "</span> &lt;&lt; name &lt;&lt; <span class="s">" ("</span> &lt;&lt; age &lt;&lt; <span class="s">" years old)"</span> &lt;&lt; std::endl;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(0)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(2)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 03 -->
+                <div class="lecture" id="lec-2">
+                    <div class="lecture-tag">Lecture 03 · Basics</div>
+                    <h1>Operators &amp; Expressions</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Operator Overloading</span>
+                        <span class="meta-badge">Precedence</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">operators.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> x = 10, y = 3;
+    std::cout &lt;&lt; <span class="s">"Division: "</span> &lt;&lt; (x / y) &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="s">"Floating division: "</span> &lt;&lt; (<span class="kt">double</span>)x / y &lt;&lt; std::endl;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 04 -->
+                <div class="lecture" id="lec-3">
+                    <div class="lecture-tag">Lecture 04 · Control Flow</div>
+                    <h1>Conditionals &amp; Branching</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">if constexpr</span>
+                        <span class="meta-badge">Switch Statements</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">conditionals.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">char</span> status = <span class="st">'A'</span>;
+    <span class="kw">switch</span>(status) {
+        <span class="kw">case</span> <span class="st">'A'</span>: std::cout &lt;&lt; <span class="s">"Active
+"</span>; <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="st">'I'</span>: std::cout &lt;&lt; <span class="s">"Inactive
+"</span>; <span class="kw">break</span>;
+        <span class="kw">default</span>: std::cout &lt;&lt; <span class="s">"Unknown
+"</span>;
+    }
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(2)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 05 -->
+                <div class="lecture" id="lec-4">
+                    <div class="lecture-tag">Lecture 05 · Control Flow</div>
+                    <h1>Loops &amp; Range-based For Loops</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">range-for</span>
+                        <span class="meta-badge">auto Keyword</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">loops.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;vector&gt;</span>
+
+<span class="kt">int</span> main() {
+    std::vector&lt;<span class="kt">int</span>&gt; nums = {10, 20, 30, 40};
+    <span class="cm">// Modern Range-Based For Loop</span>
+    <span class="kw">for</span> (<span class="kd">auto</span> n : nums) {
+        std::cout &lt;&lt; n &lt;&lt; <span class="s">" "</span>;
+    }
+    std::cout &lt;&lt; std::endl;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(3)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 06 -->
+                <div class="lecture" id="lec-5">
+                    <div class="lecture-tag">Lecture 06 · Basics</div>
+                    <h1>Functions, Overloading &amp; Pass-by-Reference</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">References (&amp;)</span>
+                        <span class="meta-badge">Function Overloading</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">functions.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+
+<span class="kt">void</span> swap(<span class="kt">int</span> &amp;a, <span class="kt">int</span> &amp;b) {
+    <span class="kt">int</span> temp = a;
+    a = b;
+    b = temp;
+}
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> x = 5, y = 10;
+    swap(x, y);
+    std::cout &lt;&lt; <span class="s">"x: "</span> &lt;&lt; x &lt;&lt; <span class="s">", y: "</span> &lt;&lt; y &lt;&lt; std::endl; <span class="cm">// x: 10, y: 5</span>
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(4)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(6)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 07 -->
+                <div class="lecture" id="lec-6">
+                    <div class="lecture-tag">Lecture 07 · STL &amp; Memory</div>
+                    <h1>Arrays &amp; std::vector</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">std::vector</span>
+                        <span class="meta-badge">Dynamic Sizing</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">vector_demo.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;vector&gt;</span>
+
+<span class="kt">int</span> main() {
+    std::vector&lt;std::string&gt; items;
+    items.push_back(<span class="s">"Apple"</span>);
+    items.push_back(<span class="s">"Banana"</span>);
+
+    std::cout &lt;&lt; <span class="s">"Vector Size: "</span> &lt;&lt; items.size() &lt;&lt; std::endl;
+    <span class="kw">for</span> (<span class="kd">const auto</span> &amp;item : items) {
+        std::cout &lt;&lt; item &lt;&lt; std::endl;
+    }
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(5)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 08 -->
+                <div class="lecture" id="lec-7">
+                    <div class="lecture-tag">Lecture 08 · STL &amp; Memory</div>
+                    <h1>Pointers &amp; References</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Raw Pointers</span>
+                        <span class="meta-badge">Lvalue References</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pointers_refs.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+
+<span class="kt">int</span> main() {
+    <span class="kt">int</span> val = 100;
+    <span class="kt">int</span> &amp;ref = val;  <span class="cm">// Reference alias</span>
+    <span class="kt">int</span> *ptr = &amp;val; <span class="cm">// Pointer address</span>
+
+    ref = 200;
+    std::cout &lt;&lt; <span class="s">"Value via pointer: "</span> &lt;&lt; *ptr &lt;&lt; std::endl; <span class="cm">// 200</span>
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(8)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 09 -->
+                <div class="lecture" id="lec-8">
+                    <div class="lecture-tag">Lecture 09 · OOP</div>
+                    <h1>OOP — Classes, Objects &amp; Encapsulation</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Constructors</span>
+                        <span class="meta-badge">Access Specifiers</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">class_demo.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;string&gt;</span>
+
+<span class="kd">class</span> <span class="nc">BankAccount</span> {
+<span class="kd">private</span>:
+    std::string owner;
+    <span class="kt">double</span> balance;
+
+<span class="kd">public</span>:
+    BankAccount(std::string name, <span class="kt">double</span> initial) : owner(name), balance(initial) {}
+
+    <span class="kt">void</span> deposit(<span class="kt">double</span> amount) {
+        <span class="kw">if</span> (amount &gt; 0) balance += amount;
+    }
+
+    <span class="kt">double</span> getBalance() <span class="kd">const</span> { <span class="kw">return</span> balance; }
+};
+
+<span class="kt">int</span> main() {
+    BankAccount acc(<span class="s">"Bob"</span>, 1500.0);
+    acc.deposit(500.0);
+    std::cout &lt;&lt; <span class="s">"Balance: $"</span> &lt;&lt; acc.getBalance() &lt;&lt; std::endl;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(7)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(9)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 10 -->
+                <div class="lecture" id="lec-9">
+                    <div class="lecture-tag">Lecture 10 · OOP</div>
+                    <h1>OOP — Inheritance &amp; Polymorphism</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">virtual functions</span>
+                        <span class="meta-badge">override keyword</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">poly.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+
+<span class="kd">class</span> <span class="nc">Shape</span> {
+<span class="kd">public</span>:
+    <span class="kd">virtual</span> <span class="kt">void</span> draw() <span class="kd">const</span> {
+        std::cout &lt;&lt; <span class="s">"Drawing generic shape
+"</span>;
+    }
+    <span class="kd">virtual</span> ~Shape() = <span class="default">default</span>;
+};
+
+<span class="kd">class</span> <span class="nc">Circle</span> : <span class="kd">public</span> Shape {
+<span class="kd">public</span>:
+    <span class="kt">void</span> draw() <span class="kd">const override</span> {
+        std::cout &lt;&lt; <span class="s">"Drawing Circle
+"</span>;
+    }
+};
+
+<span class="kt">int</span> main() {
+    Shape *s = <span class="kw">new</span> Circle();
+    s-&gt;draw(); <span class="cm">// Drawing Circle</span>
+    <span class="kw">delete</span> s;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 11 -->
+                <div class="lecture" id="lec-10">
+                    <div class="lecture-tag">Lecture 11 · I/O Streams</div>
+                    <h1>File Streams — std::ifstream &amp; std::ofstream</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">File I/O</span>
+                        <span class="meta-badge">fstream</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">file_io.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;fstream&gt;</span>
+
+<span class="kt">int</span> main() {
+    std::ofstream outFile(<span class="s">"output.txt"</span>);
+    outFile &lt;&lt; <span class="s">"C++ File Stream Writing Success!
+"</span>;
+    outFile.close();
+    std::cout &lt;&lt; <span class="s">"File created successfully.
+"</span>;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 12 -->
+                <div class="lecture" id="lec-11">
+                    <div class="lecture-tag">Lecture 12 · Exceptions</div>
+                    <h1>Exception Handling — try, catch &amp; throw</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">std::exception</span>
+                        <span class="meta-badge">RAII Safety</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">exceptions.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;stdexcept&gt;</span>
+
+<span class="kt">double</span> divide(<span class="kt">double</span> a, <span class="kt">double</span> b) {
+    <span class="kw">if</span> (b == 0) <span class="kw">throw</span> std::runtime_error(<span class="s">"Division by zero!"</span>);
+    <span class="kw">return</span> a / b;
+}
+
+<span class="kt">int</span> main() {
+    <span class="kw">try</span> {
+        std::cout &lt;&lt; divide(10.0, 0.0) &lt;&lt; std::endl;
+    } <span class="kw">catch</span> (<span class="kd">const</span> std::exception &amp;e) {
+        std::cerr &lt;&lt; <span class="s">"Caught Error: "</span> &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 13 -->
+                <div class="lecture" id="lec-12">
+                    <div class="lecture-tag">Lecture 13 · Modern C++</div>
+                    <h1>Smart Pointers — std::unique_ptr &amp; std::shared_ptr</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">RAII</span>
+                        <span class="meta-badge">Memory Safety</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">smart_pointers.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;memory&gt;</span>
+
+<span class="kd">class</span> <span class="nc">Resource</span> {
+<span class="kd">public</span>:
+    Resource() { std::cout &lt;&lt; <span class="s">"Resource Acquired
+"</span>; }
+    ~Resource() { std::cout &lt;&lt; <span class="s">"Resource Automatically Released
+"</span>; }
+};
+
+<span class="kt">int</span> main() {
+    <span class="cm">// Modern C++14 std::make_unique prevents memory leaks</span>
+    <span class="kd">auto</span> ptr = std::make_unique&lt;Resource&gt;();
+    <span class="kw">return</span> 0; <span class="cm">// Automatically destroyed when out of scope</span>
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 14 -->
+                <div class="lecture" id="lec-13">
+                    <div class="lecture-tag">Lecture 14 · Modern C++</div>
+                    <h1>Templates &amp; Generic Programming</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">Function Templates</span>
+                        <span class="meta-badge">Class Templates</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">templates.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+
+<span class="kd">template</span> &lt;<span class="kd">typename</span> T&gt;
+T getMax(T a, T b) {
+    <span class="kw">return</span> (a &gt; b) ? a : b;
+}
+
+<span class="kt">int</span> main() {
+    std::cout &lt;&lt; <span class="s">"Max Int: "</span> &lt;&lt; getMax(10, 20) &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="s">"Max Double: "</span> &lt;&lt; getMax(15.5, 7.2) &lt;&lt; std::endl;
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 15 -->
+                <div class="lecture" id="lec-14">
+                    <div class="lecture-tag">Lecture 15 · STL</div>
+                    <h1>Standard Template Library (STL) Containers &amp; Algorithms</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">std::unordered_map</span>
+                        <span class="meta-badge">std::sort</span>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">stl_demo.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;unordered_map&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;algorithm&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;vector&gt;</span>
+
+<span class="kt">int</span> main() {
+    std::unordered_map&lt;std::string, <span class="kt">int</span>&gt; scores = {{<span class="s">"Alice"</span>, 95}, {<span class="s">"Bob"</span>, 88}};
+    std::cout &lt;&lt; <span class="s">"Alice Score: "</span> &lt;&lt; scores[<span class="s">"Alice"</span>] &lt;&lt; std::endl;
+
+    std::vector&lt;<span class="kt">int</span>&gt; v = {5, 2, 8, 1};
+    std::sort(v.begin(), v.end()); <span class="cm">// Sort vector</span>
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
+                    </div>
+                </div>
+
+                <!-- LECTURE 16 -->
+                <div class="lecture" id="lec-15">
+                    <div class="lecture-tag">Lecture 16 · Professional</div>
+                    <h1>Final Capstone Project — High-Performance Inventory Engine</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">RAII &amp; Smart Pointers</span>
+                        <span class="meta-badge">STL Containers</span>
+                        <span class="meta-badge">OOP Polymorphism</span>
+                    </div>
+
+                    <div class="box info">
+                        <div class="box-title">Capstone Goal</div>
+                        <p>
+                            Build a modern high-throughput Inventory &amp; Order Engine in C++ using std::unique_ptr, std::unordered_map, virtual dispatch, and RAII memory safety.
+                        </p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">inventory_system.cpp</span></div>
+<pre><span class="kn">#include</span> <span class="s">&lt;iostream&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;memory&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;unordered_map&gt;</span>
+<span class="kn">#include</span> <span class="s">&lt;string&gt;</span>
+
+<span class="kd">struct</span> <span class="nc">Item</span> {
+    std::string id;
+    std::string name;
+    <span class="kt">double</span> price;
+};
+
+<span class="kd">class</span> <span class="nc">InventoryManager</span> {
+<span class="kd">private</span>:
+    std::unordered_map&lt;std::string, std::unique_ptr&lt;Item&gt;&gt; items;
+
+<span class="kd">public</span>:
+    <span class="kt">void</span> addItem(std::string id, std::string name, <span class="kt">double</span> price) {
+        items[id] = std::make_unique&lt;Item&gt;(Item{id, name, price});
+    }
+
+    <span class="kt">void</span> displayItems() <span class="kd">const</span> {
+        <span class="kw">for</span> (<span class="kd">const auto</span> &amp;[id, item] : items) {
+            std::cout &lt;&lt; <span class="s">"["</span> &lt;&lt; id &lt;&lt; <span class="s">"] "</span> &lt;&lt; item-&gt;name &lt;&lt; <span class="s">" - $"</span> &lt;&lt; item-&gt;price &lt;&lt; std::endl;
+        }
+    }
+};
+
+<span class="kt">int</span> main() {
+    InventoryManager manager;
+    manager.addItem(<span class="s">"P101"</span>, <span class="s">"Gaming Laptop"</span>, 1299.99);
+    manager.addItem(<span class="s">"P102"</span>, <span class="s">"Mechanical Keyboard"</span>, 149.50);
+
+    std::cout &lt;&lt; <span class="s">"=== Modern C++ Inventory System ===
+"</span>;
+    manager.displayItems();
+    <span class="kw">return</span> 0;
+}</pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-title">Mastery Completed</div>
+                        <p>Congratulations! You have completed the C++ Mastery Course!</p>
+                    </div>
+
+                    <div class="lecture-nav">
+                        <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
+                        <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
+                    </div>
+                </div>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+
+<body>
+
+    <!-- MEGA NAVIGATION -->
+    <nav class="lesson-mega-nav">
+        <div class="lesson-nav-container">
+            <div class="lesson-nav-left">
+                <button class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">☰</button>
+                <a href="../index.html" class="lesson-nav-logo">C <span>T</span></a>
+            </div>
+
+            <div class="lesson-mega-menu">
+                <div class="lesson-mega-item">
+                    <button class="lesson-mega-trigger">
+                        Courses
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9" />
+                        </svg>
+                    </button>
+                    <div class="lesson-mega-dropdown">
+                        <div class="lesson-mega-grid">
+                            <a href="python" class="lesson-mega-link">Python</a>
+                            <a href="c++" class="lesson-mega-link active">C++</a>
+                            <a href="html" class="lesson-mega-link">HTML</a>
+                            <a href="css" class="lesson-mega-link">CSS</a>
+                            <a href="java" class="lesson-mega-link">Java</a>
+                            <a href="javascript" class="lesson-mega-link">JavaScript</a>
+                            <a href="c" class="lesson-mega-link">C Language</a>
+                            <a href="cc" class="lesson-mega-link">C#</a>
+                            <a href="typescript" class="lesson-mega-link">TypeScript</a>
+                            <a href="go" class="lesson-mega-link">Go</a>
+                            <a href="rust" class="lesson-mega-link">Rust</a>
+                            <a href="kotlin" class="lesson-mega-link">Kotlin</a>
+                            <a href="swift" class="lesson-mega-link">Swift</a>
+                            <a href="php" class="lesson-mega-link">PHP</a>
+                            <a href="sql" class="lesson-mega-link">SQL</a>
+                            <a href="r" class="lesson-mega-link">R</a>
+                            <a href="bash" class="lesson-mega-link">Bash</a>
+                            <a href="dart" class="lesson-mega-link">Dart</a>
+                            <a href="ruby" class="lesson-mega-link">Ruby</a>
+                            <a href="matlab" class="lesson-mega-link">MATLAB</a>
+                            <a href="visualbasic" class="lesson-mega-link">Visual Basic</a>
+                            <a href="shell" class="lesson-mega-link">Shell</a>
+                            <a href="ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
+                            <a href="numpy" class="lesson-mega-link">NumPy</a>
+                            <a href="machinelearning" class="lesson-mega-link">Machine Learning</a>
+                            <a href="deeplearning" class="lesson-mega-link">Deep Learning</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="../index.html#courses" class="lesson-mega-link-plain">Courses</a>
+                <a href="../index.html" class="lesson-mega-link-plain">Home</a>
+            </div>
+            <div class="lesson-nav-search">
+                <button id="search-toggle" class="search-btn" title="Search (Ctrl+K)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+
+        <div class="nav-section">
+            <div class="nav-section-label">Basics</div>
+            <button class="nav-item active" onclick="showLecture(0)"><span class="num">01</span><span class="dot"></span>Introduction & Setup</button>
+            <button class="nav-item" onclick="showLecture(1)"><span class="num">02</span><span class="dot"></span>Variables & Data Types</button>
+            <button class="nav-item" onclick="showLecture(2)"><span class="num">03</span><span class="dot"></span>Operators & Expressions</button>
+            <button class="nav-item" onclick="showLecture(3)"><span class="num">04</span><span class="dot"></span>Control Flow</button>
+            <button class="nav-item" onclick="showLecture(4)"><span class="num">05</span><span class="dot"></span>Loops & Iteration</button>
+            <button class="nav-item" onclick="showLecture(5)"><span class="num">06</span><span class="dot"></span>Functions & Overloading</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Memory & Pointers</div>
+            <button class="nav-item" onclick="showLecture(6)"><span class="num">07</span><span class="dot"></span>Arrays & Vectors</button>
+            <button class="nav-item" onclick="showLecture(7)"><span class="num">08</span><span class="dot"></span>Pointers & References</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Advanced Concepts</div>
+            <button class="nav-item" onclick="showLecture(8)"><span class="num">09</span><span class="dot"></span>OOP: Classes & Objects</button>
+            <button class="nav-item" onclick="showLecture(9)"><span class="num">10</span><span class="dot"></span>OOP: Inheritance & Poly</button>
+            <button class="nav-item" onclick="showLecture(10)"><span class="num">11</span><span class="dot"></span>File Streams (I/O)</button>
+            <button class="nav-item" onclick="showLecture(11)"><span class="num">12</span><span class="dot"></span>Exception Handling</button>
+            <button class="nav-item" onclick="showLecture(12)"><span class="num">13</span><span class="dot"></span>Smart Pointers</button>
+            <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span class="dot"></span>Modern C++ Features</button>
+            <button class="nav-item" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>STL Containers & Algo</button>
+            <button class="nav-item" onclick="showLecture(15)"><span class="num">16</span><span class="dot"></span>Final Capstone Project</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div id="main">
+        <div id="topbar">
+            <div class="breadcrumb">
+                <span>C++ Mastery</span>
+                <span class="sep">/</span>
+                <span class="current" id="breadcrumb-current">Introduction & Setup</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <span class="progress-label" id="progress-label">Lecture 1 / 16</span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:6.25%"></div>
+                </div>
+            </div>
+            <button class="share-btn" onclick="copyLectureLink()" title="Copy link to this lecture">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Share
+            </button>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="content-column">
+
                 <!-- LECTURE 01 -->
                 <div class="lecture active" id="lec-0">
                     <div class="lecture-tag">Lecture 01 · Basics</div>

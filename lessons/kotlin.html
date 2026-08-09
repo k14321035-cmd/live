@@ -2195,11 +2195,73 @@ println(sum(2, 3))</pre>
         <!-- ===================== LECTURE 15 ===================== -->
         <div class="lecture" id="lec-14">
             <div class="lecture-tag">Lecture 15 · Advanced</div>
-            <h1>Testing in Kotlin</h1>
+            <h1>Testing in Kotlin — Unit Tests, MockK & Coroutine Test</h1>
             <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 14</span>
+                <span class="meta-badge">JUnit 5</span>
+                <span class="meta-badge">MockK</span>
+                <span class="meta-badge">kotlinx-coroutines-test</span>
             </div>
-            <p><em>Content coming soon...</em></p>
+
+            <div class="box info">
+                <div class="box-title">Why Testing in Kotlin?</div>
+                <p>
+                    Writing unit and integration tests ensures software reliability and enables confident refactoring. Kotlin provides clean syntax for testing with idiomatic frameworks like <strong>JUnit 5</strong>, <strong>MockK</strong> for mocking dependencies, and <strong>kotlinx-coroutines-test</strong> for testing asynchronous flows.
+                </p>
+            </div>
+
+            <h2>1. Unit Testing with JUnit 5 & Assertions</h2>
+            <p>Kotlin test methods can use backticks for descriptive function names, making test reports readable and self-documenting:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">CalculatorTest.kt</span>
+                </div>
+<pre><span class="cm">import org.junit.jupiter.api.Test</span>
+<span class="cm">import org.junit.jupiter.api.Assertions.*</span>
+
+<span class="cm">class CalculatorTest {</span>
+
+<span class="cm">    private val calculator = Calculator()</span>
+
+<span class="cm">    @Test</span>
+<span class="cm">    fun `adding two positive numbers returns correct sum`() {</span>
+<span class="cm">        val result = calculator.add(10, 20)</span>
+<span class="cm">        assertEquals(30, result)</span>
+<span class="cm">    }</span>
+
+<span class="cm">    @Test</span>
+<span class="cm">    fun `division by zero throws IllegalArgumentException`() {</span>
+<span class="cm">        val exception = assertThrows(IllegalArgumentException::class.java) {</span>
+<span class="cm">            calculator.divide(10, 0)</span>
+<span class="cm">        }</span>
+<span class="cm">        assertEquals("Cannot divide by zero", exception.message)</span>
+<span class="cm">    }</span>
+<span class="cm">}</span></pre>
+            </div>
+
+            <h2>2. Testing Coroutines with runTest</h2>
+            <p>Use <code>runTest</code> from <code>kotlinx.coroutines.test</code> to execute suspend functions deterministically without blocking live threads:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">UserRepositoryTest.kt</span>
+                </div>
+<pre><span class="cm">import kotlinx.coroutines.test.runTest</span>
+<span class="cm">import org.junit.jupiter.api.Test</span>
+
+<span class="cm">class UserRepositoryTest {</span>
+
+<span class="cm">    @Test</span>
+<span class="cm">    fun `fetchUser returns cached user when available`() = runTest {</span>
+<span class="cm">        val repository = UserRepository(fakeApi)</span>
+<span class="cm">        val user = repository.fetchUser(userId = 42)</span>
+<span class="cm">        assertEquals("Alice", user.name)</span>
+<span class="cm">    }</span>
+<span class="cm">}</span></pre>
+            </div>
+
             <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
@@ -2209,11 +2271,60 @@ println(sum(2, 3))</pre>
         <!-- ===================== LECTURE 16 ===================== -->
         <div class="lecture" id="lec-15">
             <div class="lecture-tag">Lecture 16 · Professional</div>
-            <h1>Final Project — Kotlin Multiplatform App</h1>
+            <h1>Final Project — Kotlin Multiplatform & Architecture</h1>
             <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
+                <span class="meta-badge">KMP</span>
+                <span class="meta-badge">Coroutines & Flow</span>
+                <span class="meta-badge">Clean Architecture</span>
             </div>
-            <p><em>Content coming soon...</em></p>
+
+            <div class="box info">
+                <div class="box-title">Capstone Project Overview</div>
+                <p>
+                    In this final project, you will build a production-grade <strong>Weather & Task Sync Engine</strong> built with Kotlin Multiplatform (KMP) logic. The project demonstrates Clean Architecture principles, reactive data flows using <code>StateFlow</code>, coroutines for background execution, and robust error handling.
+                </p>
+            </div>
+
+            <h2>Complete Source Code</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">TaskViewModel.kt</span>
+                </div>
+<pre><span class="cm">// Domain Model</span>
+data class Task(val id: String, val title: String, val isCompleted: Boolean = false)
+
+<span class="cm">// Sealed Interface for UI State</span>
+sealed interface TaskUiState {
+    object Loading : TaskUiState
+    data class Success(val tasks: List&lt;Task&gt;) : TaskUiState
+    data class Error(val message: String) : TaskUiState
+}
+
+<span class="cm">// ViewModel managing Coroutine StateFlow</span>
+class TaskViewModel(private val repository: TaskRepository) {
+    private val _uiState = MutableStateFlow&lt;TaskUiState&gt;(TaskUiState.Loading)
+    val uiState: StateFlow&lt;TaskUiState&gt; = _uiState.asStateFlow()
+
+    fun loadTasks() {
+        viewModelScope.launch {
+            try {
+                repository.getTasks()
+                    .catch { e -&gt; _uiState.value = TaskUiState.Error(e.message ?: "Unknown error") }
+                    .collect { tasks -&gt; _uiState.value = TaskUiState.Success(tasks) }
+            } catch (e: Exception) {
+                _uiState.value = TaskUiState.Error("Failed to load tasks")
+            }
+        }
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Congratulations!</div>
+                <p>You have completed the Kotlin Mastery Course! You now possess the core knowledge needed to build modern Android apps, backend APIs, and multiplatform applications with Kotlin.</p>
+            </div>
+
             <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>

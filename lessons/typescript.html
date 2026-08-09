@@ -2571,11 +2571,78 @@ router.post(<span class="st">'/'</span>, (req: Request&lt;{}, {}, CreateTaskRequ
         <!-- ===================== LECTURE 18 ===================== -->
         <div class="lecture" id="lec-17">
             <div class="lecture-tag">Lecture 18 · Architecture</div>
-            <h1>Full-Stack Final Project</h1>
+            <h1>Full-Stack Final Project — End-to-End Type-Safe Application</h1>
             <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
+                <span class="meta-badge">Shared DTO Contracts</span>
+                <span class="meta-badge">Express REST API</span>
+                <span class="meta-badge">Strict Type Guards</span>
             </div>
-            <p><em>Content coming soon...</em></p>
+
+            <div class="box info">
+                <div class="box-title">Capstone Goal</div>
+                <p>
+                    Build an end-to-end type-safe full-stack application. Learn how shared TypeScript Interfaces/DTOs prevent API contract breakages between backend controllers and frontend client state.
+                </p>
+            </div>
+
+            <h2>1. Shared Data Models (DTOs)</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">types/api.ts</span>
+                </div>
+<pre><span class="kw">export</span> <span class="kw">interface</span> UserDTO {
+    id: <span class="kw">string</span>;
+    name: <span class="kw">string</span>;
+    email: <span class="kw">string</span>;
+    role: <span class="st">'admin'</span> | <span class="st">'member'</span>;
+    createdAt: <span class="kw">string</span>;
+}
+
+<span class="kw">export</span> <span class="kw">interface</span> ApiResponse&lt;T&gt; {
+    success: <span class="kw">boolean</span>;
+    data?: T;
+    error?: <span class="kw">string</span>;
+}</pre>
+            </div>
+
+            <h2>2. Express Server Controller with Strict Types</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">server/userController.ts</span>
+                </div>
+<pre><span class="kw">import</span> { Request, Response } <span class="kw">from</span> <span class="st">'express'</span>;
+<span class="kw">import</span> { UserDTO, ApiResponse } <span class="kw">from</span> <span class="st">'../types/api'</span>;
+
+<span class="kw">export</span> <span class="kw">async</span> <span class="kw">function</span> getUserHandler(
+    req: Request&lt;{ id: <span class="kw">string</span> }&gt;,
+    res: Response&lt;ApiResponse&lt;UserDTO&gt;&gt;
+): Promise&lt;<span class="kw">void</span>&gt; {
+    <span class="kw">const</span> { id } = req.params;
+    
+    <span class="kw">if</span> (!id) {
+        res.status(400).json({ success: <span class="kw">false</span>, error: <span class="st">'Missing user ID'</span> });
+        <span class="kw">return</span>;
+    }
+
+    <span class="kw">const</span> user: UserDTO = {
+        id,
+        name: <span class="st">'Sarah Conner'</span>,
+        email: <span class="st">'sarah@example.com'</span>,
+        role: <span class="st">'admin'</span>,
+        createdAt: <span class="kw">new</span> Date().toISOString()
+    };
+
+    res.status(200).json({ success: <span class="kw">true</span>, data: user });
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Course Wrap-Up</div>
+                <p>Congratulations! You have mastered TypeScript from basic static typing to advanced Generics, Utility Types, Decorators, and End-to-End Full-Stack Architecture.</p>
+            </div>
+
             <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(16)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>

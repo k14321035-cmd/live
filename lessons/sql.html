@@ -3218,13 +3218,36 @@ top_customers <span class="kw">AS</span> (
                 <!-- ===================== LECTURE 09 ===================== -->
                 <div class="lecture" id="lec-8">
                     <div class="lecture-tag">Lecture 09 · Advanced</div>
-                    <h1>Transactions & ACID</h1>
+                    <h1>Transactions & ACID Guarantees</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">ACID Properties</span>
+                        <span class="meta-badge">Concurrency Control</span>
+                    </div>
 
-                    <h2>All or Nothing</h2>
+                    <div class="box info">
+                        <div class="box-title">Understanding ACID</div>
+                        <p>
+                            A database transaction is a sequence of SQL operations executed as a single logical unit of work. Transactions enforce the <strong>ACID</strong> guarantees:
+                        </p>
+                        <ul>
+                            <li><strong>Atomicity:</strong> All operations succeed or all roll back ("All or Nothing").</li>
+                            <li><strong>Consistency:</strong> The database transitions from one valid state to another valid state.</li>
+                            <li><strong>Isolation:</strong> Concurrent transactions execute without interfering with one another.</li>
+                            <li><strong>Durability:</strong> Committed changes persist even in the event of a system crash.</li>
+                        </ul>
+                    </div>
+
+                    <h2>Transaction Commands</h2>
                     <div class="code-block">
-                        <pre><span class="kw">BEGIN</span>;
-<span class="kw">UPDATE</span> accounts <span class="kw">SET</span> balance = balance - 100 <span class="kw">WHERE</span> id = 1;
-<span class="kw">UPDATE</span> accounts <span class="kw">SET</span> balance = balance + 100 <span class="kw">WHERE</span> id = 2;
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">transfer.sql</span></div>
+<pre><span class="kw">BEGIN TRANSACTION</span>;
+
+<span class="kw">UPDATE</span> accounts <span class="kw">SET</span> balance = balance - 500 <span class="kw">WHERE</span> account_id = 101;
+<span class="kw">SAVEPOINT</span> after_deduction;
+
+<span class="kw">UPDATE</span> accounts <span class="kw">SET</span> balance = balance + 500 <span class="kw">WHERE</span> account_id = 202;
+
+<span class="cm">-- If an error occurs, rollback to savepoint or entire transaction</span>
 <span class="kw">COMMIT</span>;</pre>
                     </div>
 
@@ -3237,9 +3260,36 @@ top_customers <span class="kw">AS</span> (
                 <!-- ===================== LECTURE 10 ===================== -->
                 <div class="lecture" id="lec-9">
                     <div class="lecture-tag">Lecture 10 · Advanced</div>
-                    <h1>Stored Procedures</h1>
+                    <h1>Stored Procedures & User-Defined Functions</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">PL/pgSQL</span>
+                        <span class="meta-badge">Routine Automation</span>
+                    </div>
 
-                    <p>Functions and procedures allow you to save SQL logic on the database server.</p>
+                    <div class="box info">
+                        <div class="box-title">Why Stored Procedures?</div>
+                        <p>
+                            Stored procedures encapsulate complex business logic directly on the database server, reducing network latency and centralizing data access policies.
+                        </p>
+                    </div>
+
+                    <h2>Creating a Stored Function</h2>
+                    <div class="code-block">
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">get_customer_total.sql</span></div>
+<pre><span class="kw">CREATE OR REPLACE FUNCTION</span> get_total_spent(cust_id <span class="kt">INT</span>)
+<span class="kw">RETURNS</span> <span class="kt">DECIMAL</span>(10,2) <span class="kw">AS</span> $
+<span class="kw">DECLARE</span>
+    total_val <span class="kt">DECIMAL</span>(10,2);
+<span class="kw">BEGIN</span>
+    <span class="kw">SELECT</span> COALESCE(SUM(total_amount), 0.00)
+    <span class="kw">INTO</span> total_val
+    <span class="kw">FROM</span> orders
+    <span class="kw">WHERE</span> customer_id = cust_id;
+    
+    <span class="kw">RETURN</span> total_val;
+<span class="kw">END</span>;
+$ <span class="kw">LANGUAGE</span> plpgsql;</pre>
+                    </div>
 
                     <div class="lecture-nav">
                         <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
@@ -3250,12 +3300,29 @@ top_customers <span class="kw">AS</span> (
                 <!-- ===================== LECTURE 11 ===================== -->
                 <div class="lecture" id="lec-10">
                     <div class="lecture-tag">Lecture 11 · Advanced</div>
-                    <h1>Window Functions</h1>
+                    <h1>Window Functions & Analytical Queries</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">ROW_NUMBER()</span>
+                        <span class="meta-badge">RANK()</span>
+                        <span class="meta-badge">PARTITION BY</span>
+                    </div>
 
-                    <h2>Advanced Analytics</h2>
+                    <div class="box info">
+                        <div class="box-title">Analytical Power of Window Functions</div>
+                        <p>
+                            Unlike <code>GROUP BY</code> which collapses rows, window functions compute aggregate values across a set of table rows while maintaining individual row identity.
+                        </p>
+                    </div>
+
+                    <h2>Ranking & Running Totals</h2>
                     <div class="code-block">
-                        <pre><span class="kw">SELECT</span> name, salary,
-<span class="kw">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> salary <span class="kw">DESC</span>) <span class="kw">as</span> ranking
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">window_queries.sql</span></div>
+<pre><span class="kw">SELECT</span> 
+    employee_id,
+    department,
+    salary,
+    <span class="kw">DENSE_RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> department <span class="kw">ORDER BY</span> salary <span class="kw">DESC</span>) <span class="kw">AS</span> dept_salary_rank,
+    <span class="kw">SUM</span>(salary) <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> department <span class="kw">ORDER BY</span> employee_id) <span class="kw">AS</span> running_total_dept
 <span class="kw">FROM</span> employees;</pre>
                     </div>
 
@@ -3268,15 +3335,35 @@ top_customers <span class="kw">AS</span> (
                 <!-- ===================== LECTURE 12 ===================== -->
                 <div class="lecture" id="lec-11">
                     <div class="lecture-tag">Lecture 12 · Capstone</div>
-                    <h1>Capstone Project: E-commerce DB</h1>
+                    <h1>Capstone Project: E-Commerce Relational Schema</h1>
+                    <div class="lecture-meta">
+                        <span class="meta-badge">DDL & Constraints</span>
+                        <span class="meta-badge">Relational Integrity</span>
+                    </div>
 
-                    <p>Design and implement a database schema for an e-commerce platform, including products, users, orders, and reviews.</p>
+                    <h2>Complete E-Commerce Schema</h2>
                     <div class="code-block">
-                        <pre><span class="cm">-- Project goals:</span>
-<span class="cm">-- 1. Create tables with proper constraints</span>
-<span class="cm">-- 2. Populate with sample data</span>
-<span class="cm">-- 3. Write complex queries for sales reports</span>
-<span class="cm">-- 4. Optimize queries with indexes</span></pre>
+                        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ecommerce_schema.sql</span></div>
+<pre><span class="kw">CREATE TABLE</span> users (
+    user_id <span class="kt">SERIAL PRIMARY KEY</span>,
+    username <span class="kt">VARCHAR</span>(50) <span class="kw">UNIQUE NOT NULL</span>,
+    email <span class="kt">VARCHAR</span>(100) <span class="kw">UNIQUE NOT NULL</span>,
+    created_at <span class="kt">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>
+);
+
+<span class="kw">CREATE TABLE</span> products (
+    product_id <span class="kt">SERIAL PRIMARY KEY</span>,
+    product_name <span class="kt">VARCHAR</span>(100) <span class="kw">NOT NULL</span>,
+    price <span class="kt">NUMERIC</span>(10,2) <span class="kw">CHECK</span> (price &gt;= 0),
+    stock_quantity <span class="kt">INT DEFAULT</span> 0
+);
+
+<span class="kw">CREATE TABLE</span> orders (
+    order_id <span class="kt">SERIAL PRIMARY KEY</span>,
+    user_id <span class="kt">INT REFERENCES</span> users(user_id) <span class="kw">ON DELETE CASCADE</span>,
+    order_date <span class="kt">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>,
+    status <span class="kt">VARCHAR</span>(20) <span class="kw">DEFAULT</span> <span class="st">'Pending'</span>
+);</pre>
                     </div>
 
                     <div class="lecture-nav">
@@ -3288,11 +3375,24 @@ top_customers <span class="kw">AS</span> (
         <!-- ===================== LECTURE 13 ===================== -->
         <div class="lecture" id="lec-12">
             <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Database Design & Normalization</h1>
+            <h1>Database Design & Normalization (1NF, 2NF, 3NF, BCNF)</h1>
             <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 12</span>
+                <span class="meta-badge">Normalization</span>
+                <span class="meta-badge">Data Integrity</span>
             </div>
-            <p><em>Content coming soon...</em></p>
+
+            <div class="box info">
+                <div class="box-title">Why Normalize?</div>
+                <p>
+                    Normalization eliminates data redundancy, update anomalies, insertion anomalies, and deletion anomalies by organizing tables into logical structures.
+                </p>
+            </div>
+            <ul>
+                <li><strong>1NF (First Normal Form):</strong> Atomic values, unique column names, primary key.</li>
+                <li><strong>2NF (Second Normal Form):</strong> Satisfies 1NF + no partial dependencies on composite keys.</li>
+                <li><strong>3NF (Third Normal Form):</strong> Satisfies 2NF + no transitive dependencies.</li>
+            </ul>
+
             <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
@@ -3304,9 +3404,21 @@ top_customers <span class="kw">AS</span> (
             <div class="lecture-tag">Lecture 14 · Advanced</div>
             <h1>Performance & Query Optimization</h1>
             <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 13</span>
+                <span class="meta-badge">EXPLAIN ANALYZE</span>
+                <span class="meta-badge">Query Tuning</span>
             </div>
-            <p><em>Content coming soon...</em></p>
+
+            <h2>Using EXPLAIN ANALYZE</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">query_tuning.sql</span></div>
+<pre><span class="kw">EXPLAIN ANALYZE</span>
+<span class="kw">SELECT</span> u.username, COUNT(o.order_id)
+<span class="kw">FROM</span> users u
+<span class="kw">JOIN</span> orders o <span class="kw">ON</span> u.user_id = o.user_id
+<span class="kw">WHERE</span> o.status = <span class="st">'Completed'</span>
+<span class="kw">GROUP BY</span> u.username;</pre>
+            </div>
+
             <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
@@ -3316,11 +3428,25 @@ top_customers <span class="kw">AS</span> (
         <!-- ===================== LECTURE 15 ===================== -->
         <div class="lecture" id="lec-14">
             <div class="lecture-tag">Lecture 15 · Advanced</div>
-            <h1>Security & Access Control</h1>
+            <h1>Security & Access Control (GRANT, REVOKE, RLS)</h1>
             <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 14</span>
+                <span class="meta-badge">RBAC Roles</span>
+                <span class="meta-badge">Row-Level Security</span>
             </div>
-            <p><em>Content coming soon...</em></p>
+
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">security.sql</span></div>
+<pre><span class="cm">-- Create Role &amp; Grant Privileges</span>
+<span class="kw">CREATE ROLE</span> analyst_user <span class="kw">WITH LOGIN PASSWORD</span> <span class="st">'SecurePass123!'</span>;
+<span class="kw">GRANT SELECT ON ALL TABLES IN SCHEMA</span> public <span class="kw">TO</span> analyst_user;
+
+<span class="cm">-- Enable Row-Level Security</span>
+<span class="kw">ALTER TABLE</span> user_data <span class="kw">ENABLE ROW LEVEL SECURITY</span>;
+<span class="kw">CREATE POLICY</span> user_isolation_policy <span class="kw">ON</span> user_data
+    <span class="kw">FOR ALL TO</span> application_role
+    <span class="kw">USING</span> (user_id = current_setting(<span class="st">'app.current_user_id'</span>)::<span class="kt">INT</span>);</pre>
+            </div>
+
             <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
@@ -3330,11 +3456,57 @@ top_customers <span class="kw">AS</span> (
         <!-- ===================== LECTURE 16 ===================== -->
         <div class="lecture" id="lec-15">
             <div class="lecture-tag">Lecture 16 · Professional</div>
-            <h1>Final Project — Enterprise Database</h1>
+            <h1>Final Project — Enterprise Banking Audit & Ledger System</h1>
             <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
+                <span class="meta-badge">Production DDL</span>
+                <span class="meta-badge">Automated Audit Triggers</span>
             </div>
-            <p><em>Content coming soon...</em></p>
+
+            <div class="box info">
+                <div class="box-title">Capstone Goal</div>
+                <p>
+                    Build a complete enterprise-grade financial auditing database system equipped with automated audit triggers logging transaction changes to an immutable history table.
+                </p>
+            </div>
+
+            <h2>Complete Source DDL &amp; Trigger Solution</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">enterprise_audit_system.sql</span></div>
+<pre><span class="kw">CREATE TABLE</span> ledger_accounts (
+    account_id <span class="kt">SERIAL PRIMARY KEY</span>,
+    owner_name <span class="kt">VARCHAR</span>(100) <span class="kw">NOT NULL</span>,
+    balance <span class="kt">NUMERIC</span>(15,2) <span class="kw">NOT NULL DEFAULT</span> 0.00
+);
+
+<span class="kw">CREATE TABLE</span> audit_logs (
+    log_id <span class="kt">SERIAL PRIMARY KEY</span>,
+    account_id <span class="kt">INT NOT NULL</span>,
+    old_balance <span class="kt">NUMERIC</span>(15,2),
+    new_balance <span class="kt">NUMERIC</span>(15,2),
+    modified_at <span class="kt">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>
+);
+
+<span class="kw">CREATE OR REPLACE FUNCTION</span> log_balance_change()
+<span class="kw">RETURNS TRIGGER AS</span> $
+<span class="kw">BEGIN</span>
+    <span class="kw">IF</span> OLD.balance &lt;&gt; NEW.balance <span class="kw">THEN</span>
+        <span class="kw">INSERT INTO</span> audit_logs(account_id, old_balance, new_balance)
+        <span class="kw">VALUES</span> (OLD.account_id, OLD.balance, NEW.balance);
+    <span class="kw">END IF</span>;
+    <span class="kw">RETURN</span> NEW;
+<span class="kw">END</span>;
+$ <span class="kw">LANGUAGE</span> plpgsql;
+
+<span class="kw">CREATE TRIGGER</span> trg_audit_balance
+<span class="kw">AFTER UPDATE ON</span> ledger_accounts
+<span class="kw">FOR EACH ROW EXECUTE FUNCTION</span> log_balance_change();</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Mastery Completed</div>
+                <p>Congratulations! You have mastered SQL, spanning basic queries, joins, aggregates, subqueries, CTEs, indexing, stored procedures, window functions, and enterprise database architecture.</p>
+            </div>
+
             <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
