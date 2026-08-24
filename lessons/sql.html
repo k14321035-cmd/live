@@ -106,6 +106,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Project 2: Employee Payroll & Performance Metrics System</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -3519,7 +3524,68 @@ $ <span class="kw">LANGUAGE</span> plpgsql;
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-16">
+            <div class="lecture-tag">Topic 17 - Real-World Practical Projects</div>
+            <h1>Project 2: Employee Payroll & Performance Metrics System</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Advanced Analytics</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build an analytical SQL query suite calculating employee salary ranks, rolling monthly sales totals, and department averages using Window Functions.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master window functions (ROW_NUMBER, DENSE_RANK, LAG, LEAD), PARTITION BY, and Common Table Expressions (CTEs).</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">payroll_analytics.sql</span></div>
+<pre>CREATE TABLE employee_sales (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(100),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2),
+    sales_amount DECIMAL(10, 2),
+    sale_date DATE
+);
+
+WITH DepartmentSalesRank AS (
+    SELECT 
+        emp_name,
+        department,
+        salary,
+        sales_amount,
+        DENSE_RANK() OVER (PARTITION BY department ORDER BY sales_amount DESC) as dept_rank,
+        AVG(sales_amount) OVER (PARTITION BY department) as dept_avg_sales
+    FROM employee_sales
+)
+SELECT 
+    emp_name,
+    department,
+    sales_amount,
+    dept_rank,
+    ROUND(dept_avg_sales, 2) AS dept_avg_sales
+FROM DepartmentSalesRank
+WHERE dept_rank <= 3
+ORDER BY department, dept_rank;</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Write a query using CASE WHEN to calculate performance bonus tiers (5%, 10%, 15%) based on sales targets!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -3538,7 +3604,8 @@ $ <span class="kw">LANGUAGE</span> plpgsql;
             "Database Design & Normalization",
             "Performance & Query Optimization",
             "Security & Access Control",
-            "Final Project — Enterprise Database"
+            "Final Project — Enterprise Database",
+            "Project 2: Employee Payroll & Performance Metrics System"
         ];
         initLessons(titles);
     </script>

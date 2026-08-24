@@ -113,6 +113,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 1: Web Scraper & CSV Exporter Utility</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2586,7 +2591,78 @@ gem 'rspec-rails', group: :test</pre></div>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Real-World Practical Projects</div>
+            <h1>Project 1: Web Scraper & CSV Exporter Utility</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Ruby Automation</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build an automated Ruby web scraping utility using `Nokogiri` and `Net::HTTP` to parse HTML pages and export extracted data into CSV files.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master Ruby gems, blocks, error handling (`begin/rescue`), string interpolation, and CSV library integration.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">scraper.rb</span></div>
+<pre>require 'net/http'
+require 'csv'
+require 'json'
+
+class SimpleScraper
+  def fetch_data(url_string)
+    uri = URI(url_string)
+    response = Net::HTTP.get_response(uri)
+    
+    if response.is_a?(Net::HTTPSuccess)
+      puts "Successfully connected to #{url_string}"
+      return response.body
+    else
+      puts "HTTP Error: #{response.code}"
+      return nil
+    end
+  rescue StandardError => e
+    puts "Network Error: #{e.message}"
+    nil
+  end
+
+  def save_to_csv(data_array, filename)
+    CSV.open(filename, "wb") do |csv|
+      csv << ["ID", "Title", "Status"]
+      data_array.each do |item|
+        csv << [item[:id], item[:title], item[:status]]
+      end
+    end
+    puts "Exported #{data_array.length} records to #{filename}"
+  end
+end
+
+scraper = SimpleScraper.new
+sample_data = [
+  { id: 1, title: "Ruby OOP Tutorial", status: "Published" },
+  { id: 2, title: "Rails Web App Capstone", status: "Draft" }
+]
+scraper.save_to_csv(sample_data, "ruby_output.csv")</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Extend the class with a JSON parser method using JSON.parse() to handle REST API responses!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2607,7 +2683,8 @@ gem 'rspec-rails', group: :test</pre></div>
             "Models & ActiveRecord",
             "Controllers & Routes",
             "APIs & Deployment",
-            "Capstone Project: Rails App"
+            "Capstone Project: Rails App",
+            "Project 1: Web Scraper & CSV Exporter Utility"
         ];
         initLessons(titles);
     </script>

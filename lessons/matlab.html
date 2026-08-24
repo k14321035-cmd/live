@@ -113,6 +113,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Project 1: Audio Signal Frequency Analysis & Filter Design</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2966,7 +2971,60 @@ company.manager.age = 40;</pre>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-14">
+            <div class="lecture-tag">Topic 15 - Real-World Practical Projects</div>
+            <h1>Project 1: Audio Signal Frequency Analysis & Filter Design</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Signal Processing</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a MATLAB signal processing script that generates noisy audio signals, computes the Fast Fourier Transform (FFT), and applies a low-pass Butterworth filter.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master MATLAB vector operations, FFT frequency domain analysis, filter design (`butter`, `filtfilt`), and plotting spectrum graphs.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">signal_filter.m</span></div>
+<pre>% 1. Signal Parameters
+fs = 1000;                    % Sampling frequency (Hz)
+t = 0:1/fs:1-1/fs;            % Time vector (1 second)
+
+% 2. Create Clean Signal (50 Hz) + High Frequency Noise (200 Hz)
+clean_signal = sin(2*pi*50*t);
+noise = 0.5 * sin(2*pi*200*t);
+noisy_signal = clean_signal + noise;
+
+% 3. Fast Fourier Transform (FFT)
+N = length(noisy_signal);
+f = (0:N-1)*(fs/N);
+fft_signal = abs(fft(noisy_signal))/N;
+
+% 4. Low-Pass Butterworth Filter (Cutoff = 100 Hz)
+fc = 100;
+[b, a] = butter(4, fc/(fs/2), 'low');
+filtered_signal = filtfilt(b, a, noisy_signal);
+
+disp('Signal processing and filtering executed successfully.');</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Plot the time-domain waveforms of the noisy signal vs the filtered signal using subplot()!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(13)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2983,7 +3041,8 @@ company.manager.age = 40;</pre>
             "Simulink & App Designer",
             "Capstone Project: Engineering Analysis",
             "Signal Processing & Image Analysis",
-            "Final Project — Engineering Simulation"
+            "Final Project — Engineering Simulation",
+            "Project 1: Audio Signal Frequency Analysis & Filter Design"
         ];
         initLessons(titles);
     </script>

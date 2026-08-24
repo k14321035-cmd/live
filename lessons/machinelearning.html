@@ -13,23 +13,20 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Machine Learning Mastery — Complete Course">
   <meta property="og:description" content="Learn Machine Learning for free online. Master algorithms, Scikit-Learn, and predictive modeling.">
-  <meta property="og:image" content="../favicon.png">
-  <meta property="og:url" content="https://codetutorium.com/lessons/machine-learning.html">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/lessons/machinelearning">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Machine Learning Mastery — Complete Course">
   <meta name="twitter:description" content="Learn Machine Learning for free online. Master Scikit-Learn, regression, and classification.">
-  <meta name="twitter:image" content="../favicon.png">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
 
-  
-  
-
-      <link rel="icon" type="image/png" sizes="16x16" href="../favicon_16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../favicon_512.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
-    <link rel="icon" type="image/png" href="../favicon.png">
-    <link rel="canonical" href="https://codetutorium.com/lessons/machine-learning">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon_16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon_512.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="canonical" href="https://codetutorium.com/lessons/machinelearning">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -166,6 +163,15 @@
             <button class="nav-item syllabus-topic" onclick="showLecture(27)"><span class="num">28</span><span class="dot"></span>Hyperparameter Tuning</button>
             <button class="nav-item syllabus-topic" onclick="showLecture(28)"><span class="num">29</span><span class="dot"></span>Intro to Neural Networks</button>
             <button class="nav-item syllabus-topic" onclick="showLecture(29)"><span class="num">30</span><span class="dot"></span>Model Deployment Overview</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Unit VII - Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(30)"><span class="num">31</span><span class="dot"></span>Project 1: House Price Predictor</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(31)"><span class="num">32</span><span class="dot"></span>Project 2: Customer Churn Predictor</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(32)"><span class="num">33</span><span class="dot"></span>Project 3: Customer Segmentation</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(33)"><span class="num">34</span><span class="dot"></span>Project 4: Spam Email Detector</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(34)"><span class="num">35</span><span class="dot"></span>Project 5: Web App Deployment</button>
         </div>
 
     </nav>
@@ -550,34 +556,606 @@ predictions = model.predict(X_new)</pre>
     </div>
 </div>
 
-        <div class="lecture" id="lec-2">
+<div class="lecture" id="lec-2">
     <div class="lecture-tag">Topic 03 - Unit I - Introduction to ML</div>
     <h1>Supervised vs. Unsupervised</h1>
-    <div class="lecture-meta">
-        <span class="meta-badge">Syllabus Topic</span>
-    </div>
 
-    <div class="lecture-meta">
-            <span class="meta-badge">Supervised, Unsupervised & Reinforcement</span>
-        </div>
-        <div class="lecture-meta">
-            <span class="meta-badge">Labeled vs Unlabeled Data</span>
-        </div>
-        <div class="box info">
-            <div class="box-title">Data Representation</div>
-            <p>Supervised algorithms learn from labeled dataset pairs (X, y), whereas Unsupervised algorithms extract latent patterns directly from feature matrices X.</p>
-        </div>
-        <h2>Key Differences</h2>
-<table>
-    <tr><th>Criteria</th><th>Supervised Learning</th><th>Unsupervised Learning</th></tr>
-    <tr><td>Data Input</td><td>Features + Target Labels (X, y)</td><td>Features Only (X)</td></tr>
-    <tr><td>Task Types</td><td>Regression, Classification</td><td>Clustering, Dimensionality Reduction</td></tr>
-    <tr><td>Goal</td><td>Predict outcomes for unseen data</td><td>Discover hidden patterns/groupings</td></tr>
-</table>
-        <div class="lecture-nav">
-        <button class="nav-btn" onclick="showLecture(1)">Previous</button>
-        <button class="nav-btn primary" onclick="showLecture(3)">Next Topic</button>
-    </div>
+<div class="lecture-meta">
+    <span class="meta-badge">Syllabus Topic</span>
+</div>
+
+<div class="lecture-meta">
+    <span class="meta-badge">Supervised, Unsupervised & Reinforcement</span>
+</div>
+
+<div class="lecture-meta">
+    <span class="meta-badge">Labeled vs Unlabeled Data</span>
+</div>
+
+<div class="box info">
+    <div class="box-title">Data Representation</div>
+    <p>Supervised algorithms learn from labeled dataset pairs (X, y), whereas Unsupervised algorithms extract latent patterns directly from feature matrices X.</p>
+
+    <p>In machine learning, <strong>X</strong> usually represents the input features given to a model, while <strong>y</strong> represents the target or expected output. Understanding the difference between X and y is essential because it determines how a machine learning problem is formulated.</p>
+
+    <p>For example, suppose we want to predict the price of a house. The dataset may contain features such as house size, number of bedrooms, number of bathrooms, location, and age of the building. These values form <strong>X</strong>.</p>
+
+    <p>The actual selling price of each house is the target value, represented by <strong>y</strong>. A supervised learning algorithm can study many examples of X together with their corresponding y values and learn a relationship between them.</p>
+
+    <p>In unsupervised learning, the target variable y is not provided. The algorithm receives only X and attempts to discover useful structures, groups, similarities, or patterns within the data.</p>
+</div>
+
+<h2>Introduction to Machine Learning Approaches</h2>
+
+<p>Machine learning algorithms can learn from data in different ways. The three major learning approaches are <strong>supervised learning</strong>, <strong>unsupervised learning</strong>, and <strong>reinforcement learning</strong>.</p>
+
+<p>The biggest difference between these approaches is how the algorithm receives information about what it should learn.</p>
+
+<p>In supervised learning, the algorithm learns from examples where the correct answer is already known. In unsupervised learning, there is no predefined correct answer, so the algorithm searches for patterns by itself. In reinforcement learning, an agent learns through interaction with an environment and receives rewards or penalties based on its actions.</p>
+
+<p>Choosing the correct learning approach depends on the problem we are trying to solve and the type of data available to us.</p>
+
+<h2>Supervised Learning</h2>
+
+<p><strong>Supervised learning</strong> is a machine learning approach in which an algorithm learns from labeled training data.</p>
+
+<p>The word <strong>supervised</strong> can be understood as learning with guidance. During training, the algorithm receives both the input and the expected output. It compares its predictions with the correct answers and adjusts its internal parameters to reduce the error.</p>
+
+<p>A supervised learning dataset can generally be represented as:</p>
+
+<p><strong>Dataset = (X, y)</strong></p>
+
+<p>Here, X contains the input features and y contains the corresponding target values.</p>
+
+<div class="box info">
+    <div class="box-title">Simple Supervised Learning Example</div>
+
+    <p>Imagine that we have a dataset containing information about students:</p>
+
+    <p><strong>Hours Studied → Exam Score</strong></p>
+
+    <p>2 hours → 45 marks</p>
+    <p>4 hours → 58 marks</p>
+    <p>6 hours → 72 marks</p>
+    <p>8 hours → 88 marks</p>
+    <p>10 hours → 95 marks</p>
+
+    <p>The number of hours studied is the input feature, while the exam score is the target.</p>
+
+    <p>The model receives many such examples and attempts to learn the relationship between study time and exam performance.</p>
+
+    <p>After training, we could give the model a new value such as <strong>7 hours</strong> and ask it to predict the expected exam score.</p>
+
+    <p>This is supervised learning because the model was trained using examples where the correct output was already available.</p>
+</div>
+
+<h2>How Supervised Learning Works</h2>
+
+<p>The supervised learning process normally begins with collecting a dataset that contains both input features and known target values.</p>
+
+<p>The data is then cleaned and prepared. After preprocessing, the dataset is commonly divided into training and testing data.</p>
+
+<p>The training data is used to teach the model. The testing data is kept separate so that we can evaluate how well the model performs on previously unseen examples.</p>
+
+<div class="box info">
+    <div class="box-title">Supervised Learning Workflow</div>
+
+    <p><strong>Step 1: Collect Data</strong> — Gather examples containing both input features and known outputs.</p>
+
+    <p><strong>Step 2: Clean the Data</strong> — Handle missing values, incorrect values, duplicates, and inconsistent formats.</p>
+
+    <p><strong>Step 3: Select Features</strong> — Identify the variables that should be provided to the model.</p>
+
+    <p><strong>Step 4: Separate X and y</strong> — X contains the input features and y contains the target.</p>
+
+    <p><strong>Step 5: Split the Dataset</strong> — Divide the data into training and testing sets.</p>
+
+    <p><strong>Step 6: Train the Model</strong> — The algorithm learns the relationship between X and y.</p>
+
+    <p><strong>Step 7: Evaluate the Model</strong> — Compare predictions against the known target values.</p>
+
+    <p><strong>Step 8: Make Predictions</strong> — Use the trained model to predict outputs for new data.</p>
+</div>
+
+<h2>Types of Supervised Learning</h2>
+
+<p>Supervised learning is mainly divided into two categories: <strong>classification</strong> and <strong>regression</strong>.</p>
+
+<h2>Classification</h2>
+
+<p><strong>Classification</strong> is used when the target is a category or class.</p>
+
+<p>For example, an email classification system could determine whether an email is <strong>Spam</strong> or <strong>Not Spam</strong>.</p>
+
+<p>A medical machine learning system could classify a patient as <strong>Positive</strong> or <strong>Negative</strong> for a particular test.</p>
+
+<p>An image classification model could classify an image as <strong>Cat</strong>, <strong>Dog</strong>, or <strong>Horse</strong>.</p>
+
+<div class="box info">
+    <div class="box-title">Classification Examples</div>
+
+    <p><strong>Email Filtering:</strong> Spam or Not Spam.</p>
+
+    <p><strong>Image Recognition:</strong> Cat, Dog, Car, Person, etc.</p>
+
+    <p><strong>Fraud Detection:</strong> Fraudulent or Legitimate.</p>
+
+    <p><strong>Medical Classification:</strong> Positive or Negative.</p>
+
+    <p><strong>Customer Churn:</strong> Will Leave or Will Stay.</p>
+
+    <p>The important point is that the output belongs to a defined set of categories.</p>
+</div>
+
+<h2>Regression</h2>
+
+<p><strong>Regression</strong> is used when the target is a numerical value that can vary over a continuous range.</p>
+
+<p>For example, a house-price prediction system might predict a price of ₹40,00,000, ₹52,50,000, or ₹85,75,000.</p>
+
+<p>Unlike classification, where the output is a category, regression attempts to predict a numerical quantity.</p>
+
+<div class="box info">
+    <div class="box-title">Regression Examples</div>
+
+    <p><strong>House Price Prediction:</strong> Predict the selling price of a house.</p>
+
+    <p><strong>Temperature Prediction:</strong> Predict tomorrow's temperature.</p>
+
+    <p><strong>Salary Prediction:</strong> Predict an employee's expected salary.</p>
+
+    <p><strong>Sales Forecasting:</strong> Predict future sales.</p>
+
+    <p><strong>Electricity Consumption:</strong> Predict the amount of electricity that will be consumed.</p>
+
+    <p>In each case, the output is a numerical value rather than a predefined category.</p>
+</div>
+
+<h2>Unsupervised Learning</h2>
+
+<p><strong>Unsupervised learning</strong> is a machine learning approach where the algorithm receives data without predefined target labels.</p>
+
+<p>Instead of being told what the correct answer should be, the algorithm examines the data and attempts to discover meaningful structures within it.</p>
+
+<p>The dataset can be represented simply as:</p>
+
+<p><strong>Dataset = X</strong></p>
+
+<p>There is no predefined target column y that the model must predict.</p>
+
+<p>This makes unsupervised learning especially useful when we have large amounts of raw data but do not know what patterns or groups might exist inside it.</p>
+
+<div class="box info">
+    <div class="box-title">Simple Unsupervised Learning Example</div>
+
+    <p>Imagine an online shopping company has information about thousands of customers.</p>
+
+    <p>The dataset may contain:</p>
+
+    <p><strong>Customer Age</strong></p>
+    <p><strong>Number of Purchases</strong></p>
+    <p><strong>Average Spending</strong></p>
+    <p><strong>Number of Website Visits</strong></p>
+
+    <p>However, there is no column saying which customer belongs to which group.</p>
+
+    <p>An unsupervised learning algorithm can examine the data and discover groups of customers with similar behavior.</p>
+
+    <p>It might discover a group of high-spending customers, a group of occasional shoppers, and another group of customers who frequently visit the website but rarely purchase products.</p>
+
+    <p>The algorithm was not explicitly given these groups. It discovered them from the structure of the data.</p>
+</div>
+
+<h2>Clustering</h2>
+
+<p><strong>Clustering</strong> is one of the most common applications of unsupervised learning.</p>
+
+<p>The goal of clustering is to organize similar data points into groups called <strong>clusters</strong>.</p>
+
+<p>Data points inside the same cluster should generally be more similar to each other than to data points in other clusters.</p>
+
+<div class="box info">
+    <div class="box-title">Customer Segmentation Example</div>
+
+    <p>Suppose a company has 10,000 customers but does not know how to divide them into meaningful groups.</p>
+
+    <p>A clustering algorithm could analyze purchasing behavior and discover groups such as:</p>
+
+    <p><strong>Cluster 1:</strong> Frequent buyers with high spending.</p>
+
+    <p><strong>Cluster 2:</strong> Frequent buyers with low spending.</p>
+
+    <p><strong>Cluster 3:</strong> Occasional buyers.</p>
+
+    <p><strong>Cluster 4:</strong> Customers who browse frequently but rarely purchase.</p>
+
+    <p>The company can then create different marketing strategies for each group.</p>
+</div>
+
+<h2>K-Means Clustering</h2>
+
+<p><strong>K-Means</strong> is a popular unsupervised learning algorithm used for clustering.</p>
+
+<p>The value K represents the number of clusters we want the algorithm to create.</p>
+
+<p>For example, if K is set to 3, the algorithm attempts to organize the data into three groups.</p>
+
+<p>K-Means works by assigning data points to clusters based on their distance from cluster centers, commonly called <strong>centroids</strong>. The centroids are repeatedly updated until the clustering stabilizes according to the algorithm's stopping conditions.</p>
+
+<p>K-Means is useful for customer segmentation, exploratory data analysis, image compression, and many other applications.</p>
+
+<h2>Dimensionality Reduction</h2>
+
+<p>Another important area of unsupervised learning is <strong>dimensionality reduction</strong>.</p>
+
+<p>A dataset may contain hundreds or thousands of features. Working with such a high-dimensional dataset can increase computational cost and make visualization difficult.</p>
+
+<p>Dimensionality reduction attempts to represent the important information in a smaller number of dimensions.</p>
+
+<div class="box info">
+    <div class="box-title">Principal Component Analysis</div>
+
+    <p><strong>Principal Component Analysis (PCA)</strong> is a commonly used dimensionality-reduction technique.</p>
+
+    <p>PCA transforms the original features into a smaller set of new variables called <strong>principal components</strong>.</p>
+
+    <p>For example, suppose a dataset contains 50 numerical features. PCA may allow us to represent much of the important variation using a much smaller number of components.</p>
+
+    <p>This can be useful for visualization, data exploration, preprocessing, and reducing computational complexity.</p>
+</div>
+
+<h2>Labeled Data</h2>
+
+<p><strong>Labeled data</strong> contains both the input information and the expected output.</p>
+
+<p>For example, consider a dataset containing images of animals.</p>
+
+<p>An image could have a label such as <strong>Cat</strong>, <strong>Dog</strong>, or <strong>Horse</strong>.</p>
+
+<p>The image represents the input, while the animal name represents the label or target.</p>
+
+<p>Because the correct answer is available, this dataset can be used for supervised learning.</p>
+
+<div class="box info">
+    <div class="box-title">Example of Labeled Data</div>
+
+    <p><strong>Image 1 → Cat</strong></p>
+    <p><strong>Image 2 → Dog</strong></p>
+    <p><strong>Image 3 → Horse</strong></p>
+    <p><strong>Image 4 → Cat</strong></p>
+
+    <p>The model can learn from these examples and later attempt to classify a new image.</p>
+</div>
+
+<h2>Unlabeled Data</h2>
+
+<p><strong>Unlabeled data</strong> contains input information without a predefined target or answer.</p>
+
+<p>For example, imagine a folder containing 10,000 animal images but without any information about which images contain cats, dogs, or horses.</p>
+
+<p>The images are still valuable data, but they do not contain the labels required for ordinary supervised classification.</p>
+
+<p>Unsupervised learning techniques can be used to explore such data and potentially identify similarities or groups.</p>
+
+<div class="box info">
+    <div class="box-title">Labeled vs Unlabeled</div>
+
+    <p><strong>Labeled:</strong> Input + known answer.</p>
+
+    <p><strong>Unlabeled:</strong> Input without a known answer.</p>
+
+    <p><strong>Supervised:</strong> Usually requires labeled training data.</p>
+
+    <p><strong>Unsupervised:</strong> Works directly with input features to discover structure.</p>
+</div>
+
+<h2>Supervised vs Unsupervised Data Representation</h2>
+
+<p>Suppose we have a dataset containing information about students.</p>
+
+<p>Features could include:</p>
+
+<p><strong>Study Hours</strong></p>
+<p><strong>Attendance</strong></p>
+<p><strong>Assignments Completed</strong></p>
+
+<p>If we also have the student's final exam score, the data can be represented as:</p>
+
+<p><strong>X = [Study Hours, Attendance, Assignments Completed]</strong></p>
+
+<p><strong>y = Final Exam Score</strong></p>
+
+<p>This is suitable for supervised learning.</p>
+
+<p>If the final exam score is removed, we only have X. The model can analyze similarities between students, but it does not have a target score to learn to predict.</p>
+
+<h2>Supervised Learning Workflow</h2>
+
+<div class="box info">
+    <div class="box-title">Step-by-Step Process</div>
+
+    <p><strong>1. Data Collection:</strong> Collect examples containing inputs and known outputs.</p>
+
+    <p><strong>2. Data Cleaning:</strong> Remove duplicates and handle missing or incorrect values.</p>
+
+    <p><strong>3. Feature Preparation:</strong> Convert the data into a form that the machine learning algorithm can process.</p>
+
+    <p><strong>4. Feature and Target Separation:</strong> Store input variables in X and the target variable in y.</p>
+
+    <p><strong>5. Training:</strong> Give the training data to the machine learning algorithm.</p>
+
+    <p><strong>6. Evaluation:</strong> Measure how well the model predicts previously unseen examples.</p>
+
+    <p><strong>7. Prediction:</strong> Use the trained model on new input data.</p>
+</div>
+
+<h2>Unsupervised Learning Workflow</h2>
+
+<div class="box info">
+    <div class="box-title">Step-by-Step Process</div>
+
+    <p><strong>1. Data Collection:</strong> Gather the available feature data.</p>
+
+    <p><strong>2. Data Cleaning:</strong> Remove or handle invalid and missing values.</p>
+
+    <p><strong>3. Feature Preparation:</strong> Transform the data into a suitable numerical representation.</p>
+
+    <p><strong>4. Select an Algorithm:</strong> Choose a suitable technique such as clustering or dimensionality reduction.</p>
+
+    <p><strong>5. Discover Structure:</strong> Allow the algorithm to identify patterns or groups.</p>
+
+    <p><strong>6. Interpret Results:</strong> Analyze whether the discovered patterns are meaningful.</p>
+</div>
+
+<h2>Reinforcement Learning</h2>
+
+<p><strong>Reinforcement learning</strong> is the third major machine learning approach.</p>
+
+<p>Instead of learning from labeled examples or simply discovering patterns in existing data, reinforcement learning involves an <strong>agent</strong> interacting with an <strong>environment</strong>.</p>
+
+<p>The agent observes the current state, chooses an action, receives feedback, and then continues interacting with the environment.</p>
+
+<p>The feedback is commonly represented using a <strong>reward</strong> or <strong>penalty</strong>.</p>
+
+<div class="box info">
+    <div class="box-title">Basic Reinforcement Learning Concepts</div>
+
+    <p><strong>Agent:</strong> The learner or decision-making system.</p>
+
+    <p><strong>Environment:</strong> The world in which the agent operates.</p>
+
+    <p><strong>State:</strong> The current situation of the environment.</p>
+
+    <p><strong>Action:</strong> A decision made by the agent.</p>
+
+    <p><strong>Reward:</strong> Feedback received after taking an action.</p>
+
+    <p><strong>Policy:</strong> A strategy that determines which actions the agent should take.</p>
+</div>
+
+<h2>Reinforcement Learning Example</h2>
+
+<p>Imagine an AI learning to play a video game.</p>
+
+<p>The current position of the player, enemies, available objects, and game status represent the <strong>state</strong>.</p>
+
+<p>The AI can choose actions such as moving left, moving right, jumping, attacking, or waiting.</p>
+
+<p>If the AI successfully completes an objective, it can receive a positive reward. If it makes a bad decision or loses the game, it can receive a negative reward.</p>
+
+<p>After many interactions, the agent can learn a strategy that increases its expected long-term reward.</p>
+
+<h2>Real-World Applications</h2>
+
+<div class="box info">
+    <div class="box-title">Supervised Learning Applications</div>
+
+    <p><strong>Spam Detection:</strong> Classifying emails as spam or legitimate.</p>
+
+    <p><strong>House Price Prediction:</strong> Predicting property prices from historical data.</p>
+
+    <p><strong>Medical Prediction:</strong> Predicting whether a particular condition is likely based on patient data.</p>
+
+    <p><strong>Credit Risk:</strong> Predicting whether a borrower is likely to default.</p>
+
+    <p><strong>Image Classification:</strong> Identifying objects or categories in images.</p>
+</div>
+
+<div class="box info">
+    <div class="box-title">Unsupervised Learning Applications</div>
+
+    <p><strong>Customer Segmentation:</strong> Grouping customers according to their behavior.</p>
+
+    <p><strong>Anomaly Detection:</strong> Finding unusual patterns in data.</p>
+
+    <p><strong>Document Grouping:</strong> Grouping similar documents or articles.</p>
+
+    <p><strong>Market Analysis:</strong> Discovering patterns in customer purchasing behavior.</p>
+
+    <p><strong>Data Exploration:</strong> Understanding hidden structures in large datasets.</p>
+</div>
+
+<div class="box info">
+    <div class="box-title">Reinforcement Learning Applications</div>
+
+    <p><strong>Games:</strong> Training agents to play games and make decisions.</p>
+
+    <p><strong>Robotics:</strong> Teaching robots how to perform actions through interaction.</p>
+
+    <p><strong>Control Systems:</strong> Optimizing decisions in dynamic environments.</p>
+
+    <p><strong>Resource Management:</strong> Learning strategies for allocating limited resources.</p>
+
+    <p><strong>Navigation:</strong> Learning how to select actions that lead toward a desired destination.</p>
+</div>
+
+<h2>Key Differences</h2>
+
+<div class="box info">
+    <div class="box-title">Supervised Learning</div>
+
+    <p><strong>Data:</strong> Labeled data.</p>
+
+    <p><strong>Target:</strong> A known target variable y is available.</p>
+
+    <p><strong>Goal:</strong> Learn a mapping from inputs to outputs.</p>
+
+    <p><strong>Common Tasks:</strong> Classification and regression.</p>
+
+    <p><strong>Example:</strong> Predicting whether an email is spam.</p>
+</div>
+
+<div class="box info">
+    <div class="box-title">Unsupervised Learning</div>
+
+    <p><strong>Data:</strong> Unlabeled data.</p>
+
+    <p><strong>Target:</strong> No predefined target variable is required.</p>
+
+    <p><strong>Goal:</strong> Discover hidden patterns, relationships, or groups.</p>
+
+    <p><strong>Common Tasks:</strong> Clustering and dimensionality reduction.</p>
+
+    <p><strong>Example:</strong> Grouping customers according to purchasing behavior.</p>
+</div>
+
+<div class="box info">
+    <div class="box-title">Reinforcement Learning</div>
+
+    <p><strong>Data:</strong> Experience generated through interaction with an environment.</p>
+
+    <p><strong>Target:</strong> No fixed target label is required for every example.</p>
+
+    <p><strong>Goal:</strong> Maximize long-term reward.</p>
+
+    <p><strong>Common Tasks:</strong> Sequential decision-making and control.</p>
+
+    <p><strong>Example:</strong> Teaching an AI agent to play a game.</p>
+</div>
+
+<h2>Important Difference: Prediction vs Discovery</h2>
+
+<p>A useful way to remember the difference is to think about the primary goal of each approach.</p>
+
+<p><strong>Supervised learning focuses on prediction.</strong> The model learns from known examples and attempts to predict an output for new inputs.</p>
+
+<p><strong>Unsupervised learning focuses on discovery.</strong> The algorithm searches for patterns or structures that were not explicitly provided.</p>
+
+<p><strong>Reinforcement learning focuses on decision-making.</strong> The agent learns which actions are likely to produce better long-term results.</p>
+
+<h2>Example: Online Store</h2>
+
+<p>Consider an online shopping platform and imagine three different machine learning problems.</p>
+
+<div class="box info">
+    <div class="box-title">Problem 1: Predict Customer Churn</div>
+
+    <p>The company has historical customer data and knows which customers stopped using the service.</p>
+
+    <p>Because the outcome is already known for previous customers, this can be formulated as a <strong>supervised classification problem</strong>.</p>
+</div>
+
+<div class="box info">
+    <div class="box-title">Problem 2: Find Customer Groups</div>
+
+    <p>The company has customer behavior data but does not know how many meaningful customer groups exist.</p>
+
+    <p>A clustering algorithm can analyze the data and discover groups automatically. This is an <strong>unsupervised learning problem</strong>.</p>
+</div>
+
+<div class="box info">
+    <div class="box-title">Problem 3: Optimize Recommendations</div>
+
+    <p>The company wants a system that learns which recommendations lead to better long-term user engagement.</p>
+
+    <p>A reinforcement learning approach may be useful when the system can take actions, observe feedback, and learn from the resulting rewards.</p>
+</div>
+
+<h2>Advantages and Limitations</h2>
+
+<div class="box info">
+    <div class="box-title">Supervised Learning Advantages</div>
+
+    <p>Supervised learning can produce highly useful predictive models when a sufficiently large and representative labeled dataset is available.</p>
+
+    <p>It is relatively straightforward to evaluate because predictions can be compared against known target values.</p>
+
+    <p>However, creating labeled datasets can be expensive and time-consuming, especially when humans must manually label thousands or millions of examples.</p>
+</div>
+
+<div class="box info">
+    <div class="box-title">Unsupervised Learning Advantages</div>
+
+    <p>Unsupervised learning can work with large amounts of unlabeled data, which is often easier to collect than labeled data.</p>
+
+    <p>It can reveal patterns that humans did not know existed.</p>
+
+    <p>However, evaluating unsupervised results can be more difficult because there may not be a single correct answer.</p>
+</div>
+
+<div class="box info">
+    <div class="box-title">Reinforcement Learning Advantages</div>
+
+    <p>Reinforcement learning is powerful for problems involving sequences of decisions where an action can affect future outcomes.</p>
+
+    <p>It can learn strategies through repeated interaction rather than requiring a manually labeled answer for every possible situation.</p>
+
+    <p>However, reinforcement learning can require large amounts of experience and careful reward design. Poorly designed rewards can cause an agent to learn unwanted behaviors.</p>
+</div>
+
+<h2>Common Mistakes</h2>
+
+<p><strong>Mistake 1: Thinking that unsupervised learning means the algorithm learns without data.</strong></p>
+
+<p>Unsupervised learning still requires data. The difference is that the data does not contain predefined target labels for the task.</p>
+
+<p><strong>Mistake 2: Thinking that every numerical problem is regression.</strong></p>
+
+<p>The type of target matters. If the output represents categories encoded as numbers, it may still be a classification problem rather than regression.</p>
+
+<p><strong>Mistake 3: Assuming that more features always produce a better model.</strong></p>
+
+<p>Additional features can sometimes introduce noise, increase complexity, and make a model harder to train. Feature selection and dimensionality reduction can therefore be useful.</p>
+
+<p><strong>Mistake 4: Confusing training data with labeled data.</strong></p>
+
+<p>Training data refers to data used to train a model. In supervised learning, training data contains labels, while unsupervised training data generally does not contain a predefined target variable.</p>
+
+<h2>Quick Comparison</h2>
+
+<div class="box info">
+    <div class="box-title">Remember These Three Ideas</div>
+
+    <p><strong>Supervised Learning:</strong> Learn from examples with known answers.</p>
+
+    <p><strong>Unsupervised Learning:</strong> Discover patterns without predefined answers.</p>
+
+    <p><strong>Reinforcement Learning:</strong> Learn actions through rewards and interaction.</p>
+
+    <p>A simple memory trick is:</p>
+
+    <p><strong>Supervised = Learn with an answer.</strong></p>
+
+    <p><strong>Unsupervised = Find the pattern.</strong></p>
+
+    <p><strong>Reinforcement = Learn from feedback.</strong></p>
+</div>
+
+<h2>Summary</h2>
+
+<p>Machine learning can be approached in several ways depending on the information available and the goal of the system.</p>
+
+<p><strong>Supervised learning</strong> uses labeled data represented by input features X and target values y. Its main goal is to learn a relationship that can be used for prediction. Classification and regression are the two major types of supervised learning.</p>
+
+<p><strong>Unsupervised learning</strong> works primarily with input data X without a predefined target y. Its goal is to discover hidden patterns, similarities, groups, or lower-dimensional representations. Clustering and dimensionality reduction are common examples.</p>
+
+<p><strong>Reinforcement learning</strong> uses an agent that interacts with an environment. The agent performs actions and receives rewards or penalties, gradually learning a strategy that aims to maximize long-term reward.</p>
+
+<p>The most important distinction to remember is that supervised learning generally learns from <strong>known answers</strong>, unsupervised learning searches for <strong>unknown patterns</strong>, and reinforcement learning learns from <strong>feedback generated by actions</strong>.</p>
+
+<p>These concepts form an important foundation for machine learning. As you continue learning, you will use these ideas to understand algorithms, datasets, model training, evaluation, and practical machine learning libraries such as NumPy, Pandas, and Scikit-learn.</p>
+
+
 </div>
 
         <div class="lecture" id="lec-3">
@@ -1056,41 +1634,305 @@ print("Machine Learning Environment Ready!")
     </div>
 </div>
   
-
-    <div class="lecture" id="lec-5">
-            <div class="lecture-tag">Topic 06 - Unit II - Data Preprocessing</div>
-            <h1>Handling Missing Data</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Syllabus Topic</span>
-            </div>
-            
-            <div class="lecture-meta">
+      <div class="lecture" id="lec-5">
+        <div class="lecture-tag">Topic 06 - Unit II - Data Preprocessing</div>
+        <h1>Handling Missing Data</h1>
+        <div class="lecture-meta">
+            <span class="meta-badge">Syllabus Topic</span>
+        </div>
+        <div class="lecture-meta">
             <span class="meta-badge">Imputation Techniques</span>
         </div>
-        <div class="box info">
-            <div class="box-title">Data Cleaning & Imputation</div>
-            <p>Real-world datasets frequently contain missing values (NaNs). Properly handling missing data prevents model crashes and bias.</p>
+        <div class="lecture-meta">
+            <span class="meta-badge">SimpleImputer &amp; KNNImputer</span>
         </div>
-        <h2>Using SimpleImputer in Scikit-Learn</h2>
+
+        <div class="box info">
+            <div class="box-title">Data Cleaning &amp; Imputation</div>
+            <p>Real-world datasets frequently contain missing values (NaNs). Properly handling missing data prevents model crashes, biased predictions, and unreliable results. Missing data is one of the most common challenges faced in every data science project.</p>
+        </div>
+
+        <section>
+            <h2>What is Missing Data?</h2>
+
+            <p>Missing data refers to the absence of values in one or more columns of a dataset. Instead of a valid number or category, the entry is left blank or represented as <strong>NaN</strong> (Not a Number) in Python and Pandas.</p>
+
+            <p>Missing values can arise due to various reasons such as:</p>
+
+            <ul>
+                <li>Data collection errors or sensor failures</li>
+                <li>Survey respondents skipping questions</li>
+                <li>Manual entry mistakes</li>
+                <li>System bugs or database merging issues</li>
+                <li>Data not available at the time of collection</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Why It Matters</strong>
+                <p>Most Machine Learning algorithms cannot handle missing values directly. Feeding a model with NaN values will either raise an error or produce incorrect outputs. Proper handling is essential before training any model.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Types of Missing Data</h2>
+
+            <p>Understanding why data is missing helps us choose the most appropriate strategy to handle it. There are three main types of missingness:</p>
+
+            <h3 class="sub-title">1. Missing Completely at Random (MCAR)</h3>
+            <p>The missing values have no relationship with any other variable in the dataset. The absence of data is purely due to random chance.</p>
+            <p><strong>Example:</strong> A sensor randomly fails to record temperature on some days with no pattern.</p>
+
+            <h3 class="sub-title">2. Missing at Random (MAR)</h3>
+            <p>The missing values are related to other observed variables but not to the missing data itself.</p>
+            <p><strong>Example:</strong> Older patients are less likely to report income, so income missingness depends on age (which is observed).</p>
+
+            <h3 class="sub-title">3. Missing Not at Random (MNAR)</h3>
+            <p>The missingness is related to the value of the missing data itself. This is the most difficult case to handle.</p>
+            <p><strong>Example:</strong> High-income individuals deliberately skip providing their salary information.</p>
+
+            <div class="info-box">
+                <strong>Key Insight</strong>
+                <p>MCAR is the easiest to handle (simple deletion is acceptable). MNAR is the hardest because the missing pattern itself carries information.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Detecting Missing Values in Python</h2>
+
+            <p>Before handling missing data, we must first detect how much data is missing and in which columns.</p>
+
 <div class="code-block">
-    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">missing_data.py</span></div>
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">detect_missing.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># Create a sample dataset with missing values</span>
+data = {
+    <span class="s">'Age'</span>: [25, 30, np.nan, 22, 35, np.nan],
+    <span class="s">'Salary'</span>: [50000, np.nan, 60000, 45000, np.nan, 70000],
+    <span class="s">'Department'</span>: [<span class="s">'HR'</span>, <span class="s">'IT'</span>, <span class="s">'IT'</span>, np.nan, <span class="s">'Finance'</span>, <span class="s">'HR'</span>]
+}
+
+df = pd.DataFrame(data)
+
+<span class="cm"># Check for missing values</span>
+print(df.isnull().sum())
+
+<span class="cm"># Percentage of missing values per column</span>
+print(df.isnull().mean() * 100)</pre>
+</div>
+
+            <p>The output shows how many and what percentage of values are missing in each column, guiding us toward the right treatment strategy.</p>
+        </section>
+
+        <section>
+            <h2>Strategy 1: Deleting Missing Values</h2>
+
+            <p>The simplest strategy is to remove rows or columns that contain missing values. However, this should only be done when the amount of missing data is small.</p>
+
+            <h3 class="sub-title">Dropping Rows with Missing Values</h3>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">drop_rows.py</span></div>
+<pre><span class="cm"># Drop any row that contains at least one NaN</span>
+df_cleaned = df.dropna()
+
+<span class="cm"># Drop rows only if ALL values in the row are NaN</span>
+df_cleaned = df.dropna(how=<span class="s">'all'</span>)</pre>
+</div>
+
+            <h3 class="sub-title">Dropping Columns with Missing Values</h3>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">drop_cols.py</span></div>
+<pre><span class="cm"># Drop columns where more than 40% of data is missing</span>
+threshold = len(df) * 0.6
+df_cleaned = df.dropna(thresh=<span class="kc">int</span>(threshold), axis=1)</pre>
+</div>
+
+            <div class="info-box">
+                <strong>When to Delete?</strong>
+                <p>Only delete missing rows or columns if the missing data accounts for less than 5% of the total dataset and the pattern is MCAR. Deleting too much data can lead to significant loss of information.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Strategy 2: Imputation</h2>
+
+            <p>Imputation means filling in missing values with estimated substitutes. This preserves all rows and avoids data loss. Scikit-Learn provides the <strong>SimpleImputer</strong> class for this purpose.</p>
+
+            <h3 class="sub-title">Mean Imputation (Numerical Features)</h3>
+            <p>Replace missing values with the average of the non-missing values in that column. Best used when data is roughly normally distributed with no extreme outliers.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mean_imputer.py</span></div>
 <pre><span class="kn">import</span> numpy <span class="kn">as</span> np
 <span class="kn">from</span> sklearn.impute <span class="kn">import</span> SimpleImputer
 
-<span class="cm"># Create dataset with NaNs</span>
 X = np.array([[1, 2], [np.nan, 3], [7, 6], [4, np.nan]])
 
 <span class="cm"># Impute missing values with column mean</span>
 imputer = SimpleImputer(strategy=<span class="s">'mean'</span>)
 X_clean = imputer.fit_transform(X)
-print(<span class="s">"Cleaned Feature Matrix:
-"</span>, X_clean)</pre>
+print(<span class="s">"Mean Imputed:\n"</span>, X_clean)</pre>
 </div>
-        <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(4)">Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
+
+            <h3 class="sub-title">Median Imputation (Numerical Features)</h3>
+            <p>Replace missing values with the median. Preferred when the data is skewed or contains outliers, because the median is more robust than the mean.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">median_imputer.py</span></div>
+<pre>imputer = SimpleImputer(strategy=<span class="s">'median'</span>)
+X_clean = imputer.fit_transform(X)
+print(<span class="s">"Median Imputed:\n"</span>, X_clean)</pre>
+</div>
+
+            <h3 class="sub-title">Most Frequent (Mode) Imputation (Categorical Features)</h3>
+            <p>Replace missing values with the most frequently occurring value. This is the standard strategy for categorical or nominal columns.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">mode_imputer.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+<span class="kn">from</span> sklearn.impute <span class="kn">import</span> SimpleImputer
+
+df = pd.DataFrame({
+    <span class="s">'Department'</span>: [<span class="s">'HR'</span>, <span class="s">'IT'</span>, <span class="s">'IT'</span>, None, <span class="s">'Finance'</span>, <span class="s">'HR'</span>]
+})
+
+imputer = SimpleImputer(strategy=<span class="s">'most_frequent'</span>)
+df[<span class="s">'Department'</span>] = imputer.fit_transform(df[[<span class="s">'Department'</span>]])
+print(df)</pre>
+</div>
+
+            <h3 class="sub-title">Constant Value Imputation</h3>
+            <p>Fill missing values with a specified constant. Useful when a missing value has a specific meaning, such as "Unknown" or 0.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">constant_imputer.py</span></div>
+<pre>imputer = SimpleImputer(strategy=<span class="s">'constant'</span>, fill_value=<span class="s">'Unknown'</span>)
+df[<span class="s">'Department'</span>] = imputer.fit_transform(df[[<span class="s">'Department'</span>]])
+print(df)</pre>
+</div>
+        </section>
+
+        <section>
+            <h2>Strategy 3: KNN Imputation</h2>
+
+            <p><strong>KNNImputer</strong> uses the K-Nearest Neighbors algorithm to fill missing values. For each missing value, it finds the K most similar rows (neighbors) and uses their values to estimate the missing entry.</p>
+
+            <p>This is more sophisticated than simple mean/median imputation and can produce more accurate results when data has meaningful patterns.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">knn_imputer.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">from</span> sklearn.impute <span class="kn">import</span> KNNImputer
+
+X = np.array([
+    [1, 2, np.nan],
+    [3, 4, 5],
+    [np.nan, 6, 7],
+    [8, np.nan, 9]
+])
+
+<span class="cm"># Use 2 nearest neighbors to estimate missing values</span>
+knn_imputer = KNNImputer(n_neighbors=2)
+X_filled = knn_imputer.fit_transform(X)
+print(<span class="s">"KNN Imputed:\n"</span>, X_filled)</pre>
+</div>
+
+            <div class="info-box">
+                <strong>KNN vs Simple Imputation</strong>
+                <p>KNNImputer considers relationships between features when estimating missing values. It is better when features are correlated. However, it is computationally more expensive than SimpleImputer for large datasets.</p>
             </div>
+        </section>
+
+        <section>
+            <h2>Comparison of Imputation Strategies</h2>
+
+            <table>
+                <tr>
+                    <th>Strategy</th>
+                    <th>Best For</th>
+                    <th>Handles Outliers?</th>
+                </tr>
+                <tr>
+                    <td>Mean</td>
+                    <td>Numerical, symmetric distribution</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Median</td>
+                    <td>Numerical, skewed distribution</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Most Frequent</td>
+                    <td>Categorical features</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Constant</td>
+                    <td>When absence means something</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>KNN</td>
+                    <td>Correlated features</td>
+                    <td>Partially</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Best Practices</h2>
+
+            <ul>
+                <li>Always explore missing data patterns before choosing a strategy.</li>
+                <li>Fit the imputer <strong>only on training data</strong> and use it to transform test data.</li>
+                <li>Never fit and transform on the entire dataset before splitting — this causes data leakage.</li>
+                <li>Use median instead of mean when data contains significant outliers.</li>
+                <li>For categorical columns, use most_frequent or constant imputation.</li>
+                <li>Document what imputation strategy was chosen and why.</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Common Mistake</strong>
+                <p>Fitting the imputer on the whole dataset (including test data) before the train/test split introduces data leakage. Always split first, then fit the imputer on training data only, and transform both sets separately.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Takeaways</h2>
+
+            <ul>
+                <li>Missing data is common in real-world datasets and must be handled before model training.</li>
+                <li>There are three types: MCAR, MAR, and MNAR — each requires a different strategy.</li>
+                <li>Deletion is simple but risky if too much data is removed.</li>
+                <li>SimpleImputer supports mean, median, most_frequent, and constant strategies.</li>
+                <li>KNNImputer uses neighboring rows to produce more accurate estimates.</li>
+                <li>Always fit imputers on training data only to prevent data leakage.</li>
+            </ul>
+        </section>
+
+        <div class="exercise">
+            <div class="exercise-title">🎯 Practice Exercise</div>
+            <p><strong>Objective:</strong> Practice detecting and handling missing data in a real dataset.</p>
+
+            <ol>
+                <li>Create a DataFrame with at least 3 columns containing NaN values.</li>
+                <li>Use <code>isnull().sum()</code> to identify which columns have missing values.</li>
+                <li>Apply <strong>mean imputation</strong> to a numerical column.</li>
+                <li>Apply <strong>most_frequent imputation</strong> to a categorical column.</li>
+                <li>Apply <strong>KNNImputer</strong> with <code>n_neighbors=3</code> on a numerical matrix.</li>
+                <li>Compare the resulting datasets and observe the differences.</li>
+            </ol>
         </div>
+
+        <div class="lecture-nav">
+            <button class="nav-btn" onclick="showLecture(4)">Previous</button>
+            <button class="nav-btn primary" onclick="showLecture(6)">Next Topic</button>
+        </div>
+    </div>
 
   <div class="lecture" id="lec-6">
     <div class="lecture-tag">Topic 07 - Unit II - Data Preprocessing</div>
@@ -1350,45 +2192,312 @@ scaled_data = scaler.fit_transform(data)
     </div>
 
     <div class="lecture-nav">
-        <button class="nav-btn" onclick="showLecture(5)">Previous</button>
-        <button class="nav-btn primary" onclick="showLecture(7)">Next Topic</button>
+        <button class="nav-btn" onclick="showLecture(6)">Previous</button>
+        <button class="nav-btn primary" onclick="showLecture(8)">Next Topic</button>
     </div>
 </div>
 
    <div class="lecture" id="lec-7">
-            <div class="lecture-tag">Topic 08 - Unit II - Data Preprocessing</div>
-            <h1>Categorical Data Encoding</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Handling Missing Data</span>
-            </div>
-            
-            <div class="lecture-meta">
-            <span class="meta-badge">StandardScaler & MinMaxScaler</span>
+        <div class="lecture-tag">Topic 08 - Unit II - Data Preprocessing</div>
+        <h1>Categorical Data Encoding</h1>
+        <div class="lecture-meta">
+            <span class="meta-badge">Requires: Handling Missing Data</span>
         </div>
         <div class="lecture-meta">
-            <span class="meta-badge">OneHotEncoder & LabelEncoder</span>
+            <span class="meta-badge">OneHotEncoder &amp; LabelEncoder</span>
         </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">OrdinalEncoder &amp; pd.get_dummies</span>
+        </div>
+
         <div class="box info">
             <div class="box-title">Encoding Non-Numeric Features</div>
-            <p>Machine Learning models require numerical arrays. Categorical variables (strings, categories) must be encoded before model training.</p>
+            <p>Machine Learning models require numerical arrays. Categorical variables — such as colors, departments, or city names — cannot be fed directly into an algorithm. They must first be converted into numbers through a process called <strong>encoding</strong>.</p>
         </div>
-        <h2>One-Hot vs Label Encoding</h2>
+
+        <section>
+            <h2>What is Categorical Data?</h2>
+
+            <p>Categorical data represents groups or categories rather than continuous numerical measurements. In a dataset, categorical columns typically contain text values such as "Male", "Female", "Red", "Blue", or "New York".</p>
+
+            <p>Examples of categorical features:</p>
+
+            <ul>
+                <li><strong>Gender:</strong> Male, Female, Other</li>
+                <li><strong>City:</strong> Mumbai, Delhi, Chennai</li>
+                <li><strong>Education Level:</strong> High School, Bachelor's, Master's, PhD</li>
+                <li><strong>Product Category:</strong> Electronics, Clothing, Furniture</li>
+                <li><strong>Blood Type:</strong> A, B, AB, O</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Why Encoding is Necessary</strong>
+                <p>Mathematical operations like addition, multiplication, and distance calculations cannot be performed on text data. Encoding transforms text categories into numbers so ML algorithms can process them correctly.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Types of Categorical Data</h2>
+
+            <p>Before choosing an encoding strategy, it is important to understand whether the categorical data has a natural order or not.</p>
+
+            <h3 class="sub-title">1. Nominal Categories (No Order)</h3>
+            <p>Categories that have no meaningful ranking or sequence.</p>
+            <p><strong>Examples:</strong> Color (Red, Blue, Green), Country (India, USA, UK), Animal (Cat, Dog, Bird)</p>
+
+            <h3 class="sub-title">2. Ordinal Categories (Has Order)</h3>
+            <p>Categories that have a meaningful sequence or ranking from low to high.</p>
+            <p><strong>Examples:</strong> Education Level (High School &lt; Bachelor's &lt; Master's &lt; PhD), Satisfaction (Low &lt; Medium &lt; High)</p>
+
+            <div class="info-box">
+                <strong>Key Rule</strong>
+                <p>Always use <strong>One-Hot Encoding</strong> for nominal categories and <strong>Ordinal Encoding</strong> for ordered categories. Applying the wrong technique can introduce false relationships into your data.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technique 1: Label Encoding</h2>
+
+            <p><strong>LabelEncoder</strong> converts each unique category into an integer starting from 0. It assigns a unique integer to each category based on alphabetical order.</p>
+
+            <p>For example, if a column has values [Red, Blue, Green], they may be encoded as [2, 0, 1].</p>
+
 <div class="code-block">
-    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">encoding.py</span></div>
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">label_encoder.py</span></div>
+<pre><span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> LabelEncoder
+
+colors = [<span class="s">'Red'</span>, <span class="s">'Blue'</span>, <span class="s">'Green'</span>, <span class="s">'Red'</span>, <span class="s">'Blue'</span>]
+
+encoder = LabelEncoder()
+encoded = encoder.fit_transform(colors)
+
+print(<span class="s">"Encoded Labels:"</span>, encoded)
+print(<span class="s">"Classes:"</span>, encoder.classes_)
+
+<span class="cm"># Output: Encoded Labels: [2 0 1 2 0]
+# Classes: ['Blue' 'Green' 'Red']</span></pre>
+</div>
+
+            <div class="info-box">
+                <strong>Warning About Label Encoding</strong>
+                <p>LabelEncoder works well for the target variable (y) but should generally NOT be used for input features (X). The integer values introduce a false mathematical order — a model may incorrectly interpret "Red" (2) as greater than "Blue" (0).</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technique 2: Ordinal Encoding</h2>
+
+            <p><strong>OrdinalEncoder</strong> is specifically designed for ordinal (ordered) categorical features. You define the exact order of categories so the assigned integers reflect the true ranking.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ordinal_encoder.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+<span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> OrdinalEncoder
+
+df = pd.DataFrame({
+    <span class="s">'Education'</span>: [<span class="s">'High School'</span>, <span class="s">"Bachelor's"</span>, <span class="s">"Master's"</span>, <span class="s">'PhD'</span>, <span class="s">"Bachelor's"</span>]
+})
+
+<span class="cm"># Define the correct order of categories</span>
+categories = [[<span class="s">'High School'</span>, <span class="s">"Bachelor's"</span>, <span class="s">"Master's"</span>, <span class="s">'PhD'</span>]]
+
+encoder = OrdinalEncoder(categories=categories)
+df[<span class="s">'Education_Encoded'</span>] = encoder.fit_transform(df[[<span class="s">'Education'</span>]])
+
+print(df)</pre>
+</div>
+
+            <p>The output will assign 0 to High School, 1 to Bachelor's, 2 to Master's, and 3 to PhD — correctly preserving the educational hierarchy.</p>
+        </section>
+
+        <section>
+            <h2>Technique 3: One-Hot Encoding</h2>
+
+            <p><strong>One-Hot Encoding</strong> (also called dummy encoding) creates a new binary column for each unique category. For each row, a 1 is placed in the column matching its category and 0 in all other columns.</p>
+
+            <p>This avoids the false ordering problem of Label Encoding and is the standard choice for nominal categorical features.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">one_hot_encoder.py</span></div>
 <pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
 <span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> OneHotEncoder
 
 df = pd.DataFrame({<span class="s">'Color'</span>: [<span class="s">'Red'</span>, <span class="s">'Blue'</span>, <span class="s">'Green'</span>, <span class="s">'Red'</span>]})
+
 encoder = OneHotEncoder(sparse_output=<span class="kc">False</span>)
-encoded_cols = encoder.fit_transform(df[[<span class="s">'Color'</span>]])
-print(<span class="s">"One-Hot Encrypted Columns:
-"</span>, encoded_cols)</pre>
+encoded_array = encoder.fit_transform(df[[<span class="s">'Color'</span>]])
+
+encoded_df = pd.DataFrame(encoded_array, columns=encoder.get_feature_names_out())
+print(encoded_df)</pre>
 </div>
-        <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(8)">Next Topic →</button>
+
+            <p>For the Color column with values Red, Blue, Green, the result will be:</p>
+
+            <table>
+                <tr>
+                    <th>Color_Blue</th>
+                    <th>Color_Green</th>
+                    <th>Color_Red</th>
+                </tr>
+                <tr>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>1.0</td>
+                </tr>
+                <tr>
+                    <td>1.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>0.0</td>
+                    <td>1.0</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>1.0</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Technique 4: pd.get_dummies (Pandas)</h2>
+
+            <p>Pandas provides a simpler alternative to OneHotEncoder for exploratory data analysis and preprocessing pipelines that use DataFrames directly.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">get_dummies.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+
+df = pd.DataFrame({
+    <span class="s">'Color'</span>: [<span class="s">'Red'</span>, <span class="s">'Blue'</span>, <span class="s">'Green'</span>, <span class="s">'Red'</span>],
+    <span class="s">'Size'</span>: [<span class="s">'S'</span>, <span class="s">'M'</span>, <span class="s">'L'</span>, <span class="s">'M'</span>]
+})
+
+<span class="cm"># One-hot encode all categorical columns</span>
+df_encoded = pd.get_dummies(df)
+print(df_encoded)</pre>
+</div>
+
+            <div class="info-box">
+                <strong>drop_first Parameter</strong>
+                <p>Use <code>pd.get_dummies(df, drop_first=True)</code> to drop the first dummy column from each category group. This prevents the <strong>Dummy Variable Trap</strong> — a situation where columns are perfectly correlated, causing multicollinearity issues in linear models.</p>
             </div>
+        </section>
+
+        <section>
+            <h2>Handling Unknown Categories</h2>
+
+            <p>In real pipelines, the test data may contain categories that were not present during training. OneHotEncoder can be configured to handle this gracefully.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">unknown_categories.py</span></div>
+<pre><span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> OneHotEncoder
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># Training data</span>
+train_data = np.array([[<span class="s">'Red'</span>], [<span class="s">'Blue'</span>], [<span class="s">'Green'</span>]])
+
+<span class="cm"># handle_unknown='ignore' sets unseen categories to all zeros</span>
+encoder = OneHotEncoder(sparse_output=<span class="kc">False</span>, handle_unknown=<span class="s">'ignore'</span>)
+encoder.fit(train_data)
+
+<span class="cm"># Test data contains 'Yellow' which was not in training</span>
+test_data = np.array([[<span class="s">'Red'</span>], [<span class="s">'Yellow'</span>]])
+encoded_test = encoder.transform(test_data)
+print(encoded_test)</pre>
+</div>
+        </section>
+
+        <section>
+            <h2>Comparison of Encoding Techniques</h2>
+
+            <table>
+                <tr>
+                    <th>Technique</th>
+                    <th>Best For</th>
+                    <th>Creates New Columns?</th>
+                    <th>Preserves Order?</th>
+                </tr>
+                <tr>
+                    <td>LabelEncoder</td>
+                    <td>Target variable (y)</td>
+                    <td>No</td>
+                    <td>No (alphabetical)</td>
+                </tr>
+                <tr>
+                    <td>OrdinalEncoder</td>
+                    <td>Ordinal features (X)</td>
+                    <td>No</td>
+                    <td>Yes (user-defined)</td>
+                </tr>
+                <tr>
+                    <td>OneHotEncoder</td>
+                    <td>Nominal features (X)</td>
+                    <td>Yes</td>
+                    <td>No (binary flags)</td>
+                </tr>
+                <tr>
+                    <td>pd.get_dummies</td>
+                    <td>Quick EDA &amp; prototyping</td>
+                    <td>Yes</td>
+                    <td>No (binary flags)</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Best Practices</h2>
+
+            <ul>
+                <li>Identify whether a feature is <strong>nominal</strong> (no order) or <strong>ordinal</strong> (has order) before choosing an encoding method.</li>
+                <li>Use <strong>OneHotEncoder</strong> for nominal features in ML pipelines — never LabelEncoder on features.</li>
+                <li>Use <strong>OrdinalEncoder</strong> with explicitly defined category order for ordinal features.</li>
+                <li>Fit encoders only on training data, then transform both train and test sets.</li>
+                <li>Use <code>drop_first=True</code> in <code>pd.get_dummies</code> for linear models to avoid multicollinearity.</li>
+                <li>Beware of high-cardinality features (many unique values) — One-Hot Encoding can create hundreds of new columns.</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>High Cardinality Warning</strong>
+                <p>If a categorical column has hundreds of unique values (e.g., city names), One-Hot Encoding will create hundreds of new columns, greatly increasing the dimensionality of your dataset. Consider techniques like Target Encoding or Frequency Encoding for high-cardinality features.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Takeaways</h2>
+
+            <ul>
+                <li>Categorical data must be converted to numbers before training ML models.</li>
+                <li>There are two types of categorical data: nominal (no order) and ordinal (has order).</li>
+                <li>LabelEncoder is suitable only for the target variable — not for input features.</li>
+                <li>OrdinalEncoder preserves user-defined ordering for ordinal features.</li>
+                <li>OneHotEncoder creates binary columns for each category — ideal for nominal features.</li>
+                <li>Always fit encoders on training data only to prevent data leakage.</li>
+                <li>Use <code>handle_unknown='ignore'</code> to handle unseen categories in test data.</li>
+            </ul>
+        </section>
+
+        <div class="exercise">
+            <div class="exercise-title">🎯 Practice Exercise</div>
+            <p><strong>Objective:</strong> Practice encoding different types of categorical data correctly.</p>
+
+            <ol>
+                <li>Create a DataFrame with a nominal column (e.g., Color: Red, Blue, Green) and an ordinal column (e.g., Size: Small, Medium, Large).</li>
+                <li>Apply <strong>OneHotEncoder</strong> to the Color column.</li>
+                <li>Apply <strong>OrdinalEncoder</strong> to the Size column with the correct order defined.</li>
+                <li>Use <code>pd.get_dummies</code> with <code>drop_first=True</code> on the entire DataFrame.</li>
+                <li>Train a simple logistic regression model on the encoded data and observe the results.</li>
+            </ol>
         </div>
+
+        <div class="lecture-nav">
+            <button class="nav-btn" onclick="showLecture(6)">← Previous</button>
+            <button class="nav-btn primary" onclick="showLecture(8)">Next Topic →</button>
+        </div>
+    </div>
 
     <div class="lecture" id="lec-8">
     <div class="lecture-tag">Topic 09 - Unit II - Data Preprocessing</div>
@@ -2597,7 +3706,8 @@ model.fit(X_poly, y)
     </div>
 </div>
 
-        <div class="lecture" id="lec-12">
+
+<div class="lecture" id="lec-12">
             <div class="lecture-tag">Topic 13 - Unit III - Supervised Learning (Regression)</div>
             <h1>Support Vector Regression (SVR)</h1>
             <div class="lecture-meta">
@@ -2620,14 +3730,332 @@ model.fit(X_poly, y)
         </div>
         <div class="box info">
             <div class="box-title">Margin-Based Regression</div>
-            <p>SVR fits continuous values within an $\epsilon$-insensitive tube while minimizing margin errors.</p>
+            <p>Support Vector Regression (SVR) is a supervised machine learning algorithm used to predict continuous numerical values. Unlike ordinary linear regression, which attempts to minimize the distance between every actual value and the predicted line, SVR tries to fit the data inside an $\epsilon$-insensitive tube.</p>
+            <p>The main idea is to find a function that is as simple and flat as possible while allowing small prediction errors. Errors smaller than $\epsilon$ are ignored, while errors outside the tube are penalized.</p>
         </div>
-        <h2>SVR Implementation</h2>
+
+```
+    <h2>Understanding Support Vector Regression</h2>
+    <p>SVR is the regression version of Support Vector Machines (SVM). In classification, SVM attempts to find a decision boundary that separates classes with the largest possible margin. In regression, SVR uses a similar idea but creates a tube around the prediction function.</p>
+    <p>Imagine drawing a line through a group of data points and then creating two boundaries around that line. These boundaries are separated from the prediction line by $\epsilon$. Points that fall inside this tube are considered acceptable predictions and do not contribute to the error.</p>
+
+    <div class="box info">
+        <div class="box-title">The $\epsilon$-Insensitive Tube</div>
+        <p>The parameter $\epsilon$ determines how much error SVR is willing to tolerate without applying a penalty.</p>
+        <p>For example, if $\epsilon = 0.1$, predictions that are within approximately 0.1 units of the actual value are treated as acceptable. Only points outside this range contribute to the loss.</p>
+        <p>This makes SVR different from ordinary least squares regression, where every prediction error contributes to the total loss.</p>
+    </div>
+
+    <h2>SVR vs Ordinary Least Squares</h2>
+    <p>Ordinary Least Squares (OLS) regression attempts to minimize the sum of squared differences between the actual and predicted values. Large errors are heavily penalized because the errors are squared.</p>
+    <p>SVR follows a different strategy. It attempts to keep most observations inside the $\epsilon$-tube and only penalizes observations that fall outside the tube.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">comparison.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.linear_model <span class="kn">import</span> LinearRegression
+<span class="kn">from</span> sklearn.svm <span class="kn">import</span> SVR
+
+linear_model = LinearRegression()
+svr_model = SVR(kernel=<span class="s">'rbf'</span>)
+
+linear_model.fit(X, y)
+svr_model.fit(X, y)</pre>
+
+</div>
+
+```
+    <p>OLS is often a good choice when the relationship between the features and target is approximately linear and the dataset is relatively simple. SVR becomes especially useful when the relationship is more complex and nonlinear.</p>
+
+    <h2>Preparing Training and Testing Data</h2>
+    <p>Before training an SVR model, the dataset should normally be divided into training and testing sets. The training set is used to learn the relationship between the input features and target values, while the testing set evaluates how well the model performs on unseen data.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">split_data.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)</pre>
+
+</div>
+
+```
+    <p>Here, <code>test_size=0.2</code> means that approximately 20% of the data is reserved for testing and the remaining 80% is used for training.</p>
+    <p>The <code>random_state</code> parameter makes the split reproducible, meaning that the same training and testing samples are selected each time the program is executed.</p>
+
+    <h2>Why Feature Scaling Is Important for SVR</h2>
+    <p>Feature scaling is particularly important when using SVR. The algorithm relies on distances and mathematical relationships between data points. If one feature has values ranging from 0 to 10 while another ranges from 0 to 100,000, the larger feature can dominate the model.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">scaling.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> StandardScaler
+<span class="kn">from</span> sklearn.svm <span class="kn">import</span> SVR
+
+scaler_X = StandardScaler()
+scaler_y = StandardScaler()
+
+X_train_scaled = scaler_X.fit_transform(X_train)
+y_train_scaled = scaler_y.fit_transform(y_train.reshape(-1, 1)).ravel()
+
+svr = SVR(kernel=<span class="s">'rbf'</span>, C=100, epsilon=0.1)
+svr.fit(X_train_scaled, y_train_scaled)</pre>
+
+</div>
+
+```
+    <div class="box info">
+        <div class="box-title">Important: Avoid Data Leakage</div>
+        <p>When scaling data, the scaler should be fitted only on the training data. The test data should then be transformed using the same scaler. Calling <code>fit_transform()</code> separately on the test data can leak information from the test set into the model.</p>
+    </div>
+
+    <h2>Multivariate Regression with SVR</h2>
+    <p>SVR can work with multiple input features. For example, a house-price prediction model might use area, number of bedrooms, age of the property, distance from the city center, and other numerical features.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">multivariate_svr.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.svm <span class="kn">import</span> SVR
+
+X = [
+    [1200, 3],
+    [1500, 3],
+    [1800, 4],
+    [2200, 4]
+]
+
+y = [250000, 310000, 390000, 480000]
+
+svr = SVR(kernel=<span class="s">'rbf'</span>, C=100, epsilon=0.1)
+svr.fit(X, y)
+
+prediction = svr.predict([[1600, 3]])
+<span class="fn">print</span>(prediction)</pre>
+
+</div>
+
+```
+    <p>Each row of <code>X</code> represents one observation, while each column represents a feature. SVR learns a function that maps these multiple features to a continuous target value.</p>
+
+    <h2>Non-Linear Regression</h2>
+    <p>One of the major advantages of SVR is its ability to model nonlinear relationships. Real-world relationships are not always straight lines. For example, temperature and electricity usage, advertising and sales, or age and income may contain curved or complex patterns.</p>
+    <p>A linear regression model may struggle to capture these patterns because it assumes a linear relationship. SVR can use kernels to transform the input space and model nonlinear relationships without explicitly creating all the transformed features.</p>
+
+    <div class="box info">
+        <div class="box-title">The Kernel Trick</div>
+        <p>The kernel trick allows SVR to work with complex nonlinear relationships by measuring similarity between data points in a transformed mathematical space.</p>
+        <p>Instead of manually transforming the original features into a high-dimensional space, the kernel function performs the necessary calculations implicitly.</p>
+    </div>
+
+    <h2>Common SVR Kernels</h2>
+    <p>The <code>kernel</code> parameter determines how SVR models the relationship between observations.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">kernels.py</span></div>
+```
+
+<pre>SVR(kernel=<span class="s">'linear'</span>)
+SVR(kernel=<span class="s">'poly'</span>)
+SVR(kernel=<span class="s">'rbf'</span>)
+SVR(kernel=<span class="s">'sigmoid'</span>)</pre>
+
+</div>
+
+```
+    <p><strong>Linear:</strong> Used when the relationship between features and target is approximately linear.</p>
+    <p><strong>Polynomial:</strong> Useful when the relationship can be represented using polynomial curves.</p>
+    <p><strong>RBF:</strong> The Radial Basis Function kernel is commonly used for nonlinear problems and is often a strong default choice.</p>
+    <p><strong>Sigmoid:</strong> Uses a sigmoid-based similarity function and is less commonly used for standard regression problems.</p>
+
+    <h2>Understanding C</h2>
+    <p>The <code>C</code> parameter controls how strongly the model penalizes observations that fall outside the $\epsilon$-tube.</p>
+    <p>A small value of <code>C</code> allows the model to tolerate more violations and can produce a smoother function. A large value of <code>C</code> makes the model more strongly focused on fitting the training data.</p>
+
+    <div class="box info">
+        <div class="box-title">C and Model Complexity</div>
+        <p>A very large <code>C</code> can make the model sensitive to training data and may increase the risk of overfitting. A very small <code>C</code> may produce a model that is too simple and underfits the data.</p>
+    </div>
+
+    <h2>Understanding Epsilon</h2>
+    <p>The <code>epsilon</code> parameter defines the width of the region around the prediction function where errors are ignored.</p>
+    <p>A larger epsilon creates a wider tube, meaning more predictions can fall inside the acceptable region. A smaller epsilon creates a narrower tube and can make the model pay attention to smaller prediction errors.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">epsilon.py</span></div>
+```
+
+<pre>SVR(epsilon=0.01)
+SVR(epsilon=0.1)
+SVR(epsilon=0.5)</pre>
+
+</div>
+
+```
+    <p>The best value depends on the scale and noise level of the target variable. It should usually be selected through experimentation or cross-validation rather than chosen blindly.</p>
+
+    <h2>Support Vectors in Regression</h2>
+    <p>The name Support Vector Regression comes from the observations that are most important for defining the regression function. Data points inside the epsilon tube generally do not affect the loss, while points outside the tube can become support vectors.</p>
+    <p>These important observations help determine the shape and position of the final regression function.</p>
+
+    <h2>Complete SVR Example</h2>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">complete_svr.py</span></div>
+```
+
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> train_test_split
+<span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> StandardScaler
+<span class="kn">from</span> sklearn.svm <span class="kn">import</span> SVR
+<span class="kn">from</span> sklearn.metrics <span class="kn">import</span> mean_squared_error, r2_score
+
+X = np.array([
+    [1],
+    [2],
+    [3],
+    [4],
+    [5],
+    [6],
+    [7],
+    [8]
+])
+
+y = np.array([2.1, 4.2, 5.8, 8.1, 9.9, 12.2, 14.1, 16.3])
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.25,
+    random_state=42
+)
+
+scaler_X = StandardScaler()
+
+X_train_scaled = scaler_X.fit_transform(X_train)
+X_test_scaled = scaler_X.transform(X_test)
+
+svr = SVR(
+    kernel=<span class="s">'rbf'</span>,
+    C=100,
+    epsilon=0.1
+)
+
+svr.fit(X_train_scaled, y_train)
+
+y_pred = svr.predict(X_test_scaled)
+
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+<span class="fn">print</span>(<span class="s">"Predictions:"</span>, y_pred)
+<span class="fn">print</span>(<span class="s">"MSE:"</span>, mse)
+<span class="fn">print</span>(<span class="s">"R² Score:"</span>, r2)</pre>
+
+</div>
+
+```
+    <h2>Evaluating an SVR Model</h2>
+    <p>After training the model, we need to determine whether it makes accurate predictions. Common regression evaluation metrics include Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and the R² score.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">evaluation.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.metrics <span class="kn">import</span> mean_absolute_error, mean_squared_error, r2_score
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+<span class="fn">print</span>(<span class="s">"MAE:"</span>, mae)
+<span class="fn">print</span>(<span class="s">"MSE:"</span>, mse)
+<span class="fn">print</span>(<span class="s">"RMSE:"</span>, rmse)
+<span class="fn">print</span>(<span class="s">"R²:"</span>, r2)</pre>
+
+</div>
+
+```
+    <p>MAE represents the average absolute prediction error. MSE gives greater importance to large errors. RMSE is the square root of MSE and is expressed in the same units as the target. The R² score measures how much of the variation in the target is explained by the model.</p>
+
+    <h2>Hyperparameter Tuning</h2>
+    <p>SVR performance depends heavily on parameters such as <code>C</code>, <code>epsilon</code>, and <code>gamma</code>. Instead of manually trying random values, we can use cross-validation and grid search to find a useful combination.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tuning.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> GridSearchCV
+<span class="kn">from</span> sklearn.svm <span class="kn">import</span> SVR
+
+parameters = {
+    <span class="s">'C'</span>: [1, 10, 100],
+    <span class="s">'epsilon'</span>: [0.01, 0.1, 0.5],
+    <span class="s">'gamma'</span>: [<span class="s">'scale'</span>, <span class="s">'auto'</span>]
+}
+
+grid = GridSearchCV(
+    SVR(kernel=<span class="s">'rbf'</span>),
+    parameters,
+    cv=5,
+    scoring=<span class="s">'r2'</span>
+)
+
+grid.fit(X_train_scaled, y_train)
+
+<span class="fn">print</span>(grid.best_params_)
+<span class="fn">print</span>(grid.best_score_)</pre>
+
+</div>
+
+```
+    <div class="box info">
+        <div class="box-title">When Should You Use SVR?</div>
+        <p>SVR is useful when the dataset contains a relatively complex relationship between input features and a continuous target, especially when nonlinear patterns are present.</p>
+        <p>However, SVR can become computationally expensive on very large datasets. For extremely large datasets, algorithms such as linear models, tree-based methods, or specialized gradient boosting approaches may be more practical.</p>
+    </div>
+
+    <h2>Advantages of SVR</h2>
+    <p><strong>Nonlinear modeling:</strong> Kernel functions allow SVR to model complex relationships.</p>
+    <p><strong>Robust error tolerance:</strong> The epsilon-insensitive loss ignores small prediction errors.</p>
+    <p><strong>Effective in high-dimensional spaces:</strong> SVR can work well when there are many features, provided the data is properly prepared.</p>
+    <p><strong>Regularization:</strong> The <code>C</code> parameter provides control over the trade-off between fitting the training data and maintaining a smoother model.</p>
+
+    <h2>Limitations of SVR</h2>
+    <p><strong>Feature scaling is usually important:</strong> Unscaled features can negatively affect performance.</p>
+    <p><strong>Parameter selection:</strong> Choosing appropriate values for <code>C</code>, <code>epsilon</code>, and <code>gamma</code> can require experimentation.</p>
+    <p><strong>Training cost:</strong> Kernel-based SVR can become slow as the number of training observations grows.</p>
+    <p><strong>Interpretability:</strong> Nonlinear SVR models are generally harder to interpret than simple linear regression.</p>
+
+    <div class="box info">
+        <div class="box-title">Key Takeaway</div>
+        <p>Support Vector Regression extends the Support Vector Machine idea to continuous prediction. Instead of trying to minimize every small prediction error, SVR creates an $\epsilon$-insensitive tube and focuses on observations that fall outside it.</p>
+        <p>The most important ideas to remember are the <strong>epsilon tube</strong>, <strong>support vectors</strong>, <strong>kernel functions</strong>, <strong>C</strong>, and <strong>feature scaling</strong>. The RBF kernel is a common choice for nonlinear problems, while cross-validation can help select suitable hyperparameters.</p>
+    </div>
+
+    <h2>SVR Implementation</h2>
+```
+
 <div class="code-block">
     <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">svr.py</span></div>
 <pre><span class="kn">from</span> sklearn.svm <span class="kn">import</span> SVR
+
 svr = SVR(kernel=<span class="s">'rbf'</span>, C=100, epsilon=0.1)
-svr.fit(X, y)</pre>
+svr.fit(X, y)
+
+predictions = svr.predict(X)
+
+<span class="fn">print</span>(predictions)</pre>
+
 </div>
         <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(11)">Previous</button>
@@ -2635,7 +4063,8 @@ svr.fit(X, y)</pre>
             </div>
         </div>
 
-        <div class="lecture" id="lec-13">
+
+<div class="lecture" id="lec-13">
             <div class="lecture-tag">Topic 14 - Unit III - Supervised Learning (Regression)</div>
             <h1>Decision Tree Regression</h1>
             <div class="lecture-meta">
@@ -2644,15 +4073,393 @@ svr.fit(X, y)</pre>
             <div class="lecture-meta">
             <span class="meta-badge">Non-Parametric Splits</span>
         </div>
-        <div class="box info">
-            <div class="box-title">Tree Partitioning</div>
-            <p>Splits data iteratively into localized feature subsets based on Variance Reduction.</p>
+        <div class="lecture-meta">
+            <span class="meta-badge">Recursive Partitioning</span>
         </div>
-        <h2>DecisionTreeRegressor Code</h2>
+        <div class="lecture-meta">
+            <span class="meta-badge">Variance Reduction</span>
+        </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">Tree Depth</span>
+        </div>
+        <div class="lecture-meta">
+            <span class="meta-badge">Overfitting Control</span>
+        </div>
+
+```
+    <div class="box info">
+        <div class="box-title">Tree Partitioning</div>
+        <p>Decision Tree Regression is a supervised learning algorithm that predicts continuous numerical values by recursively dividing the dataset into smaller groups.</p>
+        <p>At every step, the algorithm searches for a feature and a split value that creates groups with lower variation in their target values. This process continues until a stopping condition is reached.</p>
+        <p>Unlike linear regression, a decision tree does not assume that the relationship between the input features and target is a straight line. This makes decision trees useful for modeling nonlinear relationships.</p>
+    </div>
+
+    <h2>Understanding Decision Tree Regression</h2>
+    <p>A decision tree can be imagined as a sequence of questions. For example, when predicting the price of a house, the tree might first ask whether the house area is greater than 1,500 square feet. It can then ask another question based on the result of the first split.</p>
+    <p>Each question divides the data into smaller regions. Eventually, the observations reach a leaf node. The model uses the average target value of the training observations inside that leaf as the prediction.</p>
+
+    <div class="box info">
+        <div class="box-title">How a Regression Tree Predicts</div>
+        <p>Suppose several houses reach the same leaf node and their prices are 200,000, 220,000, 210,000, and 230,000. The tree can predict the average value:</p>
+        <p>Prediction = (200000 + 220000 + 210000 + 230000) / 4 = 215000</p>
+        <p>Therefore, a decision tree regression model produces a constant prediction for every observation that reaches the same leaf.</p>
+    </div>
+
+    <h2>Recursive Partitioning</h2>
+    <p>Decision trees are built using a process called recursive partitioning. The algorithm starts with the complete dataset and searches for the best split.</p>
+    <p>After making the first split, each resulting group is treated as a smaller dataset. The algorithm searches for another useful split inside each group. This process continues recursively.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tree_concept.py</span></div>
+```
+
+<pre><span class="kn">if</span> feature &lt;= threshold:
+    go_to_left_branch()
+<span class="kn">else</span>:
+    go_to_right_branch()
+
+<span class="comment"># Continue splitting until a stopping condition is reached</span></pre>
+
+</div>
+
+```
+    <p>The actual splitting process is automatically performed by Scikit-Learn. The programmer only needs to provide the training data and configure parameters that control the tree.</p>
+
+    <h2>Variance Reduction</h2>
+    <p>For regression problems, a decision tree generally chooses splits that reduce the variation of target values within the resulting groups.</p>
+    <p>If a group contains target values that are very different from one another, its variance is high. A good split separates the observations into groups where the target values are more similar.</p>
+
+    <div class="box info">
+        <div class="box-title">Why Reduce Variance?</div>
+        <p>Imagine a node containing target values of 10, 12, 50, 52. These values have high variation. If the tree can split them into one group containing 10 and 12 and another containing 50 and 52, each group becomes much more consistent.</p>
+        <p>More consistent groups allow the tree to make more accurate local predictions.</p>
+    </div>
+
+    <h2>DecisionTreeRegressor</h2>
+    <p>Scikit-Learn provides the <code>DecisionTreeRegressor</code> class for building regression trees.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tree_reg.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.tree <span class="kn">import</span> DecisionTreeRegressor
+
+tree = DecisionTreeRegressor(max_depth=3)
+
+tree.fit(X, y)</pre>
+
+</div>
+
+```
+    <p>The <code>fit()</code> method trains the tree using the input features <code>X</code> and target values <code>y</code>.</p>
+    <p>The <code>max_depth=3</code> argument limits the maximum number of levels in the tree. Limiting the depth is one of the ways to reduce overfitting.</p>
+
+    <h2>Making Predictions</h2>
+    <p>Once the tree has been trained, the <code>predict()</code> method can be used to estimate values for new observations.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">prediction.py</span></div>
+```
+
+<pre>tree.fit(X_train, y_train)
+
+y_pred = tree.predict(X_test)
+
+<span class="fn">print</span>(y_pred)</pre>
+
+</div>
+
+```
+    <p>The model sends each test observation through the tree. Depending on the feature values, the observation follows a particular sequence of branches until it reaches a leaf node. The average target value associated with that leaf becomes the prediction.</p>
+
+    <h2>Splitting Features</h2>
+    <p>A decision tree can automatically select which feature to split on. For example, suppose a dataset contains house area, number of bedrooms, age, and distance from the city.</p>
+    <p>The tree may discover that area provides the most useful first split. After that split, it may discover that the number of bedrooms is more useful in one branch while house age is more useful in another branch.</p>
+
+    <div class="box info">
+        <div class="box-title">No Fixed Linear Equation</div>
+        <p>Unlike linear regression, a decision tree does not learn an equation such as <code>y = b0 + b1x1 + b2x2</code>.</p>
+        <p>Instead, it learns a collection of rules such as:</p>
+        <p><strong>If area &lt;= 1500 → go left</strong></p>
+        <p><strong>If area &gt; 1500 → go right</strong></p>
+        <p>These rules divide the feature space into different regions with their own predictions.</p>
+    </div>
+
+    <h2>Decision Trees and Nonlinear Relationships</h2>
+    <p>One major advantage of decision trees is that they do not require the relationship between the features and target to be linear.</p>
+    <p>For example, if the target increases slowly for small values of a feature and then increases rapidly after a particular threshold, a tree can naturally represent this pattern using multiple splits.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">nonlinear.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.tree <span class="kn">import</span> DecisionTreeRegressor
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+
+X = np.array([[1], [2], [3], [4], [5], [6]])
+y = np.array([2, 4, 5, 20, 22, 25])
+
+tree = DecisionTreeRegressor(max_depth=3)
+
+tree.fit(X, y)
+
+prediction = tree.predict([[4.5]])
+
+<span class="fn">print</span>(prediction)</pre>
+
+</div>
+
+```
+    <p>The tree does not need to manually transform the input into polynomial or logarithmic features. It can create threshold-based regions directly from the original feature.</p>
+
+    <h2>Important Tree Parameters</h2>
+    <p>Decision Tree Regression provides several parameters that control how the tree is constructed.</p>
+
+    <p><strong>max_depth:</strong> Controls the maximum depth of the tree. A deeper tree can learn more complex patterns but may overfit.</p>
+    <p><strong>min_samples_split:</strong> Specifies the minimum number of samples required to split an internal node.</p>
+    <p><strong>min_samples_leaf:</strong> Specifies the minimum number of samples that must exist in a leaf node.</p>
+    <p><strong>max_leaf_nodes:</strong> Limits the total number of leaf nodes in the tree.</p>
+    <p><strong>criterion:</strong> Determines the function used to measure the quality of a split.</p>
+
+    <h2>Controlling Tree Depth</h2>
+    <p>The depth of a decision tree has a major effect on its behavior.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tree_depth.py</span></div>
+```
+
+<pre>small_tree = DecisionTreeRegressor(max_depth=2)
+medium_tree = DecisionTreeRegressor(max_depth=5)
+deep_tree = DecisionTreeRegressor(max_depth=20)</pre>
+
+</div>
+
+```
+    <p>A shallow tree makes only a few splits and therefore produces a simpler model. A very deep tree can continue splitting until the model closely follows individual training observations.</p>
+
+    <div class="box info">
+        <div class="box-title">Overfitting in Decision Trees</div>
+        <p>A decision tree can easily overfit when it is allowed to grow too deeply. A very deep tree may memorize noise and unusual observations in the training dataset instead of learning general patterns.</p>
+        <p>As a result, the model can achieve excellent training performance while performing poorly on unseen test data.</p>
+        <p>Parameters such as <code>max_depth</code>, <code>min_samples_leaf</code>, and <code>min_samples_split</code> help control this problem.</p>
+    </div>
+
+    <h2>Training and Testing a Decision Tree</h2>
+    <p>As with other supervised learning algorithms, the dataset should normally be separated into training and testing portions before evaluating the model.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">train_test_tree.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> train_test_split
+<span class="kn">from</span> sklearn.tree <span class="kn">import</span> DecisionTreeRegressor
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+tree = DecisionTreeRegressor(
+    max_depth=5,
+    random_state=42
+)
+
+tree.fit(X_train, y_train)
+
+y_pred = tree.predict(X_test)</pre>
+
+</div>
+
+```
+    <p>The testing data must remain separate from the training process. It provides an estimate of how well the model can generalize to data it has not previously seen.</p>
+
+    <h2>Evaluating Decision Tree Regression</h2>
+    <p>After generating predictions, regression metrics can be used to measure model performance.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">evaluation.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.metrics <span class="kn">import</span> mean_absolute_error
+<span class="kn">from</span> sklearn.metrics <span class="kn">import</span> mean_squared_error
+<span class="kn">from</span> sklearn.metrics <span class="kn">import</span> r2_score
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+<span class="fn">print</span>(<span class="s">"MAE:"</span>, mae)
+<span class="fn">print</span>(<span class="s">"MSE:"</span>, mse)
+<span class="fn">print</span>(<span class="s">"RMSE:"</span>, rmse)
+<span class="fn">print</span>(<span class="s">"R² Score:"</span>, r2)</pre>
+
+</div>
+
+```
+    <p>MAE measures the average absolute difference between actual and predicted values. MSE gives greater weight to large errors. RMSE converts the squared-error measurement back to the target's original unit. R² indicates how well the model explains the variation in the target variable.</p>
+
+    <h2>Feature Scaling and Decision Trees</h2>
+    <p>Unlike algorithms such as SVR, K-Nearest Neighbors, and many distance-based methods, decision trees generally do not require feature scaling.</p>
+    <p>A tree compares values against thresholds rather than calculating distances between features. Therefore, changing a feature from meters to centimeters does not fundamentally change the relationships that the tree can discover.</p>
+
+    <div class="box info">
+        <div class="box-title">Why Scaling Usually Isn't Required</div>
+        <p>Suppose a feature contains values from 1 to 10. A tree might split it at 5. If the same feature is multiplied by 100, the values become 100 to 1000 and the equivalent split becomes 500.</p>
+        <p>The ordering of the observations remains the same, so the tree can still discover the same useful partition.</p>
+    </div>
+
+    <h2>Visualizing a Decision Tree</h2>
+    <p>One useful property of decision trees is that their learned structure can be visualized. This makes them easier to understand than many complex machine learning models.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">visualize_tree.py</span></div>
+```
+
+<pre><span class="kn">from</span> sklearn.tree <span class="kn">import</span> plot_tree
+<span class="kn">import</span> matplotlib.pyplot <span class="kn">as</span> plt
+
+plt.figure(figsize=(12, 8))
+
+plot_tree(
+    tree,
+    filled=True,
+    feature_names=[<span class="s">"Feature"</span>]
+)
+
+plt.show()</pre>
+
+</div>
+
+```
+    <p>The resulting visualization shows the decisions made at each node, the number of samples reaching the node, and information about the target values represented by the node.</p>
+
+    <h2>Feature Importance</h2>
+    <p>Decision trees can also provide an estimate of how useful each feature was during tree construction.</p>
+
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">feature_importance.py</span></div>
+```
+
+<pre>importance = tree.feature_importances_
+
+<span class="kn">for</span> feature, value <span class="kn">in</span> zip(feature_names, importance):
+    <span class="fn">print</span>(feature, value)</pre>
+
+</div>
+
+```
+    <p>A larger importance value generally indicates that the feature contributed more to reducing the splitting criterion throughout the tree. However, feature importance should be interpreted carefully, especially when features are correlated.</p>
+
+    <h2>Decision Tree Regression Example</h2>
+    <p>Consider a model that predicts a student's study time based on previous performance and attendance. A tree could learn rules such as:</p>
+
+    <div class="box info">
+        <div class="box-title">Example Decision Rules</div>
+        <p><strong>If previous score &lt;= 60:</strong> continue to the left branch.</p>
+        <p><strong>If previous score &gt; 60:</strong> continue to the right branch.</p>
+        <p>The next split could then depend on attendance, study hours, or another feature.</p>
+        <p>Eventually, the student reaches a leaf node containing a predicted continuous value.</p>
+    </div>
+
+    <h2>Advantages of Decision Tree Regression</h2>
+    <p><strong>Nonlinear relationships:</strong> Trees can model complex relationships without requiring a predefined mathematical equation.</p>
+    <p><strong>Easy to understand:</strong> The learned model can often be interpreted as a collection of if-else rules.</p>
+    <p><strong>Little preprocessing:</strong> Numerical features generally do not need standardization or normalization.</p>
+    <p><strong>Feature interactions:</strong> Trees can naturally discover interactions between multiple features.</p>
+    <p><strong>Works with different feature scales:</strong> Features can have very different numerical ranges without requiring scaling.</p>
+
+    <h2>Limitations of Decision Tree Regression</h2>
+    <p><strong>Overfitting:</strong> Deep trees can memorize the training data.</p>
+    <p><strong>Unstable models:</strong> Small changes in the training dataset can sometimes produce a substantially different tree.</p>
+    <p><strong>Piecewise constant predictions:</strong> Predictions are constant within each leaf, which can produce a step-like prediction function.</p>
+    <p><strong>Limited extrapolation:</strong> A tree generally cannot extrapolate smoothly beyond the range of values represented in its leaves.</p>
+    <p><strong>Single trees may be less accurate:</strong> Ensemble methods such as Random Forest and Gradient Boosting often provide stronger predictive performance by combining many trees.</p>
+
+    <div class="box info">
+        <div class="box-title">Decision Tree vs Linear Regression</div>
+        <p>Linear regression attempts to fit a global mathematical relationship across the dataset. Decision Tree Regression instead divides the feature space into smaller regions and assigns a prediction to each region.</p>
+        <p>Use linear regression when a simple linear relationship is appropriate. Consider a decision tree when the relationship contains thresholds, interactions, or nonlinear patterns that are difficult to represent with a straight line.</p>
+    </div>
+
+    <h2>Complete Decision Tree Regression Example</h2>
+    <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">complete_tree_regression.py</span></div>
+```
+
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> train_test_split
+<span class="kn">from</span> sklearn.tree <span class="kn">import</span> DecisionTreeRegressor
+<span class="kn">from</span> sklearn.metrics <span class="kn">import</span> mean_absolute_error, r2_score
+
+X = np.array([
+    [1],
+    [2],
+    [3],
+    [4],
+    [5],
+    [6],
+    [7],
+    [8]
+])
+
+y = np.array([2, 4, 5, 9, 11, 13, 15, 18])
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.25,
+    random_state=42
+)
+
+tree = DecisionTreeRegressor(
+    max_depth=3,
+    min_samples_leaf=2,
+    random_state=42
+)
+
+tree.fit(X_train, y_train)
+
+y_pred = tree.predict(X_test)
+
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+<span class="fn">print</span>(<span class="s">"Predictions:"</span>, y_pred)
+<span class="fn">print</span>(<span class="s">"MAE:"</span>, mae)
+<span class="fn">print</span>(<span class="s">"R² Score:"</span>, r2)</pre>
+
+</div>
+
+```
+    <div class="box info">
+        <div class="box-title">Key Takeaway</div>
+        <p>Decision Tree Regression predicts continuous values by recursively splitting the dataset into smaller regions. Each final leaf produces a prediction based on the target values of the observations that reach that leaf.</p>
+        <p>The most important concepts to remember are <strong>recursive partitioning</strong>, <strong>variance reduction</strong>, <strong>leaf predictions</strong>, <strong>tree depth</strong>, and <strong>overfitting control</strong>.</p>
+        <p>Unlike many regression algorithms, decision trees can naturally model nonlinear relationships and usually do not require feature scaling. However, controlling tree complexity is essential for producing a model that generalizes well to unseen data.</p>
+    </div>
+
+    <h2>DecisionTreeRegressor Code</h2>
+```
+
 <div class="code-block">
     <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tree_reg.py</span></div>
 <pre><span class="kn">from</span> sklearn.tree <span class="kn">import</span> DecisionTreeRegressor
-tree = DecisionTreeRegressor(max_depth=3).fit(X, y)</pre>
+
+tree = DecisionTreeRegressor(
+max_depth=3,
+random_state=42
+)
+
+tree.fit(X, y)
+
+predictions = tree.predict(X)
+
+<span class="fn">print</span>(predictions)</pre>
+
 </div>
         <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(12)">Previous</button>
@@ -2660,30 +4467,214 @@ tree = DecisionTreeRegressor(max_depth=3).fit(X, y)</pre>
             </div>
         </div>
 
-        <div class="lecture" id="lec-14">
+<div class="lecture" id="lec-14">
             <div class="lecture-tag">Topic 15 - Unit III - Supervised Learning (Regression)</div>
             <h1>Random Forest Regression</h1>
             <div class="lecture-meta">
                 <span class="meta-badge">Syllabus Topic</span>
             </div>
             <div class="lecture-meta">
-            <span class="meta-badge">Ensemble Bagging</span>
-        </div>
-        <div class="box info">
-            <div class="box-title">Bootstrap Aggregation</div>
-            <p>Combines predictions across dozens of decision trees to eliminate variance and overfitting.</p>
-        </div>
-        <h2>RandomForestRegressor Code</h2>
-<div class="code-block">
-    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">rf_reg.py</span></div>
+                <span class="meta-badge">Ensemble Bagging</span>
+            </div>
+            <div class="lecture-meta">
+                <span class="meta-badge">Bootstrap Aggregation</span>
+            </div>
+            <div class="lecture-meta">
+                <span class="meta-badge">Variance Reduction</span>
+            </div>
+            <div class="lecture-meta">
+                <span class="meta-badge">Multiple Decision Trees</span>
+            </div>
+
+            <div class="box info">
+                <div class="box-title">Bootstrap Aggregation (Bagging)</div>
+                <p>Random Forest Regression is an ensemble learning method that combines predictions from multiple decision trees to produce a more stable and accurate result.</p>
+                <p>Each tree is trained on a random sample of the dataset (with replacement), and the final prediction is obtained by averaging the outputs of all trees.</p>
+                <p>This approach significantly reduces variance and helps prevent overfitting compared to a single decision tree.</p>
+            </div>
+
+            <h2>Understanding Random Forest Regression</h2>
+            <p>A single decision tree can make strong predictions, but it is often sensitive to small changes in the training data. Random Forest solves this problem by building many trees instead of one.</p>
+            <p>Each tree in the forest learns a slightly different pattern because it is trained on a different random subset of the data and features.</p>
+            <p>When predicting a value, all trees vote (in regression, they output numbers), and the final prediction is the average of all outputs.</p>
+
+            <div class="box info">
+                <div class="box-title">How Random Forest Predicts</div>
+                <p>Suppose 5 trees predict house prices as:</p>
+                <p>Tree 1: 210000</p>
+                <p>Tree 2: 220000</p>
+                <p>Tree 3: 215000</p>
+                <p>Tree 4: 225000</p>
+                <p>Tree 5: 230000</p>
+                <p>Final Prediction = (210000 + 220000 + 215000 + 225000 + 230000) / 5 = 220000</p>
+                <p>This averaging process smooths out errors from individual trees.</p>
+            </div>
+
+            <h2>Why Random Forest Works Better Than a Single Tree</h2>
+            <p>A single decision tree tends to overfit because it learns very specific patterns from the training data. Random Forest reduces this problem by introducing randomness in two ways:</p>
+            <p><strong>1. Data Sampling:</strong> Each tree is trained on a bootstrap sample (random sampling with replacement).</p>
+            <p><strong>2. Feature Sampling:</strong> At each split, only a random subset of features is considered.</p>
+            <p>This randomness ensures that trees are different from each other, which improves generalization when their predictions are combined.</p>
+
+            <h2>Ensemble Learning Concept</h2>
+            <p>Random Forest is based on the idea of ensemble learning, where multiple weak models are combined to form a strong model.</p>
+            <p>Even if individual trees are not very accurate, their combined prediction is usually much more reliable.</p>
+
+            <div class="box info">
+                <div class="box-title">Key Idea of Ensemble</div>
+                <p>Many weak learners + averaging = strong learner</p>
+                <p>The errors of individual trees cancel each other out when averaged.</p>
+            </div>
+
+            <h2>RandomForestRegressor Code</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">rf_reg.py</span>
+                </div>
 <pre><span class="kn">from</span> sklearn.ensemble <span class="kn">import</span> RandomForestRegressor
-rf = RandomForestRegressor(n_estimators=100, random_state=42).fit(X, y)</pre>
-</div>
-        <div class="lecture-nav">
+
+rf = RandomForestRegressor(
+    n_estimators=100,
+    random_state=42
+)
+
+rf.fit(X, y)
+
+predictions = rf.predict(X_test)
+
+<span class="fn">print</span>(predictions)</pre>
+            </div>
+
+            <p>The parameter <code>n_estimators=100</code> means the model builds 100 decision trees. Increasing the number of trees usually improves performance but also increases computation time.</p>
+
+            <h2>How Random Forest Builds Trees</h2>
+            <p>Each tree in a random forest is built independently using a different bootstrap sample of the dataset.</p>
+            <p>At every split in a tree, only a random subset of features is considered instead of all features. This prevents all trees from becoming too similar.</p>
+
+            <div class="box info">
+                <div class="box-title">Randomness in Random Forest</div>
+                <p><strong>Row Sampling:</strong> Each tree sees a different subset of training rows.</p>
+                <p><strong>Feature Sampling:</strong> Each split considers only a subset of features.</p>
+                <p>This double randomness ensures diversity among trees.</p>
+            </div>
+
+            <h2>Bagging (Bootstrap Aggregation)</h2>
+            <p>Bagging is the core technique behind Random Forest. It involves training multiple models on different random samples of the dataset and combining their outputs.</p>
+            <p>Since each model sees a slightly different dataset, they make different errors. Averaging these errors reduces overall variance.</p>
+
+            <h2>Advantages of Random Forest Regression</h2>
+            <p><strong>Reduces overfitting:</strong> Much less likely to overfit compared to a single decision tree.</p>
+            <p><strong>High accuracy:</strong> Combines multiple models for better predictions.</p>
+            <p><strong>Handles nonlinear data:</strong> Can model complex relationships easily.</p>
+            <p><strong>Robust to noise:</strong> Averaging reduces the effect of noisy data points.</p>
+            <p><strong>Feature importance:</strong> Can measure which features are most useful.</p>
+
+            <h2>Limitations of Random Forest</h2>
+            <p><strong>Less interpretable:</strong> Harder to understand than a single decision tree.</p>
+            <p><strong>Computational cost:</strong> Training many trees requires more time and memory.</p>
+            <p><strong>Slower predictions:</strong> Each prediction requires passing through many trees.</p>
+            <p><strong>Not ideal for real-time constraints:</strong> May be too slow for very low-latency systems.</p>
+
+            <h2>Feature Importance in Random Forest</h2>
+            <p>Random Forest can estimate the importance of each feature by measuring how much each feature reduces impurity across all trees.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">feature_importance.py</span>
+                </div>
+<pre>importances = rf.feature_importances_
+
+for feature, value in zip(feature_names, importances):
+    print(feature, value)</pre>
+            </div>
+
+            <p>Features with higher importance values contribute more to reducing prediction error across the forest.</p>
+
+            <h2>Random Forest vs Decision Tree</h2>
+            <div class="box info">
+                <div class="box-title">Comparison</div>
+                <p><strong>Decision Tree:</strong> Fast, simple, but prone to overfitting.</p>
+                <p><strong>Random Forest:</strong> More accurate, stable, but slower and less interpretable.</p>
+                <p>Random Forest is usually preferred when prediction accuracy is more important than interpretability.</p>
+            </div>
+
+            <h2>Effect of Number of Trees</h2>
+            <p>The number of trees (<code>n_estimators</code>) is an important hyperparameter.</p>
+            <p>Too few trees may lead to unstable predictions, while too many trees increase computation time without significant improvement after a point.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">forest_size.py</span>
+                </div>
+<pre>small_forest = RandomForestRegressor(n_estimators=10)
+medium_forest = RandomForestRegressor(n_estimators=100)
+large_forest = RandomForestRegressor(n_estimators=500)</pre>
+            </div>
+
+            <h2>Training and Testing Random Forest</h2>
+            <p>As with other supervised learning models, we split the dataset into training and testing sets before evaluation.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">train_test_rf.py</span>
+                </div>
+<pre>from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+rf = RandomForestRegressor(
+    n_estimators=100,
+    random_state=42
+)
+
+rf.fit(X_train, y_train)
+
+y_pred = rf.predict(X_test)</pre>
+            </div>
+
+            <h2>Evaluation Metrics</h2>
+            <p>We evaluate Random Forest Regression using standard regression metrics such as MAE, MSE, RMSE, and R² score.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="filename">evaluation.py</span>
+                </div>
+<pre>from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print("MAE:", mae)
+print("MSE:", mse)
+print("RMSE:", rmse)
+print("R² Score:", r2)</pre>
+            </div>
+
+            <h2>Key Takeaway</h2>
+            <div class="box info">
+                <div class="box-title">Summary</div>
+                <p>Random Forest Regression improves decision tree performance by combining many trees trained on different random samples of data and features.</p>
+                <p>The final prediction is the average of all tree outputs, which reduces variance and improves generalization.</p>
+                <p>It is one of the most powerful and widely used machine learning algorithms for regression problems.</p>
+            </div>
+
+            <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(13)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(15)">Next Topic</button>
             </div>
         </div>
+
 
         <div class="lecture" id="lec-15">
             <div class="lecture-tag">Topic 16 - Unit III - Supervised Learning (Regression)</div>
@@ -3067,6 +5058,397 @@ loaded_model = joblib.load(<span class="s">'model_pipeline.joblib'</span>)</pre>
 </div>
         <div class="lecture-nav">
                 <button class="nav-btn" onclick="showLecture(28)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(30)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-30">
+            <div class="lecture-tag">Topic 31 - Unit VII - Real-World Practical Projects</div>
+            <h1>Project 1: House Price Predictor (Regression)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Regression</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build an end-to-end Machine Learning pipeline that predicts house prices based on features like square footage, bedrooms, age, and location quality score using Scikit-Learn's <code>RandomForestRegressor</code>.</p>
+            </div>
+
+            <h2>Step 1: Problem Definition & Data Preparation</h2>
+            <p>In this project, we create a complete tabular dataset, handle preprocessing (imputation and scaling), train a regression model, and evaluate its accuracy using Root Mean Squared Error (RMSE) and R² Score.</p>
+
+            <h2>Step 2: Full Python Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">house_price_predictor.py</span></div>
+<pre><span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">import</span> pandas <span class="kn">as</span> pd
+<span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> train_test_split
+<span class="kn">from</span> sklearn.ensemble <span class="kn">import</span> RandomForestRegressor
+<span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> StandardScaler
+<span class="kn">from</span> sklearn.metrics <span class="kn">import</span> mean_squared_error, r2_score
+
+<span class="cm"># 1. Create a Synthetic Real-Estate Dataset</span>
+np.random.seed(42)
+n_samples = 500
+
+sqft = np.random.randint(600, 4500, n_samples)
+bedrooms = np.random.randint(1, 6, n_samples)
+age = np.random.randint(0, 50, n_samples)
+location_score = np.random.uniform(1.0, 10.0, n_samples)
+
+<span class="cm"># True price formula + random noise</span>
+price = (sqft * 180) + (bedrooms * 15000) - (age * 1200) + (location_score * 25000) + np.random.normal(0, 20000, n_samples)
+
+df = pd.DataFrame({
+    'SqFt': sqft,
+    'Bedrooms': bedrooms,
+    'Age': age,
+    'LocationScore': location_score,
+    'Price': price
+})
+
+<span class="cm"># 2. Features (X) & Target (y)</span>
+X = df.drop('Price', axis=1)
+y = df['Price']
+
+<span class="cm"># 3. Train / Test Split</span>
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+<span class="cm"># 4. Feature Scaling</span>
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<span class="cm"># 5. Train Random Forest Model</span>
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(X_train_scaled, y_train)
+
+<span class="cm"># 6. Make Predictions & Evaluate</span>
+y_pred = model.predict(X_test_scaled)
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+r2 = r2_score(y_test, y_pred)
+
+print(f"Model Performance:")
+print(f"R² Score: {r2:.4f}")
+print(f"RMSE: ${rmse:,.2f}")
+
+<span class="cm"># 7. Predict Price for a New House</span>
+new_house = pd.DataFrame([[2200, 3, 5, 8.5]], columns=['SqFt', 'Bedrooms', 'Age', 'LocationScore'])
+new_house_scaled = scaler.transform(new_house)
+predicted_price = model.predict(new_house_scaled)[0]
+print(f"\nPredicted Price for 2200 sqft, 3 bed, 5yo house: ${predicted_price:,.2f}")</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Task</div>
+                <p>Add a 5th feature (e.g. <code>GarageCount</code> or <code>Pool</code> as a binary 0/1 variable) and see how it affects the model's R² score!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(29)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(31)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-31">
+            <div class="lecture-tag">Topic 32 - Unit VII - Real-World Practical Projects</div>
+            <h1>Project 2: Customer Churn Predictor (Classification)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Classification</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a customer churn prediction classifier for a subscription business (e.g. Telecom or SaaS) to detect customers likely to cancel their service, allowing companies to take retention actions.</p>
+            </div>
+
+            <h2>Step 1: Understanding Churn Data</h2>
+            <p>Customer churn is a classic binary classification problem. We preprocess numeric & categorical features, train a <code>RandomForestClassifier</code>, and evaluate performance using Confusion Matrix & ROC-AUC.</p>
+
+            <h2>Step 2: Full Python Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">churn_predictor.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">from</span> sklearn.model_selection <span class="kn">import</span> train_test_split
+<span class="kn">from</span> sklearn.ensemble <span class="kn">import</span> RandomForestClassifier
+<span class="kn">from</span> sklearn.metrics <span class="kn">import</span> classification_report, confusion_matrix, roc_auc_score
+
+<span class="cm"># 1. Generate Synthetic Customer Churn Dataset</span>
+np.random.seed(42)
+n = 600
+
+tenure = np.random.randint(1, 72, n)           # Months with company
+monthly_charges = np.random.uniform(20, 120, n) # $ per month
+contract = np.random.choice(['Month-to-Month', 'One-Year', 'Two-Year'], n)
+tech_support = np.random.choice(['Yes', 'No'], n)
+
+<span class="cm"># Churn logic: high monthly charges & month-to-month contract = higher risk</span>
+churn_prob = 1 / (1 + np.exp(-(-2 + monthly_charges*0.03 - tenure*0.05 + (contract == 'Month-to-Month')*1.5)))
+churn = (np.random.rand(n) < churn_prob).astype(int)
+
+df = pd.DataFrame({
+    'Tenure': tenure,
+    'MonthlyCharges': monthly_charges,
+    'Contract': contract,
+    'TechSupport': tech_support,
+    'Churn': churn
+})
+
+<span class="cm"># 2. One-Hot Encoding for Categorical Data</span>
+df_encoded = pd.get_dummies(df, columns=['Contract', 'TechSupport'], drop_first=True)
+
+X = df_encoded.drop('Churn', axis=1)
+y = df_encoded['Churn']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+<span class="cm"># 3. Train Classification Model</span>
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+clf.fit(X_train, y_train)
+
+<span class="cm"># 4. Predictions & Probability Scores</span>
+y_pred = clf.predict(X_test)
+y_probs = clf.predict_proba(X_test)[:, 1]
+
+print("=== Confusion Matrix ===")
+print(confusion_matrix(y_test, y_pred))
+
+print("\n=== Classification Report ===")
+print(classification_report(y_test, y_pred))
+
+print(f"ROC-AUC Score: {roc_auc_score(y_test, y_probs):.4f}")</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Task</div>
+                <p>Filter out customers with <code>churn_probability > 0.70</code> to generate a high-risk customer list for marketing outreach!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(30)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(32)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-32">
+            <div class="lecture-tag">Topic 33 - Unit VII - Real-World Practical Projects</div>
+            <h1>Project 3: Customer Segmentation (Unsupervised)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Clustering</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Segment e-commerce shoppers into distinct behavioral clusters using <code>KMeans</code> clustering and visualize customer groups in 2D space using Principal Component Analysis (PCA).</p>
+            </div>
+
+            <h2>Step 1: Unsupervised Clustering Pipeline</h2>
+            <p>Unlike supervised learning, we do not have labels (`y`). We scale input features, find the optimal $K$ using the Elbow method, and interpret cluster centroids (e.g. "Bargain Hunters", "VIP Spenders").</p>
+
+            <h2>Step 2: Full Python Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">customer_segmentation.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">from</span> sklearn.cluster <span class="kn">import</span> KMeans
+<span class="kn">from</span> sklearn.preprocessing <span class="kn">import</span> StandardScaler
+<span class="kn">from</span> sklearn.decomposition <span class="kn">import</span> PCA
+
+<span class="cm"># 1. Create E-Commerce Customer Dataset</span>
+np.random.seed(42)
+n_customers = 400
+
+annual_income = np.random.randint(15, 140, n_customers) # in $k
+spending_score = np.random.randint(1, 100, n_customers) # 1-100 score
+purchase_freq = np.random.randint(1, 50, n_customers)    # orders / year
+
+df = pd.DataFrame({
+    'AnnualIncome': annual_income,
+    'SpendingScore': spending_score,
+    'PurchaseFrequency': purchase_freq
+})
+
+<span class="cm"># 2. Scale Features</span>
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(df)
+
+<span class="cm"># 3. Fit K-Means with K=4 Clusters</span>
+kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
+df['Cluster'] = kmeans.fit_predict(X_scaled)
+
+<span class="cm"># 4. Analyze Cluster Characteristics</span>
+cluster_summary = df.groupby('Cluster').mean()
+print("=== Cluster Persona Averages ===")
+print(cluster_summary)
+
+<span class="cm"># 5. Dimensionality Reduction with PCA for Visualization</span>
+pca = PCA(n_components=2)
+components = pca.fit_transform(X_scaled)
+
+df['PCA1'] = components[:, 0]
+df['PCA2'] = components[:, 1]
+
+print("\nSample Segmented Data with PCA:")
+print(df[['AnnualIncome', 'SpendingScore', 'Cluster', 'PCA1', 'PCA2']].head())</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Task</div>
+                <p>Label each of the 4 clusters with a business title (e.g. Cluster 0 = "High Income, Low Spenders (Target for Premium Ads)").</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(31)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(33)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-33">
+            <div class="lecture-tag">Topic 34 - Unit VII - Real-World Practical Projects</div>
+            <h1>Project 4: Spam Email Detector (NLP & Naive Bayes)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">NLP</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a Natural Language Processing (NLP) text classifier that converts raw email messages into numerical TF-IDF feature vectors and filters out spam using <code>MultinomialNB</code>.</p>
+            </div>
+
+            <h2>Step 1: Text Preprocessing & Vectorization</h2>
+            <p>Computers cannot process raw strings directly. We use Scikit-Learn's <code>TfidfVectorizer</code> to calculate term frequencies and train Naive Bayes for fast text classification.</p>
+
+            <h2>Step 2: Full Python Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">spam_filter.py</span></div>
+<pre><span class="kn">import</span> pandas <span class="kn">as</span> pd
+<span class="kn">from</span> sklearn.feature_extraction.text <span class="kn">import</span> TfidfVectorizer
+<span class="kn">from</span> sklearn.naive_bayes <span class="kn">import</span> MultinomialNB
+<span class="kn">from</span> sklearn.pipeline <span class="kn">import</span> make_pipeline
+
+<span class="cm"># 1. Dataset of raw email text messages</span>
+emails = [
+    ("URGENT! You have won a $1,000 cash prize. Claim now at link!", "spam"),
+    ("Hey John, are we still meeting for lunch at 12:30 today?", "ham"),
+    ("Free trial extension! Click here to claim your discount coupon.", "spam"),
+    ("Please find attached the quarterly project review slides.", "ham"),
+    ("CONGRATULATIONS! Selected for free iPhone giveaway enter details.", "spam"),
+    ("Can you send me the updated Python code file when you are ready?", "ham"),
+]
+
+df = pd.DataFrame(emails, columns=['text', 'label'])
+
+<span class="cm"># 2. Build Text Pipeline (TF-IDF Vectorizer + Naive Bayes Classifier)</span>
+pipeline = make_pipeline(
+    TfidfVectorizer(stop_words='english', lowercase=True),
+    MultinomialNB()
+)
+
+<span class="cm"># 3. Train Pipeline</span>
+pipeline.fit(df['text'], df['label'])
+
+<span class="cm"># 4. Test New Incoming Email Messages</span>
+test_messages = [
+    "WIN FREE MONEY! Click this special link immediately!",
+    "Hey team, don't forget our daily standup meeting at 10 AM.",
+    "Claim your free voucher gift card before it expires!"
+]
+
+predictions = pipeline.predict(test_messages)
+
+for msg, pred in zip(test_messages, predictions):
+    print(f"Message: '{msg}'\n -> Result: [{pred.upper()}]\n")</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Task</div>
+                <p>Pass your own custom email text strings into <code>pipeline.predict()</code> and see how accurately it catches spam!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(32)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(34)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-34">
+            <div class="lecture-tag">Topic 35 - Unit VII - Real-World Practical Projects</div>
+            <h1>Project 5: Web Deployment with Streamlit</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Deployment</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Turn your Machine Learning model into an interactive web application using <strong>Streamlit</strong>. Users can adjust sliders and inputs in a web browser to get instant real-time predictions!</p>
+            </div>
+
+            <h2>Step 1: Train & Save Model (`train.py`)</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">train_and_save.py</span></div>
+<pre><span class="kn">import</span> joblib
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+<span class="kn">from</span> sklearn.linear_model <span class="kn">import</span> LinearRegression
+
+<span class="cm"># Train a simple Salary Predictor (YearsExperience -> Salary)</span>
+X = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
+y = np.array([35000, 42000, 50000, 61000, 68000, 75000, 84000, 93000, 102000, 115000])
+
+model = LinearRegression()
+model.fit(X, y)
+
+<span class="cm"># Save model to disk</span>
+joblib.dump(model, 'salary_model.joblib')
+print("Model saved to salary_model.joblib!")</pre>
+            </div>
+
+            <h2>Step 2: Streamlit Web Application (`app.py`)</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">app.py</span></div>
+<pre><span class="kn">import</span> streamlit <span class="kn">as</span> st
+<span class="kn">import</span> joblib
+<span class="kn">import</span> numpy <span class="kn">as</span> np
+
+<span class="cm"># Page config</span>
+st.set_page_config(page_title="Salary Predictor AI", page_icon="💰")
+
+st.title("💰 AI Salary Predictor")
+st.write("Enter your years of work experience to estimate expected market salary.")
+
+<span class="cm"># Load trained model</span>
+model = joblib.load('salary_model.joblib')
+
+<span class="cm"># Interactive UI Sliders</span>
+exp = st.slider("Years of Experience:", min_value=0.0, max_value=20.0, value=3.5, step=0.5)
+
+<span class="cm"># Predict Button</span>
+if st.button("Predict Salary"):
+    prediction = model.predict([[exp]])[0]
+    st.success(f"Estimated Salary: **${prediction:,.2f}**")</pre>
+            </div>
+
+            <h2>Step 3: Run the Web App</h2>
+            <p>Execute the following terminal commands to start your local web application server:</p>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre>pip install streamlit joblib
+python train_and_save.py
+streamlit run app.py</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Task</div>
+                <p>Deploy this Streamlit app online for free by linking your GitHub repository to <a href="https://streamlit.io/cloud" target="_blank" rel="noopener">Streamlit Community Cloud</a>!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(33)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
             </div>
         </div>
@@ -3102,7 +5484,12 @@ loaded_model = joblib.load(<span class="s">'model_pipeline.joblib'</span>)</pre>
             "K-Fold Cross Validation",
             "Hyperparameter Tuning",
             "Intro to Neural Networks",
-            "Model Deployment Overview"
+            "Model Deployment Overview",
+            "Project 1: House Price Predictor",
+            "Project 2: Customer Churn Predictor",
+            "Project 3: Customer Segmentation",
+            "Project 4: Spam Email Detector",
+            "Project 5: Web Deployment with Streamlit"
         ];
 
         initLessons(titles);

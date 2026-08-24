@@ -114,6 +114,11 @@
                 </button>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Project 1: Dynamic Memory Bank Management System</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -1595,7 +1600,83 @@ int capacity = 2;
 
             </div>
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-16">
+            <div class="lecture-tag">Topic 17 - Real-World Practical Projects</div>
+            <h1>Project 1: Dynamic Memory Bank Management System</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Pointers & Memory</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Implement a dynamic memory-based Bank Management system in C using structs, raw pointers, malloc, realloc, and file I/O.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master pointer arithmetic, memory allocation, struct pointers, and error checking for null pointers.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bank_system.c</span></div>
+<pre>#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    int account_id;
+    char name[50];
+    double balance;
+} Account;
+
+typedef struct {
+    Account* accounts;
+    int count;
+    int capacity;
+} Bank;
+
+void init_bank(Bank* b, int initial_capacity) {
+    b->accounts = (Account*)malloc(initial_capacity * sizeof(Account));
+    b->count = 0;
+    b->capacity = initial_capacity;
+}
+
+void add_account(Bank* b, int id, const char* name, double balance) {
+    if (b->count >= b->capacity) {
+        b->capacity *= 2;
+        b->accounts = (Account*)realloc(b->accounts, b->capacity * sizeof(Account));
+    }
+    
+    b->accounts[b->count].account_id = id;
+    strncpy(b->accounts[b->count].name, name, 49);
+    b->accounts[b->count].balance = balance;
+    b->count++;
+    printf("Created Account ID %d for %s.\n", id, name);
+}
+
+int main() {
+    Bank my_bank;
+    init_bank(&my_bank, 2);
+    add_account(&my_bank, 1001, "Alice", 2500.50);
+    add_account(&my_bank, 1002, "Bob", 1200.00);
+    free(my_bank.accounts);
+    return 0;
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Write a save_to_binary_file() function using fwrite() to write the Account struct array directly to a .bin file!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <!-- JAVASCRIPT & FOOTER -->
     <script>
@@ -1615,7 +1696,8 @@ int capacity = 2;
             "File Handling",
             "Storage Classes",
             "Bitwise & Type Casting",
-            "Final Capstone Project"
+            "Final Capstone Project",
+            "Project 1: Dynamic Memory Bank Management System"
         ];
 
         initLessons(titles);

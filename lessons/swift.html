@@ -106,6 +106,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Project 1: Fitness Activity Tracker Engine</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2167,7 +2172,81 @@ u.printDetails()</pre>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-17">
+            <div class="lecture-tag">Topic 18 - Real-World Practical Projects</div>
+            <h1>Project 1: Fitness Activity Tracker Engine</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Protocols & Enums</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a type-safe Swift activity tracking engine using Protocols, Structs, Optionals, and Enum raw values.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master Swift's Protocol-Oriented Programming (POP), value types vs reference types, computed properties, and guard-let statements.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">FitnessTracker.swift</span></div>
+<pre>import Foundation
+
+enum ActivityType: String {
+    case running = "Running"
+    case cycling = "Cycling"
+    case swimming = "Swimming"
+}
+
+protocol Loggable {
+    var summary: String { get }
+}
+
+struct Workout: Loggable {
+    let id: UUID = UUID()
+    let type: ActivityType
+    let durationMinutes: Int
+    let caloriesBurned: Double
+
+    var summary: String {
+        return "\(type.rawValue): \(durationMinutes) mins, \(caloriesBurned) kcal burned"
+    }
+}
+
+class FitnessTracker {
+    private var workouts: [Workout] = []
+
+    func logWorkout(_ workout: Workout) {
+        workouts.append(workout)
+        print("Logged: \(workout.summary)")
+    }
+
+    func totalCaloriesBurned() -> Double {
+        return workouts.reduce(0.0) { $0 + $1.caloriesBurned }
+    }
+}
+
+let tracker = FitnessTracker()
+tracker.logWorkout(Workout(type: .running, durationMinutes: 30, caloriesBurned: 320.0))
+tracker.logWorkout(Workout(type: .cycling, durationMinutes: 45, caloriesBurned: 450.0))
+
+print("Total Calories Burned: \(tracker.totalCaloriesBurned()) kcal")</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add a computed property averageCaloriesPerMinute to the Workout struct!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(16)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2177,7 +2256,8 @@ u.printDetails()</pre>
             "Optionals & Unwrapping",
             "Loops & Collections",
             "Functions & Closures",
-            "Structs, Classes & Enums",
+            "Structs",
+            "Classes & Enums",
             "Protocols & Extensions",
             "Error Handling & Generics",
             "Property Wrappers & Concurrency",
@@ -2186,7 +2266,8 @@ u.printDetails()</pre>
             "SwiftUI Navigation & State Management",
             "Networking & URLSession",
             "Core Data & Persistence",
-            "Final Project — Complete iOS App"
+            "Final Project — Complete iOS App",
+            "Project 1: Fitness Activity Tracker Engine"
         ];
         initLessons(titles);
     </script>

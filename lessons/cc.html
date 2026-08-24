@@ -106,6 +106,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 1: Enterprise Inventory Manager (LINQ & File I/O)</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2168,7 +2173,73 @@ Grace Hopper execution path: Coding...</pre>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Real-World Practical Projects</div>
+            <h1>Project 1: Enterprise Inventory Manager (LINQ & File I/O)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">.NET & LINQ</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a robust C# Inventory Management application using LINQ queries, JSON serialization, and async tasks.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master LINQ filtering, aggregation, file storage, and object-oriented C# design.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">InventoryApp.cs</span></div>
+<pre>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
+using System.IO;
+
+public class Product {
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Category { get; set; }
+    public decimal Price { get; set; }
+    public int Stock { get; set; }
+}
+
+public class InventoryManager {
+    private List<Product> _products = new List<Product>();
+    public void AddProduct(Product p) => _products.Add(p);
+
+    public void DisplayLowStock(int threshold) {
+        var lowStock = _products.Where(p => p.Stock < threshold).OrderBy(p => p.Stock);
+        foreach (var p in lowStock) {
+            Console.WriteLine($"{p.Name} (Category: {p.Category}) - Stock: {p.Stock}");
+        }
+    }
+}
+
+class Program {
+    static void Main() {
+        var manager = new InventoryManager();
+        manager.AddProduct(new Product { Id = 1, Name = "Laptop", Category = "Tech", Price = 999.99m, Stock = 5 });
+        manager.DisplayLowStock(10);
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Write a LINQ query that calculates total inventory valuation (SUM(Price * Stock)) grouped by Category!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2189,7 +2260,8 @@ Grace Hopper execution path: Coding...</pre>
             "Generics & Interfaces",
             "Entity Framework & Databases",
             "Unit Testing (xUnit)",
-            "Final Project — .NET Web API"
+            "Final Project — .NET Web API",
+            "Project 1: Enterprise Inventory Manager (LINQ & File I/O)"
         ];
         initLessons(titles);
     </script>

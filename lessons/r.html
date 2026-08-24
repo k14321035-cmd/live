@@ -114,6 +114,11 @@
                 </button>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Project 2: Predictive Sales & Demand Modeling</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -1365,7 +1370,62 @@ summary_stats &lt;- clean_data %>%
             <div class="copyright">
                 <p>&copy; 2026 Code Tutorium. All rights reserved.</p>
             </div>
+        
+        <div class="lecture" id="lec-14">
+            <div class="lecture-tag">Topic 15 - Real-World Practical Projects</div>
+            <h1>Project 2: Predictive Sales & Demand Modeling</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">R Regression & Stats</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Perform exploratory data analysis and build a predictive linear regression model using R's built-in statistical functions and ggplot2.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master R dataframes, summary statistics (`summary(lm)`), correlation matrices, and visualization plots.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sales_model.R</span></div>
+<pre># 1. Generate Synthetic Sales & Marketing Dataset
+set.seed(42)
+ad_spend <- runif(100, min=1000, max=10000)
+store_location_score <- runif(100, min=1, max=10)
+sales <- (ad_spend * 0.45) + (store_location_score * 1200) + rnorm(100, mean=0, sd=500)
+
+df <- data.frame(AdSpend = ad_spend, LocationScore = store_location_score, Sales = sales)
+
+# 2. Fit Multiple Linear Regression Model
+model <- lm(Sales ~ AdSpend + LocationScore, data = df)
+
+# 3. Output Model Summary & Coefficients
+cat("=== Linear Regression Model Summary ===
+")
+print(summary(model))
+
+# 4. Predict Sales for New Marketing Campaign
+new_campaign <- data.frame(AdSpend = 7500, LocationScore = 8.5)
+predicted_sales <- predict(model, newdata = new_campaign)
+cat(sprintf("
+Predicted Sales for $7500 Ad Spend & 8.5 Location Score: $%.2f
+", predicted_sales))</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Plot the residual values using plot(model) and check for homoscedasticity!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(13)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
         </div>
+
+</div>
     </footer>
 
     <!-- JAVASCRIPT -->
@@ -1384,7 +1444,8 @@ summary_stats &lt;- clean_data %>%
             "Advanced Data Manipulation",
             "Capstone Project: Data Analysis Report",
             "R Markdown & Reporting",
-            "Final Project — Complete Data Analysis"
+            "Final Project — Complete Data Analysis",
+            "Project 2: Predictive Sales & Demand Modeling"
         ];
         initLessons(titles);
     </script>

@@ -13,23 +13,20 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Deep Learning Mastery — Complete Course">
   <meta property="og:description" content="Learn Deep Learning for free online. Master Neural Networks, CNNs, Transformers, and PyTorch.">
-  <meta property="og:image" content="../favicon.png">
-  <meta property="og:url" content="https://codetutorium.com/lessons/deep-learning.html">
+  <meta property="og:image" content="https://codetutorium.com/favicon.png">
+  <meta property="og:url" content="https://codetutorium.com/lessons/deeplearning">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Deep Learning Mastery — Complete Course">
   <meta name="twitter:description" content="Learn Deep Learning for free online. Master Neural Networks, CNNs, and Transformers.">
-  <meta name="twitter:image" content="../favicon.png">
+  <meta name="twitter:image" content="https://codetutorium.com/favicon.png">
 
-  
-  
-
-      <link rel="icon" type="image/png" sizes="16x16" href="../favicon_16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../favicon_512.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
-    <link rel="icon" type="image/png" href="../favicon.png">
-    <link rel="canonical" href="https://codetutorium.com/lessons/deep-learning">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon_16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon_512.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="canonical" href="https://codetutorium.com/lessons/deeplearning">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,6 +103,11 @@
                     </svg>
                 </button>
             </div>
+        </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(31)"><span class="num">32</span><span class="dot"></span>Project 1: Image Classification with Neural Networks (CNN)</button>
         </div>
     </nav>
 
@@ -1037,7 +1039,57 @@ traced_script_module.save(<span class="s">"model_traced.pt"</span>)</pre>
             </div>
         </div>
 
-        </div></div></div><script>
+        </div></div>
+        <div class="lecture" id="lec-31">
+            <div class="lecture-tag">Topic 32 - Real-World Practical Projects</div>
+            <h1>Project 1: Image Classification with Neural Networks (CNN)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">PyTorch / TensorFlow</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a Convolutional Neural Network (CNN) to classify image datasets into categorical classes using PyTorch or TensorFlow/Keras.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master Conv2D layers, MaxPool2D, Softmax activations, CrossEntropy loss optimization, and accuracy metrics.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cnn_classifier.py</span></div>
+<pre>import tensorflow as tf
+from tensorflow.keras import layers, models
+
+def build_cnn_model(input_shape=(32, 32, 3), num_classes=10):
+    model = models.Sequential([
+        layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
+        layers.MaxPooling2D((2, 2)),
+        layers.Conv2D(64, (3, 3), activation='relu'),
+        layers.Flatten(),
+        layers.Dense(64, activation='relu'),
+        layers.Dense(num_classes, activation='softmax')
+    ])
+    return model
+
+model = build_cnn_model()
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.summary()</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add Data Augmentation layers (RandomFlip, RandomRotation) to prevent overfitting on small datasets!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(30)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div><script>
         const titles = [
             "What is Deep Learning?",
             "Artificial Neural Networks (ANNs)",
@@ -1046,7 +1098,8 @@ traced_script_module.save(<span class="s">"model_traced.pt"</span>)</pre>
             "Forward Propagation",
             "Loss Functions",
             "Gradient Descent & Backpropagation",
-            "Optimizers (Adam, RMSprop)",
+            "Optimizers (Adam",
+            "RMSprop)",
             "Handling Overfitting (Dropout)",
             "Batch Normalization",
             "Introduction to CNNs",
@@ -1068,7 +1121,8 @@ traced_script_module.save(<span class="s">"model_traced.pt"</span>)</pre>
             "Introduction to PyTorch",
             "Introduction to TensorFlow & Keras",
             "Model Deployment Strategies",
-            "Ethics in Deep Learning"
+            "Ethics in Deep Learning",
+            "Project 1: Image Classification with Neural Networks (CNN)"
         ];
 
         initLessons(titles);

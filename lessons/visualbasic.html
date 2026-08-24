@@ -114,6 +114,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 1: Desktop Payroll Form Calculator</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -3670,7 +3675,58 @@ bgWorker.RunWorkerAsync()</pre></div>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Real-World Practical Projects</div>
+            <h1>Project 1: Desktop Payroll Form Calculator</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">VB.NET & WinForms</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Develop a VB.NET Windows Forms application logic that calculates net employee salary after tax deductions, health insurance, and overtime pay.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master VB.NET syntax, Subs & Functions, Try-Catch blocks, Math calculations, and Form event handlers.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">PayrollCalculator.vb</span></div>
+<pre>Module PayrollCalculator
+    Sub Main()
+        Dim grossSalary As Double = 4500.0
+        Dim taxRate As Double = 0.18
+        Dim insuranceCost As Double = 150.0
+        
+        Dim netSalary As Double = CalculateNetSalary(grossSalary, taxRate, insuranceCost)
+        Console.WriteLine("=== Employee Payroll Summary ===")
+        Console.WriteLine("Gross Salary: $" & grossSalary.ToString("N2"))
+        Console.WriteLine("Tax Deductions: $" & (grossSalary * taxRate).ToString("N2"))
+        Console.WriteLine("Net Salary: $" & netSalary.ToString("N2"))
+    End Sub
+    
+    Function CalculateNetSalary(ByVal gross As Double, ByVal tax As Double, ByVal insurance As Double) As Double
+        Dim taxAmount As Double = gross * tax
+        Return gross - taxAmount - insurance
+    End Function
+End Module</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add overtime logic that pays 1.5x regular hourly rate for hours worked over 40 hours!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -3691,7 +3747,8 @@ bgWorker.RunWorkerAsync()</pre></div>
             "Events & Delegates",
             "ADO.NET Database",
             "Async & Threading",
-            "Capstone Project: Desktop App"
+            "Capstone Project: Desktop App",
+            "Project 1: Desktop Payroll Form Calculator"
         ];
         initLessons(titles);
     </script>

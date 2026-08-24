@@ -113,6 +113,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 1: Async E-Commerce Cart & Checkout System</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -4696,7 +4701,82 @@ keyPassword=****</pre></div>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Real-World Practical Projects</div>
+            <h1>Project 1: Async E-Commerce Cart & Checkout System</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Async/Await & Futures</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build an asynchronous Flutter/Dart shopping cart engine using Futures, Streams, Null Safety, and Map transformations.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master Dart's sound null safety, async/await streams, collection if/for, and object-oriented models.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cart_engine.dart</span></div>
+<pre>import 'dart:async';
+
+class Product {
+  final String id;
+  final String title;
+  final double price;
+
+  const Product({required this.id, required this.title, required this.price});
+}
+
+class ShoppingCart {
+  final Map<Product, int> _items = {};
+
+  void addItem(Product product, [int quantity = 1]) {
+    _items[product] = (_items[product] ?? 0) + quantity;
+    print('Added \${product.title} (x\$quantity) to cart.');
+  }
+
+  double get totalPrice {
+    return _items.entries
+        .fold(0.0, (sum, entry) => sum + (entry.key.price * entry.value));
+  }
+
+  Future<bool> processCheckout() async {
+    print('Processing payment asynchronously...');
+    await Future.delayed(const Duration(seconds: 2));
+    return totalPrice > 0;
+  }
+}
+
+void main() async {
+  final cart = ShoppingCart();
+  const laptop = Product(id: 'p1', title: 'MacBook Air', price: 999.99);
+  const mouse = Product(id: 'p2', title: 'Wireless Mouse', price: 29.99);
+
+  cart.addItem(laptop);
+  cart.addItem(mouse, 2);
+
+  print('Cart Total: \$\${cart.totalPrice.toStringAsFixed(2)}');
+  final success = await cart.processCheckout();
+  print(success ? 'Payment Successful! 🎉' : 'Payment Failed ❌');
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add a coupon discount method applyDiscount(double percentage) to reduce the overall cart total!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -4717,7 +4797,8 @@ keyPassword=****</pre></div>
             "Platform Channels",
             "App Deployment",
             "Design Patterns",
-            "Capstone Project: Flutter App"
+            "Capstone Project: Flutter App",
+            "Project 1: Async E-Commerce Cart & Checkout System"
         ];
         initLessons(titles);
     </script>

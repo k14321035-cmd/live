@@ -109,6 +109,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Project 1: Server Security & Permission Auditor Utility</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -5081,7 +5086,62 @@ fi</pre>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-14">
+            <div class="lecture-tag">Topic 15 - Real-World Practical Projects</div>
+            <h1>Project 1: Server Security & Permission Auditor Utility</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Linux Administration</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Write a shell automation script that audits Linux file permissions, scans for world-writable files, and reports unauthorized SUID binaries.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master shell loops, `find`, `awk`, `grep`, file permissions (`chmod`/`chown`), and automated security logging.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">security_audit.sh</span></div>
+<pre>#!/bin/bash
+
+LOG_FILE="./security_audit.log"
+echo "=== Starting System Security Audit ($(date)) ===" | tee "$LOG_FILE"
+
+# 1. Find World-Writable Files
+echo -e "
+[1] Scanning for World-Writable Files..." | tee -a "$LOG_FILE"
+find /tmp /var/tmp -maxdepth 2 -type f -perm -0002 2>/dev/null | tee -a "$LOG_FILE"
+
+# 2. Check SUID Executables
+echo -e "
+[2] Checking SUID Executables..." | tee -a "$LOG_FILE"
+find /usr/bin /usr/sbin -type f -perm -4000 2>/dev/null | head -n 10 | tee -a "$LOG_FILE"
+
+# 3. Check Accounts with Empty Passwords
+echo -e "
+[3] Auditing User Accounts..." | tee -a "$LOG_FILE"
+awk -F: '($2 == "") { print $1 }' /etc/passwd 2>/dev/null | tee -a "$LOG_FILE"
+
+echo -e "
+Audit Complete. Full report saved to $LOG_FILE" </pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add a check to verify if SSH root login (PermitRootLogin) is disabled in /etc/ssh/sshd_config!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(13)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -5098,7 +5158,8 @@ fi</pre>
             "DevOps & Automation",
             "Capstone Project: Automation Scripts",
             "Advanced Shell Patterns",
-            "Final Project — Production Automation"
+            "Final Project — Production Automation",
+            "Project 1: Server Security & Permission Auditor Utility"
         ];
         initLessons(titles);
     </script>

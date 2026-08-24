@@ -114,6 +114,11 @@
                 </button>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Project 1: Async Weather API Parser with Coroutines</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2337,7 +2342,78 @@ class TaskViewModel(private val repository: TaskRepository) {
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-16">
+            <div class="lecture-tag">Topic 17 - Real-World Practical Projects</div>
+            <h1>Project 1: Async Weather API Parser with Coroutines</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Coroutines & Data Classes</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a robust asynchronous Kotlin application that fetches and parses weather data using Kotlin Coroutines (Dispatchers.IO) and Immutable Data Classes.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master Kotlin null-safety, sealed classes for UI states, extension functions, and structured concurrency.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">WeatherApp.kt</span></div>
+<pre>import kotlinx.coroutines.*
+
+data class WeatherInfo(val city: String, val tempC: Double, val condition: String)
+
+sealed class UiState {
+    object Loading : UiState()
+    data class Success(val data: WeatherInfo) : UiState()
+    data class Error(val message: String) : UiState()
+}
+
+class WeatherRepository {
+    suspend fun getWeather(city: String): WeatherInfo = withContext(Dispatchers.IO) {
+        delay(1000) // Simulate network latency
+        WeatherInfo(city = city, tempC = 22.5, condition = "Sunny")
+    }
+}
+
+fun main() = runBlocking {
+    val repo = WeatherRepository()
+    println("Fetching weather state...")
+    var state: UiState = UiState.Loading
+
+    try {
+        val weather = repo.getWeather("Tokyo")
+        state = UiState.Success(weather)
+    } catch (e: Exception) {
+        state = UiState.Error(e.message ?: "Unknown error")
+    }
+
+    when (state) {
+        is UiState.Loading -> println("State: Loading...")
+        is UiState.Success -> {
+            val data = (state as UiState.Success).data
+            println("☀️ Weather in ${data.city}: ${data.tempC}°C (${data.condition})")
+        }
+        is UiState.Error -> println("❌ Error: ${(state as UiState.Error).message}")
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add a Extension Function Double.toFahrenheit() to instantly format temperature values into Fahrenheit!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2356,7 +2432,8 @@ class TaskViewModel(private val repository: TaskRepository) {
             "Sealed Classes & DSLs",
             "Jetpack Compose Deep Dive",
             "Testing in Kotlin",
-            "Final Project — Kotlin Multiplatform App"
+            "Final Project — Kotlin Multiplatform App",
+            "Project 1: Async Weather API Parser with Coroutines"
         ];
         initLessons(titles);
     </script>

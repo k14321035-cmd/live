@@ -109,6 +109,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(19)"><span class="num">20</span><span class="dot"></span>Project 1: Concurrent Website Status Checker (Goroutines)</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2830,7 +2835,90 @@ ENTRYPOINT ["/myapp"]</pre></div>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-19">
+            <div class="lecture-tag">Topic 20 - Real-World Practical Projects</div>
+            <h1>Project 1: Concurrent Website Status Checker (Goroutines)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Concurrency</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a high-speed website availability scanner using Go's signature concurrency primitives: Goroutines, Channels, and sync.WaitGroup.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master Go channels, worker pools, select statements, and concurrent HTTP network requests.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">site_checker.go</span></div>
+<pre>package main
+
+import (
+	"fmt"
+	"net/http"
+	"sync"
+	"time"
+)
+
+type Result struct {
+	URL        string
+	StatusCode int
+	Duration   time.Duration
+	Err        error
+}
+
+func checkSite(url string, ch chan<- Result, wg *sync.WaitGroup) {
+	defer wg.Done()
+	start := time.Now()
+
+	client := http.Client{Timeout: 5 * time.Second}
+	resp, err := client.Get(url)
+	duration := time.Since(start)
+
+	if err != nil {
+		ch <- Result{URL: url, Err: err, Duration: duration}
+		return
+	}
+	defer resp.Body.Close()
+
+	ch <- Result{URL: url, StatusCode: resp.StatusCode, Duration: duration}
+}
+
+func main() {
+	urls := []string{"https://google.com", "https://github.com"}
+	resultsChan := make(chan Result, len(urls))
+	var wg sync.WaitGroup
+
+	for _, u := range urls {
+		wg.Add(1)
+		go checkSite(u, resultsChan, &wg)
+	}
+
+	wg.Wait()
+	close(resultsChan)
+
+	for res := range resultsChan {
+		fmt.Printf("%s - Status: %d (%v)\n", res.URL, res.StatusCode, res.Duration)
+	}
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Implement a worker pool pattern to limit the maximum concurrent HTTP requests to 3 at a time!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(18)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2839,7 +2927,8 @@ ENTRYPOINT ["/myapp"]</pre></div>
             "Control Flow",
             "Functions",
             "Pointers & Structs",
-            "Arrays, Slices & Maps",
+            "Arrays",
+            "Slices & Maps",
             "Methods & Interfaces",
             "Error Handling",
             "Generics",
@@ -2851,7 +2940,8 @@ ENTRYPOINT ["/myapp"]</pre></div>
             "REST API with Gin",
             "Database with GORM",
             "Microservices",
-            "Capstone: Concurrent Tool"
+            "Capstone: Concurrent Tool",
+            "Project 1: Concurrent Website Status Checker (Goroutines)"
         ];
         initLessons(titles);
     </script>

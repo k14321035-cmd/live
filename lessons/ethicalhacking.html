@@ -109,6 +109,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Project 1: Multi-Threaded Network Port Scanner & Service Grabber</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -3852,7 +3857,60 @@ Third-party services
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-16">
+            <div class="lecture-tag">Topic 17 - Real-World Practical Projects</div>
+            <h1>Project 1: Multi-Threaded Network Port Scanner & Service Grabber</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Cyber Security</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Develop a multi-threaded Python port scanner utility that scans target IP addresses for open TCP ports and grabs service banners.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master Python socket programming, thread pooling, network timeout handling, and port security audit principles.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">port_scanner.py</span></div>
+<pre>import socket
+from concurrent.futures import ThreadPoolExecutor
+
+def scan_port(target, port):
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(1.5)
+        result = s.connect_ex((target, port))
+        if result == 0:
+            print(f"[+] Port {port} is OPEN")
+        s.close()
+    except Exception:
+        pass
+
+target = "scanme.nmap.org"
+ports = [21, 22, 80, 443, 8080]
+
+with ThreadPoolExecutor(max_workers=5) as executor:
+    for port in ports:
+        executor.submit(scan_port, target, port)</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add argument parsing using argparse to allow scanning custom IP addresses and port ranges from the command line!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -3871,7 +3929,8 @@ Third-party services
             "Social Engineering",
             "Cryptography Basics",
             "Cloud Security (AWS/Azure)",
-            "Final Project — Full Penetration Test"
+            "Final Project — Full Penetration Test",
+            "Project 1: Multi-Threaded Network Port Scanner & Service Grabber"
         ];
         initLessons(titles);
     </script>

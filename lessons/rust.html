@@ -106,6 +106,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(21)"><span class="num">22</span><span class="dot"></span>Project 1: Command-Line Pattern Search Utility (Grep Clone)</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2328,7 +2333,70 @@ scores.insert(name, 100);
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-21">
+            <div class="lecture-tag">Topic 22 - Real-World Practical Projects</div>
+            <h1>Project 1: Command-Line Pattern Search Utility (Grep Clone)</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Rust CLI & Safety</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a memory-safe, blazing-fast CLI tool in Rust that searches files for matching text patterns, inspired by grep.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master Rust ownership, borrowing, error handling (Result<T, E>), command-line argument parsing, and file reading.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">minigrep.rs</span></div>
+<pre>use std::env;
+use std::fs;
+use std::process;
+
+struct Config {
+    query: String,
+    file_path: String,
+}
+
+impl Config {
+    fn build(args: &[String]) -> Result<Config, &'static str> {
+        if args.len() < 3 {
+            return Err("Usage: minigrep <query> <file_path>");
+        }
+        Ok(Config { query: args[1].clone(), file_path: args[2].clone() })
+    }
+}
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
+
+    let contents = fs::read_to_string(config.file_path).expect("Should have been able to read file");
+    for line in contents.lines().filter(|l| l.contains(&config.query)) {
+        println!("{line}");
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add an environment variable check (CASE_INSENSITIVE=1) to perform case-insensitive pattern matching!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(20)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2338,18 +2406,22 @@ scores.insert(name, 100);
             "Control Flow",
             "Loops & Iterators",
             "Ownership & Borrowing",
-            "Structs, Enums & Pattern Matching",
+            "Structs",
+            "Enums & Pattern Matching",
             "Collections & Strings",
             "Error Handling",
             "Modules & Crates",
             "Traits & Generics",
             "Capstone Project: CLI Tool",
             "Lifetimes",
-            "Smart Pointers (Box, Rc, RefCell)",
+            "Smart Pointers (Box",
+            "Rc",
+            "RefCell)",
             "Concurrency (Threads & Channels)",
             "Closures & Advanced Iterators",
             "Async Rust (Tokio)",
-            "Final Project — Rust Web Service"
+            "Final Project — Rust Web Service",
+            "Project 1: Command-Line Pattern Search Utility (Grep Clone)"
         ];
         initLessons(titles);
     </script>

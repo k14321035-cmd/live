@@ -115,6 +115,12 @@
                 </button>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Project 2: Automated Web Scraper & Data Extractor</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Project 3: CLI File Manager & Organizer</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -3070,7 +3076,145 @@ if __name__ == "__main__":
 
             </div>
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-16">
+            <div class="lecture-tag">Topic 17 - Real-World Practical Projects</div>
+            <h1>Project 2: Automated Web Scraper & Data Extractor</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Web Scraping</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a robust web scraping script using Python's requests and BeautifulSoup to parse HTML, extract structured data, and export to CSV.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Learn how to inspect HTML DOM trees, extract elements using CSS selectors, handle HTTP headers, and save tabular data to CSV files.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">web_scraper.py</span></div>
+<pre>import requests
+from bs4 import BeautifulSoup
+import csv
+
+def scrape_quotes():
+    url = "https://quotes.toscrape.com/"
+    headers = {"User-Agent": "Mozilla/5.0"}
+    
+    response = requests.get(url, headers=headers)
+    if response.status_code != 200:
+        print(f"Failed to fetch page. Status: {response.status_code}")
+        return
+        
+    soup = BeautifulSoup(response.text, "html.parser")
+    quote_elements = soup.find_all("div", class_="quote")
+    
+    scraped_data = []
+    for q in quote_elements:
+        text = q.find("span", class_="text").get_text()
+        author = q.find("small", class_="author").get_text()
+        tags = [tag.get_text() for tag in q.find_all("a", class_="tag")]
+        
+        scraped_data.append({
+            "quote": text,
+            "author": author,
+            "tags": ", ".join(tags)
+        })
+        
+    with open("scraped_quotes.csv", "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["quote", "author", "tags"])
+        writer.writeheader()
+        writer.writerows(scraped_data)
+        
+    print(f"Successfully scraped {len(scraped_data)} quotes and saved to scraped_quotes.csv!")
+
+if __name__ == "__main__":
+    scrape_quotes()</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add pagination support to loop through pages 1 to 5 automatically!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(17)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-17">
+            <div class="lecture-tag">Topic 18 - Real-World Practical Projects</div>
+            <h1>Project 3: CLI File Manager & Organizer</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">File Automation</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build an automated Python file organizer script that scans a downloads directory and automatically sorts files into folders by file extension.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master file system automation with os, shutil, and pathlib to organize dirty directories in seconds.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">file_organizer.py</span></div>
+<pre>import os
+import shutil
+from pathlib import Path
+
+EXTENSION_MAP = {
+    "Images": [".jpg", ".jpeg", ".png", ".gif", ".svg"],
+    "Documents": [".pdf", ".docx", ".txt", ".xlsx", ".pptx"],
+    "Archives": [".zip", ".tar", ".gz", ".7z"],
+    "Code": [".py", ".html", ".css", ".js", ".json"]
+}
+
+def organize_folder(target_dir):
+    target_path = Path(target_dir)
+    if not target_path.exists():
+        print(f"Directory {target_dir} does not exist.")
+        return
+
+    for item in target_path.iterdir():
+        if item.is_file():
+            ext = item.suffix.lower()
+            destination_folder = "Others"
+            
+            for category, extensions in EXTENSION_MAP.items():
+                if ext in extensions:
+                    destination_folder = category
+                    break
+                    
+            dest_dir = target_path / destination_folder
+            dest_dir.mkdir(exist_ok=True)
+            
+            dest_file_path = dest_dir / item.name
+            shutil.move(str(item), str(dest_file_path))
+            print(f"Moved: {item.name} -> {destination_folder}/")
+
+if __name__ == "__main__":
+    organize_folder("./sample_downloads")</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add a logging mechanism using Python's logging module to keep a record of all moved files with timestamps!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(16)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <!-- JAVASCRIPT & FOOTER -->
     <script>
@@ -3090,7 +3234,9 @@ if __name__ == "__main__":
             "OOP: Inheritance & Poly",
             "Modules & Packages",
             "Functional Programming",
-            "Final Capstone Project"
+            "Final Capstone Project",
+            "Project 2: Automated Web Scraper & Data Extractor",
+            "Project 3: CLI File Manager & Organizer"
         ];
 
         initLessons(titles);

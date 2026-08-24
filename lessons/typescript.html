@@ -106,6 +106,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 2: Type-Safe Full-Stack Task API Client</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2655,7 +2660,78 @@ router.post(<span class="st">'/'</span>, (req: Request&lt;{}, {}, CreateTaskRequ
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Real-World Practical Projects</div>
+            <h1>Project 2: Type-Safe Full-Stack Task API Client</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Generics & Interfaces</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a fully type-safe API client wrapper using TypeScript Generics, Custom Interfaces, and Async Result Type patterns.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master strict TypeScript type inference, API contract interfaces, generic fetch helpers, and discriminated unions for state management.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">api_client.ts</span></div>
+<pre>interface ApiResponse<T> {
+    data: T | null;
+    error: string | null;
+    status: number;
+}
+
+interface Task {
+    id: number;
+    title: string;
+    completed: boolean;
+    priority: 'low' | 'medium' | 'high';
+}
+
+async function fetchTypedApi<T>(endpoint: string): Promise<ApiResponse<T>> {
+    try {
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            return { data: null, error: `HTTP Error ${response.status}`, status: response.status };
+        }
+        const data = (await response.json()) as T;
+        return { data, error: null, status: response.status };
+    } catch (err) {
+        return { data: null, error: (err as Error).message, status: 500 };
+    }
+}
+
+async function loadTasks() {
+    const result = await fetchTypedApi<Task[]>('https://jsonplaceholder.typicode.com/todos?_limit=5');
+    if (result.data) {
+        result.data.forEach(task => {
+            console.log(`Task #${task.id}: ${task.title} [Completed: ${task.completed}]`);
+        });
+    } else {
+        console.error("API Failure:", result.error);
+    }
+}
+
+loadTasks();</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Define a CreateTaskInput Omit type to handle creating new tasks without manually specifying an id!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2676,7 +2752,8 @@ router.post(<span class="st">'/'</span>, (req: Request&lt;{}, {}, CreateTaskRequ
             "Testing & Test-Driven Development",
             "TypeScript Design Patterns",
             "Monorepos & CI/CD",
-            "Full-Stack Final Project"
+            "Full-Stack Final Project",
+            "Project 2: Type-Safe Full-Stack Task API Client"
         ];
 
         initLessons(titles);

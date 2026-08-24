@@ -114,6 +114,11 @@
                 </button>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(22)"><span class="num">23</span><span class="dot"></span>Project 1: OOP Banking & Transaction System</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -5419,6 +5424,96 @@ ResultSet rs = ps.executeQuery();</code></pre>
 
 </div><!-- /content-wrapper -->
 
+
+        <div class="lecture" id="lec-22">
+            <div class="lecture-tag">Topic 23 - Real-World Practical Projects</div>
+            <h1>Project 1: OOP Banking & Transaction System</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">OOP & Collections</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Develop a console-based Banking System in Java incorporating Encapsulation, Polymorphism, Inheritance, Exception Handling, and ArrayList Collections.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Practice clean Object-Oriented Java design with abstract account classes, custom exceptions, and transaction logging.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">BankSystem.java</span></div>
+<pre>import java.util.ArrayList;
+import java.util.List;
+
+abstract class BankAccount {
+    private String accountNumber;
+    private String ownerName;
+    protected double balance;
+
+    public BankAccount(String accountNumber, String ownerName, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.ownerName = ownerName;
+        this.balance = initialBalance;
+    }
+
+    public String getAccountNumber() { return accountNumber; }
+    public double getBalance() { return balance; }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.printf("Deposited $%.2f. New Balance: $%.2f%n", amount, balance);
+        }
+    }
+
+    public abstract void withdraw(double amount) throws InsufficientFundsException;
+}
+
+class InsufficientFundsException extends Exception {
+    public InsufficientFundsException(String message) { super(message); }
+}
+
+class SavingsAccount extends BankAccount {
+    public SavingsAccount(String accountNumber, String ownerName, double balance) {
+        super(accountNumber, ownerName, balance);
+    }
+
+    @Override
+    public void withdraw(double amount) throws InsufficientFundsException {
+        if (amount > balance) {
+            throw new InsufficientFundsException("Withdrawal rejected: Insufficient funds.");
+        }
+        balance -= amount;
+        System.out.printf("Withdrew $%.2f. Remaining Balance: $%.2f%n", amount, balance);
+    }
+}
+
+public class BankSystem {
+    public static void main(String[] args) {
+        SavingsAccount acc = new SavingsAccount("SA-101", "Alice Smith", 1500.00);
+        acc.deposit(500.00);
+        try {
+            acc.withdraw(800.00);
+        } catch (InsufficientFundsException e) {
+            System.err.println("Transaction Error: " + e.getMessage());
+        }
+    }
+}</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Create a CheckingAccount subclass with an overdraft limit property and test overdraft withdrawals!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(21)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
 </div><!-- /main -->
             <script>
         const titles = [
@@ -5443,7 +5538,8 @@ ResultSet rs = ps.executeQuery();</code></pre>
             "Design Patterns",
             "Build Tools (Maven & Gradle)",
             "Introduction to Spring Boot",
-            "Final Project — Enterprise Java App"
+            "Final Project — Enterprise Java App",
+            "Project 1: OOP Banking & Transaction System"
         ];
 
         initLessons(titles);

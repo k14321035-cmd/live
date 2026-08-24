@@ -106,6 +106,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 2: Secure User Authentication & Password Hashing</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -5889,7 +5894,75 @@ Education</pre>
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-18">
+            <div class="lecture-tag">Topic 19 - Real-World Practical Projects</div>
+            <h1>Project 2: Secure User Authentication & Password Hashing</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">PHP & PDO Security</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a production-grade PHP authentication system using PDO database prepared statements, password_hash(), and session management.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master SQL Injection prevention, session security, password salting/hashing, and authorization guards.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">auth.php</span></div>
+<pre><?php
+session_start();
+
+$host = 'localhost';
+$db   = 'app_db';
+$user = 'root';
+$pass = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+} catch (PDOException $e) {
+    die("Database Connection Error: " . $e->getMessage());
+}
+
+function registerUser($pdo, $email, $rawPassword) {
+    $hashedPassword = password_hash($rawPassword, PASSWORD_BCRYPT, ['cost' => 12]);
+    $stmt = $pdo->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
+    return $stmt->execute(['email' => $email, 'password' => $hashedPassword]);
+}
+
+function loginUser($pdo, $email, $rawPassword) {
+    $stmt = $pdo->prepare("SELECT id, password FROM users WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    $user = $stmt->fetch();
+
+    if ($user && password_verify($rawPassword, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
+        return true;
+    }
+    return false;
+}
+?></pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Implement a Remember Me cookie token system using random_bytes(32) and hashed database tokens!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(17)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -5910,7 +5983,8 @@ Education</pre>
             "REST APIs",
             "Laravel Basics",
             "Authentication & Deployment",
-            "Capstone Project: Blog System"
+            "Capstone Project: Blog System",
+            "Project 2: Secure User Authentication & Password Hashing"
         ];
 
         initLessons(titles);

@@ -114,6 +114,12 @@
                 </button>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(52)"><span class="num">53</span><span class="dot"></span>Project 1: Interactive Task & Expense Manager</button>
+            <button class="nav-item syllabus-topic" onclick="showLecture(53)"><span class="num">54</span><span class="dot"></span>Project 2: Real-Time Weather Dashboard</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -7938,7 +7944,156 @@ Logged in user: Alex
 
         </div><!-- /content-wrapper -->
 
-    </div><!-- /main -->
+    
+        <div class="lecture" id="lec-52">
+            <div class="lecture-tag">Topic 53 - Real-World Practical Projects</div>
+            <h1>Project 1: Interactive Task & Expense Manager</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">DOM & LocalStorage</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build a responsive web application that manages tasks and tracks expenses with persistent browser storage (LocalStorage).</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>In this project, you will combine DOM manipulation, event listeners, array methods (map, filter, reduce), and LocalStorage serialization.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">app.js</span></div>
+<pre>// 1. Task & Expense Manager State
+let items = JSON.parse(localStorage.getItem('my_tracker_items')) || [];
+
+function saveItems() {
+    localStorage.setItem('my_tracker_items', JSON.stringify(items));
+}
+
+function addItem(title, amount, category) {
+    const newItem = {
+        id: Date.now(),
+        title,
+        amount: parseFloat(amount),
+        category,
+        date: new Date().toLocaleDateString()
+    };
+    items.push(newItem);
+    saveItems();
+    renderUI();
+}
+
+function deleteItem(id) {
+    items = items.filter(item => item.id !== id);
+    saveItems();
+    renderUI();
+}
+
+function calculateTotal() {
+    return items.reduce((sum, item) => sum + item.amount, 0).toFixed(2);
+}
+
+function renderUI() {
+    const listEl = document.getElementById('item-list');
+    const totalEl = document.getElementById('total-amount');
+    
+    if (!listEl || !totalEl) return;
+    
+    listEl.innerHTML = items.map(item => `
+        <li class="item-card">
+            <span>\${item.title} (\${item.category})</span>
+            <strong>$\${item.amount.toFixed(2)}</strong>
+            <button onclick="deleteItem(\${item.id})">❌ Delete</button>
+        </li>
+    `).join('');
+    
+    totalEl.textContent = `Total: $\${calculateTotal()}`;
+}
+
+document.addEventListener('DOMContentLoaded', renderUI);</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add a Category Filter dropdown (e.g. 'Work', 'Personal', 'Food') to filter visible items on the fly!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(51)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(53)">Next Topic</button>
+            </div>
+        </div>
+
+        <div class="lecture" id="lec-53">
+            <div class="lecture-tag">Topic 54 - Real-World Practical Projects</div>
+            <h1>Project 2: Real-Time Weather Dashboard</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">Async/Await & APIs</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Build an asynchronous weather application that fetches real-time weather data from an external REST API using Fetch API and async/await.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Learn how to make asynchronous HTTP requests, handle API loading & error states, and dynamically update the DOM with live data.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">weather.js</span></div>
+<pre>async function fetchWeather(city) {
+    const apiKey = 'YOUR_API_KEY';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=\${encodeURIComponent(city)}&units=metric&appid=\${apiKey}`;
+
+    try {
+        console.log(`Fetching weather for \${city}...`);
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`City not found (Status: \${response.status})`);
+        }
+        
+        const data = await response.json();
+        
+        const weatherInfo = {
+            city: data.name,
+            country: data.sys.country,
+            temp: Math.round(data.main.temp),
+            humidity: data.main.humidity,
+            condition: data.weather[0].description
+        };
+
+        displayWeather(weatherInfo);
+    } catch (error) {
+        console.error("Error fetching weather:", error.message);
+    }
+}
+
+function displayWeather(info) {
+    console.log(`=== Weather in \${info.city}, \${info.country} ===`);
+    console.log(`Temperature: \${info.temp}°C`);
+    console.log(`Condition: \${info.condition}`);
+    console.log(`Humidity: \${info.humidity}%`);
+}
+
+fetchWeather('London');</pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Implement a 5-day forecast fetcher using Promise.all() to load weather for multiple cities simultaneously!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(52)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div><!-- /main -->
 
     <script>
         const titles = [
@@ -7993,7 +8148,9 @@ Logged in user: Alex
             "Function Invocation",
             "Function Call",
             "Function Apply",
-            "Function Closures [CO5]"
+            "Function Closures [CO5]",
+            "Project 1: Interactive Task & Expense Manager",
+            "Project 2: Real-Time Weather Dashboard"
         ];
 
         initLessons(titles);

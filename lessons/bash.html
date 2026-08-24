@@ -113,6 +113,11 @@
                 <a href="../index.html" class="lesson-mega-link-plain">Home</a>
             </div>
         </div>
+    
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Project 1: Automated Server Backup & Log Archiving Script</button>
+        </div>
     </nav>
 
     <!-- SIDEBAR -->
@@ -2148,7 +2153,58 @@ crontab -e
             
 
         </div>
-    </div>
+    
+        <div class="lecture" id="lec-14">
+            <div class="lecture-tag">Topic 15 - Real-World Practical Projects</div>
+            <h1>Project 1: Automated Server Backup & Log Archiving Script</h1>
+            <div class="lecture-meta">
+                <span class="meta-badge">Hands-on Project</span>
+                <span class="meta-badge">DevOps & Bash</span>
+            </div>
+            
+            <div class="box info">
+                <div class="box-title">🎯 Project Goal</div>
+                <p>Write a bash shell script that automates server directory compression (tar), timestamped file naming, log cleanup, and disk usage verification.</p>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p>Master bash variables, positional parameters, tar, find, df -h, conditional logic, and cron job scheduling syntax.</p>
+
+            <h2>Full Code Implementation</h2>
+            <div class="code-block">
+                <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">backup.sh</span></div>
+<pre>#!/bin/bash
+
+SOURCE_DIR="./data_to_backup"
+BACKUP_DIR="./backups"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+BACKUP_FILE="backup_${TIMESTAMP}.tar.gz"
+
+mkdir -p "$BACKUP_DIR"
+
+if tar -czf "${BACKUP_DIR}/${BACKUP_FILE}" "$SOURCE_DIR" 2>/dev/null; then
+    echo "✅ Success: Created ${BACKUP_DIR}/${BACKUP_FILE}"
+else
+    echo "❌ Error: Backup failed!"
+    exit 1
+fi
+
+find "$BACKUP_DIR" -type f -name "*.tar.gz" -mtime +7 -delete
+echo "Backup Completed." </pre>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Practice Challenge</div>
+                <p>Add an email notification alert if the disk usage exceeds 85%!</p>
+            </div>
+
+            <div class="lecture-nav">
+                <button class="nav-btn" onclick="showLecture(13)">Previous</button>
+                <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
+            </div>
+        </div>
+
+</div>
 
     <script>
         const titles = [
@@ -2165,7 +2221,8 @@ crontab -e
             "DevOps Tools & Automation",
             "Capstone Project: Automation Scripts",
             "Advanced Scripting Patterns",
-            "Final Project — Production Shell Scripts"
+            "Final Project — Production Shell Scripts",
+            "Project 1: Automated Server Backup & Log Archiving Script"
         ];
         initLessons(titles);
     </script>
