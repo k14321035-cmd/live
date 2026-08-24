@@ -32,6 +32,15 @@
   <link rel="apple-touch-icon" sizes="512x512" href="favicon_512.png">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="canonical" href="https://codetutorium.com/">
+  <script>
+    /* SEO: redirect /index.html to canonical / */
+    (function(){
+      var cur = window.location.pathname;
+      if(cur === '/index.html'){
+        window.location.replace('https://codetutorium.com/');
+      }
+    })();
+  </script>
   <link rel="manifest" href="manifest.json">
   <meta property="og:url" content="https://codetutorium.com/">
 
@@ -79,6 +88,28 @@
       "@type": "SearchAction",
       "target": "https://codetutorium.com/index.html?q={search_term_string}",
       "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Code Tutorium - Free Interactive Programming & Mobile Coding Courses Overview",
+    "description": "Learn to code for free with interactive programming courses, online compilers, and mobile apps for Python, C++, HTML, CSS, and JavaScript.",
+    "thumbnailUrl": [
+      "https://img.youtube.com/vi/gEUUjNjp5EA/maxresdefault.jpg",
+      "https://img.youtube.com/vi/gEUUjNjp5EA/hqdefault.jpg"
+    ],
+    "uploadDate": "2026-01-01T00:00:00+00:00",
+    "embedUrl": "https://www.youtube.com/embed/gEUUjNjp5EA",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code Tutorium",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://codetutorium.com/favicon.png"
+      }
     }
   }
   </script>
