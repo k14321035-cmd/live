@@ -363,7 +363,7 @@ ol li { margin-bottom: 0.6rem; }
   top: calc(var(--nav-h) + 40px + 0.75rem);
   left: 1rem;
   width: var(--sidebar-w);
-  height: calc(50vh - var(--nav-h) - 40px);
+  height: calc(100vh - var(--nav-h) - 40px - 1.5rem);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md, 12px);
@@ -406,6 +406,12 @@ ol li { margin-bottom: 0.6rem; }
 
 /* Nav Sections */
 .nav-section { margin-bottom: 1rem; }
+
+/* Hide any stray/misplaced nav-section in top navigation or direct body */
+.lesson-mega-nav .nav-section,
+body > .nav-section {
+  display: none !important;
+}
 
 .nav-section-label {
   font-size: 0.68rem;
