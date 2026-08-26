@@ -61,9 +61,6 @@ function initLessons(titles) {
     // Setup keyboard navigation
     document.addEventListener('keydown', handleKeydown);
 
-    // Initialize persistent compiler panel
-    initPersistentCompiler();
-
     // Initialize blog button
     initBlogButton();
 
@@ -437,41 +434,6 @@ function _fallbackCopyCode(btn, text) {
     document.body.removeChild(ta);
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// PERSISTENT COMPILER PANEL
-// ═══════════════════════════════════════════════════════════════════════
-
-/**
- * Detect which compiler to open based on the current lesson URL
- */
-function _detectCompilerType() {
-    const path = window.location.pathname.toLowerCase();
-    return (path.includes('/html') || path.includes('/css')) ? 'web' : 'multi';
-}
-
-/**
- * Add a "Compiler" button to the topbar that opens the compiler in a new tab.
- * Called automatically by initLessons() — works on all lesson pages.
- */
-function initPersistentCompiler() {
-    if (document.getElementById('compiler-toggle-btn')) return;
-
-    const type = _detectCompilerType();
-    const src  = type === 'web' ? '../web-compiler.html' : '../multi-language-compiler.html';
-
-    const navSearch = document.querySelector('.lesson-nav-search');
-    if (!navSearch) return;
-
-    const btn = document.createElement('button');
-    btn.id        = 'compiler-toggle-btn';
-    btn.className = 'compiler-toggle-btn';
-    btn.title     = 'Open compiler in a new tab';
-    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Compiler';
-    btn.onclick   = function() { window.open(src, '_blank'); };
-
-    navSearch.insertBefore(btn, navSearch.firstChild);
-}
-
 /**
  * Add a "Blog" or "Lessons" button to the topbar.
  * Automatically displays "Lessons" on blog pages so users can return to lessons.
@@ -498,12 +460,7 @@ function initBlogButton() {
         btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Blog';
     }
 
-    const compilerBtn = document.getElementById('compiler-toggle-btn');
-    if (compilerBtn && compilerBtn.nextSibling) {
-        navSearch.insertBefore(btn, compilerBtn.nextSibling);
-    } else {
-        navSearch.appendChild(btn);
-    }
+    navSearch.appendChild(btn);
 }
 
 /**
@@ -573,12 +530,7 @@ function initProjectsDropdown() {
     if (blogBtn && blogBtn.nextSibling) {
         navSearch.insertBefore(container, blogBtn.nextSibling);
     } else {
-        const compilerBtn = document.getElementById('compiler-toggle-btn');
-        if (compilerBtn && compilerBtn.nextSibling) {
-            navSearch.insertBefore(container, compilerBtn.nextSibling);
-        } else {
-            navSearch.appendChild(container);
-        }
+        navSearch.appendChild(container);
     }
 }
 
