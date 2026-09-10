@@ -21,17 +21,17 @@
     <h1>choose_a_tool()</h1>
     <p class="intro">Select a tool to open it in the Code Tutorium tools service. Each tool has its own workspace for uploads and generated files.</p>
     <section class="grid" aria-label="Available tools">
-      <article class="tool-card" id="pdf"><div class="icon">PDF</div><h2>PDF Toolkit</h2><p>Merge, split, watermark, unlock with a known password, or protect PDF files.</p><a class="open" data-tool="pdf" href="https://tools.codetutorium.com/tools/pdf/">Open PDF Toolkit &rarr;</a></article>
-      <article class="tool-card" id="audio"><div class="icon">WAV</div><h2>Audio Cleaner</h2><p>Reduce background noise and export a cleaned audio file.</p><a class="open" data-tool="audio" href="https://tools.codetutorium.com/tools/audio/">Open Audio Cleaner &rarr;</a></article>
-      <article class="tool-card" id="cv"><div class="icon">CV</div><h2>CV Builder</h2><p>Enter your professional details and download a CV document.</p><a class="open" data-tool="cv" href="https://tools.codetutorium.com/tools/cv/">Open CV Builder &rarr;</a></article>
-      <article class="tool-card" id="image"><div class="icon">PNG</div><h2>Favicon Generator</h2><p>Create a custom favicon PNG from text, size, and colour choices.</p><a class="open" data-tool="image" href="https://tools.codetutorium.com/tools/image/">Open Favicon Generator &rarr;</a></article>
-      <article class="tool-card" id="video-frames"><div class="icon">ZIP</div><h2>Video Frame Extractor</h2><p>Upload a video and download selected frames as a ZIP archive.</p><a class="open" data-tool="video-frames" href="https://tools.codetutorium.com/tools/video-frames/">Open Frame Extractor &rarr;</a></article>
+      <article class="tool-card" id="pdf"><div class="icon">PDF</div><h2>PDF Toolkit</h2><p>Merge, split, watermark, unlock with a known password, or protect PDF files.</p><a class="open" data-tool="pdf" href="https://codetutoriumtools.onrender.com/tools/pdf/">Open PDF Toolkit &rarr;</a></article>
+      <article class="tool-card" id="audio"><div class="icon">WAV</div><h2>Audio Cleaner</h2><p>Reduce background noise and export a cleaned audio file.</p><a class="open" data-tool="audio" href="https://codetutoriumtools.onrender.com/tools/audio/">Open Audio Cleaner &rarr;</a></article>
+      <article class="tool-card" id="cv"><div class="icon">CV</div><h2>CV Builder</h2><p>Enter your professional details and download a CV document.</p><a class="open" data-tool="cv" href="https://codetutoriumtools.onrender.com/tools/cv/">Open CV Builder &rarr;</a></article>
+      <article class="tool-card" id="image"><div class="icon">PNG</div><h2>Favicon Generator</h2><p>Create a custom favicon PNG from text, size, and colour choices.</p><a class="open" data-tool="image" href="https://codetutoriumtools.onrender.com/tools/image/">Open Favicon Generator &rarr;</a></article>
+      <article class="tool-card" id="video-frames"><div class="icon">ZIP</div><h2>Video Frame Extractor</h2><p>Upload a video and download selected frames as a ZIP archive.</p><a class="open" data-tool="video-frames" href="https://codetutoriumtools.onrender.com/tools/video-frames/">Open Frame Extractor &rarr;</a></article>
     </section>
-    <p class="notice">For local testing, start <code>tools/server.py</code>. When this page is opened on localhost, the buttons automatically point to <code>http://127.0.0.1:8000</code>. In production, deploy the unified server at <code>tools.codetutorium.com</code>.</p>
+    <p class="notice">For local testing, start <code>tools/server.py</code>. When this page is opened on localhost, the buttons automatically point to <code>http://127.0.0.1:8000</code>. In production, the tools run at <code>codetutoriumtools.onrender.com</code>.</p>
   </main>
   <script>
     const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-    const toolServer = isLocal ? "http://127.0.0.1:8000" : "https://tools.codetutorium.com";
+    const toolServer = isLocal ? "http://127.0.0.1:8000" : "https://codetutoriumtools.onrender.com";
     document.querySelectorAll("[data-tool]").forEach(link => {
       link.href = `${toolServer}/tools/${link.dataset.tool}/`;
     });
