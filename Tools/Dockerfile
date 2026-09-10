@@ -9,4 +9,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg \
 COPY . .
 ENV PORT=8000
 EXPOSE 8000
-CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT} --workers 2 --timeout 600 server:app"]
+# Waitress is included in requirements.txt and works on every supported host.
+# Render supplies PORT at runtime; do not hard-code a service port here.
+CMD ["sh", "-c", "waitress-serve --host=0.0.0.0 --port=${PORT} server:app"]
