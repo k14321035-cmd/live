@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Swiss Army Knife</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel-border: #262a35;
+    --accent: #ef4444;
+    --accent-hover: #dc2626;
+    --text: #e8e9ed;
+    --text-dim: #9aa0ac;
+    --success: #22c55e;
+    --error: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  header .icon {
+    font-size: 40px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: 28px;
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+  header p {
+    color: var(--text-dim);
+    margin: 0;
+    font-size: 15px;
+  }
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .tab-btn {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    color: var(--text-dim);
+    padding: 12px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .tab-btn .emoji { font-size: 18px; }
+  .tab-btn:hover { border-color: #3a3f4d; color: var(--text); }
+  .tab-btn.active {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 28px;
+    display: none;
+  }
+  .panel.active { display: block; }
+  .subtabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--panel-border);
+    padding-bottom: 0;
+  }
+  .subtab-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 8px 4px 12px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-right: 14px;
+  }
+  .subtab-btn:hover { color: var(--text); }
+  .subtab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .subpanel { display: none; }
+  .subpanel.active { display: block; }
+  .panel h2 {
+    margin: 0 0 4px;
+    font-size: 19px;
+  }
+  .panel .sub {
+    color: var(--text-dim);
+    font-size: 13.5px;
+    margin: 0 0 22px;
+  }
+  .drop {
+    border: 1.5px dashed #333947;
+    border-radius: 12px;
+    padding: 28px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    margin-bottom: 18px;
+  }
+  .drop:hover, .drop.dragover {
+    border-color: var(--accent);
+    background: rgba(239, 68, 68, 0.05);
+  }
+  .drop .big { font-size: 26px; margin-bottom: 6px; }
+  .drop .label { font-size: 14px; color: var(--text); font-weight: 600; }
+  .drop .hint { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .file-list li {
+    background: #1e2129;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .file-list li .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .file-list li .rm {
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .file-list li .rm:hover { color: var(--error); }
+  label.field-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 14px 0 6px;
+    color: var(--text-dim);
+  }
+  input[type="text"], input[type="password"], input[type="number"], select {
+    width: 100%;
+    background: #1e2129;
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+  }
+  input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus {
+    border-color: var(--accent);
+  }
+  input[type="range"] { width: 100%; accent-color: var(--accent); }
+  .row { display: flex; gap: 12px; }
+  .row > div { flex: 1; }
+  .radio-row { display: flex; gap: 18px; margin-top: 4px; }
+  .radio-row label { font-size: 13.5px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .go-btn {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 22px;
+    transition: background 0.15s ease;
+  }
+  .go-btn:hover:not(:disabled) { background: var(--accent-hover); }
+  .go-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .status { margin-top: 16px; font-size: 13.5px; }
+  .status.error { color: var(--error); }
+  .status.success { color: var(--success); }
+  .result-card {
+    margin-top: 16px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .result-card .info { font-size: 13.5px; color: var(--text); }
+  .result-card .info .fname { font-weight: 700; }
+  .result-card a.dl {
+    background: var(--success);
+    color: #062012;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .spinner {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: -2px;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="icon">🧰</div>
+    <h1>PDF Swiss Army Knife</h1>
+    <p>Merge, split, unlock, and watermark PDFs — all processed locally on your machine.</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="merge"><span class="emoji">🔗</span>Merge</button>
+    <button class="tab-btn" data-tab="split"><span class="emoji">✂️</span>Split</button>
+    <button class="tab-btn" data-tab="password"><span class="emoji">🔐</span>Password</button>
+    <button class="tab-btn" data-tab="watermark"><span class="emoji">💧</span>Watermark</button>
+  </div>
+
+  <!-- MERGE -->
+  <div class="panel active" id="panel-merge">
+    <h2>Merge PDFs</h2>
+    <p class="sub">Combine multiple PDF files into one, in the order listed below.</p>
+
+    <div class="drop" id="drop-merge">
+      <div class="big">📄➕📄</div>
+      <div class="label">Click or drag PDFs here</div>
+      <div class="hint">Select 2 or more files</div>
+    </div>
+    <input type="file" id="input-merge" accept="application/pdf" multiple hidden>
+    <ul class="file-list" id="list-merge"></ul>
+
+    <button class="go-btn" id="btn-merge" disabled>Merge PDFs</button>
+    <div class="status" id="status-merge"></div>
+  </div>
+
+  <!-- SPLIT -->
+  <div class="panel" id="panel-split">
+    <h2>Split a PDF</h2>
+    <p class="sub">Break a PDF into separate files, delivered as a ZIP.</p>
+
+    <div class="drop" id="drop-split">
+      <div class="big">📄</div>
+      <div class="label">Click or drag a PDF here</div>
+      <div class="hint">Single file</div>
+    </div>
+    <input type="file" id="input-split" accept="application/pdf" hidden>
+    <ul class="file-list" id="list-split"></ul>
+
+    <label class="field-label">Split mode</label>
+    <div class="radio-row">
+      <label><input type="radio" name="split-mode" value="all" checked> One PDF per page</label>
+      <label><input type="radio" name="split-mode" value="ranges"> Custom ranges</label>
+    </div>
+
+    <div id="split-ranges-wrap" style="display:none;">
+      <label class="field-label">Page ranges (e.g. 1-3,5,8-10)</label>
+      <input type="text" id="split-ranges" placeholder="1-3,5,8-10">
+    </div>
+
+    <button class="go-btn" id="btn-split" disabled>Split PDF</button>
+    <div class="status" id="status-split"></div>
+  </div>
+
+  <!-- PASSWORD -->
+  <div class="panel" id="panel-password">
+    <h2>Password</h2>
+    <p class="sub">Protect a PDF with a password, remove one you know, or recover one you've forgotten.</p>
+
+    <div class="subtabs">
+      <button class="subtab-btn active" data-subtab="pw-remove">Remove</button>
+      <button class="subtab-btn" data-subtab="pw-set">Set</button>
+      <button class="subtab-btn" data-subtab="pw-recover">Recover</button>
+    </div>
+
+    <!-- Remove password (known password) -->
+    <div class="subpanel active" id="subpanel-pw-remove">
+      <p class="sub" style="margin-top:0;">Remove password protection from a PDF you have the password for.</p>
+      <div class="drop" id="drop-unlock">
+        <div class="big">🔒</div>
+        <div class="label">Click or drag a PDF here</div>
+        <div class="hint">Single file</div>
+      </div>
+      <input type="file" id="input-unlock" accept="application/pdf" hidden>
+      <ul class="file-list" id="list-unlock"></ul>
+
+      <label class="field-label">Password</label>
+      <input type="password" id="unlock-password" placeholder="Enter the PDF's password">
+
+      <button class="go-btn" id="btn-unlock" disabled>Remove Password</button>
+      <div class="status" id="status-unlock"></div>
+    </div>
+
+    <!-- Set password (encrypt) -->
+    <div class="subpanel" id="subpanel-pw-set">
+      <p class="sub" style="margin-top:0;">Add password protection to a PDF that isn't already encrypted.</p>
+      <div class="drop" id="drop-setpw">
+        <div class="big">🔓</div>
+        <div class="label">Click or drag a PDF here</div>
+        <div class="hint">Single file</div>
+      </div>
+      <input type="file" id="input-setpw" accept="application/pdf" hidden>
+      <ul class="file-list" id="list-setpw"></ul>
+
+      <label class="field-label">Password (required to open)</label>
+      <input type="password" id="setpw-user" placeholder="Choose a password">
+
+      <label class="field-label">Owner password (optional — controls permissions, defaults to the same password)</label>
+      <input type="password" id="setpw-owner" placeholder="Leave blank to reuse the password above">
+
+      <label class="field-label">Permissions</label>
+      <div class="radio-row" style="flex-wrap:wrap; row-gap:8px;">
+        <label><input type="checkbox" id="setpw-print" checked> Allow printing</label>
+        <label><input type="checkbox" id="setpw-copy" checked> Allow copying text</label>
+        <label><input type="checkbox" id="setpw-modify"> Allow modifying</label>
+      </div>
+
+      <button class="go-btn" id="btn-setpw" disabled>Set Password</button>
+      <div class="status" id="status-setpw"></div>
+    </div>
+
+    <!-- Recover / brute-force password -->
+    <div class="subpanel" id="subpanel-pw-recover">
+      <p class="sub" style="margin-top:0;">Forgotten the password on your own PDF? Try to recover it. Bounded to a
+        5-minute / 2,000,000-attempt safety cap per run — it will always stop and report back.</p>
+      <div class="drop" id="drop-recover">
+        <div class="big">🔍</div>
+        <div class="label">Click or drag a PDF here</div>
+        <div class="hint">Single file, must be password-protected</div>
+      </div>
+      <input type="file" id="input-recover" accept="application/pdf" hidden>
+      <ul class="file-list" id="list-recover"></ul>
+
+      <label class="field-label">Recovery mode</label>
+      <select id="recover-mode">
+        <option value="common">Common passwords (fast, ~70 tried)</option>
+        <option value="numeric">Numeric PIN sweep</option>
+        <option value="custom">My own list of guesses</option>
+      </select>
+
+      <div id="recover-numeric-wrap" style="display:none;">
+        <div class="row">
+          <div>
+            <label class="field-label">Min digits</label>
+            <input type="number" id="recover-min-len" value="1" min="1" max="6">
+          </div>
+          <div>
+            <label class="field-label">Max digits (capped at 6)</label>
+            <input type="number" id="recover-max-len" value="4" min="1" max="6">
+          </div>
+        </div>
+      </div>
+
+      <div id="recover-custom-wrap" style="display:none;">
+        <label class="field-label">Candidate passwords (one per line, or comma-separated)</label>
+        <textarea id="recover-candidates" placeholder="mydog2015&#10;Summer2019!&#10;companyname123" rows="4"
+          style="width:100%; background:#1e2129; border:1px solid var(--panel-border); color:var(--text); padding:10px 12px; border-radius:8px; font-size:14px; font-family:inherit; resize:vertical;"></textarea>
+      </div>
+
+      <button class="go-btn" id="btn-recover" disabled>Start Recovery</button>
+
+      <div id="recover-progress" style="display:none; margin-top:16px;">
+        <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--text-dim); margin-bottom:6px;">
+          <span id="recover-progress-label">Trying passwords…</span>
+          <span id="recover-progress-count"></span>
+        </div>
+        <div style="background:#1e2129; border-radius:6px; height:8px; overflow:hidden;">
+          <div id="recover-progress-bar" style="background:var(--accent); height:100%; width:0%; transition:width 0.3s ease;"></div>
+        </div>
+        <button class="go-btn" id="btn-recover-cancel" style="background:#333947; margin-top:12px;">Cancel</button>
+      </div>
+
+      <div class="status" id="status-recover"></div>
+    </div>
+  </div>
+
+  <!-- WATERMARK -->
+  <div class="panel" id="panel-watermark">
+    <h2>Watermark a PDF</h2>
+    <p class="sub">Stamp repeating text across every page.</p>
+
+    <div class="drop" id="drop-watermark">
+      <div class="big">📄</div>
+      <div class="label">Click or drag a PDF here</div>
+      <div class="hint">Single file</div>
+    </div>
+    <input type="file" id="input-watermark" accept="application/pdf" hidden>
+    <ul class="file-list" id="list-watermark"></ul>
+
+    <label class="field-label">Watermark text</label>
+    <input type="text" id="wm-text" placeholder="CONFIDENTIAL" value="CONFIDENTIAL">
+
+    <div class="row">
+      <div>
+        <label class="field-label">Opacity (<span id="wm-opacity-val">25</span>%)</label>
+        <input type="range" id="wm-opacity" min="2" max="100" value="25">
+      </div>
+      <div>
+        <label class="field-label">Angle (°)</label>
+        <input type="number" id="wm-angle" value="45" min="-90" max="90">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label class="field-label">Font size</label>
+        <input type="number" id="wm-fontsize" value="40" min="6" max="200">
+      </div>
+      <div>
+        <label class="field-label">Color</label>
+        <input type="text" id="wm-color" value="#808080">
+      </div>
+    </div>
+
+    <button class="go-btn" id="btn-watermark" disabled>Watermark PDF</button>
+    <div class="status" id="status-watermark"></div>
+  </div>
+
+  <footer>Runs entirely on your own machine. Files are processed and stored under /processed.</footer>
+</div>
+
+<script>
+// ---------- Tab switching ----------
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ---------- Password sub-tab switching ----------
+document.querySelectorAll('.subtab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.subpanel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('subpanel-' + btn.dataset.subtab).classList.add('active');
+  });
+});
+
+// ---------- Generic file-picker wiring ----------
+function wireDropzone(dropId, inputId, listId, { multiple = false } = {}) {
+  const drop = document.getElementById(dropId);
+  const input = document.getElementById(inputId);
+  const list = document.getElementById(listId);
+  let files = [];
+
+  function render() {
+    list.innerHTML = '';
+    files.forEach((f, i) => {
+      const li = document.createElement('li');
+      const name = document.createElement('span');
+      name.className = 'name';
+      name.textContent = f.name;
+      const rm = document.createElement('span');
+      rm.className = 'rm';
+      rm.textContent = '✕';
+      rm.onclick = () => { files.splice(i, 1); render(); onChange(); };
+      li.appendChild(name);
+      li.appendChild(rm);
+      list.appendChild(li);
+    });
+  }
+
+  function addFiles(newFiles) {
+    const pdfs = Array.from(newFiles).filter(f => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
+    if (multiple) {
+      files = files.concat(pdfs);
+    } else {
+      files = pdfs.slice(0, 1);
+    }
+    render();
+    onChange();
+  }
+
+  drop.addEventListener('click', () => input.click());
+  input.addEventListener('change', e => addFiles(e.target.files));
+
+  ['dragover', 'dragenter'].forEach(ev => drop.addEventListener(ev, e => {
+    e.preventDefault(); drop.classList.add('dragover');
+  }));
+  ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => {
+    e.preventDefault(); drop.classList.remove('dragover');
+  }));
+  drop.addEventListener('drop', e => addFiles(e.dataTransfer.files));
+
+  let onChange = () => {};
+  return {
+    getFiles: () => files,
+    onChange: (fn) => { onChange = fn; },
+  };
+}
+
+function setStatus(id, msg, type) {
+  const el = document.getElementById(id);
+  el.className = 'status' + (type ? ' ' + type : '');
+  el.innerHTML = msg;
+}
+
+function resultCard(filename, downloadUrl, extra) {
+  return `<div class="result-card">
+    <div class="info">Done! <span class="fname">${filename}</span>${extra ? ' — ' + extra : ''}</div>
+    <a class="dl" href="${downloadUrl}" download>Download</a>
+  </div>`;
+}
+
+async function postForm(url, formData, btn, statusId, onDone) {
+  btn.disabled = true;
+  const originalText = btn.textContent;
+  btn.innerHTML = '<span class="spinner"></span>Processing…';
+  setStatus(statusId, '', '');
+  try {
+    const res = await fetch(url, { method: 'POST', body: formData });
+    const data = await res.json();
+    if (!res.ok) {
+      setStatus(statusId, data.error || 'Something went wrong.', 'error');
+    } else {
+      onDone(data);
+    }
+  } catch (err) {
+    setStatus(statusId, 'Network error: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
+}
+
+// ---------- MERGE ----------
+const mergeDZ = wireDropzone('drop-merge', 'input-merge', 'list-merge', { multiple: true });
+const btnMerge = document.getElementById('btn-merge');
+mergeDZ.onChange(() => { btnMerge.disabled = mergeDZ.getFiles().length < 2; });
+
+btnMerge.addEventListener('click', () => {
+  const files = mergeDZ.getFiles();
+  const fd = new FormData();
+  files.forEach(f => fd.append('files', f));
+  postForm('api/merge', fd, btnMerge, 'status-merge', data => {
+    setStatus('status-merge', resultCard(data.filename, data.download_url, data.page_count + ' pages'), 'success');
+  });
+});
+
+// ---------- SPLIT ----------
+const splitDZ = wireDropzone('drop-split', 'input-split', 'list-split', { multiple: false });
+const btnSplit = document.getElementById('btn-split');
+splitDZ.onChange(() => { btnSplit.disabled = splitDZ.getFiles().length < 1; });
+
+document.querySelectorAll('input[name="split-mode"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    document.getElementById('split-ranges-wrap').style.display =
+      document.querySelector('input[name="split-mode"]:checked').value === 'ranges' ? 'block' : 'none';
+  });
+});
+
+btnSplit.addEventListener('click', () => {
+  const files = splitDZ.getFiles();
+  if (!files.length) return;
+  const mode = document.querySelector('input[name="split-mode"]:checked').value;
+  const ranges = document.getElementById('split-ranges').value;
+  if (mode === 'ranges' && !ranges.trim()) {
+    setStatus('status-split', 'Enter at least one page range.', 'error');
+    return;
+  }
+  const fd = new FormData();
+  fd.append('file', files[0]);
+  fd.append('mode', mode);
+  if (mode === 'ranges') fd.append('ranges', ranges);
+  postForm('api/split', fd, btnSplit, 'status-split', data => {
+    setStatus('status-split', resultCard(data.filename, data.download_url, data.file_count + ' files'), 'success');
+  });
+});
+
+// ---------- UNLOCK ----------
+const unlockDZ = wireDropzone('drop-unlock', 'input-unlock', 'list-unlock', { multiple: false });
+const btnUnlock = document.getElementById('btn-unlock');
+unlockDZ.onChange(() => { btnUnlock.disabled = unlockDZ.getFiles().length < 1; });
+
+btnUnlock.addEventListener('click', () => {
+  const files = unlockDZ.getFiles();
+  if (!files.length) return;
+  const fd = new FormData();
+  fd.append('file', files[0]);
+  fd.append('password', document.getElementById('unlock-password').value);
+  postForm('api/unlock', fd, btnUnlock, 'status-unlock', data => {
+    setStatus('status-unlock', resultCard(data.filename, data.download_url, data.page_count + ' pages'), 'success');
+  });
+});
+
+// ---------- SET PASSWORD ----------
+const setpwDZ = wireDropzone('drop-setpw', 'input-setpw', 'list-setpw', { multiple: false });
+const btnSetpw = document.getElementById('btn-setpw');
+setpwDZ.onChange(() => { btnSetpw.disabled = setpwDZ.getFiles().length < 1; });
+
+btnSetpw.addEventListener('click', () => {
+  const files = setpwDZ.getFiles();
+  if (!files.length) return;
+  const userPw = document.getElementById('setpw-user').value;
+  if (!userPw) {
+    setStatus('status-setpw', 'Enter a password.', 'error');
+    return;
+  }
+  const fd = new FormData();
+  fd.append('file', files[0]);
+  fd.append('user_password', userPw);
+  fd.append('owner_password', document.getElementById('setpw-owner').value);
+  fd.append('allow_printing', document.getElementById('setpw-print').checked);
+  fd.append('allow_copying', document.getElementById('setpw-copy').checked);
+  fd.append('allow_modify', document.getElementById('setpw-modify').checked);
+  postForm('api/set-password', fd, btnSetpw, 'status-setpw', data => {
+    setStatus('status-setpw', resultCard(data.filename, data.download_url, data.page_count + ' pages'), 'success');
+  });
+});
+
+// ---------- RECOVER (brute force) ----------
+const recoverDZ = wireDropzone('drop-recover', 'input-recover', 'list-recover', { multiple: false });
+const btnRecover = document.getElementById('btn-recover');
+recoverDZ.onChange(() => { btnRecover.disabled = recoverDZ.getFiles().length < 1; });
+
+const recoverMode = document.getElementById('recover-mode');
+recoverMode.addEventListener('change', () => {
+  document.getElementById('recover-numeric-wrap').style.display = recoverMode.value === 'numeric' ? 'block' : 'none';
+  document.getElementById('recover-custom-wrap').style.display = recoverMode.value === 'custom' ? 'block' : 'none';
+});
+
+let recoverPollTimer = null;
+let recoverCurrentJob = null;
+
+function stopRecoverPolling() {
+  if (recoverPollTimer) { clearInterval(recoverPollTimer); recoverPollTimer = null; }
+}
+
+function setRecoverProgress(attempts, total) {
+  const pct = total > 0 ? Math.min(100, Math.round((attempts / total) * 100)) : 0;
+  document.getElementById('recover-progress-bar').style.width = pct + '%';
+  document.getElementById('recover-progress-count').textContent =
+    attempts.toLocaleString() + (total ? ' / ~' + total.toLocaleString() : '') + ' tried';
+}
+
+async function pollRecoverJob(jobId) {
+  try {
+    const res = await fetch('api/bruteforce/status/' + jobId);
+    const data = await res.json();
+
+    if (data.error && !data.status) {
+      stopRecoverPolling();
+      setStatus('status-recover', data.error, 'error');
+      document.getElementById('recover-progress').style.display = 'none';
+      btnRecover.disabled = false;
+      return;
+    }
+
+    setRecoverProgress(data.attempts, data.total_estimate);
+
+    if (data.status === 'running') return;
+
+    stopRecoverPolling();
+    document.getElementById('recover-progress').style.display = 'none';
+    btnRecover.disabled = false;
+
+    if (data.status === 'found') {
+      setStatus('status-recover',
+        `<div class="result-card"><div class="info">Password found: <span class="fname">"${data.found_password}"</span> (${data.attempts.toLocaleString()} attempts, ${data.elapsed}s)</div>
+         <a class="dl" href="${data.download_url}" download>Download unlocked PDF</a></div>`, 'success');
+    } else if (data.status === 'not_found') {
+      setStatus('status-recover', `No match. ${data.stop_reason || ''} (${data.attempts.toLocaleString()} attempts tried, ${data.elapsed}s). Try a different mode or add more candidates.`, 'error');
+    } else if (data.status === 'cancelled') {
+      setStatus('status-recover', `Cancelled after ${data.attempts.toLocaleString()} attempts.`, '');
+    } else if (data.status === 'error') {
+      setStatus('status-recover', 'Error: ' + data.error, 'error');
+    }
+  } catch (err) {
+    stopRecoverPolling();
+    setStatus('status-recover', 'Network error: ' + err.message, 'error');
+    document.getElementById('recover-progress').style.display = 'none';
+    btnRecover.disabled = false;
+  }
+}
+
+btnRecover.addEventListener('click', async () => {
+  const files = recoverDZ.getFiles();
+  if (!files.length) return;
+  const mode = recoverMode.value;
+
+  const fd = new FormData();
+  fd.append('file', files[0]);
+  fd.append('mode', mode);
+  if (mode === 'numeric') {
+    fd.append('min_len', document.getElementById('recover-min-len').value || '1');
+    fd.append('max_len', document.getElementById('recover-max-len').value || '4');
+  } else if (mode === 'custom') {
+    const candidates = document.getElementById('recover-candidates').value;
+    if (!candidates.trim()) {
+      setStatus('status-recover', 'Enter at least one candidate password.', 'error');
+      return;
+    }
+    fd.append('candidates', candidates);
+  }
+
+  setStatus('status-recover', '', '');
+  btnRecover.disabled = true;
+
+  try {
+    const res = await fetch('api/bruteforce/start', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (!res.ok) {
+      setStatus('status-recover', data.error || 'Something went wrong.', 'error');
+      btnRecover.disabled = false;
+      return;
+    }
+    recoverCurrentJob = data.job_id;
+    document.getElementById('recover-progress').style.display = 'block';
+    setRecoverProgress(0, data.total_estimate);
+    recoverPollTimer = setInterval(() => pollRecoverJob(recoverCurrentJob), 500);
+  } catch (err) {
+    setStatus('status-recover', 'Network error: ' + err.message, 'error');
+    btnRecover.disabled = false;
+  }
+});
+
+document.getElementById('btn-recover-cancel').addEventListener('click', async () => {
+  if (!recoverCurrentJob) return;
+  await fetch('api/bruteforce/cancel/' + recoverCurrentJob, { method: 'POST' });
+});
+
+// ---------- WATERMARK ----------
+const wmDZ = wireDropzone('drop-watermark', 'input-watermark', 'list-watermark', { multiple: false });
+const btnWatermark = document.getElementById('btn-watermark');
+wmDZ.onChange(() => { btnWatermark.disabled = wmDZ.getFiles().length < 1; });
+
+const wmOpacity = document.getElementById('wm-opacity');
+wmOpacity.addEventListener('input', () => {
+  document.getElementById('wm-opacity-val').textContent = wmOpacity.value;
+});
+
+btnWatermark.addEventListener('click', () => {
+  const files = wmDZ.getFiles();
+  if (!files.length) return;
+  const fd = new FormData();
+  fd.append('file', files[0]);
+  fd.append('text', document.getElementById('wm-text').value || 'CONFIDENTIAL');
+  fd.append('opacity', (parseFloat(wmOpacity.value) / 100).toString());
+  fd.append('angle', document.getElementById('wm-angle').value || '45');
+  fd.append('font_size', document.getElementById('wm-fontsize').value || '40');
+  fd.append('color', (document.getElementById('wm-color').value || '#808080').replace('#', ''));
+  postForm('api/watermark', fd, btnWatermark, 'status-watermark', data => {
+    setStatus('status-watermark', resultCard(data.filename, data.download_url, data.page_count + ' pages'), 'success');
+  });
+});
+</script>
+</body>
+</html>

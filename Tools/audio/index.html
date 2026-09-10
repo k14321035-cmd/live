@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denoise — clean your audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0C0E12;
+    --panel:#15181D;
+    --panel-2:#1B1F26;
+    --line:#262B33;
+    --text:#EDEFF2;
+    --muted:#7A8290;
+    --noisy:#FF6B4A;
+    --noisy-dim:#7A3C2C;
+    --clean:#5EEAD4;
+    --clean-dim:#2C6E64;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    margin-bottom:0;
+  }
+  .brand{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:19px;letter-spacing:-0.02em;
+    display:flex;align-items:center;gap:9px;
+  }
+  .brand .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:linear-gradient(135deg,var(--noisy),var(--clean));
+    flex-shrink:0;
+  }
+  .brand-sub{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 0 40px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
+    letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--line);}
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:clamp(34px,5vw,52px);
+    line-height:1.05;letter-spacing:-0.02em;
+    margin:0 0 18px;
+    max-width:15ch;
+  }
+  h1 em{
+    font-style:normal;
+    background:linear-gradient(90deg,var(--noisy),var(--clean));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lede{
+    font-size:16px;line-height:1.6;color:var(--muted);max-width:52ch;margin:0 0 8px;
+  }
+
+  /* ---------- Hero waveform mirror ---------- */
+  .mirror{
+    margin-top:44px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--panel);
+    overflow:hidden;
+    position:relative;
+  }
+  .mirror-labels{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--muted);letter-spacing:0.04em;
+    border-bottom:1px solid var(--line);
+  }
+  .mirror-labels .noisy-label{color:var(--noisy);display:flex;align-items:center;gap:6px;}
+  .mirror-labels .clean-label{color:var(--clean);display:flex;align-items:center;gap:6px;}
+  .mirror-labels .badge{
+    width:6px;height:6px;border-radius:50%;background:currentColor;
+    animation:mbadge 2s ease-in-out infinite;
+  }
+  @keyframes mbadge{0%,100%{opacity:1}50%{opacity:0.3}}
+  canvas#mirrorCanvas{display:block;width:100%;height:200px;}
+
+  /* ---------- Panels ---------- */
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:28px;
+    margin-top:20px;
+  }
+  .panel h2{
+    font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;
+    margin:0 0 4px;
+  }
+  .panel .hint{color:var(--muted);font-size:13px;margin:0 0 20px;}
+
+  /* ---------- Dropzone ---------- */
+  .dropzone{
+    border:1.5px dashed var(--line);
+    border-radius:12px;
+    padding:40px 20px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .dropzone:hover, .dropzone.drag{
+    border-color:var(--clean);
+    background:rgba(94,234,212,0.04);
+  }
+  .dropzone svg{margin-bottom:14px;opacity:0.7;}
+  .dropzone .dz-title{font-weight:500;font-size:14.5px;margin-bottom:6px;}
+  .dropzone .dz-sub{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);}
+  input[type=file]{display:none;}
+
+  .filebar{
+    display:none;
+    align-items:center;justify-content:space-between;
+    padding:14px 16px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-top:16px;
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+  }
+  .filebar.show{display:flex;}
+  .filebar .fname{color:var(--text);}
+  .filebar .fmeta{color:var(--muted);}
+  .filebar button.clear{
+    background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;
+    padding:2px 4px;
+  }
+  .filebar button.clear:hover{color:var(--noisy);}
+
+  /* ---------- Strength control ---------- */
+  .strength-row{
+    display:flex;align-items:center;gap:18px;margin-top:24px;
+  }
+  .strength-row label{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
+    letter-spacing:0.04em;white-space:nowrap;
+  }
+  input[type=range]{
+    flex:1;-webkit-appearance:none;appearance:none;
+    height:3px;border-radius:2px;
+    background:linear-gradient(90deg,var(--clean-dim),var(--noisy-dim));
+    outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;
+    width:16px;height:16px;border-radius:50%;
+    background:var(--text);
+    border:3px solid var(--bg);
+    box-shadow:0 0 0 1px var(--line);
+    cursor:pointer;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:16px;height:16px;border-radius:50%;
+    background:var(--text);border:3px solid var(--bg);
+    box-shadow:0 0 0 1px var(--line);cursor:pointer;
+  }
+  #strengthVal{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--clean);
+    width:38px;text-align:right;
+  }
+
+  /* ---------- Action button ---------- */
+  .clean-btn{
+    margin-top:26px;
+    width:100%;
+    padding:15px;
+    border:none;border-radius:10px;
+    background:var(--clean);
+    color:#082623;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;
+    cursor:pointer;
+    transition:transform .1s ease, background .15s ease;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+  }
+  .clean-btn:hover:not(:disabled){background:#78F0DC;}
+  .clean-btn:active:not(:disabled){transform:scale(0.99);}
+  .clean-btn:disabled{background:var(--panel-2);color:var(--muted);cursor:not-allowed;}
+
+  .spinner{
+    width:14px;height:14px;border-radius:50%;
+    border:2px solid rgba(8,38,35,0.25);
+    border-top-color:#082623;
+    animation:spin .7s linear infinite;
+    display:none;
+  }
+  .clean-btn.loading .spinner{display:inline-block;}
+  .clean-btn.loading .btn-text{opacity:0.85;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .error-msg{
+    display:none;
+    margin-top:14px;
+    padding:12px 14px;
+    border-radius:8px;
+    background:rgba(255,107,74,0.08);
+    border:1px solid rgba(255,107,74,0.3);
+    color:#FFB29B;
+    font-size:13px;
+  }
+  .error-msg.show{display:block;}
+
+  /* ---------- Results ---------- */
+  .results{display:none;margin-top:20px;}
+  .results.show{display:block;}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){.compare{grid-template-columns:1fr;}}
+
+  .track{
+    background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:18px;
+  }
+  .track-header{
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;
+  }
+  .track .tlabel{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .track.before .tlabel{color:var(--noisy);}
+  .track.after  .tlabel{color:var(--clean);}
+  .track-duration{
+    font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);
+  }
+
+  /* per-track waveform */
+  .wv-wrap{
+    position:relative;border-radius:8px;overflow:hidden;
+    background:#0C0E12;margin-bottom:12px;cursor:pointer;
+  }
+  .wv-canvas{display:block;width:100%;height:80px;}
+
+  audio{width:100%;height:36px;margin-top:2px;}
+  audio::-webkit-media-controls-panel{background:var(--panel-2);}
+
+  .download-btn{
+    margin-top:18px;
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid var(--clean);
+    background:transparent;
+    color:var(--clean);
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;
+    text-decoration:none;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    transition:background .15s ease;
+  }
+  .download-btn:hover{background:rgba(94,234,212,0.08);}
+
+  footer{
+    margin:64px 0 40px;
+    text-align:center;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.02em;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="dot"></span>Denoise</div>
+    <div class="brand-sub">SPECTRAL GATING · LOCAL SERVER</div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">background noise removal</div>
+    <h1>Strip the hiss.<br>Keep the <em>voice</em>.</h1>
+    <p class="lede">Drop in a recording, and the server applies spectral-gating noise reduction to pull hum, hiss, and room tone out — without a lo-fi phone-call effect.</p>
+
+    <div class="mirror">
+      <div class="mirror-labels">
+        <span class="noisy-label"><span class="badge"></span>before</span>
+        <span style="font-size:10px;color:var(--muted);">WAVEFORM PREVIEW</span>
+        <span class="clean-label">after<span class="badge"></span></span>
+      </div>
+      <canvas id="mirrorCanvas"></canvas>
+    </div>
+  </section>
+
+  <div class="panel">
+    <h2>1. Choose a file</h2>
+    <p class="hint">WAV, MP3, M4A, FLAC, or OGG — up to 50MB.</p>
+
+    <div class="dropzone" id="dropzone">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7A8290" stroke-width="1.6"><path d="M12 3v12m0-12l-4 4m4-4l4 4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+      <div class="dz-title">Drag an audio file here, or click to browse</div>
+      <div class="dz-sub">.wav · .mp3 · .m4a · .flac · .ogg</div>
+      <input type="file" id="fileInput" accept="audio/*">
+    </div>
+
+    <div class="filebar" id="filebar">
+      <span class="fname" id="fname"></span>
+      <span class="fmeta" id="fmeta"></span>
+      <button class="clear" id="clearFile" title="Remove file">✕</button>
+    </div>
+
+    <div class="strength-row">
+      <label>CLEAN&nbsp;STRENGTH</label>
+      <input type="range" id="strength" min="0" max="100" value="60">
+      <span id="strengthVal">60%</span>
+    </div>
+
+    <button class="clean-btn" id="cleanBtn" disabled>
+      <span class="spinner"></span>
+      <span class="btn-text">Select a file to begin</span>
+    </button>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <div class="results" id="results">
+      <div class="compare">
+
+        <div class="track before">
+          <div class="track-header">
+            <div class="tlabel">Before</div>
+            <div class="track-duration" id="beforeDur"></div>
+          </div>
+          <div class="wv-wrap" id="beforeWvWrap">
+            <canvas class="wv-canvas" id="beforeWvCanvas"></canvas>
+          </div>
+          <audio id="beforeAudio" controls></audio>
+        </div>
+
+        <div class="track after">
+          <div class="track-header">
+            <div class="tlabel">After</div>
+            <div class="track-duration" id="afterDur"></div>
+          </div>
+          <div class="wv-wrap" id="afterWvWrap">
+            <canvas class="wv-canvas" id="afterWvCanvas"></canvas>
+          </div>
+          <audio id="afterAudio" controls></audio>
+        </div>
+
+      </div>
+      <a class="download-btn" id="downloadBtn" download="cleaned_audio.wav">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        Download cleaned audio
+      </a>
+    </div>
+  </div>
+
+  <footer>running locally · nothing leaves your machine</footer>
+</div>
+
+<script>
+/* =============================================================
+   DOM refs
+   ============================================================= */
+const dropzone       = document.getElementById('dropzone');
+const fileInput      = document.getElementById('fileInput');
+const filebar        = document.getElementById('filebar');
+const fname          = document.getElementById('fname');
+const fmeta          = document.getElementById('fmeta');
+const clearFile      = document.getElementById('clearFile');
+const cleanBtn       = document.getElementById('cleanBtn');
+const strengthSlider = document.getElementById('strength');
+const strengthVal    = document.getElementById('strengthVal');
+const errorMsg       = document.getElementById('errorMsg');
+const results        = document.getElementById('results');
+const beforeAudio    = document.getElementById('beforeAudio');
+const afterAudio     = document.getElementById('afterAudio');
+const downloadBtn    = document.getElementById('downloadBtn');
+const mirrorCanvas   = document.getElementById('mirrorCanvas');
+const mCtx           = mirrorCanvas.getContext('2d');
+
+/* =============================================================
+   State
+   ============================================================= */
+let selectedFile = null;
+let noisyRaw     = null;   // Float32Array full samples
+let cleanRaw     = null;
+let noisyPeaks   = null;   // downsampled for hero mirror
+let cleanPeaks   = null;
+
+/* =============================================================
+   HERO MIRROR  — symmetric bars (up AND down from centre)
+   ============================================================= */
+function resizeMirror(){
+  const r = mirrorCanvas.getBoundingClientRect();
+  mirrorCanvas.width  = r.width  * devicePixelRatio;
+  mirrorCanvas.height = r.height * devicePixelRatio;
+  mCtx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+window.addEventListener('resize', resizeMirror);
+
+function idlePeaks(n, t){
+  const arr = new Float32Array(n);
+  for(let i=0;i<n;i++){
+    const x = i/n;
+    arr[i] = Math.abs(
+      Math.sin(x*18 + t*1.2)*0.30 +
+      Math.sin(x*7  + t*0.7)*0.20 +
+      Math.sin(x*37 + t*2.0)*0.10 +
+      Math.sin(x*3  + t*0.3)*0.15
+    );
+  }
+  return arr;
+}
+
+function drawMirror(t){
+  const w   = mirrorCanvas.clientWidth;
+  const h   = mirrorCanvas.clientHeight;
+  mCtx.clearRect(0,0,w,h);
+  const mid   = h/2;
+  const barW  = 2.5;
+  const gap   = 2;
+  const stride= barW+gap;
+  const bars  = Math.floor(w/stride);
+
+  const np = noisyPeaks || idlePeaks(bars, t||0);
+  const cp = cleanPeaks  || idlePeaks(bars, t||0).map(v=>v*0.3);
+  const stepN = np.length/bars;
+  const stepC = cp.length/bars;
+
+  for(let i=0;i<bars;i++){
+    const x  = i*stride;
+    const nv = Math.max(0, np[Math.floor(i*stepN)]||0);
+    const cv = Math.max(0, cp[Math.floor(i*stepC)]||0);
+    const nh = Math.max(1.5, nv*(mid-4)*0.95);
+    const ch = Math.max(1.5, cv*(mid-4)*0.95);
+
+    /* NOISY — coral, full symmetric */
+    mCtx.fillStyle = '#FF6B4A';
+    mCtx.globalAlpha = 0.90;
+    mCtx.fillRect(x, mid-nh, barW, nh);   /* up   */
+    mCtx.globalAlpha = 0.40;
+    mCtx.fillRect(x, mid,    barW, nh);   /* down */
+
+    /* CLEAN — teal, overlaid */
+    mCtx.fillStyle = '#5EEAD4';
+    mCtx.globalAlpha = 0.90;
+    mCtx.fillRect(x, mid-ch, barW, ch);
+    mCtx.globalAlpha = 0.40;
+    mCtx.fillRect(x, mid,    barW, ch);
+  }
+
+  mCtx.globalAlpha=1;
+  mCtx.strokeStyle='rgba(255,255,255,0.10)';
+  mCtx.lineWidth=1;
+  mCtx.beginPath();
+  mCtx.moveTo(0,mid); mCtx.lineTo(w,mid);
+  mCtx.stroke();
+}
+
+let animT=0;
+(function heroLoop(){
+  animT += 0.018;
+  if(!noisyPeaks) drawMirror(animT);
+  else            drawMirror(0);
+  requestAnimationFrame(heroLoop);
+})();
+
+/* =============================================================
+   DECODE helpers
+   ============================================================= */
+async function decodeAudio(arrayBuffer){
+  const ac  = new (window.AudioContext||window.webkitAudioContext)();
+  const buf = await ac.decodeAudioData(arrayBuffer.slice(0));
+  const raw = buf.getChannelData(0);
+  await ac.close();
+  return raw;
+}
+
+function buildPeaks(raw, buckets){
+  const size  = Math.max(1, Math.floor(raw.length/buckets));
+  const peaks = new Float32Array(buckets);
+  for(let i=0;i<buckets;i++){
+    let max=0;
+    const s=i*size;
+    for(let j=0;j<size;j++){ const v=Math.abs(raw[s+j]||0); if(v>max)max=v; }
+    peaks[i]=max;
+  }
+  return peaks;
+}
+
+/* =============================================================
+   PER-TRACK WAVEFORM CANVAS
+   Full symmetric bars — bright for played portion, dim for unplayed
+   ============================================================= */
+function drawTrackWave(canvas, raw, color, progress){
+  const dpr  = devicePixelRatio;
+  const rect = canvas.getBoundingClientRect();
+  if(!rect.width) return;
+  canvas.width  = rect.width  * dpr;
+  canvas.height = rect.height * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+
+  const W   = rect.width;
+  const H   = rect.height;
+  const mid = H/2;
+  const buckets = Math.max(1, Math.floor(W));
+  const peaks   = buildPeaks(raw, buckets);
+  const played  = Math.floor((progress||0)*buckets);
+
+  for(let i=0;i<buckets;i++){
+    const v = peaks[i];
+    const h = Math.max(1.5, v*(mid-3)*0.95);
+    const bright = i < played;
+
+    ctx.fillStyle   = color;
+    /* top half */
+    ctx.globalAlpha = bright ? 0.95 : 0.30;
+    ctx.fillRect(i, mid-h, 1, h);
+    /* bottom mirror */
+    ctx.globalAlpha = bright ? 0.50 : 0.15;
+    ctx.fillRect(i, mid,   1, h);
+  }
+
+  ctx.globalAlpha=1;
+
+  /* baseline */
+  ctx.strokeStyle='rgba(255,255,255,0.07)';
+  ctx.lineWidth=1;
+  ctx.beginPath();
+  ctx.moveTo(0,mid); ctx.lineTo(W,mid);
+  ctx.stroke();
+
+  /* playhead */
+  if(progress>0 && progress<1){
+    const px = progress*W;
+    ctx.strokeStyle='rgba(255,255,255,0.75)';
+    ctx.lineWidth=1.5;
+    ctx.beginPath();
+    ctx.moveTo(px,0); ctx.lineTo(px,H);
+    ctx.stroke();
+  }
+}
+
+function attachPlayback(audioEl, canvas, raw, color, wvWrap){
+  let raf=null;
+  function tick(){
+    const dur  = audioEl.duration||1;
+    drawTrackWave(canvas, raw, color, audioEl.currentTime/dur);
+    if(!audioEl.paused&&!audioEl.ended) raf=requestAnimationFrame(tick);
+  }
+  audioEl.addEventListener('play',   ()=>{ cancelAnimationFrame(raf); wvWrap.style.outline='1px solid '+color+'44'; raf=requestAnimationFrame(tick); });
+  audioEl.addEventListener('pause',  ()=>{ cancelAnimationFrame(raf); wvWrap.style.outline=''; });
+  audioEl.addEventListener('ended',  ()=>{ cancelAnimationFrame(raf); wvWrap.style.outline=''; drawTrackWave(canvas,raw,color,1); });
+  audioEl.addEventListener('seeked', ()=>{ drawTrackWave(canvas,raw,color,audioEl.currentTime/(audioEl.duration||1)); });
+  /* click to seek */
+  wvWrap.addEventListener('click', e=>{
+    const r   = wvWrap.getBoundingClientRect();
+    const frac= (e.clientX-r.left)/r.width;
+    audioEl.currentTime = frac*(audioEl.duration||0);
+  });
+}
+
+/* =============================================================
+   Helpers
+   ============================================================= */
+function humanSize(b){
+  if(b<1024)     return b+' B';
+  if(b<1048576)  return (b/1024).toFixed(1)+' KB';
+  return (b/1048576).toFixed(1)+' MB';
+}
+function fmtDur(s){
+  if(!s||isNaN(s)) return '';
+  return Math.floor(s/60)+':'+Math.floor(s%60).toString().padStart(2,'0');
+}
+
+/* =============================================================
+   File selection
+   ============================================================= */
+function setFile(file){
+  selectedFile=file;
+  fname.textContent=file.name;
+  fmeta.textContent=humanSize(file.size);
+  filebar.classList.add('show');
+  cleanBtn.disabled=false;
+  cleanBtn.querySelector('.btn-text').textContent='Clean this audio';
+  results.classList.remove('show');
+  errorMsg.classList.remove('show');
+  cleanPeaks=null; cleanRaw=null;
+
+  beforeAudio.src=URL.createObjectURL(file);
+  beforeAudio.addEventListener('loadedmetadata',()=>{
+    document.getElementById('beforeDur').textContent=fmtDur(beforeAudio.duration);
+  },{once:true});
+
+  file.arrayBuffer().then(async buf=>{
+    try{
+      noisyRaw = await decodeAudio(buf);
+      const mb = Math.floor(mirrorCanvas.clientWidth/4.5);
+      noisyPeaks = buildPeaks(noisyRaw, mb);
+      drawMirror(0);
+    }catch(e){ console.warn('decode failed',e); }
+  });
+}
+
+function renderBeforeWave(){
+  if(!noisyRaw) return;
+  const canvas = document.getElementById('beforeWvCanvas');
+  const wrap   = document.getElementById('beforeWvWrap');
+  drawTrackWave(canvas, noisyRaw, '#FF6B4A', 0);
+  attachPlayback(beforeAudio, canvas, noisyRaw, '#FF6B4A', wrap);
+}
+
+function renderAfterWave(){
+  if(!cleanRaw) return;
+  const canvas = document.getElementById('afterWvCanvas');
+  const wrap   = document.getElementById('afterWvWrap');
+  drawTrackWave(canvas, cleanRaw, '#5EEAD4', 0);
+  attachPlayback(afterAudio, canvas, cleanRaw, '#5EEAD4', wrap);
+}
+
+/* =============================================================
+   Drag & drop
+   ============================================================= */
+dropzone.addEventListener('click',    ()=>fileInput.click());
+dropzone.addEventListener('dragover', e=>{e.preventDefault();dropzone.classList.add('drag');});
+dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('drag'));
+dropzone.addEventListener('drop',     e=>{
+  e.preventDefault();dropzone.classList.remove('drag');
+  if(e.dataTransfer.files.length) setFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e=>{
+  if(e.target.files.length) setFile(e.target.files[0]);
+});
+clearFile.addEventListener('click', e=>{
+  e.stopPropagation();
+  selectedFile=null; noisyRaw=null; noisyPeaks=null;
+  fileInput.value='';
+  filebar.classList.remove('show');
+  cleanBtn.disabled=true;
+  cleanBtn.querySelector('.btn-text').textContent='Select a file to begin';
+  results.classList.remove('show');
+});
+
+strengthSlider.addEventListener('input',()=>{
+  strengthVal.textContent=strengthSlider.value+'%';
+});
+
+/* =============================================================
+   Clean
+   ============================================================= */
+cleanBtn.addEventListener('click', async ()=>{
+  if(!selectedFile) return;
+  errorMsg.classList.remove('show');
+  cleanBtn.disabled=true;
+  cleanBtn.classList.add('loading');
+  cleanBtn.querySelector('.btn-text').textContent='Cleaning…';
+
+  const fd=new FormData();
+  fd.append('audio', selectedFile);
+  fd.append('strength', (strengthSlider.value/100).toFixed(2));
+
+  try{
+    const res  = await fetch('api/clean',{method:'POST',body:fd});
+    const data = await res.json();
+    if(!res.ok) throw new Error(data.error||'Server error');
+
+    const dlUrl = data.download_url;
+    afterAudio.src  = dlUrl;
+    downloadBtn.href= dlUrl;
+    results.classList.add('show');
+
+    afterAudio.addEventListener('loadedmetadata',()=>{
+      document.getElementById('afterDur').textContent=fmtDur(afterAudio.duration);
+    },{once:true});
+
+    /* render before-wave now results are visible */
+    renderBeforeWave();
+
+    /* fetch clean audio, decode, draw after-wave */
+    fetch(dlUrl).then(r=>r.arrayBuffer()).then(async buf=>{
+      try{
+        cleanRaw = await decodeAudio(buf);
+        const mb = Math.floor(mirrorCanvas.clientWidth/4.5);
+        cleanPeaks = buildPeaks(cleanRaw, mb);
+        drawMirror(0);
+        renderAfterWave();
+      }catch(e){ console.warn('clean decode failed',e); }
+    });
+
+    cleanBtn.querySelector('.btn-text').textContent='Clean this audio';
+  }catch(err){
+    errorMsg.textContent=err.message||'Something went wrong.';
+    errorMsg.classList.add('show');
+    cleanBtn.querySelector('.btn-text').textContent='Clean this audio';
+  }finally{
+    cleanBtn.disabled=false;
+    cleanBtn.classList.remove('loading');
+  }
+});
+
+/* Boot */
+resizeMirror();
+</script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+## Full Step-by-Step Guide
+
+---
+
+## Step 1 — Install Python
+
+Download Python from **python.org** if you don't have it. Make sure to check **"Add Python to PATH"** during install.
+
+---
+
+## Step 2 — Install Required Libraries
+
+Open your terminal or command prompt and run:
+
+```bash
+pip install streamlit python-pptx edge-tts mutagen
+```
+
+---
+
+## Step 3 — Create Your Project Folder
+
+```
+my_ppt_app/
+│
+├── app.py
+├── generator.py
+└── audio/
+```
+
+Create the folder manually or run:
+```bash
+mkdir my_ppt_app
+cd my_ppt_app
+mkdir audio
+```
+
+---
+
+## Step 4 — Create `generator.py`
+
+This file generates slide content based on any topic the user types:## Step 5 — Create `app.py`## Step 6 — Run the App
+
+Put both files in the same folder, then run:
+
+```bash
+streamlit run app.py
+```
+
+Your browser will open automatically at `http://localhost:8501`
+
+---
+
+## What the App Does
+
+```
+User types topic → clicks Generate
+         ↓
+Slide content created automatically
+         ↓
+Audio MP3s generated for each slide
+         ↓
+PowerPoint file created with notes
+         ↓
+Download PPT + Audio ZIP from browser
+```
+
+---
+
+## Your Folder Should Look Like This
+
+```
+my_ppt_app/
+├── app.py          ← the web app
+├── generator.py    ← the engine
+└── audio_*/        ← created automatically on generate
+```
+
+---
+
+## Features Included
+
+- Any topic you type — works for anything
+- 3 to 13 slides with a slider
+- 6 different narrator voices to choose from
+- Download PPT and audio as ZIP directly from the browser
+- Slide preview inside the app
+- Duration estimator before generating
+
+
+
+
+# ============================================
+# generator.py
+# Generates slide content + audio + PPT
+# ============================================
+
+import os
+import asyncio
+import edge_tts
+from pptx import Presentation
+from pptx.util import Pt, Inches, Emu
+from pptx.dml.color import RGBColor
+from mutagen.mp3 import MP3
+
+
+# ============================================
+# GENERATE SLIDE CONTENT FROM TOPIC
+# ============================================
+
+def generate_slides(topic: str, num_slides: int = 10):
+    """
+    Generates slide content based on any topic.
+    No AI needed - uses smart templates.
+    """
+
+    slides = [
+        {
+            "title": f"Introduction to {topic}",
+            "text": f"""
+Welcome to this presentation about {topic}.
+In this video we will explore everything you need to know about {topic}.
+This topic is important and relevant in today's world.
+We will cover the basics, history, benefits, and much more.
+By the end of this presentation you will have a solid understanding of {topic}.
+Whether you are a complete beginner or have some experience, this is for you.
+Let us begin this exciting journey into the world of {topic}.
+Stay with us and let us make learning simple and enjoyable.
+"""
+        },
+        {
+            "title": f"What is {topic}?",
+            "text": f"""
+{topic} is a subject that has gained significant importance in recent years.
+Understanding {topic} begins with knowing its core definition and purpose.
+At its most basic level, {topic} refers to a field of knowledge with practical applications.
+People use {topic} in many areas of daily life, work, and industry.
+The concept of {topic} can be applied to solve real problems in meaningful ways.
+Many professionals around the world dedicate their careers to mastering {topic}.
+Learning {topic} gives you tools and skills that are valuable across many different fields.
+By understanding what {topic} truly is, you can begin to appreciate its importance.
+"""
+        },
+        {
+            "title": f"The History of {topic}",
+            "text": f"""
+The history of {topic} stretches back further than most people realize.
+Early developments in {topic} laid the foundation for everything we know today.
+Over time, pioneers and innovators shaped {topic} into the discipline it has become.
+Each era brought new discoveries and breakthroughs that advanced {topic} significantly.
+In the early stages, {topic} was understood by only a small group of dedicated experts.
+As knowledge spread, more people began to study and contribute to {topic}.
+Today {topic} has evolved into a well-established field with a rich and fascinating history.
+Understanding this history helps us appreciate how far {topic} has come over the years.
+"""
+        },
+        {
+            "title": f"Why {topic} Matters Today",
+            "text": f"""
+In today's fast-moving world, {topic} is more relevant than ever before.
+Industries and organizations across the globe rely on {topic} to stay competitive.
+The demand for knowledge and expertise in {topic} continues to grow every single year.
+Companies invest heavily in {topic} because of the value it brings to their operations.
+Individuals who understand {topic} have a significant advantage in the modern job market.
+The impact of {topic} can be felt in technology, business, healthcare, and education.
+Ignoring {topic} means missing out on one of the most important developments of our time.
+Now is the perfect moment to start learning and engaging with {topic} seriously.
+"""
+        },
+        {
+            "title": f"Core Concepts of {topic}",
+            "text": f"""
+To truly understand {topic} you must first grasp its core concepts and principles.
+These fundamental ideas form the backbone of everything related to {topic}.
+The first key concept is understanding the basic framework that {topic} operates within.
+Next it is important to recognize the main components that make up {topic} as a whole.
+Every area of {topic} has its own terminology that is worth learning from the beginning.
+Building a strong foundation in the core concepts makes advanced learning much easier.
+Many learners rush past the basics and struggle later, so take your time with fundamentals.
+Mastering the core concepts of {topic} is the most important step in your learning journey.
+"""
+        },
+        {
+            "title": f"Benefits of Learning {topic}",
+            "text": f"""
+Learning {topic} comes with a wide range of personal and professional benefits.
+First and foremost, {topic} expands your knowledge and opens your mind to new possibilities.
+Professionally, expertise in {topic} can lead to better job opportunities and higher salaries.
+Many employers actively seek candidates who have skills and knowledge related to {topic}.
+On a personal level, studying {topic} improves your critical thinking and problem-solving abilities.
+It also builds confidence as you gain mastery over a complex and valuable subject.
+{topic} connects you with a global community of learners, researchers, and professionals.
+The benefits of learning {topic} extend far beyond the classroom and into every area of life.
+"""
+        },
+        {
+            "title": f"Common Applications of {topic}",
+            "text": f"""
+{topic} has a wide range of practical applications across many different industries.
+In the technology sector, {topic} is used to build innovative tools and solutions.
+Healthcare professionals apply {topic} to improve patient outcomes and medical research.
+The business world uses {topic} to make better decisions and improve efficiency.
+Education systems around the world are integrating {topic} into their core curriculums.
+Creative industries also benefit from the principles and techniques found in {topic}.
+Even in everyday life, the concepts of {topic} influence how we interact with the world.
+The applications of {topic} are virtually limitless, which is what makes it so exciting to learn.
+"""
+        },
+        {
+            "title": f"How to Get Started with {topic}",
+            "text": f"""
+Getting started with {topic} is simpler than most people think when you follow the right steps.
+The first step is to identify your goal and understand why you want to learn {topic}.
+Next, gather quality learning resources such as books, courses, and online tutorials about {topic}.
+Set aside dedicated time each day to study and practice what you learn about {topic}.
+Start with the basics and resist the urge to jump into advanced material too quickly.
+Find a community of other learners who are also interested in {topic} for support and motivation.
+Practice consistently because regular small sessions are more effective than occasional long ones.
+With patience and dedication, you will be making real progress in {topic} before you know it.
+"""
+        },
+        {
+            "title": f"Challenges in {topic}",
+            "text": f"""
+Like any valuable subject, {topic} comes with its own set of challenges and obstacles.
+Many beginners feel overwhelmed when they first encounter the complexity of {topic}.
+The learning curve can be steep, especially when dealing with advanced aspects of {topic}.
+Staying motivated during difficult periods is one of the biggest challenges learners face.
+Finding reliable and up-to-date information about {topic} can sometimes be difficult.
+It takes time to build genuine expertise, and progress in {topic} is rarely linear.
+Overcoming these challenges requires persistence, a growth mindset, and a willingness to fail.
+Every expert in {topic} has faced these same challenges and succeeded by pushing through them.
+"""
+        },
+        {
+            "title": f"The Future of {topic}",
+            "text": f"""
+The future of {topic} is filled with exciting possibilities and rapid developments.
+Experts predict that {topic} will continue to evolve and grow in importance over the coming years.
+New technologies and discoveries are constantly reshaping what we know about {topic}.
+The next generation of innovators will push the boundaries of {topic} in ways we cannot yet imagine.
+Artificial intelligence and digital tools are already beginning to transform the landscape of {topic}.
+Those who invest in learning {topic} today will be well positioned for the opportunities of tomorrow.
+The field of {topic} is one of the most dynamic and fast-changing areas of modern knowledge.
+Staying informed and continuously learning will be essential for anyone working in {topic}.
+"""
+        },
+        {
+            "title": f"Tips for Mastering {topic}",
+            "text": f"""
+Mastering {topic} requires more than just reading, it requires active and intentional practice.
+Tip one: set clear and specific goals for what you want to achieve with {topic}.
+Tip two: teach what you learn to others because explaining things deepens your own understanding.
+Tip three: apply your knowledge in real-world projects related to {topic} as often as possible.
+Tip four: review and revise regularly because spaced repetition dramatically improves retention.
+Tip five: seek feedback from mentors or peers who have more experience in {topic} than you do.
+Tip six: embrace mistakes as learning opportunities rather than signs of failure.
+Following these tips consistently will accelerate your progress in {topic} significantly.
+"""
+        },
+        {
+            "title": f"Resources for Learning {topic}",
+            "text": f"""
+There are many excellent resources available to help you learn {topic} effectively.
+Online platforms like YouTube, Coursera, and Udemy offer courses on {topic} at all levels.
+Books and textbooks written by experts provide deep and structured knowledge about {topic}.
+Podcasts and documentaries offer a more casual way to absorb information about {topic}.
+Joining online communities, forums, and groups focused on {topic} can accelerate your learning.
+Following thought leaders and experts in {topic} on social media keeps you informed and inspired.
+Practice platforms and sandboxes allow you to apply your knowledge of {topic} hands-on.
+The best resource is the one you will actually use consistently, so choose what works for you.
+"""
+        },
+        {
+            "title": f"Conclusion",
+            "text": f"""
+We have covered a great deal of ground in this presentation about {topic}.
+From its definition and history to its applications and future, {topic} is truly a fascinating subject.
+The most important takeaway is that {topic} is accessible to anyone who is willing to put in the effort.
+Every expert in {topic} began exactly where you are today, as a curious beginner.
+The journey to mastering {topic} will take time, but every step forward is worth taking.
+Use the resources, tips, and knowledge from this presentation to guide your path forward.
+Remember that consistent effort and a positive mindset are your greatest tools in learning {topic}.
+Thank you for watching. Now go out there, start learning, and make {topic} a part of your life.
+"""
+        },
+    ]
+
+    # Return only the requested number of slides
+    return slides[:num_slides]
+
+
+# ============================================
+# GENERATE AUDIO FILES
+# ============================================
+
+async def _generate_audio_async(slides: list, audio_dir: str):
+    """Async function to generate all audio files."""
+    for i, slide in enumerate(slides):
+        filename = os.path.join(audio_dir, f"slide_{i+1}.mp3")
+        communicate = edge_tts.Communicate(
+            slide["text"],
+            voice="en-US-AriaNeural"
+        )
+        await communicate.save(filename)
+
+def generate_audio(slides: list, audio_dir: str = "audio"):
+    """Generate MP3 audio for each slide."""
+    os.makedirs(audio_dir, exist_ok=True)
+    asyncio.run(_generate_audio_async(slides, audio_dir))
+
+
+# ============================================
+# CREATE POWERPOINT
+# ============================================
+
+def create_ppt(slides: list, audio_dir: str, output_path: str):
+    """Create a PowerPoint presentation from slide data."""
+
+    prs = Presentation()
+    total_duration = 0
+
+    for i, slide_data in enumerate(slides):
+
+        slide = prs.slides.add_slide(prs.slide_layouts[1])
+
+        # Title
+        title_shape = slide.shapes.title
+        title_shape.text = slide_data["title"]
+        title_shape.text_frame.paragraphs[0].font.size = Pt(28)
+        title_shape.text_frame.paragraphs[0].font.bold = True
+        title_shape.text_frame.paragraphs[0].font.color.rgb = RGBColor(0x2C, 0x3E, 0x50)
+
+        # Content body
+        body = slide.placeholders[1]
+        tf = body.text_frame
+        tf.clear()
+        tf.word_wrap = True
+
+        lines = [l.strip() for l in slide_data["text"].strip().split("\n") if l.strip()]
+
+        for idx, line in enumerate(lines):
+            p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
+            p.text = line
+            p.font.size = Pt(17)
+            p.font.color.rgb = RGBColor(0x2C, 0x3E, 0x50)
+            p.space_after = Pt(6)
+
+        # Add duration to notes
+        audio_file = os.path.join(audio_dir, f"slide_{i+1}.mp3")
+        if os.path.exists(audio_file):
+            audio = MP3(audio_file)
+            duration = round(audio.info.length, 2)
+            total_duration += duration
+            notes = slide.notes_slide.notes_text_frame
+            notes.text = f"Audio: slide_{i+1}.mp3 | Duration: {duration} seconds"
+
+    prs.save(output_path)
+    return total_duration
+
+
+# ============================================
+# FULL PIPELINE
+# ============================================
+
+def run_pipeline(topic: str, num_slides: int, audio_dir: str, output_ppt: str):
+    """
+    Full pipeline:
+    1. Generate slide content
+    2. Generate audio
+    3. Create PPT
+    Returns total duration in seconds.
+    """
+    slides = generate_slides(topic, num_slides)
+    generate_audio(slides, audio_dir)
+    total_duration = create_ppt(slides, audio_dir, output_ppt)
+    return total_duration, slides

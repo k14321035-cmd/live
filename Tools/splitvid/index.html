@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frame Splitter</title>
+<style>
+  :root {
+    --ink: #16140f;
+    --paper: #f4f1ea;
+    --film: #1c1a16;
+    --amber: #d97a34;
+    --amber-dim: #a85f29;
+    --line: #d8d2c4;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --serif: 'Georgia', 'Iowan Old Style', serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--mono);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sprocket-bar {
+    height: 18px;
+    background: var(--film);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    overflow: hidden;
+  }
+  .sprocket-bar span {
+    width: 7px;
+    height: 7px;
+    background: var(--paper);
+    border-radius: 1px;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  header {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 28px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin: 0 0 10px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 400;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .sub {
+    color: #5c574a;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .panel {
+    border: 1px solid var(--line);
+    background: #fbf9f4;
+    position: relative;
+  }
+
+  .dropzone {
+    padding: 48px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .dropzone:hover { background: #f6f2e9; }
+  .dropzone.dragover { background: #efe6d4; }
+
+  .dropzone .icon {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin-bottom: 10px;
+  }
+
+  .dropzone .filename {
+    font-size: 15px;
+    color: var(--ink);
+    margin-top: 4px;
+    word-break: break-all;
+  }
+
+  .dropzone .hint {
+    font-size: 12px;
+    color: #908a78;
+    margin-top: 8px;
+  }
+
+  video.preview {
+    display: block;
+    margin: 20px auto 0;
+    max-width: 100%;
+    max-height: 220px;
+    border: 1px solid var(--line);
+  }
+
+  .controls {
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 28px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  .field.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b6557;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    font-family: var(--mono);
+    font-size: 14px;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink);
+    width: 100%;
+  }
+  input:focus, select:focus {
+    outline: 2px solid var(--amber);
+    outline-offset: -1px;
+  }
+
+  .time-row { display: flex; gap: 10px; }
+  .time-row .field { flex: 1; }
+
+  .row-note {
+    font-size: 11px;
+    color: #908a78;
+    margin-top: -3px;
+  }
+
+  .actions {
+    padding: 0 28px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  button#extractBtn {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--film);
+    color: var(--paper);
+    border: none;
+    padding: 14px 26px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  button#extractBtn:hover:not(:disabled) { background: var(--amber-dim); }
+  button#extractBtn:disabled { background: #c9c3b4; cursor: not-allowed; }
+
+  .status {
+    font-size: 13px;
+    color: #5c574a;
+  }
+  .status.error { color: #b0432f; }
+  .status.success { color: #3f7d4a; }
+
+  footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+    font-size: 11px;
+    color: #a39d8c;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 32px; }
+    .controls { grid-template-columns: 1fr; padding: 22px; }
+    .actions { flex-direction: column; align-items: stretch; padding: 0 22px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sprocket-bar" id="sprocketBar"></div>
+
+<header>
+  <p class="eyebrow">Local tool · runs on your machine</p>
+  <h1>Split a video into <em>frames</em>.</h1>
+  <p class="sub">Drop a video, set how often to grab a frame, and download every extracted image as a single zip. Processing happens locally via the ffmpeg server — nothing leaves your computer.</p>
+</header>
+
+<main>
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <div class="icon">— select source —</div>
+      <div class="filename" id="filename">Click to choose a video, or drag one here</div>
+      <div class="hint">MP4, MOV, MKV, WebM, AVI</div>
+      <video class="preview" id="preview" controls style="display:none;"></video>
+      <input type="file" id="fileInput" accept="video/*" style="display:none;">
+    </div>
+
+    <div class="controls">
+      <div class="field">
+        <label for="interval">Interval (seconds)</label>
+        <input type="number" id="interval" value="2" min="0.1" step="0.1">
+      </div>
+
+      <div class="field">
+        <label for="format">Image format</label>
+        <select id="format">
+          <option value="png">PNG (lossless)</option>
+          <option value="jpg" selected>JPG</option>
+          <option value="webp">WebP</option>
+          <option value="bmp">BMP</option>
+        </select>
+      </div>
+
+      <div class="field" id="qualityField">
+        <label for="quality">Quality (1–100)</label>
+        <input type="number" id="quality" value="90" min="1" max="100">
+      </div>
+
+      <div class="field">
+        <label for="width">Max width (px, optional)</label>
+        <input type="text" id="width" placeholder="e.g. 1280 — leave blank for original">
+      </div>
+
+      <div class="field full">
+        <label>Time range (optional)</label>
+        <div class="time-row">
+          <div class="field">
+            <input type="text" id="start" placeholder="Start — 00:00:10">
+          </div>
+          <div class="field">
+            <input type="text" id="end" placeholder="End — 00:01:30">
+          </div>
+        </div>
+        <div class="row-note">Leave both blank to process the entire video.</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="extractBtn" disabled>Extract frames</button>
+      <span class="status" id="status"></span>
+    </div>
+  </div>
+
+  <footer>
+    frame_splitter / local ffmpeg bridge — server.py must be running at this address.
+  </footer>
+</main>
+
+<script>
+  // Decorative sprocket holes
+  const bar = document.getElementById('sprocketBar');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('span');
+    bar.appendChild(s);
+  }
+
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const filenameEl = document.getElementById('filename');
+  const preview = document.getElementById('preview');
+  const extractBtn = document.getElementById('extractBtn');
+  const statusEl = document.getElementById('status');
+  const formatSelect = document.getElementById('format');
+  const qualityField = document.getElementById('qualityField');
+
+  let selectedFile = null;
+
+  function updateQualityVisibility() {
+    qualityField.style.display = formatSelect.value === 'png' || formatSelect.value === 'bmp' ? 'none' : 'flex';
+  }
+  formatSelect.addEventListener('change', updateQualityVisibility);
+  updateQualityVisibility();
+
+  function handleFile(file) {
+    if (!file || !file.type.startsWith('video/')) {
+      setStatus('Please choose a video file.', 'error');
+      return;
+    }
+    selectedFile = file;
+    filenameEl.textContent = file.name;
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = 'block';
+    extractBtn.disabled = false;
+    setStatus('');
+  }
+
+  dropzone.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'VIDEO') fileInput.click();
+  });
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length) handleFile(fileInput.files[0]);
+  });
+
+  ['dragenter', 'dragover'].forEach(evt =>
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    })
+  );
+  ['dragleave', 'drop'].forEach(evt =>
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+    })
+  );
+  dropzone.addEventListener('drop', (e) => {
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = 'status' + (kind ? ' ' + kind : '');
+  }
+
+  extractBtn.addEventListener('click', async () => {
+    if (!selectedFile) return;
+
+    const interval = document.getElementById('interval').value;
+    const format = document.getElementById('format').value;
+    const quality = document.getElementById('quality').value;
+    const width = document.getElementById('width').value.trim();
+    const start = document.getElementById('start').value.trim();
+    const end = document.getElementById('end').value.trim();
+
+    const formData = new FormData();
+    formData.append('video', selectedFile);
+    formData.append('interval', interval);
+    formData.append('format', format);
+    formData.append('quality', quality);
+    if (width) formData.append('width', width);
+    if (start) formData.append('start', start);
+    if (end) formData.append('end', end);
+
+    extractBtn.disabled = true;
+    setStatus('Extracting frames — this can take a moment for longer videos…');
+
+    try {
+      const res = await fetch('api/extract', { method: 'POST', body: formData });
+
+      if (!res.ok) {
+        let message = 'Extraction failed.';
+        try {
+          const errJson = await res.json();
+          if (errJson.error) message = errJson.error;
+        } catch (_) {}
+        setStatus(message, 'error');
+        extractBtn.disabled = false;
+        return;
+      }
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const disposition = res.headers.get('Content-Disposition') || '';
+      const match = disposition.match(/filename="?([^"]+)"?/);
+      a.href = url;
+      a.download = match ? match[1] : 'frames.zip';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setStatus('Done — your zip download has started.', 'success');
+    } catch (err) {
+      setStatus('Could not reach the server. Is server.py running?', 'error');
+    } finally {
+      extractBtn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>

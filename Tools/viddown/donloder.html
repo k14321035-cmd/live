@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Video Downloader</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --bg: #0b0f19;
+    --surface: #161b22;
+    --surface2: #1e2530;
+
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.18);
+
+    --purple-dark: #6c5ce7;
+    --purple: #8b7dff;
+    --purple-light: #2a2448;
+    --purple-mid: #5a4fcf;
+
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-faint: #64748b;
+
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --red: #ef4444;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0b0f19, #111827);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem 4rem;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #221d42;
+    border: 1px solid #4338ca;
+    border-radius: 50px;
+    padding: 8px 18px;
+    margin-bottom: 1.5rem;
+  }
+
+  .logo i {
+    font-size: 18px;
+    color: var(--purple);
+  }
+
+  .logo span {
+    font-size: 13px;
+    font-weight: 500;
+    color: #c4b5fd;
+  }
+
+  .header h1 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .header h1 span {
+    color: var(--purple);
+  }
+
+  .header p {
+    font-size: 16px;
+    color: var(--text-muted);
+  }
+
+  /* Platforms */
+  .platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .pill {
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--surface);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  /* Input */
+  .input-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .input-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .input-row input {
+    flex: 1;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border-hover);
+    background: #0f172a;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+
+  .input-row input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(139,125,255,0.15);
+  }
+
+  .input-row input::placeholder {
+    color: var(--text-faint);
+  }
+
+  .btn-analyse {
+    height: 48px;
+    padding: 0 22px;
+    border-radius: 10px;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-analyse:hover {
+    background: var(--purple-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-analyse:active {
+    transform: scale(0.97);
+  }
+
+  .btn-analyse:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Status */
+  .status {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 12px 0 0;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+
+  .dot.loading {
+    background: var(--amber);
+    animation: pulse 1s infinite;
+  }
+
+  .dot.error {
+    background: var(--red);
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Result Card */
+  .result-card {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .thumb-banner {
+    width: 100%;
+    height: 180px;
+    background: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .thumb-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumb-banner .play-icon {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(139,125,255,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .thumb-banner .play-icon i {
+    font-size: 24px;
+    color: white;
+    margin-left: 3px;
+  }
+
+  .vid-meta {
+    padding: 1rem 1.25rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .vid-meta h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .vid-meta p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab {
+    flex: 1;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    transition: 0.15s;
+  }
+
+  .tab.active {
+    color: var(--purple);
+    border-bottom-color: var(--purple);
+  }
+
+  .tab:hover:not(.active) {
+    color: var(--text);
+  }
+
+  /* Formats */
+  .formats-wrap {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .formats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  .fmt-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #0f172a;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text);
+    width: 100%;
+    transition: 0.15s;
+    text-align: left;
+  }
+
+  .fmt-btn:hover {
+    border-color: var(--purple);
+    background: #221d42;
+  }
+
+  .fmt-btn .fi {
+    font-size: 16px;
+    color: var(--purple);
+  }
+
+  .fmt-label {
+    flex: 1;
+  }
+
+  .fmt-label span {
+    display: block;
+    font-weight: 500;
+  }
+
+  .fmt-label small {
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
+  .fmt-btn .fd {
+    color: var(--text-faint);
+  }
+
+  /* Progress */
+  .progress-wrap {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .progress-track {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--surface2);
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--purple);
+    width: 0%;
+    transition: width 0.25s;
+  }
+
+  /* Success/Error */
+  .done-box {
+    display: none;
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.35);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #86efac;
+    margin-bottom: 1rem;
+  }
+
+  .err-box {
+    display: none;
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.35);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #fca5a5;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    .header h1 {
+      font-size: 26px;
+    }
+
+    .input-row {
+      flex-direction: column;
+    }
+
+    .btn-analyse {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .thumb-banner {
+      height: 130px;
+    }
+  }
+</style>
+</head>
+<body >
+<div class="container">
+
+  <div class="header">
+    <div class="logo"><i class="ti ti-download"></i><span>Free · No signup · 1000+ sites</span></div>
+    <h1>Download any <span>video</span></h1>
+    <p>Paste a link — get video with sound or MP3</p>
+  </div>
+
+  <div class="platforms">
+    <span class="pill">▶ YouTube</span>
+    <span class="pill">Instagram</span>
+    <span class="pill">Twitter / X</span>
+    <span class="pill">TikTok</span>
+    <span class="pill">Facebook</span>
+    <span class="pill">Vimeo</span>
+    <span class="pill">Reddit</span>
+    <span class="pill">Twitch</span>
+    <span class="pill">Dailymotion</span>
+    <span class="pill">+ 1000 more</span>
+  </div>
+
+  <div class="input-card">
+    <div class="input-row">
+      <input type="url" id="url-input" placeholder="https://www.youtube.com/watch?v=..." />
+      <button class="btn-analyse" id="fetch-btn" onclick="handleFetch()">
+        <i class="ti ti-search"></i> Analyse
+      </button>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="err-box" id="err-box"><i class="ti ti-alert-circle"></i><span id="err-msg"></span></div>
+
+  <div class="result-card" id="result-card">
+    <div class="thumb-banner" id="thumb-banner">
+      <div class="play-icon"><i class="ti ti-player-play"></i></div>
+    </div>
+    <div class="vid-meta">
+      <h3 id="vid-title">—</h3>
+      <p id="vid-duration">—</p>
+    </div>
+    <div class="tabs">
+      <button class="tab active" id="tab-video" onclick="switchTab('video')">
+        <i class="ti ti-video" style="margin-right:5px"></i> Video + Audio
+      </button>
+      <button class="tab" id="tab-audio" onclick="switchTab('audio')">
+        <i class="ti ti-music" style="margin-right:5px"></i> MP3 Only
+      </button>
+    </div>
+    <div class="formats-wrap">
+      <div class="formats" id="formats-grid"></div>
+    </div>
+  </div>
+
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-top">
+      <span id="progress-label">Downloading…</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+  </div>
+
+  <div class="done-box" id="done-box">
+    <i class="ti ti-circle-check" style="font-size:18px"></i>
+    <span id="done-msg"></span>
+  </div>
+
+</div>
+<script>
+  const SERVER = "http://127.0.0.1:5000";
+  let currentUrl = "";
+
+  function setStatus(msg, type) {
+    const el = document.getElementById("status");
+    const cls = type === "loading" ? "loading" : type === "error" ? "error" : "";
+    el.style.display = "flex";
+    el.innerHTML = `<span class="dot ${cls}"></span> ${msg}`;
+  }
+
+  function showErr(msg) {
+    const b = document.getElementById("err-box");
+    document.getElementById("err-msg").textContent = msg;
+    b.style.display = "flex";
+  }
+
+  function hideAll() {
+    document.getElementById("err-box").style.display = "none";
+    document.getElementById("done-box").style.display = "none";
+    document.getElementById("progress-wrap").style.display = "none";
+    document.getElementById("result-card").style.display = "none";
+  }
+
+  /* ── ANALYSE ── */
+  function handleFetch() {
+    const url = document.getElementById("url-input").value.trim();
+    if (!url) { showErr("Please paste a video URL."); return; }
+
+    currentUrl = url;
+    const btn = document.getElementById("fetch-btn");
+    btn.disabled = true;
+    hideAll();
+    setStatus("Analysing link…", "loading");
+
+    fetch(`${SERVER}/info?url=${encodeURIComponent(url)}`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.error) throw new Error(data.error);
+
+        document.getElementById("vid-title").textContent    = data.title || "Unknown";
+        document.getElementById("vid-duration").textContent = data.duration ? "Duration: " + data.duration : "";
+
+        // thumbnail
+        const banner = document.getElementById("thumb-banner");
+        const old = banner.querySelector("img");
+        if (old) old.remove();
+        if (data.thumbnail) {
+          const img = document.createElement("img");
+          img.src = data.thumbnail;
+          img.onerror = () => img.remove();
+          banner.prepend(img);
+        }
+
+        switchTab("video");
+        document.getElementById("result-card").style.display = "block";
+        setStatus("Video found — pick a format below.", "ok");
+        btn.disabled = false;
+      })
+      .catch(err => {
+        setStatus("Cannot reach server. Is server.py running?", "error");
+        showErr(err.message || "Make sure server.py is running on port 5000.");
+        btn.disabled = false;
+      });
+  }
+
+  /* ── TABS ── */
+  function switchTab(tab) {
+    document.getElementById("tab-video").classList.toggle("active", tab === "video");
+    document.getElementById("tab-audio").classList.toggle("active", tab === "audio");
+
+    const grid = document.getElementById("formats-grid");
+
+    if (tab === "audio") {
+      grid.innerHTML = `
+        <button class="fmt-btn" onclick="startDownload('192', true)">
+          <i class="ti ti-music fi"></i>
+          <span class="fmt-label"><span>MP3 · 192 kbps</span><small>Best quality</small></span>
+          <i class="ti ti-download fd"></i>
+        </button>
+        <button class="fmt-btn" onclick="startDownload('128', true)">
+          <i class="ti ti-music fi"></i>
+          <span class="fmt-label"><span>MP3 · 128 kbps</span><small>Smaller file</small></span>
+          <i class="ti ti-download fd"></i>
+        </button>`;
+      return;
+    }
+
+    // Video + Audio tab — send height to server, server merges with ffmpeg
+    grid.innerHTML = [
+      { h: "1080", label: "1080p Full HD" },
+      { h: "720",  label: "720p HD" },
+      { h: "480",  label: "480p" },
+      { h: "360",  label: "360p" },
+    ].map(q => `
+      <button class="fmt-btn" onclick="startDownload('${q.h}', false)">
+        <i class="ti ti-video fi"></i>
+        <span class="fmt-label">
+          <span>${q.label}</span>
+          <small>Video + Audio · MP4</small>
+        </span>
+        <i class="ti ti-download fd"></i>
+      </button>`).join("");
+  }
+
+  /* ── DOWNLOAD ── */
+  function startDownload(quality, isAudio) {
+    const pw  = document.getElementById("progress-wrap");
+    const bar = document.getElementById("progress-bar");
+    const lbl = document.getElementById("progress-label");
+    const pct = document.getElementById("progress-pct");
+    const done = document.getElementById("done-box");
+
+    done.style.display = "none";
+    document.getElementById("err-box").style.display = "none";
+    pw.style.display = "block";
+    bar.style.background = "var(--purple)";
+    bar.style.width = "0%";
+    pct.textContent = "0%";
+    lbl.textContent = isAudio
+      ? "Downloading audio and converting to MP3…"
+      : "Downloading video + audio and merging… (this takes a moment)";
+
+    let p = 0;
+    const iv = setInterval(() => {
+      p += Math.random() * 4;
+      if (p > 88) p = 88;
+      bar.style.width = p.toFixed(0) + "%";
+      pct.textContent = p.toFixed(0) + "%";
+    }, 500);
+
+    let url;
+    if (isAudio) {
+      url = `${SERVER}/download?url=${encodeURIComponent(currentUrl)}&audio=true&quality=${quality}`;
+    } else {
+      url = `${SERVER}/download?url=${encodeURIComponent(currentUrl)}&height=${quality}`;
+    }
+
+    fetch(url)
+      .then(res => {
+        clearInterval(iv);
+
+        // Server sends back a file (send_file) — download it directly
+        if (res.ok && res.headers.get("content-type") && !res.headers.get("content-type").includes("json")) {
+          bar.style.width = "100%";
+          pct.textContent = "100%";
+          lbl.textContent = "Done! Saving file…";
+          return res.blob().then(blob => {
+            const ext  = isAudio ? "mp3" : "mp4";
+            const a    = document.createElement("a");
+            a.href     = URL.createObjectURL(blob);
+            a.download = `download.${ext}`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            done.style.display = "flex";
+            document.getElementById("done-msg").innerHTML =
+              isAudio
+                ? "✅ MP3 downloaded successfully!"
+                : "✅ Video with audio downloaded successfully!";
+          });
+        }
+
+        // Fallback: server returned JSON {"status":"done"} — file saved server-side
+        return res.json().then(data => {
+          if (data.error) throw new Error(data.error);
+          bar.style.width = "100%";
+          pct.textContent = "100%";
+          lbl.textContent = "Done!";
+          done.style.display = "flex";
+          document.getElementById("done-msg").innerHTML =
+            isAudio
+              ? "✅ MP3 saved to the <strong>downloads/</strong> folder next to server.py"
+              : "✅ Video with audio saved to the <strong>downloads/</strong> folder next to server.py";
+        });
+      })
+      .catch(err => {
+        clearInterval(iv);
+        bar.style.background = "var(--red)";
+        bar.style.width = "100%";
+        lbl.textContent = "Download failed.";
+        pct.textContent = "";
+        showErr(err.message || "Something went wrong. Check your server terminal for details.");
+      });
+  }
+
+  document.getElementById("url-input").addEventListener("keydown", e => {
+    if (e.key === "Enter") handleFetch();
+  });
+</script>
+</body>
+</html>

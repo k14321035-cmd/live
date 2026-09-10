@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Favicon Generator</title>
+  <style>
+    body { font-family: -apple-system, Arial, sans-serif; background: #f4f6f8; margin: 0; padding: 40px; }
+    .wrap { max-width: 760px; margin: 0 auto; background: white; border-radius: 16px;
+            padding: 32px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    h1 { font-size: 22px; margin-top: 0; }
+    form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+    label { font-size: 13px; color: #444; font-weight: 600; display: block; margin-bottom: 4px; }
+    input[type=text], input[type=number] { width: 100%; padding: 8px 10px; border: 1px solid #ddd;
+            border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+    input[type=color] { width: 60px; height: 36px; border: none; border-radius: 8px; cursor: pointer; }
+    .full { grid-column: 1 / -1; }
+    .preview { text-align: center; margin: 28px 0; min-height: 220px; }
+    .preview img { width: 200px; height: 200px; image-rendering: pixelated; border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+    button { background: #1976D2; color: white; border: none; padding: 10px 20px; border-radius: 8px;
+            font-size: 14px; cursor: pointer; font-weight: 600; }
+    button:hover { background: #1565C0; }
+    button.secondary { background: #eef2f7; color: #1976D2; }
+    button.secondary:hover { background: #e2e8f0; }
+    .row { display: flex; align-items: center; gap: 10px; }
+    .actions { display: flex; gap: 12px; margin-top: 8px; }
+    .status { font-size: 13px; color: #888; margin-top: 10px; }
+    .status.error { color: #c0392b; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🎨 Favicon Generator</h1>
+
+    <form id="form">
+      <div>
+        <label>Text (1-2 letters look best)</label>
+        <input type="text" id="text" maxlength="4" value="CT">
+      </div>
+      <div>
+        <label>Size (px)</label>
+        <input type="number" id="size" min="16" max="1024" value="256">
+      </div>
+      <div>
+        <label>Dark shade (gradient top)</label>
+        <div class="row"><input type="color" id="color_dark" value="#0d47a1"></div>
+      </div>
+      <div>
+        <label>Main color (gradient bottom)</label>
+        <div class="row"><input type="color" id="color_main" value="#1976d2"></div>
+      </div>
+      <div>
+        <label>Accent color (2nd letter)</label>
+        <div class="row"><input type="color" id="color_accent" value="#42a5f5"></div>
+      </div>
+      <div class="full actions">
+        <button type="submit">Update Preview</button>
+        <button type="button" class="secondary" id="downloadBtn">Download PNG</button>
+      </div>
+    </form>
+
+    <div class="preview">
+      <img id="previewImg" src="" alt="favicon preview">
+    </div>
+    <div class="status" id="status">Set the server URL below if it's not on localhost:5000.</div>
+
+    <label>API server URL</label>
+    <input type="text" id="apiBase" value="http://localhost:5000">
+  </div>
+
+  <script>
+    const form = document.getElementById('form');
+    const previewImg = document.getElementById('previewImg');
+    const statusEl = document.getElementById('status');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const apiBaseInput = document.getElementById('apiBase');
+
+    function getParams() {
+      return {
+        text: document.getElementById('text').value || 'CT',
+        size: document.getElementById('size').value || 256,
+        color_dark: document.getElementById('color_dark').value.replace('#', ''),
+        color_main: document.getElementById('color_main').value.replace('#', ''),
+        color_accent: document.getElementById('color_accent').value.replace('#', ''),
+      };
+    }
+
+    function buildQuery(params) {
+      return new URLSearchParams(params).toString();
+    }
+
+    async function updatePreview() {
+      const base = apiBaseInput.value.replace(/\/$/, '');
+      const query = buildQuery(getParams());
+      const url = `${base}/api/image?${query}`;
+      statusEl.textContent = 'Loading preview...';
+      statusEl.classList.remove('error');
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Server responded ${res.status}`);
+        const blob = await res.blob();
+        previewImg.src = URL.createObjectURL(blob);
+        statusEl.textContent = 'Preview updated.';
+      } catch (err) {
+        statusEl.textContent = `Could not reach server: ${err.message}. Is server.py running?`;
+        statusEl.classList.add('error');
+      }
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      updatePreview();
+    });
+
+    downloadBtn.addEventListener('click', async () => {
+      const base = apiBaseInput.value.replace(/\/$/, '');
+      const params = getParams();
+      const query = buildQuery(params);
+      const url = `${base}/api/download?${query}`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Server responded ${res.status}`);
+        const blob = await res.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `favicon_${params.text}_${params.size}.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } catch (err) {
+        statusEl.textContent = `Download failed: ${err.message}`;
+        statusEl.classList.add('error');
+      }
+    });
+
+    // Load an initial preview on page open
+    updatePreview();
+  </script>
+</body>
+</html>
