@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Open practical PDF, audio, CV, favicon, and video-frame tools from Code Tutorium.">
+  <title>Tools | Code Tutorium</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f7f8fa;--surface:#fff;--text:#14171b;--muted:#5a6070;--border:rgba(0,0,0,.1);--accent:#2f6fed;--accent-dim:rgba(47,111,237,.12)}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse 750px 460px at 8% -8%,rgba(47,111,237,.12),transparent 64%),var(--bg);color:var(--text);font-family:Inter,sans-serif}.top{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 2.5rem;border-bottom:1px solid var(--border);background:rgba(247,248,250,.88);backdrop-filter:blur(10px)}.logo{font-family:'JetBrains Mono',monospace;font-weight:700;text-decoration:none;color:var(--text)}.logo span{color:var(--accent)}.back{font-family:'JetBrains Mono',monospace;font-size:.82rem;text-decoration:none;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:.55rem .85rem}.back:hover{border-color:var(--accent)}main{max-width:1100px;margin:0 auto;padding:5rem 2rem}.eyebrow{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.78rem;margin-bottom:1rem}.eyebrow:before{content:'// ';}h1{font-family:'JetBrains Mono',monospace;font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-.05em;margin:0}.intro{max-width:640px;color:var(--muted);line-height:1.7;margin:1.25rem 0 3rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}.tool-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;min-height:235px;transition:transform .18s,border-color .18s,box-shadow .18s}.tool-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 16px 30px rgba(25,45,80,.1)}.icon{width:48px;height:48px;border-radius:10px;background:var(--accent-dim);display:grid;place-items:center;color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.73rem;font-weight:700}.tool-card h2{font-family:'JetBrains Mono',monospace;font-size:1.05rem;margin:1rem 0 .55rem}.tool-card p{color:var(--muted);line-height:1.55;font-size:.9rem;flex:1;margin:0 0 1.3rem}.open{align-self:flex-start;background:var(--accent);border-radius:6px;color:#fff;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:.7rem .9rem}.notice{margin-top:2rem;border-left:3px solid var(--accent);padding:1rem 1.1rem;background:var(--surface);color:var(--muted);font-size:.88rem;line-height:1.6}@media(max-width:600px){.top{padding:1rem 1.25rem}main{padding:3.5rem 1.25rem}}
+  </style>
+</head>
+<body>
+  <nav class="top"><a class="logo" href="index.html">code<span>_</span>tutorium</a><a class="back" href="index.html">&larr; home</a></nav>
+  <main>
+    <div class="eyebrow">Code Tutorium utilities</div>
+    <h1>choose_a_tool()</h1>
+    <p class="intro">Select a tool to open it in the Code Tutorium tools service. Each tool has its own workspace for uploads and generated files.</p>
+    <section class="grid" aria-label="Available tools">
+      <article class="tool-card" id="pdf"><div class="icon">PDF</div><h2>PDF Toolkit</h2><p>Merge, split, watermark, unlock with a known password, or protect PDF files.</p><a class="open" data-tool="pdf" href="https://tools.codetutorium.com/tools/pdf/">Open PDF Toolkit &rarr;</a></article>
+      <article class="tool-card" id="audio"><div class="icon">WAV</div><h2>Audio Cleaner</h2><p>Reduce background noise and export a cleaned audio file.</p><a class="open" data-tool="audio" href="https://tools.codetutorium.com/tools/audio/">Open Audio Cleaner &rarr;</a></article>
+      <article class="tool-card" id="cv"><div class="icon">CV</div><h2>CV Builder</h2><p>Enter your professional details and download a CV document.</p><a class="open" data-tool="cv" href="https://tools.codetutorium.com/tools/cv/">Open CV Builder &rarr;</a></article>
+      <article class="tool-card" id="image"><div class="icon">PNG</div><h2>Favicon Generator</h2><p>Create a custom favicon PNG from text, size, and colour choices.</p><a class="open" data-tool="image" href="https://tools.codetutorium.com/tools/image/">Open Favicon Generator &rarr;</a></article>
+      <article class="tool-card" id="video-frames"><div class="icon">ZIP</div><h2>Video Frame Extractor</h2><p>Upload a video and download selected frames as a ZIP archive.</p><a class="open" data-tool="video-frames" href="https://tools.codetutorium.com/tools/video-frames/">Open Frame Extractor &rarr;</a></article>
+    </section>
+    <p class="notice">For local testing, start <code>tools/server.py</code>. When this page is opened on localhost, the buttons automatically point to <code>http://127.0.0.1:8000</code>. In production, deploy the unified server at <code>tools.codetutorium.com</code>.</p>
+  </main>
+  <script>
+    const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    const toolServer = isLocal ? "http://127.0.0.1:8000" : "https://tools.codetutorium.com";
+    document.querySelectorAll("[data-tool]").forEach(link => {
+      link.href = `${toolServer}/tools/${link.dataset.tool}/`;
+    });
+  </script>
+</body>
+</html>
