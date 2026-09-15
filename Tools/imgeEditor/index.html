@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Background Remover</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --accent: #5b8cff;
+    --accent-hover: #7ba1ff;
+    --text: #e7e9ee;
+    --muted: #8b90a0;
+    --border: #2a2e3a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    width: 100%;
+    max-width: 880px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  h1 {
+    margin: 0 0 4px;
+    font-size: 24px;
+  }
+  p.subtitle {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .server-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .server-row input {
+    flex: 1;
+    background: #10131a;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .dropzone {
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .dropzone.dragover {
+    border-color: var(--accent);
+    background: rgba(91, 140, 255, 0.08);
+  }
+  .dropzone p { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+  input[type="file"] { display: none; }
+  .btn {
+    display: inline-block;
+    margin-top: 14px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .btn:hover { background: var(--accent-hover); }
+  .btn:disabled { background: #3a3f4c; cursor: not-allowed; }
+  .results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .panel {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    background:
+      linear-gradient(45deg, #20232c 25%, transparent 25%),
+      linear-gradient(-45deg, #20232c 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #20232c 75%),
+      linear-gradient(-45deg, transparent 75%, #20232c 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    background-color: #10131a;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .panel img { max-width: 100%; max-height: 260px; border-radius: 8px; }
+  .panel .label {
+    position: absolute;
+    margin-top: -230px;
+  }
+  .label-text {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .status { margin-top: 16px; font-size: 13px; color: var(--muted); min-height: 18px; }
+  .status.error { color: #ff6b6b; }
+  .status.success { color: #56d364; }
+  a.download {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--accent);
+    font-size: 13px;
+    text-decoration: none;
+  }
+  a.download:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Background Remover</h1>
+    <p class="subtitle">Upload an image and the server will strip its background using rembg.</p>
+
+    <div class="server-row">
+      <input id="serverUrl" type="text" value="http://localhost:5000" />
+    </div>
+
+    <div class="dropzone" id="dropzone">
+      <div>📤 Click or drag an image here</div>
+      <p>PNG, JPG, JPEG, WEBP, BMP — up to 15MB</p>
+      <input type="file" id="fileInput" accept="image/png, image/jpeg, image/webp, image/bmp" />
+      <button class="btn" id="removeBtn" disabled>Remove Background</button>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="results" id="results" style="display:none;">
+      <div>
+        <div class="label-text">Original</div>
+        <div class="panel"><img id="originalImg" alt="original" /></div>
+      </div>
+      <div>
+        <div class="label-text">Result</div>
+        <div class="panel"><img id="resultImg" alt="result" /></div>
+        <a class="download" id="downloadLink" download="background-removed.png">⬇ Download PNG</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const removeBtn = document.getElementById('removeBtn');
+  const statusEl = document.getElementById('status');
+  const results = document.getElementById('results');
+  const originalImg = document.getElementById('originalImg');
+  const resultImg = document.getElementById('resultImg');
+  const downloadLink = document.getElementById('downloadLink');
+  const serverUrlInput = document.getElementById('serverUrl');
+
+  let selectedFile = null;
+
+  dropzone.addEventListener('click', (e) => {
+    if (e.target !== removeBtn) fileInput.click();
+  });
+
+  ['dragover', 'dragenter'].forEach(evt =>
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    })
+  );
+
+  ['dragleave', 'drop'].forEach(evt =>
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+    })
+  );
+
+  dropzone.addEventListener('drop', (e) => {
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  });
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) handleFile(file);
+  });
+
+  function handleFile(file) {
+    selectedFile = file;
+    removeBtn.disabled = false;
+    originalImg.src = URL.createObjectURL(file);
+    setStatus(`Selected: ${file.name}`, '');
+  }
+
+  function setStatus(msg, cls) {
+    statusEl.textContent = msg;
+    statusEl.className = 'status' + (cls ? ' ' + cls : '');
+  }
+
+  removeBtn.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    if (!selectedFile) return;
+
+    const serverUrl = serverUrlInput.value.replace(/\/$/, '');
+    removeBtn.disabled = true;
+    setStatus('Uploading and processing…', '');
+    results.style.display = 'none';
+
+    const formData = new FormData();
+    formData.append('image', selectedFile);
+
+    try {
+      const response = await fetch(`${serverUrl}/remove-bg`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.error || `Server returned ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      resultImg.src = url;
+      downloadLink.href = url;
+      results.style.display = 'grid';
+      setStatus('Done! Background removed.', 'success');
+    } catch (err) {
+      setStatus(`Error: ${err.message}`, 'error');
+    } finally {
+      removeBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

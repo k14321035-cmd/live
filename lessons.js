@@ -860,6 +860,7 @@ function initCoursesScroll() {
         { id: 'shell', name: 'Shell' },
         { id: 'ethicalhacking', name: 'Ethical Hacking' },
         { id: 'numpy', name: 'NumPy' },
+        { id: 'matplotlib', name: 'Matplotlib' },
         { id: 'machinelearning', name: 'Machine Learning' },
         { id: 'deeplearning', name: 'Deep Learning' }
     ];

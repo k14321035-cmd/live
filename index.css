@@ -9,7 +9,7 @@
     --ts-a:#3178c6; --go-a:#00add8; --rust-a:#ce6a41; --kotlin-a:#7f52ff;
     --swift-a:#fa7343; --php-a:#8892bf; --sql-a:#4d90c4; --r-a:#276dc3;
     --bash-a:#4eaa25; --dart-a:#26c1e0; --ruby-a:#e0555f; --matlab-a:#e16737;
-    --vb-a:#9457c7; --shell-a:#7ecb5f; --eth-a:#ff5c5c;
+    --vb-a:#9457c7; --shell-a:#7ecb5f; --eth-a:#ff5c5c; --matplotlib-a:#1f77b4;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -127,6 +127,17 @@
   .course-meta{font-size:0.75rem; color:var(--muted); margin-top:0.3rem; display:flex; justify-content:space-between; align-items:center;}
   .course-meta .arrow{color:var(--lang); font-family:'JetBrains Mono', monospace; opacity:0; transition:opacity .18s;}
   .course-card:hover .course-meta .arrow{opacity:1;}
+
+  /* ===== TOOLS PREVIEW ===== */
+  .tools-preview{max-width:1180px; margin:0 auto; padding:4rem 2.5rem 5rem; border-top:1px solid var(--border);}
+  .tools-preview-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;}
+  .tool-preview-card{background:var(--bg-raised); border:1px solid var(--border); border-radius:8px; padding:1.35rem; display:flex; flex-direction:column; gap:.65rem; text-decoration:none; transition:border-color .18s,transform .18s;}
+  .tool-preview-card:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .tool-preview-icon{font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:.72rem; letter-spacing:.08em;}
+  .tool-preview-card strong{font-family:'JetBrains Mono',monospace; font-size:1rem;}
+  .tool-preview-card span:not(.tool-preview-icon){color:var(--muted); font-size:.86rem; line-height:1.5; flex:1;}
+  .tool-preview-card em{font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:.78rem; font-style:normal;}
+  .tools-all-link{display:table; margin:1.5rem auto 0;}
 
   /* ===== PROCESS ===== */
   .process{border-top:1px solid var(--border); padding:5rem 2.5rem; max-width:1180px; margin:0 auto;}
@@ -554,6 +565,8 @@
     .hero-sub { max-width: 100%; }
     .features { padding: 3rem 1.25rem; }
     .courses { padding: 1.5rem 1.25rem 2.5rem; }
+    .tools-preview { padding: 3rem 1.25rem; }
+    .tools-preview-grid { grid-template-columns: repeat(2, 1fr); }
     .process { padding: 3rem 1.25rem; }
     .cta-section { padding: 3rem 1.25rem; }
     .apps-section { padding: 3rem 1.25rem; }
@@ -576,6 +589,7 @@
     .stat-label { font-size: 0.7rem; }
     .term-body { padding: 1rem; font-size: 0.85rem; min-height: 180px; }
     .courses-grid { grid-template-columns: 1fr; }
+    .tools-preview-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .apps-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }

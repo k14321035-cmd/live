@@ -97,8 +97,8 @@ const searchIndex = [
   { title: 'C — Structures & Unions', desc: 'struct, typedef, accessing members, pointers to structs, union, nested structures, arrays of structs.', url: '', icon: '🧭', tag: 'C' },
   { title: 'C — File I/O', desc: 'fopen, fclose, fread, fwrite, fprintf, fscanf, fgets, fputs, fseek, ftell, binary files, file modes.', url: '', icon: '🧭', tag: 'C' },
   { title: 'C — Dynamic Memory', desc: 'malloc, calloc, realloc, free, heap vs stack, memory leaks, dangling pointers.', url: '', icon: '🧭', tag: 'C' },
-  { title: 'C — Preprocessor & Macros', desc: '#define, #include, #ifdef, #ifndef, #endif, macro functions, conditional compilation, header guards.', url: '', icon: '🧭', tag: 'C' },
-  { title: 'C — Capstone Project', desc: 'Build a complete C console application using all concepts: structs, files, dynamic memory.', url: '', icon: '🧭', tag: 'C' },
+  // ─── MATPLOTLIB ───────────────────────────────────────────
+  { title: 'Matplotlib — Complete Course', desc: 'Master data visualization in Python: line charts, bar charts, scatter plots, customization, subplots, NumPy & Pandas integration.', url: 'lessons/matplotlib.html', icon: '📈', tag: 'Matplotlib' },
 ];
 
 // ─── Tag colour map ───────────────────────────────────────
@@ -110,6 +110,7 @@ const tagColors = {
   Java:       { bg: 'rgba(255,89,89,0.12)',   border: 'rgba(255,89,89,0.3)',   text: '#ff5959' },
   JavaScript: { bg: 'rgba(247,223,30,0.12)',  border: 'rgba(247,223,30,0.3)',  text: '#f7df1e' },
   C:          { bg: 'rgba(168,185,204,0.12)', border: 'rgba(168,185,204,0.3)', text: '#a8b9cc' },
+  Matplotlib: { bg: 'rgba(31,119,180,0.12)',  border: 'rgba(31,119,180,0.3)',  text: '#1f77b4' },
   Home:       { bg: 'rgba(0,229,160,0.12)',   border: 'rgba(0,229,160,0.3)',   text: '#00e5a0' },
 };
 
