@@ -1,0 +1,4896 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ca-pub-2970695859332311" name="google-adsense-account"/>
+<title>Python Matplotlib — Complete Course</title>
+<meta content="Learn Matplotlib in Python. Master data visualization, line charts, bar charts, scatter plots, histograms, customization, subplots, and visualization for machine learning." name="description"/>
+<meta content="learn matplotlib, python matplotlib tutorial, matplotlib course, python data visualization, learn data visualization, matplotlib charts, machine learning visualization" name="keywords"/>
+<meta content="index, follow" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="Python Matplotlib — Complete Course" property="og:title"/>
+<meta content="Learn Python Matplotlib and master data visualization for data science and machine learning." property="og:description"/>
+<meta content="https://codetutorium.com/favicon.png" property="og:image"/>
+<meta content="https://codetutorium.com/lessons/matplotlib" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Python Matplotlib — Complete Course" name="twitter:title"/>
+<meta content="Learn Python Matplotlib and master data visualization for data science and machine learning." name="twitter:description"/>
+<meta content="https://codetutorium.com/favicon.png" name="twitter:image"/>
+<link href="../favicon_16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="../favicon_32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="../favicon_512.png" rel="icon" sizes="512x512" type="image/png"/>
+<link href="../favicon_512.png" rel="apple-touch-icon" sizes="512x512"/>
+<link href="../favicon.png" rel="icon" type="image/png"/>
+<link href="https://codetutorium.com/lessons/matplotlib" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=DM+Mono:ital,wght@0,400;0,500;1,400&amp;family=Outfit:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="../lessons.css" rel="stylesheet"/>
+<script src="../lessons.js"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+<nav class="lesson-mega-nav">
+<div class="lesson-nav-container">
+<div class="lesson-nav-left">
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" id="menu-toggle" onclick="toggleMenu()">
+                    ☰
+                </button>
+<a class="lesson-nav-logo" href="../index.html">
+                    C <span>T</span>
+</a>
+</div>
+<div class="lesson-mega-menu">
+<div class="lesson-mega-item">
+<button class="lesson-mega-trigger">
+
+                        Courses
+
+                        <svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="12">
+<polyline points="6,9 12,15 18,9"></polyline>
+</svg>
+</button>
+<div class="lesson-mega-dropdown">
+<div class="lesson-mega-grid">
+<a class="lesson-mega-link" href="python">Python</a>
+<a class="lesson-mega-link" href="c++">C++</a>
+<a class="lesson-mega-link" href="html">HTML</a>
+<a class="lesson-mega-link" href="css">CSS</a>
+<a class="lesson-mega-link" href="java">Java</a>
+<a class="lesson-mega-link" href="javascript">JavaScript</a>
+<a class="lesson-mega-link" href="c">C Language</a>
+<a class="lesson-mega-link" href="cc">C#</a>
+<a class="lesson-mega-link" href="typescript">TypeScript</a>
+<a class="lesson-mega-link" href="go">Go</a>
+<a class="lesson-mega-link" href="rust">Rust</a>
+<a class="lesson-mega-link" href="kotlin">Kotlin</a>
+<a class="lesson-mega-link" href="swift">Swift</a>
+<a class="lesson-mega-link" href="php">PHP</a>
+<a class="lesson-mega-link" href="sql">SQL</a>
+<a class="lesson-mega-link" href="r">R</a>
+<a class="lesson-mega-link" href="bash">Bash</a>
+<a class="lesson-mega-link" href="dart">Dart</a>
+<a class="lesson-mega-link" href="ruby">Ruby</a>
+<a class="lesson-mega-link" href="matlab">MATLAB</a>
+<a class="lesson-mega-link" href="visualbasic">Visual Basic</a>
+<a class="lesson-mega-link" href="shell">Shell</a>
+<a class="lesson-mega-link" href="ethicalhacking">Ethical Hacking</a>
+<a class="lesson-mega-link" href="numpy">NumPy</a>
+<a class="lesson-mega-link active" href="matplotlib">Matplotlib</a>
+<a class="lesson-mega-link" href="machinelearning">Machine Learning</a>
+<a class="lesson-mega-link" href="deeplearning">Deep Learning</a>
+</div>
+</div>
+</div>
+<a class="lesson-mega-link-plain" href="../index.html#courses">
+                    Courses
+                </a>
+<a class="lesson-mega-link-plain" href="../index.html">
+                    Home
+                </a>
+</div>
+<div class="lesson-nav-search">
+<button class="search-btn" id="search-toggle" title="Search (Ctrl+K)">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+</button>
+</div>
+</div>
+</nav>
+<!-- SIDEBAR -->
+<nav id="sidebar">
+<div class="sidebar-header">
+<p>// Python: Matplotlib Syllabus</p>
+</div>
+<div class="nav-section">
+<div class="nav-section-label">
+                Unit I - Introduction to Matplotlib
+            </div>
+<button class="nav-item syllabus-topic active" onclick="showLecture(0)">
+<span class="num">01</span>
+<span class="dot"></span>
+                What is Matplotlib?
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(1)">
+<span class="num">02</span>
+<span class="dot"></span>
+                Installation &amp; Setup
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(2)">
+<span class="num">03</span>
+<span class="dot"></span>
+                Creating Your First Plot
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(3)">
+<span class="num">04</span>
+<span class="dot"></span>
+                Understanding Figure &amp; Axes
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(4)">
+<span class="num">05</span>
+<span class="dot"></span>
+                Labels, Titles &amp; Legends
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(5)">
+<span class="num">06</span>
+<span class="dot"></span>
+                Customizing Plots
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(6)">
+<span class="num">07</span>
+<span class="dot"></span>
+                🛠️ Project 1: Student Performance Visualization
+            </button>
+</div>
+<div class="nav-section">
+<div class="nav-section-label">
+                Unit II - Common Matplotlib Charts
+            </div>
+<button class="nav-item syllabus-topic" onclick="showLecture(7)">
+<span class="num">08</span>
+<span class="dot"></span>
+                Line Charts
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(8)">
+<span class="num">09</span>
+<span class="dot"></span>
+                Bar Charts
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(9)">
+<span class="num">10</span>
+<span class="dot"></span>
+                Horizontal Bar Charts
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(10)">
+<span class="num">11</span>
+<span class="dot"></span>
+                Scatter Plots
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(11)">
+<span class="num">12</span>
+<span class="dot"></span>
+                Histograms
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(12)">
+<span class="num">13</span>
+<span class="dot"></span>
+                Pie Charts
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(13)">
+<span class="num">14</span>
+<span class="dot"></span>
+                🛠️ Project 2: Sales Data Visualization
+            </button>
+</div>
+<div class="nav-section">
+<div class="nav-section-label">
+                Unit III - Advanced Visualization
+            </div>
+<button class="nav-item syllabus-topic" onclick="showLecture(14)">
+<span class="num">15</span>
+<span class="dot"></span>
+                Subplots
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(15)">
+<span class="num">16</span>
+<span class="dot"></span>
+                Multiple Lines &amp; Data Series
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(16)">
+<span class="num">17</span>
+<span class="dot"></span>
+                Grid, Ticks &amp; Axes
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(17)">
+<span class="num">18</span>
+<span class="dot"></span>
+                Figure Size &amp; Resolution
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(18)">
+<span class="num">19</span>
+<span class="dot"></span>
+                Annotations
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(19)">
+<span class="num">20</span>
+<span class="dot"></span>
+                Saving &amp; Exporting Charts
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(20)">
+<span class="num">21</span>
+<span class="dot"></span>
+                🛠️ Project 3: Data Analysis Dashboard
+            </button>
+</div>
+<div class="nav-section">
+<div class="nav-section-label">
+                Unit IV - Matplotlib with NumPy &amp; Pandas
+            </div>
+<button class="nav-item syllabus-topic" onclick="showLecture(21)">
+<span class="num">22</span>
+<span class="dot"></span>
+                Matplotlib with NumPy
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(22)">
+<span class="num">23</span>
+<span class="dot"></span>
+                Matplotlib with Pandas
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(23)">
+<span class="num">24</span>
+<span class="dot"></span>
+                Visualizing DataFrames
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(24)">
+<span class="num">25</span>
+<span class="dot"></span>
+                Comparing Multiple Datasets
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(25)">
+<span class="num">26</span>
+<span class="dot"></span>
+                Data Visualization for Machine Learning
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(26)">
+<span class="num">27</span>
+<span class="dot"></span>
+                🛠️ Project 4: Machine Learning Dataset Visualization
+            </button>
+</div>
+<div class="nav-section">
+<div class="nav-section-label">
+                Unit V - Final Projects
+            </div>
+<button class="nav-item syllabus-topic" onclick="showLecture(27)">
+<span class="num">28</span>
+<span class="dot"></span>
+                Choosing the Right Chart
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(28)">
+<span class="num">29</span>
+<span class="dot"></span>
+                Visualization Best Practices
+            </button>
+<button class="nav-item syllabus-topic" onclick="showLecture(29)">
+<span class="num">30</span>
+<span class="dot"></span>
+                🛠️ Final Project: Complete Data Visualization System
+            </button>
+</div>
+</nav>
+<!-- MAIN -->
+<div id="main">
+<div id="topbar">
+<div class="breadcrumb">
+<span>Python Data Science</span>
+<span class="sep">/</span>
+<span class="current" id="breadcrumb-current">
+                    What is Matplotlib?
+                </span>
+</div>
+<div class="progress-bar-wrap">
+<span class="progress-label" id="progress-label">
+                    Lecture 1 / 30
+                </span>
+<div class="progress-track">
+<div class="progress-fill" id="progress-fill" style="width:3.33%">
+</div>
+</div>
+</div>
+<button class="share-btn" onclick="copyLectureLink()" title="Copy link to this lecture">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+
+                Share
+
+            </button>
+</div>
+<div class="content-wrapper">
+
+<div class="lecture active" id="lec-0"><div class="lecture-tag">Lecture 01 · Matplotlib Basics</div>
+
+<h1>Introduction to Matplotlib</h1>
+
+<p class="lecture-intro">
+    Learn what Matplotlib is, why it is used, and how to create your first
+    visualization in Python.
+</p>
+
+<div class="box info">
+    <div class="box-title">What You Will Learn</div>
+    <ul>
+        <li>What Matplotlib is</li>
+        <li>Why Matplotlib is important</li>
+        <li>How Matplotlib works</li>
+        <li>How to install Matplotlib</li>
+        <li>How to import Matplotlib into Python</li>
+        <li>How to create your first graph</li>
+        <li>How to display and save a chart</li>
+    </ul>
+</div>
+
+
+<h2>01. What is Matplotlib?</h2>
+
+<p>
+    Matplotlib is a popular Python library used to create graphs,
+    charts, plots, and other forms of data visualization. It allows
+    programmers and data scientists to represent numerical data
+    visually instead of working with numbers alone.
+</p>
+
+<p>
+    Matplotlib can create many different types of visualizations,
+    including line graphs, bar charts, scatter plots, histograms,
+    pie charts, and more.
+</p>
+
+<div class="box info">
+    <div class="box-title">Simple Definition</div>
+
+    <p>
+        <strong>Matplotlib is a Python library for creating
+        data visualizations.</strong>
+    </p>
+</div>
+
+
+<h2>02. Why is Matplotlib Important?</h2>
+
+<p>
+    Data can often be difficult to understand when it is presented
+    only as numbers. Visualization makes patterns, relationships,
+    trends, and differences much easier to identify.
+</p>
+
+<p>
+    For example, imagine having the following monthly sales data:
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">sales.py</span>
+    </div>
+
+    <pre>sales = [120, 150, 180, 210, 250]</pre>
+</div>
+
+<p>
+    Looking at the numbers tells us that sales are increasing, but a
+    graph makes this trend much easier to understand immediately.
+</p>
+
+<div class="box info">
+    <div class="box-title">Why Use Visualization?</div>
+
+    <ul>
+        <li>Identify trends</li>
+        <li>Compare values</li>
+        <li>Find patterns</li>
+        <li>Understand large datasets</li>
+        <li>Communicate information clearly</li>
+        <li>Identify unusual values or outliers</li>
+    </ul>
+</div>
+
+
+<h2>03. Where is Matplotlib Used?</h2>
+
+<p>
+    Matplotlib is widely used in programming, data analysis,
+    scientific computing, artificial intelligence, and machine
+    learning.
+</p>
+
+<div class="feature-grid">
+
+    <div class="feature-card">
+        <h3>Data Science</h3>
+        <p>
+            Visualize datasets and discover patterns in data.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Machine Learning</h3>
+        <p>
+            Display training results, accuracy, loss, and predictions.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Scientific Computing</h3>
+        <p>
+            Visualize mathematical and scientific measurements.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Data Analysis</h3>
+        <p>
+            Explore relationships and trends within datasets.
+        </p>
+    </div>
+
+</div>
+
+
+<h2>04. Installing Matplotlib</h2>
+
+<p>
+    Matplotlib can be installed using Python's package manager,
+    <strong>pip</strong>.
+</p>
+
+<p>
+    Open your Command Prompt or Terminal and run:
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">Terminal</span>
+    </div>
+
+    <pre>pip install matplotlib</pre>
+</div>
+
+<p>
+    If the installation is successful, pip will download and install
+    Matplotlib and its required dependencies.
+</p>
+
+<div class="box info">
+    <div class="box-title">Check the Installation</div>
+
+    <p>
+        You can verify that Matplotlib is installed by opening Python
+        and importing the library.
+    </p>
+</div>
+
+
+<h2>05. Importing Matplotlib</h2>
+
+<p>
+    After installing Matplotlib, you need to import it into your
+    Python program before using its plotting functionality.
+</p>
+
+<p>
+    The most commonly used module is <strong>pyplot</strong>.
+    It is usually imported using the name <strong>plt</strong>.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">python</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt</pre>
+</div>
+
+<div class="box info">
+    <div class="box-title">Understanding the Import</div>
+
+    <ul>
+        <li>
+            <strong>matplotlib</strong> is the main visualization library.
+        </li>
+
+        <li>
+            <strong>pyplot</strong> provides functions for creating plots.
+        </li>
+
+        <li>
+            <strong>plt</strong> is a short alias commonly used for pyplot.
+        </li>
+    </ul>
+</div>
+
+
+<h2>06. Creating Your First Plot</h2>
+
+<p>
+    Let's create a simple line graph. We will begin with two lists
+    containing values for the X and Y axes.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">first_plot.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 30, 40, 50]
+
+plt.plot(x, y)
+plt.show()</pre>
+</div>
+
+<p>
+    The <code>plot()</code> function creates the graph, while
+    <code>show()</code> displays the graph on the screen.
+</p>
+
+<div class="box info">
+    <div class="box-title">What Happened?</div>
+
+    <ol>
+        <li>Matplotlib was imported.</li>
+        <li>The X-axis values were created.</li>
+        <li>The Y-axis values were created.</li>
+        <li><code>plt.plot()</code> created the line graph.</li>
+        <li><code>plt.show()</code> displayed the graph.</li>
+    </ol>
+</div>
+
+
+<h2>07. Adding a Title and Labels</h2>
+
+<p>
+    A graph becomes much easier to understand when it has a title
+    and labels for its axes.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">labeled_plot.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 30, 40, 50]
+
+plt.plot(x, y)
+
+plt.title("My First Graph")
+plt.xlabel("X Values")
+plt.ylabel("Y Values")
+
+plt.show()</pre>
+</div>
+
+<div class="box info">
+    <div class="box-title">Important Functions</div>
+
+    <ul>
+        <li><code>plt.plot()</code> — creates a plot</li>
+        <li><code>plt.title()</code> — adds a title</li>
+        <li><code>plt.xlabel()</code> — labels the X-axis</li>
+        <li><code>plt.ylabel()</code> — labels the Y-axis</li>
+        <li><code>plt.show()</code> — displays the graph</li>
+    </ul>
+</div>
+
+
+<h2>08. Saving a Graph</h2>
+
+<p>
+    Matplotlib can also save your visualization as an image file.
+    The <code>savefig()</code> function is used for this purpose.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">save_plot.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 30, 40, 50]
+
+plt.plot(x, y)
+
+plt.title("Sales Data")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+
+plt.savefig("sales.png")
+plt.show()</pre>
+</div>
+
+<h2>09. Matplotlib and Machine Learning</h2>
+
+<p>
+    Matplotlib is especially important when working with machine
+    learning because models often produce numerical results that
+    need to be visualized.
+</p>
+
+<p>
+    For example, Matplotlib can be used to visualize training loss,
+    model accuracy, predictions, datasets, and relationships between
+    variables.
+</p>
+
+<div class="box info">
+    <div class="box-title">Machine Learning Example</div>
+
+    <p>
+        Suppose a machine learning model is trained for 20 epochs.
+        You can use Matplotlib to create a graph showing how the
+        model's loss changes during training.
+    </p>
+</div>
+
+
+<h2>10. What You Should Remember</h2>
+
+<div class="box info">
+    <div class="box-title">Key Points</div>
+
+    <ul>
+        <li>Matplotlib is a Python visualization library.</li>
+        <li>It is commonly used for creating graphs and charts.</li>
+        <li><code>pyplot</code> provides many plotting functions.</li>
+        <li><code>plt</code> is the common alias for pyplot.</li>
+        <li><code>plt.plot()</code> creates a line plot.</li>
+        <li><code>plt.show()</code> displays a plot.</li>
+        <li><code>plt.title()</code> adds a title.</li>
+        <li><code>plt.xlabel()</code> and <code>plt.ylabel()</code> label axes.</li>
+        <li><code>plt.savefig()</code> saves a visualization.</li>
+    </ul>
+</div>
+
+
+<div class="exercise">
+
+    <div class="exercise-title">Exercise 1 · Your First Matplotlib Graph</div>
+
+    <p>
+        Create a Python program that produces a line graph using
+        Matplotlib.
+    </p>
+
+    <ul>
+        <li>Create an X list containing: 1, 2, 3, 4, 5.</li>
+        <li>Create a Y list containing: 5, 10, 15, 20, 25.</li>
+        <li>Plot the two lists.</li>
+        <li>Add the title "My First Matplotlib Graph".</li>
+        <li>Label the X-axis as "Numbers".</li>
+        <li>Label the Y-axis as "Values".</li>
+        <li>Display the graph.</li>
+    </ul>
+
+    <p><strong>Expected starting point:</strong></p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">exercise.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [5, 10, 15, 20, 25]
+
+Your code here</pre>
+
+    </div>
+
+</div>
+
+
+<div class="box info">
+    <div class="box-title">Next Lecture</div>
+
+    <p>
+        In Lecture 02, we will learn about <strong>Matplotlib
+        Figures, Axes, and the basic structure of a plot.</strong>
+    </p>
+</div>
+
+
+<div class="lecture-nav">
+
+    <button class="nav-btn primary"
+            onclick="showLecture(1)">
+        Next Lecture →
+    </button>
+
+</div>
+
+</div>
+
+
+<div class="lecture" id="lec-1">
+    <div class="lecture-tag">Lecture 02 &middot; Installation &amp; Setup</div>
+
+    <h1>Install and Set Up Matplotlib</h1>
+
+    <p class="lecture-intro">
+        Install Matplotlib, verify that it is available in your Python environment,
+        and learn the import used throughout this course.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">What You Will Learn</div>
+        <ul>
+            <li>How to install Matplotlib with pip</li>
+            <li>How to check that the installation worked</li>
+            <li>Why <code>pyplot</code> is usually imported as <code>plt</code></li>
+            <li>How Python packages and environments work</li>
+            <li>How to create your first Matplotlib chart</li>
+            <li>How to identify and fix common installation problems</li>
+        </ul>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Prerequisites</div>
+        <p>
+            Before starting this lesson, you should have Python installed on your
+            computer and know how to open a terminal or command prompt.
+        </p>
+        <p>
+            You should also be comfortable running a basic Python program.
+        </p>
+    </div>
+
+    <h2>01. What Is Matplotlib?</h2>
+
+    <p>
+        Matplotlib is a Python library used to create visualizations such as
+        line charts, bar charts, scatter plots, histograms and many other types
+        of graphs.
+    </p>
+
+    <p>
+        Instead of displaying a large amount of numerical data as plain text,
+        a visualization can help you identify patterns, trends and differences
+        more easily.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">Example</div>
+        <p>
+            Suppose you have the monthly sales figures for a business. You could
+            print every number, but a line chart can make it much easier to see
+            whether sales are increasing or decreasing over time.
+        </p>
+    </div>
+
+    <h2>02. Install Matplotlib</h2>
+
+    <p>Open a terminal or command prompt and run:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal</span>
+        </div>
+        <pre>python -m pip install matplotlib</pre>
+    </div>
+
+    <p>
+        Using <code>python -m pip</code> helps make sure the package is installed
+        into the same Python environment that runs your programs.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">What Is pip?</div>
+        <p>
+            <code>pip</code> is Python's package installer. It allows you to
+            install libraries that are not included in Python's standard library.
+        </p>
+        <p>
+            Matplotlib is one of these external packages.
+        </p>
+    </div>
+
+    <h2>03. Verify the Installation</h2>
+
+    <p>Create a Python file and import the library:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">check_matplotlib.py</span>
+        </div>
+        <pre>import matplotlib
+
+    print(matplotlib.__version__)</pre>
+    </div>
+
+    <p>
+        If this prints a version number without an error, Matplotlib is ready
+        to use.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">Expected Result</div>
+        <p>
+            You should see a version number similar to:
+        </p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div>
+                <span class="filename">output</span>
+            </div>
+            <pre>3.x.x</pre>
+        </div>
+
+        <p>
+            The exact version may be different depending on when you install
+            Matplotlib.
+        </p>
+    </div>
+
+    <h2>04. Import pyplot</h2>
+
+    <p>
+        Most basic charts use the <code>pyplot</code> module. The conventional
+        short name is <code>plt</code>:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">example.py</span>
+        </div>
+        <pre>import matplotlib.pyplot as plt</pre>
+    </div>
+
+    <p>
+        The <code>as plt</code> part creates a shorter name for
+        <code>matplotlib.pyplot</code>. This means that instead of repeatedly
+        writing the full module name, you can use <code>plt</code>.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">Remember</div>
+        <p>
+            <code>plt</code> is not a special Python keyword. It is simply the
+            commonly used alias for <code>matplotlib.pyplot</code>.
+        </p>
+    </div>
+
+    <h2>05. Create Your First Chart</h2>
+
+    <p>
+        Now that Matplotlib is installed, let's create a simple line chart.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">first_chart.py</span>
+        </div>
+        <pre>import matplotlib.pyplot as plt
+
+    x = [1, 2, 3, 4, 5]
+     y = [2, 4, 6, 8, 10]
+
+     plt.plot(x, y)
+     plt.show()</pre>
+    </div>
+
+    <p>
+        When you run this program, Matplotlib creates a line chart using the
+        values stored in <code>x</code> and <code>y</code>.
+    </p>
+
+    <h2>06. Understanding the Code</h2>
+
+    <h3>Importing pyplot</h3>
+
+    <p>
+        The first line gives your program access to the plotting functionality
+        provided by Matplotlib.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Python</span>
+        </div>
+        <pre>import matplotlib.pyplot as plt</pre>
+    </div>
+
+    <h3>Creating the Data</h3>
+
+    <p>
+        The <code>x</code> list contains the horizontal values, while the
+        <code>y</code> list contains the corresponding vertical values.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Python</span>
+        </div>
+        <pre>x = [1, 2, 3, 4, 5]
+      y = [2, 4, 6, 8, 10]</pre>
+    </div>
+
+    <h3>Drawing the Line</h3>
+
+    <p>
+        <code>plt.plot()</code> tells Matplotlib to create a plot using the
+        supplied data.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Python</span>
+        </div>
+        <pre>plt.plot(x, y)</pre>
+    </div>
+
+    <h3>Displaying the Chart</h3>
+
+    <p>
+        <code>plt.show()</code> displays the generated figure.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">Python</span>
+        </div>
+        <pre>plt.show()</pre>
+    </div>
+
+    <h2>07. Add a Title and Labels</h2>
+
+    <p>
+        A chart becomes easier to understand when it has a title and labels
+        describing its axes.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">labeled_chart.py</span>
+        </div>
+        <pre>import matplotlib.pyplot as plt
+
+        x = [1, 2, 3, 4, 5]
+        y = [2, 4, 6, 8, 10]
+
+        plt.plot(x, y)
+
+        plt.title("Simple Growth")
+        plt.xlabel("Time")
+        plt.ylabel("Value")
+
+        plt.show()</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Useful Functions</div>
+        <ul>
+            <li><code>plt.title()</code> adds a chart title.</li>
+            <li><code>plt.xlabel()</code> labels the x-axis.</li>
+            <li><code>plt.ylabel()</code> labels the y-axis.</li>
+            <li><code>plt.show()</code> displays the chart.</li>
+        </ul>
+    </div>
+
+    <h2>08. Common Installation Problems</h2>
+
+    <h3>Problem: pip Is Not Recognized</h3>
+
+    <p>
+        If your terminal says that <code>pip</code> cannot be found, try using
+        the Python module form instead:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="filename">terminal</span>
+        </div>
+        <pre>python -m pip install matplotlib</pre>
+    </div>
+
+    <h3>Problem: Matplotlib Cannot Be Imported</h3>
+
+    <p>
+        If your program produces a <code>ModuleNotFoundError</code>, Matplotlib
+        may not be installed in the Python environment running your program.
+    </p>
+
+    <p>
+        Run the installation command again using the same Python installation
+        that you use to execute your program.
+    </p>
+
+    <h3>Problem: Multiple Python Installations</h3>
+
+    <p>
+        Computers can have more than one Python installation. A package can
+        therefore be installed in one environment while your program runs in
+        another.
+    </p>
+
+    <div class="box info">
+        <div class="box-title">Tip</div>
+        <p>
+            When working on larger projects, virtual environments can help keep
+            project dependencies separated.
+        </p>
+    </div>
+
+    <h2>09. Quick Knowledge Check</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Question 1</div>
+        <p>
+            Which command is commonly used to install Matplotlib?
+        </p>
+        <ul>
+            <li><code>python -m pip install matplotlib</code></li>
+            <li><code>python install matplotlib</code></li>
+            <li><code>pip create matplotlib</code></li>
+            <li><code>matplotlib install python</code></li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">Question 2</div>
+        <p>
+            What alias is conventionally used for <code>matplotlib.pyplot</code>?
+        </p>
+        <ul>
+            <li><code>py</code></li>
+            <li><code>plot</code></li>
+            <li><code>plt</code></li>
+            <li><code>graph</code></li>
+        </ul>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">Question 3</div>
+        <p>
+            Which function displays a Matplotlib figure?
+        </p>
+        <ul>
+            <li><code>plt.display()</code></li>
+            <li><code>plt.show()</code></li>
+            <li><code>plt.open()</code></li>
+            <li><code>plt.view()</code></li>
+        </ul>
+    </div>
+
+    <h2>10. Practice Exercise</h2>
+
+    <div class="exercise">
+        <div class="exercise-title">Exercise 2 &middot; Build Your First Chart</div>
+
+        <p>
+            Create a Python program that imports Matplotlib and creates a line
+            chart using the following data:
+        </p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots"><span></span><span></span><span></span></div>
+                <span class="filename">data</span>
+            </div>
+            <pre>months = ["Jan", "Feb", "Mar", "Apr", "May"]
+        sales = [20, 35, 30, 45, 55]</pre>
+        </div>
+
+        <p>Your program should:</p>
+
+        <ul>
+            <li>Import <code>matplotlib.pyplot</code> as <code>plt</code></li>
+            <li>Create a line chart</li>
+            <li>Add a title</li>
+            <li>Label both axes</li>
+            <li>Display the chart using <code>plt.show()</code></li>
+        </ul>
+    </div>
+
+    <h2>11. Lesson Summary</h2>
+
+    <div class="box info">
+        <div class="box-title">Key Points</div>
+        <ul>
+            <li>Matplotlib is a Python library for creating visualizations.</li>
+            <li>Matplotlib can be installed using pip.</li>
+            <li><code>python -m pip install matplotlib</code> installs the package.</li>
+            <li><code>matplotlib.__version__</code> can be used to check the installed version.</li>
+            <li><code>matplotlib.pyplot</code> provides many common plotting functions.</li>
+            <li><code>plt</code> is the conventional alias for pyplot.</li>
+            <li><code>plt.plot()</code> creates a basic line plot.</li>
+            <li><code>plt.show()</code> displays the figure.</li>
+        </ul>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Next Lesson</div>
+        <p>
+            In the next lecture, you will learn how to create and customize
+            your first line charts, including titles, labels, colors, markers
+            and grid lines.
+        </p>
+    </div>
+
+    <div class="exercise">
+        <div class="exercise-title">Final Challenge</div>
+        <p>
+            Without copying the complete example above, create a new chart
+            using your own x and y values. Give it a meaningful title and
+            label both axes.
+        </p>
+    </div>
+
+    <div class="lecture-nav">
+        <button class="nav-btn secondary" onclick="showLecture(0)">
+            &larr; Previous Lecture
+        </button>
+
+        <button class="nav-btn primary" onclick="showLecture(2)">
+            Next Lecture &rarr;
+        </button>
+    </div>
+
+</div>
+
+
+<div class="lecture" id="lec-2"><div class="lecture-tag">Lecture 03 &middot; Your First Plot</div>
+
+<h1>Create Your First Matplotlib Plot</h1>
+
+<p class="lecture-intro">
+    Build a simple line chart and understand the two calls that display it.
+</p>
+
+<h2>01. Plot Data</h2>
+
+<p>Pass a list of values to <code>plt.plot()</code>. Matplotlib uses positions 0, 1, 2, and so on for the X-axis when no X values are supplied.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">first_plot.py</span></div>
+    <pre>import matplotlib.pyplot as plt
+
+scores = [52, 68, 75, 83, 91]
+
+plt.plot(scores)
+plt.show()</pre>
+</div>
+
+<h2>02. Supply X and Y Values</h2>
+
+<p>For meaningful coordinates, give <code>plot()</code> an X list followed by a Y list. Both lists must contain the same number of values.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">first_plot.py</span></div>
+    <pre>import matplotlib.pyplot as plt
+
+months = [1, 2, 3, 4, 5]
+sales = [12, 19, 15, 25, 30]
+
+plt.plot(months, sales)
+plt.show()</pre>
+</div>
+
+<div class="box info">
+    <div class="box-title">Remember</div>
+    <ul>
+        <li><code>plt.plot(x, y)</code> creates a line chart.</li>
+        <li><code>plt.show()</code> displays the chart window or inline chart.</li>
+        <li>X and Y data need matching lengths.</li>
+    </ul>
+</div>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 3 &middot; Plot Temperatures</div>
+    <p>Make a line plot for five daily temperatures. Use the day numbers on the X-axis and the temperatures on the Y-axis.</p>
+</div>
+
+<div class="lecture-nav">
+    <button class="nav-btn secondary" onclick="showLecture(1)">&larr; Previous Lecture</button>
+    <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture &rarr;</button>
+</div>
+
+</div>
+
+
+<div class="lecture" id="lec-3"><div class="lecture-tag">Lecture 04 · Matplotlib Fundamentals</div>
+
+<h1>Matplotlib Figures and Axes</h1>
+
+<p class="lecture-intro">
+    Learn the fundamental structure of Matplotlib plots and understand
+    the difference between a Figure, Axes, and Axis.
+</p>
+
+
+<div class="box info">
+    <div class="box-title">What You Will Learn</div>
+
+    <ul>
+        <li>What a Figure is</li>
+        <li>What an Axes object is</li>
+        <li>The difference between Figure and Axes</li>
+        <li>What X-axis and Y-axis objects represent</li>
+        <li>How Figures contain one or more Axes</li>
+        <li>How to create plots using the object-oriented approach</li>
+        <li>How to create multiple plots inside one Figure</li>
+    </ul>
+</div>
+
+
+<h2>01. Understanding the Structure of Matplotlib</h2>
+
+<p>
+    Before creating advanced visualizations, it is important to understand
+    how Matplotlib organizes a graph.
+</p>
+
+<p>
+    A Matplotlib visualization is built using several components.
+    The most important components are the <strong>Figure</strong>,
+    <strong>Axes</strong>, and <strong>Axis</strong> objects.
+</p>
+
+<div class="box info">
+    <div class="box-title">The Basic Hierarchy</div>
+
+    <ul>
+        <li><strong>Figure</strong> — the overall container for the visualization.</li>
+        <li><strong>Axes</strong> — the actual plotting area inside the Figure.</li>
+        <li><strong>Axis</strong> — controls the X-axis or Y-axis scale, ticks, and labels.</li>
+    </ul>
+</div>
+
+
+<h2>02. What is a Figure?</h2>
+
+<p>
+    A <strong>Figure</strong> is the overall container that holds one or
+    more plots. You can think of it as the complete canvas on which your
+    visualizations are placed.
+</p>
+
+<p>
+    A Figure can contain a single plot or multiple plots. This makes
+    Figures especially useful when you need to compare several
+    visualizations.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">figure.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+fig = plt.figure()
+
+plt.show()</pre>
+</div>
+
+<p>
+    The <code>plt.figure()</code> function creates a new Figure.
+</p>
+
+
+<div class="box info">
+    <div class="box-title">Think of a Figure Like This</div>
+
+    <p>
+        Imagine a blank sheet of paper. The entire sheet is the
+        <strong>Figure</strong>. You can place one or several graphs
+        on that sheet.
+    </p>
+</div>
+
+
+<h2>03. What is an Axes Object?</h2>
+
+<p>
+    An <strong>Axes</strong> object represents the area where an actual
+    graph is drawn. It contains the plotted data and provides access to
+    titles, labels, limits, ticks, legends, and other parts of the plot.
+</p>
+
+<p>
+    Despite its name, an Axes object is not the same thing as the X-axis
+    or Y-axis. An Axes object represents the complete plotting area.
+</p>
+
+<div class="box info">
+    <div class="box-title">Important Difference</div>
+
+    <p>
+        <strong>Figure = entire canvas</strong>
+    </p>
+
+    <p>
+        <strong>Axes = individual plotting area</strong>
+    </p>
+
+    <p>
+        <strong>Axis = X or Y coordinate system</strong>
+    </p>
+</div>
+
+
+<h2>04. Creating a Figure and Axes</h2>
+
+<p>
+    The object-oriented approach allows you to explicitly create a
+    Figure and an Axes object.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">figure_axes.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+plt.show()</pre>
+</div>
+
+<p>
+    The <code>plt.subplots()</code> function creates both a Figure and
+    an Axes object.
+</p>
+
+<p>
+    The variable <code>fig</code> represents the Figure, while
+    <code>ax</code> represents the Axes.
+</p>
+
+
+<div class="box info">
+    <div class="box-title">Remember</div>
+
+    <p>
+        This line:
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">Python</span>
+        </div>
+
+        <pre>fig, ax = plt.subplots()</pre>
+    </div>
+
+    <p>
+        creates a Figure and an Axes object at the same time.
+    </p>
+</div>
+
+
+<h2>05. Plotting Through the Axes Object</h2>
+
+<p>
+    Once you have an Axes object, you can use its methods to create
+    and customize your graph.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">plot.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 30, 40, 50]
+
+ax.plot(x, y)
+
+plt.show()</pre>
+</div>
+
+<p>
+    Notice that we use <code>ax.plot()</code> instead of
+    <code>plt.plot()</code>.
+</p>
+
+<p>
+    The <code>plot()</code> method belongs to the Axes object and draws
+    the data inside that specific plotting area.
+</p>
+
+
+<h2>06. Adding a Title and Labels</h2>
+
+<p>
+    The Axes object provides methods for adding titles and labels to
+    the plot.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">labels.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 30, 40, 50]
+
+ax.plot(x, y)
+
+ax.set_title("Sales Data")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre>
+</div>
+
+<div class="box info">
+    <div class="box-title">Useful Axes Methods</div>
+
+    <ul>
+        <li><code>ax.plot()</code> — creates a line plot</li>
+        <li><code>ax.set_title()</code> — sets the plot title</li>
+        <li><code>ax.set_xlabel()</code> — sets the X-axis label</li>
+        <li><code>ax.set_ylabel()</code> — sets the Y-axis label</li>
+        <li><code>ax.legend()</code> — displays a legend</li>
+        <li><code>ax.grid()</code> — displays grid lines</li>
+    </ul>
+</div>
+
+
+<h2>07. What is an Axis?</h2>
+
+<p>
+    An <strong>Axis</strong> represents one dimension of the coordinate
+    system used by an Axes object.
+</p>
+
+<p>
+    A normal two-dimensional graph has two Axis objects:
+</p>
+
+<div class="feature-grid">
+
+    <div class="feature-card">
+        <h3>X-Axis</h3>
+
+        <p>
+            Represents the horizontal dimension of the graph and
+            normally contains the independent variable.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Y-Axis</h3>
+
+        <p>
+            Represents the vertical dimension of the graph and
+            normally contains the dependent variable.
+        </p>
+    </div>
+
+</div>
+
+
+<h2>08. Figure vs Axes vs Axis</h2>
+
+<p>
+    These three terms are often confused by beginners. Understanding
+    their relationship is essential when working with Matplotlib's
+    object-oriented interface.
+</p>
+
+<div class="box info">
+    <div class="box-title">Quick Comparison</div>
+
+    <ul>
+        <li>
+            <strong>Figure:</strong>
+            The complete canvas or container.
+        </li>
+
+        <li>
+            <strong>Axes:</strong>
+            The area where a particular graph is drawn.
+        </li>
+
+        <li>
+            <strong>Axis:</strong>
+            The X or Y coordinate system belonging to an Axes.
+        </li>
+    </ul>
+</div>
+
+
+<h2>09. Creating Multiple Axes</h2>
+
+<p>
+    One of the major advantages of using Figures and Axes is the ability
+    to place multiple plots inside a single Figure.
+</p>
+
+<p>
+    For example, we can create four plotting areas arranged in two rows
+    and two columns.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">multiple_plots.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2, 2)
+
+axes[0, 0].plot([1, 2, 3], [1, 4, 9])
+axes[0, 1].plot([1, 2, 3], [2, 4, 6])
+axes[1, 0].plot([1, 2, 3], [3, 6, 9])
+axes[1, 1].plot([1, 2, 3], [4, 8, 12])
+
+plt.show()</pre>
+</div>
+
+<p>
+    Here, <code>plt.subplots(2, 2)</code> creates a Figure containing
+    four Axes objects.
+</p>
+
+<div class="box info">
+    <div class="box-title">Understanding 2 × 2</div>
+
+    <p>
+        <strong>2 × 2</strong> means:
+    </p>
+
+    <ul>
+        <li>2 rows</li>
+        <li>2 columns</li>
+        <li>4 plotting areas in total</li>
+    </ul>
+</div>
+
+
+<h2>10. Accessing Individual Axes</h2>
+
+<p>
+    When multiple Axes are created, each plotting area can be accessed
+    individually.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">axes.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2, 2)
+
+axes[0, 0].set_title("Graph 1")
+axes[0, 1].set_title("Graph 2")
+axes[1, 0].set_title("Graph 3")
+axes[1, 1].set_title("Graph 4")
+
+plt.show()</pre>
+</div>
+
+<p>
+    The indexes identify the position of each Axes object.
+    For example, <code>axes[0, 0]</code> represents the first row and
+    first column.
+</p>
+
+
+<h2>11. Figure Size</h2>
+
+<p>
+    You can control the size of a Figure using the
+    <code>figsize</code> parameter.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">figsize.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot([1, 2, 3, 4], [10, 20, 30, 40])
+
+ax.set_title("My Graph")
+
+plt.show()</pre>
+</div>
+
+<p>
+    The first value represents the width and the second value represents
+    the height. Matplotlib uses inches for these dimensions.
+</p>
+
+
+<h2>12. Object-Oriented vs Pyplot Style</h2>
+
+<p>
+    Matplotlib supports different ways of creating visualizations.
+    Beginners often start with the pyplot interface.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">pyplot_style.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+plt.plot([1, 2, 3], [10, 20, 30])
+plt.title("My Graph")
+plt.xlabel("X")
+plt.ylabel("Y")
+
+plt.show()</pre>
+</div>
+
+<p>
+    The object-oriented approach explicitly works with Figure and Axes
+    objects.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">object_oriented.py</span>
+    </div>
+
+    <pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+ax.plot([1, 2, 3], [10, 20, 30])
+ax.set_title("My Graph")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+
+plt.show()</pre>
+</div>
+
+<div class="box info">
+    <div class="box-title">Which Approach Should You Use?</div>
+
+    <p>
+        The pyplot interface is convenient for simple plots. The
+        object-oriented approach is generally more useful when creating
+        complex visualizations, multiple plots, or reusable plotting
+        code.
+    </p>
+</div>
+
+
+<h2>13. The Complete Matplotlib Hierarchy</h2>
+
+<p>
+    You can think about a Matplotlib visualization as a hierarchy:
+</p>
+
+<div class="box info">
+    <div class="box-title">Matplotlib Structure</div>
+
+    <p><strong>Figure</strong></p>
+
+    <p>
+        ↓
+    </p>
+
+    <p><strong>Axes</strong></p>
+
+    <p>
+        ↓
+    </p>
+
+    <p><strong>Axis → X-axis / Y-axis</strong></p>
+
+    <p>
+        ↓
+    </p>
+
+    <p><strong>Data, lines, labels, ticks, legends, grid, etc.</strong></p>
+</div>
+
+
+<h2>14. Key Points to Remember</h2>
+
+<div class="box info">
+    <div class="box-title">Summary</div>
+
+    <ul>
+        <li>A Figure is the overall container for a visualization.</li>
+        <li>A Figure can contain one or multiple Axes.</li>
+        <li>An Axes object represents an individual plotting area.</li>
+        <li>An Axes object normally contains an X-axis and Y-axis.</li>
+        <li>An Axis controls scales, ticks, and labels.</li>
+        <li><code>plt.subplots()</code> can create Figures and Axes together.</li>
+        <li><code>ax.plot()</code> creates a plot on a specific Axes.</li>
+        <li>Multiple Axes can be used to create subplot layouts.</li>
+        <li>The object-oriented approach is useful for complex visualizations.</li>
+    </ul>
+</div>
+
+
+<div class="exercise">
+
+    <div class="exercise-title">Exercise 3 · Figures and Axes</div>
+
+    <p>
+        Create a Figure containing two separate plots.
+    </p>
+
+    <ul>
+        <li>Create a Figure with two Axes arranged horizontally.</li>
+        <li>Plot <code>[1, 2, 3, 4, 5]</code> on the first Axes.</li>
+        <li>Plot <code>[5, 10, 15, 20, 25]</code> on the second Axes.</li>
+        <li>Give each plot a different title.</li>
+        <li>Label the X-axis and Y-axis.</li>
+        <li>Display the Figure.</li>
+    </ul>
+
+    <p><strong>Starting point:</strong></p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">exercise.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(1, 2)
+
+Your code here
+
+plt.show()</pre>
+</div>
+
+</div>
+
+
+<div class="box info">
+    <div class="box-title">Next Lecture</div>
+
+    <p>
+        In Lecture 05, we will learn how to add clear
+        <strong>titles, labels, and legends</strong> to a Matplotlib chart.
+    </p>
+</div>
+
+
+<div class="lecture-nav">
+
+    <button class="nav-btn secondary"
+            onclick="showLecture(2)">
+        ← Previous Lecture
+    </button>
+
+    <button class="nav-btn primary"
+            onclick="showLecture(4)">
+        Next Lecture →
+    </button>
+
+</div>
+
+</div>
+
+
+<div class="lecture" id="lec-4"><div class="lecture-tag">Lecture 05 &middot; Labels, Titles &amp; Legends</div>
+
+<h1>Make Your Charts Easy to Read</h1>
+
+<p class="lecture-intro">
+    Add clear titles, axis labels, and a legend so that a chart can be understood without guessing. A good visualization should communicate its meaning quickly, even to someone who did not write the code that created it.
+</p>
+
+<h2>01. Add a Title and Axis Labels</h2>
+
+<p>Use a descriptive title and label both axes. These details explain what the chart measures and make it useful to other readers.</p>
+
+<p>The <code>plt.title()</code> function adds a title at the top of the chart. The <code>plt.xlabel()</code> function names the horizontal (x) axis, while <code>plt.ylabel()</code> names the vertical (y) axis.</p>
+
+<p>Axis labels are especially important when the numbers have a specific meaning or unit. For example, a value of <code>32</code> could represent dollars, students, kilograms, or thousands of sales. Adding the unit removes this ambiguity.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">labels.py</span></div>
+    <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+sales = [18, 25, 21, 32]
+
+plt.plot(months, sales)
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales (thousands)")
+plt.show()</pre>
+</div>
+
+<p>In this example, the list <code>months</code> provides the values shown along the x-axis, while <code>sales</code> provides the corresponding values on the y-axis.</p>
+
+<p>The title tells us that the chart is about monthly sales. The x-axis tells us which month each point represents, and the y-axis tells us that the sales values are measured in thousands.</p>
+
+<p>Notice that the labels do not change the actual data. They only provide context for the reader. This is an important part of data visualization: <strong>the chart should explain itself as much as possible.</strong></p>
+
+<h2>02. Add a Legend</h2>
+
+<p>When a chart contains more than one data series, give each line a <code>label</code> and call <code>plt.legend()</code>.</p>
+
+<p>A legend acts like a key for the chart. It tells the reader which line, marker, or other visual element belongs to each dataset.</p>
+
+<p>For example, if a chart contains online sales and store sales, both lines may look similar. Without a legend, the reader would have to guess which line represents which type of sale.</p>
+
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">legend.py</span></div>
+    <pre>import matplotlib.pyplot as plt
+
+months = [1, 2, 3, 4]
+online = [12, 18, 22, 30]
+store = [10, 15, 17, 24]
+
+plt.plot(months, online, label="Online")
+plt.plot(months, store, label="Store")
+plt.title("Sales by Channel")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.legend()
+plt.show()</pre>
+</div>
+
+<p>Here, two separate lines are drawn using two calls to <code>plt.plot()</code>. Each call has its own <code>label</code>.</p>
+
+<p>The first line is given the label <code>"Online"</code>, while the second line is given the label <code>"Store"</code>. When <code>plt.legend()</code> is called, Matplotlib uses these labels to create the legend automatically.</p>
+
+<p>The legend is particularly useful when a chart compares multiple categories, such as two students, two products, different cities, or different years.</p>
+
+<h2>03. Choose Meaningful Labels</h2>
+
+<p>Good labels should tell the reader exactly what the data represents. Avoid labels such as <code>"X"</code>, <code>"Y"</code>, or <code>"Data"</code> when you can provide a more descriptive name.</p>
+
+<p>For example, instead of using <code>plt.ylabel("Value")</code>, you could use <code>plt.ylabel("Temperature (°C)")</code>. The second version immediately tells the reader what the numbers represent and which unit is being used.</p>
+
+<p>A useful rule is to ask yourself: <strong>Could someone understand this chart without seeing my Python code?</strong> If the answer is no, improve the title or axis labels.</p>
+
+<h2>04. Titles Should Explain the Chart</h2>
+
+<p>A title should describe the subject of the visualization rather than simply stating the type of chart being used.</p>
+
+<p>A title such as <code>"Line Chart"</code> tells the reader very little. A title such as <code>"Monthly Sales from January to April"</code> gives useful information about what is being displayed.</p>
+
+<p>Clear titles become even more important when several charts are displayed together on a webpage, report, or dashboard.</p>
+
+<div class="box info">
+    <div class="box-title">Good Chart Habits</div>
+    <ul>
+        <li>Write titles that describe the data, not just the chart type.</li>
+        <li>Include units in an axis label when they matter.</li>
+        <li>Use a legend only when there are multiple series to identify.</li>
+        <li>Make labels specific enough that the chart can be understood without reading the code.</li>
+        <li>Keep titles and labels short, clear, and directly related to the data.</li>
+        <li>Use the same naming style throughout a group of related charts.</li>
+    </ul>
+</div>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 5 &middot; Compare Two Series</div>
+    <p>Create a chart with two lines, a title, labels for both axes, and a legend. Choose a dataset such as study hours for two students or rainfall in two cities.</p>
+    <p>For example, create a list of four months and two sets of values. Plot both datasets on the same chart and give each line a meaningful <code>label</code>.</p>
+    <p>Your final chart should allow another person to answer these questions without looking at your code: What is being measured? What does each axis represent? What are the units? Which line belongs to which dataset?</p>
+</div>
+
+<div class="lecture-nav">
+    <button class="nav-btn secondary" onclick="showLecture(3)">&larr; Previous Lecture</button>
+    <button class="nav-btn primary" onclick="showLecture(5)">Next Lecture &rarr;</button>
+</div>
+
+</div>
+
+
+<div class="lecture" id="lec-5"><div class="lecture-tag">Lecture 06 &middot; Customizing Plots</div>
+<h1>Customize a Plot for Clarity</h1>
+<p class="lecture-intro">A default chart is a useful start, but thoughtful styling makes data easier to read. Learn to control line appearance, markers, colours, limits, and grid lines without letting decoration hide the message. Customization should have a purpose: help the reader understand the data faster, identify different series, and focus on important patterns.</p>
+
+<div class="box info"><div class="box-title">What You Will Learn</div><ul><li>How to choose line colours, styles, widths, and markers</li><li>How to set useful axis limits and grid lines</li><li>How to customize a chart through an Axes object</li><li>How to avoid common chart-design mistakes</li><li>How to make visual choices that improve readability</li><li>How to combine several customization options in one chart</li></ul></div>
+
+<h2>01. Style a Line</h2>
+<p>The <code>plot()</code> function accepts keyword arguments that describe a line. Use these options when the appearance communicates something useful, such as measured versus predicted values.</p>
+
+<p>The <code>color</code> argument controls the line colour, <code>linestyle</code> controls the pattern of the line, and <code>linewidth</code> controls its thickness. You can also add markers to make individual data points easier to identify.</p>
+
+<p>Markers are especially useful when a dataset contains a small number of observations. They allow the reader to see exactly where the values are located rather than relying only on the connecting line.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">line_style.py</span></div><pre>import matplotlib.pyplot as plt
+
+days = [1, 2, 3, 4, 5]
+temperature = [22, 24, 23, 27, 29]
+
+plt.plot(days, temperature,
+        color="teal",
+        linestyle="--",
+        linewidth=2,
+        marker="o",
+        markersize=7)
+plt.xlabel("Day")
+plt.ylabel("Temperature (&deg;C)")
+plt.title("Daily Temperature")
+plt.show()</pre></div>
+
+<p>In this example, <code>color="teal"</code> changes the colour of the line, while <code>linestyle="--"</code> creates a dashed line. The <code>linewidth</code> value controls how thick the line appears.</p>
+
+<p>The <code>marker="o"</code> option places a circular marker at each data point. Increasing <code>markersize</code> makes those points easier to see.</p>
+
+<p>Common line styles are <code>"-"</code> (solid), <code>"--"</code> (dashed), <code>":"</code> (dotted), and <code>"-."</code> (dash-dot). Useful markers include <code>"o"</code>, <code>"s"</code>, <code>"^"</code>, and <code>"x"</code>.</p>
+
+<p>Choose a style based on what the chart needs to communicate. For example, a solid line could represent actual measurements while a dashed line represents an estimate. Styling should add meaning rather than simply make the chart look decorative.</p>
+
+<h2>02. Use Colour Deliberately</h2>
+<p>Matplotlib accepts named colours such as <code>"navy"</code>, hexadecimal values such as <code>"#2563eb"</code>, and RGB tuples. Prefer a small, consistent palette. Do not rely on red and green alone to communicate an important distinction, because some readers cannot distinguish that pair reliably.</p>
+
+<p>When a chart contains multiple data series, colour can help readers distinguish them quickly. However, using too many colours can make a visualization confusing. A small number of consistent colours is usually easier to understand.</p>
+
+<p>Hexadecimal colours are useful when you want precise control over the appearance of a chart. A hexadecimal colour such as <code>"#2563eb"</code> represents a specific colour value.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">colours.py</span></div><pre>fig, ax = plt.subplots()
+
+ax.plot(days, temperature, color="#2563eb", label="Measured")
+ax.plot(days, [21, 23, 25, 26, 28], color="#f97316",
+       linestyle="--", label="Forecast")
+ax.legend()
+plt.show()</pre></div>
+
+<p>Here, the first line represents measured temperature and the second line represents forecast temperature. The different colours and line styles make the two series easier to distinguish.</p>
+
+<p>Notice that the legend also provides text labels. This is important because colour alone should not be the only way the reader can understand the chart.</p>
+
+<h2>03. Control the Visible Range</h2>
+<p>Use <code>xlim()</code> and <code>ylim()</code>, or <code>ax.set_xlim()</code> and <code>ax.set_ylim()</code>, to focus on a meaningful range. Be careful with a truncated y-axis: it can exaggerate small differences. For bar charts, a y-axis starting at zero is generally necessary for an honest comparison.</p>
+
+<p>Axis limits determine which part of the coordinate system is visible. Matplotlib normally chooses limits automatically based on the data, but sometimes you may want to control them yourself.</p>
+
+<p>For example, if you know that temperatures in your dataset normally fall between 20&deg;C and 30&deg;C, setting the y-axis to that range can make the chart easier to examine. However, the chosen range should not mislead the reader or hide important values.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">limits.py</span></div><pre>fig, ax = plt.subplots()
+ax.plot(days, temperature, marker="o")
+ax.set_xlim(1, 5)
+ax.set_ylim(20, 30)
+ax.set_xlabel("Day")
+ax.set_ylabel("Temperature (&deg;C)")
+plt.show()</pre></div>
+
+<p>In this example, <code>set_xlim(1, 5)</code> makes the x-axis cover days 1 through 5, while <code>set_ylim(20, 30)</code> makes the y-axis cover temperatures from 20&deg;C to 30&deg;C.</p>
+
+<p>Setting limits is useful when comparing several charts because using the same scale makes comparisons more meaningful. If every chart uses a different scale, visual differences can sometimes appear larger or smaller than they really are.</p>
+
+<h2>04. Add a Helpful Grid</h2>
+<p>A light grid helps a reader estimate values. It should support the data rather than compete with it. For a line chart, a horizontal grid is often enough.</p>
+
+<p>Use <code>grid()</code> to add grid lines to an Axes object. The <code>axis</code> argument lets you choose whether to show grid lines on the x-axis, y-axis, or both.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">grid.py</span></div><pre>fig, ax = plt.subplots()
+ax.plot(days, temperature, marker="o", color="#2563eb")
+ax.grid(axis="y", linestyle=":", alpha=0.6)
+ax.set_title("Daily Temperature")
+plt.show()</pre></div>
+
+<p>The <code>alpha</code> argument sets transparency from <code>0</code> (fully transparent) to <code>1</code> (fully opaque). A lighter grid is normally easier to read.</p>
+
+<p>Using <code>axis="y"</code> adds horizontal grid lines. These lines help the reader compare the plotted points with values on the y-axis.</p>
+
+<p>A grid should not become the most noticeable element of the chart. If the grid is too dark or too dense, it can distract from the actual data.</p>
+
+<h2>05. Complete Example</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">custom_plot.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+visitors = [120, 145, 160, 155, 190, 220]
+
+fig, ax = plt.subplots(figsize=(8, 4.5))
+ax.plot(months, visitors, color="#2563eb", linewidth=2.5,
+       marker="o", label="Website visitors")
+ax.set_title("Monthly Website Visitors")
+ax.set_xlabel("Month")
+ax.set_ylabel("Visitors")
+ax.set_ylim(0, 250)
+ax.grid(axis="y", linestyle=":", alpha=0.5)
+ax.legend()
+fig.tight_layout()
+plt.show()</pre></div>
+
+<p>This example combines several of the techniques from this lecture into one complete visualization.</p>
+
+<p>The chart starts by creating a <code>Figure</code> and an <code>Axes</code> object with <code>plt.subplots()</code>. The <code>figsize</code> argument controls the size of the figure.</p>
+
+<p>The line is then customized with a blue colour, a thicker line, circular markers, and a descriptive label. The title and axis labels explain what the data represents.</p>
+
+<p>The y-axis is limited from <code>0</code> to <code>250</code>, giving enough space to display all the visitor values while keeping the scale easy to understand.</p>
+
+<p>A horizontal dotted grid is added to make the visitor counts easier to estimate. Finally, <code>ax.legend()</code> identifies the data series and <code>fig.tight_layout()</code> adjusts the spacing so that labels and other chart elements fit neatly inside the figure.</p>
+
+<div class="box info"><div class="box-title">Key Points</div><ul><li>Use styles only when they improve identification.</li><li>Include units in labels where appropriate.</li><li>Use axis limits carefully so comparison remains fair.</li><li><code>fig.tight_layout()</code> helps prevent labels from being clipped.</li><li>Use markers when individual data points need to be easy to identify.</li><li>Keep colours consistent and avoid unnecessary visual decoration.</li><li>Use grids lightly so they support rather than dominate the data.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">Exercise 6 &middot; Style a Study Chart</div><p>Plot five days of study hours. Use a marker, a line colour, labels with units, a title, and a light horizontal grid. Decide whether the y-axis should begin at zero and explain why.</p><p>Try changing the line style and marker to see how they affect readability. Then create a second series representing another student's study hours and use a legend to distinguish the two datasets.</p><p>Finally, experiment with the axis limits and decide which settings make the comparison easiest to understand without exaggerating the differences between the values.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(4)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(6)">Next Lecture &rarr;</button></div>
+</div>
+
+
+<div class="lecture" id="lec-6"><div class="lecture-tag">Lecture 07 &middot; Project 1</div>
+<h1>Project: Student Performance Visualization</h1>
+<p class="lecture-intro">In this project, you will use the Matplotlib skills from the previous lessons to build a complete data visualization. You will start with raw student scores, choose an appropriate chart, create the visualization, label it correctly, and interpret what the chart tells you. The goal is to learn how individual Matplotlib techniques work together to communicate information clearly.</p>
+
+<h2>01. Understand the Data</h2>
+<p>Before writing any plotting code, look at the data you want to visualize. We have a list of students and a list of their examination scores. Each student has one score, so we are interested in comparing separate categories.</p>
+
+<p>This is an important step in data visualization: <strong>do not choose a chart simply because you know how to create it.</strong> Choose a chart based on the relationship you want the reader to understand.</p>
+
+<p>A bar chart is a good choice because each student is an independent category and the height of each bar represents that student's score. A line chart would be less appropriate because the students do not represent a continuous sequence such as time.</p>
+
+<p>We can therefore describe our visualization problem as: <em>compare the final examination score of each student.</em></p>
+
+<h2>02. Build the Chart</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">student_performance.py</span></div><pre>import matplotlib.pyplot as plt
+
+students = ["Aisha", "Ben", "Chen", "Dev", "Elena"]
+scores = [88, 73, 94, 81, 90]
+
+fig, ax = plt.subplots(figsize=(8, 4.5))
+
+bars = ax.bar(students, scores)
+
+ax.set_title("Final Examination Scores")
+ax.set_xlabel("Student")
+ax.set_ylabel("Score (%)")
+ax.set_ylim(0, 100)
+
+ax.bar_label(bars, padding=3, fmt="%d%%")
+
+fig.tight_layout()
+plt.show()</pre></div>
+
+<p>Start by importing <code>matplotlib.pyplot</code>. We use the conventional name <code>plt</code> so that we can access Matplotlib's plotting functions easily.</p>
+
+<p>The <code>students</code> list contains the categories that will appear along the x-axis. The <code>scores</code> list contains the numerical values that determine the height of the bars.</p>
+
+<p>The two lists are connected by their positions. The first student, <code>"Aisha"</code>, has the first score, <code>88</code>. The second student, <code>"Ben"</code>, has the second score, <code>73</code>, and so on. Therefore, both lists must contain the same number of items.</p>
+
+<p><code>plt.subplots()</code> creates two important objects: a <code>Figure</code>, which represents the overall image, and an <code>Axes</code> object, which represents the area where the chart is drawn. We store them in <code>fig</code> and <code>ax</code>.</p>
+
+<p>The main visualization is created with <code>ax.bar(students, scores)</code>. Matplotlib creates one bar for every student and uses the corresponding score as its height.</p>
+
+<p>Next, the chart is given a title and meaningful axis labels. The y-axis is labelled <code>Score (%)</code> because the values represent percentages. The limit is set from <code>0</code> to <code>100</code>, which matches the natural range of examination percentages.</p>
+
+<p>Finally, <code>ax.bar_label()</code> places the exact score above each bar. This means the reader can use the bar heights for quick comparison while also seeing the precise values.</p>
+
+<h2>03. Read and Interpret the Chart</h2>
+<p>Creating a chart is only part of the job. A useful visualization should allow us to answer questions about the data.</p>
+
+<p>Looking at the results, Chen has the highest score at <strong>94%</strong>, while Ben has the lowest score at <strong>73%</strong>. Elena scored <strong>90%</strong>, Aisha scored <strong>88%</strong>, and Dev scored <strong>81%</strong>.</p>
+
+<p>The chart makes these comparisons easier because our eyes can compare the heights of the bars quickly. The data labels provide the exact values when precision is required.</p>
+
+<p>This demonstrates an important principle: <strong>a visualization should make a question easier to answer.</strong> In this case, the question is about comparing student performance, so the differences between the bar heights are the main visual information.</p>
+
+<p>Notice that the chart does not need unnecessary decoration. A clear title, meaningful labels, an appropriate scale, and readable values are enough to communicate the results effectively.</p>
+
+<h2>04. Extend the Project</h2>
+<p>Once the basic chart works, improve the project by asking new questions about the same data. For example, you could calculate the average score and compare individual students against that average.</p>
+
+<p>You could also add a passing score and use a horizontal reference line to show the minimum required mark. This would make it immediately clear which students passed or failed.</p>
+
+<p>Another useful extension is to collect scores for two subjects, such as Mathematics and Science. Instead of one bar for each student, you can create grouped bars so that the two subjects can be compared side by side.</p>
+
+<p>If your dataset contains many students, a vertical bar chart may become crowded. In that situation, a horizontal bar chart can make long names easier to read. You can also sort the students by their scores when ranking is an important part of the analysis.</p>
+
+<p>When extending the project, always return to the question you want the visualization to answer. Adding more elements is useful only when those elements help the reader understand the data.</p>
+
+<div class="box info"><div class="box-title">Project Checklist</div><ul><li>Understand the data before choosing a chart type.</li><li>Keep related values aligned between your data lists.</li><li>Use a descriptive title that explains what is being measured.</li><li>Label axes clearly and include units where necessary.</li><li>Use a sensible y-axis range that does not distort comparisons.</li><li>Add exact data labels when they provide useful information.</li><li>Keep the design simple and remove decoration that does not communicate information.</li><li>Check the final chart from the reader's perspective: can its main message be understood quickly?</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">Challenge</div><p>Create a new dataset containing Mathematics and Science scores for at least five students. Build a grouped bar chart that places the two subject scores beside each other for every student.</p><p>Your chart should include a descriptive title, labelled axes, a y-axis ranging from 0 to 100, and a legend identifying Mathematics and Science.</p><p>After creating the chart, study your results and identify which student has the highest combined performance and which student has the largest difference between the two subjects.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(5)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(7)">Next Lecture &rarr;</button></div>
+</div>
+
+<div class="lecture" id="lec-7"><div class="lecture-tag">Lecture 08 &middot; Line Charts</div>
+<h1>Show Change with Line Charts</h1>
+<p class="lecture-intro">Line charts are designed to show how values change across an ordered sequence. They are especially useful for time-based data because the position of each point and the line connecting the points reveal trends, increases, decreases, peaks, and sudden changes.</p>
+
+<h2>01. Understand What a Line Chart Shows</h2>
+<p>A line chart represents data points and connects them with lines. The x-axis contains an ordered variable, while the y-axis contains the measurement you want to observe.</p>
+
+<p>The important idea is that <strong>the order of the x-axis matters</strong>. When the points are connected, the reader naturally interprets the movement from one point to the next as meaningful.</p>
+
+<p>For example, suppose you record the temperature every day. Monday comes before Tuesday, and Tuesday comes before Wednesday. Connecting the measurements helps us see how temperature changed throughout the week.</p>
+
+<p>This makes line charts particularly useful for time series such as daily temperatures, monthly revenue, website traffic, stock prices, or model training loss across epochs.</p>
+
+<p>A line chart is not automatically appropriate just because your data contains numbers. If you are comparing unrelated categories such as the sales of five different products, a bar chart will usually communicate the comparison more clearly.</p>
+
+<h2>02. Create a Basic Line Chart</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">line_chart.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+revenue = [24, 28, 31, 29, 35, 42]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, revenue, marker="o")
+ax.set_title("Monthly Revenue")
+ax.set_xlabel("Month")
+ax.set_ylabel("Revenue (thousands of dollars)")
+ax.grid(axis="y", linestyle=":", alpha=0.5)
+
+plt.show()</pre></div>
+
+<p>The <code>months</code> list provides the ordered values for the x-axis, while <code>revenue</code> contains the corresponding measurements.</p>
+
+<p>When we call <code>ax.plot(months, revenue)</code>, Matplotlib creates a point for each pair of values and connects the points in order.</p>
+
+<p>The first point represents January with a revenue value of 24. The next point represents February with a value of 28, and the process continues through June.</p>
+
+<p>The <code>marker="o"</code> argument places a circular marker at each observation. This makes individual monthly measurements easier to identify.</p>
+
+<p>The title and axis labels explain what the chart represents. Notice that the y-axis includes <code>thousands of dollars</code>. Without the unit, a reader would not know what the numbers mean.</p>
+
+<p>The horizontal grid lines make it easier to estimate values. Because this chart is mainly concerned with the revenue values, the grid is applied only to the y-axis.</p>
+
+<h2>03. Understand Trends and Changes</h2>
+<p>One of the main strengths of a line chart is that it allows you to study <strong>direction and change</strong>.</p>
+
+<p>If the line moves upward from one point to the next, the measured value increased. If it moves downward, the value decreased. A relatively flat section indicates that the value changed very little.</p>
+
+<p>In the example, revenue increases from January through March, falls slightly in April, and then increases again during May and June.</p>
+
+<p>The steepness of the line can also provide a visual indication of how quickly the value is changing. A sharp movement represents a larger change between observations, while a shallow movement represents a smaller change.</p>
+
+<p>However, remember that the visual steepness depends partly on the axis scales. Always use the actual values and axis labels when making precise comparisons.</p>
+
+<h2>04. Compare Multiple Series</h2>
+<p>Line charts become especially useful when you want to compare how two or more measurements change across the same ordered x-axis.</p>
+
+<p>Give every series a meaningful label and make the lines visually distinguishable. Different markers, line styles, or colours can help the reader identify each series.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">two_lines.py</span></div><pre>online = [12, 16, 18, 20, 25, 29]
+store = [10, 12, 13, 12, 15, 18]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, online, marker="o", label="Online")
+ax.plot(months, store, marker="s", linestyle="--", label="Store")
+
+ax.set_title("Sales by Channel")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales (thousands)")
+ax.legend()
+ax.grid(axis="y", alpha=0.3)
+
+plt.show()</pre></div>
+
+<p>Both lines use the same <code>months</code> list, so their values can be compared month by month.</p>
+
+<p>The first series represents online sales and uses circular markers. The second represents store sales and uses square markers with a dashed line.</p>
+
+<p>The <code>label</code> argument gives each series a name. Calling <code>ax.legend()</code> then creates a legend using those names.</p>
+
+<p>From the chart, you can compare not only the individual values but also the overall trends. For example, online sales generally increase more quickly than store sales in this dataset.</p>
+
+<p>Be careful when adding many lines. If several series overlap, the chart can quickly become difficult to read. When the number of series becomes large, consider whether another visualization or multiple smaller charts would communicate the information better.</p>
+
+<h2>05. Work with Missing Data</h2>
+<p>Real datasets are often incomplete. A measurement may be unavailable because a sensor failed, a record was not collected, or information was not reported.</p>
+
+<p>A missing value should not automatically be treated as zero. Zero means that the measured quantity was actually zero, while a missing value means that no measurement is available.</p>
+
+<p>When working with numerical data, <code>numpy.nan</code> can be used to represent a missing value. Matplotlib can then leave a break in the plotted line instead of pretending that the missing measurement was zero.</p>
+
+<p>This distinction is important because incorrectly replacing missing data with zero can create a false drop in the line and lead the reader to an incorrect conclusion.</p>
+
+<h2>06. Use Dates and Uneven Intervals Correctly</h2>
+<p>Time-based data is not always recorded at perfectly regular intervals. You might have measurements on January 1, January 5, and January 20 rather than every day.</p>
+
+<p>When this happens, use actual date or time values on the x-axis whenever possible. This allows the chart to represent the amount of time between observations correctly.</p>
+
+<p>If you replace real dates with equally spaced category names, the visual distance between points may no longer represent the actual elapsed time. For a time series, that can make the pattern misleading.</p>
+
+<p>Matplotlib works with Python date and time objects, making it possible to create charts that represent real chronological spacing.</p>
+
+<h2>07. Choose the Right Scale</h2>
+<p>The axis range affects how a line chart appears. Matplotlib normally selects a suitable range automatically, but you can control it when necessary.</p>
+
+<p>Do not change the scale simply to make a trend look more dramatic. The purpose of a visualization is to communicate the data accurately.</p>
+
+<p>For example, if your measurements range from 0 to 100, showing only a very small section of the y-axis can make a relatively small difference appear much larger. Whether a non-zero baseline is appropriate depends on the data and the question being asked, but the selected range should always be clear to the reader.</p>
+
+<div class="box info"><div class="box-title">Line Chart Rules</div><ul><li>Use an ordered x-axis, especially when showing change over time.</li><li>Make sure connecting the points has a meaningful interpretation.</li><li>Label both axes and include units where appropriate.</li><li>Use markers when there are relatively few observations.</li><li>Avoid excessive markers when plotting dense datasets.</li><li>Use legends when multiple series need to be identified.</li><li>Do not replace missing measurements with zero unless zero is actually the correct value.</li><li>Use real dates when uneven time intervals matter.</li><li>Choose axis limits carefully and avoid scales that exaggerate the message.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">Exercise 8 &middot; Track a Trend</div><p>Create a line chart showing a measurement across seven days. You could use daily temperature, website visitors, study hours, rainfall, or another dataset that changes over time.</p><p>Add a clear title, labels for both axes, appropriate units, markers, and a light horizontal grid.</p><p>After creating the chart, examine the data rather than only the appearance of the line. Identify the largest increase between two consecutive days, the largest decrease, and the overall trend.</p><p>As an additional challenge, create a second series and use a legend to compare the two trends.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(6)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture &rarr;</button></div>
+</div>
+
+<div class="lecture" id="lec-8"><div class="lecture-tag">Lecture 09 &middot; Bar Charts</div>
+<h1>Compare Categories with Bar Charts</h1>
+<p class="lecture-intro">Bar charts are one of the most useful ways to compare separate categories. Each bar represents a category, and its length or height represents a numerical value. They are commonly used for counts, scores, sales, survey results, enrolments, and other data where individual categories need to be compared.</p>
+
+<h2>01. Understand What a Bar Chart Shows</h2>
+<p>A bar chart compares <strong>discrete categories</strong>. Each category has a value, and Matplotlib represents that value using the size of a bar.</p>
+
+<p>For example, if you want to compare how many students are learning different programming languages, each programming language is a category and the number of students is its value.</p>
+
+<p>The important thing to remember is that the categories are separate. Python, Java, C++, and JavaScript are not points along a continuous scale. They are individual groups that we want to compare.</p>
+
+<p>Bar charts are therefore different from line charts. A line chart emphasizes change across an ordered sequence, while a bar chart emphasizes comparison between categories.</p>
+
+<h2>02. Make a Vertical Bar Chart</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bar_chart.py</span></div><pre>import matplotlib.pyplot as plt
+
+languages = ["Python", "Java", "C++", "JavaScript"]
+students = [38, 24, 18, 31]
+
+fig, ax = plt.subplots()
+
+bars = ax.bar(languages, students)
+
+ax.set_title("Students Enrolled by Language")
+ax.set_xlabel("Programming language")
+ax.set_ylabel("Number of students")
+ax.set_ylim(0, 45)
+
+ax.bar_label(bars, padding=3)
+ax.grid(axis="y", linestyle=":", alpha=0.4)
+
+plt.show()</pre></div>
+
+<p>The <code>languages</code> list contains the category names, while <code>students</code> contains the corresponding values.</p>
+
+<p>When we call <code>ax.bar(languages, students)</code>, Matplotlib creates one bar for every category. The first language is matched with the first value, the second language with the second value, and so on.</p>
+
+<p>The height of each bar represents the number of students. A taller bar means a larger value, while a shorter bar means a smaller value.</p>
+
+<p>The <code>ax.bar_label()</code> method places the exact value above each bar. This is useful when the reader needs to know the actual number rather than estimating it from the axis.</p>
+
+<p>The y-axis is limited to 45 using <code>ax.set_ylim(0, 45)</code>. Notice that the lower limit is zero. Because the height of a bar represents its value, starting from zero makes the visual comparison honest.</p>
+
+<h2>03. Read and Interpret the Chart</h2>
+<p>Creating a chart is only part of the job. You should also be able to extract information from it.</p>
+
+<p>In this example, Python has the highest enrolment with <strong>38 students</strong>. JavaScript follows with <strong>31</strong>, Java has <strong>24</strong>, and C++ has <strong>18</strong>.</p>
+
+<p>You can also identify the difference between categories. Python has 7 more students than JavaScript, while JavaScript has 13 more students than C++.</p>
+
+<p>This is one reason bar charts are effective: the reader can quickly identify the largest category, smallest category, and differences between categories.</p>
+
+<h2>04. Sort Categories When Order Helps</h2>
+<p>The order of categories can affect how quickly a reader understands a chart.</p>
+
+<p>If the categories have a natural order, keep that order. For example, months should normally appear from January to December, and age groups should normally progress from younger to older.</p>
+
+<p>However, if the categories do not have a natural order and your main goal is to show a ranking, sorting the bars can make the comparison much easier.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sorted_bars.py</span></div><pre>import matplotlib.pyplot as plt
+
+languages = ["Python", "Java", "C++", "JavaScript"]
+students = [38, 24, 18, 31]
+
+ranking = sorted(zip(students, languages), reverse=True)
+students, languages = zip(*ranking)
+
+fig, ax = plt.subplots()
+
+bars = ax.bar(languages, students)
+
+ax.set_title("Programming Language Enrolment")
+ax.set_xlabel("Programming language")
+ax.set_ylabel("Number of students")
+
+ax.bar_label(bars, padding=3)
+ax.grid(axis="y", linestyle=":", alpha=0.4)
+
+plt.show()</pre></div>
+
+<p>The <code>zip()</code> function keeps each value connected to its category while the data is being sorted.</p>
+
+<p>After sorting, the largest value appears first. This makes the chart read like a ranking, allowing the reader to identify the most popular category immediately.</p>
+
+<p>Do not sort only the numerical list. If you change the order of the values without changing the corresponding categories, the chart can display incorrect information even though the Python code still runs.</p>
+
+<h2>05. Compare Two Values Per Category</h2>
+<p>Sometimes each category contains more than one value. For example, you may want to compare students' average scores in Term 1 and Term 2.</p>
+
+<p>A <strong>grouped bar chart</strong> places related bars next to each other for every category. This lets the reader compare both the categories and the different series.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">grouped_bars.py</span></div><pre>import numpy as np
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "Science", "English"]
+term_one = [76, 82, 79]
+term_two = [84, 78, 88]
+
+x = np.arange(len(subjects))
+width = 0.35
+
+fig, ax = plt.subplots()
+
+ax.bar(x - width / 2, term_one, width, label="Term 1")
+ax.bar(x + width / 2, term_two, width, label="Term 2")
+
+ax.set_xticks(x, subjects)
+ax.set_ylabel("Average score")
+ax.set_title("Average Scores by Term")
+ax.legend()
+
+plt.show()</pre></div>
+
+<p>Here, <code>x</code> provides a numerical position for each subject. The bars are then shifted slightly left and right so that the two series can sit beside each other.</p>
+
+<p>The expression <code>x - width / 2</code> places the Term 1 bars to the left of each subject position, while <code>x + width / 2</code> places the Term 2 bars to the right.</p>
+
+<p>The <code>label</code> argument gives each series a name, and <code>ax.legend()</code> displays those names so the reader knows which bars represent each term.</p>
+
+<p>Grouped bars work well for two or three related series. Adding too many series can make the chart crowded and difficult to compare.</p>
+
+<h2>06. Choose the Right Bar Chart</h2>
+<p>There are several ways to use bars depending on the question you are trying to answer.</p>
+
+<p>Use a <strong>simple bar chart</strong> when each category has one value. Use a <strong>grouped bar chart</strong> when you want to compare multiple related values for every category.</p>
+
+<p>A <strong>horizontal bar chart</strong> is often better when category names are long or when you are presenting a ranking. You will use this type in the next lecture.</p>
+
+<p>Choose the chart based on the structure of your data and the comparison you want the reader to make. Adding more bars or more visual effects does not automatically make a chart more informative.</p>
+
+<div class="box info"><div class="box-title">Avoid Misleading Bars</div><ul><li>Begin the value axis at zero when bar length represents magnitude.</li><li>Keep equal bar widths and consistent spacing.</li><li>Keep categories and their values correctly matched.</li><li>Use one scale when comparing values that belong to the same measurement.</li><li>Avoid unnecessary 3D effects because they can distort the apparent size of bars.</li><li>Use grouped bars when related series need direct comparison.</li><li>Use stacked bars when the relationship between parts and a total is the main story.</li><li>Do not add decorative effects that make the actual data harder to read.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">Exercise 9 &middot; Compare Categories</div><p>Create a bar chart showing the number of books read by five classmates. Give each classmate a name and a numerical value.</p><p>Sort the values from highest to lowest, add a clear title, label the value axis, and display the exact count above each bar.</p><p>After creating the chart, identify who read the most books, who read the fewest, and calculate the difference between the two.</p><p>As an additional challenge, create a second set of values representing another month and turn your chart into a grouped bar chart.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(7)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture &rarr;</button></div>
+</div>
+
+<div class="lecture" id="lec-9"><div class="lecture-tag">Lecture 10 &middot; Horizontal Bar Charts</div>
+<h1>Use Horizontal Bars for Long Labels</h1>
+<p class="lecture-intro">Horizontal bar charts are useful when the categories contain long names, when you have many categories, or when you want to present a clear ranking. Instead of making categories run across the bottom of the chart, horizontal bars place them along the vertical axis where they are usually easier to read.</p>
+
+<h2>01. Understand Horizontal Bar Charts</h2>
+<p>A horizontal bar chart displays one bar for each category, but the bars extend from left to right instead of from bottom to top.</p>
+
+<p>The main idea is the same as a normal bar chart: <strong>the length of each bar represents a numerical value.</strong> The difference is the orientation of the axes.</p>
+
+<p>In a vertical bar chart, categories are normally placed on the x-axis and values on the y-axis. In a horizontal bar chart, categories are placed on the y-axis and values are placed on the x-axis.</p>
+
+<p>This orientation is particularly useful when category names are long. A label such as <em>"Machine Learning and Artificial Intelligence"</em> can be difficult to display underneath a vertical bar, but it can be written naturally beside a horizontal bar.</p>
+
+<h2>02. Create a Horizontal Bar Chart</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">horizontal_bar.py</span></div><pre>import matplotlib.pyplot as plt
+
+courses = ["Data Analysis", "Web Development", "Machine Learning", "Cyber Security"]
+enrolments = [62, 48, 57, 39]
+
+fig, ax = plt.subplots(figsize=(8, 4.5))
+
+bars = ax.barh(courses, enrolments)
+
+ax.set_title("Course Enrolments")
+ax.set_xlabel("Number of students")
+ax.set_ylabel("Course")
+
+ax.bar_label(bars, padding=3)
+ax.grid(axis="x", linestyle=":", alpha=0.45)
+
+fig.tight_layout()
+plt.show()</pre></div>
+
+<p>The <code>courses</code> list contains the categories, while <code>enrolments</code> contains the number of students in each course.</p>
+
+<p>The function <code>ax.barh()</code> creates the horizontal bars. The <code>h</code> in <code>barh</code> stands for <strong>horizontal</strong>.</p>
+
+<p>Matplotlib matches the items in the two lists by position. Therefore, <code>"Data Analysis"</code> is associated with <code>62</code>, <code>"Web Development"</code> with <code>48</code>, and so on.</p>
+
+<p>The value axis runs horizontally, so larger values produce longer bars. The category axis runs vertically, allowing the course names to be displayed beside the bars.</p>
+
+<p><code>ax.bar_label()</code> adds the exact enrolment value to each bar. This is useful when the reader needs both a quick visual comparison and the precise number.</p>
+
+<p>The grid is placed on the x-axis because that is where the numerical values are measured. The grid helps the reader estimate the length of each bar.</p>
+
+<h2>03. Read the Chart</h2>
+<p>A chart is useful only if the reader can extract information from it. Look at the length of the bars and compare them with the values on the horizontal axis.</p>
+
+<p>In this example, Data Analysis has the largest number of enrolments with <strong>62 students</strong>. Machine Learning follows with <strong>57</strong>, while Web Development has <strong>48</strong> and Cyber Security has <strong>39</strong>.</p>
+
+<p>The horizontal orientation makes the course names easy to scan. This becomes increasingly valuable as category names become longer or the number of categories increases.</p>
+
+<p>Remember that bar charts represent comparisons using bar lengths. For an accurate comparison, the value axis should normally begin at zero. Starting the axis at a larger value can make relatively small differences appear much larger.</p>
+
+<h2>04. Create a Ranking</h2>
+<p>Horizontal bar charts are particularly effective for rankings. A ranking orders categories from highest to lowest or lowest to highest so that the reader can immediately identify their position.</p>
+
+<p>Python's <code>sorted()</code> function can be used to arrange the data before plotting. When sorting multiple related values, it is important to keep each category connected to its corresponding value.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ranking.py</span></div><pre>cities = ["Pune", "Delhi", "Bengaluru", "Mumbai"]
+population = [7.4, 19.3, 13.6, 21.7]
+
+ranking = sorted(zip(population, cities), reverse=True)
+population, cities = zip(*ranking)
+
+fig, ax = plt.subplots()
+
+ax.barh(cities, population)
+
+ax.invert_yaxis()
+ax.set_xlabel("Population (millions)")
+ax.set_title("Selected City Populations")
+
+plt.show()</pre></div>
+
+<p>The expression <code>zip(population, cities)</code> combines each population with its corresponding city. This is important because sorting the population list by itself would separate the numbers from the correct city names.</p>
+
+<p><code>sorted(..., reverse=True)</code> sorts the combined data from the largest population to the smallest.</p>
+
+<p>After sorting, <code>zip(*ranking)</code> separates the sorted pairs back into two sequences: one for population and one for city names.</p>
+
+<p>There is one more detail to understand. A horizontal bar chart normally places the first category at the bottom. Because our ranking is sorted from largest to smallest, the largest city would initially appear at the bottom.</p>
+
+<p><code>ax.invert_yaxis()</code> reverses the category axis, moving the first item to the top. The result reads naturally like a leaderboard: <strong>first place at the top, followed by the remaining positions.</strong></p>
+
+<h2>05. Keep Related Data Together</h2>
+<p>When working with categories and numerical values, always make sure the relationship between them is preserved.</p>
+
+<p>For example, if <code>"Mumbai"</code> has a population of <code>21.7</code>, that value must remain attached to Mumbai after sorting or modifying the data.</p>
+
+<p>A common beginner mistake is to sort one list without sorting the corresponding category list. The chart may still run without producing a Python error, but it will display incorrect information.</p>
+
+<p>This is an important lesson beyond Matplotlib: <strong>correct data preparation is just as important as correct plotting code.</strong></p>
+
+<h2>06. Vertical or Horizontal?</h2>
+<p>Both vertical and horizontal bar charts represent categorical comparisons. The best choice depends on the structure of the data and what you want the reader to notice.</p>
+
+<p>Choose vertical bars when you have a small number of categories with short labels, or when the categories have a natural left-to-right order.</p>
+
+<p>Choose horizontal bars when category names are long, when there are many categories, or when you are presenting a ranking. Horizontal bars often make it easier to scan names and compare the lengths of the bars.</p>
+
+<p>For either orientation, keep the numerical axis starting at zero when the bar length is being used to represent magnitude. This ensures that the visual length of one bar can be compared fairly with another.</p>
+
+<div class="box info"><div class="box-title">Key Points</div><ul><li><code>ax.barh(categories, values)</code> creates horizontal bars.</li><li>The category axis is vertical and the value axis is horizontal.</li><li>Horizontal bars are useful for long labels and many categories.</li><li>Use <code>ax.invert_yaxis()</code> when you want the first ranked item at the top.</li><li>Keep categories and their values correctly matched when sorting.</li><li>Use <code>ax.bar_label()</code> when exact values are useful to the reader.</li><li>Keep the numerical axis starting at zero when bar length represents magnitude.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">Exercise 10 &middot; Make a Ranking</div><p>Create a dataset containing five categories and numerical values. You could rank programming languages by popularity, subjects by student enrolment, products by sales, or another set of categories you are interested in.</p><p>Create a horizontal bar chart and sort the data from the largest value to the smallest. Put the highest-ranked category at the top using <code>ax.invert_yaxis()</code>.</p><p>Add a descriptive title, a label for the value axis, and data labels showing the exact values.</p><p>Finally, explain why a horizontal bar chart is more suitable for your chosen data than a vertical bar chart.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(8)">&larr; Previous Lecture</button></div>
+</div>
+
+<div class="lecture" id="lec-10"><div class="lecture-tag">Lecture 11 &middot; Scatter Plots</div>
+<h1>Discover Relationships with Scatter Plots</h1>
+<p class="lecture-intro">Scatter plots help you investigate whether two numerical variables are related. Each point represents one observation, with its position determined by an x-value and a y-value. They are useful for finding patterns, clusters, unusual observations, and possible relationships in data.</p>
+
+<h2>01. Understand What a Scatter Plot Shows</h2>
+<p>A scatter plot displays individual observations as points on a coordinate system. One numerical variable is placed on the x-axis and another numerical variable is placed on the y-axis.</p>
+
+<p>For example, imagine recording how many hours students study and the scores they receive in an exam. Each student provides one observation:</p>
+
+<ul>
+<li>The number of study hours becomes the x-value.</li>
+<li>The exam score becomes the y-value.</li>
+<li>One student is represented by one point.</li>
+</ul>
+
+<p>When many observations are plotted together, the collection of points can reveal whether the variables appear to move together.</p>
+
+<p>This makes scatter plots different from bar and line charts. A bar chart mainly compares categories, while a line chart emphasizes an ordered sequence. A scatter plot focuses on the <strong>relationship between two numerical variables</strong>.</p>
+
+<h2>02. Create a Basic Scatter Plot</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">scatter_plot.py</span></div><pre>import matplotlib.pyplot as plt
+
+study_hours = [1, 2, 2.5, 3, 4, 5, 6, 7]
+exam_scores = [48, 55, 58, 63, 68, 75, 82, 88]
+
+fig, ax = plt.subplots()
+
+ax.scatter(study_hours, exam_scores)
+
+ax.set_title("Study Hours and Exam Scores")
+ax.set_xlabel("Study hours")
+ax.set_ylabel("Exam score")
+
+ax.grid(alpha=0.3)
+
+plt.show()</pre></div>
+
+<p>The <code>study_hours</code> list contains the x-values, while <code>exam_scores</code> contains the corresponding y-values.</p>
+
+<p>The call <code>ax.scatter(study_hours, exam_scores)</code> creates one point for every pair of values. The first study time is matched with the first exam score, the second with the second, and so on.</p>
+
+<p>For example, the first observation is <code>(1, 48)</code>. This means one hour of study corresponds to an exam score of 48 for that observation.</p>
+
+<p>The position of a point therefore contains information about <strong>both variables at the same time</strong>.</p>
+
+<h2>03. Read the Pattern of the Points</h2>
+<p>The most important skill when using a scatter plot is learning to look for the overall pattern rather than focusing on one individual point.</p>
+
+<p>If the points generally move upward from left to right, the variables have a <strong>positive association</strong>. Larger x-values tend to occur with larger y-values.</p>
+
+<p>If the points generally move downward from left to right, the variables have a <strong>negative association</strong>. Larger x-values tend to occur with smaller y-values.</p>
+
+<p>If the points appear scattered without a clear direction, there may be <strong>little or no obvious relationship</strong> between the variables.</p>
+
+<p>In the study-hours example, the points generally move upward as study hours increase. This suggests a positive relationship in this particular dataset.</p>
+
+<p>However, a scatter plot shows an association, not automatically a cause-and-effect relationship. A second factor could influence both variables, so you should avoid claiming that one variable directly causes another based only on the plot.</p>
+
+<h2>04. Understand Clusters and Outliers</h2>
+<p>Scatter plots can reveal more than just an overall direction. They can also show <strong>clusters</strong> and <strong>outliers</strong>.</p>
+
+<p>A cluster occurs when several observations are concentrated in one region of the chart. A cluster may indicate that the data contains different groups or populations.</p>
+
+<p>An outlier is an observation that is noticeably separated from the general pattern of the other points.</p>
+
+<p>For example, if most students who study more hours have higher scores but one observation is far away from the rest, that point deserves investigation.</p>
+
+<p>Do not automatically delete an unusual observation. First determine whether it represents a genuine situation, a measurement problem, or an error in the data.</p>
+
+<h2>05. Customize the Points</h2>
+<p>Scatter plots often contain many observations, so adjusting the appearance of the points can make the chart easier to read.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">custom_scatter.py</span></div><pre>import matplotlib.pyplot as plt
+
+study_hours = [1, 2, 2.5, 3, 4, 5, 6, 7]
+exam_scores = [48, 55, 58, 63, 68, 75, 82, 88]
+
+fig, ax = plt.subplots()
+
+ax.scatter(
+    study_hours,
+    exam_scores,
+    s=70,
+    alpha=0.7,
+    edgecolors="black"
+)
+
+ax.set_title("Study Hours and Exam Scores")
+ax.set_xlabel("Study hours")
+ax.set_ylabel("Exam score")
+ax.grid(alpha=0.3)
+
+plt.show()</pre></div>
+
+<p>The <code>s</code> argument controls the approximate size of the markers. Larger markers can make a small dataset easier to see.</p>
+
+<p>The <code>alpha</code> argument controls transparency. This is particularly useful when many observations overlap. Transparent points can help reveal areas where observations are concentrated.</p>
+
+<p>The <code>edgecolors</code> argument adds an outline around the points, which can make individual observations easier to distinguish.</p>
+
+<p>Do not use customization simply for decoration. Every visual change should make the data easier to understand.</p>
+
+<h2>06. Compare Two Groups</h2>
+<p>Sometimes your observations belong to different groups. For example, you might want to compare the relationship between study hours and exam scores for two different classes.</p>
+
+<p>You can plot the groups separately and give each one a meaningful label.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">groups.py</span></div><pre>import matplotlib.pyplot as plt
+
+class_a_hours = [1, 2, 3, 4, 5]
+class_a_scores = [48, 55, 63, 70, 77]
+
+class_b_hours = [1, 2, 3, 4, 5]
+class_b_scores = [52, 60, 67, 74, 84]
+
+fig, ax = plt.subplots()
+
+ax.scatter(
+    class_a_hours,
+    class_a_scores,
+    label="Class A"
+)
+
+ax.scatter(
+    class_b_hours,
+    class_b_scores,
+    label="Class B"
+)
+
+ax.set_title("Study Hours and Exam Scores")
+ax.set_xlabel("Study hours")
+ax.set_ylabel("Exam score")
+ax.legend()
+ax.grid(alpha=0.3)
+
+plt.show()</pre></div>
+
+<p>Each call to <code>ax.scatter()</code> adds another group of observations to the same axes.</p>
+
+<p>The <code>label</code> argument identifies each group, and <code>ax.legend()</code> displays those labels.</p>
+
+<p>This allows you to compare whether the groups show similar patterns or whether one group tends to occupy a different region of the chart.</p>
+
+<h2>07. Scatter Plot or Another Chart?</h2>
+<p>Choosing the correct chart depends on the question you are asking.</p>
+
+<p>Use a scatter plot when you have <strong>two numerical variables</strong> and want to investigate their relationship.</p>
+
+<p>Use a bar chart when the main goal is comparing values across separate categories.</p>
+
+<p>Use a line chart when the x-axis represents an ordered sequence, especially time, and the change from one observation to the next is important.</p>
+
+<p>A scatter plot should not be used simply because both columns in your dataset contain numbers. The key question is whether you want to investigate how two numerical variables are related.</p>
+
+<div class="box info"><div class="box-title">Key Points</div><ul><li>Use <code>ax.scatter(x, y)</code> to create a scatter plot.</li><li>Each point represents one observation.</li><li>The x-axis and y-axis should normally contain numerical variables.</li><li>An upward pattern suggests a positive association.</li><li>A downward pattern suggests a negative association.</li><li>A scattered pattern may indicate little or no obvious relationship.</li><li>Look for clusters and unusual observations.</li><li>An association does not automatically prove causation.</li><li>Use transparency when many points overlap.</li><li>Choose a scatter plot when the relationship between two numerical variables is the main question.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">Exercise 11 &middot; Find a Relationship</div><p>Create a scatter plot using two numerical variables. You could investigate study hours and exam scores, advertising spend and sales, distance travelled and fuel used, or another pair of measurements.</p><p>Plot at least eight observations and add a clear title and labels for both axes.</p><p>Study the resulting points and describe whether you can see a positive relationship, negative relationship, or no obvious relationship.</p><p>Identify any clusters or unusual observations you can see.</p><p>As an additional challenge, change the marker size and transparency to make your chart easier to read.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(8)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(10)">Next Lecture &rarr;</button></div>
+</div>
+
+<div class="lecture" id="lec-11"><div class="lecture-tag">Lecture 12 &middot; Histograms</div>
+<h1>Understand Data Distribution with Histograms</h1>
+<p class="lecture-intro">A histogram shows how numerical data is distributed by grouping values into intervals called bins. Instead of displaying every individual observation, it helps you see where values are concentrated, how spread out they are, and whether the distribution has unusual patterns.</p>
+
+<h2>01. Understand What a Histogram Shows</h2>
+<p>A histogram is used to study the <strong>distribution of numerical data</strong>. It divides a range of values into intervals and counts how many observations fall inside each interval.</p>
+
+<p>For example, suppose you have the exam scores of 100 students. Looking at all 100 scores individually can make it difficult to understand the overall pattern.</p>
+
+<p>A histogram can group the scores into ranges such as 40–49, 50–59, 60–69, and so on. The height of each bar then represents how many students fall within that range.</p>
+
+<p>This allows you to quickly see whether most students scored around the middle, whether scores are spread across a wide range, or whether there are unusual concentrations of values.</p>
+
+<p>A histogram looks similar to a bar chart, but the two charts answer different questions. A bar chart compares <strong>separate categories</strong>, while a histogram shows the distribution of a <strong>continuous numerical variable</strong>.</p>
+
+<h2>02. Create a Basic Histogram</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">histogram.py</span></div><pre>import matplotlib.pyplot as plt
+
+scores = [
+    42, 45, 48, 51, 52, 54, 55, 57, 58, 60,
+    61, 62, 64, 65, 66, 68, 69, 70, 72, 74,
+    75, 76, 78, 80, 82, 84, 86, 88, 91, 94
+]
+
+fig, ax = plt.subplots()
+
+ax.hist(scores, bins=6, edgecolor="black")
+
+ax.set_title("Distribution of Exam Scores")
+ax.set_xlabel("Exam score")
+ax.set_ylabel("Number of students")
+
+plt.show()</pre></div>
+
+<p>The <code>scores</code> list contains the numerical observations we want to study.</p>
+
+<p>The <code>ax.hist()</code> method creates the histogram. The <code>bins=6</code> argument tells Matplotlib to divide the range of scores into six intervals.</p>
+
+<p>Matplotlib then counts how many observations fall into each interval and draws a bar for that group.</p>
+
+<p>The x-axis represents the <strong>range of values</strong>, while the y-axis represents the <strong>frequency</strong>, or number of observations in each bin.</p>
+
+<p>The <code>edgecolor</code> makes the boundaries between bins easier to see. This is especially useful when neighbouring bars have similar heights.</p>
+
+<h2>03. Understand Bins</h2>
+<p>The intervals used by a histogram are called <strong>bins</strong>. Choosing the number of bins is important because it affects how much detail the histogram shows.</p>
+
+<p>Too few bins can hide important patterns. Many different values may be combined into large intervals, making the distribution appear overly simple.</p>
+
+<p>Too many bins can make the histogram noisy. Small changes between neighbouring observations may create many tiny bars that are difficult to interpret.</p>
+
+<p>There is no single number of bins that is correct for every dataset. The appropriate choice depends on the amount of data, the range of values, and the pattern you are trying to understand.</p>
+
+<h2>04. Control the Number of Bins</h2>
+<p>You can change the number of bins to examine the same dataset at different levels of detail.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">bins.py</span></div><pre>import matplotlib.pyplot as plt
+
+scores = [
+    42, 45, 48, 51, 52, 54, 55, 57, 58, 60,
+    61, 62, 64, 65, 66, 68, 69, 70, 72, 74,
+    75, 76, 78, 80, 82, 84, 86, 88, 91, 94
+]
+
+fig, ax = plt.subplots()
+
+ax.hist(scores, bins=10, edgecolor="black")
+
+ax.set_title("Exam Score Distribution")
+ax.set_xlabel("Exam score")
+ax.set_ylabel("Frequency")
+
+plt.show()</pre></div>
+
+<p>Changing <code>bins=6</code> to <code>bins=10</code> creates more intervals and therefore shows more detail.</p>
+
+<p>When experimenting with bins, do not simply choose the histogram that looks the most interesting. Your goal is to represent the distribution clearly and avoid hiding or exaggerating patterns.</p>
+
+<h2>05. Recognize the Shape of a Distribution</h2>
+<p>A histogram allows you to describe the general shape of your data.</p>
+
+<p>A distribution that has most observations concentrated around the centre may appear approximately <strong>symmetric</strong>. A distribution with a long tail toward larger values is often described as <strong>right-skewed</strong>, while a long tail toward smaller values is described as <strong>left-skewed</strong>.</p>
+
+<p>You may also find more than one noticeable concentration of observations. This can produce a distribution with multiple peaks, sometimes called a <strong>multimodal distribution</strong>.</p>
+
+<p>These patterns can provide useful clues about the data, but a histogram alone does not explain why the pattern exists. You need to investigate the underlying data and context to understand the reason.</p>
+
+<h2>06. Find Spread and Unusual Values</h2>
+<p>Histograms are also useful for understanding the <strong>spread</strong> of a dataset.</p>
+
+<p>If values occupy a narrow range, the distribution is relatively concentrated. If values extend across a large range, the data is more spread out.</p>
+
+<p>A histogram can also help reveal possible unusual values. For example, if almost all observations are concentrated between 50 and 90 but a few values occur far outside that range, those observations may deserve further investigation.</p>
+
+<p>An unusual value is not necessarily an error. It could represent a genuine observation from the population. Always investigate unusual values before deciding what to do with them.</p>
+
+<h2>07. Histogram or Bar Chart?</h2>
+<p>Histograms and bar charts look similar because both use rectangular bars, but their purposes are different.</p>
+
+<p>Use a <strong>bar chart</strong> when comparing separate categories, such as the number of students in different programming courses.</p>
+
+<p>Use a <strong>histogram</strong> when studying the distribution of numerical measurements, such as exam scores, ages, heights, response times, or temperatures.</p>
+
+<p>Another important difference is that histogram bins represent continuous ranges of numerical values. Because neighbouring bins represent adjacent intervals, the bars normally touch each other.</p>
+
+<p>In a categorical bar chart, categories are separate groups, so gaps between bars are commonly used.</p>
+
+<div class="box info"><div class="box-title">Key Points</div><ul><li>Use <code>ax.hist()</code> to create a histogram.</li><li>A histogram shows the distribution of numerical data.</li><li>Bins divide the numerical range into intervals.</li><li>The height of a bar usually represents the number of observations in that interval.</li><li>Too few bins can hide useful patterns.</li><li>Too many bins can make a distribution difficult to read.</li><li>Histograms can reveal concentration, spread, skewness, clusters, and unusual values.</li><li>Use a bar chart for categorical comparisons and a histogram for numerical distributions.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">Exercise 12 &middot; Explore a Distribution</div><p>Create a histogram using at least 20 numerical observations. You could use exam scores, ages, heights, temperatures, reaction times, or another dataset.</p><p>Try the histogram with three different numbers of bins and compare the results.</p><p>Choose the bin setting that gives you the clearest view of the distribution. Add a title and labels for both axes.</p><p>Finally, describe where most of the values are concentrated, how widely the data is spread, and whether you can see any unusual values or interesting patterns.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(9)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(11)">Next Lecture &rarr;</button></div>
+</div>
+
+<div class="lecture" id="lec-12"><div class="lecture-tag">Lecture 12 &middot; Pie Charts</div>
+<h1>Show Parts of a Whole with Pie Charts</h1>
+<p class="lecture-intro">Pie charts show how individual categories contribute to one complete total. Each slice represents a category, and the size of the slice represents its share of the whole. They are most useful when there are only a few categories and the parts form a meaningful total.</p>
+
+<h2>01. Understand What a Pie Chart Shows</h2>
+<p>A pie chart represents a complete quantity as a circle divided into slices. The entire circle represents <strong>100% of the total</strong>, while each slice represents one category's contribution to that total.</p>
+
+<p>For example, imagine tracking how a student spends their weekly study time. If the total study time is divided between Mathematics, Science, Programming, and English, a pie chart can show how much of the total belongs to each subject.</p>
+
+<p>The larger the slice, the larger that category's share of the total.</p>
+
+<p>Pie charts are therefore different from bar charts. A bar chart is usually better when the main goal is to compare exact values or rank many categories. A pie chart is useful when the main question is <strong>"How does this total break down?"</strong></p>
+
+<h2>02. Create a Basic Pie Chart</h2>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pie_chart.py</span></div><pre>import matplotlib.pyplot as plt
+
+subjects = ["Mathematics", "Science", "Programming", "English"]
+hours = [8, 6, 10, 4]
+
+fig, ax = plt.subplots()
+
+ax.pie(hours, labels=subjects)
+
+ax.set_title("Weekly Study Time")
+
+plt.show()</pre></div>
+
+<p>The <code>subjects</code> list contains the categories, while <code>hours</code> contains the corresponding values.</p>
+
+<p>The <code>ax.pie()</code> method converts the values into proportional slices. Matplotlib calculates each category's share of the total automatically.</p>
+
+<p>In this example, the total study time is <code>28</code> hours. Programming accounts for 10 of those hours, so its slice is larger than the slices for subjects with fewer hours.</p>
+
+<p>The <code>labels</code> argument places the category names around the chart so the reader can identify each slice.</p>
+
+<h2>03. Display Percentages</h2>
+<p>Sometimes the reader needs to know the percentage represented by each slice. Matplotlib can calculate and display these percentages using the <code>autopct</code> argument.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pie_percentages.py</span></div><pre>import matplotlib.pyplot as plt
+
+subjects = ["Mathematics", "Science", "Programming", "English"]
+hours = [8, 6, 10, 4]
+
+fig, ax = plt.subplots()
+
+ax.pie(
+    hours,
+    labels=subjects,
+    autopct="%1.1f%%"
+)
+
+ax.set_title("Weekly Study Time")
+
+plt.show()</pre></div>
+
+<p>The <code>autopct</code> argument tells Matplotlib to write the percentage inside each slice.</p>
+
+<p>The format <code>"%1.1f%%"</code> displays the percentage with one decimal place. For example, a category representing approximately one quarter of the total could appear as <code>25.0%</code>.</p>
+
+<p>Using percentages is helpful when the purpose of the chart is to communicate each category's share rather than just its raw value.</p>
+
+<h2>04. Make the Chart Easier to Read</h2>
+<p>As with every visualization, the goal is clarity. A pie chart should make the relationship between the parts and the whole easy to understand.</p>
+
+<p>If you have several small categories, the labels can begin to overlap or become difficult to follow. In such situations, a legend can provide a cleaner way to identify the slices.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pie_legend.py</span></div><pre>import matplotlib.pyplot as plt
+
+subjects = ["Mathematics", "Science", "Programming", "English"]
+hours = [8, 6, 10, 4]
+
+fig, ax = plt.subplots()
+
+wedges, texts, autotexts = ax.pie(
+    hours,
+    autopct="%1.1f%%",
+    startangle=90
+)
+
+ax.legend(
+    wedges,
+    subjects,
+    title="Subjects",
+    loc="center left",
+    bbox_to_anchor=(1, 0.5)
+)
+
+ax.set_title("Weekly Study Time")
+
+plt.show()</pre></div>
+
+<p>The <code>startangle=90</code> argument rotates the chart so that the first slice begins at the top. This can make the layout easier to read depending on the data.</p>
+
+<p>The result returned by <code>ax.pie()</code> includes the slice objects. These are stored in <code>wedges</code> and then passed to <code>ax.legend()</code> so the legend can connect each slice with its category.</p>
+
+<p>The <code>bbox_to_anchor</code> argument moves the legend outside the main plotting area. This gives the pie chart more space and prevents the category names from crowding the slices.</p>
+
+<h2>05. Show a Specific Slice</h2>
+<p>Sometimes one category is particularly important and you want to draw attention to it. Matplotlib provides the <code>explode</code> argument for this purpose.</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">highlight_slice.py</span></div><pre>import matplotlib.pyplot as plt
+
+subjects = ["Mathematics", "Science", "Programming", "English"]
+hours = [8, 6, 10, 4]
+
+explode = [0, 0, 0.08, 0]
+
+fig, ax = plt.subplots()
+
+ax.pie(
+    hours,
+    labels=subjects,
+    autopct="%1.1f%%",
+    explode=explode,
+    startangle=90
+)
+
+ax.set_title("Weekly Study Time")
+
+plt.show()</pre></div>
+
+<p>The <code>explode</code> list controls how far each slice is separated from the centre. A value of <code>0</code> keeps a slice in its normal position, while a positive value moves it outward.</p>
+
+<p>Here, the third value corresponds to Programming, so that slice is slightly separated from the rest.</p>
+
+<p>Use this feature sparingly. If several slices are pulled away from the centre, the chart can become distracting rather than clearer.</p>
+
+<h2>06. Choose When to Use a Pie Chart</h2>
+<p>Pie charts work best when the categories represent parts of <strong>one meaningful total</strong>.</p>
+
+<p>For example, a company's expenses divided into categories can be represented by a pie chart if all categories together represent the company's total expenses for the same period.</p>
+
+<p>Pie charts become less effective when there are many categories. Comparing several similar-sized slices is difficult because humans are generally better at comparing lengths than angles.</p>
+
+<p>If you need to compare ten categories precisely, a bar chart will usually be a better choice.</p>
+
+<p>Also avoid using a pie chart when the values do not represent parts of the same whole. For example, comparing the populations of five unrelated cities is better suited to a bar chart because those populations are not components of one total.</p>
+
+<h2>07. Understand Percentages and Totals</h2>
+<p>Every slice in a pie chart represents a proportion of the total. The percentages of all slices should therefore add up to approximately <strong>100%</strong>, allowing for small rounding differences.</p>
+
+<p>For example, if three categories have values of 20, 30, and 50, the total is 100. Their shares are therefore 20%, 30%, and 50%.</p>
+
+<p>This also means that the raw values do not have to already be percentages. Matplotlib can calculate the proportions from ordinary numerical values.</p>
+
+<p>However, the data must represent comparable parts of the same whole. Mixing unrelated measurements, such as hours, kilometres, and kilograms, would not produce a meaningful pie chart.</p>
+
+<div class="box info"><div class="box-title">Key Points</div><ul><li>Use <code>ax.pie()</code> to create a pie chart.</li><li>The complete circle represents 100% of the total.</li><li>Each slice represents one category's share of that total.</li><li>Use <code>autopct</code> to display percentages.</li><li>Use <code>startangle</code> to control the starting rotation.</li><li>Use <code>explode</code> sparingly when one slice needs emphasis.</li><li>Pie charts work best with a small number of categories.</li><li>All categories should represent parts of the same meaningful whole.</li><li>Use a bar chart instead when precise comparison or ranking is more important.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">Exercise 13 &middot; Show a Breakdown</div><p>Create a pie chart showing how a total is divided among four or five categories. You could use study time, a monthly budget, website traffic sources, project tasks, or another dataset where the categories form one meaningful whole.</p><p>Add category labels and display the percentage represented by each slice.</p><p>Use <code>startangle=90</code> to rotate the chart and experiment with <code>explode</code> to highlight one important category.</p><p>Finally, explain why your data is suitable for a pie chart and identify the largest and smallest shares.</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(10)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(12)">Next Lecture &rarr;</button></div>
+</div>
+
+
+
+<div class="lecture" id="lec-14"><div class="lecture-tag">Lecture 14 &middot; Subplots</div>
+
+<h1>Create Multiple Plots in One Figure</h1>
+
+<p class="lecture-intro">
+    Subplots allow you to place multiple charts inside a single figure. They are useful when you want to compare different datasets, views, or chart types without opening separate figures.
+</p>
+
+<h2>01. Understand What a Subplot Is</h2>
+
+<p>
+    A <strong>subplot</strong> is an individual plot placed inside a larger Matplotlib figure. A figure can contain one subplot or many subplots arranged in rows and columns.
+</p>
+
+<p>
+    For example, you can create two charts side by side: one showing a line chart and another showing a bar chart. This makes it easier to compare related information in one view.
+</p>
+
+<p>
+    The main function used to create subplots is <code>plt.subplots()</code>.
+</p>
+
+<h2>02. Create Two Subplots</h2>
+
+<p>
+    The easiest way to create multiple plots is to use <code>plt.subplots()</code>. The first value specifies the number of rows and the second specifies the number of columns.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">two_subplots.py</span></div><pre>import matplotlib.pyplot as plt
+
+days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+temperatures = [24, 26, 25, 28, 27]
+sales = [12, 18, 15, 22, 20]
+
+fig, ax = plt.subplots(1, 2)
+
+ax[0].plot(days, temperatures)
+ax[0].set_title("Temperature")
+
+ax[1].bar(days, sales)
+ax[1].set_title("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    Here, <code>plt.subplots(1, 2)</code> creates <strong>1 row and 2 columns</strong>, giving us two plots next to each other.
+</p>
+
+<p>
+    The variable <code>ax</code> contains the two subplot axes. We access them using <code>ax[0]</code> and <code>ax[1]</code>.
+</p>
+
+<h2>03. Arrange Subplots in Rows and Columns</h2>
+
+<p>
+    You are not limited to two plots. You can arrange several subplots into a grid.
+</p>
+
+<p>
+    For example, <code>plt.subplots(2, 2)</code> creates <strong>2 rows and 2 columns</strong>, giving you four plots.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">subplot_grid.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+values = [20, 35, 30, 45]
+
+fig, ax = plt.subplots(2, 2)
+
+ax[0, 0].plot(months, values)
+ax[0, 0].set_title("Line Chart")
+
+ax[0, 1].bar(months, values)
+ax[0, 1].set_title("Bar Chart")
+
+ax[1, 0].scatter(months, values)
+ax[1, 0].set_title("Scatter Plot")
+
+ax[1, 1].plot(months, values, marker="o")
+ax[1, 1].set_title("Data Points")
+
+plt.show()</pre></div>
+
+<p>
+    When there are multiple rows and columns, each subplot is accessed using two indexes:
+    <code>ax[row, column]</code>.
+</p>
+
+<p>
+    For example, <code>ax[0, 0]</code> means the first row and first column, while <code>ax[1, 1]</code> means the second row and second column.
+</p>
+
+<h2>04. Add Titles and Labels</h2>
+
+<p>
+    Each subplot has its own axes, so you can give every chart its own title and axis labels.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">labeled_subplots.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+sales = [120, 150, 180, 210]
+
+fig, ax = plt.subplots(1, 2, figsize=(10, 4))
+
+ax[0].plot(months, sales)
+ax[0].set_title("Monthly Sales")
+ax[0].set_xlabel("Month")
+ax[0].set_ylabel("Sales")
+
+ax[1].bar(months, sales)
+ax[1].set_title("Sales Comparison")
+ax[1].set_xlabel("Month")
+ax[1].set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    Notice that <code>set_title()</code>, <code>set_xlabel()</code>, and <code>set_ylabel()</code> are called on each individual axes object.
+</p>
+
+<h2>05. Control the Figure Size</h2>
+
+<p>
+    When several plots are placed together, the default figure size may not provide enough space. You can use <code>figsize</code> to make the entire figure larger.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">figure_size.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(2, 2, figsize=(10, 7))
+
+ax[0, 0].plot([1, 2, 3, 4], [10, 15, 13, 20])
+ax[0, 0].set_title("Chart 1")
+
+ax[0, 1].bar(["A", "B", "C"], [12, 18, 10])
+ax[0, 1].set_title("Chart 2")
+
+ax[1, 0].scatter([1, 2, 3, 4], [8, 14, 11, 19])
+ax[1, 0].set_title("Chart 3")
+
+ax[1, 1].plot([1, 2, 3, 4], [5, 9, 7, 12])
+ax[1, 1].set_title("Chart 4")
+
+plt.show()</pre></div>
+
+<p>
+    The <code>figsize=(10, 7)</code> argument controls the width and height of the complete figure in inches.
+</p>
+
+<h2>06. Improve Spacing with Tight Layout</h2>
+
+<p>
+    Multiple plots can sometimes overlap, especially when they have long titles or axis labels. Matplotlib provides <code>plt.tight_layout()</code> to automatically adjust the spacing.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tight_layout.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(2, 2, figsize=(9, 6))
+
+ax[0, 0].plot([1, 2, 3], [10, 15, 12])
+ax[0, 0].set_title("Temperature Over Three Days")
+
+ax[0, 1].bar(["A", "B", "C"], [20, 35, 25])
+ax[0, 1].set_title("Product Sales")
+
+ax[1, 0].scatter([1, 2, 3], [5, 8, 6])
+ax[1, 0].set_title("Student Scores")
+
+ax[1, 1].plot([1, 2, 3], [30, 25, 40])
+ax[1, 1].set_title("Monthly Visitors")
+
+plt.tight_layout()
+plt.show()</pre></div>
+
+<p>
+    <code>tight_layout()</code> is especially useful when a figure contains several subplots because it reduces unnecessary overlap and improves readability.
+</p>
+
+<h2>07. Share an Axis</h2>
+
+<p>
+    When two subplots use the same type of scale, you can share an axis. This is useful when comparing multiple datasets.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">shared_axis.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+city_a = [20, 24, 27, 30]
+city_b = [18, 22, 25, 28]
+
+fig, ax = plt.subplots(2, 1, sharex=True, figsize=(8, 6))
+
+ax[0].plot(months, city_a)
+ax[0].set_title("City A")
+
+ax[1].plot(months, city_b)
+ax[1].set_title("City B")
+ax[1].set_xlabel("Month")
+
+plt.tight_layout()
+plt.show()</pre></div>
+
+<p>
+    <code>sharex=True</code> tells Matplotlib that both subplots should use the same x-axis. This makes comparisons between the charts easier.
+</p>
+
+<h2>08. When Should You Use Subplots?</h2>
+
+<p>
+    Subplots are useful when several charts are related and should be viewed together.
+</p>
+
+<ul>
+    <li>Compare different datasets.</li>
+    <li>Show different views of the same data.</li>
+    <li>Compare different chart types.</li>
+    <li>Create dashboards and analytical reports.</li>
+    <li>Keep related visualizations inside one figure.</li>
+</ul>
+
+<p>
+    Avoid adding too many subplots to one figure. A crowded figure can be harder to understand than several simple charts.
+</p>
+
+<div class="box info"><div class="box-title">Key Points</div>
+<ul>
+    <li><code>plt.subplots()</code> creates a figure and one or more axes.</li>
+    <li><code>plt.subplots(1, 2)</code> creates two subplots in one row.</li>
+    <li><code>plt.subplots(2, 2)</code> creates four subplots in a 2-by-2 grid.</li>
+    <li>Use <code>ax[0]</code> for a simple one-row or one-column collection of axes.</li>
+    <li>Use <code>ax[row, column]</code> when working with a grid.</li>
+    <li><code>figsize</code> controls the size of the complete figure.</li>
+    <li><code>plt.tight_layout()</code> helps prevent overlapping elements.</li>
+    <li>Subplots are most useful when the charts are related and need to be compared.</li>
+</ul>
+</div>
+
+<div class="exercise"><div class="exercise-title">Exercise 14 · Build a Dashboard</div>
+<p>
+    Create a figure containing <strong>four subplots</strong> arranged in a 2-by-2 grid.
+    Use the same dataset to create a line chart, bar chart, scatter plot, and another chart of your choice.
+    Give every subplot a meaningful title and at least one axis label.
+    Use <code>figsize</code> to make the figure easy to read and finish with <code>plt.tight_layout()</code>.
+</p>
+</div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(12)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(14)">Next Lecture &rarr;</button></div>
+
+</div> 
+
+<div class="lecture" id="lec-15"><div class="lecture-tag">Lecture 15 &middot; Multiple Lines and Data Series</div>
+
+<h1>Compare Multiple Data Series with Line Charts</h1>
+
+<p class="lecture-intro">
+    A single line can show how one set of values changes, but real datasets often contain several related series. Matplotlib allows you to draw multiple lines on the same chart so you can compare trends, patterns, and changes between different groups.
+</p>
+
+<h2>01. Understand Multiple Data Series</h2>
+
+<p>
+    A <strong>data series</strong> is a related collection of values that represents one variable, group, or category.
+    For example, if you are tracking sales for two products, each product can be represented by its own data series.
+</p>
+
+<p>
+    When multiple series use the same x-axis, you can plot them on the same axes. This makes it easier to compare how they change over the same period.
+</p>
+
+<h2>02. Plot Two Lines</h2>
+
+<p>
+    To create multiple lines, call <code>ax.plot()</code> once for each data series.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">multiple_lines.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+product_a = [120, 150, 170, 160, 190]
+product_b = [100, 130, 145, 175, 180]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, product_a)
+ax.plot(months, product_b)
+
+ax.set_title("Monthly Product Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    Both lines are drawn on the same axes. The first call plots <code>product_a</code>, while the second call plots <code>product_b</code>.
+</p>
+
+<p>
+    Because both series use the same <code>months</code> values, their positions can be compared directly.
+</p>
+
+<h2>03. Add Labels with a Legend</h2>
+
+<p>
+    When a chart contains more than one line, the reader needs to know which line belongs to which dataset.
+    Use the <code>label</code> parameter with <code>ax.plot()</code>, then call <code>ax.legend()</code>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">line_legend.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+product_a = [120, 150, 170, 160, 190]
+product_b = [100, 130, 145, 175, 180]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, product_a, label="Product A")
+ax.plot(months, product_b, label="Product B")
+
+ax.set_title("Monthly Product Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+
+plt.show()</pre></div>
+
+<p>
+    The legend connects each line to its corresponding data series. This is especially important when several lines have similar shapes or cross each other.
+</p>
+
+<h2>04. Customize Each Data Series</h2>
+
+<p>
+    You can give each series its own visual properties. For example, markers can make individual data points easier to identify, while line styles can help distinguish different series.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">custom_series.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+website_a = [20, 28, 35, 42, 50]
+website_b = [15, 24, 30, 38, 46]
+
+fig, ax = plt.subplots()
+
+ax.plot(
+    months,
+    website_a,
+    marker="o",
+    linestyle="-",
+    label="Website A"
+)
+
+ax.plot(
+    months,
+    website_b,
+    marker="s",
+    linestyle="--",
+    label="Website B"
+)
+
+ax.set_title("Website Visitors")
+ax.set_xlabel("Month")
+ax.set_ylabel("Visitors")
+
+ax.legend()
+plt.show()</pre></div>
+
+<p>
+    The first series uses circular markers and a solid line. The second uses square markers and a dashed line.
+    Using different line styles or markers can make a chart easier to understand, especially when it may be viewed without relying on color.
+</p>
+
+<h2>05. Plot More Than Two Series</h2>
+
+<p>
+    You can plot three or more data series on the same axes. The important rule is that the chart should remain readable.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">three_series.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+north = [120, 135, 150, 165, 180]
+south = [100, 125, 140, 155, 170]
+west = [90, 110, 130, 145, 160]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, north, marker="o", label="North")
+ax.plot(months, south, marker="o", label="South")
+ax.plot(months, west, marker="o", label="West")
+
+ax.set_title("Regional Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+
+plt.show()</pre></div>
+
+<p>
+    Each call to <code>ax.plot()</code> adds another series to the same axes. The legend identifies all three series.
+</p>
+
+<h2>06. Compare Trends, Not Just Values</h2>
+
+<p>
+    Multiple-line charts are particularly useful for identifying <strong>trends</strong>. Look for whether a series is increasing, decreasing, remaining stable, or changing direction.
+</p>
+
+<p>
+    You can also compare how quickly different series change. For example, two products might both increase in sales, but one may grow faster than the other.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">compare_trends.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+
+online = [40, 45, 52, 60, 72, 85]
+store = [70, 68, 72, 75, 78, 80]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, online, marker="o", label="Online")
+ax.plot(months, store, marker="o", label="Store")
+
+ax.set_title("Monthly Sales by Channel")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+plt.show()</pre></div>
+
+<p>
+    In this example, both series increase overall, but the online series grows more quickly. The store series changes more gradually.
+</p>
+
+<h2>07. Use a Common X-Axis</h2>
+
+<p>
+    Multiple series are easiest to compare when they use the same x-axis values.
+    Each x value should normally correspond to the matching value in every series.
+</p>
+
+<p>
+    For example, if the x-axis contains five months, each data series should contain five corresponding values.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">matching_data.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+
+students = [42, 48, 55, 61]
+teachers = [8, 9, 10, 11]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, students, marker="o", label="Students")
+ax.plot(months, teachers, marker="s", label="Teachers")
+
+ax.set_title("School Population")
+ax.set_xlabel("Month")
+ax.set_ylabel("Count")
+
+ax.legend()
+plt.show()</pre></div>
+
+<p>
+    Each position in the lists corresponds to the same month. For example, <code>students[0]</code> and <code>teachers[0]</code> both represent January.
+</p>
+
+<h2>08. Avoid Overcrowding the Chart</h2>
+
+<p>
+    Although Matplotlib can display many lines, adding too many series can make the chart difficult to read.
+</p>
+
+<p>
+    If you have many categories, consider whether all of them need to appear on the same chart. You may be better off using separate charts, subplots, or another visualization such as a bar chart.
+</p>
+
+<div class="box info"><div class="box-title">Key Points</div>
+<ul>
+    <li>A data series is a related collection of values representing one variable or group.</li>
+    <li>Use <code>ax.plot()</code> multiple times to draw multiple lines.</li>
+    <li>Use <code>label</code> and <code>ax.legend()</code> to identify each series.</li>
+    <li>Markers and line styles can make different series easier to distinguish.</li>
+    <li>Multiple-line charts are useful for comparing trends over the same x-axis.</li>
+    <li>Each series should normally contain a value corresponding to every x-axis position.</li>
+    <li>Too many lines can make a chart confusing, so keep comparisons focused.</li>
+</ul>
+</div>
+
+<div class="exercise"><div class="exercise-title">Exercise 15 · Compare Data Series</div>
+<p>
+    Create a multiple-line chart comparing the monthly sales of three products.
+    Use six months of data and give each product its own line.
+    Add a meaningful title, x-axis label, y-axis label, markers, and a legend.
+    Then examine your chart and identify which product increased the most from the first month to the last month.
+</p>
+</div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(13)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(15)">Next Lecture &rarr;</button></div>
+
+</div>
+
+<div class="lecture" id="lec-16"><div class="lecture-tag">Lecture 16 &middot; Grid, Ticks and Axes</div>
+
+<h1>Control Grids, Ticks, and Axes</h1>
+
+<p class="lecture-intro">
+    A chart is easier to understand when its axes, tick marks, and grid lines are clearly organized. Matplotlib gives you precise control over these elements so you can make charts easier to read without changing the underlying data.
+</p>
+
+<h2>01. Understand Ticks and Axes</h2>
+
+<p>
+    The <strong>x-axis</strong> and <strong>y-axis</strong> provide the coordinate system of a chart. They show where values are located and help the reader understand the scale of the data.
+</p>
+
+<p>
+    <strong>Ticks</strong> are the small marks and labels placed along an axis. For example, an axis might have tick labels such as <code>0</code>, <code>20</code>, <code>40</code>, <code>60</code>, and <code>80</code>.
+</p>
+
+<p>
+    <strong>Grid lines</strong> extend from selected tick positions across the plotting area. They help the reader estimate values from the chart.
+</p>
+
+<h2>02. Add Grid Lines</h2>
+
+<p>
+    You can add grid lines with <code>ax.grid()</code>. By default, this affects the major grid lines on both axes.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">basic_grid.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 135, 180, 210]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.grid()
+
+plt.show()</pre></div>
+
+<p>
+    The grid makes it easier to compare each point with the values on the y-axis.
+</p>
+
+<h2>03. Control Which Axis Gets a Grid</h2>
+
+<p>
+    Sometimes you only need horizontal or vertical grid lines. Use the <code>axis</code> parameter to control this.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">axis_grid.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 135, 180, 210]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.grid(axis="y")
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    Using <code>axis="y"</code> creates horizontal grid lines based on the y-axis ticks. This is useful for comparing the heights of values in a line or bar chart.
+</p>
+
+<p>
+    You can also use <code>axis="x"</code> when you only want vertical grid lines.
+</p>
+
+<h2>04. Change the Tick Positions</h2>
+
+<p>
+    Matplotlib normally chooses tick positions automatically. However, you can specify exactly where ticks should appear with <code>set_xticks()</code> and <code>set_yticks()</code>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">custom_ticks.py</span></div><pre>import matplotlib.pyplot as plt
+
+days = [1, 2, 3, 4, 5, 6, 7]
+temperatures = [22, 24, 23, 27, 29, 28, 30]
+
+fig, ax = plt.subplots()
+
+ax.plot(days, temperatures, marker="o")
+
+ax.set_xticks([1, 2, 3, 4, 5, 6, 7])
+ax.set_yticks([20, 22, 24, 26, 28, 30])
+
+ax.set_title("Weekly Temperature")
+ax.set_xlabel("Day")
+ax.set_ylabel("Temperature")
+
+ax.grid(axis="y")
+
+plt.show()</pre></div>
+
+<p>
+    <code>set_xticks()</code> controls the positions of ticks on the x-axis, while <code>set_yticks()</code> controls the positions on the y-axis.
+</p>
+
+<h2>05. Change Tick Labels</h2>
+
+<p>
+    Tick positions and tick labels are separate concepts. You can choose where a tick appears and what text should be displayed at that position.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tick_labels.py</span></div><pre>import matplotlib.pyplot as plt
+
+days = [1, 2, 3, 4, 5]
+sales = [25, 40, 35, 50, 60]
+
+fig, ax = plt.subplots()
+
+ax.plot(days, sales, marker="o")
+
+ax.set_xticks([1, 2, 3, 4, 5])
+ax.set_xticklabels(["Mon", "Tue", "Wed", "Thu", "Fri"])
+
+ax.set_title("Weekly Sales")
+ax.set_xlabel("Day")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    Here, the actual x values are numbers from <code>1</code> to <code>5</code>, but the displayed labels are the day names.
+</p>
+
+<p>
+    This technique is useful when your data uses numeric positions but the reader should see meaningful category names.
+</p>
+
+<h2>06. Control the Axis Limits</h2>
+
+<p>
+    Matplotlib automatically chooses the visible range of an axis. You can override this using <code>set_xlim()</code> and <code>set_ylim()</code>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">axis_limits.py</span></div><pre>import matplotlib.pyplot as plt
+
+days = [1, 2, 3, 4, 5]
+sales = [25, 40, 35, 50, 60]
+
+fig, ax = plt.subplots()
+
+ax.plot(days, sales, marker="o")
+
+ax.set_xlim(1, 5)
+ax.set_ylim(0, 70)
+
+ax.set_title("Weekly Sales")
+ax.set_xlabel("Day")
+ax.set_ylabel("Sales")
+
+ax.grid(axis="y")
+
+plt.show()</pre></div>
+
+<p>
+    <code>set_xlim()</code> controls the visible minimum and maximum values of the x-axis. <code>set_ylim()</code> does the same for the y-axis.
+</p>
+
+<p>
+    Axis limits should be chosen carefully. Do not use limits that hide important data or make a comparison misleading.
+</p>
+
+<h2>07. Show Minor Ticks and Minor Grid Lines</h2>
+
+<p>
+    Axes can have <strong>major ticks</strong> and <strong>minor ticks</strong>. Major ticks are the primary divisions, while minor ticks provide smaller divisions between them.
+</p>
+
+<p>
+    Minor ticks can be enabled with <code>minorticks_on()</code>. You can then create a separate grid for the minor ticks.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">minor_ticks.py</span></div><pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 18, 15, 22, 28]
+
+fig, ax = plt.subplots()
+
+ax.plot(x, y, marker="o")
+
+ax.minorticks_on()
+ax.grid(which="major", axis="y")
+ax.grid(which="minor", axis="y")
+
+ax.set_title("Values with Minor Ticks")
+ax.set_xlabel("X")
+ax.set_ylabel("Value")
+
+plt.show()</pre></div>
+
+<p>
+    The <code>which</code> parameter specifies whether the grid should apply to <code>"major"</code> or <code>"minor"</code> ticks.
+</p>
+
+<p>
+    Minor ticks are useful when the reader needs a more detailed scale, but they should not be added unnecessarily because too many lines can make a chart visually crowded.
+</p>
+
+<h2>08. Move Tick Labels</h2>
+
+<p>
+    Tick labels can sometimes overlap or become difficult to read. You can rotate them with <code>tick_params()</code>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tick_rotation.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June"
+]
+
+sales = [120, 150, 135, 180, 210, 230]
+
+fig, ax = plt.subplots()
+
+ax.bar(months, sales)
+
+ax.tick_params(axis="x", labelrotation=45)
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.tight_layout()
+plt.show()</pre></div>
+
+<p>
+    <code>tick_params()</code> provides control over tick appearance. In this example, the x-axis labels are rotated by 45 degrees so that the month names have more room.
+</p>
+
+<h2>09. Control the Spines</h2>
+
+<p>
+    The visible borders around a plotting area are called <strong>spines</strong>. Matplotlib normally displays four spines: top, bottom, left, and right.
+</p>
+
+<p>
+    You can access individual spines through <code>ax.spines</code>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">axis_spines.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 135, 180, 210]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.grid(axis="y")
+
+plt.show()</pre></div>
+
+<p>
+    Removing unnecessary spines can create a cleaner chart. However, do not remove visual elements simply for decoration if doing so makes the chart harder to interpret.
+</p>
+
+<h2>10. Put It All Together</h2>
+
+<p>
+    Grid lines, ticks, and axis limits work together. A well-designed chart should provide enough scale information for the reader without becoming crowded.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">complete_axes.py</span></div><pre>import matplotlib.pyplot as plt
+
+days = [1, 2, 3, 4, 5, 6, 7]
+sales = [35, 42, 38, 50, 56, 61, 68]
+
+fig, ax = plt.subplots(figsize=(8, 5))
+
+ax.plot(days, sales, marker="o", label="Sales")
+
+ax.set_title("Weekly Sales")
+ax.set_xlabel("Day")
+ax.set_ylabel("Sales")
+
+ax.set_xticks(days)
+ax.set_xticklabels([
+    "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
+])
+
+ax.set_ylim(0, 80)
+
+ax.grid(axis="y")
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+ax.legend()
+
+plt.tight_layout()
+plt.show()</pre></div>
+
+<p>
+    This example combines several techniques: custom tick labels, a controlled y-axis range, horizontal grid lines, selected spines, and a legend.
+</p>
+
+<div class="box info"><div class="box-title">Key Points</div>
+<ul>
+    <li>Axes provide the coordinate system used to read a chart.</li>
+    <li>Ticks mark positions along an axis and usually have labels.</li>
+    <li>Use <code>ax.grid()</code> to add grid lines.</li>
+    <li>Use <code>set_xticks()</code> and <code>set_yticks()</code> to control tick positions.</li>
+    <li>Use <code>set_xticklabels()</code> and <code>set_yticklabels()</code> when you need custom displayed labels.</li>
+    <li>Use <code>set_xlim()</code> and <code>set_ylim()</code> to control the visible axis range.</li>
+    <li><code>minorticks_on()</code> enables minor ticks.</li>
+    <li><code>tick_params()</code> provides additional control over tick appearance.</li>
+    <li>Spines are the borders around the plotting area.</li>
+    <li>Good axis design should improve readability without hiding or distorting the data.</li>
+</ul>
+</div>
+
+<div class="exercise"><div class="exercise-title">Exercise 16 · Format a Chart</div>
+<p>
+    Create a line chart showing values for seven days of the week.
+    Replace the numeric x-axis values with day names, add horizontal grid lines, set a sensible y-axis range, and rotate the x-axis labels if necessary.
+    Remove the top and right spines and add a clear title and axis labels.
+</p>
+</div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(14)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(16)">Next Lecture &rarr;</button></div>
+
+</div>
+
+<div class="lecture" id="lec-17"><div class="lecture-tag">Lecture 17 &middot; Figure Size and Resolution</div>
+
+<h1>Control Figure Size and Resolution</h1>
+
+<p class="lecture-intro">
+    A chart can contain correct data but still look poor if it is too small, blurry, or difficult to read. Matplotlib lets you control the size of a figure and the resolution of the output so your charts are suitable for screens, presentations, reports, and printed documents.
+</p>
+
+<h2>01. Understand Figure Size</h2>
+
+<p>
+    A <strong>figure</strong> is the complete area that contains your chart. Its size is controlled with the <code>figsize</code> parameter.
+</p>
+
+<p>
+    The value of <code>figsize</code> is written as <code>(width, height)</code> and is measured in <strong>inches</strong>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">figure_size.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 135, 180, 210]
+
+fig, ax = plt.subplots(figsize=(10, 5))
+
+ax.plot(months, sales, marker="o")
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    In this example, <code>figsize=(10, 5)</code> creates a figure that is 10 inches wide and 5 inches tall.
+</p>
+
+<h2>02. Change the Width and Height</h2>
+
+<p>
+    Changing the width and height allows you to choose a shape that fits the content of your chart.
+    A wide chart can be useful for time-series data, while a taller figure may work better when there are many categories.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">different_sizes.py</span></div><pre>import matplotlib.pyplot as plt
+
+categories = ["Python", "Java", "C++", "JavaScript"]
+students = [80, 65, 50, 72]
+
+fig, ax = plt.subplots(figsize=(7, 6))
+
+ax.bar(categories, students)
+
+ax.set_title("Programming Languages")
+ax.set_xlabel("Language")
+ax.set_ylabel("Students")
+
+plt.tight_layout()
+plt.show()</pre></div>
+
+<p>
+    The important idea is that <code>figsize</code> controls the size of the entire figure, not the amount of data being displayed.
+</p>
+
+<h2>03. Understand DPI</h2>
+
+<p>
+    <strong>DPI</strong> means <strong>dots per inch</strong>. In Matplotlib, it describes the resolution used to render a figure.
+</p>
+
+<p>
+    A higher DPI generally produces more pixels for the same physical figure size. This can make saved images sharper, especially when they are printed or displayed at a larger size.
+</p>
+
+<p>
+    You can specify DPI when creating the figure with the <code>dpi</code> parameter.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">figure_dpi.py</span></div><pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 15, 13, 20, 25]
+
+fig, ax = plt.subplots(
+    figsize=(8, 5),
+    dpi=120
+)
+
+ax.plot(x, y, marker="o")
+
+ax.set_title("Values Over Time")
+ax.set_xlabel("X")
+ax.set_ylabel("Value")
+
+plt.show()</pre></div>
+
+<p>
+    Here, the figure has a physical size of 8 by 5 inches and is rendered at 120 DPI.
+</p>
+
+<h2>04. Understand Figure Size and Pixels</h2>
+
+<p>
+    Figure size and DPI work together to determine the pixel dimensions of a raster image.
+    The approximate relationship is:
+</p>
+
+<p>
+    <strong>pixels = inches &times; DPI</strong>
+</p>
+
+<p>
+    For example, a figure that is 8 inches wide at 100 DPI produces approximately 800 pixels in width.
+    At 200 DPI, the same 8-inch width produces approximately 1600 pixels.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pixel_dimensions.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(8, 5), dpi=100)
+
+ax.plot([1, 2, 3, 4], [10, 20, 15, 25])
+
+ax.set_title("Figure Dimensions")
+
+plt.show()</pre></div>
+
+<p>
+    In this example, the figure is approximately <strong>800 &times; 500 pixels</strong> when rendered as a raster image at that DPI.
+</p>
+
+<h2>05. Set DPI When Saving</h2>
+
+<p>
+    The DPI used to display a figure and the DPI used when saving it do not have to be the same.
+    You can specify the output resolution in <code>savefig()</code>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">save_high_resolution.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 135, 180, 210]
+
+fig, ax = plt.subplots(figsize=(8, 5))
+
+ax.plot(months, sales, marker="o")
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.tight_layout()
+
+plt.savefig("monthly_sales.png", dpi=300)
+plt.show()</pre></div>
+
+<p>
+    The <code>dpi=300</code> argument tells Matplotlib to save the PNG at 300 DPI.
+    Higher-resolution output is often useful for printing and documents where image quality matters.
+</p>
+
+<h2>06. Use Bounding Boxes When Saving</h2>
+
+<p>
+    Sometimes a saved figure contains extra whitespace around the chart. The <code>bbox_inches="tight"</code> option can reduce unnecessary space around the figure.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">save_tight.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+sales = [100, 140, 125, 180]
+
+fig, ax = plt.subplots(figsize=(8, 5))
+
+ax.plot(months, sales, marker="o")
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.tight_layout()
+
+plt.savefig(
+    "sales_chart.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.show()</pre></div>
+
+<p>
+    <code>bbox_inches="tight"</code> asks Matplotlib to fit the saved output closely around the figure's visible content.
+</p>
+
+<h2>07. Choose the Right Resolution</h2>
+
+<p>
+    The best DPI depends on where the chart will be used. Higher DPI is not always necessary.
+</p>
+
+<ul>
+    <li><strong>Screen display:</strong> a moderate DPI is usually enough.</li>
+    <li><strong>Presentations:</strong> use enough resolution for the image to remain sharp when displayed.</li>
+    <li><strong>Reports:</strong> higher resolution can be useful when the figure will be inserted into a document.</li>
+    <li><strong>Printing:</strong> high-resolution raster output is often appropriate.</li>
+</ul>
+
+<p>
+    Increasing DPI also increases the number of pixels in a raster image, which can increase file size and processing requirements.
+</p>
+
+<h2>08. Size Is Not the Same as Resolution</h2>
+
+<p>
+    Figure size and resolution solve different problems.
+</p>
+
+<p>
+    <strong>Figure size</strong> determines the physical dimensions of the figure. <strong>DPI</strong> determines how densely the image is rendered when using raster output.
+</p>
+
+<p>
+    A large figure with low DPI can still look pixelated when saved as an image. A small figure with very high DPI can be sharp but may not provide enough physical space for labels and other chart elements.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">size_and_resolution.py</span></div><pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [12, 18, 15, 22, 28]
+
+fig, ax = plt.subplots(
+    figsize=(10, 6),
+    dpi=120
+)
+
+ax.plot(x, y, marker="o")
+
+ax.set_title("Size and Resolution")
+ax.set_xlabel("X")
+ax.set_ylabel("Value")
+
+plt.tight_layout()
+plt.show()</pre></div>
+
+<h2>09. Save Different Output Formats</h2>
+
+<p>
+    Matplotlib can save figures in several formats. Common choices include PNG, JPEG, PDF, and SVG.
+</p>
+
+<p>
+    Raster formats such as PNG are made from pixels, so DPI affects their resolution. Vector formats such as SVG and PDF can preserve scalable graphical elements without depending on a fixed pixel resolution in the same way.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">output_formats.py</span></div><pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4]
+y = [10, 15, 13, 20]
+
+fig, ax = plt.subplots(figsize=(8, 5))
+
+ax.plot(x, y, marker="o")
+
+ax.set_title("Exporting a Chart")
+ax.set_xlabel("X")
+ax.set_ylabel("Value")
+
+plt.tight_layout()
+
+plt.savefig("chart.png", dpi=300)
+plt.savefig("chart.svg")
+plt.savefig("chart.pdf")
+
+plt.show()</pre></div>
+
+<p>
+    The appropriate format depends on how the image will be used. PNG is convenient for general image use, while SVG and PDF are useful when scalable graphics are important.
+</p>
+
+<h2>10. Create a Professional Output</h2>
+
+<p>
+    When preparing a chart for a website, presentation, or report, think about both its physical size and its output quality.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">professional_output.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+revenue = [120, 145, 138, 175, 190, 220]
+
+fig, ax = plt.subplots(
+    figsize=(10, 6),
+    dpi=120
+)
+
+ax.plot(months, revenue, marker="o")
+
+ax.set_title("Monthly Revenue")
+ax.set_xlabel("Month")
+ax.set_ylabel("Revenue")
+
+ax.grid(axis="y")
+
+plt.tight_layout()
+
+plt.savefig(
+    "monthly_revenue.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.show()</pre></div>
+
+<p>
+    This example creates a reasonably sized working figure and then saves a high-resolution PNG for use outside Matplotlib.
+</p>
+
+<div class="box info"><div class="box-title">Key Points</div>
+<ul>
+    <li><code>figsize=(width, height)</code> controls the figure's physical size in inches.</li>
+    <li>DPI means dots per inch and controls the rendering density of raster output.</li>
+    <li>For raster images, pixel dimensions are approximately the figure dimensions multiplied by DPI.</li>
+    <li>Use <code>savefig()</code> to save a figure to an image or document format.</li>
+    <li>Use <code>dpi=300</code> when high-resolution raster output is appropriate.</li>
+    <li><code>bbox_inches="tight"</code> can reduce unnecessary whitespace around saved content.</li>
+    <li>Figure size and resolution are different concepts and should be chosen independently.</li>
+    <li>SVG and PDF can be useful when scalable vector output is required.</li>
+    <li>Higher DPI is not automatically better; it can increase image dimensions and file size.</li>
+</ul>
+</div>
+
+<div class="exercise"><div class="exercise-title">Exercise 17 · Export a High-Quality Chart</div>
+<p>
+    Create a line chart containing six months of data.
+    Set the figure size to <code>(10, 6)</code>, add a title and axis labels, and include horizontal grid lines.
+    Save the chart as a PNG using <code>dpi=300</code> and <code>bbox_inches="tight"</code>.
+    Then save the same chart as an SVG file and compare the two output formats.
+</p>
+</div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(15)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(17)">Next Lecture &rarr;</button></div>
+
+</div>
+
+<div class="lecture" id="lec-18"><div class="lecture-tag">Lecture 18 &middot; Annotations</div>
+
+<h1>Add Annotations to Your Charts</h1>
+
+<p class="lecture-intro">
+    Annotations allow you to draw attention to important information in a chart. You can add text, arrows, and highlighted points to explain unusual values, important events, peaks, or other features of your data.
+</p>
+
+<h2>01. Understand Annotations</h2>
+
+<p>
+    An <strong>annotation</strong> is an explanation added directly to a chart. Instead of making the reader guess why a particular point is important, you can label it with text or an arrow.
+</p>
+
+<p>
+    For example, if a line chart contains the highest sales value of the year, an annotation can point to that value and explain that it was the company's best month.
+</p>
+
+<p>
+    Matplotlib provides the <code>ax.annotate()</code> method for creating annotations.
+</p>
+
+<h2>02. Add Simple Annotation Text</h2>
+
+<p>
+    The simplest annotation contains text and a position on the chart.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">basic_annotation.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 135, 180, 210]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.annotate(
+    "Highest sales",
+    xy=("May", 210)
+)
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    The <code>xy</code> argument specifies the position where the annotation is placed. In this example, it points to the May value of <code>210</code>.
+</p>
+
+<h2>03. Add an Arrow</h2>
+
+<p>
+    An annotation becomes more useful when an arrow connects the text to the exact point being explained.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">annotation_arrow.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 135, 180, 210]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.annotate(
+    "Highest sales",
+    xy=("May", 210),
+    xytext=("Mar", 220),
+    arrowprops={"arrowstyle": "->"}
+)
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    The <code>xy</code> argument identifies the point being annotated, while <code>xytext</code> specifies where the annotation text should appear.
+</p>
+
+<p>
+    The <code>arrowprops</code> dictionary controls the arrow. The <code>"->"</code> arrow style creates an arrow pointing toward the selected data point.
+</p>
+
+<h2>04. Move the Annotation Text</h2>
+
+<p>
+    The annotation text does not have to be directly next to the data point. You can move it to a clearer position using <code>xytext</code>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">annotation_position.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+sales = [100, 120, 115, 145, 180, 210]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.annotate(
+    "Strong growth",
+    xy=("Jun", 210),
+    xytext=("Apr", 190),
+    arrowprops={"arrowstyle": "->"}
+)
+
+ax.set_title("Sales Growth")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    Moving the text away from the point can prevent the annotation from covering the data or other chart elements.
+</p>
+
+<h2>05. Annotate a Specific Point</h2>
+
+<p>
+    Annotations are particularly useful when you want to explain a specific value in a dataset.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">important_point.py</span></div><pre>import matplotlib.pyplot as plt
+
+days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+temperatures = [24, 27, 25, 32, 29]
+
+fig, ax = plt.subplots()
+
+ax.plot(days, temperatures, marker="o")
+
+ax.annotate(
+    "Peak temperature",
+    xy=("Thu", 32),
+    xytext=("Tue", 31),
+    arrowprops={"arrowstyle": "->"}
+)
+
+ax.set_title("Weekly Temperature")
+ax.set_xlabel("Day")
+ax.set_ylabel("Temperature")
+
+plt.show()</pre></div>
+
+<p>
+    The annotation identifies Thursday as the point with the highest temperature in this dataset.
+</p>
+
+<h2>06. Add a Text Box</h2>
+
+<p>
+    You can use the <code>bbox</code> argument to place the annotation inside a box. This can make important information stand out from the rest of the chart.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">annotation_box.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+revenue = [100, 130, 125, 170, 220]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, revenue, marker="o")
+
+ax.annotate(
+    "Major increase",
+    xy=("May", 220),
+    xytext=("Mar", 200),
+    arrowprops={"arrowstyle": "->"},
+    bbox={"boxstyle": "round,pad=0.4"}
+)
+
+ax.set_title("Monthly Revenue")
+ax.set_xlabel("Month")
+ax.set_ylabel("Revenue")
+
+plt.show()</pre></div>
+
+<p>
+    The <code>bbox</code> argument creates a box around the annotation text. The <code>boxstyle</code> controls the shape and spacing of the box.
+</p>
+
+<h2>07. Annotate Multiple Points</h2>
+
+<p>
+    You can add more than one annotation to the same chart. This is useful when several events or values need explanation.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">multiple_annotations.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+sales = [100, 125, 110, 150, 175, 160]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.annotate(
+    "First peak",
+    xy=("Feb", 125),
+    xytext=("Jan", 145),
+    arrowprops={"arrowstyle": "->"}
+)
+
+ax.annotate(
+    "Highest value",
+    xy=("May", 175),
+    xytext=("Mar", 195),
+    arrowprops={"arrowstyle": "->"}
+)
+
+ax.set_title("Important Sales Points")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    Each call to <code>ax.annotate()</code> creates a separate annotation. Keep the number of annotations limited so the chart remains easy to read.
+</p>
+
+<h2>08. Add Text Without an Arrow</h2>
+
+<p>
+    Sometimes you only need to place explanatory text on the chart. In that case, <code>ax.text()</code> can be simpler than <code>ax.annotate()</code>.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">chart_text.py</span></div><pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+sales = [100, 140, 130, 180]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.text(
+    "Mar",
+    150,
+    "Sales recovered",
+)
+
+ax.set_title("Sales Trend")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre></div>
+
+<p>
+    <code>ax.text()</code> places text at a specified coordinate but does not automatically create an arrow pointing to another coordinate.
+</p>
+
+<h2>09. Choose Between text() and annotate()</h2>
+
+<p>
+    Both methods place text on a chart, but they are designed for slightly different purposes.
+</p>
+
+<ul>
+    <li><code>ax.text()</code> is useful for placing standalone text at a specific position.</li>
+    <li><code>ax.annotate()</code> is useful when text needs to explain or point toward a particular location.</li>
+    <li>Use an arrow when the relationship between the text and the data point needs to be obvious.</li>
+</ul>
+
+<h2>10. Use Annotations Carefully</h2>
+
+<p>
+    Annotations should add information rather than create unnecessary clutter. A chart with too many labels and arrows can become harder to understand.
+</p>
+
+<p>
+    Good annotations usually identify something meaningful, such as a peak, sudden change, unusual value, important event, or significant observation.
+</p>
+
+<div class="box info"><div class="box-title">Key Points</div>
+<ul>
+    <li>An annotation adds explanatory information directly to a chart.</li>
+    <li><code>ax.annotate()</code> is used for annotations.</li>
+    <li><code>xy</code> specifies the point being explained.</li>
+    <li><code>xytext</code> specifies where the annotation text is placed.</li>
+    <li><code>arrowprops</code> controls the arrow connecting the text to the point.</li>
+    <li><code>bbox</code> can place the annotation inside a text box.</li>
+    <li><code>ax.text()</code> is useful for placing text without an annotation arrow.</li>
+    <li>Annotations should highlight meaningful information without overcrowding the chart.</li>
+</ul>
+</div>
+
+<div class="exercise"><div class="exercise-title">Exercise 18 · Annotate Important Data</div>
+<p>
+    Create a line chart containing six months of sales data.
+    Find the month with the highest sales and annotate that point with the text <strong>"Highest Sales"</strong>.
+    Add an arrow pointing to the data point and place the text away from the point so that it does not cover the line.
+    Then add a second annotation explaining another interesting point in your dataset.
+</p>
+</div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(16)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(18)">Next Lecture &rarr;</button></div>
+
+</div>
+
+
+<div class="lecture" id="lec-19"><div class="lecture-tag">Lecture 19 &middot; Saving and Exporting Charts</div>
+
+<h1>Save and Export Your Matplotlib Charts</h1>
+
+<p class="lecture-intro">
+    Learn how to save Matplotlib charts as image files and choose the right format, resolution, and settings for different uses.
+</p>
+
+<h2>01. Understand Saving a Chart</h2>
+
+<p>
+    Creating a chart with Matplotlib displays it on the screen, but you may also want to save it as a file.
+    Matplotlib uses <code>plt.savefig()</code> or <code>fig.savefig()</code> to export a chart.
+</p>
+
+<p>
+    Saving a chart is useful when you want to use it in a website, document, presentation, report, or social media post.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">save_chart.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+sales = [120, 150, 180, 160]
+
+ax.plot(months, sales)
+ax.set_title("Monthly Sales")
+
+fig.savefig("sales_chart.png")
+
+plt.show()</pre></div>
+
+<p>
+    The chart is saved as <code>sales_chart.png</code> in the current working directory.
+</p>
+
+<h2>02. Save as a PNG Image</h2>
+
+<p>
+    PNG is one of the most useful formats for charts. It works well for websites, applications, documents, and general image sharing.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">save_png.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+visitors = [120, 180, 150, 220, 260]
+
+ax.plot(days, visitors, marker="o")
+ax.set_title("Website Visitors")
+ax.set_xlabel("Day")
+ax.set_ylabel("Visitors")
+
+fig.savefig("visitors.png")
+
+plt.show()</pre></div>
+
+<p>
+    The file extension tells Matplotlib which format to use. Here, <code>.png</code> creates a PNG image.
+</p>
+
+<h2>03. Save as a JPG Image</h2>
+
+<p>
+    Matplotlib can also export charts as JPEG images. JPEG can produce smaller files, although PNG is often a better choice for charts because it preserves sharp lines and text.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">save_jpg.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+products = ["A", "B", "C", "D"]
+sales = [45, 70, 55, 90]
+
+ax.bar(products, sales)
+ax.set_title("Product Sales")
+
+fig.savefig("product_sales.jpg")
+
+plt.show()</pre></div>
+
+<p>
+    The <code>.jpg</code> extension tells Matplotlib to save the chart as a JPEG image.
+</p>
+
+<h2>04. Save as PDF or SVG</h2>
+
+<p>
+    Matplotlib also supports vector formats such as PDF and SVG.
+    Vector graphics can be scaled to different sizes without becoming pixelated.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">vector_formats.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+scores = [52, 68, 75, 83, 91]
+
+ax.plot(scores, marker="o")
+ax.set_title("Student Scores")
+
+fig.savefig("scores.pdf")
+fig.savefig("scores.svg")
+
+plt.show()</pre></div>
+
+<p>
+    PDF is useful for reports and documents, while SVG is especially useful for websites and applications that support scalable graphics.
+</p>
+
+<h2>05. Control the Image Resolution</h2>
+
+<p>
+    When saving raster images such as PNG, you can control the resolution using <code>dpi</code>.
+    DPI means <strong>dots per inch</strong>.
+</p>
+
+<p>
+    A higher DPI can produce a sharper image, especially when the image will be printed.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">high_resolution.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+revenue = [200, 240, 280, 260, 320]
+
+ax.plot(months, revenue, marker="o")
+ax.set_title("Monthly Revenue")
+
+fig.savefig("revenue.png", dpi=300)
+
+plt.show()</pre></div>
+
+<p>
+    A value such as <code>dpi=300</code> is commonly useful when a chart needs to be exported at high quality.
+</p>
+
+<h2>06. Remove Extra White Space</h2>
+
+<p>
+    Sometimes a saved chart contains more empty space around the edges than you want.
+    Use <code>bbox_inches="tight"</code> to make the saved output fit more closely around the figure contents.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tight_export.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+categories = ["Python", "Java", "C++", "JavaScript"]
+students = [85, 72, 64, 78]
+
+ax.bar(categories, students)
+ax.set_title("Programming Languages")
+ax.set_ylabel("Students")
+
+fig.savefig(
+    "languages.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.show()</pre></div>
+
+<p>
+    This is particularly useful when exporting charts that contain labels, legends, or annotations close to the edges.
+</p>
+
+<h2>07. Choose the Correct Format</h2>
+
+<p>
+    Different file formats are useful for different purposes.
+</p>
+
+<ul>
+    <li><strong>PNG</strong> — Good for websites, applications, documents, and general image use.</li>
+    <li><strong>JPG</strong> — Useful when a smaller raster image is preferred.</li>
+    <li><strong>SVG</strong> — Excellent for scalable graphics and many web applications.</li>
+    <li><strong>PDF</strong> — Useful for reports, documents, and high-quality printable output.</li>
+</ul>
+
+<p>
+    For charts containing lots of text, lines, and simple shapes, PNG, SVG, and PDF are often preferable to JPEG.
+</p>
+
+<h2>08. Save the Figure Before Showing It</h2>
+
+<p>
+    A good habit is to save the figure before calling <code>plt.show()</code>.
+    This makes the order of operations clear and works well when you are creating files automatically.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">export_workflow.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(8, 5))
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+sales = [120, 145, 170, 155, 190, 220]
+
+ax.plot(months, sales, marker="o")
+ax.set_title("Sales Performance")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+ax.grid(True)
+
+fig.savefig(
+    "sales_report.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.show()</pre></div>
+
+<p>
+    The figure is created, formatted, exported, and then displayed.
+</p>
+
+<h2>09. Save Charts to a Specific Folder</h2>
+
+<p>
+    You can provide a folder path when saving a chart. The folder must already exist unless your Python program creates it.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">save_to_folder.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+years = [2021, 2022, 2023, 2024, 2025]
+users = [120, 180, 250, 330, 450]
+
+ax.plot(years, users, marker="o")
+ax.set_title("Users Over Time")
+
+fig.savefig("charts/users.png", dpi=300)
+
+plt.show()</pre></div>
+
+<p>
+    Here, Matplotlib attempts to save the file inside a folder named <code>charts</code>.
+    If the folder does not exist, the save operation will fail.
+</p>
+
+<h2>10. Create a Professional Export</h2>
+
+<p>
+    A good exported chart should have readable text, an appropriate figure size, suitable resolution, and enough space around its contents.
+</p>
+
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">professional_export.py</span></div><pre>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+sales = [120, 150, 175, 160, 210, 240]
+
+ax.plot(months, sales, marker="o", linewidth=2)
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+ax.grid(True)
+
+fig.tight_layout()
+
+fig.savefig(
+    "monthly_sales.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.show()</pre></div>
+
+<div class="box info"><div class="box-title">Key Points</div><ul>
+    <li>Use <code>fig.savefig()</code> to save a Matplotlib figure.</li>
+    <li>The file extension determines the output format.</li>
+    <li>PNG is a good general-purpose format for charts.</li>
+    <li>SVG and PDF are vector formats that scale well.</li>
+    <li>Use <code>dpi</code> to control raster image resolution.</li>
+    <li>Use <code>bbox_inches="tight"</code> to reduce unnecessary surrounding space.</li>
+    <li>Use <code>figsize</code> to control the physical size of the figure.</li>
+    <li>Make sure the destination folder exists before saving to it.</li>
+</ul></div>
+
+<div class="exercise"><div class="exercise-title">Exercise 19 · Export Your Chart</div>
+<p>
+    Create a line chart showing the number of website visitors over six months.
+    Set the figure size to <code>(10, 6)</code>, add a title and axis labels, and enable grid lines.
+    Save the chart as a PNG using <code>dpi=300</code> and <code>bbox_inches="tight"</code>.
+    Then save another copy as an SVG file.
+</p></div>
+
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(18)">&larr; Previous Lecture</button>
+<button class="nav-btn primary" onclick="showLecture(20)">Next Lecture &rarr;</button>
+</div>
+</div>
+
+
+
+
+
+
+
+</div>
+</div>
+<script>
+
+        const titles = [
+
+            "What is Matplotlib?",
+            "Installation & Setup",
+            "Creating Your First Plot",
+            "Understanding Figure & Axes",
+            "Labels, Titles & Legends",
+            "Customizing Plots",
+            "Project 1: Student Performance Visualization",
+            "Line Charts",
+            "Bar Charts",
+            "Horizontal Bar Charts",
+            "Scatter Plots",
+            "Histograms",
+            "Pie Charts",
+            "Project 2: Sales Data Visualization",
+            "Subplots",
+            "Multiple Lines & Data Series",
+            "Grid, Ticks & Axes",
+            "Figure Size & Resolution",
+            "Annotations",
+            "Saving & Exporting Charts",
+            "Project 3: Data Analysis Dashboard",
+            "Matplotlib with NumPy",
+            "Matplotlib with Pandas",
+            "Visualizing DataFrames",
+            "Comparing Multiple Datasets",
+            "Data Visualization for Machine Learning",
+            "Project 4: Machine Learning Dataset Visualization",
+            "Choosing the Right Chart",
+            "Visualization Best Practices",
+            "Final Project: Complete Data Visualization System"
+
+        ];
+
+        initLessons(titles);
+
+    </script>
+<footer id="footer-grid">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<h3>
+                        C <span style="color:#60a5fa">T</span>
+</h3>
+<p>
+                        Learn to code for free.
+                        Quality programming education for everyone.
+                    </p>
+</div>
+<div class="footer-col">
+<h3>Courses</h3>
+<ul>
+<li><a href="/lessons/python">Python</a></li>
+<li><a href="/lessons/c++">C++</a></li>
+<li><a href="/lessons/html">HTML</a></li>
+<li><a href="/lessons/css">CSS</a></li>
+<li><a href="/lessons/java">Java</a></li>
+<li><a href="/lessons/javascript">JavaScript</a></li>
+<li><a href="/lessons/c">C Language</a></li>
+<li><a href="/lessons/cc">C#</a></li>
+<li><a href="/lessons/typescript">TypeScript</a></li>
+<li><a href="/lessons/go">Go</a></li>
+<li><a href="/lessons/rust">Rust</a></li>
+<li><a href="/lessons/swift">Swift</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h3>Data Science</h3>
+<ul>
+<li><a href="/lessons/numpy">NumPy</a></li>
+<li><a href="/lessons/matplotlib">Matplotlib</a></li>
+<li><a href="/lessons/pandas">Pandas</a></li>
+<li><a href="/lessons/machinelearning">Machine Learning</a></li>
+<li><a href="/lessons/deeplearning">Deep Learning</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h3>Company</h3>
+<ul>
+<li><a href="../about.html">About Us</a></li>
+<li><a href="../contact.html">Contact</a></li>
+<li><a href="../privacy.html">Privacy Policy</a></li>
+<li><a href="../terms.html">Terms &amp; Conditions</a></li>
+</ul>
+</div>
+</div>
+<div class="copyright">
+<p>
+                    © 2026 Code Tutorium. All rights reserved.
+                </p>
+</div>
+</div>
+</footer>
+</body>
+</html>

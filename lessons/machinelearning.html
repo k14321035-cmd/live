@@ -86,6 +86,7 @@
                             <a href="shell" class="lesson-mega-link">Shell</a>
                             <a href="ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
                             <a href="numpy" class="lesson-mega-link">NumPy</a>
+                            <a href="matplotlib" class="lesson-mega-link">Matplotlib</a>
                             <a href="machinelearning" class="lesson-mega-link active">Machine Learning</a>
                             <a href="deeplearning" class="lesson-mega-link">Deep Learning</a>
                         </div>
@@ -201,80 +202,223 @@
             <div class="content-column">
         
 
-    <div class="lecture active" id="lec-0">
-    <div class="lecture-tag">Topic 01 - Unit I - Introduction to ML</div>
-    <h1>What is Machine Learning?</h1>
+<div class="lecture active" id="lec-0">
+<div class="lecture-tag">Topic 01 - Unit I - Introduction to ML</div>
+<h1>What is Machine Learning?</h1>
 
-    <div class="lecture-meta">
-        <span class="meta-badge">Syllabus Topic</span>
-        <span class="meta-badge">Template</span>
-    </div>
+<div class="lecture-meta">
+    <span class="meta-badge">Syllabus Topic</span>
+    <span class="meta-badge">Template</span>
+</div>
 
-    <div class="box info">
-        <div class="box-title">Definition</div>
-        <p>
-            <strong>Machine Learning (ML)</strong> is a subfield of Artificial Intelligence (AI) that focuses on building systems that can learn from and make decisions based on data. 
-            Instead of explicitly programming a computer to solve a problem step-by-step, we feed the computer data and let it figure out the patterns on its own.
-        </p>
-    </div>
+<div class="box info">
+    <div class="box-title">Definition</div>
+    <p>
+        <strong>Machine Learning (ML)</strong> is a subfield of Artificial Intelligence (AI) that focuses on building systems that can learn from data and use what they have learned to make predictions, classifications, or decisions.
+        Instead of explicitly programming a computer with every rule needed to solve a problem, we provide examples and allow a machine learning algorithm to discover useful patterns in the data.
+    </p>
+    <p>
+        The basic idea is simple: a machine learning system receives <strong>data</strong>, searches for patterns or relationships within that data, and builds a <strong>model</strong>. The trained model can then be used to make predictions about new data that it has not seen before.
+    </p>
+    <p>
+        For example, imagine that you want a computer to predict the price of a house. Instead of manually writing a rule for every possible house, you could provide information about many houses, such as their size, location, number of rooms, and previous selling prices. A machine learning algorithm can learn the relationship between these features and the price and then use that relationship to estimate the price of a new house.
+    </p>
+</div>
 
-    <h2>Traditional Programming vs. Machine Learning</h2>
-    <p>To understand ML, it helps to compare it to traditional software development:</p>
+<h2>Artificial Intelligence, Machine Learning, and Deep Learning</h2>
+<p>
+    These three terms are closely related, but they do not mean exactly the same thing. Understanding their relationship is important when studying machine learning.
+</p>
 
-    <ul>
-        <li><strong>Traditional Programming:</strong> Data + Rules = Answers. (You write the exact logic and rules to process inputs into outputs).</li>
-        <li><strong>Machine Learning:</strong> Data + Answers = Rules. (You provide the inputs and the desired outputs, and the algorithm figures out the logic/rules connecting them).</li>
-    </ul>
+<ul>
+    <li><strong>Artificial Intelligence (AI):</strong> The broad field of creating computer systems that can perform tasks associated with intelligent behavior, such as reasoning, decision-making, perception, and language understanding.</li>
+    <li><strong>Machine Learning (ML):</strong> A branch of AI where systems learn patterns from data instead of relying entirely on manually written rules.</li>
+    <li><strong>Deep Learning (DL):</strong> A specialized area of machine learning that uses neural networks with multiple layers to learn complex patterns from data.</li>
+</ul>
 
-    <div class="box tip">
-        <div class="box-title">💡 The Arthur Samuel Definition</div>
-        <p>
-            In 1959, Arthur Samuel defined Machine Learning as the: <em>"field of study that gives computers the ability to learn without being explicitly programmed."</em>
-        </p>
-    </div>
+<p>
+    Therefore, <strong>Machine Learning is part of AI</strong>, while <strong>Deep Learning is part of Machine Learning</strong>. A useful way to visualize the relationship is to think of AI as the largest category, with ML inside it and DL inside ML.
+</p>
 
-    <h2>Real World Applications</h2>
-    <p>Machine Learning is everywhere today. Some common applications include:</p>
-    <ul>
-        <li><strong>Spam Filtering:</strong> Email providers use ML to classify emails as spam or inbox based on millions of previous examples.</li>
-        <li><strong>Recommendation Systems:</strong> Netflix and YouTube predicting what you want to watch next.</li>
-        <li><strong>Fraud Detection:</strong> Banks analyzing transaction patterns to spot stolen credit cards instantly.</li>
-        <li><strong>Self-Driving Cars:</strong> Vehicles processing visual data in real-time to navigate safely.</li>
-    </ul>
+<h2>Traditional Programming vs. Machine Learning</h2>
+<p>To understand ML, it helps to compare it to traditional software development:</p>
 
-    <h2>A Quick Look at Scikit-Learn</h2>
-    <p>Throughout this course, we will heavily rely on <strong>Scikit-Learn (sklearn)</strong>, the premier ML library for Python. Here is a conceptual peek at how simple it is to train a model in Python:</p>
+<ul>
+    <li><strong>Traditional Programming:</strong> Data + Rules = Answers. You write the exact logic and rules that tell the computer how to process inputs and produce outputs.</li>
+    <li><strong>Machine Learning:</strong> Data + Answers = Rules. You provide examples containing inputs and expected outputs, and the learning algorithm discovers a mathematical relationship that can be used to make predictions.</li>
+</ul>
 
-    <div class="code-block">
-        <div class="code-header">
-            <div class="code-dots">
-                <span></span><span></span><span></span>
-            </div>
-            <span class="filename">intro.py</span>
+<p>
+    Consider a simple spam detection system. In traditional programming, you might manually create rules such as "if an email contains certain words, classify it as spam." However, spammers can change their messages, making manually written rules difficult to maintain.
+</p>
+
+<p>
+    With machine learning, you can provide thousands of examples of emails labeled as <strong>spam</strong> or <strong>not spam</strong>. The algorithm analyzes the examples and learns patterns that help distinguish the two categories. When a new email arrives, the trained model uses those learned patterns to predict its category.
+</p>
+
+<div class="box tip">
+    <div class="box-title">💡 The Arthur Samuel Definition</div>
+    <p>
+        In 1959, Arthur Samuel described Machine Learning as a field that gives computers the ability to learn without being explicitly programmed.
+    </p>
+    <p>
+        This idea is important because it captures the fundamental difference between conventional programming and machine learning: instead of specifying every rule ourselves, we allow an algorithm to learn useful rules or patterns from examples.
+    </p>
+</div>
+
+<h2>How Does Machine Learning Work?</h2>
+<p>
+    A typical machine learning workflow can be divided into several stages. Understanding this workflow will help you understand almost every machine learning project you encounter later in the course.
+</p>
+
+<ul>
+    <li><strong>1. Collect Data:</strong> Gather relevant information for the problem you want to solve. The data could come from databases, websites, sensors, applications, files, or other sources.</li>
+    <li><strong>2. Prepare the Data:</strong> Clean the dataset, handle missing values, remove or investigate incorrect records, and convert information into a format that algorithms can use.</li>
+    <li><strong>3. Select Features:</strong> Identify the input variables that may help the model make predictions. These variables are commonly called <strong>features</strong>.</li>
+    <li><strong>4. Choose a Model:</strong> Select an appropriate machine learning algorithm based on the type of problem and data.</li>
+    <li><strong>5. Train the Model:</strong> Give the algorithm training data so it can learn patterns and estimate its internal parameters.</li>
+    <li><strong>6. Evaluate the Model:</strong> Test the model using data that was not used during training to determine how well it generalizes.</li>
+    <li><strong>7. Make Predictions:</strong> Once the model performs sufficiently well, it can be used to make predictions on new data.</li>
+</ul>
+
+<p>
+    The goal is not simply to memorize the training data. A useful machine learning model should <strong>generalize</strong>, meaning it should perform well when it receives new examples that were not present in the training dataset.
+</p>
+
+<h2>Important Machine Learning Terms</h2>
+<p>
+    Before working with machine learning algorithms, you need to understand a few fundamental terms.
+</p>
+
+<ul>
+    <li><strong>Dataset:</strong> A collection of examples used for analysis or model development.</li>
+    <li><strong>Feature:</strong> An input variable that provides information to a model. For example, house size can be a feature when predicting house prices.</li>
+    <li><strong>Label:</strong> The expected output associated with an example in supervised learning.</li>
+    <li><strong>Model:</strong> The mathematical representation learned from training data.</li>
+    <li><strong>Training:</strong> The process of allowing an algorithm to learn patterns from data.</li>
+    <li><strong>Prediction:</strong> The output produced by a trained model for new input data.</li>
+    <li><strong>Training Data:</strong> Data used to teach the model.</li>
+    <li><strong>Testing Data:</strong> Data used to evaluate how well the trained model performs on unseen examples.</li>
+</ul>
+
+<h2>Types of Machine Learning</h2>
+<p>
+    Machine learning can be divided into several major approaches. The three most commonly introduced are <strong>supervised learning</strong>, <strong>unsupervised learning</strong>, and <strong>reinforcement learning</strong>.
+</p>
+
+<ul>
+    <li><strong>Supervised Learning:</strong> The model learns from examples where the correct answers are already known. Examples include predicting house prices and classifying emails as spam or not spam.</li>
+    <li><strong>Unsupervised Learning:</strong> The data does not contain predefined answers. The algorithm attempts to discover structures or groups within the data, such as grouping customers with similar behavior.</li>
+    <li><strong>Reinforcement Learning:</strong> An agent learns by interacting with an environment and receiving rewards or penalties based on its actions. This approach is commonly associated with robotics, games, and decision-making systems.</li>
+</ul>
+
+<div class="box info">
+    <div class="box-title">Example: Supervised Learning</div>
+    <p>
+        Suppose you have a dataset containing the number of hours students studied and their exam scores. The study hours are the <strong>feature</strong>, while the exam score is the <strong>target</strong> or label.
+    </p>
+    <p>
+        By training a model on many examples, the algorithm can learn a relationship between study time and exam performance. It can then use that learned relationship to estimate the score of a new student based on the provided input.
+    </p>
+</div>
+
+<h2>Real World Applications</h2>
+<p>Machine Learning is used in many systems and services today. Some common applications include:</p>
+
+<ul>
+    <li><strong>Spam Filtering:</strong> Email providers use ML to classify messages as spam or legitimate by learning from large numbers of previous examples.</li>
+    <li><strong>Recommendation Systems:</strong> Services such as Netflix, YouTube, and online stores analyze user behavior to recommend content or products that may be relevant.</li>
+    <li><strong>Fraud Detection:</strong> Banks and payment systems can analyze transaction patterns and identify activity that appears unusual or potentially fraudulent.</li>
+    <li><strong>Self-Driving Cars:</strong> Machine learning can help vehicles interpret information from cameras, sensors, and other systems to understand their surroundings.</li>
+    <li><strong>Search Engines:</strong> Machine learning helps search systems understand queries and rank relevant results.</li>
+    <li><strong>Healthcare:</strong> ML can assist with analyzing medical data and images, identifying patterns, and supporting research.</li>
+    <li><strong>Speech Recognition:</strong> Machine learning allows computers to convert spoken language into text and understand voice commands.</li>
+    <li><strong>Image Recognition:</strong> ML models can classify images and identify objects, faces, or other visual patterns.</li>
+</ul>
+
+<h2>Why Do We Need Machine Learning?</h2>
+<p>
+    Traditional programming works extremely well when the rules of a problem are clearly understood. However, some problems are too complicated to describe using a fixed collection of manually written rules.
+</p>
+
+<p>
+    For example, recognizing whether an image contains a particular object can involve thousands of visual patterns. Writing a separate rule for every possible variation would be extremely difficult. Machine learning provides an alternative: give the system enough examples and allow it to learn the patterns statistically.
+</p>
+
+<p>
+    Machine learning is especially useful when the amount of available data is large, the relationships within the data are complex, or the rules of the problem change over time.
+</p>
+
+<h2>A Quick Look at Scikit-Learn</h2>
+<p>
+    Throughout this course, we will heavily rely on <strong>Scikit-Learn (sklearn)</strong>, a popular machine learning library for Python. It provides implementations of many commonly used algorithms for classification, regression, clustering, preprocessing, model evaluation, and more.
+</p>
+
+<p>
+    One of the strengths of Scikit-Learn is its consistent API. Many models follow a simple pattern: create the model, train it using <code>fit()</code>, and generate predictions using <code>predict()</code>.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
         </div>
+        <span class="filename">intro.py</span>
+    </div>
 <pre><span class="cm"># 1. Import the ML algorithm</span>
 from sklearn.linear_model import LinearRegression
 
 <span class="cm"># 2. Create the model object</span>
 model = LinearRegression()
 
-<span class="cm"># 3. 'Train' the model by giving it Data (X) and Answers (y)</span>
+<span class="cm"># 3. Train the model using Data (X) and Answers (y)</span>
 model.fit(X_train, y_train)
 
-<span class="cm"># 4. Use the newly learned rules to make predictions on new data</span>
+<span class="cm"># 4. Use the trained model to make predictions</span>
 predictions = model.predict(X_new)</pre>
-    </div>
+</div>
 
-    <div class="exercise">
-        <div class="exercise-title">Practice Task</div>
-        <p>
-            Think about your daily life. Identify <strong>three</strong> different services or apps you use that rely on Machine Learning. For each one, try to identify what "Data" it collects and what "Answer" it is trying to predict.
-        </p>
-    </div>
+<p>
+    In this example, <code>X_train</code> contains the input features used for training, while <code>y_train</code> contains the corresponding target values. The <code>fit()</code> method allows the linear regression algorithm to learn a relationship between the inputs and targets.
+</p>
 
-    <div class="lecture-nav">
-        <button class="nav-btn primary" onclick="showLecture(1)">Next Topic</button>
-    </div>
+<p>
+    After training, <code>predict()</code> can be used with new input data. The model uses the relationship it learned during training to generate predictions.
+</p>
+
+<div class="box tip">
+    <div class="box-title">💡 Remember</div>
+    <p>
+        <strong>fit()</strong> means "learn from the training data," while <strong>predict()</strong> means "use what was learned to produce an answer for new data."
+    </p>
+</div>
+
+<h2>Machine Learning and Data</h2>
+<p>
+    Data is one of the most important components of a machine learning system. A powerful algorithm cannot compensate for data that is completely irrelevant, incorrect, or poorly prepared.
+</p>
+
+<p>
+    Good machine learning projects therefore spend significant time on <strong>data collection, cleaning, preprocessing, and evaluation</strong>. The quality and relevance of the data can have a major effect on the quality of the final model.
+</p>
+
+<p>
+    It is also important to separate data used for learning from data used for evaluation. If a model is tested only on examples it has already seen, its performance may appear better than it actually is on new data.
+</p>
+
+<div class="exercise">
+    <div class="exercise-title">Practice Task</div>
+    <p>
+        Think about your daily life. Identify <strong>three</strong> different services or apps you use that rely on Machine Learning. For each one, identify what <strong>Data</strong> it collects, what <strong>pattern</strong> the system might learn, and what <strong>Answer or Prediction</strong> it is trying to produce.
+    </p>
+    <p>
+        Then choose one of your examples and describe how you would build a simple machine learning system for it. Identify the possible <strong>features</strong>, <strong>target</strong>, <strong>training data</strong>, and <strong>prediction</strong>.
+    </p>
+</div>
+
+<div class="lecture-nav">
+    <button class="nav-btn primary" onclick="showLecture(1)">Next Topic</button>
+</div>
 </div>
 
 <div class="lecture" id="lec-1">

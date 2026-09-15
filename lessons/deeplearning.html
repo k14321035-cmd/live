@@ -86,6 +86,7 @@
                             <a href="shell" class="lesson-mega-link">Shell</a>
                             <a href="ethicalhacking" class="lesson-mega-link">Ethical Hacking</a>
                             <a href="numpy" class="lesson-mega-link">NumPy</a>
+                            <a href="matplotlib" class="lesson-mega-link">Matplotlib</a>
                             <a href="machinelearning" class="lesson-mega-link">Machine Learning</a>
                             <a href="deeplearning" class="lesson-mega-link active">Deep Learning</a>
                         </div>
@@ -197,83 +198,219 @@
             <div class="content-column">
         
 
-    <div class="lecture active" id="lec-0">
-    <div class="lecture-tag">Topic 01 - Unit I - Neural Network Foundations</div>
-    <h1>What is Deep Learning?</h1>
+<div class="lecture active" id="lec-0">
+<div class="lecture-tag">Topic 01 - Unit I - Neural Network Foundations</div>
+<h1>What is Deep Learning?</h1>
 
-    <div class="lecture-meta">
-        <span class="meta-badge">Syllabus Topic</span>
-        <span class="meta-badge">Template</span>
-    </div>
+<div class="lecture-meta">
+    <span class="meta-badge">Syllabus Topic</span>
+    <span class="meta-badge">Template</span>
+</div>
 
-    <div class="box info">
-        <div class="box-title">Definition</div>
-        <p>
-            <strong>Deep Learning (DL)</strong> is a specialized subset of Machine Learning based on artificial neural networks. The "deep" in deep learning refers to the use of multiple layers in the network. These algorithms attempt to simulate the behavior of the human brain to "learn" from large amounts of data.
-        </p>
-    </div>
+<div class="box info">
+    <div class="box-title">Definition</div>
+    <p>
+        <strong>Deep Learning (DL)</strong> is a specialized subset of Machine Learning that uses artificial neural networks with multiple layers to learn patterns from data. The word "deep" refers to the presence of several computational layers between the input and output of a neural network.
+    </p>
+    <p>
+        Instead of programming every rule that a computer should follow, we provide a deep learning model with data and allow it to learn useful patterns automatically. For example, rather than manually programming rules that identify a cat in an image, a neural network can learn patterns such as edges, shapes, textures, and eventually complete objects by analyzing many example images.
+    </p>
+    <p>
+        Deep learning is particularly powerful when working with large and complex datasets such as images, audio, video, text, and sensor data. Modern deep learning systems can learn representations directly from raw or minimally processed data.
+    </p>
+</div>
 
-    <h2>Machine Learning vs. Deep Learning</h2>
-    <p>While both are branches of AI, their approach to data processing differs significantly:</p>
+<h2>How Does Deep Learning Work?</h2>
+<p>
+    A deep learning model is built from interconnected layers of artificial neurons. Data enters through an <strong>input layer</strong>, passes through one or more <strong>hidden layers</strong>, and eventually reaches an <strong>output layer</strong>.
+</p>
 
-    <ul>
-        <li><strong>Machine Learning:</strong> Usually requires <em>manual feature extraction</em>. A human expert must tell the algorithm what data points (features) to look at to make a decision.</li>
-        <li><strong>Deep Learning:</strong> Performs <em>automatic feature extraction</em>. You feed the raw data (like pixels of an image) directly into the network, and the hidden layers automatically learn which features are important.</li>
-    </ul>
+<ul>
+    <li><strong>Input Layer:</strong> Receives the data given to the model. For an image, the inputs may represent pixel values. For text, the input may represent numerical representations of words or tokens.</li>
+    <li><strong>Hidden Layers:</strong> Transform the input and learn increasingly useful patterns. Earlier layers often learn simple patterns, while deeper layers can combine them into more complex representations.</li>
+    <li><strong>Output Layer:</strong> Produces the final prediction or result. For example, it might predict whether an image contains a cat, dog, or another object.</li>
+</ul>
 
-    <div class="box tip">
-        <div class="box-title">💡 Why Now?</div>
-        <p>
-            The math behind deep learning has existed since the 1980s. It only became a dominant force recently due to two factors: the explosion of <strong>Big Data</strong> (to train the models) and the advancement of <strong>GPUs</strong> (to perform the massive matrix calculations quickly).
-        </p>
-    </div>
+<p>
+    During training, the network compares its prediction with the correct answer. The difference between them is measured using a <strong>loss function</strong>. The model then adjusts its internal parameters, called <strong>weights</strong> and <strong>biases</strong>, to reduce the error. This process is repeated over many examples until the model learns useful patterns.
+</p>
 
-    <h2>Real World Applications</h2>
-    <p>Deep Learning drives the most cutting-edge technologies we use today:</p>
-    <ul>
-        <li><strong>Computer Vision:</strong> Facial recognition, medical image analysis (detecting tumors), and object detection.</li>
-        <li><strong>Natural Language Processing (NLP):</strong> ChatGPT, language translation, and sentiment analysis.</li>
-        <li><strong>Speech Recognition:</strong> Virtual assistants like Siri and Alexa.</li>
-    </ul>
+<div class="box tip">
+    <div class="box-title">💡 Key Idea</div>
+    <p>
+        Think of a neural network as a pattern-learning system. You provide examples, the network makes predictions, measures its mistakes, and gradually changes its parameters so that its future predictions become more accurate.
+    </p>
+</div>
 
-    <h2>A Quick Look at Keras/TensorFlow</h2>
-    <p>Building a deep neural network is remarkably accessible with modern frameworks. Here is a conceptual peek at creating a simple multi-layer network:</p>
+<h2>Machine Learning vs. Deep Learning</h2>
+<p>While both are branches of AI, their approach to data processing differs significantly:</p>
 
-    <div class="code-block">
-        <div class="code-header">
-            <div class="code-dots">
-                <span></span><span></span><span></span>
-            </div>
-            <span class="filename">intro_dl.py</span>
+<ul>
+    <li><strong>Machine Learning:</strong> Often requires <em>manual feature extraction</em>. A human expert may need to identify important characteristics of the data before training the model. For example, a traditional image-classification system might be given manually calculated features such as edges, shapes, or textures.</li>
+    <li><strong>Deep Learning:</strong> Performs <em>automatic feature extraction</em>. You can feed raw or minimally processed data into the network, and its hidden layers learn which features are useful for the task.</li>
+    <li><strong>Amount of Data:</strong> Traditional machine learning can work well with smaller datasets, while deep learning often benefits significantly from large amounts of training data.</li>
+    <li><strong>Computational Requirements:</strong> Deep learning models can contain millions or even billions of parameters and therefore commonly require substantial computational resources during training.</li>
+    <li><strong>Feature Engineering:</strong> Machine learning commonly depends more heavily on manually designed features, whereas deep learning attempts to learn representations automatically.</li>
+</ul>
+
+<h2>What is an Artificial Neural Network?</h2>
+<p>
+    An <strong>Artificial Neural Network (ANN)</strong> is a computational model inspired loosely by the way biological nervous systems process information. It consists of connected units commonly called <strong>neurons</strong>.
+</p>
+
+<p>
+    Each connection has a numerical value called a <strong>weight</strong>. A neuron combines its inputs with these weights, adds a bias, and passes the result through an <strong>activation function</strong>. The activation function helps the network learn complex, non-linear relationships in data.
+</p>
+
+<p>
+    A single neural network layer may contain many neurons. By stacking several layers together, a deep neural network can learn increasingly complex representations.
+</p>
+
+<div class="box info">
+    <div class="box-title">Important Terms</div>
+    <p>
+        <strong>Neuron:</strong> A computational unit that receives inputs and produces an output.
+    </p>
+    <p>
+        <strong>Weight:</strong> A parameter that determines how strongly an input influences a neuron.
+    </p>
+    <p>
+        <strong>Bias:</strong> An additional parameter that allows the neuron to shift its activation.
+    </p>
+    <p>
+        <strong>Activation Function:</strong> A function that transforms a neuron's calculated value and allows neural networks to model complex relationships.
+    </p>
+</div>
+
+<div class="box tip">
+    <div class="box-title">💡 Why Now?</div>
+    <p>
+        The mathematical ideas behind neural networks have existed for decades, but deep learning became especially successful with the combination of three major developments: the explosion of <strong>Big Data</strong>, powerful <strong>GPUs</strong>, and improved neural-network algorithms and software frameworks.
+    </p>
+    <p>
+        Modern applications can train networks on enormous datasets using specialized hardware. GPUs are particularly useful because neural networks perform many matrix and tensor operations that can be calculated efficiently in parallel.
+    </p>
+</div>
+
+<h2>Training a Deep Learning Model</h2>
+<p>
+    Training is the process through which a neural network learns from examples. A typical training process contains several important steps:
+</p>
+
+<ul>
+    <li><strong>Collect Data:</strong> Gather examples that represent the problem the model needs to solve.</li>
+    <li><strong>Prepare Data:</strong> Clean, transform, and organize the data into a format suitable for the model.</li>
+    <li><strong>Forward Pass:</strong> The input travels through the network and produces a prediction.</li>
+    <li><strong>Calculate Loss:</strong> The prediction is compared with the expected result using a loss function.</li>
+    <li><strong>Backpropagation:</strong> The network calculates how much each parameter contributed to the error.</li>
+    <li><strong>Update Parameters:</strong> An optimization algorithm adjusts the weights and biases to reduce the loss.</li>
+    <li><strong>Repeat:</strong> The process continues over many training examples and iterations.</li>
+</ul>
+
+<p>
+    One complete pass through the training dataset is called an <strong>epoch</strong>. Training usually involves multiple epochs because a model normally needs to see the data several times before it learns useful patterns.
+</p>
+
+<h2>Real World Applications</h2>
+<p>Deep Learning drives many modern technologies and is especially useful for problems involving complex patterns:</p>
+
+<ul>
+    <li><strong>Computer Vision:</strong> Facial recognition, medical image analysis, object detection, image classification, and autonomous-vehicle perception.</li>
+    <li><strong>Natural Language Processing (NLP):</strong> ChatGPT, language translation, text classification, summarization, question answering, and sentiment analysis.</li>
+    <li><strong>Speech Recognition:</strong> Voice assistants, automatic transcription, voice commands, and speech-to-text systems.</li>
+    <li><strong>Recommendation Systems:</strong> Systems that recommend videos, products, music, or other content based on user behavior and preferences.</li>
+    <li><strong>Healthcare:</strong> Analysis of medical images, prediction of certain patterns in clinical data, and assistance with medical research.</li>
+    <li><strong>Robotics:</strong> Perception, object recognition, navigation, and learning-based control systems.</li>
+    <li><strong>Generative AI:</strong> Systems that can generate text, images, audio, code, and other types of content.</li>
+</ul>
+
+<h2>Advantages and Limitations</h2>
+<p>
+    Deep learning provides powerful capabilities, but it is not automatically the best solution for every problem.
+</p>
+
+<ul>
+    <li><strong>Advantage — Automatic Feature Learning:</strong> Neural networks can learn useful representations directly from complex data.</li>
+    <li><strong>Advantage — High Performance:</strong> With sufficient data and appropriate training, deep models can achieve excellent results on many difficult tasks.</li>
+    <li><strong>Advantage — Flexible:</strong> The same general neural-network principles can be adapted to images, text, audio, video, and other data types.</li>
+    <li><strong>Limitation — Data Requirements:</strong> Many deep learning applications require large, high-quality datasets.</li>
+    <li><strong>Limitation — Computing Resources:</strong> Training large models can require significant memory, processing power, and time.</li>
+    <li><strong>Limitation — Interpretability:</strong> Some deep neural networks are difficult to interpret because their decisions depend on many interacting parameters.</li>
+</ul>
+
+<h2>A Quick Look at Keras/TensorFlow</h2>
+<p>
+    Building a deep neural network is remarkably accessible with modern frameworks. <strong>TensorFlow</strong> provides tools for building and training machine learning models, while <strong>Keras</strong> provides a high-level API that makes many neural-network tasks easier to implement.
+</p>
+
+<p>
+    The following example creates a simple neural network with two hidden layers. The network could be used as a starting point for a classification problem.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
         </div>
+        <span class="filename">intro_dl.py</span>
+    </div>
 <pre><span class="cm"># 1. Import TensorFlow/Keras</span>
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
-<span class="cm"># 2. Initialize a Sequential model (a linear stack of layers)</span>
+<span class="cm"># 2. Initialize a Sequential model</span>
 model = Sequential()
 
-<span class="cm"># 3. Add 'Deep' Layers to the network</span>
-model.add(Dense(128, activation='relu', input_shape=(784,))) <span class="cm"># Hidden Layer 1</span>
-model.add(Dense(64, activation='relu'))                      <span class="cm"># Hidden Layer 2</span>
-model.add(Dense(10, activation='softmax'))                   <span class="cm"># Output Layer</span>
+<span class="cm"># 3. Add layers to the network</span>
+model.add(Dense(128, activation='relu', input_shape=(784,)))  <span class="cm"># Hidden Layer 1</span>
+model.add(Dense(64, activation='relu'))                       <span class="cm"># Hidden Layer 2</span>
+model.add(Dense(10, activation='softmax'))                    <span class="cm"># Output Layer</span>
 
 <span class="cm"># 4. Compile the model ready for training</span>
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])</pre>
-    </div>
-
-    <div class="exercise">
-        <div class="exercise-title">Practice Task</div>
-        <p>
-            Research the difference between <strong>TensorFlow</strong> and <strong>PyTorch</strong>. What are the pros and cons of each framework, and which one is generally preferred in academia versus industry?
-        </p>
-    </div>
-
-    <div class="lecture-nav">
-        <button class="nav-btn primary" onclick="showLecture(1)">Next Topic</button>
-    </div>
 </div>
+
+<p>
+    In this example, <code>Dense</code> creates a fully connected neural-network layer. The first hidden layer contains 128 neurons, while the second contains 64 neurons. The final layer contains 10 neurons, which is commonly suitable for a classification problem with 10 possible classes.
+</p>
+
+<p>
+    The <code>relu</code> activation function is commonly used in hidden layers because it introduces non-linearity into the network. The <code>softmax</code> activation in the output layer converts the final values into a set of probabilities whose values add up to approximately 1.
+</p>
+
+<p>
+    The <code>compile()</code> method configures how the model will learn. The <code>optimizer</code> controls how the model updates its parameters, the <code>loss</code> function measures prediction error, and <code>accuracy</code> tells the framework to track classification accuracy during training.
+</p>
+
+<div class="box info">
+    <div class="box-title">Remember</div>
+    <p>
+        Creating the network architecture does not train the model. After compiling it, you normally provide training data and call the model's training process. In Keras, this is commonly done using <code>model.fit()</code>.
+    </p>
+</div>
+
+<div class="exercise">
+    <div class="exercise-title">Practice Task</div>
+    <p>
+        Research the difference between <strong>TensorFlow</strong> and <strong>PyTorch</strong>. Identify at least three similarities and three differences between the frameworks. Then investigate their advantages, limitations, learning resources, community support, and common use cases.
+    </p>
+    <p>
+        As an additional exercise, explain why deep learning usually benefits from GPUs and large datasets. Finally, describe the roles of the <strong>input layer</strong>, <strong>hidden layers</strong>, and <strong>output layer</strong> in a neural network.
+    </p>
+</div>
+
+<div class="lecture-nav">
+    <button class="nav-btn primary" onclick="showLecture(1)">Next Topic</button>
+</div>
+</div>
+
+
+
+
+
+
+
 
         <div class="lecture" id="lec-1">
             <div class="lecture-tag">Topic 02 - Unit I - Neural Network Foundations</div>
