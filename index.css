@@ -36,19 +36,20 @@
   @keyframes blink{ 50%{opacity:0;} }
   .nav-right{display:flex; align-items:center; gap:0.9rem;}
   .icon-btn{
-    background:none; border:1px solid var(--border); border-radius:6px; width:2.3rem; height:2.3rem;
-    display:flex; align-items:center; justify-content:center; color:var(--muted); transition:border-color .15s, color .15s;
+    background:none; border:none; width:2.3rem; height:2.3rem;
+    display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .15s;
   }
-  .icon-btn:hover{border-color:var(--accent); color:var(--text);}
+  .icon-btn:hover{color:var(--text);}
   .nav-cta{
-    font-family:'JetBrains Mono', monospace; font-size:0.82rem; border:1px solid var(--border);
-    padding:0.5rem 1rem; border-radius:6px; color:var(--text); text-decoration:none;
-    transition:border-color .15s, background .15s; background:none;
+    font-family:'JetBrains Mono', monospace; font-size:0.82rem;
+    padding:0.5rem 1rem;  color:var(--text); text-decoration:none;
+    transition:background .15s; background:none;
   }
-  .nav-cta:hover{border-color:var(--accent); background:var(--accent-dim);}
+  .nav-cta:hover{background:var(--accent-dim);}
 
   /* course subheader */
   .subheader{
+    position:sticky; top:63.6px; z-index:90; background:rgba(247,248,250,0.85); backdrop-filter:blur(10px);
     display:flex; gap:1.5rem; overflow-x:auto; padding:0.7rem 2.5rem;
     border-bottom:1px solid var(--border); background:var(--bg-raised);
     scrollbar-width:none;
@@ -448,16 +449,16 @@
     display: inline-block;
   }
   .projects-dropdown-trigger {
-    font-family:'JetBrains Mono', monospace; font-size:0.82rem; border:1px solid var(--border);
-    padding:0.5rem 1rem; border-radius:6px; color:var(--text); text-decoration:none;
-    transition:border-color .15s, background .15s; background:none;
+    font-family:'JetBrains Mono', monospace; font-size:0.82rem;
+    padding:0.5rem 1rem; color:var(--text); text-decoration:none;
+    transition:background .15s; background:none; border:none;
     display: flex;
     align-items: center;
     gap: 0.4rem;
     cursor: pointer;
   }
   .projects-dropdown-trigger:hover {
-    border-color:var(--accent); background:var(--accent-dim);
+   background:var(--accent-dim);
   }
   .projects-dropdown-trigger svg {
     width: 13px;
@@ -475,9 +476,7 @@
     margin-top: 0.5rem;
     width: 260px;
     background: var(--bg-raised);
-    border: 1px solid var(--border);
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     padding: 0.5rem;
     display: none;
     flex-direction: column;

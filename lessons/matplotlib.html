@@ -4789,6 +4789,3496 @@ plt.show()</pre></div>
 </div>
 
 
+    <div class="lecture" id="lec-21">
+    <div class="lecture-tag">Lecture 21 &middot; Matplotlib with NumPy</div>
+
+    <h1>Using Matplotlib with NumPy</h1>
+
+    <p class="lecture-intro">
+        Learn how to combine NumPy with Matplotlib to create charts from numerical arrays,
+        generate mathematical data, visualize functions, and work efficiently with large datasets.
+    </p>
+
+
+    <h2>01. Understand Matplotlib with NumPy</h2>
+
+    <p>
+        NumPy and Matplotlib are commonly used together when working with numerical data in Python.
+        NumPy provides powerful tools for creating and manipulating numerical arrays, while
+        Matplotlib can visualize those arrays using charts and graphs.
+    </p>
+
+    <p>
+        Instead of manually creating every value in a dataset, you can use NumPy to generate
+        and calculate the data and then pass it directly to Matplotlib.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">numpy_matplotlib.py</span>
+        </div>
+
+        <pre>
+        import numpy as np
+
+        import matplotlib.pyplot as plt
+
+        x = np.array([1, 2, 3, 4, 5])
+
+        y = np.array([2, 4, 6, 8, 10])
+
+        fig, ax = plt.subplots()
+
+        ax.plot(x, y)
+        ax.set_title("NumPy Data with Matplotlib")
+        ax.set_xlabel("X")
+        ax.set_ylabel("Y")
+
+        plt.show()
+    </pre>
+    </div>
+
+    <p>
+        NumPy creates the arrays, while Matplotlib uses those arrays to create the chart.
+    </p>
+
+
+    <h2>02. Create Chart Data Using NumPy Arrays</h2>
+
+    <p>
+        A NumPy array can contain the values used for the x-axis and y-axis of a chart.
+        This is especially useful when working with numerical datasets.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">numpy_arrays.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+months = np.array([1, 2, 3, 4, 5, 6])
+sales = np.array([120, 150, 180, 160, 210, 240])
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The <code>months</code> and <code>sales</code> arrays contain the numerical data used by Matplotlib.
+    </p>
+
+
+    <h2>03. Generate Data with np.arange()</h2>
+
+    <p>
+        NumPy provides <code>np.arange()</code> for generating evenly spaced values within a range.
+        This can be useful when creating the x-axis values for a chart.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">numpy_arange.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(0, 10)
+
+y = x * 2
+
+fig, ax = plt.subplots()
+
+ax.plot(x, y, marker="o")
+ax.set_title("Data Generated with np.arange()")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        <code>np.arange(0, 10)</code> creates values starting at 0 and stopping before 10.
+        The values are then multiplied by 2 to create the <code>y</code> array.
+    </p>
+
+
+    <h2>04. Generate Smooth Data with np.linspace()</h2>
+
+    <p>
+        The <code>np.linspace()</code> function creates a specified number of evenly spaced values
+        between two numbers. It is particularly useful when plotting mathematical functions.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">numpy_linspace.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 100)
+
+y = x ** 2
+
+fig, ax = plt.subplots()
+
+ax.plot(x, y)
+ax.set_title("y = x&#178;")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The example creates 100 evenly spaced values between 0 and 10.
+        Using many points allows Matplotlib to draw the curve smoothly.
+    </p>
+
+
+    <h2>05. Plot Mathematical Functions</h2>
+
+    <p>
+        NumPy makes it easy to calculate mathematical functions using arrays.
+        The calculated values can then be visualized with Matplotlib.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">quadratic_function.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-10, 10, 200)
+
+y = x ** 2
+
+fig, ax = plt.subplots()
+
+ax.plot(x, y)
+ax.set_title("Quadratic Function")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The expression <code>x ** 2</code> is applied to every value in the NumPy array.
+        Matplotlib then plots the resulting values.
+    </p>
+
+
+    <h2>06. Use NumPy Mathematical Functions</h2>
+
+    <p>
+        NumPy provides many mathematical functions that can operate on entire arrays.
+        For example, <code>np.sin()</code> can calculate the sine of every value in an array.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">sine_wave.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 2 * np.pi, 200)
+
+y = np.sin(x)
+
+fig, ax = plt.subplots()
+
+ax.plot(x, y)
+ax.set_title("Sine Wave")
+ax.set_xlabel("X")
+ax.set_ylabel("sin(x)")
+
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        NumPy calculates the sine value for every element in <code>x</code>.
+        Matplotlib then displays those values as a smooth wave.
+    </p>
+
+
+    <h2>07. Plot Multiple NumPy Arrays</h2>
+
+    <p>
+        You can use multiple NumPy arrays to display several datasets on the same chart.
+        This is useful when comparing mathematical functions or different sets of numerical data.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">multiple_arrays.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 2 * np.pi, 200)
+
+y1 = np.sin(x)
+y2 = np.cos(x)
+
+fig, ax = plt.subplots()
+
+ax.plot(x, y1, label="sin(x)")
+ax.plot(x, y2, label="cos(x)")
+
+ax.set_title("Sine and Cosine")
+ax.set_xlabel("X")
+ax.set_ylabel("Value")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Both functions use the same <code>x</code> values, but they produce different <code>y</code> values.
+        The legend identifies each line.
+    </p>
+
+
+    <h2>08. Perform Calculations on NumPy Data</h2>
+
+    <p>
+        One of the main advantages of NumPy is that mathematical operations can be performed
+        on entire arrays without manually processing each value.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">array_calculations.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([1, 2, 3, 4, 5])
+
+y = x * 10 + 5
+
+fig, ax = plt.subplots()
+
+ax.plot(x, y, marker="o")
+ax.set_title("Calculated NumPy Data")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The expression <code>x * 10 + 5</code> is applied to every element in the array.
+        This makes it easy to transform numerical data before plotting it.
+    </p>
+
+
+    <h2>09. Create Random Data with NumPy</h2>
+
+    <p>
+        NumPy can generate random numerical data using its <code>random</code> module.
+        Random data is useful for testing charts, simulations, experiments, and learning
+        visualization techniques.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">random_numpy_data.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(1, 11)
+
+y = np.random.randint(10, 100, size=10)
+
+fig, ax = plt.subplots()
+
+ax.bar(x, y)
+ax.set_title("Random NumPy Data")
+ax.set_xlabel("Item")
+ax.set_ylabel("Value")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        <code>np.random.randint()</code> generates random integer values.
+        These values are then passed to Matplotlib to create a bar chart.
+    </p>
+
+
+    <h2>10. Create Scatter Plots with NumPy</h2>
+
+    <p>
+        NumPy can generate numerical arrays that can be visualized using a scatter plot.
+        Scatter plots are useful for examining the relationship between two numerical variables.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">numpy_scatter.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.random.randint(1, 100, size=50)
+y = np.random.randint(1, 100, size=50)
+
+fig, ax = plt.subplots()
+
+ax.scatter(x, y)
+
+ax.set_title("NumPy Random Data")
+ax.set_xlabel("X Values")
+ax.set_ylabel("Y Values")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        NumPy generates 50 random values for both <code>x</code> and <code>y</code>.
+        Matplotlib displays each corresponding pair as a point.
+    </p>
+
+
+    <h2>11. Use NumPy Statistics in Charts</h2>
+
+    <p>
+        NumPy provides statistical functions such as <code>np.mean()</code>, <code>np.max()</code>,
+        and <code>np.min()</code>. These functions can be used to analyze numerical data before
+        or while creating a chart.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">numpy_statistics.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+scores = np.array([65, 72, 81, 90, 76, 88, 95])
+
+average = np.mean(scores)
+highest = np.max(scores)
+lowest = np.min(scores)
+
+print("Average:", average)
+print("Highest:", highest)
+print("Lowest:", lowest)
+
+fig, ax = plt.subplots()
+
+ax.plot(scores, marker="o")
+ax.axhline(average, linestyle="--", label="Average")
+
+ax.set_title("Student Scores")
+ax.set_xlabel("Student")
+ax.set_ylabel("Score")
+
+ax.legend()
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        NumPy calculates the average, highest, and lowest values.
+        The average is also displayed on the chart using <code>ax.axhline()</code>.
+    </p>
+
+
+    <h2>12. Create a Histogram with NumPy Data</h2>
+
+    <p>
+        Histograms can be used to visualize how numerical values are distributed.
+        NumPy arrays can be passed directly to Matplotlib's <code>hist()</code> function.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">numpy_histogram.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+scores = np.array([
+    45, 52, 56, 61, 65,
+    68, 70, 72, 75, 78,
+    80, 82, 85, 88, 91,
+    94, 96
+])
+
+fig, ax = plt.subplots()
+
+ax.hist(scores, bins=5)
+
+ax.set_title("Score Distribution")
+ax.set_xlabel("Score")
+ax.set_ylabel("Frequency")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Matplotlib groups the NumPy values into ranges called bins.
+        The height of each bar represents how many values fall within that range.
+    </p>
+
+
+    <h2>13. Use NumPy Arrays for Bar Charts</h2>
+
+    <p>
+        NumPy arrays can also be used to store categories as positions and numerical values
+        as bar heights. This is useful when creating charts from larger numerical datasets.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">numpy_bar_chart.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+products = np.array(["A", "B", "C", "D"])
+sales = np.array([120, 180, 150, 220])
+
+fig, ax = plt.subplots()
+
+ax.bar(products, sales)
+
+ax.set_title("Product Sales")
+ax.set_xlabel("Product")
+ax.set_ylabel("Sales")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The NumPy arrays contain the product names and their corresponding sales values.
+        Matplotlib uses those arrays to create the bar chart.
+    </p>
+
+
+    <h2>14. Create a Function Using NumPy</h2>
+
+    <p>
+        You can create reusable Python functions that generate NumPy data and display it
+        with Matplotlib. This is useful when you want to plot the same type of mathematical
+        function multiple times.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">plot_function.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+def plot_function():
+    x = np.linspace(-5, 5, 200)
+    y = x ** 3
+
+    fig, ax = plt.subplots()
+    ax.plot(x, y)
+    ax.set_title("Cubic Function")
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.grid(True)
+    plt.show()
+
+plot_function()</pre>
+    </div>
+
+    <p>
+        The function generates the NumPy data and creates the Matplotlib chart whenever it is called.
+    </p>
+
+
+    <h2>15. Compare NumPy and Regular Python Lists</h2>
+
+    <p>
+        Matplotlib can work with both Python lists and NumPy arrays. However, NumPy becomes
+        especially useful when performing calculations on large amounts of numerical data.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">lists_vs_numpy.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x_list = [1, 2, 3, 4, 5]
+y_list = [2, 4, 6, 8, 10]
+
+x_array = np.array(x_list)
+y_array = np.array(y_list)
+
+fig, ax = plt.subplots()
+
+ax.plot(x_array, y_array, marker="o")
+
+ax.set_title("NumPy Array Visualization")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The Python lists are converted into NumPy arrays using <code>np.array()</code>.
+        Once the data is stored as a NumPy array, NumPy's numerical operations can be used efficiently.
+    </p>
+
+
+    <h2>16. Create a Complete NumPy Visualization</h2>
+
+    <p>
+        NumPy and Matplotlib become particularly powerful when they are combined to generate data,
+        perform calculations, and visualize the results in one program.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">complete_numpy_chart.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 200)
+
+y1 = np.sin(x)
+y2 = np.cos(x)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot(x, y1, label="sin(x)")
+ax.plot(x, y2, label="cos(x)")
+
+ax.set_title("NumPy Functions with Matplotlib")
+ax.set_xlabel("X")
+ax.set_ylabel("Value")
+
+ax.grid(True)
+ax.legend()
+
+fig.tight_layout()
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        NumPy generates the x-values and calculates both mathematical functions.
+        Matplotlib then visualizes the resulting arrays on the same figure.
+    </p>
+
+
+    <div class="box info">
+        <div class="box-title">Key Points</div>
+
+        <ul>
+            <li>NumPy is useful for creating and manipulating numerical data.</li>
+            <li>Matplotlib can plot NumPy arrays directly.</li>
+            <li>Use <code>np.arange()</code> to generate values with a specified step.</li>
+            <li>Use <code>np.linspace()</code> to generate evenly spaced values.</li>
+            <li>NumPy mathematical functions can operate on entire arrays.</li>
+            <li>Use functions such as <code>np.sin()</code>, <code>np.cos()</code>, and <code>np.sqrt()</code> when working with mathematical data.</li>
+            <li>NumPy can generate random data for testing and visualization.</li>
+            <li>NumPy provides statistical functions such as <code>np.mean()</code>, <code>np.min()</code>, and <code>np.max()</code>.</li>
+            <li>NumPy arrays can be used with line charts, bar charts, scatter plots, and histograms.</li>
+            <li>Combining NumPy and Matplotlib is useful for numerical data analysis and visualization.</li>
+        </ul>
+    </div>
+
+
+    <div class="exercise">
+        <div class="exercise-title">Exercise 21 &middot; Matplotlib with NumPy</div>
+
+        <p>
+            Create a NumPy array containing 100 evenly spaced values between <code>0</code> and
+            <code>2 * np.pi</code>. Use the array to calculate both the sine and cosine of the values.
+            Create a Matplotlib line chart containing both functions. Add a title, x-axis label,
+            y-axis label, legend, and grid lines. Set the figure size to <code>(10, 6)</code>.
+            Finally, save the chart as a PNG using <code>dpi=300</code> and <code>bbox_inches="tight"</code>.
+        </p>
+    </div>
+
+
+    <div class="lecture-nav">
+
+        <button class="nav-btn secondary"
+                onclick="showLecture(20)">
+            &larr; Previous Lecture
+        </button>
+
+        <button class="nav-btn primary"
+                onclick="showLecture(22)">
+            Next Lecture &rarr;
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="lecture" id="lec-22">
+    <div class="lecture-tag">Lecture 22 &middot; Matplotlib with Pandas</div>
+
+    <h1>Using Matplotlib with Pandas</h1>
+
+    <p class="lecture-intro">
+        Learn how to combine Pandas and Matplotlib to visualize DataFrame and Series data,
+        create different types of charts, customize plots, and analyze real-world datasets.
+    </p>
+
+
+    <h2>01. Understand Pandas and Matplotlib</h2>
+
+    <p>
+        Pandas is a Python library used for working with structured and tabular data, while
+        Matplotlib is used to visualize that data. Together, they provide a powerful way to
+        analyze and understand datasets.
+    </p>
+
+    <p>
+        A Pandas <code>DataFrame</code> can contain multiple columns of data, and those columns
+        can be plotted directly using Matplotlib.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">pandas_matplotlib.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "Sales": [120, 150, 180, 160, 210]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots()
+
+ax.plot(df["Month"], df["Sales"], marker="o")
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The Pandas DataFrame stores the data, while Matplotlib uses the DataFrame columns to create the chart.
+    </p>
+
+
+    <h2>02. Plot a Pandas DataFrame</h2>
+
+    <p>
+        Pandas provides plotting methods that use Matplotlib internally.
+        You can use <code>DataFrame.plot()</code> to create charts directly from a DataFrame.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">dataframe_plot.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "Sales": [120, 150, 180, 160, 210]
+}
+
+df = pd.DataFrame(data)
+
+df.plot(
+    x="Month",
+    y="Sales",
+    kind="line",
+    marker="o"
+)
+
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The <code>x</code> parameter specifies the column used for the x-axis, while <code>y</code>
+        specifies the column used for the y-axis.
+    </p>
+
+
+    <h2>03. Plot a Pandas Series</h2>
+
+    <p>
+        A single column from a DataFrame is a Pandas <code>Series</code>.
+        A Series can also be plotted using Matplotlib.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">series_plot.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+sales = pd.Series(
+    [120, 150, 180, 160, 210],
+    index=["Jan", "Feb", "Mar", "Apr", "May"]
+)
+
+fig, ax = plt.subplots()
+
+ax.plot(sales.index, sales.values, marker="o")
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The Series index provides the month names, while the Series values provide the sales data.
+    </p>
+
+
+    <h2>04. Create a Bar Chart from Pandas Data</h2>
+
+    <p>
+        Bar charts are useful for comparing values between categories.
+        Pandas can select the data while Matplotlib displays the chart.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">pandas_bar_chart.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Product": ["A", "B", "C", "D"],
+    "Sales": [120, 180, 150, 220]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots()
+
+ax.bar(df["Product"], df["Sales"])
+
+ax.set_title("Product Sales")
+ax.set_xlabel("Product")
+ax.set_ylabel("Sales")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The <code>Product</code> column provides the categories and the <code>Sales</code> column
+        provides the bar heights.
+    </p>
+
+
+    <h2>05. Create a Horizontal Bar Chart</h2>
+
+    <p>
+        A horizontal bar chart can be useful when category names are long or when you want to
+        compare values from top to bottom.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">horizontal_bar.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Language": ["Python", "Java", "C++", "JavaScript"],
+    "Students": [85, 72, 64, 78]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots()
+
+ax.barh(df["Language"], df["Students"])
+
+ax.set_title("Programming Languages")
+ax.set_xlabel("Students")
+ax.set_ylabel("Language")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The <code>barh()</code> method creates horizontal bars instead of vertical bars.
+    </p>
+
+
+    <h2>06. Create a Scatter Plot from Pandas</h2>
+
+    <p>
+        Scatter plots are useful for investigating relationships between two numerical columns.
+        Pandas can store the columns while Matplotlib displays their relationship.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">pandas_scatter.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Hours": [1, 2, 3, 4, 5, 6, 7],
+    "Scores": [45, 50, 58, 65, 72, 80, 88]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots()
+
+ax.scatter(df["Hours"], df["Scores"])
+
+ax.set_title("Study Hours and Scores")
+ax.set_xlabel("Study Hours")
+ax.set_ylabel("Score")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Each row creates one point using the corresponding values from the <code>Hours</code>
+        and <code>Scores</code> columns.
+    </p>
+
+
+    <h2>07. Plot Multiple Pandas Columns</h2>
+
+    <p>
+        A DataFrame can contain several numerical columns that can be plotted together.
+        This is useful for comparing multiple datasets.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">multiple_columns.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "Sales": [120, 150, 180, 160, 210],
+    "Expenses": [80, 95, 110, 105, 130]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots()
+
+ax.plot(df["Month"], df["Sales"], marker="o", label="Sales")
+ax.plot(df["Month"], df["Expenses"], marker="o", label="Expenses")
+
+ax.set_title("Sales vs Expenses")
+ax.set_xlabel("Month")
+ax.set_ylabel("Amount")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Two different DataFrame columns are plotted against the same month values.
+        The legend identifies each dataset.
+    </p>
+
+
+    <h2>08. Create a Histogram from Pandas Data</h2>
+
+    <p>
+        Histograms show how numerical values are distributed.
+        A Pandas column can be passed directly to Matplotlib's <code>hist()</code> function.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">pandas_histogram.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Score": [45, 52, 56, 61, 65, 68, 70, 72, 75, 78, 80, 82, 85, 88, 91, 94]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots()
+
+ax.hist(df["Score"], bins=5)
+
+ax.set_title("Score Distribution")
+ax.set_xlabel("Score")
+ax.set_ylabel("Frequency")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Matplotlib divides the numerical values into bins and shows how many values fall into each range.
+    </p>
+
+
+    <h2>09. Create a Pie Chart from Pandas Data</h2>
+
+    <p>
+        Pie charts can be used to show how different categories contribute to a total.
+        Pandas can provide the category labels and numerical values to Matplotlib.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">pandas_pie_chart.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Category": ["Food", "Transport", "Education", "Entertainment"],
+    "Amount": [300, 150, 250, 100]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots()
+
+ax.pie(
+    df["Amount"],
+    labels=df["Category"],
+    autopct="%1.1f%%"
+)
+
+ax.set_title("Monthly Expenses")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The <code>labels</code> parameter displays the category names, while <code>autopct</code>
+        displays the percentage for each section.
+    </p>
+
+
+    <h2>10. Read a CSV File and Visualize It</h2>
+
+    <p>
+        One of the most useful combinations of Pandas and Matplotlib is reading data from a CSV file
+        and visualizing it. Pandas can load the data while Matplotlib creates the chart.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">csv_visualization.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("sales.csv")
+
+fig, ax = plt.subplots()
+
+ax.plot(df["Month"], df["Sales"], marker="o")
+
+ax.set_title("Sales from CSV Data")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        <code>pd.read_csv()</code> loads the CSV file into a DataFrame.
+        The DataFrame columns can then be used directly with Matplotlib.
+    </p>
+
+
+    <h2>11. Sort Data Before Plotting</h2>
+
+    <p>
+        Sometimes data should be sorted before it is visualized.
+        Pandas provides methods such as <code>sort_values()</code> for arranging DataFrame rows.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">sort_before_plot.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Student": ["A", "B", "C", "D", "E"],
+    "Score": [72, 91, 65, 84, 78]
+}
+
+df = pd.DataFrame(data)
+
+df = df.sort_values("Score")
+
+fig, ax = plt.subplots()
+
+ax.bar(df["Student"], df["Score"])
+
+ax.set_title("Students Sorted by Score")
+ax.set_xlabel("Student")
+ax.set_ylabel("Score")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The DataFrame is sorted by the <code>Score</code> column before the chart is created.
+    </p>
+
+
+    <h2>12. Group Data Before Visualization</h2>
+
+    <p>
+        Pandas can group data using <code>groupby()</code>. Grouping is useful when you have
+        repeated categories and want to calculate totals or averages before creating a chart.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">groupby_chart.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Department": [
+        "IT", "IT", "Sales", "Sales",
+        "HR", "HR"
+    ],
+    "Employees": [20, 25, 15, 18, 10, 12]
+}
+
+df = pd.DataFrame(data)
+
+department_totals = df.groupby("Department")["Employees"].sum()
+
+fig, ax = plt.subplots()
+
+ax.bar(
+    department_totals.index,
+    department_totals.values
+)
+
+ax.set_title("Employees by Department")
+ax.set_xlabel("Department")
+ax.set_ylabel("Employees")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The data is grouped by department and the employee counts are added together.
+        The resulting Series is then visualized with Matplotlib.
+    </p>
+
+
+    <h2>13. Customize a Pandas Plot with Matplotlib</h2>
+
+    <p>
+        Pandas plotting methods use Matplotlib, which means you can access the resulting Axes object
+        and customize the chart further.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">customize_pandas_plot.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "Sales": [120, 150, 180, 160, 210]
+}
+
+df = pd.DataFrame(data)
+
+ax = df.plot(
+    x="Month",
+    y="Sales",
+    kind="line",
+    marker="o"
+)
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The object returned by <code>df.plot()</code> can be used like a Matplotlib Axes object.
+        This allows you to customize the title, labels, grid, and other chart properties.
+    </p>
+
+
+    <h2>14. Create Subplots with Pandas Data</h2>
+
+    <p>
+        You can create multiple charts in one figure using Matplotlib subplots and Pandas data.
+        This is useful when comparing several columns.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">pandas_subplots.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "Sales": [120, 150, 180, 160, 210],
+    "Expenses": [80, 95, 110, 105, 130]
+}
+
+df = pd.DataFrame(data)
+
+fig, axes = plt.subplots(2, 1, figsize=(8, 7))
+
+axes[0].plot(df["Month"], df["Sales"], marker="o")
+axes[0].set_title("Sales")
+
+axes[1].plot(df["Month"], df["Expenses"], marker="o")
+axes[1].set_title("Expenses")
+
+plt.tight_layout()
+plt.show()</pre>
+    </div>
+
+    <p>
+        The figure contains two separate Axes objects.
+        Each Axes displays a different column from the DataFrame.
+    </p>
+
+
+    <h2>15. Create a Professional Pandas Visualization</h2>
+
+    <p>
+        When working with real datasets, it is useful to combine Pandas data processing with
+        Matplotlib formatting. This allows you to clean, analyze, and visualize data in one workflow.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">professional_pandas_chart.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    "Sales": [120, 150, 175, 160, 210, 240],
+    "Expenses": [80, 95, 110, 105, 130, 145]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot(
+    df["Month"],
+    df["Sales"],
+    marker="o",
+    linewidth=2,
+    label="Sales"
+)
+
+ax.plot(
+    df["Month"],
+    df["Expenses"],
+    marker="o",
+    linewidth=2,
+    label="Expenses"
+)
+
+ax.set_title("Monthly Sales and Expenses")
+ax.set_xlabel("Month")
+ax.set_ylabel("Amount")
+
+ax.grid(True)
+ax.legend()
+
+fig.tight_layout()
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Pandas manages the structured data while Matplotlib controls the visualization.
+        This combination is commonly used when analyzing and presenting datasets.
+    </p>
+
+
+    <div class="box info">
+        <div class="box-title">Key Points</div>
+
+        <ul>
+            <li>Pandas is useful for storing, cleaning, and analyzing structured data.</li>
+            <li>Matplotlib can visualize Pandas DataFrames and Series.</li>
+            <li>Use <code>df.plot()</code> to create charts directly from a DataFrame.</li>
+            <li>Use DataFrame columns with Matplotlib functions such as <code>plot()</code>, <code>bar()</code>, and <code>scatter()</code>.</li>
+            <li>Use <code>pd.read_csv()</code> to load CSV data before visualization.</li>
+            <li>Use <code>sort_values()</code> to organize data before plotting.</li>
+            <li>Use <code>groupby()</code> to summarize data before creating charts.</li>
+            <li>Pandas plotting uses Matplotlib internally.</li>
+            <li>The Axes object returned by Pandas plotting can be customized with Matplotlib methods.</li>
+            <li>Combining Pandas and Matplotlib is useful for data analysis and visualization.</li>
+        </ul>
+    </div>
+
+
+    <div class="exercise">
+        <div class="exercise-title">Exercise 22 &middot; Matplotlib with Pandas</div>
+
+        <p>
+            Create a Pandas DataFrame containing six months of sales and expenses data.
+            Use Matplotlib to create a line chart showing both datasets.
+            Add a title, x-axis label, y-axis label, legend, and grid lines.
+            Set the figure size to <code>(10, 6)</code>.
+            Then create a second chart showing the same sales data as a bar chart.
+            Finally, save the line chart as a PNG using <code>dpi=300</code> and <code>bbox_inches="tight"</code>.
+        </p>
+    </div>
+
+
+    <div class="lecture-nav">
+
+        <button class="nav-btn secondary"
+                onclick="showLecture(21)">
+            &larr; Previous Lecture
+        </button>
+
+        <button class="nav-btn primary"
+                onclick="showLecture(23)">
+            Next Lecture &rarr;
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="lecture" id="lec-23">
+    <div class="lecture-tag">Lecture 23 &middot; Comparing Multiple Data Sets</div>
+
+    <h1>Compare Multiple Data Sets with Matplotlib</h1>
+
+    <p class="lecture-intro">
+        Learn how to compare multiple datasets using Matplotlib by plotting several lines, bars,
+        and data points on the same chart and using visual techniques to identify differences,
+        similarities, and trends.
+    </p>
+
+
+    <h2>01. Understand Comparing Multiple Data Sets</h2>
+
+    <p>
+        Matplotlib allows you to display multiple datasets on the same chart.
+        This makes it easier to compare values, identify differences, and observe patterns
+        between datasets.
+    </p>
+
+    <p>
+        Multiple datasets can be displayed using the same x-axis while each dataset has its
+        own set of y-values.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">compare_data.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+sales_2024 = [120, 150, 180, 160, 210]
+sales_2025 = [140, 170, 200, 190, 240]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales_2024, marker="o", label="2024")
+ax.plot(months, sales_2025, marker="o", label="2025")
+
+ax.set_title("Sales Comparison")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Both datasets use the same months, making it possible to compare the sales values for each month.
+    </p>
+
+
+    <h2>02. Compare Two Line Data Sets</h2>
+
+    <p>
+        Line charts are useful when comparing values that change over an ordered sequence such as
+        months, years, or days.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">two_line_sets.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+
+product_a = [80, 95, 110, 105, 125, 140]
+product_b = [70, 85, 100, 120, 135, 150]
+
+fig, ax = plt.subplots()
+
+ax.plot(
+    months,
+    product_a,
+    marker="o",
+    label="Product A"
+)
+
+ax.plot(
+    months,
+    product_b,
+    marker="o",
+    label="Product B"
+)
+
+ax.set_title("Product Performance")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Each line represents a different dataset.
+        The markers make individual values easier to identify.
+    </p>
+
+
+    <h2>03. Compare Three or More Data Sets</h2>
+
+    <p>
+        You can plot more than two datasets on the same Axes. This is useful when comparing
+        several products, departments, locations, or time periods.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">multiple_line_sets.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+product_a = [80, 95, 110, 105, 125]
+product_b = [70, 85, 100, 120, 135]
+product_c = [60, 90, 95, 110, 130]
+
+fig, ax = plt.subplots()
+
+ax.plot(months, product_a, marker="o", label="Product A")
+ax.plot(months, product_b, marker="o", label="Product B")
+ax.plot(months, product_c, marker="o", label="Product C")
+
+ax.set_title("Product Comparison")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Three separate lines are displayed on the same chart.
+        The legend makes it possible to identify each dataset.
+    </p>
+
+
+    <h2>04. Compare Data Sets with Different Line Styles</h2>
+
+    <p>
+        When several lines appear on the same chart, different line styles can make them easier
+        to distinguish. Matplotlib provides styles such as solid, dashed, and dotted lines.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">line_styles.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+sales = [120, 150, 180, 160, 210]
+expenses = [80, 95, 110, 105, 130]
+
+fig, ax = plt.subplots()
+
+ax.plot(
+    months,
+    sales,
+    linestyle="-",
+    marker="o",
+    label="Sales"
+)
+
+ax.plot(
+    months,
+    expenses,
+    linestyle="--",
+    marker="s",
+    label="Expenses"
+)
+
+ax.set_title("Sales and Expenses")
+ax.set_xlabel("Month")
+ax.set_ylabel("Amount")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The different line styles and markers make the two datasets easier to distinguish.
+    </p>
+
+
+    <h2>05. Compare Data Sets with Bar Charts</h2>
+
+    <p>
+        Bar charts are useful when comparing separate categories. Multiple bars can be placed
+        beside each other to compare datasets directly.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">compare_bar_sets.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+products = ["A", "B", "C", "D"]
+
+sales_2024 = np.array([120, 150, 180, 160])
+sales_2025 = np.array([140, 170, 200, 190])
+
+x = np.arange(len(products))
+width = 0.35
+
+fig, ax = plt.subplots()
+
+ax.bar(
+    x - width / 2,
+    sales_2024,
+    width,
+    label="2024"
+)
+
+ax.bar(
+    x + width / 2,
+    sales_2025,
+    width,
+    label="2025"
+)
+
+ax.set_title("Sales Comparison")
+ax.set_xlabel("Product")
+ax.set_ylabel("Sales")
+
+ax.set_xticks(x)
+ax.set_xticklabels(products)
+
+ax.legend()
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        NumPy is used to calculate the positions of the bars so that the two datasets appear side by side.
+    </p>
+
+
+    <h2>06. Compare Data Sets Using a Scatter Plot</h2>
+
+    <p>
+        Scatter plots can be used to compare relationships between two numerical datasets.
+        Each point represents a pair of values.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">compare_scatter_sets.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+hours_a = [1, 2, 3, 4, 5, 6]
+scores_a = [45, 50, 60, 68, 75, 82]
+
+hours_b = [1, 2, 3, 4, 5, 6]
+scores_b = [50, 58, 65, 72, 80, 90]
+
+fig, ax = plt.subplots()
+
+ax.scatter(
+    hours_a,
+    scores_a,
+    label="Class A"
+)
+
+ax.scatter(
+    hours_b,
+    scores_b,
+    label="Class B"
+)
+
+ax.set_title("Study Hours and Scores")
+ax.set_xlabel("Study Hours")
+ax.set_ylabel("Score")
+
+ax.legend()
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Two groups of points are displayed so that their relationships between study hours
+        and scores can be compared.
+    </p>
+
+
+    <h2>07. Compare Data Sets from Pandas</h2>
+
+    <p>
+        Pandas DataFrames can be combined with Matplotlib when comparing structured datasets.
+        Each column can represent a different dataset.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">compare_pandas_data.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "Product_A": [120, 150, 180, 160, 210],
+    "Product_B": [100, 140, 170, 190, 220]
+}
+
+df = pd.DataFrame(data)
+
+fig, ax = plt.subplots()
+
+ax.plot(
+    df["Month"],
+    df["Product_A"],
+    marker="o",
+    label="Product A"
+)
+
+ax.plot(
+    df["Month"],
+    df["Product_B"],
+    marker="o",
+    label="Product B"
+)
+
+ax.set_title("Product Comparison")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The DataFrame stores the datasets, while Matplotlib displays the columns as separate lines.
+    </p>
+
+
+    <h2>08. Compare Data Sets with Different Scales</h2>
+
+    <p>
+        Sometimes two datasets have very different numerical ranges. For example, sales may be
+        measured in thousands while the number of customers may be much smaller.
+    </p>
+
+    <p>
+        In such cases, using two y-axes can make both datasets visible on the same chart.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">different_scales.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+sales = [1200, 1500, 1800, 1700, 2100]
+customers = [120, 150, 180, 170, 210]
+
+fig, ax1 = plt.subplots()
+
+ax1.plot(
+    months,
+    sales,
+    marker="o",
+    label="Sales"
+)
+
+ax1.set_xlabel("Month")
+ax1.set_ylabel("Sales")
+
+ax2 = ax1.twinx()
+
+ax2.plot(
+    months,
+    customers,
+    marker="s",
+    linestyle="--",
+    label="Customers"
+)
+
+ax2.set_ylabel("Customers")
+
+ax1.set_title("Sales and Customers")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        <code>twinx()</code> creates a second y-axis that shares the same x-axis.
+        This allows datasets with different scales to be displayed together.
+    </p>
+
+
+    <h2>09. Compare Averages</h2>
+
+    <p>
+        Comparing average values can help summarize several datasets.
+        Matplotlib can display these averages using a bar chart.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">compare_averages.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+class_a = np.array([65, 70, 75, 80, 85])
+class_b = np.array([60, 68, 72, 78, 82])
+class_c = np.array([70, 74, 80, 84, 90])
+
+averages = [
+    np.mean(class_a),
+    np.mean(class_b),
+    np.mean(class_c)
+]
+
+classes = ["Class A", "Class B", "Class C"]
+
+fig, ax = plt.subplots()
+
+ax.bar(classes, averages)
+
+ax.set_title("Average Scores")
+ax.set_xlabel("Class")
+ax.set_ylabel("Average Score")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        NumPy calculates the average of each dataset, and Matplotlib displays the results as bars.
+    </p>
+
+
+    <h2>10. Compare Changes Between Data Sets</h2>
+
+    <p>
+        Sometimes the important information is not the actual value but how much each dataset
+        changes over time. Matplotlib can display these changes using line charts.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">compare_changes.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+years = [2021, 2022, 2023, 2024, 2025]
+
+company_a = [100, 120, 150, 180, 210]
+company_b = [90, 110, 140, 170, 190]
+
+fig, ax = plt.subplots()
+
+ax.plot(
+    years,
+    company_a,
+    marker="o",
+    label="Company A"
+)
+
+ax.plot(
+    years,
+    company_b,
+    marker="o",
+    label="Company B"
+)
+
+ax.set_title("Growth Comparison")
+ax.set_xlabel("Year")
+ax.set_ylabel("Value")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The lines show how each dataset changes over the selected years.
+        Comparing their shapes can reveal differences in growth patterns.
+    </p>
+
+
+    <h2>11. Add a Difference Between Data Sets</h2>
+
+    <p>
+        You can calculate the difference between two numerical datasets and visualize the result.
+        This can help show where one dataset is higher or lower than another.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">dataset_difference.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+sales_a = np.array([120, 150, 180, 160, 210])
+sales_b = np.array([100, 140, 170, 190, 200])
+
+difference = sales_a - sales_b
+
+fig, ax = plt.subplots()
+
+ax.bar(months, difference)
+
+ax.axhline(0, linestyle="--")
+
+ax.set_title("Difference Between Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Difference")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        NumPy subtracts one dataset from another. Positive values mean the first dataset is higher,
+        while negative values mean the second dataset is higher.
+    </p>
+
+
+    <h2>12. Use Subplots to Compare Data Sets Separately</h2>
+
+    <p>
+        Putting every dataset on one chart is not always the clearest approach.
+        Subplots allow each dataset to have its own chart while keeping them inside the same figure.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">comparison_subplots.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+sales = [120, 150, 180, 160, 210]
+expenses = [80, 95, 110, 105, 130]
+
+fig, axes = plt.subplots(2, 1, figsize=(8, 7))
+
+axes[0].plot(months, sales, marker="o")
+axes[0].set_title("Sales")
+
+axes[1].plot(months, expenses, marker="o")
+axes[1].set_title("Expenses")
+
+plt.tight_layout()
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Each dataset is displayed in a separate Axes while the two charts remain part of the same figure.
+    </p>
+
+
+    <h2>13. Make Comparisons Easier to Read</h2>
+
+    <p>
+        When comparing multiple datasets, clear labels and a consistent scale are important.
+        Titles, axis labels, legends, markers, and grid lines can make the comparison easier
+        to understand.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">readable_comparison.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+
+online = [120, 150, 180, 210, 240, 270]
+store = [180, 170, 190, 200, 220, 230]
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot(
+    months,
+    online,
+    marker="o",
+    linewidth=2,
+    label="Online"
+)
+
+ax.plot(
+    months,
+    store,
+    marker="s",
+    linewidth=2,
+    label="Store"
+)
+
+ax.set_title("Online vs Store Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+ax.grid(True)
+
+fig.tight_layout()
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Using clear labels and markers makes it easier to identify and compare the datasets.
+    </p>
+
+
+    <h2>14. Save a Comparison Chart</h2>
+
+    <p>
+        Comparison charts can be saved just like any other Matplotlib figure.
+        Use a suitable resolution and bounding box when creating an image for reports or presentations.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">save_comparison.py</span>
+        </div>
+
+        <pre>import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+product_a = [120, 150, 180, 160, 210]
+product_b = [100, 140, 170, 190, 220]
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot(
+    months,
+    product_a,
+    marker="o",
+    label="Product A"
+)
+
+ax.plot(
+    months,
+    product_b,
+    marker="o",
+    label="Product B"
+)
+
+ax.set_title("Product Comparison")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+ax.grid(True)
+
+fig.tight_layout()
+
+fig.savefig(
+    "product_comparison.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The completed comparison chart is saved as a high-resolution PNG file.
+    </p>
+
+
+    <h2>15. Create a Complete Data Set Comparison</h2>
+
+    <p>
+        A complete comparison can combine multiple datasets, clear labels, markers, grid lines,
+        and professional figure settings.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">complete_comparison.py</span>
+        </div>
+
+        <pre>import numpy as np
+import matplotlib.pyplot as plt
+
+months = np.array([
+    "Jan", "Feb", "Mar",
+    "Apr", "May", "Jun"
+])
+
+product_a = np.array([120, 150, 175, 160, 210, 240])
+product_b = np.array([100, 140, 165, 180, 200, 230])
+product_c = np.array([90, 130, 155, 170, 190, 220])
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot(
+    months,
+    product_a,
+    marker="o",
+    linewidth=2,
+    label="Product A"
+)
+
+ax.plot(
+    months,
+    product_b,
+    marker="s",
+    linewidth=2,
+    label="Product B"
+)
+
+ax.plot(
+    months,
+    product_c,
+    marker="^",
+    linewidth=2,
+    label="Product C"
+)
+
+ax.set_title("Product Sales Comparison")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+ax.grid(True)
+
+fig.tight_layout()
+
+fig.savefig(
+    "product_sales_comparison.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Three datasets are displayed on the same chart so that their values and trends can be
+        compared across six months.
+    </p>
+
+
+    <div class="box info">
+        <div class="box-title">Key Points</div>
+
+        <ul>
+            <li>Matplotlib can display multiple datasets on the same chart.</li>
+            <li>Use multiple <code>plot()</code> calls to compare line datasets.</li>
+            <li>Use <code>label</code> and <code>legend()</code> to identify different datasets.</li>
+            <li>Different markers and line styles can make datasets easier to distinguish.</li>
+            <li>Use grouped bar charts to compare categorical values side by side.</li>
+            <li>Use scatter plots to compare relationships between numerical datasets.</li>
+            <li>Use <code>twinx()</code> when two datasets have significantly different scales.</li>
+            <li>Use NumPy functions such as <code>np.mean()</code> to calculate values for comparisons.</li>
+            <li>Subplots can display datasets separately within the same figure.</li>
+            <li>Clear titles, labels, legends, and grid lines make comparisons easier to understand.</li>
+            <li>Comparison charts can be saved using <code>fig.savefig()</code>.</li>
+        </ul>
+    </div>
+
+
+    <div class="exercise">
+        <div class="exercise-title">Exercise 23 &middot; Compare Multiple Data Sets</div>
+
+        <p>
+            Create a chart comparing the monthly sales of three products over six months.
+            Store the data using NumPy arrays.
+            Plot all three datasets on the same line chart using different markers.
+            Add a title, x-axis label, y-axis label, legend, and grid lines.
+            Set the figure size to <code>(10, 6)</code>.
+            Save the chart as a PNG using <code>dpi=300</code> and <code>bbox_inches="tight"</code>.
+            Then create a grouped bar chart using the same data to provide another visual comparison.
+        </p>
+    </div>
+
+
+    <div class="lecture-nav">
+
+        <button class="nav-btn secondary"
+                onclick="showLecture(22)">
+            &larr; Previous Lecture
+        </button>
+
+        <button class="nav-btn primary"
+                onclick="showLecture(24)">
+            Next Lecture &rarr;
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="lecture" id="lec-24">
+    <div class="lecture-tag">Lecture 24 &middot; Visualising DataFrames</div>
+
+    <h1>Visualising DataFrames with Matplotlib</h1>
+
+    <p class="lecture-intro">
+        Pandas DataFrames are commonly used to store and analyze data. Matplotlib allows us to
+        turn that data into visual charts and graphs. In this lecture, you will learn how to
+        visualize DataFrame columns, compare values, create different chart types, customize
+        visualizations, and build useful charts directly from DataFrame data.
+    </p>
+
+
+    <h2>01. Understand DataFrame Visualization</h2>
+
+    <p>
+        A DataFrame can contain many rows and columns of information. Instead of examining every
+        value manually, we can visualize the data using charts.
+    </p>
+
+    <p>
+        Pandas provides plotting methods that work together with Matplotlib. This makes it easy
+        to create charts directly from DataFrame columns.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">visualize_dataframe.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr"],
+    "Sales": [120, 150, 180, 160]
+}
+
+df = pd.DataFrame(data)
+
+df.plot(x="Month", y="Sales")
+
+plt.show()</pre>
+    </div>
+
+    <div class="box info">
+        <div class="box-title">Key Idea</div>
+
+        <ul>
+            <li>A DataFrame can be visualized using its columns.</li>
+            <li>Pandas plotting uses Matplotlib internally.</li>
+            <li>The <code>x</code> and <code>y</code> parameters select the columns to plot.</li>
+        </ul>
+    </div>
+
+
+    <h2>02. Visualize a Single DataFrame Column</h2>
+
+    <p>
+        You can select one column from a DataFrame and visualize its values. This is useful when
+        you want to understand how a particular variable changes.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">single_column.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Students": ["John", "Mary", "Peter", "Anna"],
+    "Marks": [75, 82, 68, 91]
+})
+
+df.plot(y="Marks", kind="bar")
+
+plt.title("Student Marks")
+plt.ylabel("Marks")
+plt.show()</pre>
+    </div>
+
+    <p>
+        The <code>y</code> parameter tells Pandas which column should be displayed.
+    </p>
+
+
+    <h2>03. Plot DataFrame Columns Against Each Other</h2>
+
+    <p>
+        One of the most useful DataFrame visualizations is plotting one column against another.
+        For example, you could compare months with sales.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">columns_against_each_other.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Month": ["Jan", "Feb", "Mar", "Apr"],
+    "Sales": [100, 140, 180, 160]
+})
+
+df.plot(x="Month", y="Sales", kind="line", marker="o")
+
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.show()</pre>
+    </div>
+
+
+    <h2>04. Create a Line Chart from a DataFrame</h2>
+
+    <p>
+        Line charts are useful for showing changes and trends. They are especially useful when
+        the DataFrame contains time-based data.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">dataframe_line.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "Revenue": [200, 240, 280, 260, 320]
+})
+
+df.plot(x="Month", y="Revenue", kind="line", marker="o")
+
+plt.title("Monthly Revenue")
+plt.xlabel("Month")
+plt.ylabel("Revenue")
+plt.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        The <code>kind="line"</code> argument tells Pandas to create a line chart.
+    </p>
+
+
+    <h2>05. Create a Bar Chart from a DataFrame</h2>
+
+    <p>
+        Bar charts are useful when comparing separate categories. Each category receives its own bar.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">dataframe_bar.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Product": ["Laptop", "Phone", "Tablet", "Watch"],
+    "Sales": [80, 150, 60, 100]
+})
+
+df.plot(x="Product", y="Sales", kind="bar")
+
+plt.title("Product Sales")
+plt.xlabel("Product")
+plt.ylabel("Units Sold")
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>06. Create a Horizontal Bar Chart</h2>
+
+    <p>
+        Horizontal bar charts can make category names easier to read, especially when the names are long.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">horizontal_dataframe.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Department": ["Programming", "Design", "Marketing", "Finance"],
+    "Employees": [25, 18, 30, 12]
+})
+
+df.plot(x="Department", y="Employees", kind="barh")
+
+plt.title("Employees by Department")
+plt.xlabel("Employees")
+plt.ylabel("Department")
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>07. Create a Scatter Plot from a DataFrame</h2>
+
+    <p>
+        Scatter plots are useful for investigating the relationship between two numerical columns.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">dataframe_scatter.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Hours": [1, 2, 3, 4, 5, 6],
+    "Marks": [45, 50, 58, 65, 75, 84]
+})
+
+df.plot(
+    x="Hours",
+    y="Marks",
+    kind="scatter"
+)
+
+plt.title("Study Hours vs Marks")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks")
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>08. Visualize Multiple DataFrame Columns</h2>
+
+    <p>
+        A DataFrame can contain several numerical columns. Multiple columns can be plotted together
+        to compare them.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">multiple_dataframe_columns.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Month": ["Jan", "Feb", "Mar", "Apr"],
+    "Sales": [100, 140, 180, 160],
+    "Expenses": [70, 90, 120, 100]
+})
+
+df.plot(
+    x="Month",
+    y=["Sales", "Expenses"],
+    kind="line",
+    marker="o"
+)
+
+plt.title("Sales and Expenses")
+plt.xlabel("Month")
+plt.ylabel("Amount")
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        Passing a list to <code>y</code> allows multiple columns to be displayed on the same chart.
+    </p>
+
+
+    <h2>09. Create a Histogram from a DataFrame</h2>
+
+    <p>
+        Histograms show how numerical values are distributed. They divide values into ranges called bins.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">dataframe_histogram.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Marks": [45, 50, 55, 60, 62, 65, 70, 72, 75, 80, 85, 90]
+})
+
+df["Marks"].plot(
+    kind="hist",
+    bins=5
+)
+
+plt.title("Distribution of Marks")
+plt.xlabel("Marks")
+plt.ylabel("Frequency")
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>10. Create a Pie Chart from a DataFrame</h2>
+
+    <p>
+        Pie charts can be used when you want to show how categories contribute to a whole.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">dataframe_pie.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Category": ["Programming", "Design", "Marketing", "Testing"],
+    "Hours": [40, 20, 15, 25]
+})
+
+df.plot(
+    y="Hours",
+    labels=df["Category"],
+    kind="pie",
+    autopct="%1.1f%%"
+)
+
+plt.title("Project Time Distribution")
+plt.ylabel("")
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>11. Set Titles and Axis Labels</h2>
+
+    <p>
+        A chart should clearly explain what the viewer is looking at. Titles and axis labels make
+        DataFrame visualizations easier to understand.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">chart_labels.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Year": [2022, 2023, 2024, 2025],
+    "Users": [120, 180, 250, 340]
+})
+
+df.plot(x="Year", y="Users", marker="o")
+
+plt.title("Number of Users")
+plt.xlabel("Year")
+plt.ylabel("Users")
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>12. Add a Grid to a DataFrame Visualization</h2>
+
+    <p>
+        A grid can make it easier to estimate values from a chart, especially when comparing
+        points or bars.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">dataframe_grid.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Month": ["Jan", "Feb", "Mar", "Apr"],
+    "Visitors": [500, 650, 800, 950]
+})
+
+df.plot(
+    x="Month",
+    y="Visitors",
+    marker="o"
+)
+
+plt.title("Website Visitors")
+plt.xlabel("Month")
+plt.ylabel("Visitors")
+plt.grid(True)
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>13. Customize a DataFrame Chart with Matplotlib</h2>
+
+    <p>
+        Pandas creates the basic chart, but you can use Matplotlib functions to customize the
+        resulting figure.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">customize_dataframe.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Month": ["Jan", "Feb", "Mar", "Apr"],
+    "Sales": [120, 150, 190, 170]
+})
+
+df.plot(
+    x="Month",
+    y="Sales",
+    marker="o",
+    linewidth=2
+)
+
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.xticks(rotation=0)
+plt.grid(True)
+
+plt.show()</pre>
+    </div>
+
+    <p>
+        This demonstrates an important concept: Pandas can make the chart, while Matplotlib can
+        control its presentation.
+    </p>
+
+
+    <h2>14. Visualize Data After Sorting</h2>
+
+    <p>
+        Sorting a DataFrame before visualization can make comparisons easier. For example, products
+        can be arranged from the lowest sales to the highest sales.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">sorted_visualization.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Product": ["Laptop", "Phone", "Tablet", "Watch"],
+    "Sales": [80, 150, 60, 100]
+})
+
+df = df.sort_values("Sales")
+
+df.plot(
+    x="Product",
+    y="Sales",
+    kind="bar"
+)
+
+plt.title("Products Sorted by Sales")
+plt.xlabel("Product")
+plt.ylabel("Sales")
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>15. Visualize Grouped Data</h2>
+
+    <p>
+        DataFrames can be grouped before creating a visualization. This is useful when you have
+        repeated categories and want to compare their totals or averages.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">grouped_dataframe.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Department": [
+        "IT", "IT", "Sales", "Sales",
+        "Design", "Design"
+    ],
+    "Employees": [10, 15, 12, 18, 8, 10]
+})
+
+grouped = df.groupby("Department")["Employees"].sum()
+
+grouped.plot(kind="bar")
+
+plt.title("Employees by Department")
+plt.xlabel("Department")
+plt.ylabel("Employees")
+
+plt.show()</pre>
+    </div>
+
+
+    <h2>16. Create a Complete DataFrame Visualization</h2>
+
+    <p>
+        A complete visualization usually starts by preparing the DataFrame, selecting the required
+        columns, choosing the appropriate chart, adding labels, and then displaying or saving the result.
+    </p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="filename">complete_dataframe_visualization.py</span>
+        </div>
+
+        <pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    "Sales": [120, 150, 180, 170, 210, 240],
+    "Expenses": [80, 95, 110, 105, 125, 140]
+})
+
+df.plot(
+    x="Month",
+    y=["Sales", "Expenses"],
+    kind="line",
+    marker="o",
+    figsize=(9, 5)
+)
+
+plt.title("Monthly Sales and Expenses")
+plt.xlabel("Month")
+plt.ylabel("Amount")
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+
+plt.savefig("monthly_report.png")
+plt.show()</pre>
+    </div>
+
+
+    <div class="box info">
+        <div class="box-title">Key Points</div>
+
+        <ul>
+            <li>Pandas DataFrames can be visualized directly using <code>plot()</code>.</li>
+            <li>The <code>x</code> and <code>y</code> parameters select DataFrame columns.</li>
+            <li>Common chart types include line, bar, barh, scatter, histogram, and pie charts.</li>
+            <li>Multiple DataFrame columns can be plotted together.</li>
+            <li>Data can be sorted or grouped before visualization.</li>
+            <li>Matplotlib can be used to customize charts created by Pandas.</li>
+            <li>Good visualizations should have clear titles, labels, and readable data.</li>
+        </ul>
+    </div>
+
+
+    <div class="exercise">
+        <div class="exercise-title">Exercise 24 &middot; Visualise a DataFrame</div>
+
+        <p>
+            Create a Pandas DataFrame containing six months of data with columns for Month, Sales,
+            Expenses, and Profit. Create a line chart comparing Sales and Expenses, add a title and
+            axis labels, display a grid, and save the chart as <code>business_report.png</code>.
+        </p>
+    </div>
+
+
+    <div class="lecture-nav">
+
+        <button class="nav-btn secondary"
+                onclick="showLecture(23)">
+            &larr; Previous Lecture
+        </button>
+
+        <button class="nav-btn primary"
+                onclick="showLecture(25)">
+            Next Lecture &rarr;
+        </button>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="lecture" id="lec-25"><div class="lecture-tag">Lecture 25 &middot; Data Visualisation for Machine Learning</div>
+<h1>Data Visualisation for Machine Learning</h1>
+<p class="lecture-intro">
+    Data visualisation is an important part of machine learning. Before training a model, we need to understand the data we are working with. In this lecture, you will learn how to use Matplotlib and Pandas to explore datasets, identify patterns, detect unusual values, understand relationships between features, and visualize machine learning data before and after model training.
+</p>
+<h2>01. Understand Data Visualisation in Machine Learning</h2>
+<p>
+    Machine learning datasets often contain many rows and columns. Looking at raw values alone can make it difficult to understand the relationships inside the data.
+</p>
+<p>
+    Visualisation allows us to represent the data using charts. This can help us identify trends, relationships, distributions, and unusual observations before building a machine learning model.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ml_visualization.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Hours”: [1, 2, 3, 4, 5, 6],
+“Marks”: [45, 50, 58, 65, 75, 84]
+})
+
+df.plot(
+x=“Hours”,
+y=“Marks”,
+kind=“scatter”
+)
+
+plt.title(“Study Hours and Marks”)
+plt.xlabel(“Study Hours”)
+plt.ylabel(“Marks”)
+
+plt.show()
+
+<div class="box info">
+    <div class="box-title">Key Idea</div>
+    <ul>
+        <li>Visualisation helps us understand machine learning datasets.</li>
+        <li>Charts can reveal patterns that are difficult to see in raw data.</li>
+        <li>Visualisation is useful before, during, and after machine learning.</li>
+    </ul>
+</div>
+<h2>02. Explore the Dataset Before Training</h2>
+<p>
+    Before creating a machine learning model, inspect the dataset. Pandas provides useful methods such as <code>head()</code>, <code>info()</code>, and <code>describe()</code>.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">explore_dataset.py</span></div><pre>import pandas as pd
+
+df = pd.DataFrame({
+“Age”: [18, 20, 22, 25, 28],
+“Hours”: [2, 4, 5, 7, 8],
+“Score”: [45, 55, 65, 78, 90]
+})
+
+print(df.head())
+print(df.info())
+print(df.describe())
+
+<p>
+    Understanding the structure of the dataset helps you decide which visualisations are useful.
+</p>
+<h2>03. Visualize the Distribution of a Feature</h2>
+<p>
+    A histogram can show how values are distributed. This is useful for understanding numerical features such as age, income, temperature, or exam scores.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">feature_distribution.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Age”: [18, 19, 20, 21, 22, 22, 23, 25, 27, 30]
+})
+
+df[“Age”].plot(
+kind=“hist”,
+bins=5
+)
+
+plt.title(“Age Distribution”)
+plt.xlabel(“Age”)
+plt.ylabel(“Frequency”)
+
+plt.show()
+
+<h2>04. Visualize the Relationship Between Two Features</h2>
+<p>
+    Machine learning models often use several features to make predictions. A scatter plot can help us investigate whether two numerical features appear to be related.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">feature_relationship.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“StudyHours”: [1, 2, 3, 4, 5, 6],
+“Marks”: [40, 48, 55, 65, 75, 88]
+})
+
+plt.scatter(
+df[“StudyHours”],
+df[“Marks”]
+)
+
+plt.title(“Study Hours vs Marks”)
+plt.xlabel(“Study Hours”)
+plt.ylabel(“Marks”)
+
+plt.show()
+
+<p>
+    A visible pattern may indicate that the variables have some relationship, although visual correlation alone does not prove causation.
+</p>
+<h2>05. Visualize the Target Variable</h2>
+<p>
+    In supervised learning, the target is the value the model is trying to predict. Visualising the target can help us understand its distribution.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">target_distribution.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Price”: [120, 150, 180, 200, 220, 250, 300, 350]
+})
+
+df[“Price”].plot(
+kind=“hist”,
+bins=5
+)
+
+plt.title(“Target Variable Distribution”)
+plt.xlabel(“Price”)
+plt.ylabel(“Frequency”)
+
+plt.show()
+
+<h2>06. Visualize Categorical Features</h2>
+<p>
+    Machine learning datasets can contain categorical variables such as department, product type, city, or class. Bar charts are useful for visualizing how frequently categories occur.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">categorical_features.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Class”: [
+“A”, “B”, “A”, “C”,
+“B”, “A”, “C”, “B”
+]
+})
+
+df[“Class”].value_counts().plot(
+kind=“bar”
+)
+
+plt.title(“Class Distribution”)
+plt.xlabel(“Class”)
+plt.ylabel(“Number of Samples”)
+
+plt.show()
+
+<h2>07. Compare Different Classes</h2>
+<p>
+    Classification datasets often contain multiple classes. Visualising the classes can help us determine whether the dataset is balanced or whether some classes contain significantly more observations than others.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">class_comparison.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Class”: [
+“Cat”, “Cat”, “Dog”, “Dog”,
+“Dog”, “Bird”, “Bird”, “Cat”
+]
+})
+
+counts = df[“Class”].value_counts()
+
+counts.plot(kind=“bar”)
+
+plt.title(“Number of Samples per Class”)
+plt.xlabel(“Class”)
+plt.ylabel(“Samples”)
+
+plt.show()
+
+<h2>08. Visualize Multiple Features</h2>
+<p>
+    A dataset may contain several numerical features. Plotting multiple columns can help you compare their values and identify possible relationships.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">multiple_features.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Age”: [18, 20, 22, 24, 26],
+“Hours”: [2, 4, 5, 7, 8],
+“Score”: [45, 55, 65, 78, 90]
+})
+
+df[[“Age”, “Hours”, “Score”]].plot(
+kind=“line”,
+marker=“o”
+)
+
+plt.title(“Multiple Machine Learning Features”)
+plt.xlabel(“Sample”)
+plt.ylabel(“Value”)
+
+plt.show()
+
+<h2>09. Detect Possible Outliers</h2>
+<p>
+    An outlier is a value that is unusually different from many other observations. Visualisations can help identify possible outliers.
+</p>
+<p>
+    A box plot is particularly useful for viewing the spread of numerical data and spotting values that may be unusual.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">detect_outliers.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Salary”: [
+25000, 28000, 30000,
+32000, 35000, 36000,
+150000
+]
+})
+
+df[“Salary”].plot(
+kind=“box”
+)
+
+plt.title(“Salary Distribution”)
+plt.ylabel(“Salary”)
+
+plt.show()
+
+<h2>10. Visualize Feature Relationships</h2>
+<p>
+    When a dataset contains several numerical features, comparing them can reveal relationships that may be useful when preparing a machine learning model.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">feature_comparison.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Experience”: [1, 2, 3, 4, 5, 6],
+“Salary”: [25000, 28000, 32000, 38000, 45000, 52000]
+})
+
+df.plot(
+x=“Experience”,
+y=“Salary”,
+kind=“scatter”
+)
+
+plt.title(“Experience vs Salary”)
+plt.xlabel(“Years of Experience”)
+plt.ylabel(“Salary”)
+
+plt.show()
+
+<h2>11. Visualize Correlation Between Features</h2>
+<p>
+    Correlation describes how two numerical variables move in relation to each other. A correlation matrix can be useful when a dataset contains several numerical features.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">correlation_matrix.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Hours”: [1, 2, 3, 4, 5],
+“Practice”: [2, 3, 4, 6, 7],
+“Marks”: [40, 50, 60, 72, 85]
+})
+
+correlation = df.corr()
+
+plt.imshow(correlation)
+
+plt.xticks(
+range(len(correlation.columns)),
+correlation.columns
+)
+
+plt.yticks(
+range(len(correlation.columns)),
+correlation.columns
+)
+
+plt.colorbar()
+
+plt.title(“Feature Correlation”)
+
+plt.show()
+
+<p>
+    Strong correlation can provide useful information, but correlation alone does not determine whether a feature should be used by a machine learning model.
+</p>
+<h2>12. Visualize Training Data</h2>
+<p>
+    In supervised learning, the dataset is commonly divided into training and testing data. Visualising the training data can help us understand the observations used to train the model.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">training_data.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Hours”: [1, 2, 3, 4, 5, 6],
+“Marks”: [40, 48, 55, 65, 75, 88]
+})
+
+training = df.iloc[:4]
+
+plt.scatter(
+training[“Hours”],
+training[“Marks”]
+)
+
+plt.title(“Training Data”)
+plt.xlabel(“Hours”)
+plt.ylabel(“Marks”)
+
+plt.show()
+
+<h2>13. Visualize Testing Data</h2>
+<p>
+    Testing data is used to evaluate how well a trained model performs on observations that were not used during training.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">testing_data.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Hours”: [1, 2, 3, 4, 5, 6],
+“Marks”: [40, 48, 55, 65, 75, 88]
+})
+
+testing = df.iloc[4:]
+
+plt.scatter(
+testing[“Hours”],
+testing[“Marks”]
+)
+
+plt.title(“Testing Data”)
+plt.xlabel(“Hours”)
+plt.ylabel(“Marks”)
+
+plt.show()
+
+<h2>14. Visualize Actual and Predicted Values</h2>
+<p>
+    After training a regression model, we can compare the actual target values with the values predicted by the model.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">actual_vs_predicted.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+results = pd.DataFrame({
+“Actual”: [50, 60, 70, 80, 90],
+“Predicted”: [52, 58, 72, 77, 88]
+})
+
+plt.scatter(
+results[“Actual”],
+results[“Predicted”]
+)
+
+plt.title(“Actual vs Predicted Values”)
+plt.xlabel(“Actual Values”)
+plt.ylabel(“Predicted Values”)
+
+plt.show()
+
+<h2>15. Visualize a Regression Line</h2>
+<p>
+    A regression model can be visualized by plotting the observed data and a fitted prediction line. This can make the model's behavior easier to understand.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">regression_visualization.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Hours”: [1, 2, 3, 4, 5, 6],
+“Marks”: [40, 48, 55, 65, 75, 88]
+})
+
+plt.scatter(
+df[“Hours”],
+df[“Marks”],
+label=“Actual Data”
+)
+
+plt.plot(
+df[“Hours”],
+[38, 48, 58, 68, 78, 88],
+label=“Regression Line”
+)
+
+plt.title(“Regression Visualization”)
+plt.xlabel(“Study Hours”)
+plt.ylabel(“Marks”)
+plt.legend()
+
+plt.show()
+
+<h2>16. Visualize Classification Results</h2>
+<p>
+    Classification models assign observations to categories. A scatter plot can be used to visualize two features and distinguish observations belonging to different classes.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">classification_visualization.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Hours”: [1, 2, 3, 7, 8, 9],
+“Score”: [40, 45, 50, 75, 82, 90],
+“Class”: [“Fail”, “Fail”, “Fail”, “Pass”, “Pass”, “Pass”]
+})
+
+for label in df[“Class”].unique():
+subset = df[df[“Class”] == label]
+
+plt.scatter(
+    subset["Hours"],
+    subset["Score"],
+    label=label
+)
+
+plt.title(“Classification Data”)
+plt.xlabel(“Study Hours”)
+plt.ylabel(“Score”)
+plt.legend()
+
+plt.show()
+
+<h2>17. Visualize Model Performance</h2>
+<p>
+    Visualisation can also be used after training a model. For example, predicted values can be compared with actual values to see where the model makes larger differences.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">model_performance.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+results = pd.DataFrame({
+“Actual”: [100, 120, 140, 160, 180],
+“Predicted”: [105, 115, 145, 155, 175]
+})
+
+results.plot(
+kind=“line”,
+marker=“o”
+)
+
+plt.title(“Actual vs Predicted”)
+plt.xlabel(“Sample”)
+plt.ylabel(“Value”)
+plt.grid(True)
+
+plt.show()
+
+<h2>18. Create a Complete Machine Learning Visualization</h2>
+<p>
+    A typical machine learning visualisation workflow starts with loading or creating the dataset, exploring its structure, selecting important features, visualizing relationships, and then examining model predictions.
+</p>
+<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">complete_ml_visualization.py</span></div><pre>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+“Hours”: [1, 2, 3, 4, 5, 6, 7, 8],
+“Practice”: [1, 2, 2, 4, 5, 6, 7, 8],
+“Marks”: [40, 45, 52, 60, 68, 75, 84, 92]
+})
+
+print(df.head())
+print(df.describe())
+
+plt.scatter(
+df[“Hours”],
+df[“Marks”]
+)
+
+plt.title(“Study Hours vs Marks”)
+plt.xlabel(“Study Hours”)
+plt.ylabel(“Marks”)
+plt.grid(True)
+
+plt.tight_layout()
+
+plt.savefig(“ml_data_visualization.png”)
+plt.show()
+
+<div class="box info">
+    <div class="box-title">Key Points</div>
+    <ul>
+        <li>Data visualisation helps us understand machine learning datasets.</li>
+        <li>Histograms show the distribution of numerical features.</li>
+        <li>Bar charts can show categorical distributions.</li>
+        <li>Scatter plots can reveal relationships between numerical features.</li>
+        <li>Box plots can help identify possible outliers.</li>
+        <li>Correlation can be visualized to investigate relationships between numerical features.</li>
+        <li>Training and testing data can be visualized separately.</li>
+        <li>Actual and predicted values can be compared after model training.</li>
+        <li>Visualisation should support data understanding rather than replace statistical analysis.</li>
+    </ul>
+</div>
+<div class="exercise">
+    <div class="exercise-title">Exercise 25 &middot; Visualise Machine Learning Data</div>
+    <p>
+        Create a DataFrame containing at least 10 observations with columns for Study Hours, Practice Hours, and Marks. Create a histogram showing the distribution of Marks, a scatter plot comparing Study Hours and Marks, and a box plot for Marks. Add appropriate titles and axis labels to each visualization and save at least one chart as an image file.
+    </p>
+</div>
+<div class="lecture-nav">
+    <button class="nav-btn secondary" onclick="showLecture(24)">&larr; Previous Lecture</button>
+    <button class="nav-btn primary" onclick="showLecture(26)">Next Lecture &rarr;</button>
+</div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
