@@ -52,66 +52,221 @@
       <p>fetching_profile_data()...</p>
     </div>
 
-    <form id="profile-form" class="hidden" onsubmit="handleProfileSubmit(event)">
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="profile-name">full_name</label>
-          <input type="text" id="profile-name" required placeholder="John Doe">
-        </div>
-        
-        <div class="form-group">
-          <label for="profile-age">age</label>
-          <input type="number" id="profile-age" min="1" max="120" placeholder="21">
-        </div>
+    <!-- PROFILE TABS NAVIGATION -->
+    <div class="profile-tabs-nav" id="profile-tabs-nav">
+      <button type="button" class="profile-tab-btn active" id="tab-btn-profile" onclick="switchProfileTab('profile')">
+        <span class="tab-icon">👤</span>
+        <span class="tab-label">user_profile()</span>
+      </button>
+      <button type="button" class="profile-tab-btn" id="tab-btn-assignments" onclick="switchProfileTab('assignments')">
+        <span class="tab-icon">📋</span>
+        <span class="tab-label">assignments()</span>
+        <span class="tab-counter-badge" id="assignments-badge">0</span>
+      </button>
+    </div>
 
-        <div class="form-group">
-          <label for="profile-profession">profession</label>
-          <select id="profile-profession" required>
-            <option value="" disabled selected>Select profession...</option>
-            <option value="high_school">High School Student</option>
-            <option value="undergraduate">Undergraduate Student</option>
-            <option value="graduate">Graduate Student</option>
-            <option value="working_professional">Working Professional</option>
-            <option value="self_employed">Self-Employed</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
+    <!-- TAB 1: PROFILE DETAILS -->
+    <div id="tab-profile-pane" class="tab-pane active">
+      <form id="profile-form" class="hidden" onsubmit="handleProfileSubmit(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="profile-name">full_name</label>
+            <input type="text" id="profile-name" required placeholder="John Doe">
+          </div>
+          
+          <div class="form-group">
+            <label for="profile-age">age</label>
+            <input type="number" id="profile-age" min="1" max="120" placeholder="21">
+          </div>
 
-        <div class="form-group">
-          <label for="profile-experience">programming_experience</label>
-          <select id="profile-experience" required>
-            <option value="" disabled selected>Select experience...</option>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label for="profile-profession">profession</label>
+            <select id="profile-profession" required>
+              <option value="" disabled selected>Select profession...</option>
+              <option value="high_school">High School Student</option>
+              <option value="undergraduate">Undergraduate Student</option>
+              <option value="graduate">Graduate Student</option>
+              <option value="working_professional">Working Professional</option>
+              <option value="self_employed">Self-Employed</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
 
-        <div class="form-group full-width">
-          <label for="profile-github">github_username</label>
-          <div class="input-prefix-wrap">
-            <span class="prefix">github.com/</span>
-            <input type="text" id="profile-github" placeholder="username">
+          <div class="form-group">
+            <label for="profile-experience">programming_experience</label>
+            <select id="profile-experience" required>
+              <option value="" disabled selected>Select experience...</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="profile-github">github_username</label>
+            <div class="input-prefix-wrap">
+              <span class="prefix">github.com/</span>
+              <input type="text" id="profile-github" placeholder="username">
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="profile-bio">bio</label>
+            <textarea id="profile-bio" rows="4" placeholder="A short bio about your learning goals..."></textarea>
           </div>
         </div>
 
-        <div class="form-group full-width">
-          <label for="profile-bio">bio</label>
-          <textarea id="profile-bio" rows="4" placeholder="A short bio about your learning goals..."></textarea>
+        <div id="profile-error-msg" class="auth-message error hidden"></div>
+        <div id="profile-success-msg" class="auth-message success hidden"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="enroll-btn" id="profile-submit-btn">
+            <span class="btn-text">save_changes()</span>
+            <span class="btn-loader hidden">⌛</span>
+          </button>
+          <a href="/" class="btn-ghost">cancel</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- TAB 2: ASSIGNMENTS & SUBMISSIONS -->
+    <div id="tab-assignments-pane" class="tab-pane hidden">
+      <!-- Database Warning if table not created -->
+      <div id="assignments-table-warning" class="auth-message warning hidden">
+        <strong>Database Notice:</strong> The <code>assignment_submissions</code> table has not been set up in Supabase yet. Run <code>scripts/setup_assignments.sql</code> in your Supabase SQL Editor.
+      </div>
+
+      <!-- Stats Overview Row -->
+      <div class="assignment-stats-grid">
+        <div class="stat-card">
+          <span class="stat-number" id="stat-total-submissions">0</span>
+          <span class="stat-label">total_submissions</span>
+        </div>
+        <div class="stat-card stat-pending">
+          <span class="stat-number" id="stat-pending-submissions">0</span>
+          <span class="stat-label">under_review</span>
+        </div>
+        <div class="stat-card stat-approved">
+          <span class="stat-number" id="stat-approved-submissions">0</span>
+          <span class="stat-label">approved</span>
         </div>
       </div>
 
-      <div id="profile-error-msg" class="auth-message error hidden"></div>
-      <div id="profile-success-msg" class="auth-message success hidden"></div>
+      <!-- Submit New Assignment Section -->
+      <div class="assignment-submit-section">
+        <div class="section-header-row">
+          <h2 class="section-title">submit_assignment()</h2>
+          <button type="button" class="toggle-form-btn" id="toggle-new-sub-btn" onclick="toggleNewSubmissionForm()">
+            <span id="toggle-btn-icon">+</span> <span id="toggle-btn-text">New Submission</span>
+          </button>
+        </div>
 
-      <div class="form-actions">
-        <button type="submit" class="enroll-btn" id="profile-submit-btn">
-          <span class="btn-text">save_changes()</span>
-          <span class="btn-loader hidden">⌛</span>
-        </button>
-        <a href="/" class="btn-ghost">cancel</a>
+        <form id="assignment-submit-form" class="assignment-submit-form hidden" onsubmit="handleAssignmentSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="assignment-course">course</label>
+              <select id="assignment-course" required>
+                <option value="" disabled selected>Select course...</option>
+                <option value="sklearn">Scikit-Learn (sklearn)</option>
+                <option value="matplotlib">Matplotlib</option>
+                <option value="python">Python</option>
+                <option value="cpp">C++</option>
+                <option value="c">C</option>
+                <option value="html">HTML5</option>
+                <option value="css">CSS3</option>
+                <option value="javascript">JavaScript</option>
+                <option value="java">Java</option>
+                <option value="sql">SQL</option>
+                <option value="other">Other Track</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="assignment-lecture">lecture_number_or_unit</label>
+              <input type="text" id="assignment-lecture" placeholder="e.g. Lecture 27 or Unit 3" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="assignment-title">exercise_or_project_title</label>
+              <input type="text" id="assignment-title" placeholder="e.g. Exercise 27 · Choosing the Right Chart" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label>submission_type</label>
+              <div class="sub-type-toggle">
+                <button type="button" class="type-btn active" data-type="code" onclick="setSubmissionType('code')">Code Snippet</button>
+                <button type="button" class="type-btn" data-type="link" onclick="setSubmissionType('link')">GitHub / Colab Link</button>
+                <button type="button" class="type-btn" data-type="file" onclick="setSubmissionType('file')">Upload File</button>
+              </div>
+            </div>
+
+            <!-- Code input -->
+            <div class="form-group full-width" id="input-group-code">
+              <label for="assignment-code">solution_code</label>
+              <textarea id="assignment-code" rows="8" placeholder="Paste your Python, C++, JS, or HTML code solution here..." class="mono-input"></textarea>
+            </div>
+
+            <!-- Link input -->
+            <div class="form-group full-width hidden" id="input-group-link">
+              <label for="assignment-link">project_url</label>
+              <input type="url" id="assignment-link" placeholder="https://github.com/username/project or https://colab.research.google.com/...">
+            </div>
+
+            <!-- File input -->
+            <div class="form-group full-width hidden" id="input-group-file">
+              <label for="assignment-file">attachment_file (.py, .ipynb, .cpp, .zip)</label>
+              <input type="file" id="assignment-file" accept=".py,.ipynb,.cpp,.c,.js,.html,.css,.zip,.txt">
+              <p class="input-hint">Accepted: Python (.py, .ipynb), C++, JavaScript, ZIP (Max 5MB)</p>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="assignment-notes">student_notes (optional)</label>
+              <textarea id="assignment-notes" rows="2" placeholder="Any questions, explanations, or remarks for reviewer..."></textarea>
+            </div>
+          </div>
+
+          <div id="assignment-error-msg" class="auth-message error hidden"></div>
+          <div id="assignment-success-msg" class="auth-message success hidden"></div>
+
+          <div class="form-actions">
+            <button type="submit" class="enroll-btn" id="assignment-submit-btn">
+              <span class="btn-text">submit_solution()</span>
+              <span class="btn-loader hidden">⌛</span>
+            </button>
+            <button type="button" class="btn-ghost" onclick="toggleNewSubmissionForm()">cancel</button>
+          </div>
+        </form>
       </div>
-    </form>
+
+      <!-- Submissions History List -->
+      <div class="submissions-history-section">
+        <div class="section-header-row">
+          <h2 class="section-title">submission_history()</h2>
+          <select id="submissions-filter-course" onchange="filterSubmissions()" class="mini-select" title="Filter submissions by course" aria-label="Filter submissions by course">
+            <option value="all">All Courses</option>
+            <option value="sklearn">Scikit-Learn</option>
+            <option value="matplotlib">Matplotlib</option>
+            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+            <option value="c">C</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <option value="sql">SQL</option>
+          </select>
+        </div>
+
+        <div id="submissions-loading" class="loading-overlay hidden">
+          <div class="spinner"></div>
+          <p>fetching_submissions()...</p>
+        </div>
+
+        <div id="submissions-list" class="submissions-list">
+          <!-- Filled dynamically by JavaScript -->
+        </div>
+      </div>
+    </div>
 
     <!-- UNAUTHENTICATED NOTICE -->
     <div id="profile-unauth-box" class="unauth-box hidden">
@@ -139,9 +294,9 @@
       <a href="/" class="logo">code<span class="cursor"></span>tutorium</a>
       <button class="menu-close-btn" onclick="toggleMenu()">✕</button>
     </div>
-    <p class="mobile-nav-section-label" style="margin-top:1rem;">// account</p>
-    <div class="mobile-nav-auth" id="mobile-nav-auth" style="margin-top:1rem;">
-      <a href="/login" class="nav-cta" style="width: 100%; text-align: center; display: block;" onclick="toggleMenu();">log_in()</a>
+    <p class="mobile-nav-section-label mobile-nav-section-account">// account</p>
+    <div class="mobile-nav-auth mobile-nav-auth-container" id="mobile-nav-auth">
+      <a href="/login" class="nav-cta mobile-nav-login-link" onclick="toggleMenu();">log_in()</a>
     </div>
   </nav>
 </div>

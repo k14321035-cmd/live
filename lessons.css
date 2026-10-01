@@ -1029,6 +1029,116 @@ pre {
   gap: 0.4rem;
 }
 
+/* ── Exercise Assignment Submission Button & Box ── */
+.exercise-submit-bar {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border, rgba(255, 255, 255, 0.12));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.exercise-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary, #2f6fed);
+  color: #fff;
+  border: 1px solid transparent;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-sm, 6px);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition, 0.15s ease);
+  box-shadow: 0 2px 8px rgba(47, 111, 237, 0.25);
+}
+
+.exercise-submit-btn:hover {
+  background: var(--primary-light, #3b82f6);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(47, 111, 237, 0.35);
+}
+
+.exercise-profile-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--muted, #888);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.exercise-profile-link:hover {
+  color: var(--primary-light, #3b82f6);
+  text-decoration: underline;
+}
+
+.exercise-submission-drawer {
+  margin-top: 1rem;
+  background: var(--surface-2, rgba(0, 0, 0, 0.2));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius-sm, 6px);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: fadeInDrawer 0.2s ease-in-out;
+}
+
+@keyframes fadeInDrawer {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.exercise-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.exercise-code-textarea {
+  width: 100%;
+  min-height: 130px;
+  background: var(--code-bg, #0d1117);
+  color: var(--code-text, #f0f6fc);
+  border: 1px solid var(--code-border, rgba(255, 255, 255, 0.15));
+  border-radius: var(--radius-sm, 6px);
+  padding: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  tab-size: 2;
+  resize: vertical;
+}
+
+.exercise-code-textarea:focus {
+  outline: none;
+  border-color: var(--primary, #2f6fed);
+  box-shadow: 0 0 0 2px rgba(47, 111, 237, 0.25);
+}
+
+.exercise-drawer-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.exercise-drawer-msg {
+  font-size: 0.82rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.exercise-drawer-msg.success { color: #10b981; }
+.exercise-drawer-msg.error { color: #ef4444; }
+
 /* ── Lecture Navigation ──────────────────────────────────────────── */
 .lecture-nav {
   display: flex;

@@ -59,6 +59,9 @@ function initLessons(titles) {
 
     // Restore completed lectures checkmarks
     restoreCompletedLectures();
+
+    // Initialize exercise submission buttons
+    initExerciseSubmissionUI();
 }
 
 /**
@@ -969,6 +972,177 @@ function updateCompletedNavItems(completed) {
             }
         }
     });
+}
+
+/* ==========================================================
+   EXERCISE ASSIGNMENT SUBMISSION BUTTON & INLINE DRAWER
+   ========================================================== */
+
+/**
+ * Automatically injects "Submit Solution" buttons into all .exercise elements
+ */
+function initExerciseSubmissionUI() {
+    const exercises = document.querySelectorAll('.exercise');
+    if (!exercises || exercises.length === 0) return;
+
+    // Determine current course slug
+    const pathParts = window.location.pathname.split('/');
+    let courseSlug = (pathParts.pop() || '').replace(/\.html$/i, '').toLowerCase();
+    if (courseSlug === 'c++') courseSlug = 'cpp';
+
+    exercises.forEach((ex, idx) => {
+        // Prevent duplicate injection
+        if (ex.querySelector('.exercise-submit-bar')) return;
+
+        // Find parent lecture and title
+        const lectureEl = ex.closest('.lecture');
+        let lectureNum = idx;
+        if (lectureEl && lectureEl.id) {
+            const match = lectureEl.id.match(/\d+/);
+            if (match) lectureNum = parseInt(match[0], 10);
+        }
+
+        const titleEl = ex.querySelector('.exercise-title');
+        const exerciseTitle = titleEl ? titleEl.textContent.trim() : `Exercise (Lecture ${lectureNum + 1})`;
+
+        // Build profile link URL with pre-filled query params
+        const profileUrl = `../profile.html?course=${encodeURIComponent(courseSlug)}&lecture=${lectureNum + 1}&title=${encodeURIComponent(exerciseTitle)}#assignments`;
+
+        const submitBar = document.createElement('div');
+        submitBar.className = 'exercise-submit-bar';
+        submitBar.innerHTML = `
+            <button type="button" class="exercise-submit-btn" onclick="toggleExerciseDrawer(this)">
+                <span>📤</span> Submit Solution
+            </button>
+            <a href="${profileUrl}" class="exercise-profile-link" target="_blank" rel="noopener noreferrer">
+                Full Portal →
+            </a>
+        `;
+
+        const drawer = document.createElement('div');
+        drawer.className = 'exercise-submission-drawer';
+        drawer.style.display = 'none';
+        drawer.dataset.course = courseSlug;
+        drawer.dataset.lecture = lectureNum;
+        drawer.dataset.title = exerciseTitle;
+
+        drawer.innerHTML = `
+            <div class="exercise-drawer-header">
+                <span>// Submit Solution: ${escapeLessonHtml(exerciseTitle)}</span>
+                <button type="button" style="background:none; border:none; color:var(--muted); cursor:pointer;" onclick="toggleExerciseDrawer(this)">✕</button>
+            </div>
+            <textarea class="exercise-code-textarea" placeholder="Paste your code implementation or solution here..."></textarea>
+            <div class="exercise-drawer-actions">
+                <button type="button" class="exercise-submit-btn" onclick="submitInlineExerciseSolution(this)">
+                    submit_solution()
+                </button>
+                <span class="exercise-drawer-msg"></span>
+            </div>
+        `;
+
+        ex.appendChild(submitBar);
+        ex.appendChild(drawer);
+    });
+}
+
+function toggleExerciseDrawer(btn) {
+    const parentExercise = btn.closest('.exercise');
+    if (!parentExercise) return;
+    const drawer = parentExercise.querySelector('.exercise-submission-drawer');
+    if (!drawer) return;
+
+    if (drawer.style.display === 'none' || drawer.style.display === '') {
+        drawer.style.display = 'flex';
+        const textarea = drawer.querySelector('.exercise-code-textarea');
+        if (textarea) textarea.focus();
+    } else {
+        drawer.style.display = 'none';
+    }
+}
+
+async function submitInlineExerciseSolution(btn) {
+    const drawer = btn.closest('.exercise-submission-drawer');
+    if (!drawer) return;
+
+    const textarea = drawer.querySelector('.exercise-code-textarea');
+    const msgEl = drawer.querySelector('.exercise-drawer-msg');
+    const code = textarea ? textarea.value.trim() : '';
+
+    if (!code) {
+        if (msgEl) {
+            msgEl.textContent = "Please paste your code before submitting.";
+            msgEl.className = "exercise-drawer-msg error";
+        }
+        return;
+    }
+
+    const client = window._lessonSupabase;
+    if (!client) {
+        if (msgEl) {
+            msgEl.textContent = "Please sign in to submit your solution.";
+            msgEl.className = "exercise-drawer-msg error";
+        }
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Submitting...";
+
+    try {
+        const { data: { user }, error: userError } = await client.auth.getUser();
+        if (userError || !user) {
+            window.location.href = '../login.html?auth_trigger=login';
+            return;
+        }
+
+        const courseSlug = drawer.dataset.course || 'general';
+        const lectureNum = parseInt(drawer.dataset.lecture, 10) || 0;
+        const exerciseTitle = drawer.dataset.title || 'Exercise Submission';
+
+        const { error: insertError } = await client
+            .from('assignment_submissions')
+            .insert({
+                user_id: user.id,
+                course_id: courseSlug,
+                lecture_number: lectureNum,
+                exercise_title: exerciseTitle,
+                submission_type: 'code',
+                content: code,
+                status: 'submitted',
+                updated_at: new Date().toISOString()
+            });
+
+        if (insertError) {
+            if (insertError.code === '42P01') {
+                throw new Error("Table assignment_submissions not found. Run scripts/setup_assignments.sql in Supabase.");
+            }
+            throw insertError;
+        }
+
+        if (msgEl) {
+            msgEl.innerHTML = `✅ Submitted! Status: <strong>Under Review</strong>. <a href="../profile.html#assignments" style="color:var(--primary-light); text-decoration:underline;">View in Profile</a>`;
+            msgEl.className = "exercise-drawer-msg success";
+        }
+    } catch (err) {
+        console.error("Submission error:", err);
+        if (msgEl) {
+            msgEl.textContent = err.message || "Submission failed. Please try again.";
+            msgEl.className = "exercise-drawer-msg error";
+        }
+    } finally {
+        btn.disabled = false;
+        btn.textContent = "submit_solution()";
+    }
+}
+
+function escapeLessonHtml(str) {
+    if (!str) return '';
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 

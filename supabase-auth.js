@@ -395,6 +395,7 @@ function updateNavbarState(user) {
           <div class="dropdown-email" id="dropdown-email" title="${cleanEmail}"></div>
           <div class="dropdown-divider"></div>
           <a href="/profile" class="dropdown-item" style="text-decoration: none; display: block;">view_profile()</a>
+          <a href="/profile#assignments" class="dropdown-item" style="text-decoration: none; display: block;">my_assignments()</a>
           <button class="dropdown-item" onclick="handleSignOut()">log_out()</button>
         </div>
       `;
@@ -443,6 +444,7 @@ function updateNavbarState(user) {
           email: "${user.email}"
         </div>
         <a href="/profile" class="nav-cta" style="width: 100%; text-align: center; display: block; margin-bottom: 0.6rem;" onclick="toggleMenu();">view_profile()</a>
+        <a href="/profile#assignments" class="nav-cta" style="width: 100%; text-align: center; display: block; margin-bottom: 0.6rem;" onclick="toggleMenu();">my_assignments()</a>
         <button class="nav-cta" style="width: 100%; text-align: center;" onclick="handleSignOut(); toggleMenu();">log_out()</button>
       `;
     } else {
