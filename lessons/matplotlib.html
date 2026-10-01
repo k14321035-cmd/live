@@ -7761,15 +7761,6 @@ plt.show()</pre>
 </div>
 
 
-
-
-
-
-
-
-
-
-
 <div class="lecture" id="lec-25"><div class="lecture-tag">Lecture 25 &middot; Data Visualisation for Machine Learning</div>
 <h1>Data Visualisation for Machine Learning</h1>
 <p class="lecture-intro">
@@ -7786,21 +7777,21 @@ plt.show()</pre>
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Hours”: [1, 2, 3, 4, 5, 6],
-“Marks”: [45, 50, 58, 65, 75, 84]
+    "Hours": [1, 2, 3, 4, 5, 6],
+    "Marks": [45, 50, 58, 65, 75, 84]
 })
 
 df.plot(
-x=“Hours”,
-y=“Marks”,
-kind=“scatter”
+    x="Hours",
+    y="Marks",
+    kind="scatter"
 )
 
-plt.title(“Study Hours and Marks”)
-plt.xlabel(“Study Hours”)
-plt.ylabel(“Marks”)
+plt.title("Study Hours and Marks")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks")
 
-plt.show()
+plt.show()</pre></div>
 
 <div class="box info">
     <div class="box-title">Key Idea</div>
@@ -7817,14 +7808,14 @@ plt.show()
 <div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">explore_dataset.py</span></div><pre>import pandas as pd
 
 df = pd.DataFrame({
-“Age”: [18, 20, 22, 25, 28],
-“Hours”: [2, 4, 5, 7, 8],
-“Score”: [45, 55, 65, 78, 90]
+    "Age": [18, 20, 22, 25, 28],
+    "Hours": [2, 4, 5, 7, 8],
+    "Score": [45, 55, 65, 78, 90]
 })
 
 print(df.head())
 print(df.info())
-print(df.describe())
+print(df.describe())</pre></div>
 
 <p>
     Understanding the structure of the dataset helps you decide which visualisations are useful.
@@ -7837,19 +7828,19 @@ print(df.describe())
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Age”: [18, 19, 20, 21, 22, 22, 23, 25, 27, 30]
+    "Age": [18, 19, 20, 21, 22, 22, 23, 25, 27, 30]
 })
 
-df[“Age”].plot(
-kind=“hist”,
-bins=5
+df["Age"].plot(
+    kind="hist",
+    bins=5
 )
 
-plt.title(“Age Distribution”)
-plt.xlabel(“Age”)
-plt.ylabel(“Frequency”)
+plt.title("Age Distribution")
+plt.xlabel("Age")
+plt.ylabel("Frequency")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>04. Visualize the Relationship Between Two Features</h2>
 <p>
@@ -7859,20 +7850,20 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“StudyHours”: [1, 2, 3, 4, 5, 6],
-“Marks”: [40, 48, 55, 65, 75, 88]
+    "StudyHours": [1, 2, 3, 4, 5, 6],
+    "Marks": [40, 48, 55, 65, 75, 88]
 })
 
 plt.scatter(
-df[“StudyHours”],
-df[“Marks”]
+    df["StudyHours"],
+    df["Marks"]
 )
 
-plt.title(“Study Hours vs Marks”)
-plt.xlabel(“Study Hours”)
-plt.ylabel(“Marks”)
+plt.title("Study Hours vs Marks")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks")
 
-plt.show()
+plt.show()</pre></div>
 
 <p>
     A visible pattern may indicate that the variables have some relationship, although visual correlation alone does not prove causation.
@@ -7885,19 +7876,19 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Price”: [120, 150, 180, 200, 220, 250, 300, 350]
+    "Price": [120, 150, 180, 200, 220, 250, 300, 350]
 })
 
-df[“Price”].plot(
-kind=“hist”,
-bins=5
+df["Price"].plot(
+    kind="hist",
+    bins=5
 )
 
-plt.title(“Target Variable Distribution”)
-plt.xlabel(“Price”)
-plt.ylabel(“Frequency”)
+plt.title("Target Variable Distribution")
+plt.xlabel("Price")
+plt.ylabel("Frequency")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>06. Visualize Categorical Features</h2>
 <p>
@@ -7907,21 +7898,21 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Class”: [
-“A”, “B”, “A”, “C”,
-“B”, “A”, “C”, “B”
-]
+    "Class": [
+        "A", "B", "A", "C",
+        "B", "A", "C", "B"
+    ]
 })
 
-df[“Class”].value_counts().plot(
-kind=“bar”
+df["Class"].value_counts().plot(
+    kind="bar"
 )
 
-plt.title(“Class Distribution”)
-plt.xlabel(“Class”)
-plt.ylabel(“Number of Samples”)
+plt.title("Class Distribution")
+plt.xlabel("Class")
+plt.ylabel("Number of Samples")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>07. Compare Different Classes</h2>
 <p>
@@ -7931,21 +7922,21 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Class”: [
-“Cat”, “Cat”, “Dog”, “Dog”,
-“Dog”, “Bird”, “Bird”, “Cat”
-]
+    "Class": [
+        "Cat", "Cat", "Dog", "Dog",
+        "Dog", "Bird", "Bird", "Cat"
+    ]
 })
 
-counts = df[“Class”].value_counts()
+counts = df["Class"].value_counts()
 
-counts.plot(kind=“bar”)
+counts.plot(kind="bar")
 
-plt.title(“Number of Samples per Class”)
-plt.xlabel(“Class”)
-plt.ylabel(“Samples”)
+plt.title("Number of Samples per Class")
+plt.xlabel("Class")
+plt.ylabel("Samples")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>08. Visualize Multiple Features</h2>
 <p>
@@ -7955,21 +7946,21 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Age”: [18, 20, 22, 24, 26],
-“Hours”: [2, 4, 5, 7, 8],
-“Score”: [45, 55, 65, 78, 90]
+    "Age": [18, 20, 22, 24, 26],
+    "Hours": [2, 4, 5, 7, 8],
+    "Score": [45, 55, 65, 78, 90]
 })
 
-df[[“Age”, “Hours”, “Score”]].plot(
-kind=“line”,
-marker=“o”
+df[["Age", "Hours", "Score"]].plot(
+    kind="line",
+    marker="o"
 )
 
-plt.title(“Multiple Machine Learning Features”)
-plt.xlabel(“Sample”)
-plt.ylabel(“Value”)
+plt.title("Multiple Machine Learning Features")
+plt.xlabel("Sample")
+plt.ylabel("Value")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>09. Detect Possible Outliers</h2>
 <p>
@@ -7982,21 +7973,21 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Salary”: [
-25000, 28000, 30000,
-32000, 35000, 36000,
-150000
-]
+    "Salary": [
+        25000, 28000, 30000,
+        32000, 35000, 36000,
+        150000
+    ]
 })
 
-df[“Salary”].plot(
-kind=“box”
+df["Salary"].plot(
+    kind="box"
 )
 
-plt.title(“Salary Distribution”)
-plt.ylabel(“Salary”)
+plt.title("Salary Distribution")
+plt.ylabel("Salary")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>10. Visualize Feature Relationships</h2>
 <p>
@@ -8006,21 +7997,21 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Experience”: [1, 2, 3, 4, 5, 6],
-“Salary”: [25000, 28000, 32000, 38000, 45000, 52000]
+    "Experience": [1, 2, 3, 4, 5, 6],
+    "Salary": [25000, 28000, 32000, 38000, 45000, 52000]
 })
 
 df.plot(
-x=“Experience”,
-y=“Salary”,
-kind=“scatter”
+    x="Experience",
+    y="Salary",
+    kind="scatter"
 )
 
-plt.title(“Experience vs Salary”)
-plt.xlabel(“Years of Experience”)
-plt.ylabel(“Salary”)
+plt.title("Experience vs Salary")
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>11. Visualize Correlation Between Features</h2>
 <p>
@@ -8030,9 +8021,9 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Hours”: [1, 2, 3, 4, 5],
-“Practice”: [2, 3, 4, 6, 7],
-“Marks”: [40, 50, 60, 72, 85]
+    "Hours": [1, 2, 3, 4, 5],
+    "Practice": [2, 3, 4, 6, 7],
+    "Marks": [40, 50, 60, 72, 85]
 })
 
 correlation = df.corr()
@@ -8040,20 +8031,20 @@ correlation = df.corr()
 plt.imshow(correlation)
 
 plt.xticks(
-range(len(correlation.columns)),
-correlation.columns
+    range(len(correlation.columns)),
+    correlation.columns
 )
 
 plt.yticks(
-range(len(correlation.columns)),
-correlation.columns
+    range(len(correlation.columns)),
+    correlation.columns
 )
 
 plt.colorbar()
 
-plt.title(“Feature Correlation”)
+plt.title("Feature Correlation")
 
-plt.show()
+plt.show()</pre></div>
 
 <p>
     Strong correlation can provide useful information, but correlation alone does not determine whether a feature should be used by a machine learning model.
@@ -8066,22 +8057,22 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Hours”: [1, 2, 3, 4, 5, 6],
-“Marks”: [40, 48, 55, 65, 75, 88]
+    "Hours": [1, 2, 3, 4, 5, 6],
+    "Marks": [40, 48, 55, 65, 75, 88]
 })
 
 training = df.iloc[:4]
 
 plt.scatter(
-training[“Hours”],
-training[“Marks”]
+    training["Hours"],
+    training["Marks"]
 )
 
-plt.title(“Training Data”)
-plt.xlabel(“Hours”)
-plt.ylabel(“Marks”)
+plt.title("Training Data")
+plt.xlabel("Hours")
+plt.ylabel("Marks")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>13. Visualize Testing Data</h2>
 <p>
@@ -8091,22 +8082,22 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Hours”: [1, 2, 3, 4, 5, 6],
-“Marks”: [40, 48, 55, 65, 75, 88]
+    "Hours": [1, 2, 3, 4, 5, 6],
+    "Marks": [40, 48, 55, 65, 75, 88]
 })
 
 testing = df.iloc[4:]
 
 plt.scatter(
-testing[“Hours”],
-testing[“Marks”]
+    testing["Hours"],
+    testing["Marks"]
 )
 
-plt.title(“Testing Data”)
-plt.xlabel(“Hours”)
-plt.ylabel(“Marks”)
+plt.title("Testing Data")
+plt.xlabel("Hours")
+plt.ylabel("Marks")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>14. Visualize Actual and Predicted Values</h2>
 <p>
@@ -8116,20 +8107,20 @@ plt.show()
 import matplotlib.pyplot as plt
 
 results = pd.DataFrame({
-“Actual”: [50, 60, 70, 80, 90],
-“Predicted”: [52, 58, 72, 77, 88]
+    "Actual": [50, 60, 70, 80, 90],
+    "Predicted": [52, 58, 72, 77, 88]
 })
 
 plt.scatter(
-results[“Actual”],
-results[“Predicted”]
+    results["Actual"],
+    results["Predicted"]
 )
 
-plt.title(“Actual vs Predicted Values”)
-plt.xlabel(“Actual Values”)
-plt.ylabel(“Predicted Values”)
+plt.title("Actual vs Predicted Values")
+plt.xlabel("Actual Values")
+plt.ylabel("Predicted Values")
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>15. Visualize a Regression Line</h2>
 <p>
@@ -8139,28 +8130,28 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Hours”: [1, 2, 3, 4, 5, 6],
-“Marks”: [40, 48, 55, 65, 75, 88]
+    "Hours": [1, 2, 3, 4, 5, 6],
+    "Marks": [40, 48, 55, 65, 75, 88]
 })
 
 plt.scatter(
-df[“Hours”],
-df[“Marks”],
-label=“Actual Data”
+    df["Hours"],
+    df["Marks"],
+    label="Actual Data"
 )
 
 plt.plot(
-df[“Hours”],
-[38, 48, 58, 68, 78, 88],
-label=“Regression Line”
+    df["Hours"],
+    [38, 48, 58, 68, 78, 88],
+    label="Regression Line"
 )
 
-plt.title(“Regression Visualization”)
-plt.xlabel(“Study Hours”)
-plt.ylabel(“Marks”)
+plt.title("Regression Visualization")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks")
 plt.legend()
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>16. Visualize Classification Results</h2>
 <p>
@@ -8170,26 +8161,25 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Hours”: [1, 2, 3, 7, 8, 9],
-“Score”: [40, 45, 50, 75, 82, 90],
-“Class”: [“Fail”, “Fail”, “Fail”, “Pass”, “Pass”, “Pass”]
+    "Hours": [1, 2, 3, 7, 8, 9],
+    "Score": [40, 45, 50, 75, 82, 90],
+    "Class": ["Fail", "Fail", "Fail", "Pass", "Pass", "Pass"]
 })
 
-for label in df[“Class”].unique():
-subset = df[df[“Class”] == label]
+for label in df["Class"].unique():
+    subset = df[df["Class"] == label]
+    plt.scatter(
+        subset["Hours"],
+        subset["Score"],
+        label=label
+    )
 
-plt.scatter(
-    subset["Hours"],
-    subset["Score"],
-    label=label
-)
-
-plt.title(“Classification Data”)
-plt.xlabel(“Study Hours”)
-plt.ylabel(“Score”)
+plt.title("Classification Data")
+plt.xlabel("Study Hours")
+plt.ylabel("Score")
 plt.legend()
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>17. Visualize Model Performance</h2>
 <p>
@@ -8199,21 +8189,21 @@ plt.show()
 import matplotlib.pyplot as plt
 
 results = pd.DataFrame({
-“Actual”: [100, 120, 140, 160, 180],
-“Predicted”: [105, 115, 145, 155, 175]
+    "Actual": [100, 120, 140, 160, 180],
+    "Predicted": [105, 115, 145, 155, 175]
 })
 
 results.plot(
-kind=“line”,
-marker=“o”
+    kind="line",
+    marker="o"
 )
 
-plt.title(“Actual vs Predicted”)
-plt.xlabel(“Sample”)
-plt.ylabel(“Value”)
+plt.title("Actual vs Predicted")
+plt.xlabel("Sample")
+plt.ylabel("Value")
 plt.grid(True)
 
-plt.show()
+plt.show()</pre></div>
 
 <h2>18. Create a Complete Machine Learning Visualization</h2>
 <p>
@@ -8223,28 +8213,28 @@ plt.show()
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame({
-“Hours”: [1, 2, 3, 4, 5, 6, 7, 8],
-“Practice”: [1, 2, 2, 4, 5, 6, 7, 8],
-“Marks”: [40, 45, 52, 60, 68, 75, 84, 92]
+    "Hours": [1, 2, 3, 4, 5, 6, 7, 8],
+    "Practice": [1, 2, 2, 4, 5, 6, 7, 8],
+    "Marks": [40, 45, 52, 60, 68, 75, 84, 92]
 })
 
 print(df.head())
 print(df.describe())
 
 plt.scatter(
-df[“Hours”],
-df[“Marks”]
+    df["Hours"],
+    df["Marks"]
 )
 
-plt.title(“Study Hours vs Marks”)
-plt.xlabel(“Study Hours”)
-plt.ylabel(“Marks”)
+plt.title("Study Hours vs Marks")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks")
 plt.grid(True)
 
 plt.tight_layout()
 
-plt.savefig(“ml_data_visualization.png”)
-plt.show()
+plt.savefig("ml_data_visualization.png")
+plt.show()</pre></div>
 
 <div class="box info">
     <div class="box-title">Key Points</div>
@@ -8273,9 +8263,884 @@ plt.show()
 </div>
 
 
+<div class="lecture" id="lec-27">
+    <div class="lecture-tag">Lecture 27 &middot; Choosing the Right Chart</div>
+
+```
+<h1>Choosing the Right Chart</h1>
+
+<p class="lecture-intro">
+    Learn how to choose the most appropriate chart for different types of data,
+    understand when to use line charts, bar charts, scatter plots, histograms,
+    and pie charts, and create visualizations that communicate information clearly.
+</p>
 
 
+<h2>01. Understand Why Chart Selection Matters</h2>
 
+<p>
+    Data visualization is not simply about creating a chart. The goal of a visualization
+    is to communicate information clearly so that the reader can understand patterns,
+    comparisons, relationships, and changes in the data.
+</p>
+
+<p>
+    Different charts are designed to answer different types of questions. A line chart
+    is useful for showing changes over time, while a bar chart is generally better for
+    comparing separate categories.
+</p>
+
+<p>
+    Choosing the wrong chart can make correct data difficult to understand. For example,
+    using a pie chart to display a long time series can make changes over time difficult
+    to identify, while a line chart can make that trend much easier to see.
+</p>
+
+<p>
+    Before creating a chart, ask yourself three questions:
+    <strong>What type of data do I have?</strong>,
+    <strong>What do I want the reader to understand?</strong>, and
+    <strong>Which chart makes that information easiest to see?</strong>
+</p>
+
+<div class="box info">
+    <div class="box-title">Basic Chart Selection Guide</div>
+
+    <ul>
+        <li>Use a <strong>line chart</strong> to show trends or changes over an ordered sequence, especially time.</li>
+        <li>Use a <strong>bar chart</strong> to compare separate categories.</li>
+        <li>Use a <strong>scatter plot</strong> to examine the relationship between two numerical variables.</li>
+        <li>Use a <strong>histogram</strong> to understand the distribution of numerical values.</li>
+        <li>Use a <strong>pie chart</strong> to show parts of a meaningful whole when there are only a few categories.</li>
+    </ul>
+</div>
+
+
+<h2>02. Identify the Question Behind the Data</h2>
+
+<p>
+    The first step in choosing a chart is to understand the question you are trying
+    to answer. The same dataset can sometimes be displayed using several different
+    chart types, but each chart may emphasize a different aspect of the data.
+</p>
+
+<p>
+    For example, suppose you have monthly sales data. You might want to know whether
+    sales increased over time, which month had the highest sales, or how different
+    products contributed to total sales.
+</p>
+
+<p>
+    Each question can lead to a different visualization. A line chart can emphasize
+    the trend, while a bar chart can make individual monthly values easier to compare.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">chart_question.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+months = np.array(["Jan", "Feb", "Mar", "Apr", "May", "Jun"])
+sales = np.array([120, 150, 135, 180, 210, 240])
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.set_title("Monthly Sales Trend")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.grid(True)
+
+plt.show()</pre> </div>
+
+```
+<p>
+    This line chart is appropriate when the main question is whether sales are changing
+    as the months progress.
+</p>
+
+<p>
+    The important idea is that chart selection should begin with the purpose of the
+    visualization rather than with the chart type itself.
+</p>
+
+
+<h2>03. Use Line Charts for Trends</h2>
+
+<p>
+    A line chart is commonly used when the order of the data points is important.
+    It is especially useful for time-based data such as daily temperatures, monthly
+    sales, yearly population, website traffic, or stock prices.
+</p>
+
+<p>
+    The connecting line helps the reader follow the direction of the data. It can make
+    increases, decreases, peaks, drops, and general trends easier to identify.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">line_chart.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+months = np.array(["Jan", "Feb", "Mar", "Apr", "May", "Jun"])
+temperature = np.array([18, 21, 24, 27, 30, 29])
+
+fig, ax = plt.subplots()
+
+ax.plot(months, temperature, marker="o")
+
+ax.set_title("Monthly Temperature")
+ax.set_xlabel("Month")
+ax.set_ylabel("Temperature")
+
+ax.grid(True)
+
+plt.show()</pre> </div>
+
+```
+<p>
+    The order of the months is meaningful, so connecting the points helps communicate
+    how the temperature changes from one month to the next.
+</p>
+
+<p>
+    Line charts can also contain multiple lines when you want to compare trends.
+    However, using too many lines can make a chart difficult to read.
+</p>
+
+
+<h2>04. Use Bar Charts for Category Comparisons</h2>
+
+<p>
+    Bar charts are useful when the goal is to compare separate categories.
+    Categories might represent products, departments, programming languages,
+    countries, courses, or different groups.
+</p>
+
+<p>
+    The length or height of each bar represents the numerical value associated
+    with that category. This makes it relatively easy to compare categories.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">bar_chart.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+languages = np.array(["Python", "Java", "C++", "JavaScript"])
+students = np.array([85, 70, 55, 75])
+
+fig, ax = plt.subplots()
+
+ax.bar(languages, students)
+
+ax.set_title("Students by Programming Language")
+ax.set_xlabel("Language")
+ax.set_ylabel("Students")
+
+plt.show()</pre> </div>
+
+```
+<p>
+    Each programming language is a separate category, while the height of the bar
+    represents the number of students.
+</p>
+
+<p>
+    Bar charts are particularly useful when the categories do not represent a continuous
+    sequence. The reader is mainly interested in comparing one category with another.
+</p>
+
+
+<h2>05. Use Horizontal Bar Charts for Many Categories</h2>
+
+<p>
+    When a chart contains many categories or category names are long, a horizontal
+    bar chart can be easier to read than a vertical bar chart.
+</p>
+
+<p>
+    Horizontal bars provide more space for category labels and make it easier to compare
+    values when the labels contain several words.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">horizontal_bar.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+courses = np.array([
+"Web Development",
+"Data Science",
+"Mobile Development",
+"Artificial Intelligence",
+"Cyber Security"
+])
+
+students = np.array([120, 95, 80, 110, 70])
+
+fig, ax = plt.subplots()
+
+ax.barh(courses, students)
+
+ax.set_title("Students Enrolled by Course")
+ax.set_xlabel("Students")
+ax.set_ylabel("Course")
+
+plt.show()</pre> </div>
+
+```
+<p>
+    The <code>barh()</code> function creates horizontal bars.
+    This orientation gives longer category names more room on the chart.
+</p>
+
+
+<h2>06. Use Scatter Plots for Relationships</h2>
+
+<p>
+    Scatter plots are useful when you want to examine the relationship between
+    two numerical variables.
+</p>
+
+<p>
+    Each observation is represented by a point. One variable is placed on the x-axis
+    and another variable is placed on the y-axis.
+</p>
+
+<p>
+    For example, you could investigate whether study hours and examination scores
+    appear to have a relationship.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">scatter_chart.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+study_hours = np.array([1, 2, 2, 3, 4, 5, 6, 7, 8])
+scores = np.array([45, 50, 55, 61, 68, 74, 79, 86, 92])
+
+fig, ax = plt.subplots()
+
+ax.scatter(study_hours, scores)
+
+ax.set_title("Study Hours and Exam Scores")
+ax.set_xlabel("Study Hours")
+ax.set_ylabel("Exam Score")
+
+ax.grid(True)
+
+plt.show()</pre> </div>
+
+```
+<p>
+    Each point represents one observation. For example, the first point represents
+    one observation with one hour of study and a score of 45.
+</p>
+
+<p>
+    A scatter plot can reveal whether the points appear to move upward, downward,
+    or show no obvious pattern. However, visual association alone does not establish
+    that one variable causes the other.
+</p>
+
+
+<h2>07. Use Histograms for Data Distribution</h2>
+
+<p>
+    A histogram is useful when you want to understand how numerical values are distributed.
+    Instead of displaying every individual observation separately, a histogram groups
+    values into intervals called bins.
+</p>
+
+<p>
+    Histograms can help answer questions such as whether values are concentrated around
+    a particular range, whether the distribution is spread out, or whether there are
+    unusually high or low observations.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">histogram.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+scores = np.array([
+45, 52, 56, 61, 65,
+68, 70, 72, 75, 78,
+80, 82, 85, 88, 91,
+94, 96
+])
+
+fig, ax = plt.subplots()
+
+ax.hist(scores, bins=5)
+
+ax.set_title("Exam Score Distribution")
+ax.set_xlabel("Score")
+ax.set_ylabel("Frequency")
+
+plt.show()</pre> </div>
+
+```
+<p>
+    The <code>bins=5</code> argument divides the range of values into five intervals.
+    The height of each bar represents how many observations fall inside the corresponding interval.
+</p>
+
+<p>
+    A histogram should not be confused with a bar chart. A bar chart compares separate
+    categories, while a histogram displays the distribution of continuous or numerical values.
+</p>
+
+
+<h2>08. Use Pie Charts for Parts of a Whole</h2>
+
+<p>
+    Pie charts can be used to show how several categories contribute to a single whole.
+    Each slice represents a portion of the total.
+</p>
+
+<p>
+    Pie charts work best when there are only a small number of categories and when
+    understanding the proportion of the whole is more important than precise comparison.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">pie_chart.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+categories = np.array([
+"Development",
+"Marketing",
+"Operations",
+"Support"
+])
+
+budget = np.array([40, 25, 20, 15])
+
+fig, ax = plt.subplots()
+
+ax.pie(
+budget,
+labels=categories,
+autopct="%1.1f%%"
+)
+
+ax.set_title("Budget Distribution")
+
+plt.show()</pre> </div>
+
+```
+<p>
+    The values represent portions of a total budget. Matplotlib converts those
+    values into proportional slices.
+</p>
+
+<p>
+    If a dataset contains many categories, a pie chart can quickly become difficult
+    to read. In such cases, a bar chart may make category comparisons clearer.
+</p>
+
+
+<h2>09. Understand Bar Charts vs Histograms</h2>
+
+<p>
+    Beginners often confuse bar charts and histograms because both use rectangular bars.
+    However, they are designed for different purposes.
+</p>
+
+<p>
+    A bar chart compares separate categories. A histogram groups numerical observations
+    into intervals to show their distribution.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">bar_vs_histogram.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+products = np.array(["A", "B", "C", "D"])
+sales = np.array([120, 180, 150, 220])
+
+fig, ax = plt.subplots()
+
+ax.bar(products, sales)
+
+ax.set_title("Comparing Product Categories")
+ax.set_xlabel("Product")
+ax.set_ylabel("Sales")
+
+plt.show()</pre> </div>
+
+```
+<p>
+    Here, A, B, C, and D are separate categories. Therefore, a bar chart is appropriate.
+</p>
+
+<p>
+    If the data instead contained hundreds of numerical measurements such as heights,
+    ages, temperatures, or test scores, a histogram would generally be more appropriate
+    for examining the distribution.
+</p>
+
+
+<h2>10. Use Multiple Charts When One Chart Is Not Enough</h2>
+
+<p>
+    Sometimes a single visualization cannot communicate every important aspect of a dataset.
+    In such situations, multiple charts can be used, with each chart answering a different question.
+</p>
+
+<p>
+    For example, a line chart might show how sales changed over time, while a bar chart
+    could compare the total sales of different products.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">multiple_visualizations.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+months = np.array(["Jan", "Feb", "Mar", "Apr"])
+sales = np.array([120, 150, 180, 210])
+
+products = np.array(["A", "B", "C"])
+product_sales = np.array([200, 250, 180])
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o", label="Monthly Sales")
+
+ax.set_title("Sales Trend")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.legend()
+ax.grid(True)
+
+plt.show()</pre> </div>
+
+```
+<p>
+    The important principle is that each visualization should have a clear purpose.
+    Adding charts simply to make a report look more complicated can reduce clarity.
+</p>
+
+
+<h2>11. Avoid Using Too Many Chart Elements</h2>
+
+<p>
+    A good visualization should make the important information easy to identify.
+    Adding too many labels, colors, lines, markers, or decorative elements can make
+    the chart harder to understand.
+</p>
+
+<p>
+    Chart design should support the data rather than distract from it. Use titles,
+    axis labels, legends, and grid lines when they improve understanding.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">clear_chart.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+months = np.array(["Jan", "Feb", "Mar", "Apr", "May"])
+sales = np.array([120, 145, 170, 165, 210])
+
+fig, ax = plt.subplots()
+
+ax.plot(months, sales, marker="o")
+
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+
+ax.grid(True)
+
+plt.show()</pre> </div>
+
+```
+<p>
+    This chart contains only the elements needed to understand the data:
+    a meaningful title, axis labels, data points, and grid lines.
+</p>
+
+<p>
+    Avoid unnecessary decoration. A visualization should prioritize readability,
+    accuracy, and communication.
+</p>
+
+
+<h2>12. Understand Categorical and Numerical Data</h2>
+
+<p>
+    Another important factor in chart selection is the type of data you have.
+    Data can broadly contain categorical values, numerical values, or ordered values.
+</p>
+
+<p>
+    Categorical data represents groups or labels, such as product names,
+    programming languages, departments, or countries.
+</p>
+
+<p>
+    Numerical data represents quantities that can be measured or calculated,
+    such as age, temperature, salary, distance, or examination score.
+</p>
+
+<p>
+    Understanding the data type helps determine which visualizations are appropriate.
+    A bar chart is often useful for categorical comparisons, while histograms and
+    scatter plots are designed around numerical data.
+</p>
+
+<div class="box tip">
+    <div class="box-title">Quick Tip</div>
+
+    <p>
+        Before choosing a chart, identify what each column in your dataset represents.
+        Ask whether the values are categories, measurements, time periods, or relationships
+        between numerical variables.
+    </p>
+</div>
+
+
+<h2>13. Choose a Chart Based on the Goal</h2>
+
+<p>
+    A useful way to choose a chart is to start with the goal rather than the data itself.
+    Different visualization goals commonly require different chart types.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">chart_selection.py</span>
+    </div>
+
+    <pre>goal = "compare categories"
+```
+
+if goal == "show a trend":
+chart = "Line chart"
+
+elif goal == "compare categories":
+chart = "Bar chart"
+
+elif goal == "show a relationship":
+chart = "Scatter plot"
+
+elif goal == "show distribution":
+chart = "Histogram"
+
+elif goal == "show parts of a whole":
+chart = "Pie chart"
+
+print(chart)</pre> </div>
+
+```
+<p>
+    This example is not a visualization itself. It demonstrates the decision-making
+    process behind chart selection.
+</p>
+
+<p>
+    The same thinking can be applied to real-world projects. First identify what the
+    reader needs to understand, then choose the chart that communicates that information
+    most directly.
+</p>
+
+
+<h2>14. Understand Common Chart Selection Mistakes</h2>
+
+<p>
+    Beginners often select charts based on appearance rather than purpose. A chart may
+    look attractive but still communicate the data poorly.
+</p>
+
+<p>
+    Common mistakes include using pie charts with too many categories, using line charts
+    for unrelated categories, using histograms for categorical data, and placing too many
+    datasets on a single chart.
+</p>
+
+<div class="box warning">
+    <div class="box-title">Common Mistakes</div>
+
+    <ul>
+        <li>Do not automatically use a pie chart simply because it looks visually appealing.</li>
+        <li>Do not use a line connecting unrelated categories when there is no meaningful order.</li>
+        <li>Do not confuse a histogram with a bar chart.</li>
+        <li>Avoid putting too many unrelated datasets on one chart.</li>
+        <li>Always label important axes so the reader understands the measurements.</li>
+        <li>Do not remove context from a chart in a way that makes the data misleading.</li>
+    </ul>
+</div>
+
+
+<h2>15. Create a Practical Chart Selection Example</h2>
+
+<p>
+    Imagine that you are building a dashboard for a school. The dashboard contains
+    student attendance, monthly enrollment, examination scores, and course popularity.
+    Each dataset has a different purpose, so using the same chart for every dataset
+    would not be ideal.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">school_dashboard.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+months = np.array(["Jan", "Feb", "Mar", "Apr", "May"])
+attendance = np.array([82, 85, 88, 84, 91])
+
+fig, ax = plt.subplots()
+
+ax.plot(months, attendance, marker="o")
+
+ax.set_title("Monthly Attendance Trend")
+ax.set_xlabel("Month")
+ax.set_ylabel("Attendance (%)")
+
+ax.grid(True)
+
+plt.show()</pre> </div>
+
+```
+<p>
+    A line chart is appropriate here because attendance is being observed across an
+    ordered sequence of months.
+</p>
+
+<p>
+    If the goal were instead to compare attendance between different classes,
+    a bar chart would generally be more suitable because the main task would be
+    comparing separate categories.
+</p>
+
+
+<h2>16. Build a Complete Chart Selection Workflow</h2>
+
+<p>
+    Choosing the right chart can be treated as a simple decision-making process.
+    Start by identifying the data, determine the question you want to answer,
+    and then select the visualization that best communicates the answer.
+</p>
+
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="filename">chart_workflow.py</span>
+    </div>
+
+    <pre>import numpy as np
+```
+
+import matplotlib.pyplot as plt
+
+data = np.array([120, 150, 180, 170, 210])
+
+question = "show change over time"
+
+if question == "show change over time":
+
+```
+periods = np.array(["Jan", "Feb", "Mar", "Apr", "May"])
+
+fig, ax = plt.subplots()
+
+ax.plot(periods, data, marker="o")
+
+ax.set_title("Data Trend")
+ax.set_xlabel("Period")
+ax.set_ylabel("Value")
+
+ax.grid(True)
+
+plt.show()</pre>
+</div>
+
+<p>
+    The important part of this example is not the conditional statement itself.
+    The important concept is the workflow: understand the question first, select the
+    appropriate visualization, prepare the data, create the chart, and then add only
+    the elements that help the reader interpret it.
+</p>
+
+<p>
+    In real applications, the data may come from a CSV file, database, API, spreadsheet,
+    or another Python library. Once the data has been prepared, the same chart-selection
+    principles still apply.
+</p>
+
+
+<div class="box info">
+    <div class="box-title">Key Points</div>
+
+    <ul>
+        <li>Choose a chart based on the question you want the visualization to answer.</li>
+        <li>Use line charts to show trends and changes across an ordered sequence.</li>
+        <li>Use bar charts to compare separate categories.</li>
+        <li>Use horizontal bar charts when category names are long or there are many categories.</li>
+        <li>Use scatter plots to examine relationships between two numerical variables.</li>
+        <li>Use histograms to understand the distribution of numerical data.</li>
+        <li>Use pie charts to show parts of a meaningful whole when there are only a few categories.</li>
+        <li>Do not confuse histograms with bar charts.</li>
+        <li>Identify whether your data is categorical, numerical, or ordered before selecting a chart.</li>
+        <li>Use multiple visualizations when different charts answer different questions.</li>
+        <li>Avoid unnecessary visual elements that make charts difficult to understand.</li>
+        <li>Always provide meaningful titles and axis labels when they improve interpretation.</li>
+        <li>Good chart selection improves the clarity and usefulness of data visualization.</li>
+        <li>The best chart is the one that communicates the important information clearly and accurately.</li>
+    </ul>
+</div>
+
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 27 &middot; Choosing the Right Chart</div>
+
+    <p>
+        Create a Python program containing four different datasets: monthly sales,
+        product sales by category, student examination scores, and study hours with
+        corresponding examination scores.
+    </p>
+
+    <p>
+        Choose an appropriate chart for each dataset. Use a <strong>line chart</strong>
+        for the monthly sales trend, a <strong>bar chart</strong> for product comparison,
+        a <strong>histogram</strong> for the distribution of examination scores, and a
+        <strong>scatter plot</strong> for the relationship between study hours and scores.
+    </p>
+
+    <p>
+        Give every chart a meaningful title and appropriate axis labels. Add grid lines
+        where they improve readability and use legends when multiple datasets appear
+        on the same visualization.
+    </p>
+
+    <p>
+        As an additional challenge, explain in a comment above each chart why you selected
+        that chart type. Then try replacing each chart with a different chart type and
+        compare which visualization communicates the data more clearly.
+    </p>
+</div>
+
+
+<div class="lecture-nav">
+
+    <button class="nav-btn secondary"
+            onclick="showLecture(26)">
+        &larr; Previous Lecture
+    </button>
+
+    <button class="nav-btn primary"
+            onclick="showLecture(28)">
+        Next Lecture &rarr;
+    </button>
+
+</div>
+```
+
+</div>
 
 
 
