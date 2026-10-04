@@ -7,64 +7,111 @@ body {
     overflow-x: hidden;
 }
 
+/* ---------- Privacy Policy ---------- */
 .privacy-container {
-    max-width: 800px;
-    margin: calc(var(--nav-h, 60px) + 50px) auto 40px;
+    max-width: 760px;
+    margin: calc(var(--nav-h, 60px) + 60px) auto 60px;
     background: var(--surface);
-    padding: 40px;
+    padding: 48px 56px;
     border-radius: var(--radius-md, 12px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border: 1px solid var(--border);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 .privacy-container h1 {
     font-family: var(--font-display);
     color: var(--text);
     text-align: center;
-    border-bottom: 2px solid var(--border);
-    padding-bottom: 20px;
-}
-
-.privacy-container h2 {
-    font-family: var(--font-display);
-    color: var(--primary-light, #60a5fa);
-    margin-top: 25px;
-    font-size: 1.4rem;
+    font-size: 1.9rem;
+    letter-spacing: -0.01em;
+    padding-bottom: 18px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
 }
 
 .privacy-container .effective-date {
     text-align: center;
     font-style: italic;
+    font-size: 0.9rem;
     color: var(--text-muted);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-.privacy-container p, .privacy-container li {
+.privacy-container h2 {
+    font-family: var(--font-display);
+    color: var(--primary-light, #60a5fa);
+    margin-top: 2.4rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    scroll-margin-top: calc(var(--nav-h, 60px) + 70px);
+}
+
+.privacy-container h3 {
+    font-family: var(--font-display);
+    color: var(--text);
+    margin-top: 1.6rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.privacy-container p,
+.privacy-container li {
     font-size: 1rem;
     color: var(--text-muted);
-    line-height: 1.6;
+    line-height: 1.75;
 }
 
+.privacy-container p { margin-bottom: 1rem; }
+
 .privacy-container ul {
-    padding-left: 20px;
+    padding-left: 22px;
+    margin-bottom: 1rem;
 }
+
+.privacy-container li { margin-bottom: 0.4rem; }
+
+.privacy-container li::marker {
+    color: var(--primary-light, #60a5fa);
+}
+
+.privacy-container a {
+    color: var(--primary-light, #60a5fa);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.privacy-container a:hover {
+    border-bottom-color: var(--primary-light, #60a5fa);
+}
+
+.privacy-container strong { color: var(--text); }
 
 .privacy-container .contact-info,
 .privacy-container .highlight {
     background: var(--surface-2);
-    padding: 15px;
-    border-left: 4px solid var(--primary-light, #60a5fa);
-    border-radius: 4px;
-    margin-top: 10px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--primary-light, #60a5fa);
+    border-radius: 0 8px 8px 0;
+    margin: 1.2rem 0;
 }
 
-/* App Subheader Courses Navigation */
+.privacy-container .contact-info a,
+.privacy-container .highlight a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* ---------- Courses Subheader ---------- */
 .courses-subheader {
     position: fixed;
     top: var(--nav-h, 60px);
     left: 0;
     right: 0;
-    height: 40px;
+    height: 44px;
     background: rgba(22, 24, 31, 0.85);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
@@ -88,9 +135,7 @@ body {
     white-space: nowrap;
 }
 
-.courses-subheader-container::-webkit-scrollbar {
-    display: none;
-}
+.courses-subheader-container::-webkit-scrollbar { display: none; }
 
 .course-link {
     display: inline-flex;
@@ -99,23 +144,47 @@ body {
     background: var(--surface-2);
     border: 1px solid var(--border);
     color: var(--text-muted);
-    border-radius: 6px;
-    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
     font-size: 0.78rem;
     font-weight: 500;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.course-link:hover {
+.course-link:hover,
+.course-link.active {
     background: var(--primary-subtle);
     border-color: var(--primary);
     color: var(--primary-light);
 }
 
+/* ---------- Responsive ---------- */
 @media (max-width: 760px) {
     .privacy-container {
-        margin: calc(var(--nav-h, 56px) + 45px) 1rem 2rem;
-        padding: 1.5rem 1rem;
+        margin: calc(var(--nav-h, 56px) + 50px) 0.8rem 2.5rem;
+        padding: 1.8rem 1.2rem;
     }
+
+    .privacy-container h1 { font-size: 1.5rem; }
+
+    .privacy-container h2 {
+        font-size: 1.2rem;
+        scroll-margin-top: calc(var(--nav-h, 56px) + 60px);
+    }
+}
+
+/* ---------- Print ---------- */
+@media print {
+    .courses-subheader { display: none; }
+
+    .privacy-container {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .privacy-container h2 { color: inherit; scroll-margin-top: 0; }
 }
