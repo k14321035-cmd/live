@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <script src="../lessons.js"></script>
   <link rel="stylesheet" href="../lessons.css">
-  <script src="blog-auth.js"></script>
   <script>
     (function() {
       const savedTheme = localStorage.getItem('blog-theme') || 'dark';
@@ -93,11 +92,55 @@
     </nav>
 
   <!-- HERO -->
+    <!-- HERO -->
   <header class="blog-hero">
     <div class="blog-hero-badge">// Programming Q&amp;A</div>
     <h1>Questions.<br><em>Answered.</em></h1>
-    <p class="blog-hero-sub">Clear, beginner-friendly answers to the most common programming questions — covering Python, CSS, JavaScript, HTML, Java, C++ and more.</p>
+    <p class="blog-hero-sub">Clear, beginner-friendly answers to the most common programming questions — covering Python, CSS, JavaScript, HTML, Java, C++, Rust and more.</p>
+    <!-- HERO STATS BAR -->
+    <div class="blog-stats-bar">
+      <div class="stat-pill"><span class="stat-num">67</span> Tutorials &amp; Guides</div>
+      <div class="stat-pill"><span class="stat-num">15+</span> Tech Stacks</div>
+      <div class="stat-pill"><span class="stat-num">5 min</span> Avg Read Time</div>
+      <button class="stat-pill search-trigger-pill" id="hero-search-btn" title="Click or press Ctrl+K to search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Quick Search <kbd>Ctrl+K</kbd>
+      </button>
+    </div>
   </header>
+
+  <!-- FEATURED POST BANNER -->
+  <section class="featured-hero-wrap">
+    <div class="featured-card">
+      <div class="featured-content">
+        <div class="featured-badge-row">
+          <span class="featured-star-badge">★ Featured Guide</span>
+          <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">JavaScript</span>
+          <span class="blog-difficulty intermediate">Intermediate</span>
+          <span class="blog-date">Oct 2026</span>
+        </div>
+        <h2 class="featured-title">Difference Between const, let and var in JavaScript</h2>
+        <p class="featured-excerpt">Understand the critical nuances of JavaScript variable declarations — block scoping vs function scoping, temporal dead zone (TDZ), memory reassignment, and hoisting explained with visual comparison examples.</p>
+        <div class="featured-action-row">
+          <span class="blog-read-time">~5 min read</span>
+          <a href="diff.html" class="featured-read-btn">Read Complete Guide →</a>
+        </div>
+      </div>
+      <div class="featured-code-preview">
+        <div class="code-preview-header">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="code-preview-title">scope_comparison.js</span>
+        </div>
+        <pre><code><span class="tok-kw">const</span> PI = <span class="tok-num">3.14159</span>; <span class="tok-cm">// Block-scoped, immutable ref</span>
+<span class="tok-kw">let</span> count = <span class="tok-num">0</span>;      <span class="tok-cm">// Reassignable block-scope</span>
+<span class="tok-kw">var</span> legacy = <span class="tok-str">"no"</span>;  <span class="tok-cm">// Function-scoped (hoisted)</span>
+
+<span class="tok-cm">// TDZ prevents access before declaration:</span>
+<span class="tok-kw">console</span>.log(score); <span class="tok-err">// ReferenceError!</span>
+<span class="tok-kw">let</span> score = <span class="tok-num">100</span>;</code></pre>
+      </div>
+    </div>
+  </section>
 
   <!-- CATEGORY FILTER -->
   <div class="categories" role="navigation" aria-label="Article categories">
@@ -118,8 +161,11 @@
 
       <a href="C%20vs%20C%2B%2B.html" class="blog-card" data-cat="cpp" style="--card-color:#f43f5e">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f43f5e;border-color:rgba(244, 63, 94, 0.3)">C / C++</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f43f5e;border-color:rgba(244, 63, 94, 0.3)">C / C++</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Oct 2026</span>
         </div>
         <div class="blog-card-title">Difference between C and C++</div>
         <div class="blog-card-excerpt">Learn the key differences between C and C++ with simple examples and comparison tables.</div>
@@ -131,8 +177,11 @@
 
       <a href="diff.html" class="blog-card" data-cat="javascript" style="--card-color:#facc15">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">JavaScript</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">JavaScript</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Oct 2026</span>
         </div>
         <div class="blog-card-title">Difference Between const, let and var in JavaScript</div>
         <div class="blog-card-excerpt">Learn the difference between const, let and var in JavaScript with examples. Understand scope, reassignment and hoisting easily.</div>
@@ -144,8 +193,11 @@
 
       <a href="Java%20vs%20C%2B%2B.html" class="blog-card" data-cat="general" style="--card-color:#34d399">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#34d399;border-color:rgba(52, 211, 153, 0.3)">Programming</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#34d399;border-color:rgba(52, 211, 153, 0.3)">Programming</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Oct 2026</span>
         </div>
         <div class="blog-card-title">Difference Between Java and C++</div>
         <div class="blog-card-excerpt">Learn the key differences between Java and C++ including memory management, platform independence, performance, and programming approach.</div>
@@ -157,8 +209,11 @@
 
       <a href="List%20vs%20Tuple%20in%20python.html" class="blog-card" data-cat="python" style="--card-color:#a78bfa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">Python</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">Python</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Oct 2026</span>
         </div>
         <div class="blog-card-title">Difference Between List and Tuple</div>
         <div class="blog-card-excerpt">Learn the difference between list and tuple in Python with clear explanations, examples, memory behavior, performance, and real-world use cases.</div>
@@ -168,23 +223,13 @@
         </div>
       </a>
 
-      <a href="litu.html" class="blog-card" data-cat="python" style="--card-color:#93c5fd">
+<a href="paired%20vs%20unpaired%20tags%20in%20HTML.html" class="blog-card" data-cat="html" style="--card-color:#fca5a5">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#93c5fd;border-color:rgba(147, 197, 253, 0.3)">Python</span>
-          <span class="blog-date">May 2026</span>
-        </div>
-        <div class="blog-card-title">Difference Between List and Tuple in Python</div>
-        <div class="blog-card-excerpt">Learn the difference between lists and tuples in Python. Understand mutability, syntax, performance, use cases, and when to use each data structure.</div>
-        <div class="blog-card-footer">
-          <span class="blog-read-time">~5 min read</span>
-          <span class="blog-arrow" style="color:#93c5fd">Read →</span>
-        </div>
-      </a>
-
-      <a href="paired%20vs%20unpaired%20tags%20in%20HTML.html" class="blog-card" data-cat="html" style="--card-color:#fca5a5">
-        <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fca5a5;border-color:rgba(252, 165, 165, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fca5a5;border-color:rgba(252, 165, 165, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Oct 2026</span>
         </div>
         <div class="blog-card-title">Difference Between Paired and Unpaired Tags</div>
         <div class="blog-card-excerpt">Learn the difference between paired and unpaired HTML tags with simple examples. Beginner-friendly guide to HTML basics.</div>
@@ -196,8 +241,11 @@
 
       <a href="Structure%20VS%20Union%20in%20C.html" class="blog-card" data-cat="cpp" style="--card-color:#f97316">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f97316;border-color:rgba(249, 115, 22, 0.3)">C</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f97316;border-color:rgba(249, 115, 22, 0.3)">C</span>
+            <span class="blog-difficulty advanced">Advanced</span>
+          </div>
+          <span class="blog-date">Oct 2026</span>
         </div>
         <div class="blog-card-title">Difference between Structure and Union in C</div>
         <div class="blog-card-excerpt">Learn the difference between structure and union in C programming with simple examples and memory explanation.</div>
@@ -209,8 +257,11 @@
 
       <a href="Features%20of%20C%2B%2B.html" class="blog-card" data-cat="cpp" style="--card-color:#22c55e">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#22c55e;border-color:rgba(34, 197, 94, 0.3)">C++</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#22c55e;border-color:rgba(34, 197, 94, 0.3)">C++</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Oct 2026</span>
         </div>
         <div class="blog-card-title">Features of C++ Language</div>
         <div class="blog-card-excerpt">Learn the key features of C++ programming language including OOP, portability, performance, and STL.</div>
@@ -222,8 +273,11 @@
 
       <a href="Features%20of%20Java.html" class="blog-card" data-cat="java" style="--card-color:#fcd34d">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fcd34d;border-color:rgba(252, 211, 77, 0.3)">Java</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fcd34d;border-color:rgba(252, 211, 77, 0.3)">Java</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Sep 2026</span>
         </div>
         <div class="blog-card-title">Features of Java</div>
         <div class="blog-card-excerpt">Learn the key features of Java including platform independence, object-oriented programming, security, and robustness with clear beginner-friendly explanations.</div>
@@ -235,8 +289,11 @@
 
       <a href="Flexbox%20vs%20Grid%20in%20CSS.html" class="blog-card" data-cat="css" style="--card-color:#34d399">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#34d399;border-color:rgba(52, 211, 153, 0.3)">CSS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#34d399;border-color:rgba(52, 211, 153, 0.3)">CSS</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Sep 2026</span>
         </div>
         <div class="blog-card-title">Flexbox vs CSS Grid — When Should You Use Each?</div>
         <div class="blog-card-excerpt">Learn the difference between CSS Flexbox and Grid, and when to use each for layouts. Beginner-friendly guide with examples.</div>
@@ -248,8 +305,11 @@
 
       <a href="How%20do%20you%20handle%20Exceptions%20in%20Visual%20Basic.html" class="blog-card" data-cat="general" style="--card-color:#f97316">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f97316;border-color:rgba(249, 115, 22, 0.3)">Visual Basic</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f97316;border-color:rgba(249, 115, 22, 0.3)">Visual Basic</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Sep 2026</span>
         </div>
         <div class="blog-card-title">How do you handle Exceptions in Visual Basic?</div>
         <div class="blog-card-excerpt">Learn how exception handling works in Visual Basic (VB.NET) using Try, Catch, Finally with simple examples and best practices.</div>
@@ -261,8 +321,11 @@
 
       <a href="how%20do%20you%20plot%20a%20graphs%20in%20MATLAB.html" class="blog-card" data-cat="general" style="--card-color:#3b82f6">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#3b82f6;border-color:rgba(59, 130, 246, 0.3)">MATLAB</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#3b82f6;border-color:rgba(59, 130, 246, 0.3)">MATLAB</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Sep 2026</span>
         </div>
         <div class="blog-card-title">How do you plot graphs in MATLAB?</div>
         <div class="blog-card-excerpt">Learn how to plot graphs in MATLAB using plot(), scatter(), and bar(). Step-by-step beginner guide with examples.</div>
@@ -274,8 +337,11 @@
 
       <a href="Local%20Storage%20vs%20Session%20Storage%20in%20JS.html" class="blog-card" data-cat="javascript" style="--card-color:#38bdf8">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#38bdf8;border-color:rgba(56, 189, 248, 0.3)">JS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#38bdf8;border-color:rgba(56, 189, 248, 0.3)">JS</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Sep 2026</span>
         </div>
         <div class="blog-card-title">Local Storage vs Session Storage</div>
         <div class="blog-card-excerpt">Learn the difference between localStorage and sessionStorage in JavaScript with simple examples and real-world use cases.</div>
@@ -287,8 +353,11 @@
 
       <a href="Primary%20Vs%20Foreign%20Key%20in%20SQL.html" class="blog-card" data-cat="sql" style="--card-color:#38bdf8">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#38bdf8;border-color:rgba(56, 189, 248, 0.3)">SQL</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#38bdf8;border-color:rgba(56, 189, 248, 0.3)">SQL</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Sep 2026</span>
         </div>
         <div class="blog-card-title">Primary Key vs Foreign Key in SQL</div>
         <div class="blog-card-excerpt">Learn the difference between Primary Key and Foreign Key in SQL with simple examples and real-world database relationships.</div>
@@ -300,8 +369,11 @@
 
       <a href="Stack%20vs%20Heap%20Memory%20in%20C.html" class="blog-card" data-cat="cpp" style="--card-color:#a78bfa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">C</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">C</span>
+            <span class="blog-difficulty advanced">Advanced</span>
+          </div>
+          <span class="blog-date">Sep 2026</span>
         </div>
         <div class="blog-card-title">Stack vs Heap Memory in C</div>
         <div class="blog-card-excerpt">Learn the difference between stack and heap memory in C programming with simple examples and clear explanation.</div>
@@ -313,8 +385,11 @@
 
       <a href="Structure%20of%20C%2B%2B.html" class="blog-card" data-cat="cpp" style="--card-color:#3b82f6">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#3b82f6;border-color:rgba(59, 130, 246, 0.3)">C++</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#3b82f6;border-color:rgba(59, 130, 246, 0.3)">C++</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Aug 2026</span>
         </div>
         <div class="blog-card-title">Structure of a C++ Program</div>
         <div class="blog-card-excerpt">Learn the basic structure of a C++ program with explanation of each part and a simple example.</div>
@@ -326,8 +401,11 @@
 
       <a href="structure%20of%20Java%20program.html" class="blog-card" data-cat="java" style="--card-color:#facc15">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">Java</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">Java</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Aug 2026</span>
         </div>
         <div class="blog-card-title">Structure of a Java Program</div>
         <div class="blog-card-excerpt">Learn the basic structure of a Java program including class, main method, syntax, and execution flow.</div>
@@ -339,8 +417,11 @@
 
       <a href="best.html" class="blog-card" data-cat="general" style="--card-color:#fcd34d">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fcd34d;border-color:rgba(252, 211, 77, 0.3)">Internet</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fcd34d;border-color:rgba(252, 211, 77, 0.3)">Internet</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Aug 2026</span>
         </div>
         <div class="blog-card-title">Top 20 Most Popular Websites in the World</div>
         <div class="blog-card-excerpt">Discover the top 20 most popular websites in the world and learn why millions of people use them every day.</div>
@@ -352,8 +433,11 @@
 
       <a href="prb.html" class="blog-card" data-cat="general" style="--card-color:#86efac">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#86efac;border-color:rgba(134, 239, 172, 0.3)">Programming</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#86efac;border-color:rgba(134, 239, 172, 0.3)">Programming</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Aug 2026</span>
         </div>
         <div class="blog-card-title">Top 20 Programming Languages With "Hello, Code Tutorium" Syntax</div>
         <div class="blog-card-excerpt">Explore the top 20 programming languages with simple Hello, Code Tutorium examples. Learn syntax, popularity, and use cases for each language.</div>
@@ -365,8 +449,11 @@
 
       <a href="Arrays%20in%20C.html" class="blog-card" data-cat="cpp" style="--card-color:#22c55e">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#22c55e;border-color:rgba(34, 197, 94, 0.3)">C</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#22c55e;border-color:rgba(34, 197, 94, 0.3)">C</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Aug 2026</span>
         </div>
         <div class="blog-card-title">What are Arrays in C?</div>
         <div class="blog-card-excerpt">Learn what arrays are in C programming, how they work, and how to use them with simple examples.</div>
@@ -378,8 +465,11 @@
 
       <a href="Classes%20and%20Objects%20in%20C%2B%2B.html" class="blog-card" data-cat="cpp" style="--card-color:#f59e0b">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f59e0b;border-color:rgba(245, 158, 11, 0.3)">C++</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f59e0b;border-color:rgba(245, 158, 11, 0.3)">C++</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Aug 2026</span>
         </div>
         <div class="blog-card-title">What are Classes and Objects in C++?</div>
         <div class="blog-card-excerpt">Learn what classes and objects are in C++ with simple examples and real-world explanation.</div>
@@ -391,8 +481,11 @@
 
       <a href="Events%20in%20JS.html" class="blog-card" data-cat="javascript" style="--card-color:#34d399">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#34d399;border-color:rgba(52, 211, 153, 0.3)">JS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#34d399;border-color:rgba(52, 211, 153, 0.3)">JS</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Aug 2026</span>
         </div>
         <div class="blog-card-title">What are Events in JavaScript?</div>
         <div class="blog-card-excerpt">Learn JavaScript events: what they are, how they work, and how to use them for interactivity in web pages.</div>
@@ -404,8 +497,11 @@
 
       <a href="what%20are%20functions%20in%20JS.html" class="blog-card" data-cat="javascript" style="--card-color:#facc15">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">JS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">JS</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jul 2026</span>
         </div>
         <div class="blog-card-title">What are Functions in JavaScript?</div>
         <div class="blog-card-excerpt">Learn JavaScript functions: what they are, how they work, and why they are important. Beginner-friendly explanation with examples.</div>
@@ -417,8 +513,11 @@
 
       <a href="forms%20in%20html.html" class="blog-card" data-cat="html" style="--card-color:#86efac">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#86efac;border-color:rgba(134, 239, 172, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#86efac;border-color:rgba(134, 239, 172, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jul 2026</span>
         </div>
         <div class="blog-card-title">What are HTML Forms?</div>
         <div class="blog-card-excerpt">Learn what HTML forms are, how they work, and how to collect user input using input fields, labels, buttons, and form attributes. Beginner-friendly HTML forms tutorial with examples.</div>
@@ -430,8 +529,11 @@
 
       <a href="what%20is%20list%20in%20HTML.html" class="blog-card" data-cat="html" style="--card-color:#fbbf24">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fbbf24;border-color:rgba(251, 191, 36, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fbbf24;border-color:rgba(251, 191, 36, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jul 2026</span>
         </div>
         <div class="blog-card-title">What are Lists in HTML?</div>
         <div class="blog-card-excerpt">Learn what lists are in HTML, how ordered and unordered lists work, and how to use them with real examples. Beginner-friendly guide.</div>
@@ -443,8 +545,11 @@
 
       <a href="what%20are%20meta%20tags%20in%20HTML.html" class="blog-card" data-cat="html" style="--card-color:#86efac">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#86efac;border-color:rgba(134, 239, 172, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#86efac;border-color:rgba(134, 239, 172, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jul 2026</span>
         </div>
         <div class="blog-card-title">What are Meta Tags in HTML?</div>
         <div class="blog-card-excerpt">Learn what meta tags are in HTML, why they matter, and how they improve SEO, responsiveness, social sharing, and browser behavior. Beginner-friendly examples included.</div>
@@ -456,8 +561,11 @@
 
       <a href="Pointers%20in%20C.html" class="blog-card" data-cat="cpp" style="--card-color:#fb7185">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fb7185;border-color:rgba(251, 113, 133, 0.3)">C</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fb7185;border-color:rgba(251, 113, 133, 0.3)">C</span>
+            <span class="blog-difficulty advanced">Advanced</span>
+          </div>
+          <span class="blog-date">Jul 2026</span>
         </div>
         <div class="blog-card-title">What are Pointers in C?</div>
         <div class="blog-card-excerpt">Learn what pointers are in C programming, how they work, and why they are important. Beginner-friendly explanation with examples.</div>
@@ -469,8 +577,11 @@
 
       <a href="pseudo%20classes%20and%20pseudo%20elements%20in%20HTML.html" class="blog-card" data-cat="css" style="--card-color:#60a5fa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#60a5fa;border-color:rgba(96, 165, 250, 0.3)">CSS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#60a5fa;border-color:rgba(96, 165, 250, 0.3)">CSS</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jul 2026</span>
         </div>
         <div class="blog-card-title">What are Pseudo-classes and Pseudo-elements?</div>
         <div class="blog-card-excerpt">Learn the difference between CSS pseudo-classes and pseudo-elements with simple examples for beginners.</div>
@@ -482,8 +593,11 @@
 
       <a href="semantic%20tag%20in%20HTML.html" class="blog-card" data-cat="html" style="--card-color:#fdba74">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fdba74;border-color:rgba(253, 186, 116, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fdba74;border-color:rgba(253, 186, 116, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jul 2026</span>
         </div>
         <div class="blog-card-title">What are Semantic Tags in HTML?</div>
         <div class="blog-card-excerpt">Learn what semantic tags are in HTML, why they matter, and how semantic HTML improves accessibility, SEO, and code readability. Beginner-friendly examples included.</div>
@@ -495,8 +609,11 @@
 
       <a href="Symbols%20in%20Ruby.html" class="blog-card" data-cat="general" style="--card-color:#ef4444">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#ef4444;border-color:rgba(239, 68, 68, 0.3)">Ruby</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#ef4444;border-color:rgba(239, 68, 68, 0.3)">Ruby</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Jun 2026</span>
         </div>
         <div class="blog-card-title">What are Symbols in Ruby?</div>
         <div class="blog-card-excerpt">Learn what symbols are in Ruby, how they differ from strings, and why they are used for efficiency and identifiers.</div>
@@ -508,8 +625,11 @@
 
       <a href="Traits%20in%20PHP.html" class="blog-card" data-cat="general" style="--card-color:#f59e0b">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f59e0b;border-color:rgba(245, 158, 11, 0.3)">PHP</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f59e0b;border-color:rgba(245, 158, 11, 0.3)">PHP</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Jun 2026</span>
         </div>
         <div class="blog-card-title">What are Traits in PHP?</div>
         <div class="blog-card-excerpt">Learn what traits are in PHP, how they work, and why they are used to reuse code across classes without inheritance limits.</div>
@@ -521,8 +641,11 @@
 
       <a href="Vectors%20in%20R.html" class="blog-card" data-cat="general" style="--card-color:#10b981">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#10b981;border-color:rgba(16, 185, 129, 0.3)">R Programming</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#10b981;border-color:rgba(16, 185, 129, 0.3)">R Programming</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Jun 2026</span>
         </div>
         <div class="blog-card-title">What are Vectors in R?</div>
         <div class="blog-card-excerpt">Learn what vectors are in R, how they work, and why they are the most important data structure in R programming.</div>
@@ -534,8 +657,11 @@
 
       <a href="what%20are%20tables%20in%20HTML.html" class="blog-card" data-cat="html" style="--card-color:#fde68a">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fde68a;border-color:rgba(253, 230, 138, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fde68a;border-color:rgba(253, 230, 138, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jun 2026</span>
         </div>
         <div class="blog-card-title">What is a Table?</div>
         <div class="blog-card-excerpt">Learn what HTML tables are, how they work, and when to use them. A beginner-friendly explanation with examples and best practices.</div>
@@ -547,8 +673,11 @@
 
       <a href="what%20is%20Bash.html" class="blog-card" data-cat="general" style="--card-color:#10b981">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#10b981;border-color:rgba(16, 185, 129, 0.3)">Linux</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#10b981;border-color:rgba(16, 185, 129, 0.3)">Linux</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jun 2026</span>
         </div>
         <div class="blog-card-title">What is Bash?</div>
         <div class="blog-card-excerpt">Learn what Bash is, how it works, and why it is used in Linux and Unix systems for command-line automation.</div>
@@ -560,8 +689,11 @@
 
       <a href="what-is-css.html" class="blog-card" data-cat="css" style="--card-color:#a5f3fc">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#a5f3fc;border-color:rgba(165, 243, 252, 0.3)">CSS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#a5f3fc;border-color:rgba(165, 243, 252, 0.3)">CSS</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jun 2026</span>
         </div>
         <div class="blog-card-title">What is CSS?</div>
         <div class="blog-card-excerpt">CSS (Cascading Style Sheets) is the language that controls how HTML elements look on screen. Learn what CSS is, how it works, and why every web developer needs it.</div>
@@ -573,8 +705,11 @@
 
       <a href="what%20is%20Dart%20and%20where%20it%20is%20used.html" class="blog-card" data-cat="general" style="--card-color:#2563eb">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#2563eb;border-color:rgba(37, 99, 235, 0.3)">Programming</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#2563eb;border-color:rgba(37, 99, 235, 0.3)">Programming</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jun 2026</span>
         </div>
         <div class="blog-card-title">What is Dart and where is it used?</div>
         <div class="blog-card-excerpt">Learn what Dart programming language is, how it works, and where it is used in mobile, web, and backend development.</div>
@@ -586,7 +721,10 @@
 
       <a href="Dynamic%20Memory%20Allocation%20in%20C.html" class="blog-card" data-cat="cpp" style="--card-color:#60a5fa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#60a5fa;border-color:rgba(96, 165, 250, 0.3)">C</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#60a5fa;border-color:rgba(96, 165, 250, 0.3)">C</span>
+            <span class="blog-difficulty advanced">Advanced</span>
+          </div>
           <span class="blog-date">May 2026</span>
         </div>
         <div class="blog-card-title">What is Dynamic Memory Allocation in C?</div>
@@ -599,7 +737,10 @@
 
       <a href="why-hacking.html" class="blog-card" data-cat="general" style="--card-color:#818cf8">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#818cf8;border-color:rgba(129, 140, 248, 0.3)">Cybersecurity</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#818cf8;border-color:rgba(129, 140, 248, 0.3)">Cybersecurity</span>
+            <span class="blog-difficulty advanced">Advanced</span>
+          </div>
           <span class="blog-date">May 2026</span>
         </div>
         <div class="blog-card-title">What is Ethical Hacking?</div>
@@ -612,7 +753,10 @@
 
       <a href="Event%20Bubbling%20in%20JS.html" class="blog-card" data-cat="javascript" style="--card-color:#a78bfa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">JS</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">JS</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
           <span class="blog-date">May 2026</span>
         </div>
         <div class="blog-card-title">What is Event Bubbling in JavaScript?</div>
@@ -625,7 +769,10 @@
 
       <a href="what%20is%20Go%20language.html" class="blog-card" data-cat="general" style="--card-color:#f59e0b">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f59e0b;border-color:rgba(245, 158, 11, 0.3)">Programming</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f59e0b;border-color:rgba(245, 158, 11, 0.3)">Programming</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
           <span class="blog-date">May 2026</span>
         </div>
         <div class="blog-card-title">What is Go (Golang)?</div>
@@ -638,7 +785,10 @@
 
       <a href="what-is-html.html" class="blog-card" data-cat="html" style="--card-color:#93c5fd">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#93c5fd;border-color:rgba(147, 197, 253, 0.3)">HTML</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#93c5fd;border-color:rgba(147, 197, 253, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
           <span class="blog-date">May 2026</span>
         </div>
         <div class="blog-card-title">What is HTML?</div>
@@ -651,7 +801,10 @@
 
       <a href="what%20is%20Java.html" class="blog-card" data-cat="java" style="--card-color:#f97316">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f97316;border-color:rgba(249, 115, 22, 0.3)">Java</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f97316;border-color:rgba(249, 115, 22, 0.3)">Java</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
           <span class="blog-date">May 2026</span>
         </div>
         <div class="blog-card-title">What is Java?</div>
@@ -664,7 +817,10 @@
 
       <a href="what%20is%20JavaScript.html" class="blog-card" data-cat="javascript" style="--card-color:#f472b6">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f472b6;border-color:rgba(244, 114, 182, 0.3)">JS</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f472b6;border-color:rgba(244, 114, 182, 0.3)">JS</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
           <span class="blog-date">May 2026</span>
         </div>
         <div class="blog-card-title">What is JavaScript?</div>
@@ -677,8 +833,11 @@
 
       <a href="Null%20safety%20features%20in%20Kotlin.html" class="blog-card" data-cat="general" style="--card-color:#a78bfa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">Kotlin</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">Kotlin</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Apr 2026</span>
         </div>
         <div class="blog-card-title">What is Null Safety in Kotlin?</div>
         <div class="blog-card-excerpt">Learn Kotlin null safety features, how they prevent null pointer exceptions, and why Kotlin is safer than Java for handling null values.</div>
@@ -690,8 +849,11 @@
 
       <a href="Optional%20in%20Swift.html" class="blog-card" data-cat="general" style="--card-color:#22c55e">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#22c55e;border-color:rgba(34, 197, 94, 0.3)">Swift</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#22c55e;border-color:rgba(34, 197, 94, 0.3)">Swift</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Apr 2026</span>
         </div>
         <div class="blog-card-title">What is Optional in Swift?</div>
         <div class="blog-card-excerpt">Learn what Optionals are in Swift, how they work, and why Swift uses them to safely handle nil values.</div>
@@ -703,8 +865,11 @@
 
       <a href="Ownership%20in%20Rust.html" class="blog-card" data-cat="general" style="--card-color:#f97316">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f97316;border-color:rgba(249, 115, 22, 0.3)">Rust</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f97316;border-color:rgba(249, 115, 22, 0.3)">Rust</span>
+            <span class="blog-difficulty advanced">Advanced</span>
+          </div>
+          <span class="blog-date">Apr 2026</span>
         </div>
         <div class="blog-card-title">What is Ownership in Rust?</div>
         <div class="blog-card-excerpt">Learn what ownership in Rust is, how it works, and why it is the core feature that makes Rust memory-safe without a garbage collector.</div>
@@ -716,8 +881,11 @@
 
       <a href="what%20is%20penetration%20testing%20in%20Ethical%20Hacking.html" class="blog-card" data-cat="general" style="--card-color:#ef4444">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#ef4444;border-color:rgba(239, 68, 68, 0.3)">Cybersecurity</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#ef4444;border-color:rgba(239, 68, 68, 0.3)">Cybersecurity</span>
+            <span class="blog-difficulty advanced">Advanced</span>
+          </div>
+          <span class="blog-date">Apr 2026</span>
         </div>
         <div class="blog-card-title">What is Penetration Testing in Ethical Hacking?</div>
         <div class="blog-card-excerpt">Learn what penetration testing is in ethical hacking, how it works, and why it is used to secure systems and networks.</div>
@@ -729,8 +897,11 @@
 
       <a href="position%20in%20CSS.html" class="blog-card" data-cat="css" style="--card-color:#fb7185">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fb7185;border-color:rgba(251, 113, 133, 0.3)">CSS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fb7185;border-color:rgba(251, 113, 133, 0.3)">CSS</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Apr 2026</span>
         </div>
         <div class="blog-card-title">What is Position in CSS?</div>
         <div class="blog-card-excerpt">Learn CSS position property (static, relative, absolute, fixed, sticky) with simple examples.</div>
@@ -742,8 +913,11 @@
 
       <a href="Responsive%20Web%20Design%20in%20CSS.html" class="blog-card" data-cat="css" style="--card-color:#38bdf8">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#38bdf8;border-color:rgba(56, 189, 248, 0.3)">CSS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#38bdf8;border-color:rgba(56, 189, 248, 0.3)">CSS</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Apr 2026</span>
         </div>
         <div class="blog-card-title">What is Responsive Web Design?</div>
         <div class="blog-card-excerpt">Learn what responsive web design is, why it matters, and how websites adapt to different screen sizes using CSS.</div>
@@ -755,8 +929,11 @@
 
       <a href="what%20is%20Shell%20Script.html" class="blog-card" data-cat="general" style="--card-color:#22c55e">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#22c55e;border-color:rgba(34, 197, 94, 0.3)">Linux</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#22c55e;border-color:rgba(34, 197, 94, 0.3)">Linux</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Apr 2026</span>
         </div>
         <div class="blog-card-title">What is Shell Script?</div>
         <div class="blog-card-excerpt">Learn what a shell script is, how it works, and why it is used for automating tasks in Linux and Unix systems.</div>
@@ -768,8 +945,11 @@
 
       <a href="CSS%20Box%20Model.html" class="blog-card" data-cat="css" style="--card-color:#facc15">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">CSS</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">CSS</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Mar 2026</span>
         </div>
         <div class="blog-card-title">What is the CSS Box Model?</div>
         <div class="blog-card-excerpt">Learn the CSS Box Model in a simple way with examples. Understand content, padding, border, and margin.</div>
@@ -781,8 +961,11 @@
 
       <a href="div-vs-section%20tag%20in%20CSS.html" class="blog-card" data-cat="html" style="--card-color:#c4b5fd">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#c4b5fd;border-color:rgba(196, 181, 253, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#c4b5fd;border-color:rgba(196, 181, 253, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Mar 2026</span>
         </div>
         <div class="blog-card-title">What is the difference between &lt;div&gt; and &lt;section&gt;?</div>
         <div class="blog-card-excerpt">Learn the difference between the HTML div and section elements. Understand when to use each tag, semantic HTML best practices, and how section improves accessibility and SEO.</div>
@@ -794,8 +977,11 @@
 
       <a href="sec.html" class="blog-card" data-cat="html" style="--card-color:#fca5a5">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fca5a5;border-color:rgba(252, 165, 165, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fca5a5;border-color:rgba(252, 165, 165, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Mar 2026</span>
         </div>
         <div class="blog-card-title">What is the difference between &lt;div&gt; and &lt;section&gt;?</div>
         <div class="blog-card-excerpt">What is the difference between &lt;div&gt; and &lt;section&gt; in HTML? Learn when to use each element, why it matters for accessibility and SEO, and see clear examples.</div>
@@ -807,8 +993,11 @@
 
       <a href="id-vs-classes%20in%20CSS.html" class="blog-card" data-cat="html" style="--card-color:#f9a8d4">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f9a8d4;border-color:rgba(249, 168, 212, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f9a8d4;border-color:rgba(249, 168, 212, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Mar 2026</span>
         </div>
         <div class="blog-card-title">What is the difference between ID and Class in HTML?</div>
         <div class="blog-card-excerpt">Learn the difference between HTML id and class attributes. Understand when to use ids vs classes, CSS selectors, JavaScript targeting, and best practices with beginner-friendly examples.</div>
@@ -820,8 +1009,11 @@
 
       <a href="inline%20vs%20block%20elements%20in%20HTML.html" class="blog-card" data-cat="html" style="--card-color:#67e8f9">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#67e8f9;border-color:rgba(103, 232, 249, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#67e8f9;border-color:rgba(103, 232, 249, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Mar 2026</span>
         </div>
         <div class="blog-card-title">What is the Difference Between Inline and Block Elements?</div>
         <div class="blog-card-excerpt">Learn the difference between inline and block elements in HTML with simple examples. Understand how elements behave in layout.</div>
@@ -833,8 +1025,11 @@
 
       <a href="DOM%20in%20HTML.html" class="blog-card" data-cat="html" style="--card-color:#a78bfa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#a78bfa;border-color:rgba(167, 139, 250, 0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Mar 2026</span>
         </div>
         <div class="blog-card-title">What is the DOM (Document Object Model)?</div>
         <div class="blog-card-excerpt">Learn what the DOM (Document Object Model) is in HTML, how it works, and why it is important for JavaScript and web development.</div>
@@ -846,8 +1041,11 @@
 
       <a href="why-we-need-c.html" class="blog-card" data-cat="general" style="--card-color:#facc15">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">C Programming</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#facc15;border-color:rgba(250, 204, 21, 0.3)">C Programming</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Feb 2026</span>
         </div>
         <div class="blog-card-title">Why Do We Study C Language?</div>
         <div class="blog-card-excerpt">Learn why the C programming language is important, where it is used, and why every computer science student should study C language.</div>
@@ -859,8 +1057,11 @@
 
       <a href="why%20do%20we%20study%20c%2B%2B.html" class="blog-card" data-cat="cpp" style="--card-color:#10b981">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#10b981;border-color:rgba(16, 185, 129, 0.3)">C++</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#10b981;border-color:rgba(16, 185, 129, 0.3)">C++</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Feb 2026</span>
         </div>
         <div class="blog-card-title">Why do we study C++?</div>
         <div class="blog-card-excerpt">Learn why C++ is still widely used, what makes it powerful, and why beginners study it.</div>
@@ -872,8 +1073,11 @@
 
       <a href="why-use-python.html" class="blog-card" data-cat="python" style="--card-color:#f7c948">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f7c948;border-color:rgba(247, 201, 72, 0.3)">// Python</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f7c948;border-color:rgba(247, 201, 72, 0.3)">// Python</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Feb 2026</span>
         </div>
         <div class="blog-card-title">Why Do We Use Python?</div>
         <div class="blog-card-excerpt">Python explained for beginners. Learn why Python is used, how it works, and why it</div>
@@ -885,8 +1089,11 @@
 
       <a href="why%20is%20java%20so%20popular.html" class="blog-card" data-cat="java" style="--card-color:#60a5fa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#60a5fa;border-color:rgba(96, 165, 250, 0.3)">Java</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#60a5fa;border-color:rgba(96, 165, 250, 0.3)">Java</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Feb 2026</span>
         </div>
         <div class="blog-card-title">Why is Java So Popular?</div>
         <div class="blog-card-excerpt">Learn why Java is one of the most popular programming languages in the world, including its platform independence, security, and real-world usage.</div>
@@ -898,8 +1105,11 @@
 
       <a href="why%20use%20TypeScript%20instead%20of%20JS.html" class="blog-card" data-cat="general" style="--card-color:#60a5fa">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#60a5fa;border-color:rgba(96, 165, 250, 0.3)">TypeScript</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#60a5fa;border-color:rgba(96, 165, 250, 0.3)">TypeScript</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Feb 2026</span>
         </div>
         <div class="blog-card-title">Why Use TypeScript Instead of JavaScript?</div>
         <div class="blog-card-excerpt">TypeScript adds static typing on top of JavaScript. Learn why developers use TypeScript instead of JavaScript, how it improves code quality, and when to use it.</div>
@@ -914,8 +1124,11 @@
       <!-- ARTICLE 2 -->
       <a href="why-use-python.html" class="blog-card" data-cat="python" style="--card-color:#f7c948">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#f7c948;border-color:rgba(247,201,72,0.3)">Python</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#f7c948;border-color:rgba(247,201,72,0.3)">Python</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Feb 2026</span>
         </div>
         <div class="blog-card-title">What is Python and why do we use it?</div>
         <div class="blog-card-excerpt">Python is a high-level, interpreted programming language known for its simplicity and readability. It's widely used in web development, data science, artificial intelligence, and automation.</div>
@@ -928,8 +1141,11 @@
       <!-- ARTICLE 4 -->
       <a href="why-hacking.html" class="blog-card" data-cat="security" style="--card-color:#fbbf24">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fbbf24;border-color:rgba(251,191,36,0.3)">Security</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fbbf24;border-color:rgba(251,191,36,0.3)">Security</span>
+            <span class="blog-difficulty advanced">Advanced</span>
+          </div>
+          <span class="blog-date">Jan 2026</span>
         </div>
         <div class="blog-card-title">What is Ethical Hacking?</div>
         <div class="blog-card-excerpt">Hacking in 2026.</div>
@@ -942,8 +1158,11 @@
       <!-- ARTICLE 5 -->
       <a href="diff.html" class="blog-card" data-cat="javascript" style="--card-color:#facc15">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#facc15;border-color:rgba(250,204,21,0.3)">JavaScript</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#facc15;border-color:rgba(250,204,21,0.3)">JavaScript</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jan 2026</span>
         </div>
         <div class="blog-card-title">What is the difference between let, const and var in JavaScript?</div>
         <div class="blog-card-excerpt">Modern JavaScript has three ways to declare variables. Understanding the differences between <code style="font-size:0.85em;color:#facc15">let</code>, <code style="font-size:0.85em;color:#facc15">const</code>, and the older <code style="font-size:0.85em;color:#facc15">var</code> is essential for writing clean, bug-free code.</div>
@@ -956,8 +1175,11 @@
       <!-- ARTICLE 6 -->
       <a href="sec.html" class="blog-card" data-cat="html" style="--card-color:#fb923c">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fb923c;border-color:rgba(251,146,60,0.3)">HTML</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#fb923c;border-color:rgba(251,146,60,0.3)">HTML</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jan 2026</span>
         </div>
         <div class="blog-card-title">What is the difference between &lt;div&gt; and &lt;section&gt; in HTML?</div>
         <div class="blog-card-excerpt">Both are block-level container elements, but <code style="font-size:0.85em;color:#fb923c">&lt;section&gt;</code> carries semantic meaning while <code style="font-size:0.85em;color:#fb923c">&lt;div&gt;</code> is purely structural. Choosing the right one improves SEO and accessibility.</div>
@@ -968,24 +1190,15 @@
       </a>
 
       <!-- ARTICLE 7 -->
-      <a href="litu.html" class="blog-card" data-cat="python" style="--card-color:#fbbf24">
-        <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#fbbf24;border-color:rgba(251,191,36,0.3)">Python</span>
-          <span class="blog-date">May 2026</span>
-        </div>
-        <div class="blog-card-title">What is the difference between a list and a tuple in Python?</div>
-        <div class="blog-card-excerpt">Lists and tuples both store ordered collections of items, but there is one key difference: lists are mutable (changeable) and tuples are immutable (fixed). Here's when to use each one.</div>
-        <div class="blog-card-footer">
-          <span class="blog-read-time">~4 min read</span>
-          <span class="blog-arrow" style="color:#fbbf24">Read →</span>
-        </div>
-      </a>
 
-      <!-- ARTICLE 8 -->
+<!-- ARTICLE 8 -->
       <a href="best.html" class="blog-card" data-cat="sql" style="--card-color:#34d399">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#34d399;border-color:rgba(52,211,153,0.3)">SQL</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#34d399;border-color:rgba(52,211,153,0.3)">SQL</span>
+            <span class="blog-difficulty beginner">Beginner</span>
+          </div>
+          <span class="blog-date">Jan 2026</span>
         </div>
         <div class="blog-card-title">Best top 20 websites in 2026</div>
         <div class="blog-card-excerpt"><code style="font-size:0.85em;color:#34d399">Best </code> Website right now as of 2026 <code style="font-size:0.85em;color:#34d399">Why Popular?</code>  The world's top websites became successful because they provide massive value
@@ -1001,8 +1214,11 @@
 
       <a href="C vs C++.html" class="blog-card" data-cat="general" style="--card-color:#818cf8">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#818cf8;border-color:rgba(129,140,248,0.3)">General</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#818cf8;border-color:rgba(129,140,248,0.3)">General</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Jan 2026</span>
         </div>
         <div class="blog-card-title">C vs C++</div>
         <div class="blog-card-excerpt">C vs C++: Key differences, use cases, and when to choose each language.</div>
@@ -1014,8 +1230,11 @@
 
       <a href="Classes and Objects in C++.html" class="blog-card" data-cat="general" style="--card-color:#818cf8">
         <div class="blog-card-meta">
-          <span class="blog-tag" style="color:#818cf8;border-color:rgba(129,140,248,0.3)">General</span>
-          <span class="blog-date">May 2026</span>
+          <div class="blog-card-badges">
+            <span class="blog-tag" style="color:#818cf8;border-color:rgba(129,140,248,0.3)">General</span>
+            <span class="blog-difficulty intermediate">Intermediate</span>
+          </div>
+          <span class="blog-date">Jan 2026</span>
         </div>
         <div class="blog-card-title">Classes and Objects in C++</div>
         <div class="blog-card-excerpt">Classes and Objects in C++: Key differences, use cases, and when to choose each language.</div>
@@ -1027,6 +1246,23 @@
       
 
 
+    </div>
+
+    <!-- PAGINATION / LOAD MORE -->
+    <div class="load-more-wrap" id="load-more-wrap">
+      <div class="load-more-status">
+        Showing <span id="shown-count">12</span> of <span id="total-count">67</span> articles
+      </div>
+      <div class="load-more-progress-track">
+        <div class="load-more-progress-fill" id="load-more-progress"></div>
+      </div>
+      <button class="load-more-btn" id="load-more-btn">
+        <span>Load More Articles</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+      </button>
+      <div class="all-loaded-msg" id="all-loaded-msg" style="display:none;">
+        🎉 You've viewed all articles in this category!
+      </div>
     </div>
   </main>
 
@@ -1120,7 +1356,31 @@
   </script>
 
 
-<button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle Light/Dark Mode">
+  <!-- SEARCH MODAL -->
+  <div class="search-overlay" id="search-modal" role="dialog" aria-modal="true" aria-label="Search articles">
+    <div class="search-box">
+      <div class="search-header">
+        <div class="search-input-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" class="search-input" id="search-input" placeholder="Search 67+ programming articles (e.g. pointer, flexbox, tuple, sql)..." autocomplete="off">
+          <button class="search-close" id="search-close" aria-label="Close search">✕</button>
+        </div>
+      </div>
+      <div class="search-results" id="search-results">
+        <div class="search-empty-state">Start typing to search guides...</div>
+      </div>
+      <div class="search-footer">
+        <span><kbd>ESC</kbd> to close</span>
+        <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+        <span><kbd>ENTER</kbd> to select</span>
+      </div>
+    </div>
+  </div>
+
+  <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle Light/Dark Mode">
   <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="5"></circle>
     <line x1="12" y1="1" x2="12" y2="3"></line>
