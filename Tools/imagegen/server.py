@@ -21,9 +21,9 @@ from flask_cors import CORS
 from io import BytesIO
 from favicon_generator import generate_favicon_image, hex_to_rgb
 
-app = Flask(__name__)
-CORS(app)  # allows client.html (opened as a local file) to call this API
 APP_DIR = Path(__file__).resolve().parent
+app = Flask(__name__, static_folder=str(APP_DIR), static_url_path="")
+CORS(app)  # allows client.html (opened as a local file) to call this API
 
 
 @app.route("/")

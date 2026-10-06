@@ -1,140 +1,292 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Favicon Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favicon Generator — Code Tutorium Tools</title>
+  <link rel="icon" type="image/png" href="https://codetutorium.com/favicon.png">
+  <link rel="stylesheet" href="tools-shared.css">
   <style>
-    body { font-family: -apple-system, Arial, sans-serif; background: #f4f6f8; margin: 0; padding: 40px; }
-    .wrap { max-width: 760px; margin: 0 auto; background: white; border-radius: 16px;
-            padding: 32px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
-    h1 { font-size: 22px; margin-top: 0; }
-    form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
-    label { font-size: 13px; color: #444; font-weight: 600; display: block; margin-bottom: 4px; }
-    input[type=text], input[type=number] { width: 100%; padding: 8px 10px; border: 1px solid #ddd;
-            border-radius: 8px; font-size: 14px; box-sizing: border-box; }
-    input[type=color] { width: 60px; height: 36px; border: none; border-radius: 8px; cursor: pointer; }
-    .full { grid-column: 1 / -1; }
-    .preview { text-align: center; margin: 28px 0; min-height: 220px; }
-    .preview img { width: 200px; height: 200px; image-rendering: pixelated; border-radius: 20px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
-    button { background: #1976D2; color: white; border: none; padding: 10px 20px; border-radius: 8px;
-            font-size: 14px; cursor: pointer; font-weight: 600; }
-    button:hover { background: #1565C0; }
-    button.secondary { background: #eef2f7; color: #1976D2; }
-    button.secondary:hover { background: #e2e8f0; }
-    .row { display: flex; align-items: center; gap: 10px; }
-    .actions { display: flex; gap: 12px; margin-top: 8px; }
-    .status { font-size: 13px; color: #888; margin-top: 10px; }
-    .status.error { color: #c0392b; }
+    .gen-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media(max-width: 768px) {
+      .gen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .color-swatch-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .color-hex {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .full-width {
+      grid-column: 1 / -1;
+    }
+    .preview-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 280px;
+    }
+    .preview-img-wrap {
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      margin-bottom: 1.2rem;
+    }
+    .preview-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      image-rendering: pixelated;
+      border-radius: 12px;
+    }
+    .btn-actions {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>🎨 Favicon Generator</h1>
 
-    <form id="form">
-      <div>
-        <label>Text (1-2 letters look best)</label>
-        <input type="text" id="text" maxlength="4" value="CT">
-      </div>
-      <div>
-        <label>Size (px)</label>
-        <input type="number" id="size" min="16" max="1024" value="256">
-      </div>
-      <div>
-        <label>Dark shade (gradient top)</label>
-        <div class="row"><input type="color" id="color_dark" value="#0d47a1"></div>
-      </div>
-      <div>
-        <label>Main color (gradient bottom)</label>
-        <div class="row"><input type="color" id="color_main" value="#1976d2"></div>
-      </div>
-      <div>
-        <label>Accent color (2nd letter)</label>
-        <div class="row"><input type="color" id="color_accent" value="#42a5f5"></div>
-      </div>
-      <div class="full actions">
-        <button type="submit">Update Preview</button>
-        <button type="button" class="secondary" id="downloadBtn">Download PNG</button>
-      </div>
-    </form>
+<nav class="top">
+  <a href="https://codetutorium.com/" class="logo">code<span class="cursor"></span>tutorium</a>
+  <div class="nav-right">
+    <a href="https://codetutorium.com/" class="nav-cta">&larr; Main Site</a>
+    <a href="https://codetutorium.com/tool.html" class="nav-cta active">All Tools</a>
+    <a href="https://codetutorium.com/blog/index" class="nav-cta">Blog</a>
+  </div>
+</nav>
 
-    <div class="preview">
-      <img id="previewImg" src="" alt="favicon preview">
-    </div>
-    <div class="status" id="status">This generator uses the same server as the tools page.</div>
-
-    <label>API server URL</label>
-    <input type="text" id="apiBase" value="">
+<main class="tool-page-wrap">
+  <div class="tool-hero">
+    <div class="tool-eyebrow">Visual Asset Studio</div>
+    <h1 class="tool-title">Favicon Generator</h1>
+    <p class="tool-desc">Design custom browser icons with crisp typography, smooth gradients, and instant multi-size PNG exports.</p>
   </div>
 
-  <script>
-    const form = document.getElementById('form');
-    const previewImg = document.getElementById('previewImg');
-    const statusEl = document.getElementById('status');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const apiBaseInput = document.getElementById('apiBase');
+  <div class="tool-panel">
+    <div class="gen-grid">
+      <!-- Left: Form Controls -->
+      <form id="form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="text">Icon Text (1–4 chars)</label>
+            <input type="text" id="text" maxlength="4" value="CT" placeholder="CT">
+          </div>
+          <div class="form-group">
+            <label for="size">Export Size (px)</label>
+            <input type="number" id="size" min="16" max="1024" value="256" step="16">
+          </div>
+          <div class="form-group">
+            <label for="color_dark">Dark Gradient Top</label>
+            <div class="color-swatch-row">
+              <input type="color" id="color_dark" value="#0d47a1">
+              <span class="color-hex" id="hex_dark">#0d47a1</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="color_main">Main Gradient Bottom</label>
+            <div class="color-swatch-row">
+              <input type="color" id="color_main" value="#1976d2">
+              <span class="color-hex" id="hex_main">#1976d2</span>
+            </div>
+          </div>
+          <div class="form-group full-width">
+            <label for="color_accent">Accent Color (Second Letter)</label>
+            <div class="color-swatch-row">
+              <input type="color" id="color_accent" value="#42a5f5">
+              <span class="color-hex" id="hex_accent">#42a5f5</span>
+            </div>
+          </div>
+          <div class="full-width btn-actions">
+            <button type="submit" class="ct-btn ct-btn-primary" style="flex: 1;">
+              ⚡ Update Preview
+            </button>
+            <button type="button" class="ct-btn ct-btn-secondary" id="downloadBtn" style="flex: 1;">
+              ⬇️ Download PNG
+            </button>
+          </div>
+        </div>
+      </form>
 
-    function getParams() {
-      return {
-        text: document.getElementById('text').value || 'CT',
-        size: document.getElementById('size').value || 256,
-        color_dark: document.getElementById('color_dark').value.replace('#', ''),
-        color_main: document.getElementById('color_main').value.replace('#', ''),
-        color_accent: document.getElementById('color_accent').value.replace('#', ''),
-      };
+      <!-- Right: Preview Display -->
+      <div class="preview-card">
+        <div class="preview-img-wrap">
+          <img id="previewImg" src="" alt="Favicon Preview">
+        </div>
+        <div id="status" class="ct-status" style="width: 100%; justify-content: center; font-family: var(--font-mono); font-size: 0.8rem;">
+          Ready to generate
+        </div>
+        <div class="form-group full-width" style="margin-top: 1rem; width: 100%;">
+          <label for="apiBase" style="font-size: 0.75rem;">Backend Server Base URL (optional)</label>
+          <input type="text" id="apiBase" value="" placeholder="Default (relative: .)">
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="ct-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>code<span style="color:var(--accent)">tutorium</span></h3>
+      <p>Learn to code for free. Quality programming education for everyone.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/lessons/Python/index.html">Python</a></li>
+        <li><a href="https://codetutorium.com/lessons/C++/index.html">C++</a></li>
+        <li><a href="https://codetutorium.com/lessons/HTML/index.html">HTML &amp; CSS</a></li>
+        <li><a href="https://codetutorium.com/lessons/JavaScript/index.html">JavaScript</a></li>
+        <li><a href="https://codetutorium.com/lessons/Java/index.html">Java</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>More Courses</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/lessons/C/index.html">C Language</a></li>
+        <li><a href="https://codetutorium.com/lessons/SQL/index.html">SQL</a></li>
+        <li><a href="https://codetutorium.com/lessons/Rust/index.html">Rust</a></li>
+        <li><a href="https://codetutorium.com/lessons/Go/index.html">Go</a></li>
+        <li><a href="https://codetutorium.com/lessons/TypeScript/index.html">TypeScript</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Mobile Apps</h3>
+      <ul>
+        <li><a href="https://play.google.com/store/apps/details?id=com.pymaster.app" target="_blank" rel="noopener">Python Master</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.webdev.academy" target="_blank" rel="noopener">Web Dev Academy</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.ccmasterclass.app" target="_blank" rel="noopener">C/C++ Masterclass</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/tool.html">Tools</a></li>
+        <li><a href="https://codetutorium.com/about">About Us</a></li>
+        <li><a href="https://codetutorium.com/blog/index">Blog</a></li>
+        <li><a href="https://codetutorium.com/contact">Contact</a></li>
+        <li><a href="https://codetutorium.com/privacy">Privacy Policy</a></li>
+        <li><a href="https://codetutorium.com/terms">Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2026 Code Tutorium. All rights reserved.</p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/codetutorium?igsh=MWs0Z2szNnpkaGIzaw%3D%3D&utm_source=qr" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="https://www.facebook.com/share/1B2n3uJQpd/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      <a href="https://wa.me/918872886116" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+      <a href="https://x.com/codetutorium?s=11" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://github.com/learncording-dotcom/Codetutorium" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+      <a href="https://www.youtube.com/@Learn-coding-for-free" class="social-link" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('form');
+  const previewImg = document.getElementById('previewImg');
+  const statusEl = document.getElementById('status');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const apiBaseInput = document.getElementById('apiBase');
+
+  ['dark', 'main', 'accent'].forEach(key => {
+    const input = document.getElementById('color_' + key);
+    const hex = document.getElementById('hex_' + key);
+    input.addEventListener('input', () => { hex.textContent = input.value; });
+  });
+
+  function getParams() {
+    return {
+      text: document.getElementById('text').value || 'CT',
+      size: document.getElementById('size').value || 256,
+      color_dark: document.getElementById('color_dark').value.replace('#', ''),
+      color_main: document.getElementById('color_main').value.replace('#', ''),
+      color_accent: document.getElementById('color_accent').value.replace('#', ''),
+    };
+  }
+
+  function buildQuery(params) {
+    return new URLSearchParams(params).toString();
+  }
+
+  async function updatePreview() {
+    const base = apiBaseInput.value.trim().replace(/\/$/, '') || '.';
+    const query = buildQuery(getParams());
+    const url = `${base}/api/image?${query}`;
+    statusEl.textContent = 'Rendering preview...';
+    statusEl.classList.remove('error');
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Server responded ${res.status}`);
+      const blob = await res.blob();
+      previewImg.src = URL.createObjectURL(blob);
+      statusEl.textContent = 'Preview updated ✓';
+    } catch (err) {
+      statusEl.textContent = `Server notice: ${err.message}.`;
+      statusEl.classList.add('error');
     }
+  }
 
-    function buildQuery(params) {
-      return new URLSearchParams(params).toString();
-    }
-
-    async function updatePreview() {
-      const base = apiBaseInput.value.trim().replace(/\/$/, '') || '.';
-      const query = buildQuery(getParams());
-      const url = `${base}/api/image?${query}`;
-      statusEl.textContent = 'Loading preview...';
-      statusEl.classList.remove('error');
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`Server responded ${res.status}`);
-        const blob = await res.blob();
-        previewImg.src = URL.createObjectURL(blob);
-        statusEl.textContent = 'Preview updated.';
-      } catch (err) {
-        statusEl.textContent = `Could not reach server: ${err.message}. Is server.py running?`;
-        statusEl.classList.add('error');
-      }
-    }
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      updatePreview();
-    });
-
-    downloadBtn.addEventListener('click', async () => {
-      const base = apiBaseInput.value.trim().replace(/\/$/, '') || '.';
-      const params = getParams();
-      const query = buildQuery(params);
-      const url = `${base}/api/download?${query}`;
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`Server responded ${res.status}`);
-        const blob = await res.blob();
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = `favicon_${params.text}_${params.size}.png`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      } catch (err) {
-        statusEl.textContent = `Download failed: ${err.message}`;
-        statusEl.classList.add('error');
-      }
-    });
-
-    // Load an initial preview on page open
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
     updatePreview();
-  </script>
+  });
+
+  downloadBtn.addEventListener('click', async () => {
+    const base = apiBaseInput.value.trim().replace(/\/$/, '') || '.';
+    const params = getParams();
+    const query = buildQuery(params);
+    const url = `${base}/api/download?${query}`;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Server responded ${res.status}`);
+      const blob = await res.blob();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `favicon_${params.text}_${params.size}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (err) {
+      statusEl.textContent = `Download failed: ${err.message}`;
+      statusEl.classList.add('error');
+    }
+  });
+
+  // Initial preview
+  updatePreview();
+</script>
+
 </body>
 </html>

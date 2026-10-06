@@ -5,8 +5,8 @@ from flask import Flask, request, send_file, send_from_directory
 import os
 import docx
 
-app = Flask(__name__)
 APP_DIR = Path(__file__).resolve().parent
+app = Flask(__name__, static_folder=str(APP_DIR), static_url_path="")
 OUTPUT_DIR = APP_DIR / "generated"
 OUTPUT_DIR.mkdir(exist_ok=True)
 

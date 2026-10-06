@@ -25,7 +25,7 @@ from pathlib import Path
 from flask import Flask, request, send_file, send_from_directory, jsonify
 
 APP_DIR = Path(__file__).resolve().parent
-app = Flask(__name__, static_folder=None)
+app = Flask(__name__, static_folder=str(APP_DIR), static_url_path="")
 
 MAX_CONTENT_LENGTH = 1024 * 1024 * 1024  # 1 GB upload cap
 app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH

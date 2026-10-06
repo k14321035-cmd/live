@@ -19,13 +19,20 @@ import io
 import os
 import uuid
 
-from flask import Flask, request, send_file, jsonify
+from pathlib import Path
+from flask import Flask, request, send_file, send_from_directory, jsonify
 from flask_cors import CORS
 from PIL import Image
 from rembg import remove, new_session
 
-app = Flask(__name__)
+APP_DIR = Path(__file__).resolve().parent
+app = Flask(__name__, static_folder=str(APP_DIR), static_url_path="")
 CORS(app)  # allow the client (served from a different origin/port) to call this API
+
+
+@app.route("/")
+def index():
+    return send_from_directory(APP_DIR, "index.html")
 
 # u2net is ~170MB and MIT-licensed (rembg's newer default, bria-rmbg, is ~1GB
 # and requires a paid license for commercial use). Created once at startup so

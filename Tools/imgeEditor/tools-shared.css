@@ -1,0 +1,681 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Code Tutorium — Shared Tools Stylesheet
+   Unified Theme & Layout for all Code Tutorium Tools
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── 1. Design Tokens ────────────────────────────────────────────── */
+:root {
+  --bg: #0c0e14;
+  --bg-gradient: radial-gradient(ellipse 900px 500px at 15% -8%, rgba(47, 111, 237, 0.14), transparent 65%), #0c0e14;
+  --surface: #141722;
+  --surface-2: #1b2030;
+  --surface-3: #22293d;
+  
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --border-active: rgba(47, 111, 237, 0.6);
+
+  --accent: #2f6fed;
+  --accent-hover: #4582f7;
+  --accent-dim: rgba(47, 111, 237, 0.14);
+  --accent-glow: rgba(47, 111, 237, 0.25);
+
+  --text: #e8eaf0;
+  --text-muted: #8b92a5;
+  --text-faint: #555c70;
+
+  --success: #22c55e;
+  --success-dim: rgba(34, 197, 94, 0.12);
+  --warning: #f59e0b;
+  --warning-dim: rgba(245, 158, 11, 0.12);
+  --danger: #ef4444;
+  --danger-dim: rgba(239, 68, 68, 0.12);
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* ── 2. Reset & Document Setup ───────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-gradient);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* ── 3. Code Tutorium Global Navigation ──────────────────────────── */
+nav.top, .ct-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(12, 14, 20, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text);
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.logo .cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  background: var(--accent);
+  animation: ct-blink 1.1s steps(1) infinite;
+  border-radius: 1px;
+}
+
+@keyframes ct-blink {
+  50% { opacity: 0; }
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-cta:hover {
+  color: var(--text);
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+.nav-cta.active {
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-color: rgba(47, 111, 237, 0.3);
+}
+
+.nav-cta-btn {
+  background: var(--accent);
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.nav-cta-btn:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+/* ── 4. Main Tool Page Layout ────────────────────────────────────── */
+.tool-page-wrap, main.wrap, main.tool-main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 5.5rem;
+}
+
+.tool-hero, .hero-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.tool-eyebrow, .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  background: var(--accent-dim);
+  border: 1px solid rgba(47, 111, 237, 0.25);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+}
+
+.tool-hero h1, h1.tool-title {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.tool-hero p.lead, .tool-hero p.sub, p.tool-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── 5. Tool Panels & Cards ──────────────────────────────────────── */
+.tool-panel, .tool-card, .panel, .container-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-panel:hover {
+  border-color: var(--border-hover);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-title {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ── 6. Tabs Component ───────────────────────────────────────────── */
+.ct-tabs, .tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 1.8rem;
+}
+
+.ct-tab-btn, .tab-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.ct-tab-btn:hover, .tab-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.ct-tab-btn.active, .tab-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+/* Sub-tabs */
+.subtabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.6rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.subtabs::-webkit-scrollbar { display: none; }
+
+.subtab-btn {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 0.6rem 0.9rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.subtab-btn:hover {
+  color: var(--text);
+}
+
+.subtab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── 7. Form Controls & Inputs ───────────────────────────────────── */
+.form-group, .field {
+  margin-bottom: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+label, .field-label {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+select,
+textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: 0.92rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-faint);
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  width: 48px;
+  height: 40px;
+  padding: 2px;
+  background: var(--bg);
+  cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+input[type="color"]::-webkit-color-swatch { border: none; border-radius: 4px; }
+
+/* Range sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: 3px;
+  outline: none;
+  margin: 0.8rem 0;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--accent-glow);
+  transition: transform 0.1s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* ── 8. Buttons & Actions ────────────────────────────────────────── */
+.ct-btn, .btn, button.btn-primary, button[type="submit"]:not(.subtab-btn) {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+.ct-btn-primary, .btn-primary, button[type="submit"]:not(.subtab-btn) {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.ct-btn-primary:hover, .btn-primary:hover, button[type="submit"]:not(.subtab-btn):hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 20px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.ct-btn-secondary, .btn-secondary, .btn-ghost {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.ct-btn-secondary:hover, .btn-secondary:hover, .btn-ghost:hover {
+  background: var(--surface-3);
+  border-color: var(--border-hover);
+}
+
+.ct-btn-danger, .btn-danger {
+  background: var(--danger-dim);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--danger);
+}
+
+.ct-btn-danger:hover, .btn-danger:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.ct-btn:disabled, .btn:disabled, button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── 9. Dropzone & File Uploads ──────────────────────────────────── */
+.ct-dropzone, .dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: rgba(12, 14, 20, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.ct-dropzone:hover, .dropzone:hover {
+  border-color: var(--border-hover);
+  background: rgba(27, 32, 48, 0.4);
+}
+
+.ct-dropzone.dragover, .dropzone.dragover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.dropzone-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.dropzone-title {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dropzone-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ── 10. Status Badges & Alerts ──────────────────────────────────── */
+.ct-status, .status-msg, .alert {
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.ct-status.error, .status-msg.error {
+  background: var(--danger-dim);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+.ct-status.success, .status-msg.success {
+  background: var(--success-dim);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #86efac;
+}
+
+.ct-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+/* ── 11. Code Tutorium Global Footer ─────────────────────────────── */
+footer.ct-footer {
+  border-top: 1px solid var(--border);
+  padding: 4.5rem 2.5rem 2.5rem;
+  background: rgba(10, 12, 18, 0.95);
+  margin-top: auto;
+  width: 100%;
+}
+
+.footer-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, 1fr);
+  gap: 2.2rem;
+}
+
+.footer-col h3 {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 1.1rem;
+  color: var(--text);
+}
+
+.footer-col p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 0.55rem;
+}
+
+.footer-col a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: color 0.15s ease;
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.copyright {
+  max-width: 1180px;
+  margin: 3.5rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.copyright p {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-link {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.18s ease;
+}
+
+.social-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+.social-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── 12. Responsive Breakpoints ──────────────────────────────────── */
+@media (max-width: 900px) {
+  nav.top, .ct-header {
+    padding: 1rem 1.25rem;
+  }
+  .tool-page-wrap, main.wrap, main.tool-main-content {
+    padding: 2.5rem 1rem 4rem;
+  }
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .copyright {
+    flex-direction: column;
+    text-align: center;
+  }
+  .ct-tabs, .tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tool-panel, .panel {
+    padding: 1.25rem;
+  }
+}

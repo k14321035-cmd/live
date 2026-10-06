@@ -3,162 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frame Splitter</title>
+<title>Video Frame Extractor — Code Tutorium Tools</title>
+<link rel="icon" type="image/png" href="https://codetutorium.com/favicon.png">
+<link rel="stylesheet" href="tools-shared.css">
 <style>
-  :root {
-    --ink: #16140f;
-    --paper: #f4f1ea;
-    --film: #1c1a16;
-    --amber: #d97a34;
-    --amber-dim: #a85f29;
-    --line: #d8d2c4;
-    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
-    --serif: 'Georgia', 'Iowan Old Style', serif;
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--mono);
-    -webkit-font-smoothing: antialiased;
-  }
-
   .sprocket-bar {
-    height: 18px;
-    background: var(--film);
+    height: 14px;
+    background: #090b10;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 0 18px;
+    gap: 12px;
+    padding: 0 16px;
     overflow: hidden;
   }
   .sprocket-bar span {
-    width: 7px;
-    height: 7px;
-    background: var(--paper);
+    width: 6px;
+    height: 6px;
+    background: var(--surface-3);
     border-radius: 1px;
     flex-shrink: 0;
-    opacity: 0.85;
+    opacity: 0.8;
   }
 
-  header {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 56px 24px 28px;
-  }
-
-  .eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--amber-dim);
-    margin: 0 0 10px;
-  }
-
-  h1 {
-    font-family: var(--serif);
-    font-size: 42px;
-    font-weight: 400;
-    margin: 0 0 12px;
-    letter-spacing: -0.01em;
-  }
-  h1 em {
-    font-style: italic;
-    color: var(--amber);
-  }
-
-  .sub {
-    color: #5c574a;
-    font-size: 14px;
-    line-height: 1.6;
-    max-width: 520px;
-  }
-
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
-
-  .panel {
-    border: 1px solid var(--line);
-    background: #fbf9f4;
-    position: relative;
+  .film-panel {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
   }
 
   .dropzone {
-    padding: 48px 24px;
+    padding: 44px 24px;
     text-align: center;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--border);
     cursor: pointer;
-    transition: background 0.15s ease;
+    background: rgba(12, 14, 20, 0.4);
+    transition: background 0.18s ease, border-color 0.18s ease;
   }
-  .dropzone:hover { background: #f6f2e9; }
-  .dropzone.dragover { background: #efe6d4; }
+  .dropzone:hover { background: var(--accent-dim); }
+  .dropzone.dragover { background: var(--accent-dim); border-color: var(--accent); }
 
   .dropzone .icon {
     font-size: 11px;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--amber-dim);
-    margin-bottom: 10px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    margin-bottom: 8px;
   }
-
   .dropzone .filename {
-    font-size: 15px;
-    color: var(--ink);
-    margin-top: 4px;
-    word-break: break-all;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    color: var(--text);
   }
-
   .dropzone .hint {
     font-size: 12px;
-    color: #908a78;
-    margin-top: 8px;
+    color: var(--text-muted);
+    margin-top: 6px;
   }
 
   video.preview {
-    display: block;
-    margin: 20px auto 0;
     max-width: 100%;
-    max-height: 220px;
-    border: 1px solid var(--line);
+    max-height: 260px;
+    margin-top: 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: #000;
   }
 
   .controls {
-    padding: 28px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 22px 28px;
+    gap: 18px 24px;
+    padding: 28px;
   }
 
-  .field { display: flex; flex-direction: column; gap: 7px; }
-  .field.full { grid-column: 1 / -1; }
-
-  label {
-    font-size: 11px;
-    letter-spacing: 0.08em;
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .field label {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #6b6557;
+    color: var(--text-muted);
+    font-weight: 600;
   }
-
-  input[type="text"],
-  input[type="number"],
-  select {
-    font-family: var(--mono);
+  .field input, .field select {
+    font-family: var(--font-mono);
     font-size: 14px;
-    padding: 9px 10px;
-    border: 1px solid var(--line);
-    background: var(--paper);
-    color: var(--ink);
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
     width: 100%;
+    outline: none;
+    transition: all 0.18s ease;
   }
-  input:focus, select:focus {
-    outline: 2px solid var(--amber);
-    outline-offset: -1px;
+  .field input:focus, .field select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
   }
 
   .time-row { display: flex; gap: 10px; }
@@ -166,8 +116,9 @@
 
   .row-note {
     font-size: 11px;
-    color: #908a78;
+    color: var(--text-faint);
     margin-top: -3px;
+    font-family: var(--font-mono);
   }
 
   .actions {
@@ -178,58 +129,70 @@
   }
 
   button#extractBtn {
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    background: var(--film);
-    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: var(--accent);
+    color: #fff;
     border: none;
-    padding: 14px 26px;
+    border-radius: var(--radius-sm);
+    padding: 14px 28px;
     cursor: pointer;
-    transition: background 0.15s ease;
+    transition: all 0.18s ease;
+    box-shadow: 0 4px 16px var(--accent-glow);
   }
-  button#extractBtn:hover:not(:disabled) { background: var(--amber-dim); }
-  button#extractBtn:disabled { background: #c9c3b4; cursor: not-allowed; }
+  button#extractBtn:hover:not(:disabled) {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px var(--accent-glow);
+  }
+  button#extractBtn:disabled {
+    background: var(--surface-2);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
 
   .status {
-    font-size: 13px;
-    color: #5c574a;
+    font-size: 13.5px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
   }
-  .status.error { color: #b0432f; }
-  .status.success { color: #3f7d4a; }
-
-  footer {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 24px 60px;
-    font-size: 11px;
-    color: #a39d8c;
-    border-top: 1px solid var(--line);
-    padding-top: 18px;
-  }
+  .status.error { color: var(--danger); }
+  .status.success { color: var(--success); font-weight: 600; }
 
   @media (max-width: 600px) {
-    h1 { font-size: 32px; }
-    .controls { grid-template-columns: 1fr; padding: 22px; }
-    .actions { flex-direction: column; align-items: stretch; padding: 0 22px 22px; }
+    .controls { grid-template-columns: 1fr; padding: 20px; }
+    .actions { flex-direction: column; align-items: stretch; padding: 0 20px 20px; }
   }
 </style>
 </head>
 <body>
 
+<nav class="top">
+  <a href="https://codetutorium.com/" class="logo">code<span class="cursor"></span>tutorium</a>
+  <div class="nav-right">
+    <a href="https://codetutorium.com/" class="nav-cta">&larr; Main Site</a>
+    <a href="https://codetutorium.com/tool.html" class="nav-cta active">All Tools</a>
+    <a href="https://codetutorium.com/blog/index" class="nav-cta">Blog</a>
+  </div>
+</nav>
+
 <div class="sprocket-bar" id="sprocketBar"></div>
 
-<header>
-  <p class="eyebrow">Local tool · runs on your machine</p>
-  <h1>Split a video into <em>frames</em>.</h1>
-  <p class="sub">Drop a video, set how often to grab a frame, and download every extracted image as a single zip. Processing happens locally via the ffmpeg server — nothing leaves your computer.</p>
-</header>
+<main class="tool-page-wrap">
+  <div class="tool-hero">
+    <div class="tool-eyebrow">Video Processing Tool</div>
+    <h1 class="tool-title">Video Frame Extractor</h1>
+    <p class="tool-desc">Slice video footage into precision image sequences (PNG, JPG, WebP) and download them together in an organized ZIP file.</p>
+  </div>
 
-<main>
-  <div class="panel">
+  <div class="film-panel">
     <div class="dropzone" id="dropzone">
-      <div class="icon">— select source —</div>
+      <div class="icon">— select video source —</div>
       <div class="filename" id="filename">Click to choose a video, or drag one here</div>
       <div class="hint">MP4, MOV, MKV, WebM, AVI</div>
       <video class="preview" id="preview" controls style="display:none;"></video>
@@ -238,7 +201,7 @@
 
     <div class="controls">
       <div class="field">
-        <label for="interval">Interval (seconds)</label>
+        <label for="interval">Interval (seconds between frames)</label>
         <input type="number" id="interval" value="2" min="0.1" step="0.1">
       </div>
 
@@ -259,17 +222,17 @@
 
       <div class="field">
         <label for="width">Max width (px, optional)</label>
-        <input type="text" id="width" placeholder="e.g. 1280 — leave blank for original">
+        <input type="number" id="width" placeholder="Original width" min="16" max="7680">
       </div>
 
-      <div class="field full">
-        <label>Time range (optional)</label>
+      <div class="field full" style="grid-column: 1 / -1;">
+        <label>Time range (optional, format: SS or HH:MM:SS)</label>
         <div class="time-row">
           <div class="field">
-            <input type="text" id="start" placeholder="Start — 00:00:10">
+            <input type="text" id="start" placeholder="Start, e.g. 00:00:10">
           </div>
           <div class="field">
-            <input type="text" id="end" placeholder="End — 00:01:30">
+            <input type="text" id="end" placeholder="End, e.g. 00:00:30">
           </div>
         </div>
         <div class="row-note">Leave both blank to process the entire video.</div>
@@ -281,11 +244,66 @@
       <span class="status" id="status"></span>
     </div>
   </div>
-
-  <footer>
-    frame_splitter / local ffmpeg bridge — server.py must be running at this address.
-  </footer>
 </main>
+
+<footer class="ct-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>code<span style="color:var(--accent)">tutorium</span></h3>
+      <p>Learn to code for free. Quality programming education for everyone.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/lessons/Python/index.html">Python</a></li>
+        <li><a href="https://codetutorium.com/lessons/C++/index.html">C++</a></li>
+        <li><a href="https://codetutorium.com/lessons/HTML/index.html">HTML &amp; CSS</a></li>
+        <li><a href="https://codetutorium.com/lessons/JavaScript/index.html">JavaScript</a></li>
+        <li><a href="https://codetutorium.com/lessons/Java/index.html">Java</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>More Courses</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/lessons/C/index.html">C Language</a></li>
+        <li><a href="https://codetutorium.com/lessons/SQL/index.html">SQL</a></li>
+        <li><a href="https://codetutorium.com/lessons/Rust/index.html">Rust</a></li>
+        <li><a href="https://codetutorium.com/lessons/Go/index.html">Go</a></li>
+        <li><a href="https://codetutorium.com/lessons/TypeScript/index.html">TypeScript</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Mobile Apps</h3>
+      <ul>
+        <li><a href="https://play.google.com/store/apps/details?id=com.pymaster.app" target="_blank" rel="noopener">Python Master</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.webdev.academy" target="_blank" rel="noopener">Web Dev Academy</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.ccmasterclass.app" target="_blank" rel="noopener">C/C++ Masterclass</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/tool.html">Tools</a></li>
+        <li><a href="https://codetutorium.com/about">About Us</a></li>
+        <li><a href="https://codetutorium.com/blog/index">Blog</a></li>
+        <li><a href="https://codetutorium.com/contact">Contact</a></li>
+        <li><a href="https://codetutorium.com/privacy">Privacy Policy</a></li>
+        <li><a href="https://codetutorium.com/terms">Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2026 Code Tutorium. All rights reserved.</p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/codetutorium?igsh=MWs0Z2szNnpkaGIzaw%3D%3D&utm_source=qr" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="https://www.facebook.com/share/1B2n3uJQpd/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      <a href="https://wa.me/918872886116" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+      <a href="https://x.com/codetutorium?s=11" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://github.com/learncording-dotcom/Codetutorium" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+      <a href="https://www.youtube.com/@Learn-coding-for-free" class="social-link" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</footer>
 
 <script>
   // Decorative sprocket holes
@@ -333,78 +351,75 @@
     if (fileInput.files.length) handleFile(fileInput.files[0]);
   });
 
-  ['dragenter', 'dragover'].forEach(evt =>
-    dropzone.addEventListener(evt, (e) => {
-      e.preventDefault();
-      dropzone.classList.add('dragover');
-    })
-  );
-  ['dragleave', 'drop'].forEach(evt =>
-    dropzone.addEventListener(evt, (e) => {
-      e.preventDefault();
-      dropzone.classList.remove('dragover');
-    })
-  );
+  dropzone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.classList.add('dragover');
+  });
+
+  dropzone.addEventListener('dragleave', () => {
+    dropzone.classList.remove('dragover');
+  });
+
   dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
     if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
   });
 
-  function setStatus(msg, kind) {
-    statusEl.textContent = msg;
+  function setStatus(text, kind) {
+    statusEl.textContent = text;
     statusEl.className = 'status' + (kind ? ' ' + kind : '');
   }
 
   extractBtn.addEventListener('click', async () => {
     if (!selectedFile) return;
 
-    const interval = document.getElementById('interval').value;
-    const format = document.getElementById('format').value;
-    const quality = document.getElementById('quality').value;
-    const width = document.getElementById('width').value.trim();
-    const start = document.getElementById('start').value.trim();
-    const end = document.getElementById('end').value.trim();
+    const fd = new FormData();
+    fd.append('video', selectedFile);
+    fd.append('interval', document.getElementById('interval').value);
+    fd.append('format', formatSelect.value);
+    fd.append('quality', document.getElementById('quality').value);
 
-    const formData = new FormData();
-    formData.append('video', selectedFile);
-    formData.append('interval', interval);
-    formData.append('format', format);
-    formData.append('quality', quality);
-    if (width) formData.append('width', width);
-    if (start) formData.append('start', start);
-    if (end) formData.append('end', end);
+    const width = document.getElementById('width').value.trim();
+    if (width) fd.append('width', width);
+
+    const start = document.getElementById('start').value.trim();
+    if (start) fd.append('start', start);
+
+    const end = document.getElementById('end').value.trim();
+    if (end) fd.append('end', end);
 
     extractBtn.disabled = true;
-    setStatus('Extracting frames — this can take a moment for longer videos…');
+    setStatus('Extracting frames… this may take a moment.');
 
     try {
-      const res = await fetch('api/extract', { method: 'POST', body: formData });
+      const res = await fetch('api/extract', { method: 'POST', body: fd });
 
       if (!res.ok) {
-        let message = 'Extraction failed.';
+        let errMessage = 'Extraction failed.';
         try {
-          const errJson = await res.json();
-          if (errJson.error) message = errJson.error;
+          const errData = await res.json();
+          errMessage = errData.error || errMessage;
         } catch (_) {}
-        setStatus(message, 'error');
+        setStatus(errMessage, 'error');
         extractBtn.disabled = false;
         return;
       }
 
       const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
+      const count = res.headers.get('X-Frame-Count') || '';
+      const label = count ? `Done! Downloaded ${count} frames.` : 'Done! Downloaded frames zip.';
+      setStatus(label, 'success');
+
       const a = document.createElement('a');
-      const disposition = res.headers.get('Content-Disposition') || '';
-      const match = disposition.match(/filename="?([^"]+)"?/);
-      a.href = url;
-      a.download = match ? match[1] : 'frames.zip';
+      a.href = URL.createObjectURL(blob);
+      const baseName = selectedFile.name.replace(/\.[^.]+$/, '');
+      a.download = `${baseName}_frames.zip`;
       document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      setStatus('Done — your zip download has started.', 'success');
+      a.remove();
     } catch (err) {
-      setStatus('Could not reach the server. Is server.py running?', 'error');
+      setStatus(`Network error: ${err.message}`, 'error');
     } finally {
       extractBtn.disabled = false;
     }

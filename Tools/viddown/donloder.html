@@ -3,212 +3,141 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Video Downloader</title>
+<title>Video &amp; Audio Downloader — Code Tutorium Tools</title>
+<link rel="icon" type="image/png" href="https://codetutorium.com/favicon.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+<link rel="stylesheet" href="tools-shared.css">
 <style>
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  .dl-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.2rem;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
   }
 
-  :root {
-    --bg: #0b0f19;
-    --surface: #161b22;
-    --surface2: #1e2530;
-
-    --border: rgba(255,255,255,0.08);
-    --border-hover: rgba(255,255,255,0.18);
-
-    --purple-dark: #6c5ce7;
-    --purple: #8b7dff;
-    --purple-light: #2a2448;
-    --purple-mid: #5a4fcf;
-
-    --text: #f1f5f9;
-    --text-muted: #94a3b8;
-    --text-faint: #64748b;
-
-    --green: #22c55e;
-    --amber: #f59e0b;
-    --red: #ef4444;
-  }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0b0f19, #111827);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3rem 1rem 4rem;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 680px;
-  }
-
-  /* Header */
-  .header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-  }
-
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #221d42;
-    border: 1px solid #4338ca;
-    border-radius: 50px;
-    padding: 8px 18px;
-    margin-bottom: 1.5rem;
-  }
-
-  .logo i {
-    font-size: 18px;
-    color: var(--purple);
-  }
-
-  .logo span {
-    font-size: 13px;
-    font-weight: 500;
-    color: #c4b5fd;
-  }
-
-  .header h1 {
-    font-size: 36px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-  }
-
-  .header h1 span {
-    color: var(--purple);
-  }
-
-  .header p {
-    font-size: 16px;
-    color: var(--text-muted);
-  }
-
-  /* Platforms */
   .platforms {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
     justify-content: center;
     margin-bottom: 2rem;
   }
 
   .pill {
     font-size: 12px;
+    font-family: var(--font-mono);
     padding: 4px 12px;
     border-radius: 20px;
-    background: var(--surface);
+    background: var(--surface-2);
     color: var(--text-muted);
     border: 1px solid var(--border);
   }
 
-  /* Input */
   .input-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
   }
 
   .input-row {
     display: flex;
-    gap: 8px;
+    gap: 12px;
   }
 
-  .input-row input {
+  .input-wrap {
     flex: 1;
-    height: 48px;
-    padding: 0 16px;
-    border-radius: 10px;
-    border: 1px solid var(--border-hover);
-    background: #0f172a;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-wrap i {
+    position: absolute;
+    left: 14px;
+    color: var(--text-muted);
+    font-size: 18px;
+    pointer-events: none;
+  }
+
+  .input-wrap input {
+    width: 100%;
+    padding: 12px 14px 12px 44px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     color: var(--text);
-    font-size: 15px;
+    font-size: 14px;
+    font-family: var(--font-sans);
     outline: none;
-    transition: border 0.2s, box-shadow 0.2s;
+    transition: all 0.18s ease;
   }
 
-  .input-row input:focus {
-    border-color: var(--purple);
-    box-shadow: 0 0 0 3px rgba(139,125,255,0.15);
-  }
-
-  .input-row input::placeholder {
-    color: var(--text-faint);
+  .input-wrap input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
   }
 
   .btn-analyse {
-    height: 48px;
-    padding: 0 22px;
-    border-radius: 10px;
-    background: var(--purple);
-    color: #fff;
-    border: none;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
+    gap: 8px;
+    padding: 12px 22px;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    cursor: pointer;
     white-space: nowrap;
+    transition: all 0.18s ease;
+    box-shadow: 0 4px 16px var(--accent-glow);
   }
 
-  .btn-analyse:hover {
-    background: var(--purple-dark);
+  .btn-analyse:hover:not(:disabled) {
+    background: var(--accent-hover);
     transform: translateY(-1px);
-  }
-
-  .btn-analyse:active {
-    transform: scale(0.97);
+    box-shadow: 0 6px 20px var(--accent-glow);
   }
 
   .btn-analyse:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
   }
 
-  /* Status */
-  .status {
+  .status-row {
+    margin-top: 14px;
+    font-size: 13.5px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
     display: none;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
-    color: var(--text-muted);
-    padding: 12px 0 0;
   }
 
   .dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--green);
+    background: var(--success);
+    flex-shrink: 0;
   }
 
   .dot.loading {
-    background: var(--amber);
-    animation: pulse 1s infinite;
+    background: var(--warning);
+    animation: blink 1s infinite;
   }
 
   .dot.error {
-    background: var(--red);
-  }
-
-  @keyframes pulse {
-    0%,100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    background: var(--danger);
   }
 
   /* Result Card */
@@ -216,21 +145,20 @@
     display: none;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    margin-bottom: 1rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
   }
 
   .thumb-banner {
-    width: 100%;
+    position: relative;
     height: 180px;
-    background: #0f172a;
+    background: var(--surface-2);
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    position: relative;
   }
 
   .thumb-banner img {
@@ -241,111 +169,119 @@
 
   .thumb-banner .play-icon {
     position: absolute;
-    width: 56px;
-    height: 56px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background: rgba(139,125,255,0.85);
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .thumb-banner .play-icon i {
-    font-size: 24px;
-    color: white;
-    margin-left: 3px;
+    font-size: 22px;
+    color: #fff;
   }
 
   .vid-meta {
-    padding: 1rem 1.25rem 0.75rem;
-    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 1.5rem 0.5rem;
   }
 
   .vid-meta h3 {
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 4px;
+    font-size: 16px;
+    font-weight: 600;
     line-height: 1.4;
+    margin-bottom: 6px;
   }
 
   .vid-meta p {
-    font-size: 13px;
+    font-size: 12.5px;
+    font-family: var(--font-mono);
     color: var(--text-muted);
   }
 
-  /* Tabs */
-  .tabs {
+  .tabs-row {
     display: flex;
+    gap: 8px;
+    padding: 1rem 1.5rem 0.5rem;
     border-bottom: 1px solid var(--border);
   }
 
-  .tab {
-    flex: 1;
-    padding: 10px;
+  .tab-chip {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
     font-size: 13px;
-    font-weight: 500;
-    text-align: center;
+    font-family: var(--font-mono);
+    font-weight: 600;
     cursor: pointer;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
     color: var(--text-muted);
-    border: none;
-    background: transparent;
-    border-bottom: 2px solid transparent;
-    transition: 0.15s;
+    transition: all 0.15s ease;
   }
 
-  .tab.active {
-    color: var(--purple);
-    border-bottom-color: var(--purple);
-  }
-
-  .tab:hover:not(.active) {
+  .tab-chip:hover {
     color: var(--text);
+    border-color: var(--border-hover);
   }
 
-  /* Formats */
+  .tab-chip.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
   .formats-wrap {
-    padding: 1rem 1.25rem 1.25rem;
+    padding: 1.25rem 1.5rem;
   }
 
   .formats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 520px) {
+    .formats {
+      grid-template-columns: 1fr;
+    }
+    .input-row {
+      flex-direction: column;
+    }
   }
 
   .fmt-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 10px;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--surface-2);
     border: 1px solid var(--border);
-    background: #0f172a;
-    cursor: pointer;
-    font-size: 13px;
+    border-radius: var(--radius-sm);
     color: var(--text);
-    width: 100%;
-    transition: 0.15s;
+    cursor: pointer;
+    transition: all 0.15s ease;
     text-align: left;
   }
 
   .fmt-btn:hover {
-    border-color: var(--purple);
-    background: #221d42;
+    border-color: var(--accent);
+    background: var(--surface-3);
   }
 
   .fmt-btn .fi {
-    font-size: 16px;
-    color: var(--purple);
+    font-size: 20px;
+    color: var(--accent);
   }
 
   .fmt-label {
     flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .fmt-label span {
-    display: block;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-mono);
   }
 
   .fmt-label small {
@@ -354,7 +290,7 @@
   }
 
   .fmt-btn .fd {
-    color: var(--text-faint);
+    color: var(--text-muted);
   }
 
   /* Progress */
@@ -362,82 +298,81 @@
     display: none;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: var(--radius);
     padding: 1.25rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .progress-top {
     display: flex;
     justify-content: space-between;
     font-size: 13px;
+    font-family: var(--font-mono);
     color: var(--text-muted);
     margin-bottom: 10px;
   }
 
   .progress-track {
-    height: 6px;
-    border-radius: 3px;
-    background: var(--surface2);
+    height: 8px;
+    border-radius: 4px;
+    background: var(--surface-2);
     overflow: hidden;
   }
 
   .progress-bar {
     height: 100%;
-    border-radius: 3px;
-    background: var(--purple);
+    border-radius: 4px;
+    background: var(--accent);
     width: 0%;
     transition: width 0.25s;
+    box-shadow: 0 0 10px var(--accent-glow);
   }
 
-  /* Success/Error */
   .done-box {
     display: none;
-    background: rgba(34,197,94,0.12);
+    background: var(--success-dim);
     border: 1px solid rgba(34,197,94,0.35);
-    border-radius: 12px;
+    border-radius: var(--radius);
     padding: 14px 16px;
     color: #86efac;
-    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    gap: 10px;
   }
 
   .err-box {
     display: none;
-    background: rgba(239,68,68,0.12);
+    background: var(--danger-dim);
     border: 1px solid rgba(239,68,68,0.35);
-    border-radius: 12px;
+    border-radius: var(--radius);
     padding: 14px 16px;
     color: #fca5a5;
-    margin-bottom: 1rem;
-  }
-
-  @media (max-width: 480px) {
-    .header h1 {
-      font-size: 26px;
-    }
-
-    .input-row {
-      flex-direction: column;
-    }
-
-    .btn-analyse {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .thumb-banner {
-      height: 130px;
-    }
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    gap: 10px;
   }
 </style>
 </head>
-<body >
-<div class="container">
+<body>
 
-  <div class="header">
-    <div class="logo"><i class="ti ti-download"></i><span>Free · No signup · 1000+ sites</span></div>
-    <h1>Download any <span>video</span></h1>
-    <p>Paste a link — get video with sound or MP3</p>
+<nav class="top">
+  <a href="https://codetutorium.com/" class="logo">code<span class="cursor"></span>tutorium</a>
+  <div class="nav-right">
+    <a href="https://codetutorium.com/" class="nav-cta">&larr; Main Site</a>
+    <a href="https://codetutorium.com/tool.html" class="nav-cta active">All Tools</a>
+    <a href="https://codetutorium.com/blog/index" class="nav-cta">Blog</a>
+  </div>
+</nav>
+
+<main class="tool-page-wrap">
+  <div class="tool-hero">
+    <div class="tool-eyebrow">Media Grabber</div>
+    <h1 class="tool-title">Video &amp; Audio Downloader</h1>
+    <p class="tool-desc">Extract high-definition video (1080p, 720p) or studio-grade MP3 audio tracks directly with local FFmpeg processing.</p>
   </div>
 
   <div class="platforms">
@@ -448,22 +383,25 @@
     <span class="pill">Facebook</span>
     <span class="pill">Vimeo</span>
     <span class="pill">Reddit</span>
-    <span class="pill">Twitch</span>
-    <span class="pill">Dailymotion</span>
-    <span class="pill">+ 1000 more</span>
   </div>
 
   <div class="input-card">
     <div class="input-row">
-      <input type="url" id="url-input" placeholder="https://www.youtube.com/watch?v=..." />
-      <button class="btn-analyse" id="fetch-btn" onclick="handleFetch()">
-        <i class="ti ti-search"></i> Analyse
+      <div class="input-wrap">
+        <i class="ti ti-link"></i>
+        <input type="text" id="url-input" placeholder="Paste video link here (e.g. https://www.youtube.com/watch?v=...)" autocomplete="off" spellcheck="false" />
+      </div>
+      <button class="btn-analyse" id="btn-fetch" onclick="handleFetch()">
+        <i class="ti ti-search"></i> Fetch Video
       </button>
     </div>
-    <div class="status" id="status"></div>
+    <div class="status-row" id="status"></div>
   </div>
 
-  <div class="err-box" id="err-box"><i class="ti ti-alert-circle"></i><span id="err-msg"></span></div>
+  <div class="err-box" id="err-box">
+    <i class="ti ti-alert-triangle" style="font-size:18px"></i>
+    <span id="err-msg"></span>
+  </div>
 
   <div class="result-card" id="result-card">
     <div class="thumb-banner" id="thumb-banner">
@@ -473,12 +411,12 @@
       <h3 id="vid-title">—</h3>
       <p id="vid-duration">—</p>
     </div>
-    <div class="tabs">
-      <button class="tab active" id="tab-video" onclick="switchTab('video')">
-        <i class="ti ti-video" style="margin-right:5px"></i> Video + Audio
+    <div class="tabs-row">
+      <button class="tab-chip active" id="tab-video" onclick="switchTab('video')">
+        <i class="ti ti-video" style="margin-right:5px"></i> Video (MP4)
       </button>
-      <button class="tab" id="tab-audio" onclick="switchTab('audio')">
-        <i class="ti ti-music" style="margin-right:5px"></i> MP3 Only
+      <button class="tab-chip" id="tab-audio" onclick="switchTab('audio')">
+        <i class="ti ti-music" style="margin-right:5px"></i> Audio (MP3)
       </button>
     </div>
     <div class="formats-wrap">
@@ -498,10 +436,69 @@
     <i class="ti ti-circle-check" style="font-size:18px"></i>
     <span id="done-msg"></span>
   </div>
+</main>
 
-</div>
+<footer class="ct-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>code<span style="color:var(--accent)">tutorium</span></h3>
+      <p>Learn to code for free. Quality programming education for everyone.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/lessons/Python/index.html">Python</a></li>
+        <li><a href="https://codetutorium.com/lessons/C++/index.html">C++</a></li>
+        <li><a href="https://codetutorium.com/lessons/HTML/index.html">HTML &amp; CSS</a></li>
+        <li><a href="https://codetutorium.com/lessons/JavaScript/index.html">JavaScript</a></li>
+        <li><a href="https://codetutorium.com/lessons/Java/index.html">Java</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>More Courses</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/lessons/C/index.html">C Language</a></li>
+        <li><a href="https://codetutorium.com/lessons/SQL/index.html">SQL</a></li>
+        <li><a href="https://codetutorium.com/lessons/Rust/index.html">Rust</a></li>
+        <li><a href="https://codetutorium.com/lessons/Go/index.html">Go</a></li>
+        <li><a href="https://codetutorium.com/lessons/TypeScript/index.html">TypeScript</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Mobile Apps</h3>
+      <ul>
+        <li><a href="https://play.google.com/store/apps/details?id=com.pymaster.app" target="_blank" rel="noopener">Python Master</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.webdev.academy" target="_blank" rel="noopener">Web Dev Academy</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.ccmasterclass.app" target="_blank" rel="noopener">C/C++ Masterclass</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/tool.html">Tools</a></li>
+        <li><a href="https://codetutorium.com/about">About Us</a></li>
+        <li><a href="https://codetutorium.com/blog/index">Blog</a></li>
+        <li><a href="https://codetutorium.com/contact">Contact</a></li>
+        <li><a href="https://codetutorium.com/privacy">Privacy Policy</a></li>
+        <li><a href="https://codetutorium.com/terms">Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2026 Code Tutorium. All rights reserved.</p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/codetutorium?igsh=MWs0Z2szNnpkaGIzaw%3D%3D&utm_source=qr" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="https://www.facebook.com/share/1B2n3uJQpd/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      <a href="https://wa.me/918872886116" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+      <a href="https://x.com/codetutorium?s=11" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://github.com/learncording-dotcom/Codetutorium" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+      <a href="https://www.youtube.com/@Learn-coding-for-free" class="social-link" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</footer>
+
 <script>
-  const SERVER = "http://127.0.0.1:5000";
+  const SERVER = "";
   let currentUrl = "";
 
   function setStatus(msg, type) {
@@ -518,35 +515,38 @@
   }
 
   function hideAll() {
+    document.getElementById("status").style.display = "none";
     document.getElementById("err-box").style.display = "none";
-    document.getElementById("done-box").style.display = "none";
-    document.getElementById("progress-wrap").style.display = "none";
     document.getElementById("result-card").style.display = "none";
+    document.getElementById("progress-wrap").style.display = "none";
+    document.getElementById("done-box").style.display = "none";
   }
 
-  /* ── ANALYSE ── */
   function handleFetch() {
-    const url = document.getElementById("url-input").value.trim();
-    if (!url) { showErr("Please paste a video URL."); return; }
-
-    currentUrl = url;
-    const btn = document.getElementById("fetch-btn");
-    btn.disabled = true;
+    const raw = document.getElementById("url-input").value.trim();
+    if (!raw) {
+      showErr("Please paste a video URL first.");
+      return;
+    }
+    currentUrl = raw;
     hideAll();
-    setStatus("Analysing link…", "loading");
+    setStatus("Fetching video information…", "loading");
 
-    fetch(`${SERVER}/info?url=${encodeURIComponent(url)}`)
-      .then(r => r.json())
+    const btn = document.getElementById("btn-fetch");
+    btn.disabled = true;
+
+    fetch(`${SERVER}/info?url=${encodeURIComponent(currentUrl)}`)
+      .then(res => {
+        if (!res.ok) return res.json().then(e => { throw new Error(e.error || res.statusText); });
+        return res.json();
+      })
       .then(data => {
-        if (data.error) throw new Error(data.error);
+        document.getElementById("vid-title").textContent = data.title || "Video";
+        document.getElementById("vid-duration").textContent = data.duration ? `Duration: ${data.duration}` : "";
 
-        document.getElementById("vid-title").textContent    = data.title || "Unknown";
-        document.getElementById("vid-duration").textContent = data.duration ? "Duration: " + data.duration : "";
-
-        // thumbnail
         const banner = document.getElementById("thumb-banner");
-        const old = banner.querySelector("img");
-        if (old) old.remove();
+        const oldImg = banner.querySelector("img");
+        if (oldImg) oldImg.remove();
         if (data.thumbnail) {
           const img = document.createElement("img");
           img.src = data.thumbnail;
@@ -556,17 +556,16 @@
 
         switchTab("video");
         document.getElementById("result-card").style.display = "block";
-        setStatus("Video found — pick a format below.", "ok");
+        setStatus("Video ready — select a format below to download.", "ok");
         btn.disabled = false;
       })
       .catch(err => {
-        setStatus("Cannot reach server. Is server.py running?", "error");
-        showErr(err.message || "Make sure server.py is running on port 5000.");
+        setStatus("Cannot reach video service.", "error");
+        showErr(err.message || "Unable to retrieve video info. Is server running?");
         btn.disabled = false;
       });
   }
 
-  /* ── TABS ── */
   function switchTab(tab) {
     document.getElementById("tab-video").classList.toggle("active", tab === "video");
     document.getElementById("tab-audio").classList.toggle("active", tab === "audio");
@@ -577,111 +576,104 @@
       grid.innerHTML = `
         <button class="fmt-btn" onclick="startDownload('192', true)">
           <i class="ti ti-music fi"></i>
-          <span class="fmt-label"><span>MP3 · 192 kbps</span><small>Best quality</small></span>
+          <span class="fmt-label"><span>MP3 · 192 kbps</span><small>High Quality Audio</small></span>
           <i class="ti ti-download fd"></i>
         </button>
         <button class="fmt-btn" onclick="startDownload('128', true)">
           <i class="ti ti-music fi"></i>
-          <span class="fmt-label"><span>MP3 · 128 kbps</span><small>Smaller file</small></span>
+          <span class="fmt-label"><span>MP3 · 128 kbps</span><small>Compact File Size</small></span>
           <i class="ti ti-download fd"></i>
         </button>`;
       return;
     }
 
-    // Video + Audio tab — send height to server, server merges with ffmpeg
     grid.innerHTML = [
       { h: "1080", label: "1080p Full HD" },
       { h: "720",  label: "720p HD" },
-      { h: "480",  label: "480p" },
-      { h: "360",  label: "360p" },
+      { h: "480",  label: "480p SD" },
+      { h: "360",  label: "360p Mobile" },
     ].map(q => `
       <button class="fmt-btn" onclick="startDownload('${q.h}', false)">
         <i class="ti ti-video fi"></i>
         <span class="fmt-label">
           <span>${q.label}</span>
-          <small>Video + Audio · MP4</small>
+          <small>MP4 with Audio</small>
         </span>
         <i class="ti ti-download fd"></i>
-      </button>`).join("");
+      </button>
+    `).join("");
   }
 
-  /* ── DOWNLOAD ── */
-  function startDownload(quality, isAudio) {
-    const pw  = document.getElementById("progress-wrap");
-    const bar = document.getElementById("progress-bar");
-    const lbl = document.getElementById("progress-label");
-    const pct = document.getElementById("progress-pct");
+  function startDownload(param, isAudio) {
+    document.getElementById("err-box").style.display = "none";
+    document.getElementById("done-box").style.display = "none";
+
+    const wrap = document.getElementById("progress-wrap");
+    const bar  = document.getElementById("progress-bar");
+    const lbl  = document.getElementById("progress-label");
+    const pct  = document.getElementById("progress-pct");
     const done = document.getElementById("done-box");
 
-    done.style.display = "none";
-    document.getElementById("err-box").style.display = "none";
-    pw.style.display = "block";
-    bar.style.background = "var(--purple)";
-    bar.style.width = "0%";
-    pct.textContent = "0%";
-    lbl.textContent = isAudio
-      ? "Downloading audio and converting to MP3…"
-      : "Downloading video + audio and merging… (this takes a moment)";
+    wrap.style.display = "block";
+    bar.style.width    = "10%";
+    bar.style.background = "var(--accent)";
+    pct.textContent    = "10%";
+    lbl.textContent    = isAudio
+      ? "Extracting audio and encoding to MP3…"
+      : `Downloading video (${param}p) and audio…`;
 
-    let p = 0;
+    let progress = 10;
     const iv = setInterval(() => {
-      p += Math.random() * 4;
-      if (p > 88) p = 88;
-      bar.style.width = p.toFixed(0) + "%";
-      pct.textContent = p.toFixed(0) + "%";
-    }, 500);
+      if (progress < 85) {
+        progress += Math.floor(Math.random() * 8) + 2;
+        bar.style.width = progress + "%";
+        pct.textContent = progress + "%";
+      }
+    }, 400);
 
-    let url;
-    if (isAudio) {
-      url = `${SERVER}/download?url=${encodeURIComponent(currentUrl)}&audio=true&quality=${quality}`;
-    } else {
-      url = `${SERVER}/download?url=${encodeURIComponent(currentUrl)}&height=${quality}`;
-    }
+    const query = isAudio
+      ? `url=${encodeURIComponent(currentUrl)}&audio=true&quality=${param}`
+      : `url=${encodeURIComponent(currentUrl)}&audio=false&height=${param}`;
+
+    const url = `${SERVER}/download?${query}`;
 
     fetch(url)
       .then(res => {
         clearInterval(iv);
-
-        // Server sends back a file (send_file) — download it directly
         if (res.ok && res.headers.get("content-type") && !res.headers.get("content-type").includes("json")) {
           bar.style.width = "100%";
           pct.textContent = "100%";
-          lbl.textContent = "Done! Saving file…";
+          lbl.textContent = "Complete! Saving file…";
           return res.blob().then(blob => {
             const ext  = isAudio ? "mp3" : "mp4";
             const a    = document.createElement("a");
             a.href     = URL.createObjectURL(blob);
-            a.download = `download.${ext}`;
+            a.download = `media_download.${ext}`;
             a.click();
             URL.revokeObjectURL(a.href);
             done.style.display = "flex";
-            document.getElementById("done-msg").innerHTML =
-              isAudio
-                ? "✅ MP3 downloaded successfully!"
-                : "✅ Video with audio downloaded successfully!";
+            document.getElementById("done-msg").innerHTML = isAudio
+              ? "MP3 file successfully downloaded!"
+              : "Video file successfully downloaded!";
           });
         }
 
-        // Fallback: server returned JSON {"status":"done"} — file saved server-side
         return res.json().then(data => {
           if (data.error) throw new Error(data.error);
           bar.style.width = "100%";
           pct.textContent = "100%";
-          lbl.textContent = "Done!";
+          lbl.textContent = "Finished!";
           done.style.display = "flex";
-          document.getElementById("done-msg").innerHTML =
-            isAudio
-              ? "✅ MP3 saved to the <strong>downloads/</strong> folder next to server.py"
-              : "✅ Video with audio saved to the <strong>downloads/</strong> folder next to server.py";
+          document.getElementById("done-msg").innerHTML = "File ready and saved.";
         });
       })
       .catch(err => {
         clearInterval(iv);
-        bar.style.background = "var(--red)";
+        bar.style.background = "var(--danger)";
         bar.style.width = "100%";
         lbl.textContent = "Download failed.";
         pct.textContent = "";
-        showErr(err.message || "Something went wrong. Check your server terminal for details.");
+        showErr(err.message || "An error occurred while processing the request.");
       });
   }
 
@@ -689,5 +681,6 @@
     if (e.key === "Enter") handleFetch();
   });
 </script>
+
 </body>
 </html>

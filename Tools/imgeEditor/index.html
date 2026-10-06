@@ -3,168 +3,235 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Background Remover</title>
+<title>AI Background Remover — Code Tutorium Tools</title>
+<link rel="icon" type="image/png" href="https://codetutorium.com/favicon.png">
+<link rel="stylesheet" href="tools-shared.css">
 <style>
-  :root {
-    --bg: #0f1115;
-    --panel: #171a21;
-    --accent: #5b8cff;
-    --accent-hover: #7ba1ff;
-    --text: #e7e9ee;
-    --muted: #8b90a0;
-    --border: #2a2e3a;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .card {
-    width: 100%;
-    max-width: 880px;
-    background: var(--panel);
+  .editor-card {
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px;
-  }
-  h1 {
-    margin: 0 0 4px;
-    font-size: 24px;
-  }
-  p.subtitle {
-    margin: 0 0 24px;
-    color: var(--muted);
-    font-size: 14px;
+    border-radius: var(--radius-lg);
+    padding: 2.2rem;
+    box-shadow: var(--shadow-md);
   }
   .server-row {
     display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+  .server-row label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    white-space: nowrap;
   }
   .server-row input {
-    flex: 1;
-    background: #10131a;
+    background: var(--surface-2);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
   }
   .dropzone {
     border: 2px dashed var(--border);
-    border-radius: 12px;
-    padding: 32px;
+    border-radius: var(--radius);
+    padding: 40px 20px;
     text-align: center;
     cursor: pointer;
-    transition: border-color 0.2s ease, background 0.2s ease;
+    background: rgba(12, 14, 20, 0.4);
+    transition: all 0.18s ease;
   }
-  .dropzone.dragover {
+  .dropzone:hover, .dropzone.dragover {
     border-color: var(--accent);
-    background: rgba(91, 140, 255, 0.08);
+    background: var(--accent-dim);
   }
-  .dropzone p { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
-  input[type="file"] { display: none; }
-  .btn {
-    display: inline-block;
-    margin-top: 14px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 14px;
+  .dropzone .icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .dropzone .title {
+    font-family: var(--font-mono);
+    font-size: 1rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
+    color: var(--text);
   }
-  .btn:hover { background: var(--accent-hover); }
-  .btn:disabled { background: #3a3f4c; cursor: not-allowed; }
-  .results {
+  .dropzone p {
+    margin: 6px 0 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  input[type="file"] { display: none; }
+  .action-wrap {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: center;
+  }
+  .results-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 28px;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
   }
-  .panel {
+  @media(max-width: 680px) {
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .panel-checkerboard {
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px;
+    border-radius: var(--radius);
+    padding: 14px;
     background:
-      linear-gradient(45deg, #20232c 25%, transparent 25%),
-      linear-gradient(-45deg, #20232c 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #20232c 75%),
-      linear-gradient(-45deg, transparent 75%, #20232c 75%);
+      linear-gradient(45deg, #1c202d 25%, transparent 25%),
+      linear-gradient(-45deg, #1c202d 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #1c202d 75%),
+      linear-gradient(-45deg, transparent 75%, #1c202d 75%);
     background-size: 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-    background-color: #10131a;
-    min-height: 220px;
+    background-color: #0f1118;
+    min-height: 240px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  .panel img { max-width: 100%; max-height: 260px; border-radius: 8px; }
-  .panel .label {
-    position: absolute;
-    margin-top: -230px;
+  .panel-checkerboard img {
+    max-width: 100%;
+    max-height: 280px;
+    border-radius: var(--radius-sm);
+    object-fit: contain;
   }
   .label-text {
-    font-size: 12px;
-    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
   }
-  .status { margin-top: 16px; font-size: 13px; color: var(--muted); min-height: 18px; }
-  .status.error { color: #ff6b6b; }
-  .status.success { color: #56d364; }
-  a.download {
-    display: inline-block;
-    margin-top: 14px;
-    color: var(--accent);
-    font-size: 13px;
-    text-decoration: none;
+  .btn-download-result {
+    margin-top: 1rem;
+    width: 100%;
   }
-  a.download:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Background Remover</h1>
-    <p class="subtitle">Upload an image and the server will strip its background using rembg.</p>
 
+<nav class="top">
+  <a href="https://codetutorium.com/" class="logo">code<span class="cursor"></span>tutorium</a>
+  <div class="nav-right">
+    <a href="https://codetutorium.com/" class="nav-cta">&larr; Main Site</a>
+    <a href="https://codetutorium.com/tool.html" class="nav-cta active">All Tools</a>
+    <a href="https://codetutorium.com/blog/index" class="nav-cta">Blog</a>
+  </div>
+</nav>
+
+<main class="tool-page-wrap">
+  <div class="tool-hero">
+    <div class="tool-eyebrow">AI Vision Engine</div>
+    <h1 class="tool-title">Background Remover</h1>
+    <p class="tool-desc">Upload photos or product graphics to automatically isolate subjects and generate transparent PNG cutouts in seconds.</p>
+  </div>
+
+  <div class="editor-card">
     <div class="server-row">
-      <input id="serverUrl" type="text" value="http://localhost:5000" />
+      <label for="serverUrl">API Endpoint:</label>
+      <input id="serverUrl" type="text" value="" placeholder="Default (relative: .)" />
     </div>
 
     <div class="dropzone" id="dropzone">
-      <div>📤 Click or drag an image here</div>
-      <p>PNG, JPG, JPEG, WEBP, BMP — up to 15MB</p>
+      <div class="icon">🖼️</div>
+      <div class="title">Click or drag an image here</div>
+      <p>Supports PNG, JPG, JPEG, WEBP, BMP — up to 15MB</p>
       <input type="file" id="fileInput" accept="image/png, image/jpeg, image/webp, image/bmp" />
-      <button class="btn" id="removeBtn" disabled>Remove Background</button>
+      <div class="action-wrap">
+        <button class="ct-btn ct-btn-primary" id="removeBtn" disabled>
+          ✨ Remove Background
+        </button>
+      </div>
     </div>
 
-    <div class="status" id="status"></div>
+    <div class="ct-status" id="status" style="display:none;"></div>
 
-    <div class="results" id="results" style="display:none;">
+    <div class="results-grid" id="results" style="display:none;">
       <div>
-        <div class="label-text">Original</div>
-        <div class="panel"><img id="originalImg" alt="original" /></div>
+        <div class="label-text">Original Image</div>
+        <div class="panel-checkerboard"><img id="originalImg" alt="original" /></div>
       </div>
       <div>
-        <div class="label-text">Result</div>
-        <div class="panel"><img id="resultImg" alt="result" /></div>
-        <a class="download" id="downloadLink" download="background-removed.png">⬇ Download PNG</a>
+        <div class="label-text">Cutout Result (Transparent PNG)</div>
+        <div class="panel-checkerboard"><img id="resultImg" alt="result" /></div>
+        <a class="ct-btn ct-btn-primary btn-download-result" id="downloadLink" download="background-removed.png">
+          ⬇️ Download Cutout PNG
+        </a>
       </div>
     </div>
   </div>
+</main>
+
+<footer class="ct-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>code<span style="color:var(--accent)">tutorium</span></h3>
+      <p>Learn to code for free. Quality programming education for everyone.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/lessons/Python/index.html">Python</a></li>
+        <li><a href="https://codetutorium.com/lessons/C++/index.html">C++</a></li>
+        <li><a href="https://codetutorium.com/lessons/HTML/index.html">HTML &amp; CSS</a></li>
+        <li><a href="https://codetutorium.com/lessons/JavaScript/index.html">JavaScript</a></li>
+        <li><a href="https://codetutorium.com/lessons/Java/index.html">Java</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>More Courses</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/lessons/C/index.html">C Language</a></li>
+        <li><a href="https://codetutorium.com/lessons/SQL/index.html">SQL</a></li>
+        <li><a href="https://codetutorium.com/lessons/Rust/index.html">Rust</a></li>
+        <li><a href="https://codetutorium.com/lessons/Go/index.html">Go</a></li>
+        <li><a href="https://codetutorium.com/lessons/TypeScript/index.html">TypeScript</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Mobile Apps</h3>
+      <ul>
+        <li><a href="https://play.google.com/store/apps/details?id=com.pymaster.app" target="_blank" rel="noopener">Python Master</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.webdev.academy" target="_blank" rel="noopener">Web Dev Academy</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.ccmasterclass.app" target="_blank" rel="noopener">C/C++ Masterclass</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="https://codetutorium.com/tool.html">Tools</a></li>
+        <li><a href="https://codetutorium.com/about">About Us</a></li>
+        <li><a href="https://codetutorium.com/blog/index">Blog</a></li>
+        <li><a href="https://codetutorium.com/contact">Contact</a></li>
+        <li><a href="https://codetutorium.com/privacy">Privacy Policy</a></li>
+        <li><a href="https://codetutorium.com/terms">Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2026 Code Tutorium. All rights reserved.</p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/codetutorium?igsh=MWs0Z2szNnpkaGIzaw%3D%3D&utm_source=qr" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="https://www.facebook.com/share/1B2n3uJQpd/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      <a href="https://wa.me/918872886116" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+      <a href="https://x.com/codetutorium?s=11" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://github.com/learncording-dotcom/Codetutorium" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+      <a href="https://www.youtube.com/@Learn-coding-for-free" class="social-link" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</footer>
 
 <script>
   const dropzone = document.getElementById('dropzone');
@@ -211,28 +278,33 @@
     selectedFile = file;
     removeBtn.disabled = false;
     originalImg.src = URL.createObjectURL(file);
-    setStatus(`Selected: ${file.name}`, '');
+    setStatus(`Selected: ${file.name}`, 'info');
   }
 
   function setStatus(msg, cls) {
+    if (!msg) {
+      statusEl.style.display = 'none';
+      return;
+    }
+    statusEl.style.display = 'flex';
     statusEl.textContent = msg;
-    statusEl.className = 'status' + (cls ? ' ' + cls : '');
+    statusEl.className = 'ct-status' + (cls ? ' ' + cls : '');
   }
 
   removeBtn.addEventListener('click', async (e) => {
     e.stopPropagation();
     if (!selectedFile) return;
 
-    const serverUrl = serverUrlInput.value.replace(/\/$/, '');
+    const base = serverUrlInput.value.trim().replace(/\/$/, '') || '.';
     removeBtn.disabled = true;
-    setStatus('Uploading and processing…', '');
+    setStatus('Processing image background…', 'info');
     results.style.display = 'none';
 
     const formData = new FormData();
     formData.append('image', selectedFile);
 
     try {
-      const response = await fetch(`${serverUrl}/remove-bg`, {
+      const response = await fetch(`${base}/remove-bg`, {
         method: 'POST',
         body: formData,
       });
@@ -247,7 +319,7 @@
       resultImg.src = url;
       downloadLink.href = url;
       results.style.display = 'grid';
-      setStatus('Done! Background removed.', 'success');
+      setStatus('Success! Background removed.', 'success');
     } catch (err) {
       setStatus(`Error: ${err.message}`, 'error');
     } finally {
@@ -255,5 +327,6 @@
     }
   });
 </script>
+
 </body>
 </html>
