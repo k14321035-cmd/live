@@ -13,22 +13,81 @@
 
 // Global state
 let currentLecture = 0;
-let lectureTitles = [];
-let totalLectures = 0;
+let lectureTitles = [];   // sparse array, indexed by lecture id (lec-N)
+let lectureIds = [];      // sorted ids of lectures that actually exist in the DOM
+let totalLectures = 0;    // number of lectures that actually exist
+
+/**
+ * Build the lecture registry from the real DOM so titles, progress and
+ * navigation can never drift from the actual content.
+ * The optional titles[] array passed by each page is only used as a fallback.
+ * @param {string[]} titles - Legacy array of lecture titles (fallback only)
+ */
+function buildLectureRegistry(titles) {
+    const found = {};
+    document.querySelectorAll('.lecture[id^="lec-"]').forEach(el => {
+        const id = parseInt(el.id.slice(4), 10);
+        if (isNaN(id) || found[id] !== undefined) return; // first element wins on duplicate ids
+        const h1 = el.querySelector('h1');
+        const text = h1 ? h1.textContent.replace(/\s+/g, ' ').trim() : '';
+        found[id] = text || (titles && titles[id]) || ('Lecture ' + (id + 1));
+    });
+
+    lectureIds = Object.keys(found).map(Number).sort((a, b) => a - b);
+    lectureTitles = [];
+    lectureIds.forEach(id => { lectureTitles[id] = found[id]; });
+
+    // Pages without .lecture elements: fall back to the legacy array
+    if (lectureIds.length === 0 && titles) {
+        lectureIds = titles.map((_, i) => i);
+        lectureTitles = titles.slice();
+    }
+    totalLectures = lectureIds.length;
+}
+
+/** Extract the lecture id a sidebar item points to (falls back to its position). */
+function navItemLectureId(item, fallbackIdx) {
+    const m = (item.getAttribute('onclick') || '').match(/showLecture\((\d+)\)/);
+    return m ? parseInt(m[1], 10) : fallbackIdx;
+}
+
+/** Neutralise sidebar entries whose lecture does not exist yet (no dead links). */
+function markUnavailableNavItems() {
+    document.querySelectorAll('.nav-item').forEach((item, idx) => {
+        const id = navItemLectureId(item, idx);
+        if (lectureIds.indexOf(id) !== -1 || item.classList.contains('nav-soon')) return;
+        item.classList.add('nav-soon');
+        item.removeAttribute('onclick');
+        item.setAttribute('aria-disabled', 'true');
+        item.title = 'Coming soon';
+        const badge = document.createElement('span');
+        badge.className = 'soon-badge';
+        badge.textContent = 'Soon';
+        item.appendChild(badge);
+    });
+}
+
+/** Id of the lecture `step` positions away from `id` (or null at the ends). */
+function adjacentLectureId(id, step) {
+    const pos = lectureIds.indexOf(id);
+    const target = lectureIds[pos + step];
+    return (pos === -1 || target === undefined) ? null : target;
+}
 
 /**
  * Initialize the lesson page
- * @param {string[]} titles - Array of lecture titles
+ * @param {string[]} titles - Array of lecture titles (legacy, fallback only)
  */
 function initLessons(titles) {
-    lectureTitles = titles;
-    totalLectures = titles.length;
+    buildLectureRegistry(titles);
+    markUnavailableNavItems();
+    currentLecture = lectureIds.length ? lectureIds[0] : 0;
     
     // Check for URL hash
     const hash = window.location.hash;
     if (hash) {
-        const index = parseInt(hash.replace('#lec-', ''));
-        if (!isNaN(index) && index >= 0 && index < totalLectures) {
+        const index = parseInt(hash.replace('#lec-', ''), 10);
+        if (!isNaN(index) && lectureIds.indexOf(index) !== -1) {
             currentLecture = index;
         }
     }
@@ -38,6 +97,14 @@ function initLessons(titles) {
     
     // Setup keyboard navigation
     document.addEventListener('keydown', handleKeydown);
+
+    // Buttons written as <button data-lecture="N"> (used by the HTML course) navigate too
+    document.addEventListener('click', function (e) {
+        const el = e.target.closest ? e.target.closest('[data-lecture]') : null;
+        if (!el) return;
+        const target = parseInt(el.getAttribute('data-lecture'), 10);
+        if (!isNaN(target)) showLecture(target);
+    });
 
     // Initialize blog button
     initBlogButton();
@@ -62,6 +129,10 @@ function initLessons(titles) {
 
     // Initialize exercise submission buttons
     initExerciseSubmissionUI();
+
+    // Review credit badges and self-check quizzes
+    initLessonReviewMeta();
+    initQuizzes();
 }
 
 /**
@@ -69,7 +140,7 @@ function initLessons(titles) {
  * @param {number} index - Lecture index to show
  */
 function showLecture(index) {
-    if (index < 0 || index >= totalLectures) return;
+    if (lectureIds.indexOf(index) === -1) return;
     
     // Hide all lectures
     document.querySelectorAll('.lecture').forEach(lecture => {
@@ -105,16 +176,17 @@ function showLecture(index) {
         breadcrumb.textContent = lectureTitles[index];
     }
     
-    // Update progress
+    // Update progress (position among lectures that actually exist)
     const progressLabel = document.getElementById('progress-label');
     const progressFill = document.getElementById('progress-fill');
+    const position = lectureIds.indexOf(index) + 1;
     
     if (progressLabel) {
-        progressLabel.textContent = `Lecture ${index + 1} / ${totalLectures}`;
+        progressLabel.textContent = `Lecture ${position} / ${totalLectures}`;
     }
     
     if (progressFill) {
-        const percentage = ((index + 1) / totalLectures) * 100;
+        const percentage = (position / totalLectures) * 100;
         progressFill.style.width = percentage + '%';
     }
     
@@ -223,17 +295,15 @@ function handleKeydown(e) {
     // Arrow Right or Space = next
     if ((e.key === 'ArrowRight' || e.key === ' ') && !e.shiftKey) {
         e.preventDefault();
-        if (currentLecture < totalLectures - 1) {
-            showLecture(currentLecture + 1);
-        }
+        const next = adjacentLectureId(currentLecture, 1);
+        if (next !== null) showLecture(next);
     }
     
     // Arrow Left = previous
     if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        if (currentLecture > 0) {
-            showLecture(currentLecture - 1);
-        }
+        const prev = adjacentLectureId(currentLecture, -1);
+        if (prev !== null) showLecture(prev);
     }
 }
 
@@ -241,18 +311,16 @@ function handleKeydown(e) {
  * Navigate to next lecture
  */
 function nextLecture() {
-    if (currentLecture < totalLectures - 1) {
-        showLecture(currentLecture + 1);
-    }
+    const next = adjacentLectureId(currentLecture, 1);
+    if (next !== null) showLecture(next);
 }
 
 /**
  * Navigate to previous lecture
  */
 function prevLecture() {
-    if (currentLecture > 0) {
-        showLecture(currentLecture - 1);
-    }
+    const prev = adjacentLectureId(currentLecture, -1);
+    if (prev !== null) showLecture(prev);
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -961,7 +1029,9 @@ function restoreCompletedLectures() {
 function updateCompletedNavItems(completed) {
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach((item, idx) => {
-        if (completed.includes(idx)) {
+        if (item.classList.contains('nav-soon')) return;
+        // Match by lecture id, not sidebar position (the sidebar can list items out of order)
+        if (completed.includes(navItemLectureId(item, idx))) {
             item.classList.add('completed');
             if (!item.querySelector('.check-icon')) {
                 const check = document.createElement('span');
@@ -1143,6 +1213,139 @@ function escapeLessonHtml(str) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+}
+
+/* ==========================================================
+   LESSON QUALITY COMPONENTS: REVIEW CREDIT + SELF-CHECK QUIZZES
+   ========================================================== */
+
+// Default reviewer credit. A lecture can override it with data-reviewer="Name".
+const CT_DEFAULT_REVIEWER = 'Code Tutorium Editorial';
+
+/**
+ * Shows "Last reviewed <date>" and "Reviewed by <name>" under the lecture title.
+ * Only lectures that carry data-reviewed="YYYY-MM-DD" get a badge, so the site
+ * never claims a review that did not happen.
+ */
+function initLessonReviewMeta() {
+    document.querySelectorAll('.lecture[data-reviewed]').forEach(lecture => {
+        if (lecture.querySelector('.lecture-review')) return;
+        const raw = lecture.getAttribute('data-reviewed');
+        const date = new Date(raw + 'T00:00:00');
+        if (isNaN(date.getTime())) return;
+
+        const reviewer = lecture.getAttribute('data-reviewer') || CT_DEFAULT_REVIEWER;
+        const pretty = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+        const wrap = document.createElement('div');
+        wrap.className = 'lecture-review';
+        wrap.innerHTML =
+            '<span class="meta-badge review-badge" title="This lecture was checked for accuracy on this date">' +
+                '✔ Last reviewed ' + escapeLessonHtml(pretty) + '</span>' +
+            '<span class="meta-badge">Reviewed by ' + escapeLessonHtml(reviewer) + '</span>';
+
+        const h1 = lecture.querySelector('h1');
+        if (h1) h1.insertAdjacentElement('afterend', wrap);
+        else lecture.insertBefore(wrap, lecture.firstChild);
+    });
+}
+
+/**
+ * Turns authored quiz markup into an interactive quiz.
+ *
+ * <div class="quiz-block" data-quiz="unique-id">
+ *   <div class="quiz-q" data-answer="1">          <!-- zero-based index of the correct option -->
+ *     <p class="quiz-prompt">Question text</p>
+ *     <ol class="quiz-options"><li>A</li><li>B</li><li>C</li></ol>
+ *     <p class="quiz-explain">Why B is right.</p>
+ *   </div>
+ * </div>
+ */
+function initQuizzes() {
+    document.querySelectorAll('.quiz-block').forEach(block => {
+        if (block.classList.contains('quiz-ready')) return;
+        block.classList.add('quiz-ready');
+
+        const questions = Array.from(block.querySelectorAll('.quiz-q'));
+        if (!questions.length) return;
+
+        const storeKey = 'quiz_' + window.location.pathname + '_' + (block.getAttribute('data-quiz') || 'q');
+        let answered = 0;
+        let correct = 0;
+
+        const heading = block.querySelector('.quiz-heading');
+        if (!heading) {
+            const h = document.createElement('div');
+            h.className = 'quiz-heading';
+            h.textContent = '🧠 Quick Check';
+            block.insertBefore(h, block.firstChild);
+        }
+
+        const scoreEl = document.createElement('div');
+        scoreEl.className = 'quiz-score';
+        block.appendChild(scoreEl);
+
+        let best = null;
+        try { best = JSON.parse(localStorage.getItem(storeKey) || 'null'); } catch (e) {}
+        const renderScore = (finalScore) => {
+            if (finalScore) {
+                scoreEl.innerHTML = '<strong>Score: ' + correct + ' / ' + questions.length + '</strong>' +
+                    (correct === questions.length ? ' &mdash; perfect! 🎉' : ' &mdash; review the explanations above and try again.');
+                scoreEl.classList.add('done');
+            } else if (best && typeof best.score === 'number') {
+                scoreEl.textContent = 'Your best: ' + best.score + ' / ' + best.total;
+            }
+        };
+        renderScore(false);
+
+        questions.forEach((q, qi) => {
+            const list = q.querySelector('.quiz-options');
+            if (!list) return;
+            const answer = parseInt(q.getAttribute('data-answer'), 10);
+            const options = Array.from(list.children);
+            const group = document.createElement('div');
+            group.className = 'quiz-choices';
+            group.setAttribute('role', 'group');
+
+            const numbering = document.createElement('span');
+            numbering.className = 'quiz-num';
+            numbering.textContent = 'Q' + (qi + 1);
+            const prompt = q.querySelector('.quiz-prompt');
+            if (prompt) prompt.insertBefore(numbering, prompt.firstChild);
+
+            options.forEach((opt, oi) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'quiz-choice';
+                btn.innerHTML = opt.innerHTML;
+                btn.addEventListener('click', () => {
+                    if (q.classList.contains('answered')) return;
+                    q.classList.add('answered');
+                    answered++;
+                    const isRight = oi === answer;
+                    if (isRight) correct++;
+                    btn.classList.add(isRight ? 'right' : 'wrong');
+                    const rightBtn = group.children[answer];
+                    if (rightBtn) rightBtn.classList.add('right', 'reveal');
+                    group.querySelectorAll('.quiz-choice').forEach(b => { b.disabled = true; });
+                    q.classList.add(isRight ? 'is-correct' : 'is-wrong');
+
+                    if (answered === questions.length) {
+                        renderScore(true);
+                        try {
+                            if (!best || correct >= best.score) {
+                                best = { score: correct, total: questions.length };
+                                localStorage.setItem(storeKey, JSON.stringify(best));
+                            }
+                        } catch (e) {}
+                    }
+                });
+                group.appendChild(btn);
+            });
+
+            list.replaceWith(group);
+        });
+    });
 }
 
 
