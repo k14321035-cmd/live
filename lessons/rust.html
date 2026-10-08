@@ -533,107 +533,159 @@ println!(<span class="st">"{}"</span>, copied_name);</pre>
 </div>
 
                 <!-- ===================== LECTURE 03 ===================== -->
-           <div class="lecture" id="lec-2">
-                    <div class="lecture-tag">Lecture 03 · Fundamentals</div>
-                    <h1>Data Types & Functions</h1>
+           <div class="lecture" id="lec-2" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 03 &middot; Fundamentals</div>
+<h1>Data Types &amp; Functions</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~25 min</span><span class="meta-badge level-beginner">Beginner</span><span class="meta-badge">Requires: Lecture 02</span></div>
+<p class="lecture-intro">Rust is statically typed: every value has a type known at compile time. In this lecture you will learn the built-in types, how type inference works, and how to write functions that take and return values.</p>
+<h2>Scalar Types</h2>
+<p>A <strong>scalar</strong> type holds a single value. Rust has four primary scalar types.</p>
+<ul>
+<li><strong class="kw">Integers</strong> &mdash; signed <code>i8, i16, i32, i64, i128, isize</code> and unsigned <code>u8, u16, u32, u64, u128, usize</code>. The default is <code>i32</code>. <code>usize</code>/<code>isize</code> match the pointer size of the machine and are used for indexing.</li>
+<li><strong class="kw">Floating point</strong> &mdash; <code>f32</code> and <code>f64</code>. The default is <code>f64</code>.</li>
+<li><strong class="kw">Boolean</strong> &mdash; <code>bool</code>, either <code>true</code> or <code>false</code>.</li>
+<li><strong class="kw">Character</strong> &mdash; <code>char</code>, a single Unicode scalar value written with <em>single</em> quotes, e.g. <code>'z'</code> or <code>'&#128512;'</code>. It is 4 bytes wide.</li>
+</ul>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> age: u8 = 25;          <span class="cm">// 0..=255</span>
+    <span class="kw">let</span> temperature = -3.5;    <span class="cm">// inferred as f64</span>
+    <span class="kw">let</span> is_ready = <span class="kw">true</span>;       <span class="cm">// bool</span>
+    <span class="kw">let</span> initial = <span class="st">'R'</span>;         <span class="cm">// char (single quotes!)</span>
+    <span class="kw">let</span> big = 1_000_000;       <span class="cm">// underscores improve readability</span>
 
-                    <h2>Basic (Scalar) Data Types</h2>
-                    <p>Go is a statically typed language, meaning every variable must have a defined type. Here are the most common basic types:</p>
-                    <ul>
-                        <li><strong class="kw">Integers:</strong> Used for whole numbers. The most common is <code class="kw">int</code>, but you can use specific sizes like <code class="kw">int8, int16, int32, int64</code> (and their unsigned counterparts <code class="kw">uint</code>).</li>
-                        <li><strong class="kw">Floating-point:</strong> Used for decimals. Go provides <code class="kw">float32</code> and <code class="kw">float64</code> (the default for decimals).</li>
-                        <li><strong class="kw">Boolean:</strong> The <code class="kw">bool</code> type represents either <code class="st">true</code> or <code class="st">false</code>.</li>
-                        <li><strong class="kw">String:</strong> The <code class="kw">string</code> type represents a sequence of characters, wrapped in double quotes <span class="st">"like this"</span>.</li>
-                    </ul>
+    println!(<span class="st">"{age} {temperature} {is_ready} {initial} {big}"</span>);
+}</pre>
+</div>
 
-                    <h3>Type Inference</h3>
-                    <p>You don't always have to explicitly declare the type. Using the short declaration operator <code class="kw">:=</code>, Go infers the type automatically based on the value assigned.</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.go</span>
-                        </div>
-                        <pre>var age <span class="kw">int</span> = 25 <span class="cm">// Explicit declaration</span>
-name := <span class="st">"Alice"</span>       <span class="cm">// Inferred as string</span>
-isReady := <span class="st">true</span>        <span class="cm">// Inferred as bool</span></pre>
-                    </div>
+<h2>Type Inference and Annotations</h2>
+<p>You rarely need to write types for simple values because the compiler infers them. Annotations are required when the compiler cannot decide, for example when parsing a string:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> guess: u32 = <span class="st">"42"</span>.parse().expect(<span class="st">"not a number"</span>);
+    <span class="cm">// Without ': u32' the compiler cannot know which numeric type to parse into.</span>
+    println!(<span class="st">"{}"</span>, guess + 1); <span class="cm">// 43</span>
+}</pre>
+</div>
 
-                    <h2>Compound Types</h2>
-                    <p>Compound types allow you to group multiple values together.</p>
-                    <ul>
-                        <li><strong class="kw">Arrays:</strong> Fixed-size sequences of the same type. <br><code>var arr [5]int</code></li>
-                        <li><strong class="kw">Slices:</strong> Dynamic-size sequences. Slices are the most used "list" type in Go. <br><code>numbers := []int{1, 2, 3}</code></li>
-                        <li><strong class="kw">Maps:</strong> Key-value pairs (dictionaries). <br><code>emails := map[string]string{"John": "john@mail.com"}</code></li>
-                        <li><strong class="kw">Structs:</strong> Custom types that group different types of data together. <br><code>type User struct { Name string; Age int }</code></li>
-                    </ul>
+<div class="box note"><div class="box-title">Integer overflow</div><p>In a <em>debug</em> build, arithmetic that overflows (for example <code>255u8 + 1</code>) panics. In a <em>release</em> build it silently wraps around. When overflow is possible, use explicit methods such as <code>checked_add</code>, <code>wrapping_add</code> or <code>saturating_add</code>.</p></div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> x: u8 = 250;
+    println!(<span class="st">"{:?}"</span>, x.checked_add(10));    <span class="cm">// None  (would overflow)</span>
+    println!(<span class="st">"{}"</span>,   x.saturating_add(10)); <span class="cm">// 255   (clamped)</span>
+    println!(<span class="st">"{}"</span>,   x.wrapping_add(10));   <span class="cm">// 4     (wraps around)</span>
+}</pre>
+</div>
 
-                    <h2>Functions</h2>
-                    <p>Functions are the building blocks of Go. They are declared using the <code class="kw">func</code> keyword.</p>
+<h2>Compound Types</h2>
+<p>Compound types group several values into one type. Rust has two built-in ones: tuples and arrays.</p>
+<h3>Tuples</h3>
+<p>A tuple has a <strong>fixed length</strong> and may contain different types. Access elements by index or destructure them.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> person: (&amp;str, u32, f64) = (<span class="st">"Ada"</span>, 36, 1.68);
 
-                    <h3>Basic Function Syntax</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.go</span>
-                        </div>
-                        <pre><span class="kw">func</span> <span class="fn">add</span>(a <span class="kw">int</span>, b <span class="kw">int</span>) <span class="kw">int</span> {
-    <span class="kw">return</span> a + b
+    <span class="kw">let</span> (name, age, height) = person;      <span class="cm">// destructuring</span>
+    println!(<span class="st">"{name} is {age} and {height}m tall"</span>);
+    println!(<span class="st">"first field: {}"</span>, person.0); <span class="cm">// index with a dot</span>
+}</pre>
+</div>
+<h3>Arrays</h3>
+<p>An array has a <strong>fixed length</strong> and every element has the same type. Arrays live on the stack. When you need a growable list, use <code>Vec&lt;T&gt;</code> (covered in the Collections lecture).</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> primes = [2, 3, 5, 7, 11];          <span class="cm">// [i32; 5]</span>
+    <span class="kw">let</span> zeros = [0u8; 4];                   <span class="cm">// [0, 0, 0, 0]</span>
+
+    println!(<span class="st">"{}"</span>, primes[0]);              <span class="cm">// 2</span>
+    println!(<span class="st">"{}"</span>, primes.len());           <span class="cm">// 5</span>
+    <span class="cm">// primes[10] would panic at runtime: index out of bounds</span>
+}</pre>
+</div>
+
+<h2>Functions</h2>
+<p>Functions are declared with <code class="kw">fn</code> and use <code>snake_case</code> names. Every parameter <strong>must</strong> have a type annotation, and the return type follows <code>-&gt;</code>.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> add(a: i32, b: i32) -&gt; i32 {
+    a + b            <span class="cm">// no semicolon: this expression is the return value</span>
 }
 
-<span class="cm">// Usage:</span>
-result := add(10, 20) <span class="cm">// result is 30</span></pre>
-                    </div>
+<span class="kw">fn</span> greet(name: &amp;str) {
+    println!(<span class="st">"Hello, {name}!"</span>);   <span class="cm">// returns () (the "unit" type)</span>
+}
 
-                    <h3>Multiple Return Values</h3>
-                    <p>One of Go's most powerful features is the ability for a function to return more than one value. This is commonly used to return a result and an error simultaneously.</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.go</span>
-                        </div>
-                        <pre><span class="kw">func</span> <span class="fn">divide</span>(a, b <span class="kw">float64</span>) (<span class="kw">float64</span>, <span class="kw">string</span>) {
-    <span class="kw">if</span> b == 0 {
-        <span class="kw">return</span> 0, <span class="st">"Division by zero error!"</span>
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> sum = add(10, 20);
+    println!(<span class="st">"{sum}"</span>);            <span class="cm">// 30</span>
+    greet(<span class="st">"Rust"</span>);
+}</pre>
+</div>
+
+<h3>Statements vs. Expressions</h3>
+<p>This is one of the most important ideas in Rust. A <strong>statement</strong> performs an action and returns nothing. An <strong>expression</strong> evaluates to a value. Adding a semicolon to the end of an expression turns it into a statement.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> square(x: i32) -&gt; i32 {
+    x * x        <span class="cm">// expression: returns the value</span>
+}
+
+<span class="cm">// fn broken(x: i32) -&gt; i32 {</span>
+<span class="cm">//     x * x;    // ERROR: the semicolon makes this a statement, so the function returns ()</span>
+<span class="cm">// }</span>
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> y = {
+        <span class="kw">let</span> a = 3;
+        a + 1        <span class="cm">// the block is an expression; y becomes 4</span>
+    };
+    println!(<span class="st">"{} {}"</span>, y, square(y)); <span class="cm">// 4 16</span>
+}</pre>
+</div>
+
+<h3>Returning Multiple Values</h3>
+<p>Rust functions return one value, but that value can be a tuple. Callers destructure it.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> divide(a: f64, b: f64) -&gt; (f64, bool) {
+    <span class="kw">if</span> b == 0.0 {
+        (0.0, <span class="kw">false</span>)             <span class="cm">// could not divide</span>
+    } <span class="kw">else</span> {
+        (a / b, <span class="kw">true</span>)
     }
-    <span class="kw">return</span> a / b, <span class="st">"Success"</span>
 }
 
-<span class="cm">// Usage:</span>
-val, msg := divide(10, 0)
-fmt.Println(msg) <span class="cm">// Prints: Division by zero error!</span></pre>
-                    </div>
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> (value, ok) = divide(10.0, 4.0);
+    println!(<span class="st">"{value} {ok}"</span>);    <span class="cm">// 2.5 true</span>
+}</pre>
+</div>
+<div class="box info"><div class="box-title">Looking ahead</div><p>Returning a <code>(value, bool)</code> pair works, but idiomatic Rust uses <code>Option&lt;T&gt;</code> or <code>Result&lt;T, E&gt;</code> for this. You will meet both in the Error Handling lecture.</p></div>
 
-                    <h3>Variadic Functions</h3>
-                    <p>A variadic function can take an unlimited number of arguments of a specific type using the <code class="kw">...</code> syntax.</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.go</span>
-                        </div>
-                        <pre><span class="kw">func</span> <span class="fn">sumAll</span>(nums ...<span class="kw">int</span>) <span class="kw">int</span> {
-    total := 0
-    <span class="kw">for</span> <span class="kw">_,</span> n := <span class="kw">range</span> nums {
-        total += n
-    }
-    <span class="kw">return</span> total
-}
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Adding a semicolon after the final expression of a function that should return a value (<code>expected i32, found ()</code>).</li><li>Using double quotes for a <code>char</code>. <code>"a"</code> is a <code>&amp;str</code>; <code>'a'</code> is a <code>char</code>.</li><li>Mixing numeric types: <code>let x: i32 = 5; let y: i64 = x;</code> does not compile. Convert explicitly with <code>x as i64</code> or <code>i64::from(x)</code>.</li><li>Forgetting that arrays have a fixed length. Use a <code>Vec</code> when the size changes.</li></ul></div>
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Prefer <code>i32</code> and <code>f64</code> unless you have a reason to pick another size; they are fast and the defaults.</li><li>Use <code>i64::from(x)</code> for lossless conversions and <code>try_from</code> for conversions that might fail. Reserve <code>as</code> for cases where truncation is acceptable.</li><li>Run <code>cargo clippy</code> regularly. It flags many of the mistakes above with clear explanations.</li></ul></div>
 
-<span class="cm">// Usage:</span>
-fmt.Println(sumAll(1, 2, 3, 4, 5)) <span class="cm">// result: 15</span></pre>
-                    </div>
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 3.2</div>
+<p>Write a small program that:</p>
+<ol><li>Defines <code>fn check_pass(grade: f64) -&gt; bool</code> that returns <code>true</code> when the grade is <code>50.0</code> or higher.</li><li>Defines <code>fn average(scores: [f64; 3]) -&gt; f64</code> that returns the mean of three scores.</li><li>Defines <code>fn min_max(values: [i32; 5]) -&gt; (i32, i32)</code> that returns the smallest and largest value as a tuple.</li><li>In <code>main</code>, calls all three and prints the results.</li></ol>
+<p><em>Structs, which let you model a <code>Student</code> properly, arrive in Lecture 07.</em></p></div>
 
-                    <div class="exercise">
-                        <div class="exercise-title">🎯 Exercise 3.2</div>
-                        <p>Create a program that:
-                            <ol>
-                                <li>Defines a <code class="kw">struct</code> called <code class="st">Student</code> with fields for <code class="st">Name</code> (string) and <code class="st">Grade</code> (float64).</li>
-                                <li>Writes a function called <code class="fn">checkPass</code> that takes a <code class="st">Student</code> struct and returns a <code class="kw">bool</code> (true if grade >= 50, otherwise false).</li>
-                                <li>Create a slice of 3 Students and use a loop to print whether each student passed or failed.</li>
-                            </ol>
-                        </p>
-                    </div>
-
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(1)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture →</button>
-                    </div>
-                </div>
+<div class="quiz-block" data-quiz="rust-l3">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the default type of the literal <code>3.14</code>?</p><ol class="quiz-options"><li><code>f32</code></li><li><code>f64</code></li><li><code>i32</code></li></ol><p class="quiz-explain">Floating-point literals default to <code>f64</code> because it is about as fast as <code>f32</code> on modern CPUs but far more precise.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why does this fail? <code>fn double(x: i32) -&gt; i32 { x * 2; }</code></p><ol class="quiz-options"><li>Parameters need <code>mut</code></li><li>The semicolon turns the last expression into a statement, so the function returns <code>()</code></li><li><code>i32</code> cannot be multiplied</li></ol><p class="quiz-explain">Without a trailing semicolon, <code>x * 2</code> is the block's value. With one, the block evaluates to the unit type <code>()</code>, which does not match <code>i32</code>.</p></div>
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">Which declaration is a valid Rust array of five integers?</p><ol class="quiz-options"><li><code>let a = [1, 2, 3, 4, 5];</code></li><li><code>let a = (1, 2, 3, 4, 5);</code></li><li><code>let a = &lt;1, 2, 3, 4, 5&gt;;</code></li></ol><p class="quiz-explain">Square brackets create an array. Parentheses create a tuple, which is a different compound type.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(1)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(3)">Next Lecture &rarr;</button>
+</div>
+</div>
 
 
                 <!-- ===================== LECTURE 04 ===================== -->
@@ -2174,139 +2226,1536 @@ scores.insert(name, 100);
 </div>
 
                 <!-- ===================== LECTURE 10 ===================== -->
-                <div class="lecture" id="lec-9">
-                    <div class="lecture-tag">Lecture 10 · Advanced</div>
-                    <h1>Modules & Crates</h1>
+                <div class="lecture" id="lec-9" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 10 &middot; Advanced</div>
+<h1>Modules &amp; Crates</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~25 min</span><span class="meta-badge level-beginner">Intermediate</span><span class="meta-badge">Requires: Lecture 09</span></div>
+<p class="lecture-intro">As programs grow you need to organise code, hide implementation details, and reuse other people's work. Rust does this with <strong>modules</strong> (inside a crate) and <strong>crates</strong> (the unit of compilation and sharing), managed by Cargo.</p>
+<h2>Packages, Crates and Modules</h2>
+<ul><li><strong>Crate</strong> &mdash; the smallest unit the compiler builds. Either a <em>binary</em> crate (has <code>main</code>, root file <code>src/main.rs</code>) or a <em>library</em> crate (root file <code>src/lib.rs</code>).</li><li><strong>Package</strong> &mdash; one or more crates described by a <code>Cargo.toml</code>.</li><li><strong>Module</strong> &mdash; a namespace inside a crate that groups related items and controls their privacy.</li></ul>
 
-                    <p>Cargo is Rust's build system and package manager. Use <code>Cargo.toml</code> to manage dependencies.</p>
+<h2>Defining Modules</h2>
+<p>Everything in a module is <strong>private by default</strong>. Mark items <code class="kw">pub</code> to expose them to code outside the module.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">mod</span> bank {
+    <span class="kw">pub</span> <span class="kw">struct</span> Account {
+        <span class="kw">pub</span> owner: String,
+        balance: f64,            <span class="cm">// private field: only code inside 'bank' can touch it</span>
+    }
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(8)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(10)">Next Lecture →</button>
-                    </div>
-                </div>
+    <span class="kw">impl</span> Account {
+        <span class="kw">pub</span> <span class="kw">fn</span> new(owner: &amp;str) -&gt; Account {
+            Account { owner: owner.to_string(), balance: 0.0 }
+        }
+
+        <span class="kw">pub</span> <span class="kw">fn</span> deposit(&amp;<span class="kw">mut</span> <span class="kw">self</span>, amount: f64) {
+            <span class="kw">if</span> amount &gt; 0.0 {
+                <span class="kw">self</span>.balance += amount;
+            }
+        }
+
+        <span class="kw">pub</span> <span class="kw">fn</span> balance(&amp;<span class="kw">self</span>) -&gt; f64 {
+            <span class="kw">self</span>.balance
+        }
+    }
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> <span class="kw">mut</span> acc = bank::Account::new(<span class="st">"Ada"</span>);
+    acc.deposit(50.0);
+    println!(<span class="st">"{} has {}"</span>, acc.owner, acc.balance());
+    <span class="cm">// acc.balance = 1_000_000.0;   // ERROR: field `balance` is private</span>
+}</pre>
+</div>
+<p>Keeping <code>balance</code> private guarantees that the only way to change it is through <code>deposit</code>, which enforces the rules.</p>
+
+<h2>Paths and <code>use</code></h2>
+<p>Items are addressed with paths. Start from the crate root with <code>crate::</code>, from the current module with <code>self::</code>, or from the parent with <code>super::</code>. Bring a path into scope with <code class="kw">use</code>.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">mod</span> shapes {
+    <span class="kw">pub</span> <span class="kw">mod</span> circle {
+        <span class="kw">pub</span> <span class="kw">fn</span> area(r: f64) -&gt; f64 { std::f64::consts::PI * r * r }
+    }
+    <span class="kw">pub</span> <span class="kw">fn</span> describe(r: f64) -&gt; String {
+        format!(<span class="st">"area = {:.2}"</span>, <span class="kw">self</span>::circle::area(r))
+    }
+}
+
+<span class="kw">use</span> shapes::circle;                 <span class="cm">// now 'circle::area' is shorter</span>
+<span class="kw">use</span> std::collections::HashMap;      <span class="cm">// from the standard library</span>
+<span class="kw">use</span> std::io::{<span class="kw">self</span>, Read};          <span class="cm">// nested import: 'io' and 'Read'</span>
+
+<span class="kw">fn</span> main() {
+    println!(<span class="st">"{}"</span>, circle::area(2.0));
+    println!(<span class="st">"{}"</span>, shapes::describe(2.0));
+    <span class="kw">let</span> _m: HashMap&lt;String, i32&gt; = HashMap::new();
+}</pre>
+</div>
+
+<h2>Splitting Modules Across Files</h2>
+<p>A module can live in its own file. Declaring <code>mod bank;</code> tells the compiler to load it from <code>src/bank.rs</code> (or <code>src/bank/mod.rs</code>).</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">src/main.rs</span></div>
+<pre><span class="cm">// src/main.rs</span>
+<span class="kw">mod</span> bank;                    <span class="cm">// loads src/bank.rs</span>
+<span class="kw">use</span> bank::Account;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> acc = Account::new(<span class="st">"Ada"</span>);
+    println!(<span class="st">"{}"</span>, acc.balance());
+}</pre>
+</div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">src/bank.rs</span></div>
+<pre><span class="cm">// src/bank.rs</span>
+<span class="kw">pub</span> <span class="kw">struct</span> Account { balance: f64 }
+
+<span class="kw">impl</span> Account {
+    <span class="kw">pub</span> <span class="kw">fn</span> new(_owner: &amp;str) -&gt; <span class="kw">Self</span> { Account { balance: 0.0 } }
+    <span class="kw">pub</span> <span class="kw">fn</span> balance(&amp;<span class="kw">self</span>) -&gt; f64 { <span class="kw">self</span>.balance }
+}</pre>
+</div>
+
+<h2>Cargo and External Crates</h2>
+<p>Cargo downloads dependencies from <a href="https://crates.io" target="_blank" rel="noopener">crates.io</a>, builds them, and locks exact versions in <code>Cargo.lock</code>. Add a dependency from the command line or by editing <code>Cargo.toml</code>.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre>cargo add rand            <span class="cm"># adds the latest compatible version to Cargo.toml</span>
+cargo build               <span class="cm"># downloads and compiles everything</span>
+cargo run                 <span class="cm"># build + run</span>
+cargo doc --open          <span class="cm"># build and open documentation for your crate and its dependencies</span></pre>
+</div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Cargo.toml</span></div>
+<pre>[package]
+name = <span class="st">"my_app"</span>
+version = <span class="st">"0.1.0"</span>
+edition = <span class="st">"2021"</span>
+
+[dependencies]
+rand = <span class="st">"0.8"</span>
+serde = { version = <span class="st">"1"</span>, features = [<span class="st">"derive"</span>] }</pre>
+</div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> rand::Rng;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> roll = rand::thread_rng().gen_range(1..=6);
+    println!(<span class="st">"You rolled a {roll}"</span>);
+}</pre>
+</div>
+<div class="box info"><div class="box-title">Semantic versioning</div><p><code>rand = "0.8"</code> means &ldquo;any version compatible with 0.8&rdquo;, so Cargo may use 0.8.5 but never 0.9. Commit <code>Cargo.lock</code> for applications so every build uses identical versions.</p></div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Forgetting <code>pub</code> on a function or struct field, then getting <em>&ldquo;is private&rdquo;</em> errors from another module.</li><li>Writing <code>mod bank;</code> but not creating <code>src/bank.rs</code> (or <code>src/bank/mod.rs</code>).</li><li>Making everything <code>pub</code> &quot;to make errors go away&quot;. That removes the encapsulation modules are meant to provide.</li><li>Adding a crate to code with <code>use</code> without listing it in <code>Cargo.toml</code>.</li></ul></div>
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Expose a small public API and keep helpers private. You can always make something public later, but you cannot take it back without breaking users.</li><li>Use <code>pub(crate)</code> for items that should be shared inside your crate but not exported.</li><li>Run <code>cargo tree</code> to see your dependency graph, and <code>cargo audit</code> (from the <code>cargo-audit</code> tool) to check for known vulnerabilities.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 10.1</div>
+<ol><li>Create a new project with <code>cargo new inventory</code>.</li><li>Add a module <code>item</code> in <code>src/item.rs</code> with a <code>pub struct Item</code> that has a public <code>name</code> and a <strong>private</strong> <code>quantity</code>.</li><li>Provide <code>pub fn new</code>, <code>pub fn add_stock(&amp;mut self, n: u32)</code> and <code>pub fn quantity(&amp;self) -&gt; u32</code>.</li><li>In <code>main.rs</code>, create an item, add stock, and print it. Confirm that writing to <code>quantity</code> directly does <em>not</em> compile.</li><li>Add the <code>rand</code> crate and give each new item a random starting quantity between 1 and 10.</li></ol></div>
+
+<div class="quiz-block" data-quiz="rust-l10">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the default visibility of an item in a module?</p><ol class="quiz-options"><li>Public</li><li>Private to the module (and its children)</li><li>Public inside the same crate only</li></ol><p class="quiz-explain">Everything is private unless marked <code>pub</code>. Child modules can see their parents' private items, but not the other way around.</p></div>
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">Which file does <code>mod parser;</code> in <code>src/main.rs</code> load?</p><ol class="quiz-options"><li><code>src/parser.rs</code> or <code>src/parser/mod.rs</code></li><li><code>parser.toml</code></li><li><code>src/parser/main.rs</code></li></ol><p class="quiz-explain">The compiler looks for the module in a file named after it, or in a directory with a <code>mod.rs</code>.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does <code>super::</code> refer to in a path?</p><ol class="quiz-options"><li>The crate root</li><li>The parent module</li><li>The standard library</li></ol><p class="quiz-explain"><code>super</code> goes up one level, <code>crate</code> starts at the root, and <code>self</code> means the current module.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(8)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(10)">Next Lecture &rarr;</button>
+</div>
+</div>
 
                 <!-- ===================== LECTURE 11 ===================== -->
-                <div class="lecture" id="lec-10">
-                    <div class="lecture-tag">Lecture 11 · Advanced</div>
-                    <h1>Traits & Generics</h1>
+                <div class="lecture" id="lec-10" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 11 &middot; Advanced</div>
+<h1>Traits &amp; Generics</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~30 min</span><span class="meta-badge level-beginner">Intermediate</span><span class="meta-badge">Requires: Lecture 10</span></div>
+<p class="lecture-intro">Generics let one function or type work with many types. Traits describe <em>behaviour</em> a type can have. Together they give Rust abstraction with <strong>zero runtime cost</strong>.</p>
+<h2>Generics</h2>
+<p>Without generics you would write <code>largest_i32</code>, <code>largest_f64</code>, and so on. A type parameter <code>T</code> lets you write the logic once.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> largest&lt;T: PartialOrd&gt;(items: &amp;[T]) -&gt; &amp;T {
+    <span class="kw">let</span> <span class="kw">mut</span> largest = &amp;items[0];
+    <span class="kw">for</span> item <span class="kw">in</span> items {
+        <span class="kw">if</span> item &gt; largest {
+            largest = item;
+        }
+    }
+    largest
+}
 
-                    <h2>Defining Shared Behavior</h2>
-                    <div class="code-block">
-                        <pre><span class="kw">pub trait</span> Summary {
-    <span class="kw">fn</span> summarize(&<span class="kw">self</span>) -> <span class="kw">String</span>;
+<span class="kw">fn</span> main() {
+    println!(<span class="st">"{}"</span>, largest(&amp;[34, 50, 25, 100, 65]));      <span class="cm">// 100</span>
+    println!(<span class="st">"{}"</span>, largest(&amp;[1.5, 9.25, 3.0]));           <span class="cm">// 9.25</span>
+    println!(<span class="st">"{}"</span>, largest(&amp;[<span class="st">'y'</span>, <span class="st">'m'</span>, <span class="st">'a'</span>, <span class="st">'q'</span>]));       <span class="cm">// y</span>
 }</pre>
-                    </div>
+</div>
+<p><code>T: PartialOrd</code> is a <strong>trait bound</strong>: it says &ldquo;<code>T</code> can be any type that supports comparison with <code>&gt;</code>&rdquo;. Without it the compiler rejects <code>item &gt; largest</code>.</p>
+<p>Structs and enums can be generic too:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">struct</span> Point&lt;T&gt; {
+    x: T,
+    y: T,
+}
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(9)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(11)">Next Lecture →</button>
-                    </div>
-                </div>
+<span class="kw">impl</span>&lt;T: std::fmt::Display&gt; Point&lt;T&gt; {
+    <span class="kw">fn</span> show(&amp;<span class="kw">self</span>) {
+        println!(<span class="st">"({}, {})"</span>, <span class="kw">self</span>.x, <span class="kw">self</span>.y);
+    }
+}
+
+<span class="kw">fn</span> main() {
+    Point { x: 1, y: 2 }.show();
+    Point { x: 1.5, y: 2.5 }.show();
+}</pre>
+</div>
+
+<h2>Traits: Shared Behaviour</h2>
+<p>A trait declares methods that types can implement. It is similar to an interface in other languages.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">trait</span> Summary {
+    <span class="kw">fn</span> author(&amp;<span class="kw">self</span>) -&gt; String;
+
+    <span class="cm">// default implementation (can be overridden)</span>
+    <span class="kw">fn</span> summarize(&amp;<span class="kw">self</span>) -&gt; String {
+        format!(<span class="st">"Read more from {}..."</span>, <span class="kw">self</span>.author())
+    }
+}
+
+<span class="kw">struct</span> Article { title: String, writer: String }
+<span class="kw">struct</span> Tweet   { handle: String, text: String }
+
+<span class="kw">impl</span> Summary <span class="kw">for</span> Article {
+    <span class="kw">fn</span> author(&amp;<span class="kw">self</span>) -&gt; String { <span class="kw">self</span>.writer.clone() }
+    <span class="kw">fn</span> summarize(&amp;<span class="kw">self</span>) -&gt; String {
+        format!(<span class="st">"{} by {}"</span>, <span class="kw">self</span>.title, <span class="kw">self</span>.writer)   <span class="cm">// override</span>
+    }
+}
+
+<span class="kw">impl</span> Summary <span class="kw">for</span> Tweet {
+    <span class="kw">fn</span> author(&amp;<span class="kw">self</span>) -&gt; String { format!(<span class="st">"@{}"</span>, <span class="kw">self</span>.handle) }
+    <span class="cm">// uses the default summarize()</span>
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> a = Article { title: <span class="st">"Rust 2024"</span>.into(), writer: <span class="st">"Ada"</span>.into() };
+    <span class="kw">let</span> t = Tweet { handle: <span class="st">"ferris"</span>.into(), text: <span class="st">"Hello"</span>.into() };
+    println!(<span class="st">"{}"</span>, a.summarize());   <span class="cm">// Rust 2024 by Ada</span>
+    println!(<span class="st">"{}"</span>, t.summarize());   <span class="cm">// Read more from @ferris...</span>
+    <span class="kw">let</span> _ = t.text;
+}</pre>
+</div>
+
+<h2>Traits as Parameters</h2>
+<p>Accept &ldquo;anything that implements <code>Summary</code>&rdquo; using <code>impl Trait</code> or the equivalent trait bound syntax:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> notify(item: &amp;<span class="kw">impl</span> Summary) {
+    println!(<span class="st">"Breaking news! {}"</span>, item.summarize());
+}
+
+<span class="cm">// Equivalent, and necessary when several parameters must share one type:</span>
+<span class="kw">fn</span> notify_twice&lt;T: Summary&gt;(a: &amp;T, b: &amp;T) {
+    println!(<span class="st">"{} | {}"</span>, a.summarize(), b.summarize());
+}
+
+<span class="cm">// Several bounds, written with 'where' for readability:</span>
+<span class="kw">fn</span> debug_and_show&lt;T&gt;(value: T)
+<span class="kw">where</span>
+    T: std::fmt::Debug + std::fmt::Display,
+{
+    println!(<span class="st">"{value} / {value:?}"</span>);
+}</pre>
+</div>
+
+<h2>Trait Objects: Dynamic Dispatch</h2>
+<p>Generics are resolved at compile time (<em>static dispatch</em>), which is fast but requires one concrete type per use. When you need a collection of <em>different</em> types behind one trait, use a <strong>trait object</strong> with <code>dyn</code>.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">trait</span> Shape {
+    <span class="kw">fn</span> area(&amp;<span class="kw">self</span>) -&gt; f64;
+}
+
+<span class="kw">struct</span> Circle { r: f64 }
+<span class="kw">struct</span> Rect { w: f64, h: f64 }
+
+<span class="kw">impl</span> Shape <span class="kw">for</span> Circle { <span class="kw">fn</span> area(&amp;<span class="kw">self</span>) -&gt; f64 { std::f64::consts::PI * <span class="kw">self</span>.r * <span class="kw">self</span>.r } }
+<span class="kw">impl</span> Shape <span class="kw">for</span> Rect   { <span class="kw">fn</span> area(&amp;<span class="kw">self</span>) -&gt; f64 { <span class="kw">self</span>.w * <span class="kw">self</span>.h } }
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> shapes: Vec&lt;Box&lt;<span class="kw">dyn</span> Shape&gt;&gt; = vec![
+        Box::new(Circle { r: 1.0 }),
+        Box::new(Rect { w: 2.0, h: 3.0 }),
+    ];
+
+    <span class="kw">let</span> total: f64 = shapes.iter().map(|s| s.area()).sum();
+    println!(<span class="st">"total area = {total:.2}"</span>);   <span class="cm">// 9.14</span>
+}</pre>
+</div>
+<div class="box info"><div class="box-title">Static vs. dynamic dispatch</div><table><thead><tr><th></th><th>Generics / <code>impl Trait</code></th><th><code>dyn Trait</code></th></tr></thead><tbody><tr><td>Resolved</td><td>Compile time</td><td>Run time (vtable)</td></tr><tr><td>Speed</td><td>Fastest, can inline</td><td>Small indirection cost</td></tr><tr><td>Mixed types in one <code>Vec</code></td><td>No</td><td>Yes</td></tr><tr><td>Binary size</td><td>Larger (one copy per type)</td><td>Smaller</td></tr></tbody></table></div>
+
+<h2>Derivable Traits</h2>
+<p>The standard library traits <code>Debug</code>, <code>Clone</code>, <code>Copy</code>, <code>PartialEq</code>, <code>Eq</code>, <code>Hash</code>, <code>PartialOrd</code>, <code>Ord</code> and <code>Default</code> can be generated with <code>#[derive(...)]</code>.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre>#[derive(Debug, Clone, PartialEq, Default)]
+<span class="kw">struct</span> Config {
+    name: String,
+    retries: u32,
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> a = Config { name: <span class="st">"svc"</span>.into(), retries: 3 };
+    <span class="kw">let</span> b = a.clone();
+    println!(<span class="st">"{:?}"</span>, a);          <span class="cm">// Config { name: "svc", retries: 3 }</span>
+    println!(<span class="st">"{}"</span>, a == b);       <span class="cm">// true</span>
+    println!(<span class="st">"{:?}"</span>, Config::default());
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Calling a method on a generic <code>T</code> without a bound: <em>&ldquo;no method named &hellip; found for type parameter <code>T</code>&rdquo;</em>. Add the trait to the bound.</li><li>Trying to put different types in a <code>Vec</code> without <code>Box&lt;dyn Trait&gt;</code>.</li><li>Implementing a foreign trait for a foreign type (e.g. <code>Display</code> for <code>Vec&lt;i32&gt;</code>). This is forbidden by the <strong>orphan rule</strong>; wrap the type in your own struct instead.</li><li>Using <code>dyn Trait</code> with a trait that has generic methods or returns <code>Self</code> (not object-safe).</li></ul></div>
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Start with generics and <code>impl Trait</code>. Reach for <code>dyn Trait</code> only when you truly need runtime polymorphism.</li><li>Prefer <code>where</code> clauses once a signature has more than one or two bounds.</li><li>Implement <code>std::fmt::Display</code> for your types so they print nicely, and <code>From</code> to make conversions ergonomic.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 11.1</div>
+<ol><li>Define a trait <code>Describe</code> with a method <code>fn describe(&amp;self) -&gt; String</code>.</li><li>Implement it for two structs of your choice (for example <code>Dog</code> and <code>Car</code>).</li><li>Write a generic function <code>print_all&lt;T: Describe&gt;(items: &amp;[T])</code>.</li><li>Build a <code>Vec&lt;Box&lt;dyn Describe&gt;&gt;</code> holding both a dog and a car, and print every description.</li><li>Derive <code>Debug</code> and <code>Clone</code> on both structs.</li></ol></div>
+
+<div class="quiz-block" data-quiz="rust-l11">
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">What does <code>fn show&lt;T: Display&gt;(x: T)</code> mean?</p><ol class="quiz-options"><li><code>x</code> can be any type that implements <code>Display</code></li><li><code>T</code> must be a string</li><li>The function can only be called once</li></ol><p class="quiz-explain"><code>T: Display</code> is a trait bound restricting <code>T</code> to types that implement <code>Display</code>.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">When do you need <code>Box&lt;dyn Trait&gt;</code> rather than generics?</p><ol class="quiz-options"><li>Whenever a trait is involved</li><li>When a collection must hold different concrete types behind one trait</li><li>When you want faster code</li></ol><p class="quiz-explain">A generic <code>Vec&lt;T&gt;</code> holds one type. A <code>Vec&lt;Box&lt;dyn Trait&gt;&gt;</code> can hold any mix of implementors, at the price of dynamic dispatch.</p></div>
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">Which line creates a default <code>Clone</code> implementation?</p><ol class="quiz-options"><li><code>#[derive(Clone)]</code></li><li><code>impl Clone;</code></li><li><code>use Clone;</code></li></ol><p class="quiz-explain"><code>derive</code> asks the compiler to generate the standard implementation when all fields are themselves <code>Clone</code>.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(9)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(11)">Next Lecture &rarr;</button>
+</div>
+</div>
 
                 <!-- ===================== LECTURE 12 ===================== -->
-                <div class="lecture" id="lec-11">
-                    <div class="lecture-tag">Lecture 12 · Capstone</div>
-                    <h1>Capstone Project: Secure CLI</h1>
+                <div class="lecture" id="lec-11" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 12 &middot; Capstone</div>
+<h1>Capstone Project: Secure CLI</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~90 min</span><span class="meta-badge level-beginner">Project</span><span class="meta-badge">Requires: Lectures 01&ndash;11</span></div>
+<p class="lecture-intro">You will build <code>hashsum</code>, a small command-line tool that computes the SHA-256 checksum of a file and can <em>verify</em> a download against an expected hash. It is a real-world security task and it exercises ownership, error handling, traits, modules and testing.</p>
+<div class="box info"><div class="box-title">&#127919; What you will practice</div><ul><li>Parsing arguments with <code>clap</code></li><li>Reading files in chunks with <code>std::io::Read</code></li><li>Hashing with the <code>sha2</code> crate</li><li>A custom error enum with <code>Display</code> and <code>From</code></li><li>Proper exit codes so the tool works in scripts</li><li>A unit test with a known-answer vector</li></ul></div>
 
-                    <p>Create a Command Line Interface (CLI) tool that securely manages passwords or encrypts files using crates like <code>clap</code> and <code>rust-crypto</code>.</p>
-                    <div class="code-block">
-                        <pre><span class="cm">// Project goals:</span>
-<span class="cm">// 1. Parse CLI arguments</span>
-<span class="cm">// 2. Handle file I/O safely</span>
-<span class="cm">// 3. Implement robust error handling</span>
-<span class="cm">// 4. Use traits for polymorphic output</span></pre>
-                    </div>
+<h2>Acceptance Criteria</h2>
+<ol><li><code>hashsum file.txt</code> prints <code>&lt;64 hex chars&gt;  file.txt</code> and exits with code 0.</li><li><code>hashsum file.txt --verify &lt;hash&gt;</code> prints <code>OK  file.txt</code> and exits 0 when the hash matches (case-insensitive), otherwise prints a clear mismatch message to <em>stderr</em> and exits 1.</li><li>A missing or unreadable file produces a readable error (no panic, no stack trace) and exit code 1.</li><li>Files larger than memory work: the tool reads in fixed-size chunks.</li><li><code>cargo test</code> passes, including a test that hashes <code>"abc"</code>.</li></ol>
 
-                    <div class="lecture-nav">
-                        <button class="nav-btn" onclick="showLecture(10)">← Previous</button>
-                        <button class="nav-btn primary" onclick="showLecture(12)">Next Lecture →</button>
-                    </div>
-                </div>
+<h2>Milestone 1 &mdash; Project Setup</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre>cargo new hashsum
+cd hashsum
+cargo add clap --features derive
+cargo add sha2 hex</pre>
+</div>
+<p>Verify that <code>cargo run</code> prints &ldquo;Hello, world!&rdquo; before moving on.</p>
+
+<h2>Milestone 2 &mdash; Parse Arguments</h2>
+<p>With <code>clap</code>&rsquo;s derive API, a struct <em>is</em> your command-line interface. Doc comments become the help text.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> clap::Parser;
+<span class="kw">use</span> std::path::PathBuf;
+
+<span class="cm">/// Compute (and optionally verify) the SHA-256 checksum of a file.</span>
+#[derive(Parser)]
+#[command(name = <span class="st">"hashsum"</span>, version, about)]
+<span class="kw">struct</span> Cli {
+    <span class="cm">/// File to hash</span>
+    file: PathBuf,
+
+    <span class="cm">/// Expected hex digest. Exit code is 1 if it does not match.</span>
+    #[arg(short, long)]
+    verify: Option&lt;String&gt;,
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> cli = Cli::parse();
+    println!(<span class="st">"{:?} {:?}"</span>, cli.file, cli.verify);
+}</pre>
+</div>
+<p>Try <code>cargo run -- --help</code> and <code>cargo run -- notes.txt -v abc</code>.</p>
+
+<h2>Milestone 3 &mdash; Hash a Stream</h2>
+<p>Write the hashing logic against the <code>Read</code> <em>trait</em>, not against <code>File</code>. That makes it trivially testable with in-memory bytes.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> sha2::{Digest, Sha256};
+<span class="kw">use</span> std::io::{<span class="kw">self</span>, Read};
+
+<span class="kw">fn</span> sha256_reader(<span class="kw">mut</span> reader: <span class="kw">impl</span> Read) -&gt; io::Result&lt;String&gt; {
+    <span class="kw">let</span> <span class="kw">mut</span> hasher = Sha256::new();
+    <span class="kw">let</span> <span class="kw">mut</span> buf = [0u8; 8192];             <span class="cm">// fixed 8 KiB chunk</span>
+    <span class="kw">loop</span> {
+        <span class="kw">let</span> n = reader.read(&amp;<span class="kw">mut</span> buf)?;
+        <span class="kw">if</span> n == 0 {
+            <span class="kw">break</span>;                         <span class="cm">// end of input</span>
+        }
+        hasher.update(&amp;buf[..n]);          <span class="cm">// hash only the bytes actually read</span>
+    }
+    Ok(hex::encode(hasher.finalize()))
+}</pre>
+</div>
+
+<h2>Milestone 4 &mdash; Errors</h2>
+<p>An enum models <em>every</em> way the program can fail. Implementing <code>From&lt;io::Error&gt;</code> lets the <code>?</code> operator convert automatically.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::fmt;
+
+#[derive(Debug)]
+<span class="kw">enum</span> HashError {
+    Io(io::Error),
+    Mismatch { expected: String, actual: String },
+}
+
+<span class="kw">impl</span> fmt::Display <span class="kw">for</span> HashError {
+    <span class="kw">fn</span> fmt(&amp;<span class="kw">self</span>, f: &amp;<span class="kw">mut</span> fmt::Formatter&lt;'_&gt;) -&gt; fmt::Result {
+        <span class="kw">match</span> <span class="kw">self</span> {
+            HashError::Io(e) =&gt; write!(f, <span class="st">"I/O error: {e}"</span>),
+            HashError::Mismatch { expected, actual } =&gt; write!(
+                f,
+                <span class="st">"checksum mismatch\n  expected: {expected}\n  actual:   {actual}"</span>
+            ),
+        }
+    }
+}
+
+<span class="kw">impl</span> std::error::Error <span class="kw">for</span> HashError {}
+
+<span class="kw">impl</span> From&lt;io::Error&gt; <span class="kw">for</span> HashError {
+    <span class="kw">fn</span> from(e: io::Error) -&gt; <span class="kw">Self</span> {
+        HashError::Io(e)
+    }
+}</pre>
+</div>
+
+<h2>Milestone 5 &mdash; Complete Solution</h2>
+<p>Try each milestone yourself first. Then compare with the finished program.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">src/main.rs</span></div>
+<pre><span class="kw">use</span> clap::Parser;
+<span class="kw">use</span> sha2::{Digest, Sha256};
+<span class="kw">use</span> std::fmt;
+<span class="kw">use</span> std::fs::File;
+<span class="kw">use</span> std::io::{<span class="kw">self</span>, Read};
+<span class="kw">use</span> std::path::{Path, PathBuf};
+<span class="kw">use</span> std::process::ExitCode;
+
+<span class="cm">/// Compute (and optionally verify) the SHA-256 checksum of a file.</span>
+#[derive(Parser)]
+#[command(name = <span class="st">"hashsum"</span>, version, about)]
+<span class="kw">struct</span> Cli {
+    <span class="cm">/// File to hash</span>
+    file: PathBuf,
+
+    <span class="cm">/// Expected hex digest. Exit code is 1 if it does not match.</span>
+    #[arg(short, long)]
+    verify: Option&lt;String&gt;,
+}
+
+#[derive(Debug)]
+<span class="kw">enum</span> HashError {
+    Io(io::Error),
+    Mismatch { expected: String, actual: String },
+}
+
+<span class="kw">impl</span> fmt::Display <span class="kw">for</span> HashError {
+    <span class="kw">fn</span> fmt(&amp;<span class="kw">self</span>, f: &amp;<span class="kw">mut</span> fmt::Formatter&lt;'_&gt;) -&gt; fmt::Result {
+        <span class="kw">match</span> <span class="kw">self</span> {
+            HashError::Io(e) =&gt; write!(f, <span class="st">"I/O error: {e}"</span>),
+            HashError::Mismatch { expected, actual } =&gt; write!(
+                f,
+                <span class="st">"checksum mismatch\n  expected: {expected}\n  actual:   {actual}"</span>
+            ),
+        }
+    }
+}
+
+<span class="kw">impl</span> std::error::Error <span class="kw">for</span> HashError {}
+
+<span class="kw">impl</span> From&lt;io::Error&gt; <span class="kw">for</span> HashError {
+    <span class="kw">fn</span> from(e: io::Error) -&gt; <span class="kw">Self</span> {
+        HashError::Io(e)
+    }
+}
+
+<span class="kw">fn</span> sha256_reader(<span class="kw">mut</span> reader: <span class="kw">impl</span> Read) -&gt; io::Result&lt;String&gt; {
+    <span class="kw">let</span> <span class="kw">mut</span> hasher = Sha256::new();
+    <span class="kw">let</span> <span class="kw">mut</span> buf = [0u8; 8192];
+    <span class="kw">loop</span> {
+        <span class="kw">let</span> n = reader.read(&amp;<span class="kw">mut</span> buf)?;
+        <span class="kw">if</span> n == 0 {
+            <span class="kw">break</span>;
+        }
+        hasher.update(&amp;buf[..n]);
+    }
+    Ok(hex::encode(hasher.finalize()))
+}
+
+<span class="kw">fn</span> sha256_file(path: &amp;Path) -&gt; Result&lt;String, HashError&gt; {
+    Ok(sha256_reader(File::open(path)?)?)
+}
+
+<span class="kw">fn</span> run(cli: &amp;Cli) -&gt; Result&lt;(), HashError&gt; {
+    <span class="kw">let</span> digest = sha256_file(&amp;cli.file)?;
+
+    <span class="kw">match</span> &amp;cli.verify {
+        Some(expected) <span class="kw">if</span> !expected.eq_ignore_ascii_case(&amp;digest) =&gt; Err(HashError::Mismatch {
+            expected: expected.clone(),
+            actual: digest,
+        }),
+        Some(_) =&gt; {
+            println!(<span class="st">"OK  {}"</span>, cli.file.display());
+            Ok(())
+        }
+        None =&gt; {
+            println!(<span class="st">"{digest}  {}"</span>, cli.file.display());
+            Ok(())
+        }
+    }
+}
+
+<span class="kw">fn</span> main() -&gt; ExitCode {
+    <span class="kw">let</span> cli = Cli::parse();
+    <span class="kw">match</span> run(&amp;cli) {
+        Ok(()) =&gt; ExitCode::SUCCESS,
+        Err(e) =&gt; {
+            eprintln!(<span class="st">"error: {e}"</span>);
+            ExitCode::FAILURE
+        }
+    }
+}
+
+#[cfg(test)]
+<span class="kw">mod</span> tests {
+    <span class="kw">use</span> <span class="kw">super</span>::*;
+
+    #[test]
+    <span class="kw">fn</span> hashes_abc() {
+        <span class="cm">// Known-answer test vector from the SHA-256 specification (FIPS 180-4)</span>
+        <span class="kw">let</span> digest = sha256_reader(&amp;b<span class="st">"abc"</span>[..]).unwrap();
+        assert_eq!(
+            digest,
+            <span class="st">"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"</span>
+        );
+    }
+
+    #[test]
+    <span class="kw">fn</span> empty_input_has_known_hash() {
+        <span class="kw">let</span> digest = sha256_reader(&amp;b<span class="st">""</span>[..]).unwrap();
+        assert_eq!(
+            digest,
+            <span class="st">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span>
+        );
+    }
+}</pre>
+</div>
+
+<h2>Run and Verify</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre>cargo test
+cargo run -- Cargo.toml
+cargo run -- Cargo.toml --verify 0000   <span class="cm"># prints a mismatch and exits with code 1</span>
+echo $?                                  <span class="cm"># (PowerShell: $LASTEXITCODE)</span></pre>
+</div>
+
+<div class="box tip"><div class="box-title">&#128161; Why this design is "secure"</div><ul><li>It never loads the whole file into memory, so large inputs cannot exhaust RAM.</li><li>It never uses <code>unwrap()</code> on user-controlled input: every failure becomes a typed error.</li><li>It reports a mismatch with a non-zero exit code, so scripts and CI can rely on it.</li><li>SHA-256 is collision-resistant. (MD5 and SHA-1 are <em>not</em> safe for verifying downloads.)</li></ul></div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Limits to be aware of</div><p>A checksum proves a file was not <em>accidentally</em> corrupted. It only proves authenticity if you obtained the expected hash from a trusted channel (for example the vendor&rsquo;s HTTPS site). For stronger guarantees use digital signatures.</p></div>
+
+<h2>Challenge Version</h2>
+<p>When the guided version works, extend it <em>without looking at hints</em>:</p>
+<ol><li>Add <code>--algo sha256|sha512</code> using a <code>clap::ValueEnum</code>.</li><li>Accept several files and print one line per file.</li><li>Read a <code>SHA256SUMS</code> file (format: <code>hash  filename</code>) and verify every entry, like <code>sha256sum -c</code>.</li><li>Hash <code>stdin</code> when the file argument is <code>-</code>.</li><li>Add an integration test in <code>tests/cli.rs</code> that runs the compiled binary (hint: the <code>assert_cmd</code> crate).</li></ol>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(10)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(12)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Lifetimes</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 12</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-12" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 13 &middot; Advanced</div>
+<h1>Lifetimes</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~30 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 06</span></div>
+<p class="lecture-intro">Every reference in Rust has a <strong>lifetime</strong>: the region of code in which it is valid. Most of the time the compiler works it out for you. Lifetime annotations are how you explain the relationships it cannot infer.</p>
+<h2>The Problem Lifetimes Solve</h2>
+<p>Lifetimes exist to prevent <strong>dangling references</strong> &mdash; references to data that has already been dropped.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> r;                      <span class="cm">// declared, not yet initialised</span>
+    {
+        <span class="kw">let</span> x = 5;
+        r = &amp;x;                 <span class="cm">// r borrows x</span>
+    }                           <span class="cm">// x is dropped here</span>
+    <span class="cm">// println!("{}", r);       // ERROR: `x` does not live long enough</span>
+}</pre>
+</div>
+<p>The borrow checker compares how long <code>r</code> lives with how long <code>x</code> lives and rejects the program. In C or C++ this would compile and read freed memory.</p>
+
+<h2>Annotating Function Signatures</h2>
+<p>Consider a function that returns the longer of two string slices:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="cm">// ERROR: missing lifetime specifier</span>
+<span class="cm">// fn longest(a: &amp;str, b: &amp;str) -&gt; &amp;str {</span>
+<span class="cm">//     if a.len() &gt; b.len() { a } else { b }</span>
+<span class="cm">// }</span></pre>
+</div>
+<p>The returned reference might come from <code>a</code> <em>or</em> <code>b</code>, and the compiler cannot know which. We state the relationship with a lifetime parameter <code>'a</code>:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> longest&lt;'a&gt;(a: &amp;'a str, b: &amp;'a str) -&gt; &amp;'a str {
+    <span class="kw">if</span> a.len() &gt; b.len() { a } <span class="kw">else</span> { b }
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> s1 = String::from(<span class="st">"a long string"</span>);
+    <span class="kw">let</span> result;
+    {
+        <span class="kw">let</span> s2 = String::from(<span class="st">"short"</span>);
+        result = longest(&amp;s1, &amp;s2);
+        println!(<span class="st">"{result}"</span>);        <span class="cm">// OK: both inputs are alive here</span>
+    }
+    <span class="cm">// println!("{result}");         // ERROR if uncommented: s2 no longer lives</span>
+}</pre>
+</div>
+<p><code>&amp;'a str</code> reads &ldquo;a reference that is valid for at least <code>'a</code>&rdquo;. The signature says: <em>the result is valid only as long as <strong>both</strong> inputs are valid</em> (the shorter of the two lifetimes).</p>
+<div class="box note"><div class="box-title">Annotations never change how long data lives</div><p>Lifetime annotations are <em>descriptions</em>, not instructions. They tell the compiler how the lifetimes of inputs and outputs relate so it can verify your code is safe. They have no effect at runtime.</p></div>
+
+<h2>Lifetimes in Structs</h2>
+<p>A struct that holds a reference must declare how long that reference lives:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">struct</span> Excerpt&lt;'a&gt; {
+    part: &amp;'a str,
+}
+
+<span class="kw">impl</span>&lt;'a&gt; Excerpt&lt;'a&gt; {
+    <span class="kw">fn</span> first_word(&amp;<span class="kw">self</span>) -&gt; &amp;str {
+        <span class="kw">self</span>.part.split_whitespace().next().unwrap_or(<span class="st">""</span>)
+    }
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> novel = String::from(<span class="st">"Call me Ishmael. Some years ago..."</span>);
+    <span class="kw">let</span> first = novel.split(<span class="st">'.'</span>).next().unwrap();
+    <span class="kw">let</span> ex = Excerpt { part: first };
+    println!(<span class="st">"{}"</span>, ex.first_word());     <span class="cm">// Call</span>
+}   <span class="cm">// 'ex' cannot outlive 'novel'</span></pre>
+</div>
+
+<h2>Lifetime Elision</h2>
+<p>You did not write lifetimes for earlier functions like <code>fn first_word(s: &amp;str) -&gt; &amp;str</code> because the compiler applies three <strong>elision rules</strong>:</p>
+<ol><li>Each reference parameter gets its own lifetime.</li><li>If there is exactly one input lifetime, it is assigned to all output references.</li><li>If there is a <code>&amp;self</code> or <code>&amp;mut self</code> parameter, its lifetime is assigned to all output references.</li></ol>
+<p>When the rules cannot determine the output lifetime (as in <code>longest</code>), you must annotate.</p>
+
+<h2>The <code>'static</code> Lifetime</h2>
+<p><code>'static</code> means the data can live for the entire program. String literals have this lifetime because they are stored in the binary:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">let</span> s: &amp;'<span class="kw">static</span> str = <span class="st">"I live for the whole program"</span>;</pre>
+</div>
+<div class="box warn"><div class="box-title">&#9888;&#65039; Do not reach for 'static to silence errors</div><p>If the compiler suggests <code>'static</code> it usually means the real fix is to own the data (<code>String</code> instead of <code>&amp;str</code>) or to restructure so the borrow is shorter.</p></div>
+
+<h2>Owning vs. Borrowing: a Design Decision</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="cm">// Borrowing: cheap, but tied to the lifetime of the source</span>
+<span class="kw">struct</span> ParserBorrowed&lt;'a&gt; { input: &amp;'a str }
+
+<span class="cm">// Owning: no lifetime parameter, easier to move around and return</span>
+<span class="kw">struct</span> ParserOwned { input: String }</pre>
+</div>
+<p>Start with owned data. Introduce borrowed fields when profiling shows copying is a real cost.</p>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Returning a reference to a local variable: <code>fn make() -&gt; &amp;String { let s = String::new(); &amp;s }</code>. The value is dropped when the function returns. Return the <code>String</code> itself.</li><li>Annotating every reference with the same <code>'a</code> out of habit. Over-constraining lifetimes makes valid code fail to compile.</li><li>Thinking <code>'a</code> extends how long a value lives. It only <em>describes</em> a relationship.</li><li>Storing a reference in a struct and then trying to return the struct from the function that owns the data.</li></ul></div>
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Read compiler lifetime errors from the bottom: they point to the variable that is dropped too early.</li><li>If a function takes one reference and returns one reference, you almost never need annotations.</li><li>When you are fighting lifetimes in a struct, switch the field to an owned type and see whether the design gets simpler.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 13.1</div>
+<ol><li>Write <code>fn first_longer&lt;'a&gt;(a: &amp;'a str, b: &amp;'a str) -&gt; &amp;'a str</code> that returns <code>a</code> unless <code>b</code> is strictly longer.</li><li>Create a struct <code>Highlight&lt;'a&gt;</code> holding a <code>&amp;'a str</code> and a method <code>len(&amp;self) -&gt; usize</code>.</li><li>Deliberately write a program where a reference outlives its owner. Read the error message and fix it two ways: by moving the declaration, and by cloning into an owned <code>String</code>.</li></ol></div>
+
+<div class="quiz-block" data-quiz="rust-l13">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does a lifetime annotation like <code>'a</code> do at runtime?</p><ol class="quiz-options"><li>Keeps the data alive longer</li><li>Nothing &mdash; it is checked at compile time only</li><li>Adds a reference counter</li></ol><p class="quiz-explain">Lifetimes are erased during compilation. They only help the borrow checker prove references are valid.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why does <code>fn longest(a: &amp;str, b: &amp;str) -&gt; &amp;str</code> fail to compile?</p><ol class="quiz-options"><li>Strings cannot be compared</li><li>The compiler cannot tell whether the output borrows from <code>a</code> or <code>b</code></li><li>Functions cannot return references</li></ol><p class="quiz-explain">Elision rule 2 needs exactly one input lifetime. With two inputs the output is ambiguous, so you must annotate.</p></div>
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">What is the lifetime of a string literal?</p><ol class="quiz-options"><li><code>'static</code></li><li>The enclosing function</li><li>It has none</li></ol><p class="quiz-explain">Literals are baked into the executable, so they are valid for the entire run of the program.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(11)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Advanced</div>
-            <h1>Smart Pointers (Box, Rc, RefCell)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 13</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-13" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 14 &middot; Advanced</div>
+<h1>Smart Pointers (Box, Rc, RefCell)</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 13</span></div>
+<p class="lecture-intro">A <strong>smart pointer</strong> is a data structure that acts like a pointer but carries extra metadata and behaviour, such as automatic cleanup or reference counting. This lecture covers the three you will use most: <code>Box</code>, <code>Rc</code> and <code>RefCell</code>.</p>
+<h2><code>Box&lt;T&gt;</code>: Heap Allocation</h2>
+<p><code>Box</code> stores a value on the heap and keeps a pointer to it on the stack. It has a single owner and is freed automatically when it goes out of scope.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> b = Box::new(5);        <span class="cm">// the integer 5 lives on the heap</span>
+    println!(<span class="st">"{}"</span>, *b + 1);     <span class="cm">// dereference with *  -&gt; 6</span>
+}                               <span class="cm">// b is dropped, heap memory freed</span></pre>
+</div>
+<p>The classic use is a <strong>recursive type</strong>. Without a pointer the compiler cannot compute the type&rsquo;s size, because a list would contain a list that contains a list&hellip;</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">enum</span> List {
+    Cons(i32, Box&lt;List&gt;),   <span class="cm">// Box has a known size, so List does too</span>
+    Nil,
+}
+
+<span class="kw">use</span> List::{Cons, Nil};
+
+<span class="kw">fn</span> sum(list: &amp;List) -&gt; i32 {
+    <span class="kw">match</span> list {
+        Cons(value, rest) =&gt; value + sum(rest),
+        Nil =&gt; 0,
+    }
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+    println!(<span class="st">"{}"</span>, sum(&amp;list));   <span class="cm">// 6</span>
+}</pre>
+</div>
+<p><code>Box&lt;dyn Trait&gt;</code> (from the Traits lecture) is another common use.</p>
+
+<h2><code>Rc&lt;T&gt;</code>: Shared Ownership</h2>
+<p>Sometimes a value legitimately has several owners, for example nodes in a graph. <code>Rc</code> (<em>reference counted</em>) keeps a count of owners and frees the data when the count reaches zero.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::rc::Rc;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> a = Rc::new(String::from(<span class="st">"shared data"</span>));
+    println!(<span class="st">"count = {}"</span>, Rc::strong_count(&amp;a));   <span class="cm">// 1</span>
+
+    <span class="kw">let</span> b = Rc::clone(&amp;a);                          <span class="cm">// cheap: increments the count</span>
+    println!(<span class="st">"count = {}"</span>, Rc::strong_count(&amp;a));   <span class="cm">// 2</span>
+
+    {
+        <span class="kw">let</span> c = Rc::clone(&amp;a);
+        println!(<span class="st">"count = {} ({c})"</span>, Rc::strong_count(&amp;a)); <span class="cm">// 3</span>
+    }                                               <span class="cm">// c dropped</span>
+
+    println!(<span class="st">"count = {} ({b})"</span>, Rc::strong_count(&amp;a));    <span class="cm">// 2</span>
+}</pre>
+</div>
+<div class="box warn"><div class="box-title">&#9888;&#65039; Rc is single-threaded</div><p><code>Rc</code> is not safe to share between threads. Its thread-safe sibling is <code>Arc</code> (atomic reference counting), used in the Concurrency lecture. The compiler enforces this: sending an <code>Rc</code> to another thread is a compile error.</p></div>
+<p><code>Rc&lt;T&gt;</code> only gives <em>shared, read-only</em> access. To mutate shared data we combine it with <code>RefCell</code>.</p>
+
+<h2><code>RefCell&lt;T&gt;</code>: Interior Mutability</h2>
+<p>Normally the borrow rules (one <code>&amp;mut</code> <em>or</em> many <code>&amp;</code>) are checked at compile time. <code>RefCell</code> moves that check to <strong>runtime</strong>, letting you mutate data through a shared reference. If you violate the rules, the program panics.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::cell::RefCell;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> data = RefCell::new(vec![1, 2, 3]);
+
+    data.borrow_mut().push(4);            <span class="cm">// temporary mutable borrow</span>
+    println!(<span class="st">"{:?}"</span>, data.borrow());      <span class="cm">// [1, 2, 3, 4]</span>
+}</pre>
+</div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::cell::RefCell;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> cell = RefCell::new(5);
+    <span class="kw">let</span> first = cell.borrow_mut();
+    <span class="kw">let</span> second = cell.borrow_mut();       <span class="cm">// PANIC: already mutably borrowed</span>
+    println!(<span class="st">"{first} {second}"</span>);
+}</pre>
+</div>
+
+<h2>The Combination: <code>Rc&lt;RefCell&lt;T&gt;&gt;</code></h2>
+<p>Multiple owners that can all mutate the same value:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::cell::RefCell;
+<span class="kw">use</span> std::rc::Rc;
+
+#[derive(Debug)]
+<span class="kw">struct</span> Account { balance: i32 }
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> shared = Rc::new(RefCell::new(Account { balance: 100 }));
+
+    <span class="kw">let</span> owner_a = Rc::clone(&amp;shared);
+    <span class="kw">let</span> owner_b = Rc::clone(&amp;shared);
+
+    owner_a.borrow_mut().balance += 50;
+    owner_b.borrow_mut().balance -= 30;
+
+    println!(<span class="st">"{:?}"</span>, shared.borrow());    <span class="cm">// Account { balance: 120 }</span>
+}</pre>
+</div>
+<div class="box info"><div class="box-title">Choosing a pointer</div><table><thead><tr><th>Type</th><th>Owners</th><th>Mutability checks</th><th>Thread-safe</th></tr></thead><tbody><tr><td><code>Box&lt;T&gt;</code></td><td>One</td><td>Compile time</td><td>If <code>T</code> is</td></tr><tr><td><code>Rc&lt;T&gt;</code></td><td>Many</td><td>Compile time (read-only)</td><td>No</td></tr><tr><td><code>RefCell&lt;T&gt;</code></td><td>One</td><td>Runtime</td><td>No</td></tr><tr><td><code>Arc&lt;Mutex&lt;T&gt;&gt;</code></td><td>Many</td><td>Runtime (locking)</td><td>Yes</td></tr></tbody></table></div>
+
+<h2>Reference Cycles and <code>Weak</code></h2>
+<p>If two <code>Rc</code> values point at each other, their counts never reach zero and the memory <strong>leaks</strong>. Break cycles with <code>Weak&lt;T&gt;</code>, a non-owning reference created with <code>Rc::downgrade</code> and turned back into an <code>Option&lt;Rc&lt;T&gt;&gt;</code> with <code>upgrade()</code>. A typical use is a tree where children hold strong pointers to nothing and a <em>weak</em> pointer to their parent.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::rc::{Rc, Weak};
+<span class="kw">use</span> std::cell::RefCell;
+
+<span class="kw">struct</span> Node {
+    value: i32,
+    parent: RefCell&lt;Weak&lt;Node&gt;&gt;,
+    children: RefCell&lt;Vec&lt;Rc&lt;Node&gt;&gt;&gt;,
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> leaf = Rc::new(Node {
+        value: 3,
+        parent: RefCell::new(Weak::new()),
+        children: RefCell::new(vec![]),
+    });
+
+    <span class="kw">let</span> branch = Rc::new(Node {
+        value: 5,
+        parent: RefCell::new(Weak::new()),
+        children: RefCell::new(vec![Rc::clone(&amp;leaf)]),
+    });
+
+    *leaf.parent.borrow_mut() = Rc::downgrade(&amp;branch);
+
+    println!(<span class="st">"leaf parent = {:?}"</span>, leaf.parent.borrow().upgrade().map(|p| p.value)); <span class="cm">// Some(5)</span>
+    println!(<span class="st">"branch strong = {}, weak = {}"</span>, Rc::strong_count(&amp;branch), Rc::weak_count(&amp;branch)); <span class="cm">// 1, 1</span>
+    println!(<span class="st">"children = {}"</span>, branch.children.borrow().len());
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Using <code>Rc</code> when plain ownership or a borrow would do. Each <code>Rc</code> adds a counter and hides who really owns the data.</li><li>Holding a <code>borrow_mut()</code> guard across another <code>borrow()</code> of the same <code>RefCell</code>, causing a runtime panic. Keep guards short-lived.</li><li>Creating <code>Rc</code> cycles, which leak memory. Use <code>Weak</code> for back-references.</li><li>Using <code>Rc&lt;RefCell&lt;T&gt;&gt;</code> across threads. Use <code>Arc&lt;Mutex&lt;T&gt;&gt;</code> instead.</li></ul></div>
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Prefer <code>Rc::clone(&amp;a)</code> over <code>a.clone()</code>. It makes it obvious you are copying a pointer, not the data.</li><li>If you can restructure to avoid interior mutability, do. <code>RefCell</code> trades compile-time guarantees for runtime panics.</li><li>Use <code>try_borrow_mut()</code> when you cannot be sure the cell is free; it returns a <code>Result</code> instead of panicking.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 14.1</div>
+<ol><li>Define a binary tree enum <code>Tree { Leaf, Node(Box&lt;Tree&gt;, i32, Box&lt;Tree&gt;) }</code> and write <code>fn sum(t: &amp;Tree) -&gt; i32</code>.</li><li>Create an <code>Rc&lt;RefCell&lt;Vec&lt;String&gt;&gt;&gt;</code> log shared between two structs, each pushing messages. Print the final log and <code>Rc::strong_count</code>.</li><li>Trigger a <code>RefCell</code> double-borrow panic on purpose, then fix it by limiting the scope of the first borrow.</li></ol></div>
+
+<div class="quiz-block" data-quiz="rust-l14">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why does a recursive enum need <code>Box</code>?</p><ol class="quiz-options"><li>To make it faster</li><li>So the compiler can compute a finite size for the type</li><li>To allow mutation</li></ol><p class="quiz-explain">Without indirection the type would contain itself and have infinite size. A <code>Box</code> is a fixed-size pointer.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What happens when the last <code>Rc</code> to a value is dropped?</p><ol class="quiz-options"><li>Nothing; the value leaks</li><li>The value is freed</li><li>The program panics</li></ol><p class="quiz-explain">When the strong count reaches zero the value is dropped and its memory released.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">When does <code>RefCell</code> check borrowing rules?</p><ol class="quiz-options"><li>At compile time</li><li>At runtime</li><li>Never</li></ol><p class="quiz-explain"><code>RefCell</code> enforces the same rules as the borrow checker but dynamically, panicking on violation.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(12)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(14)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 15 ===================== -->
-        <div class="lecture" id="lec-14">
-            <div class="lecture-tag">Lecture 15 · Advanced</div>
-            <h1>Concurrency (Threads & Channels)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 14</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-14" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 15 &middot; Advanced</div>
+<h1>Concurrency (Threads &amp; Channels)</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 14</span></div>
+<p class="lecture-intro">Rust&rsquo;s ownership rules catch data races <strong>at compile time</strong>. This is often called <em>fearless concurrency</em>: if your threaded program compiles, it is free of data races (though not necessarily of deadlocks or logic bugs).</p>
+<h2>Spawning Threads</h2>
+<p><code>std::thread::spawn</code> starts an OS thread running a closure. It returns a <code>JoinHandle</code>; calling <code>join()</code> waits for the thread and gives back its result.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::thread;
+<span class="kw">use</span> std::time::Duration;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> handle = thread::spawn(|| {
+        <span class="kw">for</span> i <span class="kw">in</span> 1..=3 {
+            println!(<span class="st">"worker: step {i}"</span>);
+            thread::sleep(Duration::from_millis(50));
+        }
+        42                                  <span class="cm">// the thread's return value</span>
+    });
+
+    println!(<span class="st">"main: waiting..."</span>);
+    <span class="kw">let</span> answer = handle.join().unwrap();    <span class="cm">// blocks until the worker finishes</span>
+    println!(<span class="st">"worker returned {answer}"</span>);
+}</pre>
+</div>
+<p>If <code>main</code> returns before a spawned thread finishes, the thread is killed. Always <code>join</code> threads whose work you need.</p>
+
+<h2>Moving Data into Threads</h2>
+<p>A spawned thread might outlive the function that created it, so it cannot borrow local variables. Use <code class="kw">move</code> to transfer ownership into the closure.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::thread;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> numbers = vec![1, 2, 3];
+
+    <span class="kw">let</span> handle = thread::spawn(<span class="kw">move</span> || {
+        println!(<span class="st">"sum = {}"</span>, numbers.iter().sum::&lt;i32&gt;());
+    });
+
+    <span class="cm">// println!("{:?}", numbers);   // ERROR: value moved into the closure</span>
+    handle.join().unwrap();
+}</pre>
+</div>
+
+<h2>Message Passing with Channels</h2>
+<p>&ldquo;Do not communicate by sharing memory; share memory by communicating.&rdquo; An <code>mpsc</code> channel (<em>multiple producer, single consumer</em>) moves values from senders to a receiver.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::sync::mpsc;
+<span class="kw">use</span> std::thread;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> (tx, rx) = mpsc::channel();
+
+    <span class="kw">for</span> id <span class="kw">in</span> 0..3 {
+        <span class="kw">let</span> tx = tx.clone();                       <span class="cm">// one sender per producer</span>
+        thread::spawn(<span class="kw">move</span> || {
+            tx.send(format!(<span class="st">"hello from worker {id}"</span>)).unwrap();
+        });
+    }
+    drop(tx);                                      <span class="cm">// close the original sender</span>
+
+    <span class="kw">for</span> message <span class="kw">in</span> rx {                            <span class="cm">// ends when ALL senders are dropped</span>
+        println!(<span class="st">"{message}"</span>);
+    }
+}</pre>
+</div>
+<p>Sending <em>moves</em> the value, so the sender can no longer use it. That is exactly what prevents two threads from touching the same data.</p>
+
+<h2>Shared State with <code>Arc&lt;Mutex&lt;T&gt;&gt;</code></h2>
+<p>Sometimes threads genuinely need the same data. <code>Mutex</code> allows one thread at a time to access it, and <code>Arc</code> (atomic <code>Rc</code>) lets several threads own it.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::sync::{Arc, Mutex};
+<span class="kw">use</span> std::thread;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> counter = Arc::new(Mutex::new(0));
+    <span class="kw">let</span> <span class="kw">mut</span> handles = Vec::new();
+
+    <span class="kw">for</span> _ <span class="kw">in</span> 0..10 {
+        <span class="kw">let</span> counter = Arc::clone(&amp;counter);
+        handles.push(thread::spawn(<span class="kw">move</span> || {
+            <span class="kw">let</span> <span class="kw">mut</span> n = counter.lock().unwrap();   <span class="cm">// lock; unlocked when 'n' goes out of scope</span>
+            *n += 1;
+        }));
+    }
+
+    <span class="kw">for</span> h <span class="kw">in</span> handles {
+        h.join().unwrap();
+    }
+
+    println!(<span class="st">"final count = {}"</span>, *counter.lock().unwrap());   <span class="cm">// always 10</span>
+}</pre>
+</div>
+<div class="box info"><div class="box-title">RwLock and atomics</div><p>For read-heavy data use <code>RwLock</code> (many readers or one writer). For a single integer counter, <code>std::sync::atomic::AtomicUsize</code> is faster than a mutex.</p></div>
+
+<h2>The <code>Send</code> and <code>Sync</code> Traits</h2>
+<p>These marker traits are how the compiler knows what is safe:</p>
+<ul><li><code>Send</code> &mdash; a value of this type can be <em>moved</em> to another thread.</li><li><code>Sync</code> &mdash; a value can be <em>referenced</em> from several threads (<code>&amp;T</code> is <code>Send</code>).</li><li><code>Rc&lt;T&gt;</code> is neither, which is why using it across threads is a compile error. <code>Arc&lt;T&gt;</code> is both (when <code>T</code> is).</li></ul>
+
+<h2>Scoped Threads</h2>
+<p>Since Rust 1.63, <code>thread::scope</code> lets threads <em>borrow</em> local data because the scope guarantees they finish before it ends. No <code>move</code>, <code>Arc</code> or manual <code>join</code> is needed.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> std::thread;
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> data = vec![1, 2, 3, 4, 5, 6];
+    <span class="kw">let</span> (left, right) = data.split_at(3);
+
+    <span class="kw">let</span> (a, b) = thread::scope(|s| {
+        <span class="kw">let</span> t1 = s.spawn(|| left.iter().sum::&lt;i32&gt;());
+        <span class="kw">let</span> t2 = s.spawn(|| right.iter().sum::&lt;i32&gt;());
+        (t1.join().unwrap(), t2.join().unwrap())
+    });
+
+    println!(<span class="st">"{a} + {b} = {}"</span>, a + b);   <span class="cm">// 6 + 15 = 21</span>
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Forgetting <code>drop(tx)</code>: the receiving <code>for</code> loop never ends because one sender is still alive.</li><li>Holding a <code>MutexGuard</code> longer than needed (for example while doing slow I/O), serialising all threads.</li><li>Locking two mutexes in different orders in different threads, which can <strong>deadlock</strong>. Always acquire locks in a consistent order.</li><li>Calling <code>.unwrap()</code> on <code>lock()</code> without understanding poisoning: if a thread panics while holding the lock, later <code>lock()</code> calls return <code>Err</code>.</li></ul></div>
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Prefer channels when work flows one way (pipelines, workers). Prefer <code>Arc&lt;Mutex&gt;</code> for genuinely shared state.</li><li>For CPU-bound data parallelism, use the <code>rayon</code> crate: <code>vec.par_iter().map(...)</code> parallelises with one line.</li><li>Keep critical sections tiny: lock, copy out what you need, unlock.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 15.1</div>
+<ol><li>Spawn four threads that each compute the sum of a quarter of a <code>Vec&lt;u64&gt;</code> of 1 million numbers and send the partial sum through a channel. Add the results in <code>main</code>.</li><li>Re-implement the same task with <code>thread::scope</code> and compare how much simpler it is.</li><li>Write a deliberately racy-looking program using <code>Rc</code> across threads. Read the compiler error and explain which trait is missing.</li></ol></div>
+
+<div class="quiz-block" data-quiz="rust-l15">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why is <code>move</code> needed in <code>thread::spawn(move || ...)</code>?</p><ol class="quiz-options"><li>To make the thread faster</li><li>The thread may outlive the current function, so it must own the data it uses</li><li>To enable channels</li></ol><p class="quiz-explain">Borrowed locals could be dropped while the thread is still running, so the closure must take ownership.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which combination lets several threads mutate one counter?</p><ol class="quiz-options"><li><code>Rc&lt;RefCell&lt;i32&gt;&gt;</code></li><li><code>Arc&lt;Mutex&lt;i32&gt;&gt;</code></li><li><code>Box&lt;i32&gt;</code></li></ol><p class="quiz-explain"><code>Arc</code> provides thread-safe shared ownership and <code>Mutex</code> provides exclusive, synchronised access.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">When does a <code>for msg in rx</code> loop stop?</p><ol class="quiz-options"><li>After 1 message</li><li>When all senders have been dropped</li><li>Never</li></ol><p class="quiz-explain">The receiver iterator ends once the channel is closed, which happens when every <code>Sender</code> is dropped.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(13)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(15)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 16 ===================== -->
-        <div class="lecture" id="lec-15">
-            <div class="lecture-tag">Lecture 16 · Advanced</div>
-            <h1>Closures & Advanced Iterators</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 15</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-15" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 16 &middot; Advanced</div>
+<h1>Closures &amp; Advanced Iterators</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~30 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 05</span></div>
+<p class="lecture-intro">Closures are anonymous functions that can capture their environment. Combined with iterators they let you express data processing as readable pipelines that compile down to the same machine code as hand-written loops.</p>
+<h2>Closures</h2>
+<p>A closure is written with pipes around its parameters. Types are usually inferred.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> add_one = |x: i32| x + 1;
+    <span class="kw">let</span> multiply = |a, b| a * b;                 <span class="cm">// types inferred from first use</span>
+
+    <span class="kw">let</span> offset = 10;
+    <span class="kw">let</span> add_offset = |x| x + offset;             <span class="cm">// captures 'offset' from its environment</span>
+
+    println!(<span class="st">"{} {} {}"</span>, add_one(5), multiply(3, 4), add_offset(5));   <span class="cm">// 6 12 15</span>
+}</pre>
+</div>
+
+<h2>How Closures Capture</h2>
+<p>A closure captures each variable in the least restrictive way that works: by shared reference, by mutable reference, or by value. The compiler then implements one or more of three traits:</p>
+<table><thead><tr><th>Trait</th><th>Can be called</th><th>Captures</th></tr></thead><tbody>
+<tr><td><code>Fn</code></td><td>Many times</td><td>Only reads captured values</td></tr>
+<tr><td><code>FnMut</code></td><td>Many times</td><td>Mutates captured values</td></tr>
+<tr><td><code>FnOnce</code></td><td>Once</td><td>Moves captured values out</td></tr>
+</tbody></table>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> <span class="kw">mut</span> count = 0;
+    <span class="kw">let</span> <span class="kw">mut</span> tick = || { count += 1; count };   <span class="cm">// FnMut: mutates 'count'</span>
+    tick();
+    tick();
+    println!(<span class="st">"{}"</span>, tick());                    <span class="cm">// 3</span>
+
+    <span class="kw">let</span> name = String::from(<span class="st">"Ada"</span>);
+    <span class="kw">let</span> consume = <span class="kw">move</span> || name;                <span class="cm">// FnOnce: moves 'name' out when called</span>
+    <span class="kw">let</span> owned = consume();
+    println!(<span class="st">"{owned}"</span>);
+}</pre>
+</div>
+<p>Use <code>move</code> to force the closure to take ownership, which is required when returning a closure or sending it to a thread.</p>
+
+<h2>Closures as Parameters and Return Values</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> apply_twice&lt;F: Fn(i32) -&gt; i32&gt;(f: F, x: i32) -&gt; i32 {
+    f(f(x))
+}
+
+<span class="kw">fn</span> make_adder(n: i32) -&gt; <span class="kw">impl</span> Fn(i32) -&gt; i32 {
+    <span class="kw">move</span> |x| x + n
+}
+
+<span class="kw">fn</span> make_boxed(n: i32) -&gt; Box&lt;<span class="kw">dyn</span> Fn(i32) -&gt; i32&gt; {
+    Box::new(<span class="kw">move</span> |x| x * n)       <span class="cm">// use Box&lt;dyn Fn&gt; when different closures may be returned</span>
+}
+
+<span class="kw">fn</span> main() {
+    println!(<span class="st">"{}"</span>, apply_twice(|x| x * 3, 2));   <span class="cm">// 18</span>
+    <span class="kw">let</span> add5 = make_adder(5);
+    println!(<span class="st">"{}"</span>, add5(10));                    <span class="cm">// 15</span>
+    println!(<span class="st">"{}"</span>, make_boxed(4)(6));            <span class="cm">// 24</span>
+}</pre>
+</div>
+
+<h2>Iterators Are Lazy</h2>
+<p>An iterator implements <code>Iterator</code> and produces values through <code>next()</code>. <strong>Adaptors</strong> such as <code>map</code> and <code>filter</code> build a new iterator but do nothing until a <strong>consumer</strong> such as <code>collect</code>, <code>sum</code> or a <code>for</code> loop drives it.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> numbers = vec![1, 2, 3, 4, 5, 6];
+
+    <span class="kw">let</span> evens_squared: Vec&lt;i32&gt; = numbers
+        .iter()
+        .filter(|&amp;&amp;n| n % 2 == 0)     <span class="cm">// keep even numbers</span>
+        .map(|&amp;n| n * n)              <span class="cm">// square them</span>
+        .collect();                   <span class="cm">// consume into a Vec</span>
+
+    println!(<span class="st">"{:?}"</span>, evens_squared);  <span class="cm">// [4, 16, 36]</span>
+}</pre>
+</div>
+
+<h2>The Adaptors You Will Use Daily</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> words = vec![<span class="st">"apple"</span>, <span class="st">"bob"</span>, <span class="st">"cat"</span>, <span class="st">"dodo"</span>];
+
+    <span class="cm">// enumerate: pair each item with its index</span>
+    <span class="kw">for</span> (i, w) <span class="kw">in</span> words.iter().enumerate() {
+        println!(<span class="st">"{i}: {w}"</span>);
+    }
+
+    <span class="cm">// zip: walk two iterators in lockstep</span>
+    <span class="kw">let</span> prices = [1.5, 0.5, 2.0, 3.25];
+    <span class="kw">let</span> total: f64 = words.iter().zip(prices.iter()).map(|(_, p)| p).sum();
+    println!(<span class="st">"total = {total}"</span>);                                     <span class="cm">// 7.25</span>
+
+    <span class="cm">// fold: reduce to a single value</span>
+    <span class="kw">let</span> total_len = words.iter().fold(0, |acc, w| acc + w.len());
+    println!(<span class="st">"{total_len}"</span>);                                         <span class="cm">// 15</span>
+
+    <span class="cm">// any / all / find / position</span>
+    println!(<span class="st">"{}"</span>, words.iter().any(|w| w.starts_with(<span class="st">'b'</span>)));        <span class="cm">// true</span>
+    println!(<span class="st">"{:?}"</span>, words.iter().position(|&amp;w| w == <span class="st">"cat"</span>));        <span class="cm">// Some(2)</span>
+
+    <span class="cm">// take / skip / rev / chain</span>
+    <span class="kw">let</span> first_two: Vec&lt;_&gt; = words.iter().take(2).collect();
+    println!(<span class="st">"{:?}"</span>, first_two);                                     <span class="cm">// ["apple", "bob"]</span>
+
+    <span class="cm">// flat_map, collecting into other containers</span>
+    <span class="kw">use</span> std::collections::HashMap;
+    <span class="kw">let</span> lengths: HashMap&lt;&amp;str, usize&gt; = words.iter().map(|w| (*w, w.len())).collect();
+    println!(<span class="st">"{}"</span>, lengths[<span class="st">"dodo"</span>]);                                 <span class="cm">// 4</span>
+}</pre>
+</div>
+<div class="box info"><div class="box-title">&#9889; Zero-cost abstraction</div><p>Iterator chains are optimised by the compiler into tight loops, often as fast as hand-written ones and sometimes faster because bounds checks can be elided. You do not pay for the readability.</p></div>
+
+<h2><code>collect</code> into <code>Result</code></h2>
+<p>A powerful trick: collecting an iterator of <code>Result</code> stops at the first error.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">fn</span> main() {
+    <span class="kw">let</span> good: Result&lt;Vec&lt;i32&gt;, _&gt; = <span class="st">"1,2,3"</span>.split(<span class="st">','</span>).map(|s| s.parse::&lt;i32&gt;()).collect();
+    <span class="kw">let</span> bad:  Result&lt;Vec&lt;i32&gt;, _&gt; = <span class="st">"1,x,3"</span>.split(<span class="st">','</span>).map(|s| s.parse::&lt;i32&gt;()).collect();
+
+    println!(<span class="st">"{:?}"</span>, good);        <span class="cm">// Ok([1, 2, 3])</span>
+    println!(<span class="st">"{}"</span>, bad.is_err());  <span class="cm">// true</span>
+}</pre>
+</div>
+
+<h2>Writing Your Own Iterator</h2>
+<p>Implement <code>Iterator</code> by defining <code>Item</code> and <code>next</code>. You get every adaptor for free.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">struct</span> Countdown(u32);
+
+<span class="kw">impl</span> Iterator <span class="kw">for</span> Countdown {
+    <span class="kw">type</span> Item = u32;
+
+    <span class="kw">fn</span> next(&amp;<span class="kw">mut</span> <span class="kw">self</span>) -&gt; Option&lt;u32&gt; {
+        <span class="kw">if</span> <span class="kw">self</span>.0 == 0 {
+            None
+        } <span class="kw">else</span> {
+            <span class="kw">self</span>.0 -= 1;
+            Some(<span class="kw">self</span>.0 + 1)
+        }
+    }
+}
+
+<span class="kw">fn</span> main() {
+    <span class="kw">let</span> v: Vec&lt;u32&gt; = Countdown(5).filter(|n| n % 2 == 1).collect();
+    println!(<span class="st">"{:?}"</span>, v);   <span class="cm">// [5, 3, 1]</span>
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Forgetting that iterators are lazy: <code>v.iter().map(|x| println!("{x}"));</code> prints nothing because nothing consumes it. (The compiler warns: <em>unused iterator adaptors are lazy</em>.)</li><li>Mixing up <code>iter()</code> (borrows, yields <code>&amp;T</code>), <code>iter_mut()</code> (yields <code>&amp;mut T</code>) and <code>into_iter()</code> (consumes, yields <code>T</code>).</li><li>Collecting into a <code>Vec</code> in the middle of a chain just to loop again. Keep chaining.</li><li>Capturing a variable by reference in a closure that is returned, instead of using <code>move</code>.</li></ul></div>
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Annotate the target type of <code>collect()</code> (<code>Vec&lt;_&gt;</code>, <code>HashMap&lt;_, _&gt;</code>, <code>String</code>&hellip;) or use the turbofish: <code>collect::&lt;Vec&lt;_&gt;&gt;()</code>.</li><li>Use <code>iter().copied()</code> or <code>.cloned()</code> to turn <code>&amp;T</code> items into <code>T</code> when <code>T: Copy</code>/<code>Clone</code>.</li><li>Prefer <code>sum()</code>, <code>max()</code>, <code>min_by_key()</code> over manual loops: they are clearer and equally fast.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 16.1</div>
+<ol><li>Given <code>let text = "the quick brown fox jumps over the lazy dog";</code>, use one iterator chain to build a <code>Vec&lt;String&gt;</code> of the upper-cased words longer than 3 letters.</li><li>Count how many times each word appears using <code>fold</code> or a <code>for</code> loop over a <code>HashMap</code>.</li><li>Write <code>fn compose(f: impl Fn(i32) -&gt; i32, g: impl Fn(i32) -&gt; i32) -&gt; impl Fn(i32) -&gt; i32</code> that returns <code>g(f(x))</code>.</li><li>Implement an iterator <code>Fibonacci</code> and print the first 10 numbers with <code>.take(10)</code>.</li></ol></div>
+
+<div class="quiz-block" data-quiz="rust-l16">
+<div class="quiz-q" data-answer="2"><p class="quiz-prompt">Which closure trait lets you call the closure only once?</p><ol class="quiz-options"><li><code>Fn</code></li><li><code>FnMut</code></li><li><code>FnOnce</code></li></ol><p class="quiz-explain"><code>FnOnce</code> closures move something out of their environment, so they cannot be called again.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does <code>(1..4).map(|x| x * 2);</code> do on its own?</p><ol class="quiz-options"><li>Returns [2, 4, 6]</li><li>Nothing &mdash; iterators are lazy until consumed</li><li>Panics</li></ol><p class="quiz-explain"><code>map</code> only creates a new iterator. A consumer like <code>collect</code> or <code>sum</code> is needed to run it.</p></div>
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">Which method turns an iterator into a single accumulated value?</p><ol class="quiz-options"><li><code>fold</code></li><li><code>zip</code></li><li><code>enumerate</code></li></ol><p class="quiz-explain"><code>fold</code> repeatedly applies a closure to an accumulator and each item, producing one result.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(14)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(16)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 17 ===================== -->
-        <div class="lecture" id="lec-16">
-            <div class="lecture-tag">Lecture 17 · Professional</div>
-            <h1>Async Rust (Tokio)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 16</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-16" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 17 &middot; Professional</div>
+<h1>Async Rust (Tokio)</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 15</span></div>
+<p class="lecture-intro">Threads are great for CPU-bound work, but a server with 10,000 mostly-idle connections should not need 10,000 threads. <strong>Async</strong> lets one thread juggle many tasks that spend their time waiting on I/O.</p>
+<h2>Futures and <code>async</code>/<code>.await</code></h2>
+<p>An <code>async fn</code> returns a <strong>future</strong>: a value representing a computation that will finish later. Futures are <em>lazy</em>; they do nothing until they are <code>.await</code>ed or handed to a runtime.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">async</span> <span class="kw">fn</span> double(x: u32) -&gt; u32 {
+    x * 2
+}
+
+<span class="kw">async</span> <span class="kw">fn</span> compute() -&gt; u32 {
+    <span class="kw">let</span> a = double(5).<span class="kw">await</span>;     <span class="cm">// .await pauses THIS task, letting others run</span>
+    <span class="kw">let</span> b = double(a).<span class="kw">await</span>;
+    a + b                        <span class="cm">// 10 + 20 = 30</span>
+}</pre>
+</div>
+<p>Rust&rsquo;s standard library defines the <code>Future</code> trait but ships <strong>no runtime</strong>. You pick one. <strong>Tokio</strong> is the de-facto standard.</p>
+
+<h2>Setting Up Tokio</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre>cargo new async_demo
+cd async_demo
+cargo add tokio --features full</pre>
+</div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> tokio::time::{sleep, Duration};
+
+#[tokio::main]                       <span class="cm">// turns main into a synchronous entry point that starts the runtime</span>
+<span class="kw">async</span> <span class="kw">fn</span> main() {
+    println!(<span class="st">"start"</span>);
+    sleep(Duration::from_millis(500)).<span class="kw">await</span>;   <span class="cm">// does NOT block the thread</span>
+    println!(<span class="st">"done after 500ms"</span>);
+}</pre>
+</div>
+
+<h2>Running Things Concurrently</h2>
+<p>Awaiting futures one after another is <em>sequential</em>. To overlap waits, use <code>tokio::join!</code> or spawn tasks.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> tokio::time::{sleep, Duration, Instant};
+
+<span class="kw">async</span> <span class="kw">fn</span> fetch(id: u32) -&gt; String {
+    sleep(Duration::from_millis(300)).<span class="kw">await</span>;     <span class="cm">// pretend network call</span>
+    format!(<span class="st">"result {id}"</span>)
+}
+
+#[tokio::main]
+<span class="kw">async</span> <span class="kw">fn</span> main() {
+    <span class="kw">let</span> start = Instant::now();
+
+    <span class="cm">// Sequential: ~600ms</span>
+    <span class="kw">let</span> a = fetch(1).<span class="kw">await</span>;
+    <span class="kw">let</span> b = fetch(2).<span class="kw">await</span>;
+    println!(<span class="st">"{a}, {b} in {:?}"</span>, start.elapsed());
+
+    <span class="cm">// Concurrent: ~300ms</span>
+    <span class="kw">let</span> start = Instant::now();
+    <span class="kw">let</span> (c, d) = tokio::join!(fetch(3), fetch(4));
+    println!(<span class="st">"{c}, {d} in {:?}"</span>, start.elapsed());
+}</pre>
+</div>
+
+<h2>Spawning Tasks</h2>
+<p><code>tokio::spawn</code> runs a future as an independent <em>task</em> on the runtime&rsquo;s thread pool, returning a <code>JoinHandle</code>. Tasks are very cheap (a few hundred bytes), so spawning thousands is fine.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> tokio::time::{sleep, Duration};
+
+#[tokio::main]
+<span class="kw">async</span> <span class="kw">fn</span> main() {
+    <span class="kw">let</span> <span class="kw">mut</span> handles = Vec::new();
+
+    <span class="kw">for</span> id <span class="kw">in</span> 0..5u64 {
+        handles.push(tokio::spawn(<span class="kw">async</span> <span class="kw">move</span> {
+            sleep(Duration::from_millis(100 * (5 - id))).<span class="kw">await</span>;
+            id * id
+        }));
+    }
+
+    <span class="kw">for</span> h <span class="kw">in</span> handles {
+        println!(<span class="st">"task result = {}"</span>, h.<span class="kw">await</span>.unwrap());   <span class="cm">// JoinHandle::await returns Result</span>
+    }
+}</pre>
+</div>
+<p>Because a spawned task may run on another thread, the future must be <code>Send</code> and <code>'static</code>. That is why we use <code>async move</code>.</p>
+
+<h2>Channels Between Tasks</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> tokio::sync::mpsc;
+
+#[tokio::main]
+<span class="kw">async</span> <span class="kw">fn</span> main() {
+    <span class="kw">let</span> (tx, <span class="kw">mut</span> rx) = mpsc::channel::&lt;String&gt;(8);     <span class="cm">// bounded: applies back-pressure</span>
+
+    <span class="kw">for</span> i <span class="kw">in</span> 0..3 {
+        <span class="kw">let</span> tx = tx.clone();
+        tokio::spawn(<span class="kw">async</span> <span class="kw">move</span> {
+            tx.send(format!(<span class="st">"message {i}"</span>)).<span class="kw">await</span>.unwrap();
+        });
+    }
+    drop(tx);
+
+    <span class="kw">while</span> <span class="kw">let</span> Some(msg) = rx.recv().<span class="kw">await</span> {
+        println!(<span class="st">"{msg}"</span>);
+    }
+}</pre>
+</div>
+
+<h2>Timeouts and <code>select!</code></h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> tokio::time::{sleep, timeout, Duration};
+
+#[tokio::main]
+<span class="kw">async</span> <span class="kw">fn</span> main() {
+    <span class="kw">let</span> slow = sleep(Duration::from_secs(5));
+
+    <span class="kw">match</span> timeout(Duration::from_millis(200), slow).<span class="kw">await</span> {
+        Ok(_) =&gt; println!(<span class="st">"finished"</span>),
+        Err(_) =&gt; println!(<span class="st">"timed out"</span>),          <span class="cm">// this branch runs</span>
+    }
+
+    tokio::select! {
+        _ = sleep(Duration::from_millis(100)) =&gt; println!(<span class="st">"timer won"</span>),
+        _ = sleep(Duration::from_millis(500)) =&gt; println!(<span class="st">"slow timer won"</span>),
+    }
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Never block inside async code</div><p>Calling <code>std::thread::sleep</code>, reading a big file with <code>std::fs</code>, or doing heavy CPU work inside an <code>async</code> task stalls the worker thread and starves every other task on it. Use <code>tokio::time::sleep</code>, <code>tokio::fs</code>, or move the work to <code>tokio::task::spawn_blocking</code>.</p></div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">let</span> result = tokio::task::spawn_blocking(|| expensive_cpu_work()).<span class="kw">await</span>.unwrap();</pre>
+</div>
+
+<h2>Async vs. Threads</h2>
+<table><thead><tr><th></th><th>Threads</th><th>Async tasks</th></tr></thead><tbody>
+<tr><td>Best for</td><td>CPU-bound work</td><td>Many concurrent I/O waits</td></tr>
+<tr><td>Cost per unit</td><td>~MBs of stack, OS scheduling</td><td>~hundreds of bytes</td></tr>
+<tr><td>Blocking calls</td><td>Fine</td><td>Harmful</td></tr>
+<tr><td>Complexity</td><td>Lower</td><td>Higher (<code>Send</code>, pinning, colouring)</td></tr>
+</tbody></table>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Forgetting <code>.await</code>: the future is created but never runs. The compiler warns <em>&ldquo;unused implementer of <code>Future</code> that must be used&rdquo;</em>.</li><li>Holding a <code>std::sync::MutexGuard</code> across an <code>.await</code>. Use <code>tokio::sync::Mutex</code> or drop the guard first.</li><li>Using blocking APIs inside async functions (see warning above).</li><li>Awaiting in a loop when the operations are independent; use <code>join!</code>, <code>join_all</code> or spawn.</li></ul></div>
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Use async only when you have many concurrent I/O operations. A CLI that makes three sequential HTTP calls does not need it.</li><li>Add <code>#[tokio::test]</code> to write async tests.</li><li>Use <code>tracing</code> for structured logs that follow a request across tasks.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 17.1</div>
+<ol><li>Write an <code>async fn slow_square(n: u64) -&gt; u64</code> that sleeps 200 ms and returns <code>n * n</code>.</li><li>Time how long it takes to compute the squares of 1..=10 <strong>sequentially</strong>, then concurrently with <code>tokio::spawn</code>. Explain the difference.</li><li>Wrap the whole concurrent run in <code>tokio::time::timeout</code> of 1 second and handle the <code>Err</code> case.</li></ol></div>
+
+<div class="quiz-block" data-quiz="rust-l17">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does calling an <code>async fn</code> without <code>.await</code> do?</p><ol class="quiz-options"><li>Runs it immediately</li><li>Creates a future that does nothing until polled</li><li>Spawns a new thread</li></ol><p class="quiz-explain">Futures are lazy. Without <code>.await</code> or a spawn, the body never executes.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why is <code>std::thread::sleep</code> bad inside an async task?</p><ol class="quiz-options"><li>It is deprecated</li><li>It blocks the worker thread, stalling other tasks</li><li>It cannot take a Duration</li></ol><p class="quiz-explain">Async tasks share worker threads. Blocking one prevents all others scheduled on that thread from progressing.</p></div>
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">Which macro runs two futures concurrently and waits for both?</p><ol class="quiz-options"><li><code>tokio::join!</code></li><li><code>tokio::select!</code></li><li><code>tokio::main!</code></li></ol><p class="quiz-explain"><code>join!</code> waits for all futures. <code>select!</code> returns as soon as the first one finishes.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(15)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(17)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 18 ===================== -->
-        <div class="lecture" id="lec-17">
-            <div class="lecture-tag">Lecture 18 · Professional</div>
-            <h1>Final Project — Rust Web Service</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(16)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-17" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 18 &middot; Professional</div>
+<h1>Final Project &mdash; Rust Web Service</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~120 min</span><span class="meta-badge level-beginner">Project</span><span class="meta-badge">Requires: All previous lectures</span></div>
+<p class="lecture-intro">Build a small but real JSON REST API for a task list using <strong>Axum</strong> on top of Tokio. You will combine async, shared state, traits, error handling and serialisation &mdash; the exact stack used for production Rust services.</p>
+<h2>What You Will Build</h2>
+<table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th><th>Success status</th></tr></thead><tbody>
+<tr><td><code>GET</code></td><td><code>/tasks</code></td><td>List all tasks</td><td>200</td></tr>
+<tr><td><code>POST</code></td><td><code>/tasks</code></td><td>Create a task from <code>{"title": "..."}</code></td><td>201</td></tr>
+<tr><td><code>POST</code></td><td><code>/tasks/:id/done</code></td><td>Mark a task complete</td><td>200 (404 if missing)</td></tr>
+<tr><td><code>DELETE</code></td><td><code>/tasks/:id</code></td><td>Delete a task</td><td>204 (404 if missing)</td></tr>
+</tbody></table>
+
+<h2>Acceptance Criteria</h2>
+<ol><li>All four routes behave as in the table, returning JSON bodies where applicable.</li><li>Unknown IDs return <strong>404</strong>, not a panic or a 500.</li><li>Empty or whitespace-only titles are rejected with <strong>400</strong>.</li><li>State is shared safely between requests with no data races (the compiler will insist).</li><li>A handler test using <code>tower::ServiceExt::oneshot</code> proves <code>POST /tasks</code> followed by <code>GET /tasks</code> returns the new task.</li></ol>
+
+<h2>Milestone 1 &mdash; Project Setup</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre>cargo new task_api
+cd task_api
+cargo add axum@0.7
+cargo add tokio --features full
+cargo add serde --features derive
+cargo add serde_json
+cargo add tower --dev --features util
+cargo add http-body-util --dev</pre>
+</div>
+
+<h2>Milestone 2 &mdash; Data Model and Shared State</h2>
+<p>Handlers run concurrently, so shared state must be <code>Send + Sync</code>. We wrap it in <code>Arc&lt;Mutex&lt;_&gt;&gt;</code>. The lock is never held across an <code>.await</code>, so the standard-library mutex is fine and fast.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> serde::{Deserialize, Serialize};
+<span class="kw">use</span> std::sync::{Arc, Mutex};
+
+#[derive(Clone, Serialize)]
+<span class="kw">struct</span> Task {
+    id: u64,
+    title: String,
+    done: bool,
+}
+
+#[derive(Deserialize)]
+<span class="kw">struct</span> NewTask {
+    title: String,
+}
+
+#[derive(Default)]
+<span class="kw">struct</span> Db {
+    next_id: u64,
+    tasks: Vec&lt;Task&gt;,
+}
+
+<span class="kw">type</span> Shared = Arc&lt;Mutex&lt;Db&gt;&gt;;</pre>
+</div>
+
+<h2>Milestone 3 &mdash; Handlers and Router</h2>
+<p>Each handler is an ordinary <code>async fn</code>. Axum uses <em>extractors</em> in the parameter list (<code>State</code>, <code>Path</code>, <code>Json</code>) and anything implementing <code>IntoResponse</code> as the return type. Returning <code>Result&lt;_, StatusCode&gt;</code> makes error handling idiomatic.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre><span class="kw">use</span> axum::{
+    extract::{Path, State},
+    http::StatusCode,
+    routing::{delete, get, post},
+    Json, Router,
+};
+
+<span class="kw">async</span> <span class="kw">fn</span> list(State(db): State&lt;Shared&gt;) -&gt; Json&lt;Vec&lt;Task&gt;&gt; {
+    Json(db.lock().unwrap().tasks.clone())
+}
+
+<span class="kw">async</span> <span class="kw">fn</span> create(
+    State(db): State&lt;Shared&gt;,
+    Json(input): Json&lt;NewTask&gt;,
+) -&gt; Result&lt;(StatusCode, Json&lt;Task&gt;), StatusCode&gt; {
+    <span class="kw">let</span> title = input.title.trim().to_string();
+    <span class="kw">if</span> title.is_empty() {
+        <span class="kw">return</span> Err(StatusCode::BAD_REQUEST);
+    }
+
+    <span class="kw">let</span> <span class="kw">mut</span> db = db.lock().unwrap();
+    db.next_id += 1;
+    <span class="kw">let</span> task = Task { id: db.next_id, title, done: <span class="kw">false</span> };
+    db.tasks.push(task.clone());
+    Ok((StatusCode::CREATED, Json(task)))
+}
+
+<span class="kw">async</span> <span class="kw">fn</span> complete(
+    State(db): State&lt;Shared&gt;,
+    Path(id): Path&lt;u64&gt;,
+) -&gt; Result&lt;Json&lt;Task&gt;, StatusCode&gt; {
+    <span class="kw">let</span> <span class="kw">mut</span> db = db.lock().unwrap();
+    <span class="kw">let</span> task = db
+        .tasks
+        .iter_mut()
+        .find(|t| t.id == id)
+        .ok_or(StatusCode::NOT_FOUND)?;
+    task.done = <span class="kw">true</span>;
+    Ok(Json(task.clone()))
+}
+
+<span class="kw">async</span> <span class="kw">fn</span> remove(State(db): State&lt;Shared&gt;, Path(id): Path&lt;u64&gt;) -&gt; StatusCode {
+    <span class="kw">let</span> <span class="kw">mut</span> db = db.lock().unwrap();
+    <span class="kw">let</span> before = db.tasks.len();
+    db.tasks.retain(|t| t.id != id);
+    <span class="kw">if</span> db.tasks.len() &lt; before {
+        StatusCode::NO_CONTENT
+    } <span class="kw">else</span> {
+        StatusCode::NOT_FOUND
+    }
+}
+
+<span class="kw">fn</span> app(db: Shared) -&gt; Router {
+    Router::new()
+        .route(<span class="st">"/tasks"</span>, get(list).post(create))
+        .route(<span class="st">"/tasks/:id"</span>, delete(remove))
+        .route(<span class="st">"/tasks/:id/done"</span>, post(complete))
+        .with_state(db)
+}</pre>
+</div>
+
+<h2>Milestone 4 &mdash; Start the Server</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre>#[tokio::main]
+<span class="kw">async</span> <span class="kw">fn</span> main() {
+    <span class="kw">let</span> db: Shared = Arc::default();
+    <span class="kw">let</span> listener = tokio::net::TcpListener::bind(<span class="st">"127.0.0.1:3000"</span>)
+        .<span class="kw">await</span>
+        .expect(<span class="st">"could not bind port 3000"</span>);
+
+    println!(<span class="st">"listening on http://127.0.0.1:3000"</span>);
+    axum::serve(listener, app(db)).<span class="kw">await</span>.unwrap();
+}</pre>
+</div>
+
+<h2>Try It</h2>
+<p>Start the server with <code>cargo run</code>, then in another terminal:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre><span class="cm"># create</span>
+curl -X POST http://127.0.0.1:3000/tasks -H <span class="st">"content-type: application/json"</span> -d <span class="st">'{"title":"Learn Rust"}'</span>
+
+<span class="cm"># list</span>
+curl http://127.0.0.1:3000/tasks
+
+<span class="cm"># complete task 1</span>
+curl -X POST http://127.0.0.1:3000/tasks/1/<span class="kw">done</span>
+
+<span class="cm"># delete task 1  (-i shows the 204 status)</span>
+curl -i -X DELETE http://127.0.0.1:3000/tasks/1</pre>
+</div>
+<div class="box note"><div class="box-title">Windows PowerShell</div><p><code>curl</code> is an alias for <code>Invoke-WebRequest</code> in Windows PowerShell. Use <code>curl.exe</code> instead, and wrap the JSON in single quotes with doubled inner quotes, or use <code>Invoke-RestMethod</code>.</p></div>
+
+<h2>Milestone 5 &mdash; Test the Router Without a Network</h2>
+<p>Because <code>app()</code> returns a plain <code>Router</code>, we can call it directly as a <code>tower::Service</code>. No ports, no flakiness.</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">main.rs</span></div>
+<pre>#[cfg(test)]
+<span class="kw">mod</span> tests {
+    <span class="kw">use</span> <span class="kw">super</span>::*;
+    <span class="kw">use</span> axum::{body::Body, http::Request};
+    <span class="kw">use</span> http_body_util::BodyExt;
+    <span class="kw">use</span> tower::ServiceExt; <span class="cm">// for .oneshot()</span>
+
+    #[tokio::test]
+    <span class="kw">async</span> <span class="kw">fn</span> create_then_list() {
+        <span class="kw">let</span> db: Shared = Arc::default();
+
+        <span class="kw">let</span> create = Request::post(<span class="st">"/tasks"</span>)
+            .header(<span class="st">"content-type"</span>, <span class="st">"application/json"</span>)
+            .body(Body::from(r#<span class="st">"{"</span>title<span class="st">":"</span>write tests<span class="st">"}"</span>#))
+            .unwrap();
+        <span class="kw">let</span> res = app(db.clone()).oneshot(create).<span class="kw">await</span>.unwrap();
+        assert_eq!(res.status(), StatusCode::CREATED);
+
+        <span class="kw">let</span> list = Request::get(<span class="st">"/tasks"</span>).body(Body::empty()).unwrap();
+        <span class="kw">let</span> res = app(db).oneshot(list).<span class="kw">await</span>.unwrap();
+        assert_eq!(res.status(), StatusCode::OK);
+
+        <span class="kw">let</span> bytes = res.into_body().collect().<span class="kw">await</span>.unwrap().to_bytes();
+        <span class="kw">let</span> body = String::from_utf8(bytes.to_vec()).unwrap();
+        assert!(body.contains(<span class="st">"write tests"</span>));
+    }
+
+    #[tokio::test]
+    <span class="kw">async</span> <span class="kw">fn</span> blank_title_is_rejected() {
+        <span class="kw">let</span> db: Shared = Arc::default();
+        <span class="kw">let</span> req = Request::post(<span class="st">"/tasks"</span>)
+            .header(<span class="st">"content-type"</span>, <span class="st">"application/json"</span>)
+            .body(Body::from(r#<span class="st">"{"</span>title<span class="st">":"</span>   <span class="st">"}"</span>#))
+            .unwrap();
+        <span class="kw">let</span> res = app(db).oneshot(req).<span class="kw">await</span>.unwrap();
+        assert_eq!(res.status(), StatusCode::BAD_REQUEST);
+    }
+}</pre>
+</div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre>cargo test</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; What this version intentionally leaves out</div><ul><li><strong>Persistence</strong>: tasks live in memory and vanish on restart.</li><li><strong>Authentication</strong>: anyone who can reach the port can use it.</li><li><strong>Graceful shutdown</strong> and structured logging.</li><li>Using <code>unwrap()</code> on the mutex lock. A panic while the lock is held would poison it. That is acceptable here because no handler panics while locked.</li></ul></div>
+
+<h2>Challenge Version</h2>
+<p>Turn the prototype into something deployable. Attempt these without step-by-step guidance:</p>
+<ol><li><strong>Persist</strong> tasks in SQLite using the <code>sqlx</code> crate and replace the <code>Mutex&lt;Vec&gt;</code> with a connection pool in <code>State</code>.</li><li>Replace <code>StatusCode</code> errors with your own <code>AppError</code> enum that implements <code>IntoResponse</code> and returns a JSON <code>{"error": "..."}</code> body.</li><li>Add <code>tower_http::trace::TraceLayer</code> for request logging and <code>tracing_subscriber</code> to display it.</li><li>Add a <code>PATCH /tasks/:id</code> route that updates the title, and write tests for it.</li><li>Add graceful shutdown with <code>with_graceful_shutdown</code> listening for <kbd>Ctrl-C</kbd>.</li><li>Containerise it with a multi-stage <code>Dockerfile</code> producing a small release image.</li></ol>
+
+<div class="box tip"><div class="box-title">&#127941; You made it</div><p>You have gone from <code>println!</code> to a tested async web service, using ownership, borrowing, traits, error handling, concurrency and async along the way. Publish the finished project on GitHub with a README and add it to your portfolio.</p></div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(16)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(0)">&#8634; Back to Start</button>
+</div>
+</div>
 
             </div>
 
@@ -2372,7 +3821,7 @@ fn main() {
             </div>
 
             <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(20)">Previous</button>
+                <button class="nav-btn" onclick="showLecture(17)">&larr; Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
             </div>
         </div>

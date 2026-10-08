@@ -116,11 +116,7 @@
             </div>
         </div>
     
-        <div class="nav-section">
-            <div class="nav-section-label">Real-World Practical Projects</div>
-            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 1: Desktop Payroll Form Calculator</button>
-        </div>
-    </nav>
+        </nav>
 
     <!-- SIDEBAR -->
     <nav id="sidebar">
@@ -158,6 +154,11 @@
             <button class="nav-item" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Async & Threading</button>
             <button class="nav-item" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Capstone Project</button>
         </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 1: Desktop Payroll Form Calculator</button>
+        </div>
     </nav>
 
     <!-- MAIN -->
@@ -169,7 +170,7 @@
                 <span class="current" id="breadcrumb-current">Introduction & Setup</span>
             </div>
             <div class="progress-bar-wrap">
-                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <span class="progress-label" id="progress-label">Lecture 1 / 19</span>
                 <div class="progress-track">
                     <div class="progress-fill" id="progress-fill" style="width:8%"></div>
                 </div>
@@ -2470,440 +2471,134 @@ Arrays and collections are essential tools for organizing and processing data ef
 
 
 <!-- ===================== LECTURE 08 ===================== -->
-<div class="lecture" id="lec-6">
-
-<div class="lecture-tag">Lecture 07 · Core Concepts</div>
-
-<h1>Arrays & Collections</h1>
-
-<p>
-Arrays and collections are essential data structures in Visual Basic programming.
-They allow developers to store, organize, and manage multiple values efficiently.
-</p>
-
-<p>
-Instead of creating separate variables for every piece of data, arrays and collections group related data together.
-This makes programs more scalable, readable, and easier to maintain.
-</p>
-
-<h2>Introduction to Arrays</h2>
-
-<p>
-An array is a collection of values stored inside a single variable.
-All elements inside an array usually share the same data type.
-</p>
-
-<p>
-Arrays are useful when working with lists of numbers, names, scores, products, or other grouped data.
-</p>
-
-<h2>Arrays</h2>
+<div class="lecture" id="lec-7" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 08 &middot; Core Concepts</div>
+<h1>Strings, Text Manipulation &amp; File I/O</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Intermediate</span><span class="meta-badge">Requires: Lecture 07</span></div>
+<p class="lecture-intro">Text processing and persistent data storage form the backbone of modern enterprise business applications. Learn string manipulation techniques, high-performance <code>StringBuilder</code> operations, and how to safely read and write files using <code>System.IO</code> and <code>Using</code> resource management.</p>
+<h2>1. String Manipulation &amp; StringBuilder</h2>
+<p>Strings in .NET are immutable reference types. Frequent concatenation inside loops creates unnecessary heap allocations and triggers the garbage collector. Use <code>StringBuilder</code> for high-volume text assembly:</p>
 
 <div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">StringDemo.vb</span></div>
+<pre>Imports System.Text
 
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">arr.vb</span>
+Module Program
+    Sub Main()
+        ' String interpolation with formatting
+        Dim customerName As String = <span class="st">"Sarah Connor"</span>
+        Dim invoiceTotal As Decimal = 1450.75D
+        Dim createdDate As DateTime = DateTime.Now
+
+        Dim summary As String = $<span class="st">"Invoice for {customerName}: {invoiceTotal:C2} generated on {createdDate:yyyy-MM-dd}"</span>
+        Console.WriteLine(summary)
+
+        ' High-performance text building
+        Dim sb As New StringBuilder()
+        sb.AppendLine(<span class="st">"=== Transaction Batch Report ==="</span>)
+        For i As Integer = 1 To 5
+            sb.AppendFormat(<span class="st">"Item #{0,-4} | Price: {1,10:C2} | Status: PROCESSED"</span>, i, i * 29.99D)
+            sb.AppendLine()
+        Next
+
+        Dim report As String = sb.ToString()
+        Console.WriteLine(report)
+    End Sub
+End Module</pre>
 </div>
 
-<pre>Dim nums(4) As Integer  ' 0-4 = 5 elements
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li><strong>String Comparisons:</strong> Never use <code>=</code> for case-insensitive string checks in business logic. Always specify cultural rules explicitly with <code>String.Equals(a, b, StringComparison.OrdinalIgnoreCase)</code>.</li><li><strong>StringBuilder Pre-Allocation:</strong> When building large documents (such as exporting CSVs or HTML reports), pass an estimated capacity to the constructor: <code>New StringBuilder(4096)</code> to avoid dynamic buffer reallocations.</li></ul></div>
 
-nums(0) = 10
-
-Dim names() As String = {"Aman", "Rahul", "Arjun"}
-
-For Each n As String In names
-
-    Console.WriteLine(n)
-
-Next</pre>
-
-</div>
-
-<p>
-In this example:
-</p>
-
-<ul>
-<li><strong>nums(4)</strong> creates an array with 5 elements</li>
-<li>Array indexing starts from <strong>0</strong></li>
-<li><strong>names()</strong> initializes a string array</li>
-<li><strong>For Each</strong> loops through all elements</li>
-</ul>
-
-<p>
-Output:
-</p>
+<h2>2. Simple File Operations with System.IO.File</h2>
+<p>For small files, the static <code>System.IO.File</code> helper methods provide concise, one-line reading and writing operations:</p>
 
 <div class="code-block">
-<pre>Aman
-Rahul
-Arjun</pre>
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">FileHelpers.vb</span></div>
+<pre>Imports System.IO
+
+Module FileHelpersDemo
+    Sub Main()
+        Dim filePath As String = <span class="st">"application_settings.txt"</span>
+
+        ' Writing lines
+        Dim lines As String() = {
+            <span class="st">"Theme=Dark"</span>,
+            <span class="st">"AutoSave=True"</span>,
+            <span class="st">"MaxRetries=5"</span>
+        }
+        File.WriteAllLines(filePath, lines)
+
+        ' Appending log entries
+        File.AppendAllText(<span class="st">"app.log"</span>, $<span class="st">"[{DateTime.UtcNow:s}] User authenticated."</span> &amp; vbCrLf)
+
+        ' Checking file existence and reading contents
+        If File.Exists(filePath) Then
+            Dim content As String = File.ReadAllText(filePath)
+            Console.WriteLine(<span class="st">"Settings file loaded:"</span>)
+            Console.WriteLine(content)
+        End If
+    End Sub
+End Module</pre>
 </div>
 
-<h2>Why Use Arrays?</h2>
-
-<ul>
-<li>Store multiple values efficiently</li>
-<li>Reduce repetitive variables</li>
-<li>Simplify loops and processing</li>
-<li>Improve code organization</li>
-<li>Useful for large datasets</li>
-</ul>
-
-<h2>Accessing Array Elements</h2>
-
-<p>
-Array elements are accessed using indexes inside parentheses.
-</p>
+<h2>3. Streaming Large Files with StreamReader &amp; Using</h2>
+<p>For large logs, datasets, or CSV files that cannot fit comfortably into memory, use <code>StreamReader</code> and <code>StreamWriter</code>. The <code>Using</code> statement ensures unmanaged OS file handles are closed even if an exception occurs:</p>
 
 <div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Streams.vb</span></div>
+<pre>Imports System.IO
 
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">access.vb</span>
+Module StreamDemo
+    Sub Main()
+        Dim csvPath As String = <span class="st">"customers.csv"</span>
+
+        ' Writing structured records
+        Using writer As New StreamWriter(csvPath, append:=False)
+            writer.WriteLine(<span class="st">"Id,Name,Department,Salary"</span>)
+            writer.WriteLine(<span class="st">"101,John Doe,Engineering,85000"</span>)
+            writer.WriteLine(<span class="st">"102,Jane Smith,Marketing,78000"</span>)
+            writer.WriteLine(<span class="st">"103,David Miller,Operations,64000"</span>)
+        End Using
+
+        ' Reading line-by-line without loading entire file into RAM
+        Using reader As New StreamReader(csvPath)
+            Dim header As String = reader.ReadLine()
+            Console.WriteLine($<span class="st">"Header: {header}"</span>)
+
+            While Not reader.EndOfStream
+                Dim line As String = reader.ReadLine()
+                If Not String.IsNullOrWhiteSpace(line) Then
+                    Dim parts As String() = line.Split(<span class="st">","</span>c)
+                    Dim empName As String = parts(1)
+                    Dim empSalary As Decimal = Decimal.Parse(parts(3))
+                    Console.WriteLine($<span class="st">"Employee: {empName,-15} Salary: {empSalary:C2}"</span>)
+                End If
+            End While
+        End Using
+    End Sub
+End Module</pre>
 </div>
 
-<pre>Dim fruits() As String = {"Apple", "Banana", "Orange"}
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li><strong>Omitting Using Blocks:</strong> Opening a file via <code>New StreamReader(path)</code> without a <code>Using</code> block locks the file at the operating system level until the garbage collector runs, causing <code>IOException: The process cannot access the file because it is being used by another process</code>.</li><li><strong>Hardcoding Path Separators:</strong> Never hardcode backslashes (<code>"C:\data\file.txt"</code>). Use <code>Path.Combine("data", "file.txt")</code> to ensure cross-platform compatibility with Linux and macOS .NET runtimes.</li></ul></div>
 
-Console.WriteLine(fruits(1))</pre>
-
+<div class="exercise"><div class="exercise-title">&#127919; Sales Log Aggregator</div>
+<p>Write a Visual Basic routine that reads a text log of transactions:</p>
+<ol>
+  <li>Open <code>sales.log</code> using a <code>StreamReader</code> inside a <code>Using</code> statement.</li>
+  <li>Filter lines starting with <code>SALE:</code> and parse the dollar amounts.</li>
+  <li>Calculate total revenue and average sale size, then write the final summary report to <code>summary.txt</code> using <code>File.WriteAllText</code>.</li>
+</ol>
 </div>
 
-<p>
-Output:
-</p>
-
-<div class="code-block">
-<pre>Banana</pre>
+<div class="quiz-block" data-quiz="vb-l7">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why should you prefer StringBuilder over standard string concatenation (&) inside loops?</p><ol class="quiz-options"><li>StringBuilder executes on a separate background thread</li><li>Strings are immutable; concatenating in loops creates many temporary objects, whereas StringBuilder modifies an internal buffer without redundant allocations</li><li>StringBuilder automatically encrypts strings stored in RAM</li><li>Visual Basic does not support the & operator inside loop blocks</li></ol><p class="quiz-explain">Because System.String instances are immutable, each concatenation with `&` creates a brand new string and discards the old one, putting heavy pressure on the garbage collector. StringBuilder uses an internal growable buffer.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the critical benefit of wrapping FileStream, StreamReader, and StreamWriter in a `Using ... End Using` statement?</p><ol class="quiz-options"><li>It speeds up hard disk write speeds by disabling write caching</li><li>It guarantees that `Dispose()` is called and file handles are closed even if an unhandled exception occurs</li><li>It hides the file from the Windows File Explorer</li><li>It converts text encoding to UTF-16 automatically</li></ol><p class="quiz-explain">The `Using` statement translates to a `Try...Finally` block that ensures the object's `Dispose()` method is executed immediately upon exit, releasing underlying OS file locks regardless of exceptions.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which System.IO method should you use to combine directory and file names without worrying about missing or duplicate slashes?</p><ol class="quiz-options"><li>Path.JoinString()</li><li>Path.Combine()</li><li>String.Concat()</li><li>File.MergePaths()</li></ol><p class="quiz-explain">`Path.Combine()` intelligently joins directory and file segments using the current platform's correct directory separator character, preventing invalid path formats.</p></div>
 </div>
-
-<p>
-Here, <code>fruits(1)</code> accesses the second element because indexing begins at 0.
-</p>
-
-<h2>Modifying Array Values</h2>
-
-<p>
-Array elements can be updated by assigning new values.
-</p>
-
-<div class="code-block">
-
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">modify.vb</span>
-</div>
-
-<pre>Dim scores() As Integer = {50, 60, 70}
-
-scores(1) = 95
-
-Console.WriteLine(scores(1))</pre>
-
-</div>
-
-<h2>Looping Through Arrays</h2>
-
-<p>
-Loops are commonly used with arrays to process all elements efficiently.
-</p>
-
-<div class="code-block">
-
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">loop.vb</span>
-</div>
-
-<pre>Dim nums() As Integer = {1, 2, 3, 4, 5}
-
-For i As Integer = 0 To nums.Length - 1
-
-    Console.WriteLine(nums(i))
-
-Next</pre>
-
-</div>
-
-<p>
-The <code>Length</code> property returns the total number of elements in the array.
-</p>
-
-<h2>Multi-Dimensional Arrays</h2>
-
-<p>
-Visual Basic supports arrays with multiple dimensions such as rows and columns.
-</p>
-
-<div class="code-block">
-
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">multi.vb</span>
-</div>
-
-<pre>Dim matrix(1, 1) As Integer
-
-matrix(0, 0) = 10
-matrix(0, 1) = 20
-
-matrix(1, 0) = 30
-matrix(1, 1) = 40</pre>
-
-</div>
-
-<p>
-Multi-dimensional arrays are useful for tables, matrices, and grid-based systems.
-</p>
-
-<h2>Introduction to Collections</h2>
-
-<p>
-Collections are advanced data structures that provide more flexibility than arrays.
-Unlike arrays, collections can dynamically grow and shrink during program execution.
-</p>
-
-<h2>List(Of T)</h2>
-
-<p>
-The <code>List(Of T)</code> collection stores dynamic lists of data.
-It is one of the most commonly used collection types in VB.NET.
-</p>
-
-<div class="code-block">
-
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">list.vb</span>
-</div>
-
-<pre>Dim items As New List(Of String)
-
-items.Add("Apple")
-
-items.Add("Banana")
-
-items.Remove("Apple")
-
-Console.WriteLine(items.Count)</pre>
-
-</div>
-
-<p>
-In this example:
-</p>
-
-<ul>
-<li><strong>Add()</strong> inserts new items</li>
-<li><strong>Remove()</strong> deletes items</li>
-<li><strong>Count</strong> returns total items</li>
-</ul>
-
-<p>
-Output:
-</p>
-
-<div class="code-block">
-<pre>1</pre>
-</div>
-
-<h2>Advantages of List(Of T)</h2>
-
-<ul>
-<li>Dynamic resizing</li>
-<li>Easy insertion and removal</li>
-<li>Powerful built-in methods</li>
-<li>Efficient data handling</li>
-<li>Flexible compared to arrays</li>
-</ul>
-
-<h2>Looping Through Lists</h2>
-
-<div class="code-block">
-
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">foreach.vb</span>
-</div>
-
-<pre>Dim colors As New List(Of String)
-
-colors.Add("Red")
-colors.Add("Blue")
-colors.Add("Green")
-
-For Each c In colors
-
-    Console.WriteLine(c)
-
-Next</pre>
-
-</div>
-
-<h2>Dictionary</h2>
-
-<p>
-A Dictionary stores data as key-value pairs.
-It allows fast searching and retrieval using keys.
-</p>
-
-<div class="code-block">
-
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">dict.vb</span>
-</div>
-
-<pre>Dim ages As New Dictionary(Of String, Integer)
-
-ages("Ahmed") = 25
-
-ages("Sara") = 30
-
-For Each kvp In ages
-
-    Console.WriteLine($"{kvp.Key}: {kvp.Value}")
-
-Next</pre>
-
-</div>
-
-<p>
-In this example:
-</p>
-
-<ul>
-<li><strong>Ahmed</strong> and <strong>Sara</strong> are keys</li>
-<li><strong>25</strong> and <strong>30</strong> are values</li>
-<li><strong>kvp.Key</strong> accesses the key</li>
-<li><strong>kvp.Value</strong> accesses the value</li>
-</ul>
-
-<h2>Accessing Dictionary Values</h2>
-
-<div class="code-block">
-
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">lookup.vb</span>
-</div>
-
-<pre>Console.WriteLine(ages("Ahmed"))</pre>
-
-</div>
-
-<p>
-Output:
-</p>
-
-<div class="code-block">
-<pre>25</pre>
-</div>
-
-<h2>Checking Dictionary Keys</h2>
-
-<p>
-The <code>ContainsKey()</code> method checks whether a key exists.
-</p>
-
-<div class="code-block">
-
-<div class="code-header">
-<div class="code-dots"><span></span><span></span><span></span></div>
-<span class="filename">contains.vb</span>
-</div>
-
-<pre>If ages.ContainsKey("Sara") Then
-
-    Console.WriteLine("Found")
-
-End If</pre>
-
-</div>
-
-<h2>Choosing Between Arrays & Collections</h2>
-
-<table>
-<tr>
-<th>Arrays</th>
-<th>Collections</th>
-</tr>
-
-<tr>
-<td>Fixed size</td>
-<td>Dynamic size</td>
-</tr>
-
-<tr>
-<td>Faster for simple data</td>
-<td>More flexible</td>
-</tr>
-
-<tr>
-<td>Less memory overhead</td>
-<td>More built-in features</td>
-</tr>
-</table>
-
-<h2>Real-World Applications</h2>
-
-<ul>
-<li>Student management systems</li>
-<li>Phone books and contact lists</li>
-<li>Inventory systems</li>
-<li>Game scoreboards</li>
-<li>Banking applications</li>
-<li>Shopping cart systems</li>
-</ul>
-
-<h2>Best Practices</h2>
-
-<ul>
-<li>Use arrays for fixed-size data</li>
-<li>Use lists for dynamic data</li>
-<li>Use dictionaries for fast key-based lookup</li>
-<li>Choose meaningful variable names</li>
-<li>Validate indexes before accessing elements</li>
-</ul>
-
-<div class="exercise">
-
-<div class="exercise-title">Practice</div>
-
-<p>
-Build a phone book using Dictionary(Of String, String).
-</p>
-
-<p>
-Try adding:
-</p>
-
-<ul>
-<li>Add new contacts</li>
-<li>Search contacts by name</li>
-<li>Delete contacts</li>
-<li>Display all saved entries</li>
-</ul>
-
-</div>
-
-<h2>Summary</h2>
-
-<p>
-In this lecture, we learned about arrays and collections in Visual Basic.
-We explored arrays, lists, dictionaries, looping techniques, and data storage methods.
-</p>
-
-<p>
-Arrays and collections are essential tools for organizing and processing data efficiently in modern applications.
-</p>
-
 <div class="lecture-nav">
-<button class="nav-btn" onclick="showLecture(5)">← Previous</button>
-<button class="nav-btn primary" onclick="showLecture(7)">Next Lecture →</button>
+<button class="nav-btn" onclick="showLecture(6)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(8)">Next Lecture &rarr;</button>
 </div>
-
 </div>
 
 

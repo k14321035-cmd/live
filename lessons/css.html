@@ -124,6 +124,7 @@
 
     <!-- SIDEBAR -->
     <nav id="sidebar">
+        <div class="sidebar-header">
             <p>// Complete Course — 16 Lectures</p>
             <a href="https://play.google.com/store/apps/details?id=com.webdev.academy" target="_blank" rel="noopener" class="sidebar-app-link">📱 Get the Android App</a>
         </div>
@@ -3648,6 +3649,156 @@ $primary: #f97316;
     </div>
 </div>
 
+<div class="lecture" id="lec-11" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 12 &middot; Capstone</div>
+<h1>Capstone Project: Modern Responsive Landing Page</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~90 min</span><span class="meta-badge level-beginner">Project</span><span class="meta-badge">Requires: Lectures 01&ndash;11</span></div>
+<p class="lecture-intro">Apply everything learned across Foundations and Core CSS to design and build an ultra-modern, fully responsive SaaS landing page with clean CSS variables, glassmorphism, responsive navigation, responsive grid layouts, and micro-interactions.</p>
+<h2>Project Requirements &amp; Acceptance Criteria</h2>
+<ol><li><strong>Design System Tokens:</strong> Uses HSL or hex CSS custom properties for brand palette, typography scale, spacing units, and radius.</li><li><strong>Layout Architecture:</strong> Employs Flexbox for the navbar and cards, and CSS Grid for feature showcases.</li><li><strong>Responsive Breakpoints:</strong> Flawlessly adapts across mobile (&lt; 768px), tablet, and desktop (1200px+).</li><li><strong>Interactive Polish:</strong> Hover micro-animations, smooth transitions, focus states, and glassmorphic translucent backdrops.</li><li><strong>Pure Vanilla CSS:</strong> No external utility libraries or pre-processors required.</li></ol>
+
+<h2>1. Design System Tokens &amp; Reset</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">tokens.css</span></div>
+<pre>/* CSS Variables &amp; Modern Reset */
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --accent: #06b6d4;
+  --bg-dark: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}</pre>
+</div>
+
+<h2>2. Layout &amp; Glassmorphism Components</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">components.css</span></div>
+<pre>/* Responsive Container &amp; Navbar */
+.container {
+  width: min(100% - 2rem, 1180px);
+  margin-inline: auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--text-main);
+}
+
+/* Glassmorphism Feature Grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 4rem 0;
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 12px 24px -10px rgba(99, 102, 241, 0.3);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.5);
+}</pre>
+</div>
+
+<h2>3. Responsive Breakpoints</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">responsive.css</span></div>
+<pre>@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-title {
+    font-size: 2rem !important;
+  }
+}</pre>
+</div>
+
+<div class="box tip"><div class="box-title">Pro Tip: backdrop-filter Fallbacks</div><p>Always provide an opaque or semi-opaque fallback background for browsers where <code>backdrop-filter</code> is not supported or when high-contrast modes are active.</p></div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(10)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(12)">Next Lecture &rarr;</button>
+</div>
+</div>
+
 
 
 
@@ -4177,18 +4328,134 @@ css/
     </div>
 </div>
         <!-- ===================== LECTURE 16 ===================== -->
-        <div class="lecture" id="lec-15">
-            <div class="lecture-tag">Lecture 16 · Professional</div>
-            <h1>Final Project — Design System</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-15" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 16 &middot; Professional</div>
+<h1>Final Project &mdash; Complete CSS Design System</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~120 min</span><span class="meta-badge level-beginner">Project</span><span class="meta-badge">Requires: All Previous Lectures</span></div>
+<p class="lecture-intro">In this capstone, you will architect a complete enterprise-grade CSS Design System. You will build design tokens, color ramps, typography scales, dark/light theme switching, form controls, badges, buttons, cards, modal overlays, and accessibility testing.</p>
+<h2>Design System Architecture</h2>
+<p>Modern CSS design systems rely on tiered tokens:</p>
+<ul><li><strong>Global Tokens:</strong> Raw values like primitive colors (<code>--color-blue-500: #3b82f6</code>) and spacing scales.</li><li><strong>Semantic Tokens:</strong> Intent-based references (<code>--surface-card: var(--color-slate-900)</code>, <code>--text-interactive: var(--color-blue-500)</code>).</li><li><strong>Component Tokens:</strong> Scoped variables that allow localized overrides without side-effects.</li></ul>
+
+<h2>1. Token Scale &amp; Dual-Theme Engine</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">design-tokens.css</span></div>
+<pre>:root {
+  /* Primitive Palette */
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  
+  /* Typography Scale (Major Third - 1.25) */
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-base: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.563rem;
+  --font-2xl: 1.953rem;
+  --font-3xl: 2.441rem;
+
+  /* Default Dark Theme Semantic Tokens */
+  --bg-app: var(--slate-900);
+  --bg-surface: var(--slate-800);
+  --border-surface: rgba(255, 255, 255, 0.08);
+  --text-heading: #ffffff;
+  --text-body: #cbd5e1;
+  --text-muted: #64748b;
+  --brand: var(--blue-500);
+}
+
+/* Light Theme Switch */
+[data-theme=<span class="st">"light"</span>] {
+  --bg-app: var(--slate-50);
+  --bg-surface: #ffffff;
+  --border-surface: #e2e8f0;
+  --text-heading: var(--slate-900);
+  --text-body: #334155;
+  --text-muted: #94a3b8;
+  --brand: var(--blue-600);
+}</pre>
+</div>
+
+<h2>2. Complete Component Library Styles</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">components.css</span></div>
+<pre>/* Buttons */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ds-btn-primary {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.ds-btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.ds-btn-secondary {
+  background: transparent;
+  border-color: var(--border-surface);
+  color: var(--text-body);
+}
+
+.ds-btn-secondary:hover {
+  background: var(--border-surface);
+}
+
+/* Form Controls */
+.ds-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  font-size: var(--font-base);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-surface);
+  border-radius: 6px;
+  color: var(--text-heading);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.ds-input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Badges */
+.ds-badge {
+  display: inline-flex;
+  padding: 0.25rem 0.5rem;
+  font-size: var(--font-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--brand);
+}</pre>
+</div>
+
+<div class="box tip"><div class="box-title">Design System Milestone</div><p>You have now completed the CSS Mastery track! You understand foundational layout models, modern custom property architectures, responsive fluid grids, and maintainable design system engineering.</p></div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(14)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(0)">&#8634; Back to Start</button>
+</div>
+</div>
 
     </div><!-- /content-column -->
 

@@ -108,11 +108,7 @@
             </div>
         </div>
     
-        <div class="nav-section">
-            <div class="nav-section-label">Real-World Practical Projects</div>
-            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 1: Enterprise Inventory Manager (LINQ & File I/O)</button>
-        </div>
-    </nav>
+        </nav>
 
     <!-- SIDEBAR -->
     <nav id="sidebar">
@@ -146,6 +142,11 @@
             <button class="nav-item" onclick="showLecture(16)"><span class="num">17</span><span class="dot"></span>Unit Testing (xUnit)</button>
             <button class="nav-item" onclick="showLecture(17)"><span class="num">18</span><span class="dot"></span>Final Project</button>
         </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(18)"><span class="num">19</span><span class="dot"></span>Project 1: Enterprise Inventory Manager (LINQ & File I/O)</button>
+        </div>
     </nav>
 
     <!-- MAIN -->
@@ -157,7 +158,7 @@
                 <span class="current" id="breadcrumb-current">Introduction & Setup</span>
             </div>
             <div class="progress-bar-wrap">
-                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <span class="progress-label" id="progress-label">Lecture 1 / 19</span>
                 <div class="progress-track">
                     <div class="progress-fill" id="progress-fill" style="width:8%"></div>
                 </div>
@@ -2065,88 +2066,650 @@ Grace Hopper execution path: Coding...</pre>
                 </div>
 
         <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Async & Await</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 12</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-12" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 13 &middot; Advanced</div>
+<h1>Asynchronous Programming with async &amp; await</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 12</span></div>
+<p class="lecture-intro">Asynchronous programming is fundamental to scalable .NET backends and responsive UI applications. By leveraging the Task-based Asynchronous Pattern (TAP), <code>async</code>, and <code>await</code>, your threads remain unblocked during I/O-bound database queries, HTTP network calls, and file operations.</p>
+<h2>1. The Task-based Asynchronous Pattern (TAP)</h2>
+<p>In synchronous execution, a thread waits idle while network packets travel across the wire or a disk head seeks sectors. In asynchronous C#, the thread is yielded back to the thread pool to process other web requests while the I/O completion port awaits completion:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">WeatherService.cs</span></div>
+<pre><span class="kw">using</span> System.Net.Http.Json;
+
+<span class="kw">public</span> <span class="kw">class</span> WeatherService
+{
+    <span class="kw">private</span> <span class="kw">readonly</span> HttpClient _http = <span class="kw">new</span>();
+
+    <span class="cm">// Task&lt;T&gt; represents an ongoing operation that will yield a T in the future</span>
+    <span class="kw">public</span> <span class="kw">async</span> Task&lt;WeatherForecast?&gt; FetchForecastAsync(<span class="kw">string</span> city, CancellationToken ct = <span class="kw">default</span>)
+    {
+        <span class="kw">string</span> url = $<span class="st">"https://api.weather.com/v1/{Uri.EscapeDataString(city)}"</span>;
+        
+        <span class="cm">// Thread is NOT blocked during GetFromJsonAsync!</span>
+        <span class="kw">return</span> <span class="kw">await</span> _http.GetFromJsonAsync&lt;WeatherForecast&gt;(url, ct);
+    }
+}
+
+<span class="kw">public</span> <span class="kw">record</span> WeatherForecast(<span class="kw">string</span> City, <span class="kw">double</span> TemperatureC, <span class="kw">string</span> Summary);</pre>
+</div>
+
+<h2>2. CancellationTokens &amp; Resource Management</h2>
+<p>Every asynchronous API in production .NET should accept a <code>CancellationToken</code>. When a user navigates away from a page or closes an HTTP connection, the token triggers cancellation to immediately stop wasteful backend work.</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Program.cs</span></div>
+<pre><span class="kw">using</span> <span class="kw">var</span> cts = <span class="kw">new</span> CancellationTokenSource(TimeSpan.FromSeconds(5)); <span class="cm">// Timeout after 5s</span>
+
+<span class="kw">try</span>
+{
+    <span class="kw">var</span> service = <span class="kw">new</span> WeatherService();
+    <span class="kw">var</span> forecast = <span class="kw">await</span> service.FetchForecastAsync(<span class="st">"London"</span>, cts.Token);
+    Console.WriteLine($<span class="st">"Forecast: {forecast?.Summary} at {forecast?.TemperatureC}°C"</span>);
+}
+<span class="kw">catch</span> (OperationCanceledException)
+{
+    Console.WriteLine(<span class="st">"Request timed out or was aborted by the client."</span>);
+}
+<span class="kw">catch</span> (HttpRequestException ex)
+{
+    Console.WriteLine($<span class="st">"Network error: {ex.Message}"</span>);
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li><strong>Avoid async void:</strong> Never write <code>async void</code> except for UI event handlers. Exceptions thrown inside an <code>async void</code> method cannot be caught by callers and will immediately crash the process. Always return <code>Task</code> or <code>Task&lt;T&gt;</code>.</li><li><strong>Do not use .Result or .Wait():</strong> Calling <code>task.Result</code> or <code>task.Wait()</code> synchronously blocks the calling thread, risking thread pool starvation and deadlocks in ASP.NET SynchronizationContexts. Always use <code>await</code>.</li></ul></div>
+
+<h2>3. Concurrency with Task.WhenAll &amp; ValueTask</h2>
+<p>When you have multiple independent I/O tasks, run them concurrently instead of sequentially with <code>Task.WhenAll</code>:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">DashboardService.cs</span></div>
+<pre><span class="kw">public</span> <span class="kw">async</span> Task&lt;DashboardData&gt; LoadDashboardAsync(<span class="kw">int</span> userId, CancellationToken ct)
+{
+    <span class="cm">// Initiate both queries concurrently without awaiting yet</span>
+    Task&lt;User&gt; userTask = _userRepo.GetByIdAsync(userId, ct);
+    Task&lt;List&lt;Order&gt;&gt; ordersTask = _orderRepo.GetRecentOrdersAsync(userId, ct);
+
+    <span class="cm">// Wait for both to complete simultaneously</span>
+    <span class="kw">await</span> Task.WhenAll(userTask, ordersTask);
+
+    <span class="kw">return</span> <span class="kw">new</span> DashboardData(userTask.Result, ordersTask.Result);
+}</pre>
+</div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li><strong>When to use ValueTask&lt;T&gt;:</strong> Use <code>ValueTask&lt;T&gt;</code> when a method frequently completes synchronously (for instance, reading from an in-memory cache). It avoids heap allocations for <code>Task</code> objects when results are already available.</li><li><strong>ConfigureAwait(false):</strong> In general class libraries that do not depend on UI contexts, appending <code>.ConfigureAwait(false)</code> prevents capturing synchronization context and improves throughput.</li></ul></div>
+
+<div class="quiz-block" data-quiz="cc-l12">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the primary danger of using `async void` instead of `async Task` in C#?</p><ol class="quiz-options"><li>It causes a compilation error in modern C#</li><li>Uncaught exceptions cannot be observed or caught by the calling code, causing unhandled process crashes</li><li>It forces the method to run synchronously on the UI thread</li><li>It prevents the method from accepting parameters</li></ol><p class="quiz-explain">Because `async void` methods do not return a Task, the caller cannot await them or catch exceptions thrown inside them. Any unhandled exception is posted directly to the synchronization context and terminates the application.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What happens when calling `.Result` on a running Task instead of awaiting it?</p><ol class="quiz-options"><li>The Task is automatically canceled</li><li>The calling thread blocks synchronously until the Task completes, causing potential thread pool starvation and deadlocks</li><li>The runtime spawns a secondary background process</li><li>The Task yields control back to the operating system</li></ol><p class="quiz-explain">`.Result` blocks the calling thread synchronously. This ties up thread pool threads and, if run in an environment with a SynchronizationContext (like ASP.NET classic or WPF/WinForms), frequently causes circular deadlocks.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which utility method allows executing multiple independent Tasks concurrently and waiting for all of them to finish?</p><ol class="quiz-options"><li>Task.RunSynchronously()</li><li>Task.WhenAll()</li><li>Task.WaitAny()</li><li>ThreadPool.QueueUserWorkItem()</li></ol><p class="quiz-explain">`Task.WhenAll()` returns a Task that completes only when all supplied tasks have completed, enabling parallel asynchronous execution of multiple I/O operations.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(11)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Advanced</div>
-            <h1>Delegates & Events</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 13</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-13" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 14 &middot; Advanced</div>
+<h1>Delegates, Lambdas &amp; Events</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 13</span></div>
+<p class="lecture-intro">Delegates are type-safe function pointers that form the bedrock of event-driven architectures, LINQ expressions, and callback pipelines in .NET. Master custom delegates, standard library delegates (<code>Action</code>, <code>Func</code>, <code>Predicate</code>), and thread-safe event publishing.</p>
+<h2>1. What is a Delegate?</h2>
+<p>A delegate is a reference type that defines a strict method signature (return type and parameters). Any method matching that signature can be assigned to the delegate:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">DelegatesBasics.cs</span></div>
+<pre><span class="cm">// Custom delegate declaration</span>
+<span class="kw">public</span> <span class="kw">delegate</span> <span class="kw">int</span> MathOperation(<span class="kw">int</span> a, <span class="kw">int</span> b);
+
+<span class="kw">public</span> <span class="kw">class</span> Calculator
+{
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">int</span> Add(<span class="kw">int</span> x, <span class="kw">int</span> y) =&gt; x + y;
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">int</span> Multiply(<span class="kw">int</span> x, <span class="kw">int</span> y) =&gt; x * y;
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Program
+{
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> Main()
+    {
+        MathOperation op = Calculator.Add;
+        Console.WriteLine(op(4, 5)); <span class="cm">// 9</span>
+
+        op = Calculator.Multiply;
+        Console.WriteLine(op(4, 5)); <span class="cm">// 20</span>
+    }
+}</pre>
+</div>
+
+<h2>2. Built-in Delegates: Action, Func, and Predicate</h2>
+<p>In modern C#, you rarely need to declare custom delegate types. The .NET BCL provides generic delegates that cover virtually every scenario:</p>
+<ul>
+  <li><code>Action&lt;T1, T2...&gt;</code>: Represents a method returning <code>void</code> with up to 16 parameters.</li>
+  <li><code>Func&lt;T1, T2..., TResult&gt;</code>: Represents a method returning <code>TResult</code> with up to 16 parameters.</li>
+  <li><code>Predicate&lt;T&gt;</code>: Equivalent to <code>Func&lt;T, bool&gt;</code>, used for filtering criteria.</li>
+</ul>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">StandardDelegates.cs</span></div>
+<pre><span class="cm">// Action: returns void</span>
+Action&lt;<span class="kw">string</span>&gt; logger = message =&gt; Console.WriteLine($<span class="st">"[LOG {DateTime.UtcNow:s}] {message}"</span>);
+logger(<span class="st">"Application booted"</span>);
+
+<span class="cm">// Func: last generic type argument is always the return type</span>
+Func&lt;<span class="kw">string</span>, <span class="kw">int</span>, <span class="kw">bool</span>&gt; isLongerThan = (text, threshold) =&gt; text.Length &gt; threshold;
+<span class="kw">bool</span> check = isLongerThan(<span class="st">"Enterprise .NET"</span>, 10); <span class="cm">// true</span>
+
+<span class="cm">// Predicate: filtering lists</span>
+Predicate&lt;<span class="kw">int</span>&gt; isEven = n =&gt; n % 2 == 0;
+List&lt;<span class="kw">int</span>&gt; numbers = [1, 2, 3, 4, 5, 6];
+List&lt;<span class="kw">int</span>&gt; evens = numbers.FindAll(isEven); <span class="cm">// [2, 4, 6]</span></pre>
+</div>
+
+<h2>3. The Event Pattern &amp; Memory Leaks</h2>
+<p>Events encapsulate delegates using the publish-subscribe pattern, ensuring that external classes can only subscribe (<code>+=</code>) or unsubscribe (<code>-=</code>), preventing external callers from clearing or triggering the delegate directly.</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">EventsDemo.cs</span></div>
+<pre><span class="cm">// Custom event arguments inheriting from EventArgs</span>
+<span class="kw">public</span> <span class="kw">class</span> OrderEventArgs : EventArgs
+{
+    <span class="kw">public</span> required <span class="kw">string</span> OrderId { <span class="kw">get</span>; <span class="kw">init</span>; }
+    <span class="kw">public</span> <span class="kw">decimal</span> TotalAmount { <span class="kw">get</span>; <span class="kw">init</span>; }
+}
+
+<span class="kw">public</span> <span class="kw">class</span> OrderProcessor
+{
+    <span class="cm">// Standard .NET event declaration</span>
+    <span class="kw">public</span> <span class="kw">event</span> EventHandler&lt;OrderEventArgs&gt;? OrderCompleted;
+
+    <span class="kw">public</span> <span class="kw">void</span> ProcessOrder(<span class="kw">string</span> id, <span class="kw">decimal</span> amount)
+    {
+        Console.WriteLine($<span class="st">"Processing order {id} for ${amount:F2}..."</span>);
+        
+        <span class="cm">// Thread-safe invocation using null-conditional operator</span>
+        OrderCompleted?.Invoke(<span class="kw">this</span>, <span class="kw">new</span> OrderEventArgs 
+        { 
+            OrderId = id, 
+            TotalAmount = amount 
+        });
+    }
+}
+
+<span class="cm">// Subscriber</span>
+<span class="kw">public</span> <span class="kw">class</span> InvoiceService
+{
+    <span class="kw">public</span> <span class="kw">void</span> OnOrderCompleted(<span class="kw">object</span>? sender, OrderEventArgs e)
+    {
+        Console.WriteLine($<span class="st">"Generating invoice for order {e.OrderId}: ${e.TotalAmount:F2}"</span>);
+    }
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li><strong>Event Subscription Memory Leaks:</strong> If a long-lived publisher holds an event subscription to a short-lived subscriber without unsubscribing (<code>publisher.Event -= subscriber.Handler</code>), the garbage collector cannot collect the subscriber. Always unsubscribe or implement <code>IDisposable</code>.</li><li><strong>Calling delegate without null check:</strong> In multithreaded apps, if the last subscriber unregisters between your null check and invocation, a <code>NullReferenceException</code> will occur. Always use <code>EventName?.Invoke(this, args);</code>.</li></ul></div>
+
+<div class="quiz-block" data-quiz="cc-l13">
+<div class="quiz-q" data-answer="2"><p class="quiz-prompt">In the delegate `Func<int, string, bool>`, which type is the return value?</p><ol class="quiz-options"><li>int</li><li>string</li><li>bool</li><li>void</li></ol><p class="quiz-explain">In the generic `Func` delegate family, the last generic type parameter is always the return type of the method. The preceding types represent the parameter types.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why should you always invoke events using `MyEvent?.Invoke(this, e)` instead of `MyEvent(this, e)`?</p><ol class="quiz-options"><li>Because `Invoke` executes asynchronously on a background thread</li><li>Because if no subscribers have registered, calling `MyEvent(...)` directly throws a `NullReferenceException`</li><li>Because `Invoke` prevents garbage collection of the publisher</li><li>Because C# 12 deprecated direct parentheses invocation</li></ol><p class="quiz-explain">If an event has no registered subscribers, its internal multicast delegate field is `null`. Using `?.Invoke()` safely short-circuits and prevents a `NullReferenceException`.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">How does an event subscription cause a memory leak if not unsubscribed?</p><ol class="quiz-options"><li>The operating system allocates non-paged memory for each delegate</li><li>The publisher retains a reference to the subscriber via the delegate target, preventing the garbage collector from reclaiming the subscriber</li><li>The CLR compiler leaks memory whenever using the `+=` operator</li><li>It corrupts the process heap segment</li></ol><p class="quiz-explain">A delegate instance stores a reference to its target object (the subscriber). As long as the publisher remains alive, that reference prevents the GC from freeing the subscriber.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(12)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(14)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 15 ===================== -->
-        <div class="lecture" id="lec-14">
-            <div class="lecture-tag">Lecture 15 · Advanced</div>
-            <h1>Generics & Interfaces</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 14</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-14" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 15 &middot; Advanced</div>
+<h1>Generics, Constraints &amp; Interface Design</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~40 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 14</span></div>
+<p class="lecture-intro">Generics provide type safety, code reusability, and high runtime performance by eliminating boxing/unboxing overhead. Paired with robust interface design and generic constraints, they form the cornerstone of enterprise software architecture and Dependency Injection.</p>
+<h2>1. Generic Classes &amp; Methods</h2>
+<p>Generics decouple algorithms and data structures from specific concrete data types. In C#, generics are reified at runtime by the CLR, generating specialized native code for value types without boxing overhead:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">GenericsBasics.cs</span></div>
+<pre><span class="cm">// Generic Result container pattern</span>
+<span class="kw">public</span> <span class="kw">class</span> Result&lt;T&gt;
+{
+    <span class="kw">public</span> <span class="kw">bool</span> IsSuccess { <span class="kw">get</span>; }
+    <span class="kw">public</span> T? Value { <span class="kw">get</span>; }
+    <span class="kw">public</span> <span class="kw">string</span>? Error { <span class="kw">get</span>; }
+
+    <span class="kw">private</span> Result(T value) { IsSuccess = <span class="kw">true</span>; Value = value; }
+    <span class="kw">private</span> Result(<span class="kw">string</span> error) { IsSuccess = <span class="kw">false</span>; Error = error; }
+
+    <span class="kw">public</span> <span class="kw">static</span> Result&lt;T&gt; Ok(T value) =&gt; <span class="kw">new</span>(value);
+    <span class="kw">public</span> <span class="kw">static</span> Result&lt;T&gt; Fail(<span class="kw">string</span> error) =&gt; <span class="kw">new</span>(error);
+}
+
+<span class="cm">// Generic Utility Method</span>
+<span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> EnumerableExtensions
+{
+    <span class="kw">public</span> <span class="kw">static</span> IEnumerable&lt;T&gt; TakeRandom&lt;T&gt;(<span class="kw">this</span> IEnumerable&lt;T&gt; source, <span class="kw">int</span> count)
+    {
+        <span class="kw">var</span> rng = <span class="kw">new</span> Random();
+        <span class="kw">return</span> source.OrderBy(_ =&gt; rng.Next()).Take(count);
+    }
+}</pre>
+</div>
+
+<h2>2. Generic Constraints (where T : ...)</h2>
+<p>Generic constraints inform the compiler what capabilities the type argument must possess. Without constraints, you can only invoke methods defined on <code>object</code>:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Repository.cs</span></div>
+<pre><span class="kw">public</span> <span class="kw">interface</span> IEntity
+{
+    Guid Id { <span class="kw">get</span>; }
+    DateTime CreatedAtUtc { <span class="kw">get</span>; }
+}
+
+<span class="cm">// Repository constrained to reference types implementing IEntity with a parameterless constructor</span>
+<span class="kw">public</span> <span class="kw">class</span> Repository&lt;T&gt; where T : <span class="kw">class</span>, IEntity, <span class="kw">new</span>()
+{
+    <span class="kw">private</span> <span class="kw">readonly</span> Dictionary&lt;Guid, T&gt; _storage = <span class="kw">new</span>();
+
+    <span class="kw">public</span> <span class="kw">void</span> Add(T entity)
+    {
+        _storage[entity.Id] = entity;
+    }
+
+    <span class="kw">public</span> T? GetById(Guid id) =&gt; _storage.GetValueOrDefault(id);
+
+    <span class="kw">public</span> T CreateDefault()
+    {
+        <span class="cm">// Allowed because of 'new()' constraint!</span>
+        <span class="kw">return</span> <span class="kw">new</span> T();
+    }
+}</pre>
+</div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li><strong>Common Generic Constraints:</strong></li><li><code>where T : class</code>: Must be a reference type.</li><li><code>where T : struct</code>: Must be a non-nullable value type.</li><li><code>where T : notnull</code>: Must be non-nullable (C# 8+).</li><li><code>where T : new()</code>: Must have a public parameterless constructor.</li><li><code>where T : unmanaged</code>: Must be a blittable struct with no reference fields.</li></ul></div>
+
+<h2>3. Interface Segregation &amp; DI Contracts</h2>
+<p>Follow the Interface Segregation Principle (ISP): prefer small, focused interfaces over monolithic ones. This simplifies unit test mocking and dependency injection registration:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">IRepositories.cs</span></div>
+<pre><span class="kw">public</span> <span class="kw">interface</span> IReadOnlyRepository&lt;T&gt; where T : <span class="kw">class</span>
+{
+    Task&lt;T?&gt; GetByIdAsync(Guid id, CancellationToken ct = <span class="kw">default</span>);
+    Task&lt;IReadOnlyList&lt;T&gt;&gt; ListAllAsync(CancellationToken ct = <span class="kw">default</span>);
+}
+
+<span class="kw">public</span> <span class="kw">interface</span> IWriteRepository&lt;T&gt; where T : <span class="kw">class</span>
+{
+    Task AddAsync(T entity, CancellationToken ct = <span class="kw">default</span>);
+    Task DeleteAsync(Guid id, CancellationToken ct = <span class="kw">default</span>);
+}
+
+<span class="cm">// Combined interface when both capabilities are required</span>
+<span class="kw">public</span> <span class="kw">interface</span> IRepository&lt;T&gt; : IReadOnlyRepository&lt;T&gt;, IWriteRepository&lt;T&gt; where T : <span class="kw">class</span>
+{
+}</pre>
+</div>
+
+<div class="quiz-block" data-quiz="cc-l14">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the performance benefit of C# generics over non-generic collections like ArrayList?</p><ol class="quiz-options"><li>Generics run in a separate operating system thread</li><li>Generics eliminate boxing and unboxing of value types, avoiding heap allocations and type-cast overhead</li><li>Generics compress data in memory automatically</li><li>Generics disable runtime exception checking</li></ol><p class="quiz-explain">When value types (like int, struct) are stored in generic collections (List<int>), the CLR produces specialized native instructions that store values inline without boxing them into heap objects.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does the constraint `where T : new()` enable you to do inside a generic class?</p><ol class="quiz-options"><li>Inherit from another generic class</li><li>Instantiate a new instance of T using `new T()`</li><li>Convert T to an unmanaged pointer</li><li>Ensure T is allocated on the stack</li></ol><p class="quiz-explain">The `new()` constraint specifies that any type argument supplied for T must have a public parameterless constructor, allowing the compiler to permit expressions like `new T()`.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which generic variance keyword allows an interface to return derived instances when a base type is expected (covariance)?</p><ol class="quiz-options"><li>in (e.g. IConsumer<in T>)</li><li>out (e.g. IEnumerable<out T>)</li><li>ref</li><li>readonly</li></ol><p class="quiz-explain">The `out` keyword marks a generic type parameter as covariant, meaning the type parameter can only be used as an output/return type (e.g., `IEnumerable<out T>`), enabling `IEnumerable<Derived>` to be treated as `IEnumerable<Base>`.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(13)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(15)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 16 ===================== -->
-        <div class="lecture" id="lec-15">
-            <div class="lecture-tag">Lecture 16 · Professional</div>
-            <h1>Entity Framework & Databases</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 15</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(16)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-15" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 16 &middot; Professional</div>
+<h1>Entity Framework Core &amp; Relational Databases</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~45 min</span><span class="meta-badge level-beginner">Professional</span><span class="meta-badge">Requires: Lecture 15</span></div>
+<p class="lecture-intro">Entity Framework Core (EF Core) is the modern object-database mapper for .NET. It lets you query and persist domain models to relational databases (PostgreSQL, SQL Server, SQLite) using strongly-typed LINQ queries, automatic change tracking, and code-first database migrations.</p>
+<h2>1. Modeling Entities &amp; DbContext</h2>
+<p>An entity is a domain model mapped to a database table. The <code>DbContext</code> coordinates querying, relationship configuration, and saving changes:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Models.cs</span></div>
+<pre><span class="kw">using</span> Microsoft.EntityFrameworkCore;
+
+<span class="cm">// Domain Entities</span>
+<span class="kw">public</span> <span class="kw">class</span> Customer
+{
+    <span class="kw">public</span> <span class="kw">int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> required <span class="kw">string</span> FullName { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> required <span class="kw">string</span> Email { <span class="kw">get</span>; <span class="kw">set</span>; }
+    
+    <span class="cm">// Navigation property: One-to-Many</span>
+    <span class="kw">public</span> List&lt;Order&gt; Orders { <span class="kw">get</span>; <span class="kw">set</span>; } = <span class="kw">new</span>();
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Order
+{
+    <span class="kw">public</span> <span class="kw">int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> DateTime OrderDate { <span class="kw">get</span>; <span class="kw">set</span>; } = DateTime.UtcNow;
+    <span class="kw">public</span> <span class="kw">decimal</span> TotalAmount { <span class="kw">get</span>; <span class="kw">set</span>; }
+    
+    <span class="cm">// Foreign key and navigation back to Customer</span>
+    <span class="kw">public</span> <span class="kw">int</span> CustomerId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> Customer Customer { <span class="kw">get</span>; <span class="kw">set</span>; } = <span class="kw">null</span>!;
+}
+
+<span class="cm">// Application DbContext</span>
+<span class="kw">public</span> <span class="kw">class</span> AppDbContext : DbContext
+{
+    <span class="kw">public</span> AppDbContext(DbContextOptions&lt;AppDbContext&gt; options) : base(options) {}
+
+    <span class="kw">public</span> DbSet&lt;Customer&gt; Customers =&gt; Set&lt;Customer&gt;();
+    <span class="kw">public</span> DbSet&lt;Order&gt; Orders =&gt; Set&lt;Order&gt;();
+
+    <span class="kw">protected</span> <span class="kw">override</span> <span class="kw">void</span> OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity&lt;Customer&gt;(entity =&gt;
+        {
+            entity.HasKey(c =&gt; c.Id);
+            entity.HasIndex(c =&gt; c.Email).IsUnique();
+            entity.Property(c =&gt; c.FullName).HasMaxLength(150).IsRequired();
+        });
+    }
+}</pre>
+</div>
+
+<h2>2. Efficient LINQ Queries &amp; AsNoTracking</h2>
+<p>EF Core translates LINQ expressions directly into optimized SQL queries executed by the database server:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Queries.cs</span></div>
+<pre><span class="kw">public</span> <span class="kw">async</span> Task&lt;List&lt;CustomerDto&gt;&gt; GetTopSpendersAsync(AppDbContext db, CancellationToken ct)
+{
+    <span class="cm">// AsNoTracking(): Skips change-tracking snapshots; 2-3x faster for read-only queries!</span>
+    <span class="kw">return</span> <span class="kw">await</span> db.Customers
+        .AsNoTracking()
+        .Where(c =&gt; c.Orders.Any())
+        .Select(c =&gt; <span class="kw">new</span> CustomerDto(
+            c.Id,
+            c.FullName,
+            c.Email,
+            c.Orders.Sum(o =&gt; o.TotalAmount)
+        ))
+        .OrderByDescending(dto =&gt; dto.TotalSpent)
+        .Take(10)
+        .ToListAsync(ct);
+}
+
+<span class="kw">public</span> <span class="kw">record</span> CustomerDto(<span class="kw">int</span> Id, <span class="kw">string</span> FullName, <span class="kw">string</span> Email, <span class="kw">decimal</span> TotalSpent);</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li><strong>The N+1 Query Problem:</strong> Never access navigation properties in a loop without eager loading (<code>.Include(c => c.Orders)</code>) or projecting with <code>.Select()</code>. Otherwise, EF executes 1 query for the parent and N separate queries for each child.</li><li><strong>Client-Side Evaluation:</strong> Avoid invoking arbitrary C# methods inside <code>Where()</code> or <code>Select()</code> clauses that the EF provider cannot translate into SQL. This forces EF to pull entire tables into memory before filtering.</li></ul></div>
+
+<h2>3. Transactions &amp; Unit of Work (SaveChangesAsync)</h2>
+<p><code>SaveChangesAsync</code> collects all dirty, added, and deleted entities and executes them inside an implicit database transaction:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">OrderService.cs</span></div>
+<pre><span class="kw">public</span> <span class="kw">async</span> Task&lt;Order&gt; CreateOrderAsync(AppDbContext db, <span class="kw">int</span> customerId, <span class="kw">decimal</span> amount, CancellationToken ct)
+{
+    <span class="kw">var</span> customer = <span class="kw">await</span> db.Customers.FindAsync([customerId], ct)
+        ?? <span class="kw">throw</span> <span class="kw">new</span> KeyNotFoundException($<span class="st">"Customer {customerId} not found"</span>);
+
+    <span class="kw">var</span> order = <span class="kw">new</span> Order
+    {
+        CustomerId = customerId,
+        TotalAmount = amount,
+        OrderDate = DateTime.UtcNow
+    };
+
+    db.Orders.Add(order);
+    
+    <span class="cm">// Executes inside an atomic transaction</span>
+    <span class="kw">await</span> db.SaveChangesAsync(ct);
+    <span class="kw">return</span> order;
+}</pre>
+</div>
+
+<div class="quiz-block" data-quiz="cc-l15">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why should you include `.AsNoTracking()` on read-only queries in EF Core?</p><ol class="quiz-options"><li>It encrypts database responses across the network</li><li>It tells EF Core not to store snapshots in the change tracker, significantly improving memory and CPU performance</li><li>It prevents other database users from updating the rows</li><li>It forces EF to execute raw ADO.NET SQL commands directly</li></ol><p class="quiz-explain">When EF Core queries entities, it normally attaches them to the change tracker and saves a state snapshot. For read-only operations, `.AsNoTracking()` bypasses this tracking overhead, dramatically cutting memory allocations and query execution time.</p></div>
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">How do you prevent the N+1 query problem when loading related child entities?</p><ol class="quiz-options"><li>Using `.Include()` for eager loading or projecting directly into DTOs with `.Select()`</li><li>Calling `.ToList()` immediately after `.Where()`</li><li>Disabling database indexes on the foreign key column</li><li>Using synchronous `ToList()` instead of asynchronous `ToListAsync()`</li></ol><p class="quiz-explain">Eager loading with `.Include()` instructs EF Core to generate SQL JOINs to fetch parent and child rows in a single query, eliminating separate roundtrips for each individual child record.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the role of EF Core Migrations in a production project?</p><ol class="quiz-options"><li>Translating C# code into WebAssembly</li><li>Version-controlling and incrementally evolving the database schema to match domain models</li><li>Exporting database tables into JSON backup files</li><li>Managing user authentication sessions</li></ol><p class="quiz-explain">EF Core Migrations provide a structured, version-controlled mechanism to apply incremental schema updates (creating tables, modifying columns, adding indexes) to database instances across development, staging, and production.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(14)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(16)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 17 ===================== -->
-        <div class="lecture" id="lec-16">
-            <div class="lecture-tag">Lecture 17 · Professional</div>
-            <h1>Unit Testing (xUnit)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 16</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(15)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(17)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-16" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 17 &middot; Professional</div>
+<h1>Unit Testing &amp; Mocking with xUnit &amp; Moq</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~40 min</span><span class="meta-badge level-beginner">Professional</span><span class="meta-badge">Requires: Lecture 16</span></div>
+<p class="lecture-intro">High-quality software demands automated tests that verify correctness, protect against regressions, and document design behavior. Learn test-driven development (TDD) using xUnit (the de facto standard in .NET), parameterized testing with <code>[Theory]</code>, and test doubles with Moq.</p>
+<h2>1. Test Anatomy: Arrange, Act, Assert</h2>
+<p>xUnit identifies test methods using attributes. Every clean unit test follows the AAA pattern:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">BankAccountTests.cs</span></div>
+<pre><span class="kw">using</span> Xunit;
+
+<span class="kw">public</span> <span class="kw">class</span> BankAccountTests
+{
+    [Fact] <span class="cm">// [Fact] denotes a test that is always true under invariant conditions</span>
+    <span class="kw">public</span> <span class="kw">void</span> Deposit_ValidAmount_IncreasesBalance()
+    {
+        <span class="cm">// 1. Arrange: setup initial state and dependencies</span>
+        <span class="kw">var</span> account = <span class="kw">new</span> BankAccount(initialBalance: 100m);
+
+        <span class="cm">// 2. Act: invoke the method under test</span>
+        account.Deposit(50m);
+
+        <span class="cm">// 3. Assert: verify expected outcome</span>
+        Assert.Equal(150m, account.Balance);
+    }
+
+    [Fact]
+    <span class="kw">public</span> <span class="kw">void</span> Withdraw_AmountGreaterThanBalance_ThrowsInvalidOperationException()
+    {
+        <span class="cm">// Arrange</span>
+        <span class="kw">var</span> account = <span class="kw">new</span> BankAccount(initialBalance: 50m);
+
+        <span class="cm">// Act &amp; Assert</span>
+        <span class="kw">var</span> ex = Assert.Throws&lt;InvalidOperationException&gt;(() =&gt; account.Withdraw(100m));
+        Assert.Contains(<span class="st">"Insufficient funds"</span>, ex.Message);
+    }
+}</pre>
+</div>
+
+<h2>2. Parameterized Tests with [Theory] &amp; [InlineData]</h2>
+<p>Instead of duplicating test methods for different test cases, use <code>[Theory]</code> to run the same test logic against a matrix of inputs:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">EmailValidatorTests.cs</span></div>
+<pre><span class="kw">public</span> <span class="kw">class</span> EmailValidatorTests
+{
+    [Theory]
+    [InlineData(<span class="st">"user@domain.com"</span>, <span class="kw">true</span>)]
+    [InlineData(<span class="st">"alice.smith+tag@work.co.uk"</span>, <span class="kw">true</span>)]
+    [InlineData(<span class="st">"missing-at-sign.com"</span>, <span class="kw">false</span>)]
+    [InlineData(<span class="st">"@missing-local.com"</span>, <span class="kw">false</span>)]
+    [InlineData(<span class="st">""</span>, <span class="kw">false</span>)]
+    [InlineData(<span class="kw">null</span>, <span class="kw">false</span>)]
+    <span class="kw">public</span> <span class="kw">void</span> IsValidEmail_EvaluatesCorrectly(<span class="kw">string</span>? input, <span class="kw">bool</span> expected)
+    {
+        <span class="kw">var</span> validator = <span class="kw">new</span> EmailValidator();
+        <span class="kw">bool</span> result = validator.IsValid(input);
+        Assert.Equal(expected, result);
+    }
+}</pre>
+</div>
+
+<h2>3. Mocking Dependencies with Moq</h2>
+<p>Unit tests must test logic in isolation without talking to real databases or sending real emails. We substitute interfaces with mock objects:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">OrderServiceTests.cs</span></div>
+<pre><span class="kw">using</span> Moq;
+<span class="kw">using</span> Xunit;
+
+<span class="kw">public</span> <span class="kw">class</span> OrderServiceTests
+{
+    [Fact]
+    <span class="kw">public</span> <span class="kw">async</span> Task PlaceOrderAsync_ValidOrder_SendsNotificationAndSaves()
+    {
+        <span class="cm">// Arrange: Mock dependencies</span>
+        <span class="kw">var</span> mockRepo = <span class="kw">new</span> Mock&lt;IOrderRepository&gt;();
+        <span class="kw">var</span> mockNotifier = <span class="kw">new</span> Mock&lt;INotificationService&gt;();
+
+        <span class="kw">var</span> service = <span class="kw">new</span> OrderService(mockRepo.Object, mockNotifier.Object);
+        <span class="kw">var</span> order = <span class="kw">new</span> Order { Id = 101, CustomerId = 1, TotalAmount = 99.99m };
+
+        <span class="cm">// Act</span>
+        <span class="kw">await</span> service.PlaceOrderAsync(order);
+
+        <span class="cm">// Assert: Verify mock interactions</span>
+        mockRepo.Verify(r =&gt; r.SaveAsync(order, It.IsAny&lt;CancellationToken&gt;()), Times.Once);
+        mockNotifier.Verify(n =&gt; n.NotifyCustomerAsync(order.CustomerId, It.IsAny&lt;<span class="kw">string</span>&gt;()), Times.Once);
+    }
+}</pre>
+</div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li><strong>FluentAssertions:</strong> For expressive assertions that read like natural language, install <code>FluentAssertions</code>. Replace <code>Assert.Equal(5, list.Count);</code> with <code>list.Should().HaveCount(5).And.Contain(x);</code>.</li><li><strong>Fast and Deterministic:</strong> Unit tests should execute in milliseconds and never touch disk, network, or external clocks. Use <code>TimeProvider</code> (introduced in .NET 8) to mock time without calling <code>DateTime.UtcNow</code>.</li></ul></div>
+
+<div class="quiz-block" data-quiz="cc-l16">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">In xUnit, what is the difference between `[Fact]` and `[Theory]` attributes?</p><ol class="quiz-options"><li>`[Fact]` tests async methods, while `[Theory]` tests synchronous methods</li><li>`[Fact]` is a test with no parameters that asserts invariant behavior; `[Theory]` executes with parameterized test datasets via attributes like `[InlineData]`</li><li>`[Fact]` is executed only in Release builds</li><li>`[Theory]` tests run in a separate process container</li></ol><p class="quiz-explain">`[Fact]` marks an invariant unit test requiring no parameters. `[Theory]` marks a parameterized data-driven test that xUnit runs repeatedly against each supplied dataset (from `[InlineData]`, `[MemberData]`, or `[ClassData]`).</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does `mock.Verify(x => x.SaveAsync(...), Times.Once)` check in a unit test?</p><ol class="quiz-options"><li>It checks whether the method threw an unhandled exception</li><li>It asserts that the specified method on the mock was called exactly one time during the test run</li><li>It measures the execution time of the method</li><li>It cancels the mock if invoked more than once</li></ol><p class="quiz-explain">Moq's .Verify() method asserts behavioral expectations on mocked interfaces, confirming that the code under test interacted with the dependency exactly the expected number of times.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which phase of the Arrange-Act-Assert (AAA) pattern executes the method being evaluated?</p><ol class="quiz-options"><li>Arrange</li><li>Act</li><li>Assert</li><li>Teardown</li></ol><p class="quiz-explain">The "Act" phase is where you execute the specific method or business logic under test, capturing any returned values or thrown exceptions for subsequent assertion.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(15)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(17)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 18 ===================== -->
-        <div class="lecture" id="lec-17">
-            <div class="lecture-tag">Lecture 18 · Professional</div>
-            <h1>Final Project — .NET Web API</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(16)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-17" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 18 &middot; Professional</div>
+<h1>Final Project &mdash; Production ASP.NET Core Web API</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~60 min</span><span class="meta-badge level-beginner">Professional</span><span class="meta-badge">Requires: All Previous Lectures</span></div>
+<p class="lecture-intro">In this capstone project, you will build a production-grade RESTful Web API using ASP.NET Core Minimal APIs, Entity Framework Core, structured validation, dependency injection, and OpenAPI documentation.</p>
+<h2>1. Project Architecture &amp; Minimal API Endpoints</h2>
+<p>Modern ASP.NET Core uses Minimal APIs to achieve industry-leading throughput with concise, readable syntax:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Program.cs</span></div>
+<pre><span class="kw">using</span> Microsoft.EntityFrameworkCore;
+
+<span class="kw">var</span> builder = WebApplication.CreateBuilder(args);
+
+<span class="cm">// Register Services in Dependency Injection Container</span>
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext&lt;AppDbContext&gt;(opts =&gt; 
+    opts.UseSqlite(builder.Configuration.GetConnectionString(<span class="st">"Default"</span>) ?? <span class="st">"Data Source=store.db"</span>));
+
+<span class="kw">var</span> app = builder.Build();
+
+<span class="kw">if</span> (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+<span class="cm">// Route Group: /api/products</span>
+<span class="kw">var</span> products = app.MapGroup(<span class="st">"/api/products"</span>).WithTags(<span class="st">"Products"</span>);
+
+products.MapGet(<span class="st">"/"</span>, <span class="kw">async</span> (AppDbContext db, CancellationToken ct) =&gt;
+    Results.Ok(<span class="kw">await</span> db.Products.AsNoTracking().ToListAsync(ct)));
+
+products.MapGet(<span class="st">"/{id:int}"</span>, <span class="kw">async</span> (<span class="kw">int</span> id, AppDbContext db, CancellationToken ct) =&gt;
+    <span class="kw">await</span> db.Products.FindAsync([id], ct) <span class="kw">is</span> Product p 
+        ? Results.Ok(p) 
+        : Results.NotFound(<span class="kw">new</span> { Message = $<span class="st">"Product {id} not found"</span> }));
+
+products.MapPost(<span class="st">"/"</span>, <span class="kw">async</span> (CreateProductDto dto, AppDbContext db, CancellationToken ct) =&gt;
+{
+    <span class="kw">if</span> (<span class="kw">string</span>.IsNullOrWhiteSpace(dto.Name) || dto.Price &lt;= 0)
+        <span class="kw">return</span> Results.BadRequest(<span class="kw">new</span> { Error = <span class="st">"Invalid name or price."</span> });
+
+    <span class="kw">var</span> product = <span class="kw">new</span> Product { Name = dto.Name, Price = dto.Price, Stock = dto.Stock };
+    db.Products.Add(product);
+    <span class="kw">await</span> db.SaveChangesAsync(ct);
+
+    <span class="kw">return</span> Results.Created($<span class="st">"/api/products/{product.Id}"</span>, product);
+});
+
+products.MapDelete(<span class="st">"/{id:int}"</span>, <span class="kw">async</span> (<span class="kw">int</span> id, AppDbContext db, CancellationToken ct) =&gt;
+{
+    <span class="kw">var</span> product = <span class="kw">await</span> db.Products.FindAsync([id], ct);
+    <span class="kw">if</span> (product <span class="kw">is</span> <span class="kw">null</span>) <span class="kw">return</span> Results.NotFound();
+
+    db.Products.Remove(product);
+    <span class="kw">await</span> db.SaveChangesAsync(ct);
+    <span class="kw">return</span> Results.NoContent();
+});
+
+app.Run();
+
+<span class="kw">public</span> <span class="kw">record</span> CreateProductDto(<span class="kw">string</span> Name, <span class="kw">decimal</span> Price, <span class="kw">int</span> Stock);
+<span class="kw">public</span> <span class="kw">class</span> Product
+{
+    <span class="kw">public</span> <span class="kw">int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> required <span class="kw">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="kw">decimal</span> Price { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="kw">int</span> Stock { <span class="kw">get</span>; <span class="kw">set</span>; }
+}</pre>
+</div>
+
+<h2>2. Global Error Handling Middleware</h2>
+<p>Never let unhandled exceptions leak stack traces to public API consumers. Use custom exception handling or <code>app.UseExceptionHandler()</code> with ProblemDetails:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">MiddlewareConfig.cs</span></div>
+<pre>app.UseExceptionHandler(exceptionHandlerApp =&gt;
+{
+    exceptionHandlerApp.Run(<span class="kw">async</span> context =&gt;
+    {
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        context.Response.ContentType = <span class="st">"application/problem+json"</span>;
+
+        <span class="kw">var</span> problem = <span class="kw">new</span>
+        {
+            Status = 500,
+            Title = <span class="st">"An unexpected server error occurred."</span>,
+            TraceId = context.TraceIdentifier
+        };
+
+        <span class="kw">await</span> context.Response.WriteAsJsonAsync(problem);
+    });
+});</pre>
+</div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li><strong>DTOs (Data Transfer Objects):</strong> Never accept or return EF Core entity classes directly in API endpoints. Exposing entities leaks internal schema details and makes your API vulnerable to mass-assignment over-posting attacks.</li><li><strong>CancellationToken Propagation:</strong> Always accept <code>CancellationToken ct</code> in your endpoint delegates and pass it to async EF Core methods. If the client drops the connection, EF aborts the SQL query immediately.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Capstone Web API Deliverables</div>
+<p>To finalize your C# &amp; .NET Certification, implement these extensions:</p>
+<ol>
+  <li>Add a <code>PUT /api/products/{id}</code> endpoint with concurrency token checks.</li>
+  <li>Introduce an authentication endpoint using JWT Bearer tokens (<code>app.UseAuthentication()</code> and <code>app.UseAuthorization()</code>).</li>
+  <li>Write xUnit integration tests using <code>Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory</code> to verify endpoints return correct HTTP status codes.</li>
+</ol>
+</div>
+
+<div class="quiz-block" data-quiz="cc-l17">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why should you use DTOs instead of binding directly to EF Core entity classes in API endpoints?</p><ol class="quiz-options"><li>EF Core entities cannot be serialized to JSON</li><li>It prevents over-posting attacks and decouples your public API contract from internal database schema</li><li>DTOs automatically run in SQLite memory caches</li><li>Minimal APIs require DTOs to compile</li></ol><p class="quiz-explain">Accepting EF entities directly allows malicious callers to inject fields (like IsAdmin = true or Balance = 999999) that they should not modify. DTOs define strict input contracts and prevent over-posting vulnerabilities.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the standard HTTP status code returned upon successfully creating a resource via POST?</p><ol class="quiz-options"><li>200 OK</li><li>201 Created</li><li>204 NoContent</li><li>301 MovedPermanently</li></ol><p class="quiz-explain">HTTP 201 Created is the standard REST status code for a successful resource creation, typically accompanied by a `Location` header pointing to the URI of the newly created resource.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does `Results.NoContent()` translate to in HTTP response terms?</p><ol class="quiz-options"><li>404 Not Found</li><li>204 No Content (operation succeeded, empty response body)</li><li>400 Bad Request</li><li>500 Server Error</li></ol><p class="quiz-explain">HTTP 204 No Content indicates that the server successfully processed the request (such as a DELETE or PUT) and there is no entity-body to return to the client.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(16)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(18)">Hands-on Projects &rarr;</button>
+</div>
+</div>
 
             </div>
 

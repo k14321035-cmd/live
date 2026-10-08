@@ -2151,32 +2151,232 @@ println(sum(2, 3))</pre>
                 </div>
 
         <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Sealed Classes & DSLs</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 12</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-12" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 13 &middot; Advanced</div>
+<h1>Sealed Hierarchies &amp; Type-Safe DSLs</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 12</span></div>
+<p class="lecture-intro">Kotlin's <code>sealed</code> classes and interfaces restrict class inheritance hierarchies to a known, closed set of types, enabling exhaustive pattern matching without an <code>else</code> branch. Combined with lambdas with receiver, they power Kotlin's famous type-safe Domain Specific Languages (DSLs).</p>
+<h2>1. Sealed Classes &amp; Exhaustive Pattern Matching</h2>
+<p>Sealed classes represent restricted class hierarchies where all subclasses are known at compile time:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Main.kt</span></div>
+<pre><span class="cm">// Represents exhaustive UI State</span>
+<span class="kw">sealed</span> <span class="kw">class</span> UiState&lt;out T&gt; {
+    <span class="kw">object</span> Loading : UiState&lt;Nothing&gt;()
+    <span class="kw">data</span> <span class="kw">class</span> Success&lt;T&gt;(<span class="kw">val</span> <span class="kw">data</span>: T) : UiState&lt;T&gt;()
+    <span class="kw">data</span> <span class="kw">class</span> Error(<span class="kw">val</span> message: String, <span class="kw">val</span> throwable: Throwable? = null) : UiState&lt;Nothing&gt;()
+}
+
+<span class="cm">// Exhaustive 'when' expression: NO 'else' branch needed!</span>
+<span class="kw">fun</span> renderState(state: UiState&lt;String&gt;): String = <span class="kw">when</span> (state) {
+    <span class="kw">is</span> UiState.Loading -&gt; <span class="st">"⏳ Loading data, please wait..."</span>
+    <span class="kw">is</span> UiState.Success -&gt; <span class="st">"✅ Fetched successfully: ${state.data}"</span>
+    <span class="kw">is</span> UiState.Error   -&gt; <span class="st">"❌ Failed: ${state.message}"</span>
+}
+
+<span class="kw">fun</span> main() {
+    <span class="kw">val</span> state: UiState&lt;String&gt; = UiState.Success(<span class="st">"User profile loaded"</span>)
+    println(renderState(state))
+}</pre>
+</div>
+<div class="box info"><div class="box-title">Compile-Time Safety</div><p>If you add a new subclass (like <code>UiState.Empty</code>), the Kotlin compiler immediately flags every <code>when</code> expression across your codebase with a compile error, guaranteeing you never forget to handle a state.</p></div>
+
+<h2>2. Type-Safe DSLs with Lambdas with Receiver</h2>
+<p>A lambda with receiver (<code>T.() -&gt; Unit</code>) gives the lambda body direct access to the receiver instance as <code>this</code>, enabling declarative DSL syntax:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Main.kt</span></div>
+<pre><span class="cm">// HTML Builder DSL Example</span>
+<span class="kw">class</span> Tag(<span class="kw">val</span> name: String) {
+    <span class="kw">val</span> children = mutableListOf&lt;Tag&gt;()
+    <span class="kw">var</span> text: String = <span class="st">""</span>
+
+    <span class="kw">fun</span> render(): String {
+        <span class="kw">val</span> content = <span class="kw">if</span> (text.isNotEmpty()) text <span class="kw">else</span> children.joinToString(<span class="st">""</span>) { it.render() }
+        <span class="kw">return</span> <span class="st">"&lt;$name&gt;$content&lt;/$name&gt;"</span>
+    }
+}
+
+<span class="cm">// Function accepting a Lambda with Receiver</span>
+<span class="kw">fun</span> html(<span class="kw">init</span>: Tag.() -&gt; Unit): Tag {
+    <span class="kw">val</span> root = Tag(<span class="st">"html"</span>)
+    root.<span class="kw">init</span>() <span class="cm">// 'this' inside the lambda is the 'root' Tag!</span>
+    <span class="kw">return</span> root
+}
+
+<span class="kw">fun</span> Tag.body(<span class="kw">init</span>: Tag.() -&gt; Unit) {
+    <span class="kw">val</span> bodyTag = Tag(<span class="st">"body"</span>)
+    bodyTag.<span class="kw">init</span>()
+    children.add(bodyTag)
+}
+
+<span class="kw">fun</span> Tag.h1(text: String) {
+    <span class="kw">val</span> h1Tag = Tag(<span class="st">"h1"</span>)
+    h1Tag.text = text
+    children.add(h1Tag)
+}
+
+<span class="kw">fun</span> main() {
+    <span class="cm">// Declarative, type-safe DSL syntax:</span>
+    <span class="kw">val</span> page = html {
+        body {
+            h1(<span class="st">"Welcome to Kotlin DSLs!"</span>)
+        }
+    }
+    println(page.render()) <span class="cm">// &lt;html&gt;&lt;body&gt;&lt;h1&gt;Welcome to Kotlin DSLs!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</span>
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Adding an unnecessary <code>else</code> branch in <code>when</code> expressions evaluating sealed classes. An <code>else</code> branch hides new subclasses added later, defeating compile-time exhaustiveness checking.</li><li>Creating sealed subclasses outside the same module or package. All direct subclasses of a sealed class must be declared in the same package and module.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Use the <code>@DslMarker</code> annotation when building nested DSLs to prevent accidental access to outer receiver scopes.</li><li>Prefer <code>sealed interface</code> over <code>sealed class</code> when your subclasses don't need to share common constructor state, allowing subclasses to implement multiple interfaces.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 13.1</div>
+<ol><li>Create a sealed class hierarchy representing mathematical expressions: <code>Const(val value: Double)</code>, <code>Add(val left: Expr, val right: Expr)</code>, and <code>Multiply(val left: Expr, val right: Expr)</code>.</li><li>Write a recursive <code>eval(expr: Expr): Double</code> function using an exhaustive <code>when</code> expression.</li></ol></div>
+
+<div class="quiz-block" data-quiz="kotlin-l13">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why is an "else" branch discouraged when switching on a sealed class in Kotlin?</p><ol class="quiz-options"><li>Else branches cause memory leaks</li><li>Without else, the compiler enforces compile-time warnings/errors if any subclass is unhandled</li><li>Sealed classes cannot use when</li></ol><p class="quiz-explain">Exhaustive matching without else ensures that adding a new subclass causes the compiler to flag all unhandled switch locations.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What enables declarative builder syntax in Kotlin DSLs?</p><ol class="quiz-options"><li>Reflection</li><li>Lambdas with Receiver (T.() -> Unit)</li><li>Preprocessor macros</li></ol><p class="quiz-explain">Lambdas with receiver set the implicit "this" inside the lambda block to the builder object.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the advantage of sealed interface over sealed class?</p><ol class="quiz-options"><li>Classes are deprecated</li><li>Subclasses/implementations can implement multiple sealed interfaces and don't need common inheritance</li><li>It runs faster</li></ol><p class="quiz-explain">Sealed interfaces allow flexible multiple inheritance while maintaining compile-time exhaustiveness.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(11)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Advanced</div>
-            <h1>Jetpack Compose Deep Dive</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 13</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-13" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 14 &middot; Advanced</div>
+<h1>Modern Android UI with Jetpack Compose</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 13</span></div>
+<p class="lecture-intro">Jetpack Compose is Android's modern toolkit for declarative UI development. Replace legacy XML layouts with clean Kotlin functions, reactive state management using <code>remember</code> and <code>mutableStateOf</code>, recomposition performance optimization, and Material 3 design.</p>
+<h2>Declarative UI Paradigm</h2>
+<p>Instead of manually finding views (<code>findViewById</code>) and imperatively mutating them, Compose UI functions declare what the screen should look like for a given state. When state changes, Compose automatically <strong>recomposes</strong> the affected components:</p>
+
+<h2>1. Composable Functions and State Management</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Main.kt</span></div>
+<pre>import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+
+@Composable
+<span class="kw">fun</span> CounterScreen(modifier: Modifier = Modifier) {
+    <span class="cm">// 'remember' preserves state across recompositions</span>
+    <span class="kw">var</span> count <span class="kw">by</span> remember { mutableStateOf(0) }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = <span class="st">"Clicks: $count"</span>,
+            style = MaterialTheme.typography.headlineMedium
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { <span class="kw">if</span> (count &gt; 0) count-- }) {
+                Text(<span class="st">"Decrement"</span>)
+            }
+            Button(onClick = { count++ }) {
+                Text(<span class="st">"Increment"</span>)
+            }
+        }
+    }
+}</pre>
+</div>
+
+<h2>2. State Hoisting Architecture</h2>
+<p>To keep Composables reusable, previewable, and testable, hoist state up to caller functions:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Main.kt</span></div>
+<pre><span class="cm">// Stateless Composable: Easy to preview and test!</span>
+@Composable
+<span class="kw">fun</span> SearchBar(
+    query: String,
+    onQueryChange: (String) -&gt; Unit,
+    onSearchClick: () -&gt; Unit,
+    modifier: Modifier = Modifier
+) {
+    OutlinedTextField(
+        value = query,
+        onValueChange = onQueryChange,
+        modifier = modifier.fillMaxWidth(),
+        placeholder = { Text(<span class="st">"Search items..."</span>) },
+        singleLine = <span class="kw">true</span>
+    )
+}
+
+<span class="cm">// Stateful Container</span>
+@Composable
+<span class="kw">fun</span> SearchContainer() {
+    <span class="kw">var</span> searchQuery <span class="kw">by</span> remember { mutableStateOf(<span class="st">""</span>) }
+    
+    SearchBar(
+        query = searchQuery,
+        onQueryChange = { searchQuery = it },
+        onSearchClick = { println(<span class="st">"Searching: $searchQuery"</span>) }
+    )
+}</pre>
+</div>
+
+<h2>3. High-Performance Lists with LazyColumn</h2>
+<p>In Compose, <code>LazyColumn</code> replaces the complex <code>RecyclerView</code> and <code>ViewHolder</code> boilerplate:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">Main.kt</span></div>
+<pre>import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+
+<span class="kw">data</span> <span class="kw">class</span> Article(<span class="kw">val</span> id: Int, <span class="kw">val</span> title: String, <span class="kw">val</span> category: String)
+
+@Composable
+<span class="kw">fun</span> ArticleList(articles: List&lt;Article&gt;, onArticleClick: (Article) -&gt; Unit) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        <span class="cm">// Compose renders only items currently visible on screen!</span>
+        items(items = articles, key = { it.id }) { article -&gt;
+            Card(
+                onClick = { onArticleClick(article) },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(text = article.title, style = MaterialTheme.typography.titleMedium)
+                    Text(text = article.category, style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        }
+    }
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Mutating state inside the body of a Composable without <code>remember</code> or outside an event callback. This can cause infinite recomposition loops.</li><li>Forgetting to provide a unique <code>key</code> in <code>items(items, key = { it.id })</code>. Supplying stable keys avoids unnecessary recomposition when lists are sorted or reordered.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Use <code>rememberSaveable</code> instead of <code>remember</code> to automatically preserve UI state across Android screen rotations and process death.</li><li>Pass a <code>modifier: Modifier = Modifier</code> parameter to all custom Composables so callers can adjust layout and padding.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 14.1</div>
+<ol><li>Build a Todo item Composable with a checkbox, title, and delete button using State Hoisting.</li><li>Render a list of 20 items using <code>LazyColumn</code> with animated deletion.</li></ol></div>
+
+<div class="quiz-block" data-quiz="kotlin-l14">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why is remember used with mutableStateOf in Jetpack Compose?</p><ol class="quiz-options"><li>To speed up garbage collection</li><li>To preserve state across recomposition cycles when the view redraws</li><li>To convert code to XML</li></ol><p class="quiz-explain">Without remember, the mutable state would reset back to its initial value every time the function recomposes.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is State Hoisting in Compose?</p><ol class="quiz-options"><li>Uploading state to AWS cloud</li><li>Moving state up to make a composable stateless, testable, and reusable</li><li>Encrypting local variables</li></ol><p class="quiz-explain">State hoisting is the pattern of moving state to a component caller to make the child purely presentational.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What replaces RecyclerView and Adapter classes in Jetpack Compose?</p><ol class="quiz-options"><li>ScrollView</li><li>LazyColumn / LazyRow</li><li>ListView</li></ol><p class="quiz-explain">LazyColumn only composes and lays out items that are currently visible in the viewport, replacing RecyclerView.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(12)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(0)">&#8634; Back to Start</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 15 ===================== -->
         <div class="lecture" id="lec-14">

@@ -166,6 +166,7 @@
 
 <!-- SIDEBAR -->
 <nav id="sidebar">
+    <div class="sidebar-header">
         <p>// Complete Course — 16 Lectures</p>
         <a href="https://play.google.com/store/apps/details?id=com.webdev.academy" target="_blank" rel="noopener" class="sidebar-app-link">📱 Get the Android App</a>
     </div>
@@ -3109,53 +3110,440 @@ Use the &lt;code&gt;print()&lt;/code&gt; function in Python.
     </div>
 
     <!-- ===================== LECTURE 13 ===================== -->
-    <div class="lecture" id="lec-12">
-        <div class="lecture-tag">Lecture 13 · Advanced</div>
-        <h1>Web Components</h1>
-        <div class="lecture-meta">
-            <span class="meta-badge">Requires: Lecture 12</span>
-        </div>
-        <p><em>Content coming soon...</em></p>
-        <div class="lecture-nav">
-            <button class="nav-btn" data-lecture="11">← Previous</button>
-            <button class="nav-btn primary" data-lecture="13">Next Lecture →</button>
-        </div>
-    </div>
+    <div class="lecture" id="lec-12" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 13 &middot; Advanced</div>
+<h1>Web Components &amp; Custom Elements</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 12</span></div>
+<p class="lecture-intro">Web Components are a suite of native browser technologies allowing you to create reusable, encapsulated HTML custom elements (like <code>&lt;user-card&gt;</code>) without external frameworks. They rely on three pillars: Custom Elements, Shadow DOM, and HTML Templates.</p>
+<h2>The Three Pillars of Web Components</h2>
+<ul><li><strong>Custom Elements:</strong> JavaScript APIs to define custom HTML tags (e.g. <code>customElements.define("profile-card", ProfileCard)</code>).</li><li><strong>Shadow DOM:</strong> Encapsulated DOM trees and scoped styles that cannot be broken or altered by the parent page's CSS.</li><li><strong>HTML Templates (<code>&lt;template&gt;</code> &amp; <code>&lt;slot&gt;</code>):</strong> Inert markup that does not render on load, but can be stamped out repeatedly with flexible placeholders.</li></ul>
+
+<h2>1. The <code>&lt;template&gt;</code> and <code>&lt;slot&gt;</code> Elements</h2>
+<p>Templates hold markup that the browser parses but does not display until activated via JavaScript:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index.html</span></div>
+<pre>&lt;!-- Template defined in HTML --&gt;
+&lt;template id=<span class="st">"user-card-template"</span>&gt;
+  &lt;style&gt;
+    :host {
+      display: block;
+      font-family: system-ui, sans-serif;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1rem;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    h3 { margin-top: 0; color: #1e293b; }
+    .role { color: #64748b; font-size: 0.9rem; }
+  &lt;/style&gt;
+  &lt;div class=<span class="st">"card"</span>&gt;
+    &lt;h3&gt;&lt;slot name=<span class="st">"name"</span>&gt;Anonymous&lt;/slot&gt;&lt;/h3&gt;
+    &lt;p class=<span class="st">"role"</span>&gt;&lt;slot name=<span class="st">"role"</span>&gt;Member&lt;/slot&gt;&lt;/p&gt;
+    &lt;div class=<span class="st">"bio"</span>&gt;&lt;slot&gt;No bio provided.&lt;/slot&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</pre>
+</div>
+
+<h2>2. Defining an Autonomous Custom Element with Shadow DOM</h2>
+<p>Custom element names <strong>must contain a hyphen</strong> (e.g., <code>user-card</code>) to differentiate them from standard HTML tags:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">app.js</span></div>
+<pre><span class="kw">class</span> UserCard <span class="kw">extends</span> HTMLElement {
+  constructor() {
+    <span class="kw">super</span>();
+    <span class="cm">// Attach an encapsulated Shadow DOM tree</span>
+    <span class="kw">const</span> shadowRoot = <span class="kw">this</span>.attachShadow({ mode: <span class="st">'open'</span> });
+    
+    <span class="cm">// Grab template content and clone it</span>
+    <span class="kw">const</span> template = document.getElementById(<span class="st">'user-card-template'</span>);
+    shadowRoot.appendChild(template.content.cloneNode(<span class="kw">true</span>));
+  }
+
+  <span class="cm">// Observe attribute changes</span>
+  static get observedAttributes() {
+    <span class="kw">return</span> [<span class="st">'status'</span>];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    <span class="kw">if</span> (name === <span class="st">'status'</span>) {
+      console.log(`Status updated <span class="kw">from</span> ${oldValue} to ${newValue}`);
+    }
+  }
+
+  connectedCallback() {
+    console.log(<span class="st">'UserCard added to DOM'</span>);
+  }
+
+  disconnectedCallback() {
+    console.log(<span class="st">'UserCard removed from DOM'</span>);
+  }
+}
+
+<span class="cm">// Register the custom element with the browser</span>
+customElements.define(<span class="st">'user-card'</span>, UserCard);</pre>
+</div>
+
+<h2>3. Using Your Custom Tag in HTML</h2>
+<p>Once registered, use it just like any native HTML tag. The content inside fills named <code>&lt;slot&gt;</code> placeholders:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index.html</span></div>
+<pre>&lt;user-card status=<span class="st">"active"</span>&gt;
+  &lt;span slot=<span class="st">"name"</span>&gt;Ada Lovelace&lt;/span&gt;
+  &lt;span slot=<span class="st">"role"</span>&gt;Computing Pioneer&lt;/span&gt;
+  &lt;p&gt;First computer programmer in history.&lt;/p&gt;
+&lt;/user-card&gt;
+
+&lt;user-card&gt;
+  &lt;span slot=<span class="st">"name"</span>&gt;Alan Turing&lt;/span&gt;
+&lt;/user-card&gt;</pre>
+</div>
+
+<div class="box tip"><div class="box-title">Shadow DOM Style Scoping</div><p>Styles declared inside a shadow root do not leak outside, and global page CSS does not penetrate the shadow root (except for inheritable CSS variables like <code>color</code> or custom properties). This guarantees bulletproof modularity.</p></div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Naming a custom element without a hyphen (e.g., <code>&lt;usercard&gt;</code>). The browser will throw a <code>DOMException: Registration failed for type ... The type must contain a hyphen</code>.</li><li>Calling <code>this.innerHTML = ...</code> before <code>super()</code> in the constructor. Always call <code>super()</code> as the very first statement.</li><li>Attempting to query child slot elements with <code>this.shadowRoot.querySelector(".my-slot-content")</code>. Slotted content remains in the light DOM; use <code>slot.assignedNodes()</code> instead.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Use <code>mode: "open"</code> when creating a shadow root so developer tools and assistive extensions can inspect component internals.</li><li>Expose CSS custom properties (e.g., <code>background: var(--card-bg, #fff);</code>) to allow consumers to theme your web component easily.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 13.1</div>
+<ol><li>Create a custom element called <code>&lt;modal-dialog&gt;</code> that opens when a button is clicked and closes on <kbd>Escape</kbd>.</li><li>Provide two slots: <code>name="header"</code> and an unnamed default slot for modal body content.</li><li>Use Shadow DOM to ensure the backdrop overlay and close button styles do not interfere with page styling.</li></ol></div>
+
+<div class="quiz-block" data-quiz="html-l13">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why must custom element tag names always include a hyphen (e.g., &lt;my-button&gt;)?</p><ol class="quiz-options"><li>It is required by XML standards</li><li>To prevent collisions with future native HTML tags added to the web standard</li><li>To instruct the browser to use JavaScript</li></ol><p class="quiz-explain">W3C reserves all single-word element names for standard HTML tags. Hyphenated names guarantee that native browser updates will never break custom elements.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which method is called automatically when a custom element is inserted into the document?</p><ol class="quiz-options"><li><code>createdCallback()</code></li><li><code>connectedCallback()</code></li><li><code>mounted()</code></li></ol><p class="quiz-explain">In modern Custom Elements v1, connectedCallback() runs whenever the element is inserted into the DOM tree.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does the &lt;slot&gt; element do inside a Web Component template?</p><ol class="quiz-options"><li>Fetches dynamic JSON data</li><li>Acts as a placeholder that projects children from the light DOM into the shadow tree</li><li>Creates a secure iframe</li></ol><p class="quiz-explain">Slots allow consumers to pass custom HTML markup into designated insertion points inside the component.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(11)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button>
+</div>
+</div>
 
     <!-- ===================== LECTURE 14 ===================== -->
-    <div class="lecture" id="lec-13">
-        <div class="lecture-tag">Lecture 14 · Advanced</div>
-        <h1>SVG & Canvas Basics</h1>
-        <div class="lecture-meta">
-            <span class="meta-badge">Requires: Lecture 13</span>
-        </div>
-        <p><em>Content coming soon...</em></p>
-        <div class="lecture-nav">
-            <button class="nav-btn" data-lecture="12">← Previous</button>
-            <button class="nav-btn primary" data-lecture="14">Next Lecture →</button>
-        </div>
-    </div>
+    <div class="lecture" id="lec-13" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 14 &middot; Advanced</div>
+<h1>SVG &amp; Canvas Basics</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 13</span></div>
+<p class="lecture-intro">Web graphics fall into two categories: <strong>SVG</strong> (vector graphics defined in XML, infinitely scalable and accessible) and <strong>Canvas</strong> (pixel-based raster bitmap manipulated via a high-performance 2D/3D JavaScript rendering context).</p>
+<h2>Vector (SVG) vs. Raster (Canvas)</h2>
+<table>
+  <thead>
+    <tr><th>Feature</th><th>SVG (&lt;svg&gt;)</th><th>Canvas (&lt;canvas&gt;)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Model</strong></td><td>Vector (XML DOM Nodes)</td><td>Pixel Bitmap (Immediate Mode)</td></tr>
+    <tr><td><strong>Resolution</strong></td><td>Infinitely scalable without blur</td><td>Resolution dependent (can blur if scaled)</td></tr>
+    <tr><td><strong>Interactivity</strong></td><td>Every shape can have CSS &amp; click events</td><td>No DOM nodes; click detection via math coordinates</td></tr>
+    <tr><td><strong>Best for</strong></td><td>Icons, charts, illustrations, logos</td><td>Games, particle systems, video filters, high FPS</td></tr>
+  </tbody>
+</table>
+
+<h2>1. Scalable Vector Graphics (SVG) in HTML</h2>
+<p>Embed SVGs directly in HTML to style them with CSS and animate them:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index.html</span></div>
+<pre>&lt;!-- Inline SVG example --&gt;
+&lt;svg width=<span class="st">"200"</span> height=<span class="st">"120"</span> viewBox=<span class="st">"0 0 200 120"</span> xmlns=<span class="st">"http://www.w3.org/2000/svg"</span>&gt;
+  &lt;!-- Rectangle with rounded corners --&gt;
+  &lt;rect x=<span class="st">"10"</span> y=<span class="st">"10"</span> width=<span class="st">"180"</span> height=<span class="st">"100"</span> rx=<span class="st">"15"</span> fill=<span class="st">"#f8fafc"</span> stroke=<span class="st">"#3b82f6"</span> stroke-width=<span class="st">"2"</span>/&gt;
+  
+  &lt;!-- Circle --&gt;
+  &lt;circle cx=<span class="st">"60"</span> cy=<span class="st">"60"</span> r=<span class="st">"30"</span> fill=<span class="st">"#6366f1"</span>/&gt;
+  
+  &lt;!-- Line and Text --&gt;
+  &lt;line x1=<span class="st">"110"</span> y1=<span class="st">"35"</span> x2=<span class="st">"170"</span> y2=<span class="st">"35"</span> stroke=<span class="st">"#94a3b8"</span> stroke-width=<span class="st">"3"</span> stroke-linecap=<span class="st">"round"</span>/&gt;
+  &lt;text x=<span class="st">"110"</span> y=<span class="st">"65"</span> font-family=<span class="st">"sans-serif"</span> font-size=<span class="st">"14"</span> fill=<span class="st">"#0f172a"</span> font-weight=<span class="st">"bold"</span>&gt;Vector Art&lt;/text&gt;
+  &lt;text x=<span class="st">"110"</span> y=<span class="st">"85"</span> font-family=<span class="st">"sans-serif"</span> font-size=<span class="st">"11"</span> fill=<span class="st">"#64748b"</span>&gt;Crisp on all DPIs&lt;/text&gt;
+&lt;/svg&gt;</pre>
+</div>
+
+<h2>2. HTML5 &lt;canvas&gt; 2D Graphics</h2>
+<p>The <code>&lt;canvas&gt;</code> element provides a blank slate rendered with JavaScript:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index.html</span></div>
+<pre>&lt;canvas id=<span class="st">"myCanvas"</span> width=<span class="st">"400"</span> height=<span class="st">"200"</span> style=<span class="st">"border:1px solid #e2e8f0; border-radius:8px;"</span>&gt;&lt;/canvas&gt;</pre>
+</div>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">app.js</span></div>
+<pre><span class="kw">const</span> canvas = document.getElementById(<span class="st">'myCanvas'</span>);
+<span class="kw">const</span> ctx = canvas.getContext(<span class="st">'2d'</span>);
+
+<span class="cm">// 1. Draw a filled rectangle</span>
+ctx.fillStyle = <span class="st">'#10b981'</span>;
+ctx.fillRect(20, 20, 120, 80);
+
+<span class="cm">// 2. Draw a stroked circle (arc)</span>
+ctx.beginPath();
+ctx.arc(220, 60, 40, 0, Math.PI * 2);
+ctx.strokeStyle = <span class="st">'#6366f1'</span>;
+ctx.lineWidth = 4;
+ctx.stroke();
+
+<span class="cm">// 3. Draw text</span>
+ctx.font = <span class="st">'bold 16px sans-serif'</span>;
+ctx.fillStyle = <span class="st">'#0f172a'</span>;
+ctx.fillText(<span class="st">'Canvas 2D Rendering'</span>, 20, 140);
+
+<span class="cm">// 4. Draw a path</span>
+ctx.beginPath();
+ctx.moveTo(20, 170);
+ctx.lineTo(380, 170);
+ctx.strokeStyle = <span class="st">'#cbd5e1'</span>;
+ctx.lineWidth = 2;
+ctx.stroke();</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Setting canvas dimensions with CSS (<code>width: 400px;</code>) instead of HTML attributes (<code>&lt;canvas width="400" height="200"&gt;</code>). CSS stretches the bitmap, causing blurry drawings.</li><li>Forgetting <code>ctx.beginPath()</code> before drawing new shapes in Canvas, causing previous paths to be redrawn repeatedly.</li><li>Missing <code>viewBox</code> on SVG elements, which breaks responsive scaling across different viewport widths.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>To support High-DPI (Retina) screens on Canvas, multiply the width/height attributes by <code>window.devicePixelRatio</code> and scale the context with <code>ctx.scale(ratio, ratio)</code>.</li><li>Always include an <code>aria-label</code> or <code>&lt;title&gt;</code> tag inside inline SVGs for screen-reader accessibility.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 14.1</div>
+<ol><li>Create an inline SVG icon of a star or shopping cart that changes color on <code>:hover</code> using CSS.</li><li>Create an interactive <code>&lt;canvas&gt;</code> that tracks your mouse cursor and draws connected particles or circles where the user clicks.</li></ol></div>
+
+<div class="quiz-block" data-quiz="html-l14">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What happens if you scale an SVG illustration to 10x its original size?</p><ol class="quiz-options"><li>It becomes pixelated and blurry</li><li>It remains perfectly crisp and sharp at any magnification</li><li>The browser rejects it</li></ol><p class="quiz-explain">SVGs are mathematical vector paths rather than fixed raster pixels, so they scale infinitely without loss of quality.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why should canvas width and height be set via HTML attributes rather than CSS?</p><ol class="quiz-options"><li>CSS cannot style canvas elements</li><li>HTML attributes define the coordinate system bitmap size; CSS scales the rendered image</li><li>Attributes make the canvas 3D</li></ol><p class="quiz-explain">The canvas tag attributes specify the actual pixel buffer resolution. Setting size only in CSS stretches the default 300x150 buffer like an image.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which context is requested for standard 2D drawing on a canvas?</p><ol class="quiz-options"><li><code>canvas.getContext("webgl")</code></li><li><code>canvas.getContext("2d")</code></li><li><code>canvas.getContext("bitmap")</code></li></ol><p class="quiz-explain">getContext("2d") returns the standard CanvasRenderingContext2D interface.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(12)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(14)">Next Lecture &rarr;</button>
+</div>
+</div>
 
     <!-- ===================== LECTURE 15 ===================== -->
-    <div class="lecture" id="lec-14">
-        <div class="lecture-tag">Lecture 15 · Advanced</div>
-        <h1>Performance & Best Practices</h1>
-        <div class="lecture-meta">
-            <span class="meta-badge">Requires: Lecture 14</span>
-        </div>
-        <p><em>Content coming soon...</em></p>
-        <div class="lecture-nav">
-            <button class="nav-btn" data-lecture="13">← Previous</button>
-            <button class="nav-btn primary" data-lecture="15">Next Lecture →</button>
-        </div>
-    </div>
+    <div class="lecture" id="lec-14" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 15 &middot; Advanced</div>
+<h1>Performance &amp; Web Best Practices</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~30 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 14</span></div>
+<p class="lecture-intro">High-performance websites deliver superior user experiences and rank higher in search engines. Master the critical rendering path, resource hints, responsive image optimization with <code>&lt;picture&gt;</code>, lazy loading, and modern Core Web Vitals.</p>
+<h2>Core Web Vitals &amp; Modern Metrics</h2>
+<ul><li><strong>LCP (Largest Contentful Paint):</strong> Measures loading performance. Target: &le; 2.5 seconds.</li><li><strong>INP (Interaction to Next Paint):</strong> Measures user interaction responsiveness. Target: &le; 200 ms.</li><li><strong>CLS (Cumulative Layout Shift):</strong> Measures visual stability and unwanted page jumps. Target: &le; 0.1.</li></ul>
+
+<h2>1. Native Image Optimization: WebP, AVIF &amp; Responsive <code>&lt;picture&gt;</code></h2>
+<p>Modern formats like <strong>AVIF</strong> and <strong>WebP</strong> reduce file sizes by 30&ndash;60% compared to legacy JPG and PNG. Use the <code>&lt;picture&gt;</code> element for progressive fallback:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index.html</span></div>
+<pre>&lt;!-- Deliver the smallest modern image format supported by the user browser --&gt;
+&lt;picture&gt;
+  &lt;source srcset=<span class="st">"hero.avif"</span> type=<span class="st">"image/avif"</span>&gt;
+  &lt;source srcset=<span class="st">"hero.webp"</span> type=<span class="st">"image/webp"</span>&gt;
+  &lt;img 
+    src=<span class="st">"hero.jpg"</span> 
+    alt=<span class="st">"Developer coding on laptop"</span> 
+    width=<span class="st">"1200"</span> 
+    height=<span class="st">"630"</span> 
+    loading=<span class="st">"eager"</span> 
+    fetchpriority=<span class="st">"high"</span>
+    decoding=<span class="st">"async"</span>&gt;
+&lt;/picture&gt;</pre>
+</div>
+<div class="box info"><div class="box-title">Always Specify Explicit width and height</div><p>Setting explicit <code>width</code> and <code>height</code> attributes on images allows browsers to calculate the aspect ratio before image bytes arrive, completely eliminating <strong>Cumulative Layout Shift (CLS)</strong>.</p></div>
+
+<h2>2. Native Lazy Loading</h2>
+<p>Defer loading offscreen images and iframes until the user scrolls near them:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index.html</span></div>
+<pre>&lt;!-- Offscreen images below the fold --&gt;
+&lt;img src=<span class="st">"chart.png"</span> alt=<span class="st">"Analytics chart"</span> width=<span class="st">"600"</span> height=<span class="st">"400"</span> loading=<span class="st">"lazy"</span>&gt;
+
+&lt;!-- Embedded YouTube video or map --&gt;
+&lt;iframe src=<span class="st">"https://example.com/map"</span> width=<span class="st">"800"</span> height=<span class="st">"400"</span> loading=<span class="st">"lazy"</span>&gt;&lt;/iframe&gt;</pre>
+</div>
+
+<h2>3. Resource Hints: <code>preconnect</code>, <code>dns-prefetch</code> &amp; <code>preload</code></h2>
+<p>Warm up DNS lookups and TLS handshakes for third-party origins like Google Fonts or CDN assets in your <code>&lt;head&gt;</code>:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index.html</span></div>
+<pre>&lt;head&gt;
+  &lt;!-- Preconnect to external font CDN to save roundtrips --&gt;
+  &lt;link rel=<span class="st">"preconnect"</span> href=<span class="st">"https://fonts.googleapis.com"</span>&gt;
+  &lt;link rel=<span class="st">"preconnect"</span> href=<span class="st">"https://fonts.gstatic.com"</span> crossorigin&gt;
+
+  &lt;!-- Preload critical hero image (LCP element) --&gt;
+  &lt;link rel=<span class="st">"preload"</span> as=<span class="st">"image"</span> href=<span class="st">"hero.avif"</span> type=<span class="st">"image/avif"</span>&gt;
+
+  &lt;!-- Defer non-critical JavaScript --&gt;
+  &lt;script src=<span class="st">"analytics.js"</span> defer&gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Setting <code>loading="lazy"</code> on the main hero banner / LCP image. This delays discovery and severely hurts loading scores! Only lazy-load below-the-fold content.</li><li>Omitting <code>width</code> and <code>height</code> attributes on images, causing the page layout to jump around while images download.</li><li>Placing large blocking <code>&lt;script src="..."&gt;</code> tags in the <code>&lt;head&gt;</code> without <code>defer</code> or <code>async</code>, freezing HTML parsing.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Use <code>fetchpriority="high"</code> on your primary hero image so the browser prioritizes it above stylesheets or scripts.</li><li>Audit your pages using Chrome DevTools Lighthouse or PageSpeed Insights regularly to maintain scores above 90+ across all metrics.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 15.1</div>
+<ol><li>Convert an existing image tag to use <code>&lt;picture&gt;</code> with AVIF, WebP, and JPEG fallback.</li><li>Set explicit dimensions and add <code>loading="lazy"</code> to three gallery photos.</li><li>Audit a page using Chrome Lighthouse and verify a 0.0 CLS score.</li></ol></div>
+
+<div class="quiz-block" data-quiz="html-l15">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which Core Web Vital measures page visual stability (avoiding unexpected layout jumps)?</p><ol class="quiz-options"><li>LCP</li><li>CLS</li><li>FID</li></ol><p class="quiz-explain">Cumulative Layout Shift (CLS) measures visual stability. Missing image dimensions or dynamically injected ads are the primary causes of poor CLS.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Should you add loading="lazy" to the hero image at the top of your landing page?</p><ol class="quiz-options"><li>Yes, lazy-load everything</li><li>No, never lazy-load above-the-fold or LCP assets because it delays rendering</li><li>Only on mobile</li></ol><p class="quiz-explain">Hero images should be loaded immediately (loading="eager" or fetchpriority="high"). Lazy loading them delays their fetch until layout is complete.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the main benefit of the <picture> element?</p><ol class="quiz-options"><li>It allows embedding 3D models</li><li>It provides progressive format fallbacks (AVIF -> WebP -> JPG) and responsive art direction</li><li>It replaces CSS stylesheets</li></ol><p class="quiz-explain">The picture element lets you offer multiple source formats and media queries, allowing browsers to choose the most efficient image format they support.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(13)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(15)">Next Lecture &rarr;</button>
+</div>
+</div>
 
     <!-- ===================== LECTURE 16 ===================== -->
-    <div class="lecture" id="lec-15">
-        <div class="lecture-tag">Lecture 16 · Professional</div>
-            <button class="nav-btn primary" data-lecture="0">↺ Back to Start</button>
-        </div>
-    </div>
+    <div class="lecture" id="lec-15" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 16 &middot; Professional</div>
+<h1>Final Project &mdash; Complete Semantic &amp; Accessible Website</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~90 min</span><span class="meta-badge level-beginner">Project</span><span class="meta-badge">Requires: All Previous Lectures</span></div>
+<p class="lecture-intro">Synthesize everything you have learned in HTML Mastery by architecting a production-ready, fully accessible, SEO-optimized business website. You will build clean semantic structure, custom elements, accessible forms, meta data, and responsive media.</p>
+<h2>Project Requirements &amp; Acceptance Criteria</h2>
+<ol><li><strong>Strict Semantic HTML5:</strong> Uses <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;footer&gt;</code> with proper heading hierarchy (single <code>&lt;h1&gt;</code>).</li><li><strong>Accessibility (WCAG 2.1 AA):</strong> Includes a skip-to-content link, proper ARIA labels, form field labels with <code>for/id</code> binding, and keyboard-navigable dialog/details.</li><li><strong>SEO &amp; Social Sharing:</strong> OpenGraph tags, Twitter cards, meta descriptions, and structured JSON-LD schema.</li><li><strong>Performance:</strong> Responsive <code>&lt;picture&gt;</code> elements with explicit width/height and lazy loading below the fold.</li><li><strong>Web Component:</strong> A custom <code>&lt;pricing-card&gt;</code> or feedback element.</li></ol>
+
+<h2>Complete Implementation</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">index.html</span></div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="st">"en"</span>&gt;
+&lt;head&gt;
+  &lt;meta charset=<span class="st">"UTF-8"</span>&gt;
+  &lt;meta name=<span class="st">"viewport"</span> content=<span class="st">"width=device-width, initial-scale=1.0"</span>&gt;
+  &lt;title&gt;Apex Cloud - High Performance Cloud Solutions&lt;/title&gt;
+  &lt;meta name=<span class="st">"description"</span> content=<span class="st">"Next-generation serverless cloud infrastructure built for speed, safety, and scale."</span>&gt;
+  &lt;link rel=<span class="st">"canonical"</span> href=<span class="st">"https://example.com/apex-cloud"</span>&gt;
+
+  &lt;!-- OpenGraph / Social Meta --&gt;
+  &lt;meta property=<span class="st">"og:title"</span> content=<span class="st">"Apex Cloud - High Performance Cloud Solutions"</span>&gt;
+  &lt;meta property=<span class="st">"og:description"</span> content=<span class="st">"Next-generation serverless cloud infrastructure built for speed, safety, and scale."</span>&gt;
+  &lt;meta property=<span class="st">"og:image"</span> content=<span class="st">"https://example.com/og-image.jpg"</span>&gt;
+  &lt;meta property=<span class="st">"og:type"</span> content=<span class="st">"website"</span>&gt;
+
+  &lt;!-- Resource Hints --&gt;
+  &lt;link rel=<span class="st">"preconnect"</span> href=<span class="st">"https://fonts.googleapis.com"</span>&gt;
+  &lt;link rel=<span class="st">"preconnect"</span> href=<span class="st">"https://fonts.gstatic.com"</span> crossorigin&gt;
+
+  &lt;!-- JSON-LD Structured Data --&gt;
+  &lt;script type=<span class="st">"application/ld+json"</span>&gt;
+  {
+    <span class="st">"@context"</span>: <span class="st">"https://schema.org"</span>,
+    <span class="st">"@type"</span>: <span class="st">"SoftwareApplication"</span>,
+    <span class="st">"name"</span>: <span class="st">"Apex Cloud"</span>,
+    <span class="st">"operatingSystem"</span>: <span class="st">"All"</span>,
+    <span class="st">"applicationCategory"</span>: <span class="st">"DeveloperApplication"</span>
+  }
+  &lt;/script&gt;
+
+  &lt;style&gt;
+    :root { --primary: #3b82f6; --text: #0f172a; --bg: #f8fafc; }
+    body { margin: 0; font-family: system-ui, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+    .skip-link { position: absolute; top: -40px; left: 0; background: var(--primary); color: #fff; padding: 8px; z-index: 100; }
+    .skip-link:focus { top: 0; }
+    header, nav, main, footer { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; padding: 0; }
+    .hero { text-align: center; padding: 4rem 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
+    .card { background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- 1. Accessible Skip Navigation Link --&gt;
+  &lt;a href=<span class="st">"#main-content"</span> class=<span class="st">"skip-link"</span>&gt;Skip to main content&lt;/a&gt;
+
+  &lt;!-- 2. Header and Navigation --&gt;
+  &lt;header&gt;
+    &lt;div style=<span class="st">"display:flex; justify-content:space-between; align-items:center;"</span>&gt;
+      &lt;a href=<span class="st">"/"</span> style=<span class="st">"font-weight:bold; font-size:1.4rem; text-decoration:none; color:inherit;"</span>&gt;ApexCloud&lt;/a&gt;
+      &lt;nav aria-label=<span class="st">"Main Navigation"</span>&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=<span class="st">"#features"</span>&gt;Features&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=<span class="st">"#pricing"</span>&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=<span class="st">"#contact"</span>&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;!-- 3. Semantic Main Content --&gt;
+  &lt;main id=<span class="st">"main-content"</span>&gt;
+    
+    &lt;!-- Hero Section --&gt;
+    &lt;section class=<span class="st">"hero"</span>&gt;
+      &lt;h1&gt;Deploy Globally in Milliseconds&lt;/h1&gt;
+      &lt;p style=<span class="st">"font-size:1.2rem; max-width:600px; margin:0 auto 1.5rem;"</span>&gt;
+        Engineered for high-concurrency workloads with zero configuration and instant failover.
+      &lt;/p&gt;
+      &lt;a href=<span class="st">"#contact"</span> style=<span class="st">"display:inline-block; background:var(--primary); color:#fff; padding:0.75rem 1.5rem; border-radius:6px; text-decoration:none; font-weight:600;"</span>&gt;
+        Start Free Trial
+      &lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Features Section --&gt;
+    &lt;section id=<span class="st">"features"</span> aria-labelledby=<span class="st">"features-heading"</span>&gt;
+      &lt;h2 id=<span class="st">"features-heading"</span> style=<span class="st">"text-align:center;"</span>&gt;Built for Modern Engineering Teams&lt;/h2&gt;
+      &lt;div class=<span class="st">"grid"</span>&gt;
+        &lt;article class=<span class="st">"card"</span>&gt;
+          &lt;h3&gt;⚡ Global Edge Network&lt;/h3&gt;
+          &lt;p&gt;Over 300 points of presence routing traffic with sub-10ms response latency.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=<span class="st">"card"</span>&gt;
+          &lt;h3&gt;🔒 Zero-Trust Security&lt;/h3&gt;
+          &lt;p&gt;Automated TLS certificates, mTLS microsegmentation, and hardware security keys.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=<span class="st">"card"</span>&gt;
+          &lt;h3&gt;📊 Real-Time Analytics&lt;/h3&gt;
+          &lt;p&gt;Instant streaming logs and distributed telemetry traces with zero sampling.&lt;/p&gt;
+        &lt;/article&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Interactive Details Accordion --&gt;
+    &lt;section id=<span class="st">"faq"</span> style=<span class="st">"margin: 4rem 0;"</span>&gt;
+      &lt;h2&gt;Frequently Asked Questions&lt;/h2&gt;
+      &lt;details style=<span class="st">"margin-bottom: 1rem; background:#fff; padding:1rem; border-radius:6px;"</span>&gt;
+        &lt;summary style=<span class="st">"font-weight:bold; cursor:pointer;"</span>&gt;How does pricing work?&lt;/summary&gt;
+        &lt;p&gt;You only pay for compute seconds consumed with per-millisecond billing granularity.&lt;/p&gt;
+      &lt;/details&gt;
+      &lt;details style=<span class="st">"background:#fff; padding:1rem; border-radius:6px;"</span>&gt;
+        &lt;summary style=<span class="st">"font-weight:bold; cursor:pointer;"</span>&gt;Can I migrate existing Docker containers?&lt;/summary&gt;
+        &lt;p&gt;Yes, Apex Cloud natively supports standard OCI container images.&lt;/p&gt;
+      &lt;/details&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Accessible Contact Form --&gt;
+    &lt;section id=<span class="st">"contact"</span> style=<span class="st">"background:#fff; padding:2rem; border-radius:8px; border:1px solid #e2e8f0;"</span>&gt;
+      &lt;h2&gt;Request Enterprise Demo&lt;/h2&gt;
+      &lt;form action=<span class="st">"/api/contact"</span> method=<span class="st">"POST"</span>&gt;
+        &lt;div style=<span class="st">"margin-bottom:1rem;"</span>&gt;
+          &lt;label for=<span class="st">"user-name"</span> style=<span class="st">"display:block; font-weight:bold; margin-bottom:0.25rem;"</span>&gt;Full Name&lt;/label&gt;
+          &lt;input type=<span class="st">"text"</span> id=<span class="st">"user-name"</span> name=<span class="st">"name"</span> required style=<span class="st">"width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:4px;"</span>&gt;
+        &lt;/div&gt;
+        &lt;div style=<span class="st">"margin-bottom:1rem;"</span>&gt;
+          &lt;label for=<span class="st">"user-email"</span> style=<span class="st">"display:block; font-weight:bold; margin-bottom:0.25rem;"</span>&gt;Work Email&lt;/label&gt;
+          &lt;input type=<span class="st">"email"</span> id=<span class="st">"user-email"</span> name=<span class="st">"email"</span> required style=<span class="st">"width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:4px;"</span>&gt;
+        &lt;/div&gt;
+        &lt;div style=<span class="st">"margin-bottom:1rem;"</span>&gt;
+          &lt;label for=<span class="st">"user-notes"</span> style=<span class="st">"display:block; font-weight:bold; margin-bottom:0.25rem;"</span>&gt;Project Details&lt;/label&gt;
+          &lt;textarea id=<span class="st">"user-notes"</span> name=<span class="st">"notes"</span> rows=<span class="st">"4"</span> style=<span class="st">"width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:4px;"</span>&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;button type=<span class="st">"submit"</span> style=<span class="st">"background:var(--primary); color:#fff; border:none; padding:0.75rem 1.5rem; border-radius:6px; cursor:pointer; font-weight:bold;"</span>&gt;
+          Submit Inquiry
+        &lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/section&gt;
+
+  &lt;/main&gt;
+
+  &lt;!-- 4. Semantic Footer --&gt;
+  &lt;footer style=<span class="st">"margin-top: 4rem; border-top:1px solid #e2e8f0; text-align:center; color:#64748b;"</span>&gt;
+    &lt;p&gt;&amp;copy; 2026 Apex Cloud Technologies Inc. All rights reserved.&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+
+<div class="box tip"><div class="box-title">Portfolio Milestone Achieved</div><p>Congratulations on mastering HTML5! You have acquired professional mastery over semantic markup, web accessibility guidelines, custom web components, multimedia vector graphics, and high-performance loading architectures.</p></div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(14)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(0)">&#8634; Back to Start</button>
+</div>
+</div>
 
     <!-- Topic Cluster: Web Development -->
 

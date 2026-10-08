@@ -2092,60 +2092,551 @@ u.printDetails()</pre>
                 </div>
 
         <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>SwiftUI Navigation & State Management</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 12</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-12" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 13 &middot; Advanced</div>
+<h1>SwiftUI Navigation &amp; State Management</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 12</span></div>
+<p class="lecture-intro">Modern SwiftUI uses a declarative state-driven data flow. Learn how to architect apps using <code>@State</code>, <code>@Binding</code>, <code>@StateObject</code>, <code>@Observable</code>, and modern value-driven <code>NavigationStack</code> navigation.</p>
+<h2>The SwiftUI State Hierarchy</h2>
+<ul><li><code>@State</code> &mdash; Owned, private source of truth for a single View (value types like String, Int, Bool).</li><li><code>@Binding</code> &mdash; Two-way reference to state owned by an ancestor view (e.g. toggle switch or text field).</li><li><code>@StateObject</code> / <code>@Observable</code> &mdash; Reference-type observable models holding business logic and async operations across view updates.</li><li><code>@Environment</code> &mdash; Globally injected dependencies like color scheme, dismissal triggers, or database contexts.</li></ul>
+
+<h2>1. State and Two-Way Bindings</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ContentView.swift</span></div>
+<pre><span class="kw">import</span> SwiftUI
+
+<span class="kw">struct</span> CounterView: View {
+    @State <span class="kw">private</span> <span class="kw">var</span> count = 0
+    @State <span class="kw">private</span> <span class="kw">var</span> isMuted = <span class="kw">false</span>
+
+    <span class="kw">var</span> body: some View {
+        VStack(spacing: 20) {
+            Text(<span class="st">"Score: \(count)"</span>)
+                .font(.largeTitle.bold())
+
+            <span class="cm">// Pass two-way bindings with the '$' prefix</span>
+            CounterControls(count: $count)
+            
+            Toggle(<span class="st">"Mute Sound Effects"</span>, isOn: $isMuted)
+                .padding()
+        }
+        .padding()
+    }
+}
+
+<span class="kw">struct</span> CounterControls: View {
+    @Binding <span class="kw">var</span> count: Int
+
+    <span class="kw">var</span> body: some View {
+        HStack {
+            Button(<span class="st">"Decrement"</span>) { count -= 1 }
+                .buttonStyle(.bordered)
+            Button(<span class="st">"Increment"</span>) { count += 1 }
+                .buttonStyle(.borderedProminent)
+        }
+    }
+}</pre>
+</div>
+
+<h2>2. Value-Driven Navigation with <code>NavigationStack</code></h2>
+<p>Modern iOS apps (iOS 16+) replace legacy <code>NavigationView</code> with value-based <code>NavigationStack</code> and <code>navigationDestination</code>:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ContentView.swift</span></div>
+<pre><span class="kw">struct</span> Product: Hashable, Identifiable {
+    <span class="kw">let</span> id = UUID()
+    <span class="kw">let</span> name: String
+    <span class="kw">let</span> price: Double
+}
+
+<span class="kw">struct</span> ProductListView: View {
+    <span class="kw">let</span> products = [
+        Product(name: <span class="st">"Swift Programming Book"</span>, price: 39.99),
+        Product(name: <span class="st">"Mechanical Keyboard"</span>, price: 129.00),
+        Product(name: <span class="st">"USB-C Display Cable"</span>, price: 19.50)
+    ]
+
+    <span class="kw">var</span> body: some View {
+        NavigationStack {
+            List(products) { product <span class="kw">in</span>
+                NavigationLink(value: product) {
+                    HStack {
+                        Text(product.name)
+                        Spacer()
+                        Text(<span class="st">"$\(product.price, specifier: "</span>%.2f<span class="st">")"</span>)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            .navigationTitle(<span class="st">"Store Products"</span>)
+            .navigationDestination(<span class="kw">for</span>: Product.<span class="kw">self</span>) { product <span class="kw">in</span>
+                ProductDetailView(product: product)
+            }
+        }
+    }
+}
+
+<span class="kw">struct</span> ProductDetailView: View {
+    <span class="kw">let</span> product: Product
+
+    <span class="kw">var</span> body: some View {
+        VStack(spacing: 16) {
+            Text(product.name).font(.title.bold())
+            Text(<span class="st">"Price: $\(product.price, specifier: "</span>%.2f<span class="st">")"</span>)
+            Button(<span class="st">"Add to Cart"</span>) {}
+                .buttonStyle(.borderedProminent)
+        }
+        .padding()
+    }
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Initializing a reference model with <code>@ObservedObject</code> instead of <code>@StateObject</code> inside a View. <code>@ObservedObject</code> can recreate the instance when parent views redraw, losing internal state.</li><li>Mutating <code>@State</code> properties on background threads. Always ensure state mutations dispatch to the <code>@MainActor</code>.</li><li>Using deprecated <code>NavigationView</code> or hardcoding views inside <code>NavigationLink(destination: ...)</code> in large lists, which instantiates destination views eagerly.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>In iOS 17+, use the Swift 5.9 <code>@Observable</code> macro on classes instead of conforming to <code>ObservableObject</code> and tagging properties with <code>@Published</code>.</li><li>Use <code>.sheet(isPresented:)</code> or <code>.sheet(item:)</code> for modal dialogs and slide-up cards.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 13.1</div>
+<ol><li>Create a master-detail NavigationStack with a list of 5 contacts.</li><li>Pass an <code>@Binding</code> to a contact editor view and verify that editing a contact name instantly updates the master list.</li></ol></div>
+
+<div class="quiz-block" data-quiz="swift-l13">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the key difference between @State and @Binding?</p><ol class="quiz-options"><li>@State is for UIKit, @Binding is for SwiftUI</li><li>@State owns and stores the value; @Binding is a two-way reference to state owned elsewhere</li><li>@Binding can only hold integers</li></ol><p class="quiz-explain">@State allocates storage and owns the truth. @Binding creates a reference without owning the underlying storage.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why is modern NavigationStack(for:destination:) preferred over legacy NavigationView?</p><ol class="quiz-options"><li>It renders in 3D</li><li>It supports programmatic path navigation and creates destination views lazily on demand</li><li>It works without Swift</li></ol><p class="quiz-explain">NavigationStack decouples navigation data from UI views and instantiates destinations lazily only when selected.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which property wrapper ensures an ObservableObject survives View body re-evaluations?</p><ol class="quiz-options"><li>@ObservedObject</li><li>@StateObject</li><li>@Environment</li></ol><p class="quiz-explain">@StateObject ties the lifecycle of the object to the view hierarchy, keeping it alive across redraws.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(11)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Advanced</div>
-            <h1>Networking & URLSession</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 13</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-13" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 14 &middot; Advanced</div>
+<h1>Networking &amp; URLSession with Async/Await</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 13</span></div>
+<p class="lecture-intro">Learn how to make asynchronous HTTP requests in Swift using modern <code>async/await</code>, <code>URLSession</code>, type-safe JSON serialization with <code>Codable</code>, and robust error handling.</p>
+<h2>The Swift Networking Stack</h2>
+<p>Modern iOS apps fetch network resources asynchronously using clean concurrency:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ContentView.swift</span></div>
+<pre><span class="kw">import</span> Foundation
+
+<span class="cm">// 1. Define Model conforming to Codable</span>
+<span class="kw">struct</span> GitHubUser: Codable, Identifiable {
+    <span class="kw">let</span> id: Int
+    <span class="kw">let</span> login: String
+    <span class="kw">let</span> name: String?
+    <span class="kw">let</span> publicRepos: Int
+    <span class="kw">let</span> avatarUrl: String
+
+    <span class="kw">enum</span> CodingKeys: String, CodingKey {
+        <span class="kw">case</span> id, login, name
+        <span class="kw">case</span> publicRepos = <span class="st">"public_repos"</span>
+        <span class="kw">case</span> avatarUrl = <span class="st">"avatar_url"</span>
+    }
+}
+
+<span class="cm">// 2. Custom Error Enumeration</span>
+<span class="kw">enum</span> NetworkError: LocalizedError {
+    <span class="kw">case</span> invalidURL
+    <span class="kw">case</span> serverError(statusCode: Int)
+    <span class="kw">case</span> decodingError(Error)
+
+    <span class="kw">var</span> errorDescription: String? {
+        match <span class="kw">self</span> {
+        <span class="kw">case</span> .invalidURL: <span class="kw">return</span> <span class="st">"The requested endpoint URL was invalid."</span>
+        <span class="kw">case</span> .serverError(<span class="kw">let</span> code): <span class="kw">return</span> <span class="st">"Server returned error code: \(code)"</span>
+        <span class="kw">case</span> .decodingError(<span class="kw">let</span> err): <span class="kw">return</span> <span class="st">"Failed to parse JSON response: \(err.localizedDescription)"</span>
+        }
+    }
+}
+
+<span class="cm">// 3. Network Client Service</span>
+final <span class="kw">class</span> GitHubService {
+    <span class="kw">static</span> <span class="kw">let</span> shared = GitHubService()
+    <span class="kw">private</span> <span class="kw">init</span>() {}
+
+    <span class="kw">func</span> fetchUser(username: String) <span class="kw">async</span> <span class="kw">throws</span> -&gt; GitHubUser {
+        <span class="kw">guard</span> <span class="kw">let</span> url = URL(string: <span class="st">"https://api.github.com/users/\(username)"</span>) <span class="kw">else</span> {
+            <span class="kw">throw</span> NetworkError.invalidURL
+        }
+
+        <span class="kw">var</span> request = URLRequest(url: url)
+        request.setValue(<span class="st">"application/json"</span>, forHTTPHeaderField: <span class="st">"Accept"</span>)
+        request.timeoutInterval = 10
+
+        <span class="kw">let</span> (data, response) = <span class="kw">try</span> <span class="kw">await</span> URLSession.shared.data(<span class="kw">for</span>: request)
+
+        <span class="kw">guard</span> <span class="kw">let</span> httpResponse = response <span class="kw">as</span>? HTTPURLResponse <span class="kw">else</span> {
+            <span class="kw">throw</span> NetworkError.serverError(statusCode: 0)
+        }
+
+        <span class="kw">guard</span> (200...299).contains(httpResponse.statusCode) <span class="kw">else</span> {
+            <span class="kw">throw</span> NetworkError.serverError(statusCode: httpResponse.statusCode)
+        }
+
+        <span class="kw">do</span> {
+            <span class="kw">let</span> decoder = JSONDecoder()
+            <span class="kw">return</span> <span class="kw">try</span> decoder.decode(GitHubUser.<span class="kw">self</span>, from: data)
+        } <span class="kw">catch</span> {
+            <span class="kw">throw</span> NetworkError.decodingError(error)
+        }
+    }
+}</pre>
+</div>
+
+<h2>4. Connecting to a SwiftUI ViewModel with <code>@MainActor</code></h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ContentView.swift</span></div>
+<pre><span class="kw">import</span> SwiftUI
+
+@MainActor
+final <span class="kw">class</span> ProfileViewModel: ObservableObject {
+    @Published <span class="kw">var</span> user: GitHubUser?
+    @Published <span class="kw">var</span> isLoading = <span class="kw">false</span>
+    @Published <span class="kw">var</span> errorMessage: String?
+
+    <span class="kw">func</span> loadProfile(username: String) <span class="kw">async</span> {
+        isLoading = <span class="kw">true</span>
+        errorMessage = <span class="kw">nil</span>
+
+        <span class="kw">do</span> {
+            <span class="kw">self</span>.user = <span class="kw">try</span> <span class="kw">await</span> GitHubService.shared.fetchUser(username: username)
+        } <span class="kw">catch</span> {
+            <span class="kw">self</span>.errorMessage = error.localizedDescription
+        }
+
+        isLoading = <span class="kw">false</span>
+    }
+}
+
+<span class="kw">struct</span> ProfileView: View {
+    @StateObject <span class="kw">private</span> <span class="kw">var</span> vm = ProfileViewModel()
+
+    <span class="kw">var</span> body: some View {
+        VStack(spacing: 20) {
+            <span class="kw">if</span> vm.isLoading {
+                ProgressView(<span class="st">"Fetching profile..."</span>)
+            } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> user = vm.user {
+                AsyncImage(url: URL(string: user.avatarUrl)) { image <span class="kw">in</span>
+                    image.resizable().scaledToFit().clipShape(Circle())
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 100, height: 100)
+
+                Text(user.name ?? user.login).font(.title2.bold())
+                Text(<span class="st">"Public Repos: \(user.publicRepos)"</span>)
+            } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> err = vm.errorMessage {
+                Text(err).foregroundStyle(.red)
+            }
+        }
+        .task {
+            <span class="kw">await</span> vm.loadProfile(username: <span class="st">"apple"</span>)
+        }
+    }
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Forgetting to tag your ViewModel with <code>@MainActor</code>. Background network completions updating <code>@Published</code> properties will trigger runtime warnings: <em>Publishing changes from background threads is not allowed</em>.</li><li>Missing <code>CodingKeys</code> mapping when API fields use snake_case (e.g. <code>avatar_url</code>) while Swift properties use camelCase (<code>avatarUrl</code>). Use <code>decoder.keyDecodingStrategy = .convertFromSnakeCase</code> or explicit <code>CodingKeys</code>.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Use the <code>.task { ... }</code> view modifier instead of <code>.onAppear</code> for asynchronous data loading. <code>.task</code> automatically cancels in-flight network requests if the user leaves the screen.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 14.1</div>
+<ol><li>Build a model for a weather API response: temperature, humidity, and condition description.</li><li>Write an async function using <code>URLSession.shared.data(from:)</code> that fetches and decodes the weather data.</li><li>Display the forecast in SwiftUI with a reload button and error alerts.</li></ol></div>
+
+<div class="quiz-block" data-quiz="swift-l14">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which method executes modern async network requests with URLSession?</p><ol class="quiz-options"><li><code>dataTask(with:completionHandler:)</code></li><li><code>try await URLSession.shared.data(from:)</code></li><li><code>fetchHTTP()</code></li></ol><p class="quiz-explain">URLSession.shared.data(from:) is the native async/await API introduced in Swift 5.5, replacing closure callbacks.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why is @MainActor essential for ViewModels in SwiftUI?</p><ol class="quiz-options"><li>It increases CPU clock speeds</li><li>It guarantees state mutations occur on the main thread where UI updates are rendered</li><li>It saves memory</li></ol><p class="quiz-explain">UI modifications in iOS must execute on the main thread. @MainActor enforces compile-time thread safety for UI-bound code.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">How does Codable automatically map JSON keys like "first_name" to "firstName"?</p><ol class="quiz-options"><li>It guesses based on dictionary order</li><li>By configuring decoder.keyDecodingStrategy = .convertFromSnakeCase</li><li>It cannot; snake_case is illegal in Swift</li></ol><p class="quiz-explain">JSONDecoder provides keyDecodingStrategy to automatically bridge snake_case JSON to Swift camelCase.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(12)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(14)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 15 ===================== -->
-        <div class="lecture" id="lec-14">
-            <div class="lecture-tag">Lecture 15 · Advanced</div>
-            <h1>Core Data & Persistence</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 14</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-14" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 15 &middot; Advanced</div>
+<h1>Data Persistence with SwiftData &amp; Core Data</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 14</span></div>
+<p class="lecture-intro">Persisting data locally allows iOS apps to work offline and retain user preferences. Learn how modern <strong>SwiftData</strong> uses the Swift macro system to provide effortless SQLite persistence, relationship modeling, and live <code>@Query</code> sorting.</p>
+<h2>The Evolution: Core Data to SwiftData</h2>
+<p>In iOS 17+, <strong>SwiftData</strong> supersedes legacy XML-based Core Data models with native Swift code modeling powered by macros:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ContentView.swift</span></div>
+<pre><span class="kw">import</span> SwiftUI
+<span class="kw">import</span> SwiftData
+
+<span class="cm">// 1. Declare Data Model with @Model Macro</span>
+@Model
+final <span class="kw">class</span> TaskItem {
+    <span class="kw">var</span> title: String
+    <span class="kw">var</span> isCompleted: Bool
+    <span class="kw">var</span> createdAt: Date
+    <span class="kw">var</span> priority: Int
+
+    <span class="kw">init</span>(title: String, priority: Int = 1) {
+        <span class="kw">self</span>.title = title
+        <span class="kw">self</span>.isCompleted = <span class="kw">false</span>
+        <span class="kw">self</span>.createdAt = Date()
+        <span class="kw">self</span>.priority = priority
+    }
+}</pre>
+</div>
+
+<h2>2. Attaching ModelContainer to App Entry Point</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ContentView.swift</span></div>
+<pre>@main
+<span class="kw">struct</span> TaskTrackerApp: App {
+    <span class="kw">var</span> body: some Scene {
+        WindowGroup {
+            TaskListView()
+        }
+        <span class="cm">// Injects database container for TaskItem schema</span>
+        .modelContainer(<span class="kw">for</span>: TaskItem.<span class="kw">self</span>)
+    }
+}</pre>
+</div>
+
+<h2>3. Live Database Queries in SwiftUI Views</h2>
+<p>The <code>@Query</code> macro automatically updates the view whenever items in the database are inserted, modified, or deleted:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ContentView.swift</span></div>
+<pre><span class="kw">struct</span> TaskListView: View {
+    <span class="cm">// Environment modelContext handles CRUD operations</span>
+    @Environment(\.modelContext) <span class="kw">private</span> <span class="kw">var</span> context
+
+    <span class="cm">// Live reactive database query sorted by creation date</span>
+    @Query(sort: \TaskItem.createdAt, order: .reverse) <span class="kw">private</span> <span class="kw">var</span> tasks: [TaskItem]
+
+    @State <span class="kw">private</span> <span class="kw">var</span> newTitle = <span class="st">""</span>
+
+    <span class="kw">var</span> body: some View {
+        NavigationStack {
+            List {
+                Section(<span class="st">"New Task"</span>) {
+                    HStack {
+                        TextField(<span class="st">"Enter task title..."</span>, text: $newTitle)
+                        Button(<span class="st">"Add"</span>) { addTask() }
+                            .disabled(newTitle.trimmingCharacters(<span class="kw">in</span>: .whitespaces).isEmpty)
+                    }
+                }
+
+                Section(<span class="st">"Tasks (\(tasks.count))"</span>) {
+                    ForEach(tasks) { task <span class="kw">in</span>
+                        HStack {
+                            Image(systemName: task.isCompleted ? <span class="st">"checkmark.circle.fill"</span> : <span class="st">"circle"</span>)
+                                .foregroundStyle(task.isCompleted ? .green : .secondary)
+                                .onTapGesture {
+                                    task.isCompleted.toggle()
+                                }
+                            Text(task.title)
+                                .strikethrough(task.isCompleted)
+                        }
+                    }
+                    .onDelete(perform: deleteTasks)
+                }
+            }
+            .navigationTitle(<span class="st">"SwiftData Tasks"</span>)
+        }
+    }
+
+    <span class="kw">private</span> <span class="kw">func</span> addTask() {
+        <span class="kw">let</span> task = TaskItem(title: newTitle)
+        context.insert(task)
+        newTitle = <span class="st">""</span>
+        <span class="cm">// SwiftData automatically saves context changes!</span>
+    }
+
+    <span class="kw">private</span> <span class="kw">func</span> deleteTasks(at offsets: IndexSet) {
+        <span class="kw">for</span> index <span class="kw">in</span> offsets {
+            context.delete(tasks[index])
+        }
+    }
+}</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Defining classes with <code>struct</code> instead of <code>class</code> when using <code>@Model</code>. SwiftData models must be classes because the underlying database relies on object identity and reference tracking.</li><li>Forgetting to attach <code>.modelContainer(for:)</code> on your App or WindowGroup, which causes a fatal runtime crash when <code>@Query</code> is evaluated.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Use <code>#Predicate&lt;TaskItem&gt;</code> inside <code>@Query(filter: ...)</code> for type-safe database filtering compiled down to high-performance SQL queries.</li><li>Relationships between models are created naturally using standard Swift properties (e.g. <code>var items: [Item] = []</code>) without manual foreign key mappings.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 15.1</div>
+<ol><li>Create a <code>Category</code> model and establish a one-to-many relationship with <code>TaskItem</code>.</li><li>Use <code>@Query(filter: #Predicate { !$0.isCompleted })</code> to filter for uncompleted tasks only.</li></ol></div>
+
+<div class="quiz-block" data-quiz="swift-l15">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What macro transforms a standard Swift class into a persistent database entity in SwiftData?</p><ol class="quiz-options"><li>@Entity</li><li>@Model</li><li>@Persistent</li></ol><p class="quiz-explain">@Model is the SwiftData macro that synthesizes Schema metadata, observation tracking, and database mapping.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">How does SwiftUI stay synchronized with database changes in SwiftData?</p><ol class="quiz-options"><li>By calling reloadData() every 5 seconds</li><li>Using the reactive @Query property wrapper</li><li>By polling disk files</li></ol><p class="quiz-explain">@Query observes database changes and automatically re-renders the SwiftUI view when matching records change.</p></div>
+<div class="quiz-q" data-answer="0"><p class="quiz-prompt">Which object is retrieved from the @Environment to perform insertions and deletions in SwiftData?</p><ol class="quiz-options"><li>modelContext</li><li>sqlSession</li><li>dataDispatcher</li></ol><p class="quiz-explain">Environment(\.modelContext) provides the ModelContext required to insert, delete, and save database objects.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(13)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(15)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 16 ===================== -->
-        <div class="lecture" id="lec-15">
-            <div class="lecture-tag">Lecture 16 · Professional</div>
-            <h1>Final Project — Complete iOS App</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-15" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 16 &middot; Professional</div>
+<h1>Final Project &mdash; Production iOS Task &amp; Notes Application</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~120 min</span><span class="meta-badge level-beginner">Project</span><span class="meta-badge">Requires: All Previous Lectures</span></div>
+<p class="lecture-intro">Synthesize all Swift and SwiftUI concepts by developing a complete, architecturally sound iOS productivity application. You will implement MVVM architecture, async network synchronization, SwiftData local caching, custom animations, and accessibility.</p>
+<h2>Architecture &amp; Features</h2>
+<ol><li><strong>MVVM Architecture:</strong> Clean separation between SwiftUI Views, <code>@MainActor</code> ViewModels, and Data Repositories.</li><li><strong>Offline-First Persistence:</strong> SwiftData local storage that persists across app restarts.</li><li><strong>Cloud API Sync:</strong> Async URLSession integration fetching remote quotes / inspiration.</li><li><strong>Modern UI:</strong> NavigationStack, custom swipe actions, search filtering with <code>.searchable</code>, and haptic feedback.</li></ol>
+
+<h2>Complete Production Code</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">NotesApp.swift</span></div>
+<pre><span class="kw">import</span> SwiftUI
+<span class="kw">import</span> SwiftData
+
+<span class="cm">// 1. Data Model</span>
+@Model
+final <span class="kw">class</span> NoteItem: Identifiable {
+    <span class="kw">var</span> id: UUID
+    <span class="kw">var</span> title: String
+    <span class="kw">var</span> content: String
+    <span class="kw">var</span> category: String
+    <span class="kw">var</span> isPinned: Bool
+    <span class="kw">var</span> updatedAt: Date
+
+    <span class="kw">init</span>(title: String, content: String, category: String = <span class="st">"General"</span>) {
+        <span class="kw">self</span>.id = UUID()
+        <span class="kw">self</span>.title = title
+        <span class="kw">self</span>.content = content
+        <span class="kw">self</span>.category = category
+        <span class="kw">self</span>.isPinned = <span class="kw">false</span>
+        <span class="kw">self</span>.updatedAt = Date()
+    }
+}
+
+<span class="cm">// 2. Main App View</span>
+<span class="kw">struct</span> NotesAppView: View {
+    @Environment(\.modelContext) <span class="kw">private</span> <span class="kw">var</span> context
+    @Query(sort: \NoteItem.updatedAt, order: .reverse) <span class="kw">private</span> <span class="kw">var</span> notes: [NoteItem]
+
+    @State <span class="kw">private</span> <span class="kw">var</span> searchText = <span class="st">""</span>
+    @State <span class="kw">private</span> <span class="kw">var</span> isShowingEditor = <span class="kw">false</span>
+
+    <span class="kw">var</span> filteredNotes: [NoteItem] {
+        <span class="kw">if</span> searchText.isEmpty { <span class="kw">return</span> notes }
+        <span class="kw">return</span> notes.filter {
+            $0.title.localizedCaseInsensitiveContains(searchText) ||
+            $0.content.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+
+    <span class="kw">var</span> body: some View {
+        NavigationStack {
+            List {
+                ForEach(filteredNotes) { note <span class="kw">in</span>
+                    NavigationLink(destination: NoteDetailView(note: note)) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text(note.title).font(.headline)
+                                <span class="kw">if</span> note.isPinned {
+                                    Image(systemName: <span class="st">"pin.fill"</span>)
+                                        .font(.caption)
+                                        .foregroundStyle(.orange)
+                                }
+                            }
+                            Text(note.content)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(2)
+                        }
+                    }
+                    .swipeActions(edge: .leading) {
+                        Button {
+                            note.isPinned.toggle()
+                        } label: {
+                            Label(note.isPinned ? <span class="st">"Unpin"</span> : <span class="st">"Pin"</span>, systemImage: <span class="st">"pin"</span>)
+                        }
+                        .tint(.orange)
+                    }
+                }
+                .onDelete(perform: deleteNotes)
+            }
+            .navigationTitle(<span class="st">"My Notes"</span>)
+            .searchable(text: $searchText, prompt: <span class="st">"Search notes..."</span>)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        isShowingEditor = <span class="kw">true</span>
+                    } label: {
+                        Image(systemName: <span class="st">"square.and.pencil"</span>)
+                    }
+                }
+            }
+            .sheet(isPresented: $isShowingEditor) {
+                NewNoteSheet()
+            }
+        }
+    }
+
+    <span class="kw">private</span> <span class="kw">func</span> deleteNotes(at offsets: IndexSet) {
+        <span class="kw">for</span> index <span class="kw">in</span> offsets {
+            context.delete(filteredNotes[index])
+        }
+    }
+}
+
+<span class="cm">// 3. New Note Modal Sheet</span>
+<span class="kw">struct</span> NewNoteSheet: View {
+    @Environment(\.dismiss) <span class="kw">private</span> <span class="kw">var</span> dismiss
+    @Environment(\.modelContext) <span class="kw">private</span> <span class="kw">var</span> context
+
+    @State <span class="kw">private</span> <span class="kw">var</span> title = <span class="st">""</span>
+    @State <span class="kw">private</span> <span class="kw">var</span> content = <span class="st">""</span>
+
+    <span class="kw">var</span> body: some View {
+        NavigationStack {
+            Form {
+                TextField(<span class="st">"Title"</span>, text: $title)
+                TextEditor(text: $content)
+                    .frame(minHeight: 120)
+            }
+            .navigationTitle(<span class="st">"New Note"</span>)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(<span class="st">"Cancel"</span>) { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(<span class="st">"Save"</span>) {
+                        <span class="kw">let</span> note = NoteItem(title: title, content: content)
+                        context.insert(note)
+                        dismiss()
+                    }
+                    .disabled(title.trimmingCharacters(<span class="kw">in</span>: .whitespaces).isEmpty)
+                }
+            }
+        }
+    }
+}
+
+<span class="cm">// 4. Note Detail View</span>
+<span class="kw">struct</span> NoteDetailView: View {
+    @Bindable <span class="kw">var</span> note: NoteItem
+
+    <span class="kw">var</span> body: some View {
+        Form {
+            TextField(<span class="st">"Title"</span>, text: $note.title)
+                .font(.headline)
+            TextEditor(text: $note.content)
+                .frame(minHeight: 250)
+        }
+        .navigationTitle(<span class="st">"Edit Note"</span>)
+    }
+}</pre>
+</div>
+
+<div class="box tip"><div class="box-title">iOS Developer Track Complete!</div><p>Congratulations on completing the Swift &amp; iOS Track! You have mastered the core Swift type system, protocol-oriented programming, modern concurrency, SwiftUI reactive layout engines, and persistent database architectures.</p></div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(14)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(0)">&#8634; Back to Start</button>
+</div>
+</div>
 
             </div>
 
@@ -2222,7 +2713,7 @@ print("Total Calories Burned: \(tracker.totalCaloriesBurned()) kcal")</pre>
             </div>
 
             <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(16)">Previous</button>
+                <button class="nav-btn" onclick="showLecture(15)">Previous</button>
                 <button class="nav-btn primary" onclick="showLecture(0)">Back to Start</button>
             </div>
         </div>

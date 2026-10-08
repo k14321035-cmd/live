@@ -2102,32 +2102,299 @@ crontab -e
                 </div>
 
         <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Advanced Scripting Patterns</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 12</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-12" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 13 &middot; Advanced</div>
+<h1>Advanced Scripting Patterns</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 12</span></div>
+<p class="lecture-intro">Learn professional defensive Bash scripting techniques: argument parsing with <code>getopts</code>, atomic lockfiles to prevent concurrent runs, trap-based cleanup, error-handling best practices, and robust pipelines.</p>
+<h2>Defensive Scripting Boilerplate: Strict Mode</h2>
+<p>Professional shell scripts always begin with "strict mode" flags to fail fast on errors, unassigned variables, and broken pipes:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">script.sh</span></div>
+<pre><span class="cm">#!/usr/bin/env bash</span>
+<span class="kw">set</span> -euo pipefail
+IFS=$<span class="st">'\n\t'</span>
+
+<span class="cm"># -e          Exit immediately if any command exits with a non-zero status</span>
+<span class="cm"># -u          Treat unset variables and parameters as errors</span>
+<span class="cm"># -o pipefail Return the exit status of the LAST command in the pipe that failed</span>
+<span class="cm"># IFS         Prevent unexpected word-splitting on spaces in file names</span></pre>
+</div>
+
+<h2>Parsing CLI Arguments with <code>getopts</code></h2>
+<p>POSIX standard <code>getopts</code> lets your script accept standard Unix command-line flags, options with arguments, and help displays:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">script.sh</span></div>
+<pre><span class="cm">#!/usr/bin/env bash</span>
+<span class="kw">set</span> -euo pipefail
+
+usage() {
+    echo <span class="st">"Usage: $0 [-h] [-v] [-o OUTPUT_DIR] -f FILE"</span>
+    echo <span class="st">"  -f FILE       Input file to process (required)"</span>
+    echo <span class="st">"  -o OUTPUT_DIR Output directory (default: ./out)"</span>
+    echo <span class="st">"  -v            Verbose mode"</span>
+    echo <span class="st">"  -h            Show this help message"</span>
+    <span class="kw">exit</span> 1
+}
+
+FILE=<span class="st">""</span>
+OUTPUT_DIR=<span class="st">"./out"</span>
+VERBOSE=0
+
+<span class="kw">while</span> getopts <span class="st">":f:o:vh"</span> opt; <span class="kw">do</span>
+    <span class="kw">case</span> <span class="st">"${opt}"</span> <span class="kw">in</span>
+        f) FILE=<span class="st">"${OPTARG}"</span> ;;
+        o) OUTPUT_DIR=<span class="st">"${OPTARG}"</span> ;;
+        v) VERBOSE=1 ;;
+        h) usage ;;
+        \?) echo <span class="st">"Error: Invalid option -${OPTARG}"</span> &gt;&amp;2; usage ;;
+        :) echo <span class="st">"Error: Option -${OPTARG} requires an argument."</span> &gt;&amp;2; usage ;;
+    <span class="kw">esac</span>
+<span class="kw">done</span>
+<span class="kw">shift</span> <span class="st">"$((OPTIND -1))"</span>
+
+<span class="kw">if</span> [[ -z <span class="st">"${FILE}"</span> ]]; <span class="kw">then</span>
+    echo <span class="st">"Error: Missing required argument -f FILE"</span> &gt;&amp;2
+    usage
+<span class="kw">fi</span>
+
+[[ $VERBOSE -eq 1 ]] &amp;&amp; echo <span class="st">"Processing '${FILE}' into '${OUTPUT_DIR}'..."</span></pre>
+</div>
+
+<h2>Signal Handling and Guaranteed Cleanup with <code>trap</code></h2>
+<p>Scripts create temporary files or acquire locks. Use <code>trap</code> to guarantee cleanup when the script exits, errors, or receives signals like <kbd>SIGINT</kbd> (Ctrl-C) or <kbd>SIGTERM</kbd>:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">script.sh</span></div>
+<pre><span class="cm">#!/usr/bin/env bash</span>
+<span class="kw">set</span> -euo pipefail
+
+<span class="cm"># Create a secure temporary directory</span>
+TMP_DIR=<span class="st">"$(mktemp -d -t myapp.XXXXXX)"</span>
+
+cleanup() {
+    <span class="kw">local</span> exit_code=$?
+    echo <span class="st">"Cleaning up temporary files in ${TMP_DIR}..."</span>
+    rm -rf <span class="st">"${TMP_DIR}"</span>
+    <span class="kw">exit</span> <span class="st">"${exit_code}"</span>
+}
+
+<span class="cm"># Trap EXIT (runs on normal exit, error, or fatal signals)</span>
+<span class="kw">trap</span> cleanup EXIT INT TERM
+
+<span class="cm"># Work with temporary files safely</span>
+echo <span class="st">"Generating work files..."</span>
+echo <span class="st">"intermediate data"</span> &gt; <span class="st">"${TMP_DIR}/work.txt"</span>
+<span class="cm"># If any command fails here, cleanup() is GUARANTEED to execute!</span></pre>
+</div>
+
+<h2>Atomic Locking with <code>flock</code></h2>
+<p>Prevent cron jobs or users from running multiple overlapping instances of the same script using <code>flock</code>:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">script.sh</span></div>
+<pre><span class="cm">#!/usr/bin/env bash</span>
+<span class="kw">set</span> -euo pipefail
+
+LOCK_FILE=<span class="st">"/var/lock/my_cron_job.lock"</span>
+exec 200&gt;<span class="st">"$LOCK_FILE"</span>
+
+<span class="cm"># Try non-blocking exclusive lock (-n)</span>
+<span class="kw">if</span> ! flock -n 200; <span class="kw">then</span>
+    echo <span class="st">"Error: Another instance of this script is already running."</span> &gt;&amp;2
+    <span class="kw">exit</span> 1
+<span class="kw">fi</span>
+
+echo <span class="st">"Exclusive lock acquired. Running critical tasks..."</span>
+sleep 5
+echo <span class="st">"Job finished successfully."</span></pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Relying on <code>rm /tmp/lock.txt</code> for locks. It is not atomic and leaves orphan lockfiles if killed with kill -9. Always use <code>flock</code> or atomic directory creation (<code>mkdir</code>).</li><li>Forgetting double quotes around variables: <code>rm -rf $DIR</code> can accidentally evaluate to <code>rm -rf /</code> if DIR is empty! Always write <code>"${DIR}"</code>.</li><li>Assuming scripts run from the directory where they are saved. Use <code>SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &amp;&amp; pwd)"</code>.</li><li>Using <code>set -e</code> without <code>set -o pipefail</code>. In <code>curl http://badurl | grep "ok"</code>, a failing curl will be hidden because grep exited with 1 or 0.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Always run your shell scripts through <a href="https://www.shellcheck.net/" target="_blank" rel="noopener">ShellCheck</a> (<code>shellcheck script.sh</code>) to catch syntax bugs and portability traps.</li><li>Use <code>[[ ... ]]</code> instead of <code>[ ... ]</code> in Bash for safer string comparisons, regex matching with <code>=~</code>, and no word-splitting bugs.</li><li>Log messages to standard error with <code>&gt;&amp;2</code> so standard output remains clean for piping to other tools.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 13.1</div>
+<ol><li>Write a script called <code>safe_download.sh</code> that takes a <code>-u URL</code> and <code>-o DEST</code> using <code>getopts</code>.</li><li>Use <code>mktemp</code> to download to a temporary file first, verify the download with <code>curl -f</code>, and atomically move it to the destination upon success.</li><li>Trap <kbd>SIGINT</kbd> and <kbd>EXIT</kbd> to delete the temporary file if interrupted.</li></ol></div>
+
+<div class="quiz-block" data-quiz="bash-l13">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does <code>set -o pipefail</code> ensure in Bash?</p><ol class="quiz-options"><li>Pipes never buffer data</li><li>The pipe returns the exit code of the last failing command rather than the final command</li><li>Variables inside pipes cannot be modified</li></ol><p class="quiz-explain">By default, pipelines return the exit code of the final command. pipefail ensures any failure anywhere in the pipeline triggers set -e.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which trap signal is triggered on script termination, regardless of whether it succeeded, errored, or was interrupted?</p><ol class="quiz-options"><li>INT</li><li>EXIT</li><li>TERM</li></ol><p class="quiz-explain">In Bash, trapping EXIT fires when the shell exits for any reason, making it ideal for guaranteed resource cleanup.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the correct way to get the absolute directory of the running Bash script?</p><ol class="quiz-options"><li><code>pwd</code></li><li><code>"$(cd "$(dirname "${BASH_SOURCE[0]}")" &amp;&amp; pwd)"</code></li><li><code>$PWD</code></li></ol><p class="quiz-explain">BASH_SOURCE[0] points to the script path even when sourced or called from another working directory.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(11)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Professional</div>
-            <h1>Final Project — Production Shell Scripts</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-13" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 14 &middot; Professional</div>
+<h1>Final Project &mdash; Production Backup &amp; Monitoring Automation</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~90 min</span><span class="meta-badge level-beginner">Project</span><span class="meta-badge">Requires: All Previous Lectures</span></div>
+<p class="lecture-intro">Build a production-grade automated server backup and disk health monitoring suite in Bash. This project includes argument parsing, timestamped rotated archives, tar/gzip compression, notification alerts, atomic locks, and automated unit testing.</p>
+<h2>System Architecture &amp; Acceptance Criteria</h2>
+<p>In this capstone, you will create <code>backup_manager.sh</code> meeting enterprise DevOps standards:</p>
+<ol><li><strong>Strict mode:</strong> Employs <code>set -euo pipefail</code> and <code>IFS</code> protection.</li><li><strong>Locking:</strong> Uses <code>flock</code> to prevent concurrent backup runs.</li><li><strong>Configurable:</strong> Supports <code>-s SOURCE</code>, <code>-d DEST</code>, <code>-r RETENTION_DAYS</code>, and <code>-v</code> (verbose).</li><li><strong>Safe Archive:</strong> Creates tar.gz archives named <code>backup_YYYY-MM-DD_HHMMSS.tar.gz</code>.</li><li><strong>Integrity Verification:</strong> Validates archive integrity using <code>tar -tzf</code> before confirming success.</li><li><strong>Pruning / Rotation:</strong> Automatically purges backups older than the retention threshold.</li><li><strong>Logging:</strong> Writes structured timestamped events to both standard output and <code>backup.log</code>.</li></ol>
+
+<h2>Complete Implementation</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">backup_manager.sh</span></div>
+<pre><span class="cm">#!/usr/bin/env bash</span>
+<span class="cm"># ==============================================================================</span>
+<span class="cm"># backup_manager.sh - Production Backup &amp; Rotation Engine</span>
+<span class="cm"># ==============================================================================</span>
+<span class="kw">set</span> -euo pipefail
+IFS=$<span class="st">'\n\t'</span>
+
+<span class="cm"># Constants &amp; Defaults</span>
+DEFAULT_RETENTION=7
+RETENTION_DAYS=$DEFAULT_RETENTION
+SOURCE_DIR=<span class="st">""</span>
+DEST_DIR=<span class="st">""</span>
+VERBOSE=0
+LOG_FILE=<span class="st">"./backup.log"</span>
+LOCK_FILE=<span class="st">"/tmp/backup_manager.lock"</span>
+
+log() {
+    <span class="kw">local</span> level=<span class="st">"$1"</span>
+    <span class="kw">local</span> msg=<span class="st">"$2"</span>
+    <span class="kw">local</span> timestamp
+    timestamp=<span class="st">"$(date '+%Y-%m-%d %H:%M:%S')"</span>
+    <span class="kw">local</span> log_entry=<span class="st">"[${timestamp}] [${level}] ${msg}"</span>
+    
+    echo <span class="st">"${log_entry}"</span> &gt;&gt; <span class="st">"${LOG_FILE}"</span>
+    <span class="kw">if</span> [[ $VERBOSE -eq 1 || <span class="st">"$level"</span> == <span class="st">"ERROR"</span> ]]; <span class="kw">then</span>
+        <span class="kw">if</span> [[ <span class="st">"$level"</span> == <span class="st">"ERROR"</span> ]]; <span class="kw">then</span>
+            echo <span class="st">"${log_entry}"</span> &gt;&amp;2
+        <span class="kw">else</span>
+            echo <span class="st">"${log_entry}"</span>
+        <span class="kw">fi</span>
+    <span class="kw">fi</span>
+}
+
+usage() {
+    cat &lt;&lt;EOF
+Usage: $0 -s SOURCE -d DEST [-r RETENTION_DAYS] [-l LOG_FILE] [-v] [-h]
+Options:
+  -s SOURCE          Directory to backup (required)
+  -d DEST            Directory to store compressed backups (required)
+  -r DAYS            Days to retain old backups (default: 7)
+  -l LOG_FILE        Path to log file (default: ./backup.log)
+  -v                 Verbose logging to console
+  -h                 Display this help message
+EOF
+    <span class="kw">exit</span> 1
+}
+
+<span class="cm"># Parse options</span>
+<span class="kw">while</span> getopts <span class="st">":s:d:r:l:vh"</span> opt; <span class="kw">do</span>
+    <span class="kw">case</span> <span class="st">"${opt}"</span> <span class="kw">in</span>
+        s) SOURCE_DIR=<span class="st">"${OPTARG}"</span> ;;
+        d) DEST_DIR=<span class="st">"${OPTARG}"</span> ;;
+        r) RETENTION_DAYS=<span class="st">"${OPTARG}"</span> ;;
+        l) LOG_FILE=<span class="st">"${OPTARG}"</span> ;;
+        v) VERBOSE=1 ;;
+        h) usage ;;
+        \?) log <span class="st">"ERROR"</span> <span class="st">"Invalid option: -${OPTARG}"</span>; usage ;;
+        :) log <span class="st">"ERROR"</span> <span class="st">"Option -${OPTARG} requires an argument."</span>; usage ;;
+    <span class="kw">esac</span>
+<span class="kw">done</span>
+<span class="kw">shift</span> <span class="st">"$((OPTIND - 1))"</span>
+
+<span class="cm"># Validation</span>
+<span class="kw">if</span> [[ -z <span class="st">"${SOURCE_DIR}"</span> || -z <span class="st">"${DEST_DIR}"</span> ]]; <span class="kw">then</span>
+    log <span class="st">"ERROR"</span> <span class="st">"Both -s SOURCE and -d DEST parameters are required."</span>
+    usage
+<span class="kw">fi</span>
+
+<span class="kw">if</span> [[ ! -d <span class="st">"${SOURCE_DIR}"</span> ]]; <span class="kw">then</span>
+    log <span class="st">"ERROR"</span> <span class="st">"Source directory '${SOURCE_DIR}' does not exist."</span>
+    <span class="kw">exit</span> 2
+<span class="kw">fi</span>
+
+mkdir -p <span class="st">"${DEST_DIR}"</span>
+
+<span class="cm"># Atomic lock acquisition</span>
+exec 200&gt;<span class="st">"${LOCK_FILE}"</span>
+<span class="kw">if</span> ! flock -n 200; <span class="kw">then</span>
+    log <span class="st">"ERROR"</span> <span class="st">"Backup already in progress. Lock '${LOCK_FILE}' is held."</span>
+    <span class="kw">exit</span> 3
+<span class="kw">fi</span>
+
+cleanup() {
+    <span class="kw">local</span> status=$?
+    <span class="kw">if</span> [[ $status -ne 0 ]]; <span class="kw">then</span>
+        log <span class="st">"ERROR"</span> <span class="st">"Backup process terminated unexpectedly with code ${status}."</span>
+    <span class="kw">fi</span>
+}
+<span class="kw">trap</span> cleanup EXIT
+
+<span class="cm"># Execute Backup</span>
+log <span class="st">"INFO"</span> <span class="st">"Starting backup of '${SOURCE_DIR}' to '${DEST_DIR}'..."</span>
+TIMESTAMP=<span class="st">"$(date '+%Y-%m-%d_%H%M%S')"</span>
+ARCHIVE_NAME=<span class="st">"backup_${TIMESTAMP}.tar.gz"</span>
+TARGET_ARCHIVE=<span class="st">"${DEST_DIR}/${ARCHIVE_NAME}"</span>
+
+<span class="cm"># Create compressed archive</span>
+tar -czf <span class="st">"${TARGET_ARCHIVE}"</span> -C <span class="st">"$(dirname "</span>${SOURCE_DIR}<span class="st">")"</span> <span class="st">"$(basename "</span>${SOURCE_DIR}<span class="st">")"</span>
+
+<span class="cm"># Verify archive integrity</span>
+log <span class="st">"INFO"</span> <span class="st">"Verifying archive integrity for '${TARGET_ARCHIVE}'..."</span>
+<span class="kw">if</span> tar -tzf <span class="st">"${TARGET_ARCHIVE}"</span> &gt; /dev/null; <span class="kw">then</span>
+    ARCHIVE_SIZE=<span class="st">"$(du -h "</span>${TARGET_ARCHIVE}<span class="st">" | cut -f1)"</span>
+    log <span class="st">"INFO"</span> <span class="st">"Backup successfully created: ${ARCHIVE_NAME} (${ARCHIVE_SIZE})"</span>
+<span class="kw">else</span>
+    log <span class="st">"ERROR"</span> <span class="st">"Archive corruption detected for '${TARGET_ARCHIVE}'!"</span>
+    rm -f <span class="st">"${TARGET_ARCHIVE}"</span>
+    <span class="kw">exit</span> 4
+<span class="kw">fi</span>
+
+<span class="cm"># Prune old archives</span>
+log <span class="st">"INFO"</span> <span class="st">"Pruning archives older than ${RETENTION_DAYS} days in '${DEST_DIR}'..."</span>
+find <span class="st">"${DEST_DIR}"</span> -name <span class="st">"backup_*.tar.gz"</span> -type f -mtime <span class="st">"+${RETENTION_DAYS}"</span> -exec rm -f {} + -print | <span class="kw">while</span> read -r deleted; <span class="kw">do</span>
+    log <span class="st">"INFO"</span> <span class="st">"Pruned obsolete archive: ${deleted}"</span>
+<span class="kw">done</span>
+
+log <span class="st">"INFO"</span> <span class="st">"Backup routine completed successfully."</span>
+<span class="kw">exit</span> 0</pre>
+</div>
+
+<h2>Automated Test Suite</h2>
+<p>Test the script end-to-end to verify that backups are created, verified, and locked:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">test_backup.sh</span></div>
+<pre><span class="cm">#!/usr/bin/env bash</span>
+<span class="kw">set</span> -euo pipefail
+
+echo <span class="st">"=== Running backup_manager.sh Test Suite ==="</span>
+
+TEST_SRC=<span class="st">"$(mktemp -d /tmp/test_src.XXXXXX)"</span>
+TEST_DEST=<span class="st">"$(mktemp -d /tmp/test_dest.XXXXXX)"</span>
+<span class="kw">trap</span> <span class="st">'rm -rf "${TEST_SRC}" "${TEST_DEST}"'</span> EXIT
+
+<span class="cm"># Generate mock data</span>
+echo <span class="st">"Hello World"</span> &gt; <span class="st">"${TEST_SRC}/file1.txt"</span>
+echo <span class="st">"Production Database Dump"</span> &gt; <span class="st">"${TEST_SRC}/db.sql"</span>
+
+<span class="cm"># Run backup</span>
+./backup_manager.sh -s <span class="st">"${TEST_SRC}"</span> -d <span class="st">"${TEST_DEST}"</span> -v
+
+<span class="cm"># Assertions</span>
+COUNT=<span class="st">"$(find "</span>${TEST_DEST}<span class="st">" -name "</span>*.tar.gz<span class="st">" | wc -l)"</span>
+<span class="kw">if</span> [[ $COUNT -ge 1 ]]; <span class="kw">then</span>
+    echo <span class="st">"✅ TEST PASSED: Backup archive created successfully."</span>
+<span class="kw">else</span>
+    echo <span class="st">"❌ TEST FAILED: No archive found."</span>
+    <span class="kw">exit</span> 1
+<span class="kw">fi</span></pre>
+</div>
+
+<div class="box tip"><div class="box-title">DevOps Integration</div><p>Schedule your backup script in cron (<code>crontab -e</code>) for automated daily execution at 2 AM: <code>0 2 * * * /usr/local/bin/backup_manager.sh -s /var/www -d /backups/web -r 14 &gt; /dev/null</code>.</p></div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(12)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(0)">&#8634; Back to Start</button>
+</div>
+</div>
 
             </div>
 

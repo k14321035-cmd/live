@@ -3679,7 +3679,7 @@ Third-party services
     </div>
 </div>
                 <!-- ===================== LECTURE 12 ===================== -->
-                <div class="lecture" id="lec-12">
+                <div class="lecture" id="lec-11">
                     <div class="lecture-tag">Lecture 12 · Capstone</div>
                     <h1>Capstone Project: Full Penetration Test</h1>
                     <div class="lecture-meta">
@@ -3777,60 +3777,275 @@ Third-party services
                 </div>
 
         <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Social Engineering</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 12</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-12" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 13 &middot; Advanced</div>
+<h1>Social Engineering &amp; Human Security</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 12</span></div>
+<p class="lecture-intro">Humans are often the most vulnerable link in any organization's security perimeter. Study ethical social engineering frameworks, spear phishing simulations, OSINT profiling, physical red teaming, and how organizations harden human defenses.</p>
+<h2>The Social Engineering Vectors</h2>
+<ul><li><strong>Phishing &amp; Spear Phishing:</strong> Fraudulent emails targeting individuals or roles using spoofed domains and urgent psychological triggers.</li><li><strong>Pretexting:</strong> Fabricating a believable scenario (e.g. IT support, HR payroll audit) to elicit sensitive information.</li><li><strong>Watering Hole Attacks:</strong> Compromising a legitimate website frequently visited by target employees to drop malware.</li><li><strong>Baiting &amp; Physical Drops:</strong> Leaving malware-laden USB drives in parking lots or lobbies labeled "Confidential Salaries".</li></ul>
+
+<h2>1. OSINT Employee Profiling &amp; Reconnaissance</h2>
+<p>Ethical penetration testers gather publicly accessible data to evaluate an organization's exposure:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre><span class="cm"># Enumerate company domains and subdomains</span>
+subfinder -d targetcompany.com -silent | httpx -title -status-code
+
+<span class="cm"># Harvest employee emails and naming conventions</span>
+theHarvester -d targetcompany.com -b linkedin,google -l 500
+
+<span class="cm"># Discover leaked credentials in breaches</span>
+h8mail -t <span class="st">"executive@targetcompany.com"</span></pre>
+</div>
+
+<h2>2. Simulating Phishing with GoPhish (Educational / Authorized Testing)</h2>
+<p>Authorized red teams assess workforce vulnerability using controlled simulation platforms like GoPhish:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre><span class="cm"># Launch authorized local testing instance</span>
+./gophish
+<span class="cm"># Access admin panel at https://127.0.0.1:3333</span>
+<span class="cm"># Test email headers for SPF, DKIM, and DMARC alignment</span>
+dig +short TXT targetcompany.com | grep <span class="st">"v=spf1"</span>
+dig +short TXT _dmarc.targetcompany.com</pre>
+</div>
+
+<div class="box warning"><div class="box-title">Strict Legal & Ethics Notice</div><p>Social engineering tests may ONLY be conducted with explicit, written authorization and defined Rules of Engagement (ROE) from executive leadership. Unauthorized phishing is a serious federal cybercrime.</p></div>
+
+<h2>Defensive Engineering: Hardening the Human Perimeter</h2>
+<ul><li><strong>FIDO2 / WebAuthn Hardware Security Keys:</strong> Cryptographically bound to the exact origin domain, making credential phishing technically impossible even if a user types their password on a fake site.</li><li><strong>DMARC Enforcement (<code>p=reject</code>):</strong> Prevents unauthorized servers from sending emails impersonating company domains.</li><li><strong>Security Awareness Training:</strong> Monthly micro-training and reported email triage pipelines.</li></ul>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Relying solely on SMS or App-based push notifications for MFA. Adversaries use "MFA Fatigue" (push-bombing) or reverse-proxy kits (Evilginx) to capture session cookies. Implement phishing-resistant FIDO2 hardware keys.</li><li>Testing employees without executive approval and notification of the internal incident response / SOC team.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Always check DMARC policy alignment: <code>dig TXT _dmarc.example.com</code>. If <code>p=none</code>, domain spoofing is trivial.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 13.1</div>
+<ol><li>Analyze a raw email header from your spam inbox and identify the SPF, DKIM, and DMARC pass/fail flags.</li><li>Perform passive OSINT reconnaissance on your own name and email to map out your digital footprint.</li></ol></div>
+
+<div class="quiz-block" data-quiz="eh-l13">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Which MFA technology is cryptographically immune to real-time reverse-proxy phishing attacks?</p><ol class="quiz-options"><li>SMS text codes</li><li>FIDO2 / WebAuthn hardware keys (like YubiKey)</li><li>Email verification links</li></ol><p class="quiz-explain">FIDO2 WebAuthn keys bind the cryptographic authentication signature to the browser URL domain, refusing to sign credentials on phishing clones.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does a DMARC policy of "p=reject" tell receiving mail servers to do with spoofed emails?</p><ol class="quiz-options"><li>Deliver to inbox</li><li>Silently discard and reject them</li><li>Flag as low priority</li></ol><p class="quiz-explain">p=reject enforces strict domain verification, instructing receiving servers to reject emails failing SPF/DKIM.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is "pretexting" in the context of social engineering?</p><ol class="quiz-options"><li>Brute-forcing an SSH port</li><li>Creating an invented scenario to trick a target into providing confidential data</li><li>Writing Python exploits</li></ol><p class="quiz-explain">Pretexting is the act of inventing an elaborate background story or role to manipulate a target.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(11)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Advanced</div>
-            <h1>Cryptography Basics</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 13</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(14)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-13" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 14 &middot; Advanced</div>
+<h1>Cryptography Basics &amp; Vulnerabilities</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 13</span></div>
+<p class="lecture-intro">Cryptography forms the mathematical foundation of confidentiality, integrity, and authenticity. Learn symmetric vs asymmetric encryption, cryptographic hashing, password salting, TLS certificates, and real-world implementation flaws.</p>
+<h2>Symmetric vs. Asymmetric Cryptography</h2>
+<table>
+  <thead>
+    <tr><th>Type</th><th>Key Usage</th><th>Algorithms</th><th>Use Cases</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Symmetric</strong></td><td>Single shared secret for both encryption &amp; decryption</td><td>AES-256-GCM, ChaCha20</td><td>High-speed bulk data &amp; disk encryption</td></tr>
+    <tr><td><strong>Asymmetric</strong></td><td>Public key to encrypt; Private key to decrypt</td><td>RSA-4096, ECC (X25519, Ed25519)</td><td>Key exchange, digital signatures, SSH keys</td></tr>
+  </tbody>
+</table>
+
+<h2>1. Cryptographic Hashing &amp; Password Storage</h2>
+<p>A secure hash function is <strong>deterministic</strong>, <strong>irreversible</strong>, and produces uniform avalanche effects. Passwords must never use fast general hashes like MD5, SHA-1, or SHA-256:</p>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">exploit.py</span></div>
+<pre><span class="kw">import</span> hashlib
+<span class="kw">import</span> bcrypt
+
+<span class="cm"># ❌ INSECURE: SHA-256 is designed for speed. GPUs can test billions of SHA-256 hashes per second!</span>
+fast_hash = hashlib.sha256(b<span class="st">"SuperSecretPassword123"</span>).hexdigest()
+print(f<span class="st">"Fast hash (vulnerable to GPU rainbow tables): {fast_hash}"</span>)
+
+<span class="cm"># ✅ SECURE: Use Argon2id or bcrypt with random salt and work factor</span>
+password = b<span class="st">"SuperSecretPassword123"</span>
+salt = bcrypt.gensalt(rounds=12) <span class="cm"># Cost factor makes brute-force computationally prohibitive</span>
+secure_hash = bcrypt.hashpw(password, salt)
+
+<span class="cm"># Verification</span>
+is_valid = bcrypt.checkpw(password, secure_hash)
+print(f<span class="st">"Bcrypt verified: {is_valid}"</span>)</pre>
+</div>
+
+<h2>2. Common Cryptographic Implementation Flaws</h2>
+<ul><li><strong>ECB Mode in AES:</strong> AES in Electronic Codebook (ECB) mode encrypts identical plaintext blocks into identical ciphertext blocks, preserving visual patterns (the famous "ECB Penguin"). Always use <strong>AES-GCM</strong> (Authenticated Encryption).</li><li><strong>Reusing Nonces / IVs:</strong> In AES-GCM or ChaCha20-Poly1305, reusing an Initialization Vector (IV) with the same key destroys authenticity guarantees and allows message decryption.</li><li><strong>Weak Randomness:</strong> Using standard pseudorandom generators like <code>random()</code> or <code>rand()</code> instead of cryptographically secure random sources like <code>/dev/urandom</code> or <code>crypto.getRandomValues()</code>.</li></ul>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre><span class="cm"># Testing a live TLS server configuration for weak ciphers</span>
+testssl.sh --severity HIGH https://targetcompany.com
+
+<span class="cm"># Inspect certificate chain &amp; validity</span>
+openssl s_client -connect targetcompany.com:443 -servername targetcompany.com &lt;/dev/null | openssl x509 -noout -text</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Attempting to design your own custom encryption algorithm ("Schneier's Law: Anyone can invent an algorithm they cannot break themselves"). Always use audited industry primitives like AES-GCM or ChaCha20.</li><li>Encrypting sensitive database records without HMAC / Authenticated Encryption (AEAD). Unauthenticated ciphertext is vulnerable to bit-flipping attacks.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>For password storage in 2026, the OWASP and NIST gold standard is <strong>Argon2id</strong>, followed by <strong>bcrypt</strong> with minimum work factor 12.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 14.1</div>
+<ol><li>Use OpenSSL on your command line to encrypt a file with <code>aes-256-gcm</code> and decrypt it.</li><li>Write a small script in Python using <code>hashlib</code> and <code>secrets</code> to demonstrate salted password hashing.</li></ol></div>
+
+<div class="quiz-block" data-quiz="eh-l14">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why is SHA-256 unsuitable for storing user passwords in database backends?</p><ol class="quiz-options"><li>It is broken and has collisions</li><li>It is computationally too fast, allowing GPUs to test billions of guesses per second</li><li>It is proprietary</li></ol><p class="quiz-explain">SHA-256 is designed for fast file integrity verification. Passwords require memory-hard, deliberately slow algorithms like Argon2id or bcrypt.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the main cryptographic danger of AES Electronic Codebook (ECB) mode?</p><ol class="quiz-options"><li>It requires an internet connection</li><li>Identical plaintext blocks produce identical ciphertext blocks, leaking structure and data</li><li>It only supports 64-bit keys</li></ol><p class="quiz-explain">ECB does not use IVs or chaining, meaning repetitive plaintext generates repetitive ciphertext, preserving visual patterns.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What does AEAD (such as AES-GCM) provide beyond basic confidentiality?</p><ol class="quiz-options"><li>Compression</li><li>Cryptographic authenticity and integrity verification</li><li>Speed limiters</li></ol><p class="quiz-explain">AEAD (Authenticated Encryption with Associated Data) guarantees that ciphertext has not been tampered with or modified in transit.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(12)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(14)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 15 ===================== -->
-        <div class="lecture" id="lec-14">
-            <div class="lecture-tag">Lecture 15 · Advanced</div>
-            <h1>Cloud Security (AWS/Azure)</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 14</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(13)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(15)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-14" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 15 &middot; Advanced</div>
+<h1>Cloud Infrastructure Security (AWS &amp; Azure)</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~35 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 14</span></div>
+<p class="lecture-intro">Modern workloads run in the cloud. As organizations migrate from on-premise networks, attacks shift from network perimeter exploitation to Cloud IAM privilege escalation, misconfigured storage buckets, serverless vulnerabilities, and metadata service abuse.</p>
+<h2>The Shared Responsibility Model</h2>
+<p>Cloud providers (AWS, Azure, GCP) protect the <em>security OF the cloud</em> (physical data centers, hypervisors, hardware). Customers are responsible for <em>security IN the cloud</em> (IAM roles, storage access policies, application code, firewall ingress).</p>
+
+<h2>1. The Cloud Attack Surface &amp; Common Vulnerabilities</h2>
+<ul><li><strong>Exposed Storage (S3 / Azure Blob):</strong> Publicly readable or writable cloud buckets containing database backups, source code, or PII.</li><li><strong>IMDSv1 SSRF Exploitation:</strong> Server-Side Request Forgery attacking the Instance Metadata Service (<code>http://169.254.169.254/latest/meta-data/</code>) to extract temporary EC2 IAM credentials.</li><li><strong>Over-Privileged IAM Roles:</strong> Granting wildcards like <code>"Action": "*"</code> or permissions like <code>iam:PassRole</code> and <code>iam:AttachUserPolicy</code>.</li><li><strong>Hardcoded Cloud Secrets:</strong> Access keys (<code>AKIA...</code>) accidentally committed to public Git repositories.</li></ul>
+
+<h2>2. Demonstrating IMDS Metadata Exploitation</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre><span class="cm"># In an application vulnerable to SSRF, an attacker requests the local link-address:</span>
+curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
+
+<span class="cm"># Extract temporary session tokens:</span>
+curl http://169.254.169.254/latest/meta-data/iam/security-credentials/WebServerRole
+<span class="cm"># Output includes: AccessKeyId, SecretAccessKey, and Token!</span>
+
+<span class="cm"># ✅ DEFENSE: Enforce IMDSv2 (requires session token header):</span>
+aws ec2 modify-instance-metadata-options \
+    --instance-id i-1234567890abcdef0 \
+    --http-tokens required \
+    --http-endpoint enabled</pre>
+</div>
+
+<h2>3. Auditing Cloud Posture (CSPM)</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">terminal</span></div>
+<pre><span class="cm"># Scan AWS configuration for security vulnerabilities using ScoutSuite</span>
+scout aws --profile audit-profile
+
+<span class="cm"># Enumerate exposed S3 buckets and permissions</span>
+cloud_enum -k targetcompany
+
+<span class="cm"># Check IAM permissions with Prowler</span>
+prowler aws --category iam</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li>Permitting IMDSv1 on EC2 instances. Always mandate <strong>IMDSv2</strong>, which requires a pre-authenticated <code>X-aws-ec2-metadata-token</code> header, completely neutralizing simple SSRF attacks.</li><li>Using root cloud accounts for daily operations. Lock root credentials with FIDO2 MFA and use role-based SSO.</li></ul></div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li>Enable AWS CloudTrail in all regions with log file validation and send logs to an encrypted, write-once (S3 Object Lock) audit bucket.</li><li>Use Least Privilege Principle: write tightly scoped IAM policies with specific resource ARNs rather than broad wildcards.</li></ul></div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Exercise 15.1</div>
+<ol><li>Review an IAM policy JSON document and identify wildcard privilege escalation paths.</li><li>Run an open-source cloud linter (like Prowler or Checkov) against a sample Terraform deployment.</li></ol></div>
+
+<div class="quiz-block" data-quiz="eh-l15">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What IP address is reserved across cloud environments for the local Instance Metadata Service (IMDS)?</p><ol class="quiz-options"><li>127.0.0.1</li><li>169.254.169.254</li><li>192.168.1.1</li></ol><p class="quiz-explain">169.254.169.254 is the standardized link-local IPv4 address used to access instance metadata and role tokens.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">How does IMDSv2 protect against Server-Side Request Forgery (SSRF)?</p><ol class="quiz-options"><li>By encrypting hard drives</li><li>By requiring a PUT request to establish a session token header before querying data</li><li>By blocking outbound DNS</li></ol><p class="quiz-explain">IMDSv2 requires an HTTP PUT request with custom token headers, which standard SSRF vulnerabilities (typically GET only) cannot forge.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Under the Shared Responsibility Model, who is responsible for securing S3 bucket access policies?</p><ol class="quiz-options"><li>AWS</li><li>The customer / organization</li><li>The ISP</li></ol><p class="quiz-explain">The customer is solely responsible for IAM permissions and access control lists applied to their cloud resources.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(13)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(15)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 16 ===================== -->
-        <div class="lecture" id="lec-15">
-            <div class="lecture-tag">Lecture 16 · Professional</div>
-            <h1>Final Project — Full Penetration Test</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(14)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-15" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 16 &middot; Professional</div>
+<h1>Final Project &mdash; End-to-End Penetration Test &amp; Executive Report</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~120 min</span><span class="meta-badge level-beginner">Project</span><span class="meta-badge">Requires: All Previous Lectures</span></div>
+<p class="lecture-intro">Synthesize every offensive and defensive skill acquired throughout this course. You will execute a full-scope simulated penetration test across an authorized enterprise lab environment and write a professional, industry-standard remediation report for executive leadership.</p>
+<h2>Penetration Testing Lifecycle</h2>
+<p>Professional assessments follow the <strong>PTES (Penetration Testing Execution Standard)</strong>:</p>
+<ol><li><strong>Pre-Engagement:</strong> Establish Rules of Engagement (ROE), scoping, and safe testing windows.</li><li><strong>Intelligence Gathering:</strong> Passive OSINT, DNS enumeration, network range mapping.</li><li><strong>Threat Modeling &amp; Vulnerability Analysis:</strong> Port scanning, service banner grabbing, web app spidering.</li><li><strong>Exploitation:</strong> Safely proving vulnerabilities without disrupting business continuity.</li><li><strong>Post-Exploitation:</strong> Assessing impact, privilege escalation paths, and sensitive data risk.</li><li><strong>Reporting:</strong> Executive summary with business risk context and technical remediation roadmap.</li></ol>
+
+<h2>Sample Professional Pentest Executive Report Structure</h2>
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pentest-report.txt</span></div>
+<pre>================================================================================
+PENETRATION TESTING ENGAGEMENT REPORT
+Target: Global Logistics Corp (staging.globallogistics.example)
+Date: October 2026
+Assessor: Code Tutorium Red Team
+Classification: HIGHLY CONFIDENTIAL
+================================================================================
+
+1. EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+Between Oct 1 and Oct 5, 2026, a comprehensive penetration test was conducted
+against the staging environment of Global Logistics Corp. The assessment
+identified 1 CRITICAL, 2 HIGH, and 3 MEDIUM severity vulnerabilities.
+
+The most severe finding allowed an external unauthenticated attacker to exploit
+an exposed management API endpoint to access the cloud Instance Metadata Service
+(IMDS), resulting in complete compromise of cloud infrastructure.
+
+Remediation priority should immediately focus on enforcing IMDSv2 and rotating
+all cloud access keys.
+
+2. VULNERABILITY FINDINGS MATRIX
+--------------------------------------------------------------------------------
+ID    Severity  Vulnerability Description                 CVSS v3.1 Status
+--------------------------------------------------------------------------------
+GL-01 CRITICAL  SSRF to Cloud Metadata Credential Theft   9.8       Verified
+GL-02 HIGH      SQL Injection in Invoice Search Portal    8.6       Verified
+GL-03 HIGH      Permissive CORS allowing Credential Theft 7.5       Verified
+GL-04 MEDIUM    Outdated OpenSSH 7.2 Banner Exposure      5.3       Verified
+
+3. DETAILED TECHNICAL FINDING: GL-01
+--------------------------------------------------------------------------------
+Vulnerability: Server-Side Request Forgery (SSRF) to Cloud IMDS
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N (Score: 9.8)
+
+Description:
+The /api/v1/preview endpoint accepts a user-controlled 'url' parameter and fetches
+the target image without validating whether the address points to internal link-local
+IP ranges.
+
+Proof of Concept (PoC):
+POST /api/v1/preview HTTP/1.1
+Host: staging.globallogistics.example
+Content-Type: application/json
+
+{<span class="st">"url"</span>: <span class="st">"http://169.254.169.254/latest/meta-data/iam/security-credentials/AppRole"</span>}
+
+Response:
+HTTP/1.1 200 OK
+{
+  <span class="st">"AccessKeyId"</span>: <span class="st">"ASIAEXAMPLEKEY..."</span>,
+  <span class="st">"SecretAccessKey"</span>: <span class="st">"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY..."</span>,
+  <span class="st">"Token"</span>: <span class="st">"IQoJb3JpZ2luX2VjE..."</span>
+}
+
+Impact:
+Attackers obtain temporary AWS credentials granting read/write access to production S3
+buckets and customer shipping databases.
+
+Remediation Guidance:
+1. Short-term: Enforce IMDSv2 across all EC2 instances (HttpTokens=required).
+2. Code-level: Implement strict destination IP allowlisting that drops requests to
+   private RFC 1918 (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) and link-local (169.254.0.0/16) IPs.</pre>
+</div>
+
+<div class="box tip"><div class="box-title">Ethical Hacker Milestone Achieved!</div><p>Congratulations on completing the Ethical Hacking &amp; Cybersecurity course! You have mastered network reconnaissance, web exploitation vectors, cryptographic foundations, cloud security architectures, and professional vulnerability reporting.</p></div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(14)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(0)">&#8634; Back to Start</button>
+</div>
+</div>
 
             </div>
 

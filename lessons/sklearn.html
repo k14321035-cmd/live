@@ -890,376 +890,405 @@ print("matplotlib:", matplotlib.**version**)
 <div class="box info"><div class="box-title">Next Lecture</div><p>In Lecture 03, we will learn about <strong>NumPy arrays and the numerical data structures used by Scikit-Learn</strong>, including shapes, dimensions, indexing, and preparing data for machine learning.</p></div>
 <div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(0)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(2)">Next Lecture &rarr;</button></div>
 </div>
-<div class="lecture" id="lec-2"><div class="lecture-tag">Lecture 03 &middot; The ML Workflow</div>
-<h1>The Machine Learning Workflow in Scikit-Learn</h1>
-<p class="lecture-intro">Understand the standard machine learning pipeline, why each stage is important, how data moves through a Scikit-Learn project, and how each step maps to specific sklearn tools and techniques.</p>
-<div class="feature-grid">
-<div class="feature-card"><h3>1. Load Data</h3><p>Load data from files, databases, APIs, or sklearn built-in datasets.</p></div>
-<div class="feature-card"><h3>2. Explore Data</h3><p>Understand the shape, columns, data types, distributions, and statistics.</p></div>
-<div class="feature-card"><h3>3. Preprocess</h3><p>Clean, scale, encode, and transform features before training.</p></div>
-<div class="feature-card"><h3>4. Split Data</h3><p>Divide the dataset into training and testing sets.</p></div>
-<div class="feature-card"><h3>5. Train Model</h3><p>Choose an algorithm and use <code>fit()</code> to learn from training data.</p></div>
-<div class="feature-card"><h3>6. Evaluate</h3><p>Measure model performance on data that was not used during training.</p></div>
+<div class="lecture" id="lec-2"><div class="lecture-tag">Lecture 03 &middot; The Machine Learning Workflow</div>
+<h1>Understand the Machine Learning Workflow</h1>
+<p class="lecture-intro">
+    A machine learning model is not created by simply calling one function. Scikit-Learn provides tools that allow you to follow a complete workflow: collect or load data, prepare it, split it into training and testing sets, choose a model, train it, make predictions, evaluate its performance, and improve it when necessary.
+</p>
+<h2>01. Understand the Machine Learning Workflow</h2>
+<p>A typical machine learning project follows a series of steps. Each step has a specific purpose and contributes to building a reliable model.</p>
+<p>The general workflow can be represented as:</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">workflow.py</span></div>
+    <pre>1. Collect or load data
+2. Explore the data
+3. Prepare the data
+4. Split the data
+5. Choose a model
+6. Train the model
+7. Make predictions
+8. Evaluate the model
+9. Improve the model</pre>
 </div>
-<h2>01. What is the Machine Learning Workflow?</h2>
-<p>A machine learning workflow is a sequence of steps used to transform raw data into a trained model that can make predictions or discover patterns.</p>
-<p>Machine learning is not simply about choosing an algorithm and calling <code>fit()</code>. A successful project requires understanding the data, preparing it correctly, selecting an appropriate model, evaluating its performance, and improving the solution when necessary.</p>
-<div class="box info"><div class="box-title">Simple Workflow</div><p><strong>Data &rarr; Explore &rarr; Prepare &rarr; Split &rarr; Train &rarr; Evaluate &rarr; Improve &rarr; Predict</strong></p></div>
-<p>Scikit-Learn provides tools for many of these steps, which allows developers to create machine learning pipelines using a consistent programming interface.</p>
-<h2>02. Step 1 &mdash; Load the Data</h2>
-<p>The first step is obtaining the dataset. Data can come from many sources, including CSV files, databases, APIs, spreadsheets, sensors, applications, or built-in datasets provided by Scikit-Learn.</p>
-<p>For learning purposes, sklearn provides several small datasets that can be loaded directly into Python.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">load_data.py</span></div>
-<pre>from sklearn.datasets import load_iris
+<p>Scikit-Learn provides functions and classes for most of these steps. For example, <code>train_test_split()</code> can divide the data, while classes such as <code>LinearRegression</code>, <code>KNeighborsClassifier</code>, and <code>DecisionTreeClassifier</code> can be used to create machine learning models.</p>
+<p>The important idea is that <strong>training a model is only one part of the machine learning workflow</strong>. A model must also be tested on data that it did not see during training.</p>
+<div class="box info">
+    <div class="box-title">The Basic ML Pipeline</div>
+    <p><strong>Data → Preparation → Split → Model → Train → Predict → Evaluate → Improve</strong></p>
+</div>
+<h2>02. Load the Required Libraries</h2>
+<p>Before building a machine learning model, import the libraries and tools that you need. Scikit-Learn contains many machine learning algorithms and utilities.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">workflow.py</span></div>
+    <pre>import numpy as np
+import pandas as pd
 
-data = load_iris()
-
-print(data.data.shape)
-print(data.target.shape)
-print(data.feature_names)
-print(data.target_names)</pre></div>
-
-<p>The Iris dataset is a popular introductory dataset containing measurements of flowers and their corresponding species.</p>
-<div class="box info"><div class="box-title">Important</div><p>Real-world projects usually require additional data preparation before the dataset can be passed directly to a machine learning algorithm.</p></div>
-<h2>03. Step 2 &mdash; Understand Features and Labels</h2>
-<p>In supervised machine learning, the dataset normally contains <strong>features</strong> and a <strong>target</strong>.</p>
-<p>Features are the input variables used by the model. The target is the value the model is trying to predict.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">features.py</span></div>
-<pre>data = load_iris()
-
-X = data.data
-y = data.target
-
-print("Features:", X.shape)
-print("Target:", y.shape)</pre></div>
-
-<p>By convention, Scikit-Learn examples commonly use <code>X</code> for the feature matrix and <code>y</code> for the target vector.</p>
-<div class="box info"><div class="box-title">Remember</div><ul>
-<li><strong>X</strong> &mdash; input features</li>
-<li><strong>y</strong> &mdash; target or label</li>
-<li>Rows in X normally represent individual samples.</li>
-<li>Columns in X normally represent individual features.</li>
-</ul></div>
-<h2>04. Step 3 &mdash; Explore the Data</h2>
-<p>Before training a model, you should understand the dataset. Data exploration helps identify missing values, unusual values, incorrect data types, class imbalance, and relationships between variables.</p>
-<p>With NumPy arrays, useful properties include <code>shape</code>, <code>ndim</code>, and <code>dtype</code>.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">explore.py</span></div>
-<pre>print("Shape:", X.shape)
-print("Dimensions:", X.ndim)
-print("Data type:", X.dtype)
-print("First five rows:")
-print(X[:5])</pre></div>
-<p>If you are using Pandas, you can also inspect the dataset using methods such as <code>head()</code>, <code>info()</code>, and <code>describe()</code>.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pandas_explore.py</span></div>
-<pre>import pandas as pd
-
-df = pd.read_csv("data.csv")
-
-print(df.head())
-print(df.info())
-print(df.describe())</pre></div>
-
-<h2>05. Step 4 &mdash; Clean and Preprocess the Data</h2>
-<p>Raw data is rarely ready for machine learning. It may contain missing values, categorical variables, different numerical scales, duplicated records, or other problems.</p>
-<p>Preprocessing converts raw features into a representation that can be effectively used by a machine learning algorithm.</p>
-<div class="box info"><div class="box-title">Common Preprocessing Tasks</div><ul>
-<li>Handling missing values</li>
-<li>Scaling numerical features</li>
-<li>Encoding categorical variables</li>
-<li>Removing or handling invalid values</li>
-<li>Transforming numerical distributions</li>
-<li>Selecting useful features</li>
-</ul></div>
-<p>Scikit-Learn provides preprocessing tools such as <code>StandardScaler</code>, <code>MinMaxScaler</code>, and encoders for categorical variables.</p>
-<h2>06. Step 5 &mdash; Split the Data</h2>
-<p>After preparing the data, it is common to divide it into training and testing subsets.</p>
-<p>The training set is used to teach the model. The test set is kept separate and is used later to measure how well the trained model performs on unseen data.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">split_data.py</span></div>
-<pre>from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(
-X,
-y,
-test_size=0.2,
-random_state=42
-)
-
-print("Training samples:", X_train.shape[0])
-print("Testing samples:", X_test.shape[0])</pre></div>
-
-<p>Here, <code>test_size=0.2</code> means that 20% of the data is reserved for testing while the remaining 80% is used for training.</p>
-<div class="box warning"><div class="box-title">Avoid Data Leakage</div><p>Do not allow information from the test set to influence training or preprocessing decisions. The test set should represent data that the model has not seen during the training process.</p></div>
-<h2>07. Step 6 &mdash; Scale Features When Necessary</h2>
-<p>Some algorithms work better when numerical features are placed on comparable scales. For example, one feature might contain values between 0 and 1 while another contains values in the thousands.</p>
-<p><code>StandardScaler</code> is commonly used to standardize numerical features.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">scaling.py</span></div>
-<pre>from sklearn.preprocessing import StandardScaler
-
-scaler = StandardScaler()
-
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)</pre></div>
-
-<p>Notice the difference between the two operations. We use <code>fit_transform()</code> on the training data because the scaler needs to learn its parameters from the training set. We then use only <code>transform()</code> on the test set.</p>
-<div class="box info"><div class="box-title">Important Rule</div><p><strong>Fit preprocessing objects on training data only.</strong> Then use the learned transformation to transform the test or future data.</p></div>
-<h2>08. Step 7 &mdash; Choose a Machine Learning Model</h2>
-<p>After preparing the data, choose an algorithm based on the type of problem.</p>
-<div class="box info"><div class="box-title">Examples</div><ul>
-<li><strong>Linear Regression</strong> &mdash; predicting continuous numerical values</li>
-<li><strong>Logistic Regression</strong> &mdash; classification problems</li>
-<li><strong>K-Nearest Neighbors</strong> &mdash; classification or regression</li>
-<li><strong>Decision Tree</strong> &mdash; classification or regression</li>
-<li><strong>Random Forest</strong> &mdash; classification or regression</li>
-<li><strong>K-Means</strong> &mdash; clustering unlabeled data</li>
-</ul></div>
-<p>Model selection should depend on the problem, data characteristics, computational requirements, interpretability requirements, and evaluation results.</p>
-<h2>09. Step 8 &mdash; Train the Model</h2>
-<p>Once the model has been created, call its <code>fit()</code> method using the training data.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">train_model.py</span></div>
-<pre>from sklearn.neighbors import KNeighborsClassifier
-
-model = KNeighborsClassifier(n_neighbors=3)
-
-model.fit(X_train, y_train)</pre></div>
-
-<p>During training, the algorithm learns patterns or parameters from the training data.</p>
-<div class="box info"><div class="box-title">The Core Idea</div><p><code>fit()</code> means: <strong>learn from the training data.</strong></p></div>
-<h2>10. Step 9 &mdash; Make Predictions</h2>
-<p>After training, the model can be used to make predictions on new data using the <code>predict()</code> method.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">prediction.py</span></div>
-<pre>predictions = model.predict(X_test)
-
-print("Predictions:")
-print(predictions)</pre></div>
-
-<p>The predictions can then be compared with the actual target values from the test set.</p>
-<div class="box info"><div class="box-title">Remember</div><p>The test features are passed to <code>predict()</code>. The actual test labels are kept separately so that we can evaluate how accurate the predictions are.</p></div>
-<h2>11. Step 10 &mdash; Evaluate the Model</h2>
-<p>A model's performance must be measured using an appropriate evaluation metric. The correct metric depends on whether the problem is classification, regression, or another type of machine learning task.</p>
-<p>For classification, accuracy is one simple metric.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">evaluate.py</span></div>
-<pre>from sklearn.metrics import accuracy_score
-
-predictions = model.predict(X_test)
-
-accuracy = accuracy_score(y_test, predictions)
-
-print("Accuracy:", accuracy)</pre></div>
-
-<p>For regression problems, metrics such as mean squared error or mean absolute error are commonly used.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">regression_metrics.py</span></div>
-<pre>from sklearn.metrics import mean_squared_error
-
-error = mean_squared_error(y_test, predictions)
-
-print("Mean Squared Error:", error)</pre></div>
-
-<h2>12. Step 11 &mdash; Improve the Model</h2>
-<p>If the model does not perform well enough, the workflow does not simply end. You may need to investigate the data, features, preprocessing, model choice, or hyperparameters.</p>
-<div class="box info"><div class="box-title">Ways to Improve a Model</div><ul>
-<li>Collect more representative data</li>
-<li>Improve data cleaning</li>
-<li>Create better features</li>
-<li>Choose a different algorithm</li>
-<li>Adjust model hyperparameters</li>
-<li>Use cross-validation</li>
-<li>Handle class imbalance appropriately</li>
-<li>Remove irrelevant or problematic features</li>
-</ul></div>
-<p>Machine learning is often an iterative process. You build a model, evaluate it, identify weaknesses, make improvements, and evaluate it again.</p>
-<h2>13. Complete Workflow Example</h2>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">ml_workflow.py</span></div>
-<pre>from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
 
-# 1. Load the data
-
-data = load_iris()
-
-# 2. Separate features and labels
-
-X, y = data.data, data.target
-
-# 3. Split into training and testing sets
+</div>
+<p>Here, <code>NumPy</code> is useful for numerical operations, while <code>Pandas</code> is commonly used to load and work with tabular data.</p>
+<p>From Scikit-Learn, we import <code>train_test_split()</code> for dividing the dataset, <code>LinearRegression</code> for creating a regression model, and evaluation functions for measuring how well the model performs.</p>
+<p>You do not need to import every Scikit-Learn module in every project. Import only the tools required for the particular machine learning task.</p>
+<h2>03. Prepare Features and Targets</h2>
+<p>Machine learning models usually work with two main types of data: <strong>features</strong> and a <strong>target</strong>.</p>
+<p>Features are the input values used by the model to make a prediction. The target is the value that the model is trying to predict.</p>
+<p>For example, suppose we want to predict a student's exam score from the number of hours they studied.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">data.py</span></div>
+    <pre>hours = [[1], [2], [3], [4], [5], [6]]
+scores = [35, 42, 50, 58, 67, 75]</pre>
+</div>
+<p>Here, <code>hours</code> is the feature because it is used as the input to the model. The <code>scores</code> are the target values because they are what we want the model to predict.</p>
+<p>Scikit-Learn normally represents features as a two-dimensional structure, even when there is only one feature. That is why the values are written as <code>[[1], [2], [3]]</code> rather than simply <code>[1, 2, 3]</code>.</p>
+<div class="box tip">
+    <div class="box-title">Remember</div>
+    <p><strong>X</strong> usually represents the features or input data, while <strong>y</strong> usually represents the target or output that the model learns to predict.</p>
+</div>
+<h2>04. Split the Data</h2>
+<p>A model should not be evaluated only on the same data that it used for learning. Instead, divide the dataset into a training set and a testing set.</p>
+<p>The training data is used to teach the model. The testing data is kept separate and is used later to check how well the model performs on unseen examples.</p>
+<p>Scikit-Learn provides the <code>train_test_split()</code> function for this purpose.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">split.py</span></div>
+    <pre>from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(
-X,
-y,
+hours,
+scores,
 test_size=0.2,
 random_state=42
 )
 
-# 4. Create the scaler
+</div>
+<p>The function returns four values. <code>X_train</code> and <code>y_train</code> contain the training data, while <code>X_test</code> and <code>y_test</code> contain the testing data.</p>
+<p>The <code>test_size=0.2</code> argument means that approximately 20% of the available data is reserved for testing, while the remaining 80% is used for training.</p>
+<p>The <code>random_state=42</code> argument makes the split reproducible. This means that running the same code again will produce the same split.</p>
+<div class="box warning">
+    <div class="box-title">Important</div>
+    <p>Do not train your model on the test data and then use that same data to claim that the model performs well. The test set should represent data that the model has not seen during training.</p>
+</div>
+<h2>05. Choose a Machine Learning Model</h2>
+<p>After preparing and splitting the data, choose an algorithm that matches the problem you are solving.</p>
+<p>Different machine learning problems require different types of models.</p>
+<div class="tbl-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>Problem</th>
+                <th>Example</th>
+                <th>Possible Scikit-Learn Model</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Regression</td>
+                <td>Predict house price</td>
+                <td><code>LinearRegression</code></td>
+            </tr>
+            <tr>
+                <td>Classification</td>
+                <td>Predict spam or not spam</td>
+                <td><code>LogisticRegression</code></td>
+            </tr>
+            <tr>
+                <td>Classification</td>
+                <td>Classify flowers</td>
+                <td><code>KNeighborsClassifier</code></td>
+            </tr>
+            <tr>
+                <td>Classification</td>
+                <td>Classify customers</td>
+                <td><code>DecisionTreeClassifier</code></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>Choosing the correct model depends on the type of problem, the dataset, the number of features, the amount of data, and the expected output.</p>
+<p>For this example, we are predicting a numerical exam score, so regression is appropriate. We can use <code>LinearRegression</code>.</p>
+<h2>06. Create and Train the Model</h2>
+<p>Once a model has been selected, create an instance of the model and use the <code>fit()</code> method to train it.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">train.py</span></div>
+    <pre>from sklearn.linear_model import LinearRegression
 
-scaler = StandardScaler()
-
-# 5. Fit on training data and transform it
-
-X_train = scaler.fit_transform(X_train)
-
-# 6. Transform test data
-
-X_test = scaler.transform(X_test)
-
-# 7. Create the model
-
-model = KNeighborsClassifier(n_neighbors=3)
-
-# 8. Train the model
+model = LinearRegression()
 
 model.fit(X_train, y_train)
 
-# 9. Make predictions
+</div>
+<p>The first line creates a <code>LinearRegression</code> object. The second line calls <code>fit()</code>, which allows the model to learn the relationship between the input features and the target values.</p>
+<p>The model examines the training data and learns parameters that can later be used to make predictions.</p>
+<p>In Scikit-Learn, the <code>fit()</code> method is one of the most important methods you will encounter. Many Scikit-Learn models follow the same general pattern:</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">fit_pattern.py</span></div>
+    <pre>model = SomeModel()
 
-predictions = model.predict(X_test)
+model.fit(X_train, y_train)
 
-# 10. Evaluate the model
+</div>
+<div class="box tip">
+    <div class="box-title">Key Idea</div>
+    <p><code>fit()</code> means <strong>learn from the training data</strong>. It does not mean that the model is permanently correct. The model still needs to be evaluated using data that was not used for training.</p>
+</div>
+<h2>07. Make Predictions</h2>
+<p>After training, use the <code>predict()</code> method to generate predictions.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">predict.py</span></div>
+    <pre>predictions = model.predict(X_test)
 
-accuracy = accuracy_score(y_test, predictions)
+print(predictions)
 
-print("Accuracy:", accuracy)</pre></div>
+</div>
+<p>The model receives the test features stored in <code>X_test</code> and produces predicted values.</p>
+<p>For example, if <code>X_test</code> contains the number of hours studied by students that the model has never seen before, the model will use what it learned during training to estimate their exam scores.</p>
+<p>The predicted values are stored in the <code>predictions</code> variable.</p>
+<p>Prediction can also be performed on completely new data.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">new_prediction.py</span></div>
+    <pre>new_student = [[7]]
 
-<p>This example demonstrates the complete basic workflow. The data is loaded, separated into features and labels, divided into training and testing sets, scaled, used to train a model, and finally evaluated.</p>
-<h2>14. Understanding the Complete Pipeline</h2>
-<p>The workflow can be represented as a sequence of transformations that take raw data and eventually produce predictions.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pipeline.txt</span></div>
-<pre>Raw Data
-    ↓
-Explore Data
-    ↓
-Clean Data
-    ↓
-Select Features
-    ↓
-Split Train / Test
-    ↓
-Fit Preprocessing on Training Data
-    ↓
-Transform Training and Test Data
-    ↓
-Train Model
-    ↓
-Predict
-    ↓
-Evaluate
-    ↓
-Tune / Improve
-    ↓
-Final Model</pre></div>
-<p>Thinking in terms of a pipeline helps you organize machine learning projects and reduces the chance of accidentally performing steps in the wrong order.</p>
-<h2>15. Supervised vs Unsupervised Learning</h2>
-<p>Not every machine learning problem uses labelled data. Machine learning is commonly divided into supervised and unsupervised learning, among other categories.</p>
-<div class="box info"><div class="box-title">Supervised vs Unsupervised</div><ul>
-<li><strong>Supervised</strong> &mdash; uses labelled data; the model learns to predict targets. Examples include classification and regression.</li>
-<li><strong>Unsupervised</strong> &mdash; works without target labels; the model attempts to discover patterns or structure. Examples include clustering and dimensionality reduction.</li>
-</ul></div>
-<p>For example, if a dataset contains customer information and a known customer segment, supervised learning can learn to predict the segment. If the segment is unknown, clustering can be used to discover groups based on similarities in the data.</p>
-<h2>16. Key Points</h2>
-<div class="box info"><div class="box-title">Key Points</div><ul>
-<li>A machine learning project follows a sequence of well-defined steps.</li>
-<li>Start by loading and understanding the dataset.</li>
-<li>Separate features <code>X</code> from the target <code>y</code> in supervised learning.</li>
-<li>Explore the data before training a model.</li>
-<li>Preprocess features when required.</li>
-<li>Split data into training and testing sets.</li>
-<li>Fit preprocessing objects using training data only.</li>
-<li>Create a suitable machine learning estimator.</li>
-<li>Use <code>fit()</code> to train the model.</li>
-<li>Use <code>predict()</code> to generate predictions.</li>
-<li>Evaluate predictions using appropriate metrics.</li>
-<li>Machine learning is usually an iterative process of training, evaluating, and improving.</li>
-<li>Supervised learning uses labels, while unsupervised learning attempts to discover patterns without labels.</li>
-</ul></div>
-<div class="exercise"><div class="exercise-title">Exercise 3 &middot; Trace the Pipeline</div>
-<p>Read the workflow example and add a comment next to each line explaining which machine learning pipeline step it belongs to.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">exercise.py</span></div>
-<pre>from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+predicted_score = model.predict(new_student)
 
-data = load_iris()
+print(predicted_score)
 
-X, y = data.data, data.target
+</div>
+<p>Here, the model receives a new input representing seven hours of study and estimates the corresponding exam score.</p>
+<h2>08. Evaluate the Model</h2>
+<p>A prediction alone does not tell us whether a model is good. We need evaluation metrics to measure its performance.</p>
+<p>For regression problems, common metrics include <strong>Mean Squared Error (MSE)</strong> and <strong>R² score</strong>.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">evaluate.py</span></div>
+    <pre>from sklearn.metrics import mean_squared_error, r2_score
+
+mse = mean_squared_error(y_test, predictions)
+r2 = r2_score(y_test, predictions)
+
+print(“MSE:”, mse)
+print(“R²:”, r2)
+
+</div>
+<p><code>mean_squared_error()</code> measures the average squared difference between the actual values and predicted values. A lower MSE generally indicates that the predictions are closer to the actual values.</p>
+<p><code>r2_score()</code> measures how well the model explains the variation in the target values. A value closer to 1 generally indicates a stronger fit for a regression model.</p>
+<p>The correct evaluation metric depends on the type of machine learning problem. Classification models use metrics such as accuracy, precision, recall, and F1-score, while regression models commonly use metrics such as MSE, MAE, and R².</p>
+<h2>09. Put the Complete Workflow Together</h2>
+<p>Now we can combine the major steps into one complete Scikit-Learn program.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">complete_workflow.py</span></div>
+    <pre>from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+hours = [[1], [2], [3], [4], [5], [6]]
+scores = [35, 42, 50, 58, 67, 75]
 
 X_train, X_test, y_train, y_test = train_test_split(
-X, y, test_size=0.2, random_state=42
+hours,
+scores,
+test_size=0.2,
+random_state=42
 )
 
-scaler = StandardScaler()
-
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
-
-model = KNeighborsClassifier(n_neighbors=3)
+model = LinearRegression()
 
 model.fit(X_train, y_train)
 
 predictions = model.predict(X_test)
 
-print(accuracy_score(y_test, predictions))
+mse = mean_squared_error(y_test, predictions)
+r2 = r2_score(y_test, predictions)
 
-# Add comments identifying every pipeline step.</pre></div>
+print(“Predictions:”, predictions)
+print(“MSE:”, mse)
+print(“R²:”, r2)
 
-<p><strong>Challenge:</strong> Change <code>n_neighbors</code> to different values such as 1, 5, and 7. Compare the resulting accuracy values and explain why changing a model hyperparameter can affect its predictions.</p></div>
-<div class="box info"><div class="box-title">Next Lecture</div><p>In Lecture 04, we will explore <strong>NumPy arrays for machine learning</strong> and learn how array shape, dimensions, indexing, and numerical operations affect the data passed into Scikit-Learn models.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(1)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(3)">Next Lecture &rarr;</button></div>
+</div>
+<p>This program demonstrates the complete basic workflow. First, the data is created. Then it is divided into training and testing sets. A regression model is created and trained. The trained model makes predictions on the test data, and the predictions are finally evaluated.</p>
+<p>Learning this workflow is more important than memorizing individual algorithms because many Scikit-Learn models use a similar interface.</p>
+<h2>10. Improve the Model</h2>
+<p>If the model does not perform well, the workflow does not simply end. Machine learning is usually an iterative process.</p>
+<p>You may need to improve the data, select different features, preprocess the values, choose another algorithm, tune hyperparameters, or collect more training data.</p>
+<p>A simplified improvement cycle looks like this:</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">improvement.py</span></div>
+    <pre>Prepare data
+      ↓
+Train model
+      ↓
+Evaluate model
+      ↓
+Analyze results
+      ↓
+Improve data or model
+      ↓
+Train again
+      ↓
+Evaluate again</pre>
+</div>
+<p>For example, a model may perform poorly because the features are not useful, the data contains missing values, the model is too simple, or the model is overfitting the training data.</p>
+<p>Scikit-Learn provides additional tools for preprocessing, feature selection, cross-validation, and hyperparameter tuning that can be introduced as you progress through machine learning.</p>
+<h2>11. The Scikit-Learn Estimator Pattern</h2>
+<p>One of the most useful things to understand about Scikit-Learn is that many algorithms follow a consistent interface.</p>
+<p>A typical model follows this pattern:</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">sklearn_pattern.py</span></div>
+    <pre>model = Model()
+
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+
+</div>
+<p>This pattern makes Scikit-Learn easier to learn. Once you understand how <code>fit()</code> and <code>predict()</code> work, you can apply the same basic idea to many different algorithms.</p>
+<p>Some models also provide methods such as <code>score()</code>, <code>transform()</code>, or <code>fit_transform()</code>. These methods become especially important when working with preprocessing tools and machine learning pipelines.</p>
+<div class="box info">
+    <div class="box-title">Machine Learning Workflow Checklist</div>
+    <ul>
+        <li>Load or collect the dataset.</li>
+        <li>Identify the features and target.</li>
+        <li>Explore and understand the data.</li>
+        <li>Clean and prepare the data.</li>
+        <li>Split the data into training and testing sets.</li>
+        <li>Choose an appropriate machine learning algorithm.</li>
+        <li>Create the model.</li>
+        <li>Train it using <code>fit()</code>.</li>
+        <li>Generate predictions using <code>predict()</code>.</li>
+        <li>Evaluate the predictions with suitable metrics.</li>
+        <li>Improve the model when necessary.</li>
+        <li>Repeat the process until the model meets the required goal.</li>
+    </ul>
+</div>
+<div class="box warning">
+    <div class="box-title">Avoid Data Leakage</div>
+    <p>Never allow information from the test set to influence the training process. This can produce unrealistically good evaluation results and make the model appear better than it really is.</p>
+    <p>As you learn preprocessing and scaling, you will see why operations such as fitting a <code>StandardScaler</code> should normally be learned from the training data rather than the test data.</p>
+</div>
+<div class="exercise">
+    <div class="exercise-title">Exercise 2 &middot; Build an ML Workflow</div>
+    <p>Create a small machine learning program that predicts a numerical value. You can use a dataset such as study hours and exam scores, house size and house price, or advertising budget and sales.</p>
+    <p>Your program should:</p>
+    <ul>
+        <li>Create or load a dataset.</li>
+        <li>Separate the features from the target.</li>
+        <li>Split the data into training and testing sets.</li>
+        <li>Create an appropriate Scikit-Learn model.</li>
+        <li>Train the model using <code>fit()</code>.</li>
+        <li>Generate predictions using <code>predict()</code>.</li>
+        <li>Evaluate the model using at least one suitable metric.</li>
+        <li>Make a prediction for a new input value.</li>
+    </ul>
+    <p>When you finish, explain each stage of your program in your own words. You should be able to answer: What is the input? What is the target? Which data was used for training? Which data was used for testing? What did the model learn? How well did it perform?</p>
+</div>
+<div class="lecture-nav">
+    <button class="nav-btn secondary" onclick="showLecture(1)">&larr; Previous Lecture</button>
+    <button class="nav-btn primary" onclick="showLecture(3)">Next Lecture &rarr;</button>
+</div>
 </div>
 <div class="lecture" id="lec-3"><div class="lecture-tag">Lecture 04 &middot; Datasets &amp; Data Loading</div>
-<h1>Datasets and Data Loading in Scikit-Learn</h1>
-<p class="lecture-intro">Learn how to load built-in datasets, generate synthetic data, understand features and targets, inspect datasets, and load your own CSV files for machine learning.</p>
+<h1>Work with Datasets in Scikit-Learn</h1>
+<p class="lecture-intro">
+    Machine learning models need data to learn from. Before training a model, you need to know how to obtain a dataset, load it into Python, understand its structure, identify features and targets, and prepare it for the machine learning workflow. Scikit-Learn provides several built-in datasets for learning and experimentation, while Pandas makes it easy to load real-world datasets from files such as CSV.
+</p>
+<h2>01. What Is a Dataset?</h2>
+<p>A dataset is a collection of data that can be used to analyze a problem or train a machine learning model. A dataset usually contains multiple observations, where each observation represents one example.</p>
+<p>For example, a student dataset might contain information about study hours, attendance, assignments, and exam scores.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">students.py</span></div>
+    <pre>Hours  Attendance  Assignments  Score
+2      75          6            48
+4      82          8            61
+6      90          9            74
+8      95          10           88</pre>
+</div>
+<p>Each row represents one student, while each column represents a variable or feature.</p>
+<p>If our goal is to predict the exam score, <code>Hours</code>, <code>Attendance</code>, and <code>Assignments</code> could be features, while <code>Score</code> would be the target.</p>
+<div class="box info">
+    <div class="box-title">Remember</div>
+    <p><strong>Rows</strong> usually represent individual observations or examples, while <strong>columns</strong> represent features, variables, or the target.</p>
+</div>
+<h2>02. Features and Target</h2>
+<p>Before training a machine learning model, separate the dataset into input features and the target value.</p>
+<p>Features are the information that the model uses to make a prediction. The target is the value that the model is trying to predict.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">features_target.py</span></div>
+    <pre>import pandas as pd
 
-<div class="box info"><div class="box-title">What You Will Learn</div><ul>
-<li>How Scikit-Learn provides ready-to-use datasets</li>
-<li>How to load and inspect built-in datasets</li>
-<li>How to generate synthetic classification and regression data</li>
-<li>How to generate datasets for clustering</li>
-<li>How to load your own CSV files using Pandas</li>
-<li>How to separate features <code>X</code> and targets <code>y</code></li>
-<li>How to check missing values and dataset dimensions</li>
-<li>How to understand the difference between features and labels</li>
-</ul></div>
+data = pd.DataFrame({
+“Hours”: [2, 4, 6, 8],
+“Attendance”: [75, 82, 90, 95],
+“Score”: [48, 61, 74, 88]
+})
 
-<h2>01. Built-In Datasets</h2>
-<p>Scikit-Learn includes several small datasets that are designed specifically for learning, experimentation, testing algorithms, and demonstrating machine learning concepts.</p>
-<p>These datasets are useful because you can start building models immediately without downloading or preparing external data.</p>
+X = data[[“Hours”, “Attendance”]]
+y = data[“Score”]
 
-<div class="box info"><div class="box-title">Popular Built-In Datasets</div><ul>
-<li><strong>Iris</strong> &mdash; classification of iris flowers.</li>
-<li><strong>Digits</strong> &mdash; handwritten digit recognition.</li>
-<li><strong>Breast Cancer</strong> &mdash; binary classification dataset.</li>
-<li><strong>Wine</strong> &mdash; classification of different wine classes.</li>
-<li><strong>Diabetes</strong> &mdash; regression dataset.</li>
-</ul></div>
+print(X)
+print(y)
 
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">load_dataset.py</span></div>
-<pre>from sklearn.datasets import load_iris, load_digits, load_breast_cancer
+</div>
+<p>Here, <code>X</code> contains the input features, while <code>y</code> contains the target values.</p>
+<p>Notice that <code>X</code> uses double square brackets because it contains multiple columns and therefore remains a two-dimensional DataFrame. The target <code>y</code> is a single Pandas Series.</p>
+<p>This separation is an important step because Scikit-Learn expects the model to receive the features separately from the values it should learn to predict.</p>
+<h2>03. Use Built-in Scikit-Learn Datasets</h2>
+<p>Scikit-Learn provides several built-in datasets that are useful for learning machine learning concepts without downloading external files.</p>
+<p>Some commonly used datasets include:</p>
+<div class="tbl-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>Dataset</th>
+                <th>Purpose</th>
+                <th>Typical Task</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>load_iris()</code></td>
+                <td>Flower measurements</td>
+                <td>Classification</td>
+            </tr>
+            <tr>
+                <td><code>load_digits()</code></td>
+                <td>Handwritten digits</td>
+                <td>Classification</td>
+            </tr>
+            <tr>
+                <td><code>load_breast_cancer()</code></td>
+                <td>Medical diagnostic data</td>
+                <td>Classification</td>
+            </tr>
+            <tr>
+                <td><code>load_diabetes()</code></td>
+                <td>Diabetes-related measurements</td>
+                <td>Regression</td>
+            </tr>
+            <tr>
+                <td><code>load_wine()</code></td>
+                <td>Wine measurements</td>
+                <td>Classification</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>These datasets are particularly useful when learning because they allow you to practice machine learning without first finding and downloading a dataset yourself.</p>
+<h2>04. Load the Iris Dataset</h2>
+<p>The Iris dataset is one of the most commonly used beginner datasets in machine learning. It contains measurements of iris flowers and information about their species.</p>
+<p>Scikit-Learn provides it through the <code>load_iris()</code> function.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">iris.py</span></div>
+    <pre>from sklearn.datasets import load_iris
 
 iris = load_iris()
 
-print("Features:", iris.feature_names)
-print("Target classes:", iris.target_names)
-print("Data shape:", iris.data.shape)
-print("Target shape:", iris.target.shape)
+print(iris)
 
-digits = load_digits()
-
-print("Digits shape:", digits.data.shape)
-
-cancer = load_breast_cancer()
-print("Cancer shape:", cancer.data.shape)</pre></div>
-
-<p>A dataset returned by Scikit-Learn usually contains several useful pieces of information. The <code>data</code> attribute contains the input features, while <code>target</code> contains the values the model should learn to predict.</p>
-
-<h2>02. Understanding Dataset Objects</h2>
-<p>Scikit-Learn dataset loaders usually return a special object called a <strong>Bunch</strong>. It behaves similarly to a dictionary but also allows attribute-style access.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dataset_parts.py</span></div>
-<pre>from sklearn.datasets import load_iris
+</div>
+<p>The returned object contains several pieces of information about the dataset, including the input data, target values, feature names, and target names.</p>
+<p>Instead of printing the entire dataset, you can access individual parts of it.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">iris_data.py</span></div>
+    <pre>from sklearn.datasets import load_iris
 
 iris = load_iris()
 
@@ -1267,322 +1296,253 @@ print(iris.data)
 print(iris.target)
 print(iris.feature_names)
 print(iris.target_names)
-print(iris.DESCR[:500])</pre></div>
 
-<div class="box info"><div class="box-title">Important Dataset Attributes</div><ul>
-<li><code>data</code> &mdash; contains the feature values.</li>
-<li><code>target</code> &mdash; contains the target or label values.</li>
-<li><code>feature_names</code> &mdash; names of the input features.</li>
-<li><code>target_names</code> &mdash; names of the target classes.</li>
-<li><code>DESCR</code> &mdash; contains a description of the dataset.</li>
-</ul></div>
-
-<h2>03. Understanding Features and Targets</h2>
-<p>Machine learning datasets are commonly divided into two main parts: <strong>features</strong> and <strong>targets</strong>.</p>
-<p><strong>Features</strong> are the input variables used by a model. The <strong>target</strong> is the value the model is trying to predict.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">features_target.py</span></div>
-<pre>from sklearn.datasets import load_iris
+</div>
+<p><code>iris.data</code> contains the input features, while <code>iris.target</code> contains the numerical class labels.</p>
+<p><code>iris.feature_names</code> provides the names of the features, and <code>iris.target_names</code> tells us which classes the numerical target values represent.</p>
+<h2>05. Understand the Dataset Shape</h2>
+<p>Before training a model, it is useful to know how much data you have and how many features are available.</p>
+<p>NumPy arrays and Pandas DataFrames provide the <code>shape</code> attribute for this purpose.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">shape.py</span></div>
+    <pre>from sklearn.datasets import load_iris
 
 iris = load_iris()
 
 X = iris.data
 y = iris.target
 
-print("X shape:", X.shape)
-print("y shape:", y.shape)
-print("First feature row:", X[0])
-print("First target:", y[0])</pre></div>
+print(“Features shape:”, X.shape)
+print(“Target shape:”, y.shape)
 
-<div class="box info"><div class="box-title">Remember</div><p><strong>X</strong> normally represents the input features, while <strong>y</strong> normally represents the target. You will see this notation throughout Scikit-Learn.</p></div>
+</div>
+<p>The shape is usually displayed as a pair such as <code>(150, 4)</code>. The first number represents the number of observations, while the second represents the number of features.</p>
+<p>For the Iris dataset, there are 150 examples and 4 input features.</p>
+<div class="box tip">
+    <div class="box-title">Why Check Shape?</div>
+    <p>Checking the shape helps you quickly understand your dataset and can reveal problems such as missing columns, unexpected dimensions, or incorrectly formatted input data.</p>
+</div>
+<h2>06. Inspect the Data</h2>
+<p>Do not immediately train a model after loading a dataset. First inspect the data so that you understand what you are working with.</p>
+<p>When using Pandas, common inspection methods include <code>head()</code>, <code>info()</code>, <code>describe()</code>, and <code>shape</code>.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">inspect.py</span></div>
+    <pre>import pandas as pd
 
-<h2>04. Exploring a Dataset</h2>
-<p>Before training a model, you should understand the dataset. Checking the shape, sample values, feature names, and target values helps you identify problems before they affect your model.</p>
+data = pd.read_csv(“students.csv”)
 
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">explore.py</span></div>
-<pre>from sklearn.datasets import load_iris
+print(data.head())
+print(data.shape)
+print(data.info())
+print(data.describe())
 
-iris = load_iris()
+</div>
+<p><code>head()</code> displays the first few rows, which gives you a quick look at the data.</p>
+<p><code>shape</code> tells you how many rows and columns are present.</p>
+<p><code>info()</code> provides information about the columns, data types, and non-null values.</p>
+<p><code>describe()</code> generates statistical information for numerical columns, such as the mean, minimum, maximum, and quartiles.</p>
+<p>These checks are useful because real-world datasets are rarely perfectly prepared for machine learning.</p>
+<h2>07. Load a CSV Dataset</h2>
+<p>Real machine learning projects often use datasets stored in files. One of the most common formats is CSV, which stands for <strong>Comma-Separated Values</strong>.</p>
+<p>Pandas provides the <code>read_csv()</code> function for loading CSV files.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">load_csv.py</span></div>
+    <pre>import pandas as pd
 
-print("Shape:", iris.data.shape)
-print("Number of samples:", len(iris.data))
-print("Number of features:", iris.data.shape[1])
-print("Feature names:", iris.feature_names)
-print("Target names:", iris.target_names)
+data = pd.read_csv(“students.csv”)
 
-print("First 5 samples:")
-print(iris.data[:5])
+print(data.head())
 
-print("First 5 targets:")
-print(iris.target[:5])</pre></div>
+</div>
+<p>The string <code>"students.csv"</code> represents the location of the CSV file. If the file is in the same folder as your Python program, you can use just the filename.</p>
+<p>If the file is stored somewhere else, you can provide a file path.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">file_path.py</span></div>
+    <pre>data = pd.read_csv("data/students.csv")</pre>
+</div>
+<p>After loading the file, <code>data</code> becomes a Pandas DataFrame that can be inspected and prepared for machine learning.</p>
+<h2>08. Select Features and Target from a CSV</h2>
+<p>Once the CSV file has been loaded, select the columns that will be used as features and identify the target column.</p>
+<p>Suppose the CSV contains the following columns:</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">students.csv</span></div>
+    <pre>Hours,Attendance,Assignments,Score
+2,75,6,48
+4,82,8,61
+6,90,9,74
+8,95,10,88</pre>
+</div>
+<p>If we want to predict <code>Score</code>, the other columns can be used as input features.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">prepare.py</span></div>
+    <pre>import pandas as pd
 
-<p>For the Iris dataset, the shape tells us how many observations and features are available. Understanding this structure is essential before splitting the data into training and testing sets.</p>
+data = pd.read_csv(“students.csv”)
 
-<h2>05. Synthetic Data</h2>
-<p>Sometimes you do not have a real-world dataset available. Scikit-Learn can generate <strong>synthetic datasets</strong> that are useful for learning algorithms, testing code, and experimenting with different machine learning techniques.</p>
+X = data[[“Hours”, “Attendance”, “Assignments”]]
+y = data[“Score”]
 
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">synthetic.py</span></div>
-<pre>from sklearn.datasets import make_classification, make_regression, make_blobs
+print(X)
+print(y)
 
-X, y = make_classification(
-n_samples=1000,
-n_features=10,
-n_classes=2,
-random_state=42
-)
+</div>
+<p>The variable <code>X</code> now contains the information used to make predictions, while <code>y</code> contains the values the model should learn to predict.</p>
+<div class="box warning">
+    <div class="box-title">Choose the Target Carefully</div>
+    <p>The target should be the value you actually want the model to predict. Do not accidentally include the target column inside <code>X</code>, because this can cause data leakage and produce misleading results.</p>
+</div>
+<h2>09. Convert Data into NumPy Arrays</h2>
+<p>Scikit-Learn works naturally with NumPy arrays and Pandas DataFrames. In many situations, you can pass a DataFrame directly to a Scikit-Learn model.</p>
+<p>For example:</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">data_format.py</span></div>
+    <pre>import pandas as pd
 
-X_reg, y_reg = make_regression(
-n_samples=500,
-n_features=5,
-noise=20,
-random_state=42
-)
+data = pd.read_csv(“students.csv”)
 
-X_blob, y_blob = make_blobs(
-n_samples=300,
-centers=4,
-random_state=42
-)
-
-print("Classification:", X.shape)
-print("Regression:", X_reg.shape)
-print("Clustering:", X_blob.shape)</pre></div>
-
-<h2>06. Generating Classification Data</h2>
-<p><code>make_classification()</code> creates data designed for classification problems. Each sample belongs to one of several classes.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">classification_data.py</span></div>
-<pre>from sklearn.datasets import make_classification
-
-X, y = make_classification(
-n_samples=200,
-n_features=4,
-n_classes=2,
-random_state=42
-)
-
-print("Features:", X.shape)
-print("Targets:", y.shape)
-print("First sample:", X[0])
-print("First target:", y[0])</pre></div>
-
-<div class="box info"><div class="box-title">Why Generate Synthetic Data?</div><p>Synthetic classification data allows you to practice classification algorithms without searching for a real dataset. You can control the number of samples, features, classes, and other properties.</p></div>
-
-<h2>07. Generating Regression Data</h2>
-<p><code>make_regression()</code> generates data for regression problems where the target is usually a continuous numerical value.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">regression_data.py</span></div>
-<pre>from sklearn.datasets import make_regression
-
-X, y = make_regression(
-n_samples=100,
-n_features=3,
-noise=10,
-random_state=42
-)
-
-print("X shape:", X.shape)
-print("y shape:", y.shape)
-print("First X:", X[0])
-print("First y:", y[0])</pre></div>
-
-<p>Regression datasets are useful when learning algorithms such as <code>LinearRegression</code>, <code>Ridge</code>, and other regression models.</p>
-
-<h2>08. Generating Clustering Data</h2>
-<p><code>make_blobs()</code> generates groups of points, commonly called <strong>blobs</strong>. These groups are useful for learning clustering algorithms such as K-Means.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">clustering_data.py</span></div>
-<pre>from sklearn.datasets import make_blobs
-
-X, y = make_blobs(
-n_samples=300,
-centers=4,
-n_features=2,
-random_state=42
-)
-
-print("Data shape:", X.shape)
-print("Number of groups:", len(set(y)))</pre></div>
-
-<div class="box tip"><div class="box-title">Tip</div><p>Although <code>make_blobs()</code> returns labels, clustering algorithms can learn the groups without using those labels during training. The labels can instead be useful for checking the generated data.</p></div>
-
-<h2>09. Loading CSV Data</h2>
-<p>Real machine learning projects often use datasets stored in CSV files. Scikit-Learn does not primarily provide CSV loading functionality, so <strong>Pandas</strong> is commonly used to load the file first.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">load_csv.py</span></div>
-<pre>import pandas as pd
-
-df = pd.read_csv("data.csv")
-
-print(df.head())
-print(df.shape)
-print(df.columns)
-print(df.isnull().sum())
-
-X = df.drop("target", axis=1).values
-y = df["target"].values
-
-print("X shape:", X.shape)
-print("y shape:", y.shape)</pre></div>
-
-<h2>10. Understanding Pandas DataFrames</h2>
-<p>When you load a CSV file using <code>pd.read_csv()</code>, Pandas creates a <strong>DataFrame</strong>. A DataFrame is a table containing rows and columns.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">inspect_csv.py</span></div>
-<pre>import pandas as pd
-
-df = pd.read_csv("data.csv")
-
-print(df.head())
-print(df.tail())
-print(df.info())
-print(df.describe())
-print(df.columns)</pre></div>
-
-<div class="box info"><div class="box-title">Useful Inspection Methods</div><ul>
-<li><code>head()</code> &mdash; displays the first rows.</li>
-<li><code>tail()</code> &mdash; displays the last rows.</li>
-<li><code>info()</code> &mdash; shows columns, data types, and missing values.</li>
-<li><code>describe()</code> &mdash; provides statistical summaries.</li>
-<li><code>shape</code> &mdash; shows the number of rows and columns.</li>
-<li><code>columns</code> &mdash; returns the column names.</li>
-</ul></div>
-
-<h2>11. Separating Features and Target</h2>
-<p>Before training a model, the input columns must be separated from the target column. A common convention is to store the features in <code>X</code> and the target in <code>y</code>.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">split_columns.py</span></div>
-<pre>import pandas as pd
-
-df = pd.read_csv("data.csv")
-
-X = df.drop("target", axis=1)
-y = df["target"]
-
-print("Features:")
-print(X.head())
-
-print("Target:")
-print(y.head())</pre></div>
-
-<p>Notice that <code>drop()</code> removes the target column from the feature DataFrame. The target column is then selected separately using <code>df["target"]</code>.</p>
-
-<h2>12. Checking Missing Values</h2>
-<p>Real-world datasets frequently contain missing values. A machine learning model may not be able to work directly with missing values, so you should detect them during data exploration.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">missing_values.py</span></div>
-<pre>import pandas as pd
-
-df = pd.read_csv("data.csv")
-
-print(df.isnull().sum())
-
-print("Total missing values:")
-print(df.isnull().sum().sum())</pre></div>
-
-<div class="box warning"><div class="box-title">Important</div><p>Do not blindly remove rows containing missing values. Depending on the dataset, you may need to fill missing values using appropriate imputation techniques. Data cleaning should be based on the meaning and structure of the data.</p></div>
-
-<h2>13. Converting Data for Scikit-Learn</h2>
-<p>Scikit-Learn works very well with NumPy arrays and Pandas DataFrames. Many estimators can accept a DataFrame directly, but converting values to NumPy arrays is also common when teaching the basic machine learning workflow.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">numpy_conversion.py</span></div>
-<pre>import pandas as pd
-
-df = pd.read_csv("data.csv")
-
-X = df.drop("target", axis=1).values
-y = df["target"].values
+X = data[[“Hours”, “Attendance”]]
+y = data[“Score”]
 
 print(type(X))
 print(type(y))
-print(X.shape)
-print(y.shape)</pre></div>
 
-<div class="box info"><div class="box-title">Typical Data Flow</div><p><strong>CSV file &rarr; Pandas DataFrame &rarr; Features and Target &rarr; Train/Test Split &rarr; Scikit-Learn Model</strong></p></div>
-
-<h2>14. Complete Dataset Loading Example</h2>
-<p>The following example demonstrates a common pattern you will use throughout this course: load a dataset, inspect it, separate the features and target, and prepare the data for the next stage of the machine learning workflow.</p>
-
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">complete_loading.py</span></div>
-<pre>import pandas as pd
-
-# Load the dataset
-
-df = pd.read_csv("data.csv")
-
-# Inspect the dataset
-
-print("Shape:", df.shape)
-print("Columns:", df.columns.tolist())
-print(df.head())
-
-# Check missing values
-
-print("Missing values:")
-print(df.isnull().sum())
-
-# Separate features and target
-
-X = df.drop("target", axis=1)
-y = df["target"]
-
-print("Feature shape:", X.shape)
-print("Target shape:", y.shape)</pre></div>
-
-<h2>15. Choosing the Right Dataset</h2>
-<p>The type of dataset you use depends on the machine learning problem you want to solve.</p>
-
-<div class="feature-grid">
-<div class="feature-card"><h3>Classification</h3><p>Use when the target represents categories such as spam/not spam or class A/class B.</p></div>
-<div class="feature-card"><h3>Regression</h3><p>Use when the target is a continuous numerical value such as price or temperature.</p></div>
-<div class="feature-card"><h3>Clustering</h3><p>Use when you want to discover natural groups in data without target labels.</p></div>
-<div class="feature-card"><h3>Practice</h3><p>Use built-in or synthetic datasets when learning algorithms and testing code.</p></div>
 </div>
+<p>You can also convert Pandas data into NumPy arrays when needed.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">numpy_conversion.py</span></div>
+    <pre>X_array = X.to_numpy()
+y_array = y.to_numpy()
 
-<h2>16. Common Data Loading Mistakes</h2>
-<div class="box warning"><div class="box-title">Avoid These Mistakes</div><ul>
-<li>Using the wrong CSV file path.</li>
-<li>Assuming the target column has a specific name without checking the dataset.</li>
-<li>Ignoring missing values.</li>
-<li>Training a model before inspecting the data.</li>
-<li>Including the target column inside the feature matrix.</li>
-<li>Using text columns directly without appropriate preprocessing.</li>
-<li>Forgetting to check the shape of <code>X</code> and <code>y</code>.</li>
-</ul></div>
+print(X_array)
+print(y_array)
 
-<h2>17. Key Points</h2>
-<div class="box info"><div class="box-title">Key Points</div><ul>
-<li>Scikit-Learn provides several built-in datasets for learning and experimentation.</li>
-<li><code>load_iris()</code>, <code>load_digits()</code>, and <code>load_breast_cancer()</code> are common built-in datasets.</li>
-<li><code>make_classification()</code> generates classification data.</li>
-<li><code>make_regression()</code> generates regression data.</li>
-<li><code>make_blobs()</code> generates grouped data useful for clustering.</li>
-<li>Pandas <code>read_csv()</code> is commonly used to load external CSV datasets.</li>
-<li><code>X</code> represents features and <code>y</code> represents the target.</li>
-<li>Always inspect your dataset before training a machine learning model.</li>
-<li>Checking missing values is an important part of data preparation.</li>
-</ul></div>
+</div>
+<p>However, conversion is not always necessary. Most Scikit-Learn estimators can work directly with Pandas DataFrames and Series.</p>
+<h2>10. Load Different Built-in Datasets</h2>
+<p>Once you understand the Iris dataset, you can experiment with other datasets provided by Scikit-Learn.</p>
+<p>For example, the digits dataset contains images represented as numerical features.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">digits.py</span></div>
+    <pre>from sklearn.datasets import load_digits
 
-<div class="exercise"><div class="exercise-title">Exercise 4 &middot; Explore a Dataset</div>
-<p>Load the Iris dataset. Print the shape, feature names, target names, and first 5 rows of <code>X</code>. Then print the first 5 target values.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">exercise.py</span></div>
-<pre>from sklearn.datasets import load_iris
+digits = load_digits()
 
-iris = load_iris()
+X = digits.data
+y = digits.target
 
-# Print dataset shape
+print(“Features:”, X.shape)
+print(“Targets:”, y.shape)
 
-# Print feature names
+</div>
+<p>You can also load the wine dataset:</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">wine.py</span></div>
+    <pre>from sklearn.datasets import load_wine
 
-# Print target names
+wine = load_wine()
 
-# Print first 5 rows
+X = wine.data
+y = wine.target
 
-# Print first 5 targets</pre></div></div>
+print(“Features:”, X.shape)
+print(“Targets:”, y.shape)
 
-<div class="box info"><div class="box-title">Next Lecture</div><p>In Lecture 05, we will learn about <strong>Data Exploration and Visualization</strong>, including how to understand distributions, relationships, and patterns in a dataset before training a model.</p></div>
+</div>
+<p>Experimenting with different datasets helps you understand that machine learning models can work with many types of numerical data and different prediction problems.</p>
+<h2>11. Loading Data Is Only the Beginning</h2>
+<p>Loading a dataset does not automatically make it ready for a machine learning model. Real datasets may contain missing values, duplicate rows, text values, categorical variables, extreme values, or features with very different scales.</p>
+<p>A typical preparation process may look like this:</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">data_pipeline.py</span></div>
+    <pre>Load dataset
+      ↓
+Inspect dataset
+      ↓
+Handle missing values
+      ↓
+Select features
+      ↓
+Select target
+      ↓
+Encode categorical data
+      ↓
+Scale features when necessary
+      ↓
+Split into training and testing data
+      ↓
+Train the model</pre>
+</div>
+<p>Each dataset may require a different preparation process. The goal is to convert raw data into a form that a machine learning algorithm can use effectively.</p>
+<div class="box info">
+    <div class="box-title">Dataset Preparation Rule</div>
+    <p><strong>Never assume that a dataset is ready just because Python successfully loaded it.</strong> Always inspect the structure, data types, missing values, and target before training a model.</p>
+</div>
+<h2>12. Build a Simple Dataset-to-Model Workflow</h2>
+<p>We can now combine data loading, feature selection, splitting, training, and prediction into one simple example.</p>
+<div class="code-block">
+    <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dataset_workflow.py</span></div>
+    <pre>import pandas as pd
 
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(2)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(4)">Next Lecture &rarr;</button></div>
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+data = pd.read_csv(“students.csv”)
+
+X = data[[“Hours”, “Attendance”]]
+y = data[“Score”]
+
+X_train, X_test, y_train, y_test = train_test_split(
+X,
+y,
+test_size=0.2,
+random_state=42
+)
+
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+
+print(“Predictions:”, predictions)
+
+</div>
+<p>This example demonstrates an important connection between data loading and the machine learning workflow. The dataset is first loaded using Pandas, then divided into features and a target, and finally passed into the Scikit-Learn training process.</p>
+<p>Understanding this connection will make it much easier to work with larger real-world datasets later.</p>
+<div class="box tip">
+    <div class="box-title">Good Data Loading Habits</div>
+    <ul>
+        <li>Always inspect a dataset after loading it.</li>
+        <li>Check the number of rows and columns.</li>
+        <li>Check the data types of each column.</li>
+        <li>Look for missing values.</li>
+        <li>Identify the target column before selecting features.</li>
+        <li>Keep features and target separate.</li>
+        <li>Use built-in Scikit-Learn datasets when practicing algorithms.</li>
+        <li>Use Pandas for convenient loading and inspection of CSV data.</li>
+        <li>Do not assume raw data is ready for training.</li>
+        <li>Prepare the data before giving it to a machine learning model.</li>
+    </ul>
+</div>
+<div class="exercise">
+    <div class="exercise-title">Exercise 3 &middot; Load and Explore a Dataset</div>
+    <p>Use one of Scikit-Learn's built-in datasets such as Iris, Digits, Wine, or Diabetes.</p>
+    <p>Your program should:</p>
+    <ul>
+        <li>Import and load the dataset.</li>
+        <li>Display the feature names if they are available.</li>
+        <li>Display the target names if they are available.</li>
+        <li>Display the shape of the feature data.</li>
+        <li>Display the shape of the target data.</li>
+        <li>Print the first few examples.</li>
+        <li>Separate the features into <code>X</code> and the target into <code>y</code>.</li>
+    </ul>
+    <p>After completing the exercise, explain what each row and column represents. Then identify whether the dataset is more suitable for a classification or regression problem.</p>
+</div>
+<div class="lecture-nav">
+    <button class="nav-btn secondary" onclick="showLecture(2)">&larr; Previous Lecture</button>
+    <button class="nav-btn primary" onclick="showLecture(4)">Next Lecture &rarr;</button>
+</div>
 </div>
 <div class="lecture" id="lec-4"><div class="lecture-tag">Lecture 05 &middot; Train / Test Split</div>
 <h1>Train / Test Split</h1>
@@ -2988,660 +2948,11 @@ plt.show()</pre></div>
 <p>In the next lecture, we will explore another important supervised learning algorithm: <strong>Logistic Regression</strong>. You will learn how regression can also be used for classification problems by predicting probabilities and class labels.</p>
 </div>
 
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(6)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(8)">Next Lecture &rarr;</button></div>
+<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(6)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(0)">&#8634; Back to Start</button></div>
 </div>
 
-
-
-
-<div class="lecture" id="lec-8"><div class="lecture-tag">Lecture 09 &middot; Logistic Regression</div>
-<h1>Logistic Regression</h1>
-<p class="lecture-intro">Despite the name, Logistic Regression is a classification algorithm. Learn how to predict binary and multiclass outcomes.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">logistic_regression.py</span></div>
-<pre>from sklearn.linear_model import LogisticRegression
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score
-
-X, y = load_breast_cancer(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test  = scaler.transform(X_test)
-
-model = LogisticRegression(max_iter=1000)
-model.fit(X_train, y_train)
-y_pred  = model.predict(X_test)
-y_proba = model.predict_proba(X_test)
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("First 5 probabilities:", y_proba[:5].round(3))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 9 &middot; Iris Logistic Regression</div>
-<p>Load Iris, train a LogisticRegression model, print accuracy and the probabilities for the first 3 test samples.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(7)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(9)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-9"><div class="lecture-tag">Lecture 10 &middot; K-Nearest Neighbors</div>
-<h1>K-Nearest Neighbors (KNN)</h1>
-<p class="lecture-intro">Learn how KNN classifies data by looking at the nearest training examples and how to find the optimal K.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">knn.py</span></div>
-<pre>from sklearn.neighbors import KNeighborsClassifier
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score
-
-X, y = load_iris(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test  = scaler.transform(X_test)
-
-for k in [1, 3, 5, 7, 9]:
-    model = KNeighborsClassifier(n_neighbors=k)
-    model.fit(X_train, y_train)
-    print(f"K={k}: Accuracy={accuracy_score(y_test, model.predict(X_test)):.4f}")</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 10 &middot; Best K Value</div>
-<p>Load the breast cancer dataset, scale features, and test K from 1 to 15. Print accuracy for each K and identify the best.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(8)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(10)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-10"><div class="lecture-tag">Lecture 11 &middot; Decision Trees</div>
-<h1>Decision Trees</h1>
-<p class="lecture-intro">Learn how Decision Trees make predictions by asking a series of yes/no questions, and how to control depth to prevent overfitting.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">decision_tree.py</span></div>
-<pre>from sklearn.tree import DecisionTreeClassifier
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
-X, y = load_iris(return_X_y=True)
-feature_names = load_iris().feature_names
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-model = DecisionTreeClassifier(max_depth=3, random_state=42)
-model.fit(X_train, y_train)
-print("Accuracy:", accuracy_score(y_test, model.predict(X_test)))
-
-for name, imp in zip(feature_names, model.feature_importances_):
-    print(f"  {name}: {imp:.4f}")</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 11 &middot; Tree Depth Experiment</div>
-<p>Train decision trees with max_depth from 1 to 10 on Iris. Print train and test accuracy for each depth. Observe where overfitting begins.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(9)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(11)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-11"><div class="lecture-tag">Lecture 12 &middot; Random Forest</div>
-<h1>Random Forest</h1>
-<p class="lecture-intro">Learn how Random Forest combines many decision trees into a more powerful and robust ensemble model.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">random_forest.py</span></div>
-<pre>from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
-X, y = load_iris(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
-print("Accuracy:", accuracy_score(y_test, model.predict(X_test)))
-
-for name, imp in zip(load_iris().feature_names, model.feature_importances_):
-    print(f"  {name}: {imp:.4f}")</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 12 &middot; Trees vs Forest</div>
-<p>Train a single DecisionTree and a RandomForest on the breast cancer dataset. Compare test accuracy and explain why the forest generally wins.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(10)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(12)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-12"><div class="lecture-tag">Lecture 13 &middot; Support Vector Machines</div>
-<h1>Support Vector Machines (SVM)</h1>
-<p class="lecture-intro">Learn how SVMs find the optimal decision boundary and why they excel on high-dimensional data.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">svm.py</span></div>
-<pre>from sklearn.svm import SVC
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score
-
-X, y = load_breast_cancer(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test  = scaler.transform(X_test)
-
-model = SVC(kernel="rbf", C=1.0, gamma="scale")
-model.fit(X_train, y_train)
-print("SVM Accuracy:", accuracy_score(y_test, model.predict(X_test)))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 13 &middot; SVM Kernels</div>
-<p>Train SVMs with linear, rbf, and poly kernels on Iris. Compare accuracy for each kernel type.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(11)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-13"><div class="lecture-tag">Lecture 14 &middot; &#x1F6E0;&#xFE0F; Project 2</div>
-<h1>Project 2: House Price Predictor</h1>
-<p class="lecture-intro">Build a complete regression model that predicts house prices using Linear Regression and Random Forest Regression.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">house_price_predictor.py</span></div>
-<pre>import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import r2_score
-
-np.random.seed(42)
-n = 500
-size  = np.random.randint(50, 300, n)
-rooms = np.random.randint(1, 8, n)
-age   = np.random.randint(0, 50, n)
-price = size*1500 + rooms*10000 - age*500 + np.random.normal(0, 5000, n)
-
-X = np.column_stack([size, rooms, age])
-y = price
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-scaler = StandardScaler()
-X_tr_s = scaler.fit_transform(X_train)
-X_te_s = scaler.transform(X_test)
-
-lr = LinearRegression()
-lr.fit(X_tr_s, y_train)
-print("Linear Regression R2:", r2_score(y_test, lr.predict(X_te_s)).round(4))
-
-rf = RandomForestRegressor(n_estimators=100, random_state=42)
-rf.fit(X_train, y_train)
-print("Random Forest R2:", r2_score(y_test, rf.predict(X_test)).round(4))
-
-new_house = scaler.transform([[120, 3, 10]])
-print("Predicted Price:", lr.predict(new_house)[0].round(2))</pre></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(12)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(14)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-14"><div class="lecture-tag">Lecture 15 &middot; Accuracy, Precision &amp; Recall</div>
-<h1>Accuracy, Precision, Recall and F1-Score</h1>
-<p class="lecture-intro">Learn the key metrics for evaluating classification models and when to use each one.</p>
-<div class="box info"><div class="box-title">Metric Definitions</div><ul>
-<li><strong>Accuracy</strong> &mdash; correct / total. Misleading with imbalanced data.</li>
-<li><strong>Precision</strong> &mdash; of all positive predictions, how many were actually positive?</li>
-<li><strong>Recall</strong> &mdash; of all actual positives, how many did the model find?</li>
-<li><strong>F1-Score</strong> &mdash; harmonic mean of precision and recall.</li>
-</ul></div>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">metrics.py</span></div>
-<pre>from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-
-X, y = load_breast_cancer(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-
-print("Accuracy: ", accuracy_score(y_test, y_pred))
-print("Precision:", precision_score(y_test, y_pred))
-print("Recall:   ", recall_score(y_test, y_pred))
-print("F1 Score: ", f1_score(y_test, y_pred))
-print(classification_report(y_test, y_pred))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 15 &middot; Evaluate a Classifier</div>
-<p>Train LogisticRegression on breast cancer. Print accuracy, precision, recall, F1, and the full classification report.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(13)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(15)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-15"><div class="lecture-tag">Lecture 16 &middot; Confusion Matrix</div>
-<h1>Confusion Matrix</h1>
-<p class="lecture-intro">Understand what a confusion matrix reveals about your model errors and how to interpret TP, TN, FP, FN.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">confusion_matrix.py</span></div>
-<pre>from sklearn.metrics import confusion_matrix
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-
-X, y = load_breast_cancer(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
-cm = confusion_matrix(y_test, model.predict(X_test))
-print("Confusion Matrix:
-", cm)
-print("TN:", cm[0,0], "| FP:", cm[0,1])
-print("FN:", cm[1,0], "| TP:", cm[1,1])</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 16 &middot; Interpret the Matrix</div>
-<p>Train KNN on the breast cancer dataset, compute the confusion matrix. Explain what false positives and false negatives mean in the context of cancer detection.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(14)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(16)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-16"><div class="lecture-tag">Lecture 17 &middot; Cross-Validation</div>
-<h1>Cross-Validation</h1>
-<p class="lecture-intro">Learn how k-fold cross-validation gives a more reliable performance estimate than a single train/test split.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">cross_validation.py</span></div>
-<pre>from sklearn.model_selection import cross_val_score
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_iris
-import numpy as np
-
-X, y = load_iris(return_X_y=True)
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-scores = cross_val_score(model, X, y, cv=5, scoring="accuracy")
-print("CV Scores:", scores)
-print("Mean:    ", scores.mean().round(4))
-print("Std Dev: ", scores.std().round(4))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 17 &middot; Compare Models with CV</div>
-<p>Use 5-fold CV to compare KNN, Logistic Regression, and Random Forest on Iris. Print mean and std accuracy for each.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(15)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(17)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-17"><div class="lecture-tag">Lecture 18 &middot; Hyperparameter Tuning</div>
-<h1>Hyperparameter Tuning with GridSearchCV</h1>
-<p class="lecture-intro">Learn how to automatically find the best hyperparameters for any sklearn model using GridSearchCV.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">grid_search.py</span></div>
-<pre>from sklearn.model_selection import GridSearchCV
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_iris
-
-X, y = load_iris(return_X_y=True)
-param_grid = {
-    "n_estimators":    [50, 100, 200],
-    "max_depth":       [None, 3, 5, 10],
-    "min_samples_split": [2, 5, 10]
-}
-grid = GridSearchCV(RandomForestClassifier(random_state=42), param_grid, cv=5, scoring="accuracy", n_jobs=-1)
-grid.fit(X, y)
-print("Best Params:", grid.best_params_)
-print("Best Score: ", grid.best_score_.round(4))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 18 &middot; Tune a KNN Model</div>
-<p>Use GridSearchCV to find the best n_neighbors (1&ndash;20) and weights for KNN on the breast cancer dataset.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(16)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(18)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-18"><div class="lecture-tag">Lecture 19 &middot; Overfitting &amp; Underfitting</div>
-<h1>Overfitting and Underfitting</h1>
-<p class="lecture-intro">Understand the bias-variance tradeoff and learn how to detect and fix overfitting and underfitting.</p>
-<div class="box info"><div class="box-title">Signs of Each</div><ul>
-<li><strong>Overfitting</strong> &mdash; High train accuracy, low test accuracy. Model memorized training data.</li>
-<li><strong>Underfitting</strong> &mdash; Low train AND test accuracy. Model is too simple.</li>
-<li><strong>Good fit</strong> &mdash; Train and test accuracy are close and both high.</li>
-</ul></div>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">overfitting.py</span></div>
-<pre>from sklearn.tree import DecisionTreeClassifier
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
-X, y = load_iris(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-for depth in [1, 2, 3, 5, 10, None]:
-    m = DecisionTreeClassifier(max_depth=depth, random_state=42)
-    m.fit(X_train, y_train)
-    tr = accuracy_score(y_train, m.predict(X_train))
-    te = accuracy_score(y_test,  m.predict(X_test))
-    print(f"Depth={str(depth):4s}: Train={tr:.4f} | Test={te:.4f}")</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 19 &middot; Bias-Variance Analysis</div>
-<p>Run the code above and identify at which max_depth the model starts overfitting. Explain your finding.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(17)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(19)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-19"><div class="lecture-tag">Lecture 20 &middot; Pipelines</div>
-<h1>Scikit-Learn Pipelines</h1>
-<p class="lecture-intro">Chain preprocessing and model training into a single Pipeline for cleaner, safer, leakage-free code.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pipeline.py</span></div>
-<pre>from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import accuracy_score
-
-X, y = load_iris(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-pipe = Pipeline([("scaler", StandardScaler()), ("svm", SVC(kernel="rbf"))])
-pipe.fit(X_train, y_train)
-print("Pipeline Accuracy:", accuracy_score(y_test, pipe.predict(X_test)))
-
-# Tune pipeline with GridSearchCV
-param_grid = {"svm__C": [0.1, 1, 10], "svm__kernel": ["linear", "rbf"]}
-grid = GridSearchCV(pipe, param_grid, cv=5)
-grid.fit(X_train, y_train)
-print("Best params:", grid.best_params_)</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 20 &middot; Build a Pipeline</div>
-<p>Create a Pipeline with MinMaxScaler + RandomForestClassifier on breast cancer. Train it, print test accuracy, then use GridSearchCV to tune n_estimators.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(18)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(20)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-20"><div class="lecture-tag">Lecture 21 &middot; &#x1F6E0;&#xFE0F; Project 3</div>
-<h1>Project 3: Spam Email Detector</h1>
-<p class="lecture-intro">Build a text classification pipeline that detects spam emails using TF-IDF and Logistic Regression.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">spam_detector.py</span></div>
-<pre>from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
-
-emails = [
-    "Win a million dollars now click here",
-    "Free prize claim your reward today",
-    "Buy cheap meds online no prescription",
-    "Limited time offer act now",
-    "Meeting scheduled for tomorrow at 10am",
-    "Please review the attached quarterly report",
-    "Your invoice is ready for download",
-    "Team lunch is cancelled today",
-    "Congratulations you have been selected",
-    "Project deadline extended to next Friday",
-    "Claim your free gift card instantly",
-    "Hi are you free for a quick call",
-]
-labels = [1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0]
-
-X_train, X_test, y_train, y_test = train_test_split(emails, labels, test_size=0.3, random_state=42)
-pipe = Pipeline([("tfidf", TfidfVectorizer()), ("clf", LogisticRegression(max_iter=1000))])
-pipe.fit(X_train, y_train)
-
-print("Accuracy:", accuracy_score(y_test, pipe.predict(X_test)))
-print(classification_report(y_test, pipe.predict(X_test), target_names=["Not Spam", "Spam"]))
-
-print("Predictions:", pipe.predict(["Win a free iPhone now!", "See you at the meeting"]))</pre></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(19)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(21)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-21"><div class="lecture-tag">Lecture 22 &middot; K-Means Clustering</div>
-<h1>K-Means Clustering</h1>
-<p class="lecture-intro">Learn how K-Means groups data into clusters without labels &mdash; the most popular unsupervised algorithm.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">kmeans.py</span></div>
-<pre>from sklearn.cluster import KMeans
-from sklearn.datasets import make_blobs
-from sklearn.preprocessing import StandardScaler
-
-X, _ = make_blobs(n_samples=300, centers=4, cluster_std=0.8, random_state=42)
-X_s = StandardScaler().fit_transform(X)
-
-kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
-kmeans.fit(X_s)
-print("Labels:", kmeans.labels_[:10])
-print("Inertia:", kmeans.inertia_)
-
-# Elbow Method
-for k in range(1, 8):
-    km = KMeans(n_clusters=k, random_state=42, n_init=10)
-    km.fit(X_s)
-    print(f"K={k}: Inertia={km.inertia_:.2f}")</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 22 &middot; Cluster Iris</div>
-<p>Apply K-Means (k=3) to Iris without using labels. Compare cluster assignments to actual labels.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(20)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(22)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-22"><div class="lecture-tag">Lecture 23 &middot; DBSCAN Clustering</div>
-<h1>DBSCAN Clustering</h1>
-<p class="lecture-intro">Learn how DBSCAN finds clusters of arbitrary shape and automatically identifies outliers without specifying K.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">dbscan.py</span></div>
-<pre>from sklearn.cluster import DBSCAN
-from sklearn.datasets import make_moons
-from sklearn.preprocessing import StandardScaler
-
-X, _ = make_moons(n_samples=300, noise=0.1, random_state=42)
-X_s = StandardScaler().fit_transform(X)
-
-dbscan = DBSCAN(eps=0.3, min_samples=5)
-labels = dbscan.fit_predict(X_s)
-
-n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
-print("Clusters found:", n_clusters)
-print("Noise points:", list(labels).count(-1))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 23 &middot; Outlier Detection</div>
-<p>Generate blob data and add 20 far-away noise points. Apply DBSCAN and print how many are labeled as noise (-1).</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(21)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(23)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-23"><div class="lecture-tag">Lecture 24 &middot; PCA</div>
-<h1>Principal Component Analysis (PCA)</h1>
-<p class="lecture-intro">Learn how PCA reduces the number of features while preserving as much variance as possible.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pca.py</span></div>
-<pre>from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
-from sklearn.datasets import load_iris
-
-X, y = load_iris(return_X_y=True)
-X_s = StandardScaler().fit_transform(X)
-
-pca = PCA(n_components=2)
-X_pca = pca.fit_transform(X_s)
-print("Original shape:", X_s.shape)
-print("Reduced  shape:", X_pca.shape)
-print("Explained variance:", pca.explained_variance_ratio_)
-print("Total explained:   ", pca.explained_variance_ratio_.sum().round(4))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 24 &middot; PCA on Digits</div>
-<p>Load the Digits dataset (64 features). Apply PCA to 10 components. Print explained variance ratio and cumulative sum.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(22)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(24)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-24"><div class="lecture-tag">Lecture 25 &middot; Feature Selection</div>
-<h1>Feature Selection</h1>
-<p class="lecture-intro">Learn how to identify and keep only the most important features to improve model performance and speed.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">feature_selection.py</span></div>
-<pre>from sklearn.feature_selection import SelectKBest, chi2, RFE
-from sklearn.linear_model import LogisticRegression
-from sklearn.datasets import load_iris
-
-X, y = load_iris(return_X_y=True)
-names = load_iris().feature_names
-
-# SelectKBest
-selector = SelectKBest(score_func=chi2, k=2)
-selector.fit(X, y)
-print("SelectKBest:", [n for n, s in zip(names, selector.get_support()) if s])
-
-# Recursive Feature Elimination
-rfe = RFE(LogisticRegression(max_iter=1000), n_features_to_select=2)
-rfe.fit(X, y)
-print("RFE:", [n for n, s in zip(names, rfe.support_) if s])</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 25 &middot; Feature Importance Ranking</div>
-<p>Train RandomForest on the breast cancer dataset (30 features). Print all features sorted by importance from highest to lowest.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(23)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(25)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-25"><div class="lecture-tag">Lecture 26 &middot; Saving &amp; Loading Models</div>
-<h1>Saving and Loading Models</h1>
-<p class="lecture-intro">Learn how to save trained sklearn models to disk and reload them later without retraining.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">save_model.py</span></div>
-<pre>import joblib
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
-X, y = load_iris(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
-
-# Save
-joblib.dump(model, "iris_model.pkl")
-print("Model saved!")
-
-# Load and use
-loaded = joblib.load("iris_model.pkl")
-print("Loaded accuracy:", accuracy_score(y_test, loaded.predict(X_test)))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 26 &middot; Save and Reload</div>
-<p>Train a KNN model on Iris, save with joblib, load it back, and verify the accuracy matches the original.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(24)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(26)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-26"><div class="lecture-tag">Lecture 27 &middot; &#x1F6E0;&#xFE0F; Project 4</div>
-<h1>Project 4: Customer Segmentation</h1>
-<p class="lecture-intro">Use K-Means clustering to segment customers by purchasing behaviour into meaningful groups.</p>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">customer_segmentation.py</span></div>
-<pre>import numpy as np
-import pandas as pd
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-
-np.random.seed(42)
-n = 200
-data = pd.DataFrame({
-    "age":               np.random.randint(18, 70, n),
-    "annual_income":     np.random.randint(20000, 150000, n),
-    "spending_score":    np.random.randint(1, 100, n),
-    "purchase_freq":     np.random.randint(1, 52, n)
-})
-print(data.head())
-
-X_s = StandardScaler().fit_transform(data)
-
-print("Elbow Method:")
-for k in range(2, 8):
-    km = KMeans(n_clusters=k, random_state=42, n_init=10)
-    km.fit(X_s)
-    print(f"  K={k} | Inertia={km.inertia_:.1f}")
-
-kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
-data["Cluster"] = kmeans.fit_predict(X_s)
-print("
-Segment Profiles:")
-print(data.groupby("Cluster").mean().round(1))</pre></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(25)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(27)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-27"><div class="lecture-tag">Lecture 28 &middot; Choosing the Right Algorithm</div>
-<h1>Choosing the Right Machine Learning Algorithm</h1>
-<p class="lecture-intro">Learn how to select the best algorithm for a problem based on data type, size, and goal.</p>
-<div class="box info"><div class="box-title">Quick Decision Guide</div><ul>
-<li><strong>Linear Regression</strong> &mdash; predict a number, linear relationship</li>
-<li><strong>Logistic Regression</strong> &mdash; classification, fast, interpretable</li>
-<li><strong>KNN</strong> &mdash; small datasets, intuitive but slow at prediction</li>
-<li><strong>Decision Tree</strong> &mdash; interpretable, handles mixed data types</li>
-<li><strong>Random Forest</strong> &mdash; general purpose, handles noise well</li>
-<li><strong>SVM</strong> &mdash; high-dimensional data, text classification</li>
-<li><strong>K-Means</strong> &mdash; clustering with a known number of groups</li>
-<li><strong>DBSCAN</strong> &mdash; arbitrary shapes, outlier detection</li>
-<li><strong>PCA</strong> &mdash; dimensionality reduction, visualization</li>
-</ul></div>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">compare_algorithms.py</span></div>
-<pre>from sklearn.datasets import load_iris
-from sklearn.model_selection import cross_val_score
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.svm import SVC
-
-X, y = load_iris(return_X_y=True)
-models = {
-    "Logistic Regression": LogisticRegression(max_iter=1000),
-    "KNN (k=5)":           KNeighborsClassifier(n_neighbors=5),
-    "Decision Tree":       DecisionTreeClassifier(max_depth=3, random_state=42),
-    "Random Forest":       RandomForestClassifier(n_estimators=100, random_state=42),
-    "SVM (RBF)":           SVC(kernel="rbf"),
-}
-for name, model in models.items():
-    s = cross_val_score(model, X, y, cv=5, scoring="accuracy")
-    print(f"{name:22s}: {s.mean():.4f} +/- {s.std():.4f}")</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 28 &middot; Best Algorithm for the Job</div>
-<p>Pick a dataset, decide classification or regression, choose 2 algorithms, train them, compare with 5-fold CV.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(26)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(28)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-28"><div class="lecture-tag">Lecture 29 &middot; ML Best Practices</div>
-<h1>Machine Learning Best Practices</h1>
-<p class="lecture-intro">Consolidate everything with the essential rules every ML practitioner must follow.</p>
-<div class="box info"><div class="box-title">Always Do These</div><ul>
-<li>&#9989; Set <code>random_state</code> on all models and splits</li>
-<li>&#9989; Split data BEFORE any preprocessing</li>
-<li>&#9989; <code>fit_transform()</code> on train only; <code>transform()</code> on test</li>
-<li>&#9989; Use cross-validation for reliable estimates</li>
-<li>&#9989; Always compare to a baseline (DummyClassifier)</li>
-<li>&#9989; Check for class imbalance before choosing metrics</li>
-<li>&#9989; Use Pipelines to prevent data leakage</li>
-<li>&#9989; Tune hyperparameters with GridSearchCV</li>
-<li>&#9989; Save models with joblib before deploying</li>
-</ul></div>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">baseline.py</span></div>
-<pre>from sklearn.dummy import DummyClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
-X, y = load_iris(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-baseline = DummyClassifier(strategy="most_frequent")
-baseline.fit(X_train, y_train)
-print("Baseline Accuracy:", accuracy_score(y_test, baseline.predict(X_test)))
-
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
-print("Model Accuracy:   ", accuracy_score(y_test, model.predict(X_test)))</pre></div>
-<div class="exercise"><div class="exercise-title">Exercise 29 &middot; Apply Best Practices</div>
-<p>Build a complete ML pipeline following all the rules above: split first, Pipeline, cross-validate, tune, compare to baseline.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(27)">&larr; Previous Lecture</button><button class="nav-btn primary" onclick="showLecture(29)">Next Lecture &rarr;</button></div>
-</div>
-
-<div class="lecture" id="lec-29"><div class="lecture-tag">Lecture 30 &middot; &#x1F6E0;&#xFE0F; Final Project</div>
-<h1>Final Project: Complete Machine Learning System</h1>
-<p class="lecture-intro">Apply everything you have learned to build a complete, production-ready ML system from raw data to deployed model.</p>
-<div class="box info"><div class="box-title">Final Project Goals</div><ul>
-<li>Explore and analyze the dataset with Pandas</li>
-<li>Preprocess with a Pipeline (no data leakage)</li>
-<li>Compare multiple algorithms with cross-validation</li>
-<li>Tune the best model with GridSearchCV</li>
-<li>Evaluate with accuracy, F1, and confusion matrix</li>
-<li>Save the final model to disk</li>
-<li>Predict on new unseen data</li>
-</ul></div>
-<div class="code-block"><div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">complete_ml_system.py</span></div>
-<pre>import numpy as np, pandas as pd, joblib
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix
-
-data = load_breast_cancer()
-X, y = data.data, data.target
-print("Shape:", X.shape, "| Classes:", np.bincount(y))
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-
-# Compare algorithms
-for name, clf in [
-    ("Logistic Regression", LogisticRegression(max_iter=1000)),
-    ("Random Forest",       RandomForestClassifier(n_estimators=100, random_state=42)),
-    ("SVM",                 SVC(kernel="rbf"))
-]:
-    pipe = Pipeline([("scaler", StandardScaler()), ("clf", clf)])
-    s = cross_val_score(pipe, X_train, y_train, cv=5, scoring="f1")
-    print(f"{name}: F1={s.mean():.4f} +/- {s.std():.4f}")
-
-# Tune best model
-pipe = Pipeline([("scaler", StandardScaler()), ("clf", RandomForestClassifier(random_state=42))])
-grid = GridSearchCV(pipe, {"clf__n_estimators":[100,200],"clf__max_depth":[None,5,10]}, cv=5, scoring="f1", n_jobs=-1)
-grid.fit(X_train, y_train)
-print("Best params:", grid.best_params_)
-
-# Evaluate
-final = grid.best_estimator_
-y_pred = final.predict(X_test)
-print("Accuracy:", accuracy_score(y_test, y_pred).round(4))
-print("F1 Score:", f1_score(y_test, y_pred).round(4))
-print(classification_report(y_test, y_pred, target_names=["Malignant","Benign"]))
-
-# Save and reload
-joblib.dump(final, "final_cancer_model.pkl")
-loaded = joblib.load("final_cancer_model.pkl")
-preds = [data.target_names[p] for p in loaded.predict(X_test[:3])]
-print("Sample predictions:", preds)</pre></div>
-<div class="box info"><div class="box-title">&#127881; Congratulations!</div>
-<p>You have completed the full Scikit-Learn course! You can now build, evaluate, tune, and deploy machine learning models using the most powerful ML library in the Python ecosystem.</p></div>
-<div class="lecture-nav"><button class="nav-btn secondary" onclick="showLecture(28)">&larr; Previous Lecture</button></div>
-</div>
-</div>
-<!-- END content-wrapper -->
+</div> <!-- /content-wrapper -->
+</div> <!-- /main -->
 
     <script>
         const titles = [

@@ -115,11 +115,7 @@
             </div>
         </div>
     
-        <div class="nav-section">
-            <div class="nav-section-label">Real-World Practical Projects</div>
-            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Project 1: Audio Signal Frequency Analysis & Filter Design</button>
-        </div>
-    </nav>
+        </nav>
 
     <!-- SIDEBAR -->
     <nav id="sidebar">
@@ -163,6 +159,11 @@
             <button class="nav-item" onclick="showLecture(13)"><span class="num">14</span><span
                     class="dot"></span>Final Project</button>
         </div>
+
+        <div class="nav-section">
+            <div class="nav-section-label">Real-World Practical Projects</div>
+            <button class="nav-item syllabus-topic" onclick="showLecture(14)"><span class="num">15</span><span class="dot"></span>Project 1: Audio Signal Frequency Analysis & Filter Design</button>
+        </div>
     </nav>
 
     <!-- MAIN -->
@@ -174,7 +175,7 @@
                 <span class="current" id="breadcrumb-current">Introduction & Setup</span>
             </div>
             <div class="progress-bar-wrap">
-                <span class="progress-label" id="progress-label">Lecture 1 / 12</span>
+                <span class="progress-label" id="progress-label">Lecture 1 / 15</span>
                 <div class="progress-track">
                     <div class="progress-fill" id="progress-fill" style="width:8%"></div>
                 </div>
@@ -2920,32 +2921,250 @@ company.manager.age = 40;</pre>
                 </div>
 
         <!-- ===================== LECTURE 13 ===================== -->
-        <div class="lecture" id="lec-12">
-            <div class="lecture-tag">Lecture 13 · Advanced</div>
-            <h1>Signal Processing & Image Analysis</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: Lecture 12</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(11)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(13)">Next Lecture →</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-12" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 13 &middot; Advanced</div>
+<h1>Signal Processing &amp; Image Analysis</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~40 min</span><span class="meta-badge level-beginner">Advanced</span><span class="meta-badge">Requires: Lecture 12</span></div>
+<p class="lecture-intro">MATLAB is the global standard for digital signal processing (DSP) and computer vision. From audio engineering and radar to medical imaging, learn how to analyze frequency spectra with the FFT, design linear-phase and IIR filters, and process 2D image matrices with spatial convolutions and morphological filters.</p>
+<h2>1. Frequency-Domain Analysis with the Fast Fourier Transform</h2>
+<p>Signals sampled in the time domain can be transformed into their frequency constituents using the discrete Fourier transform (DFT), accelerated via the <code>fft</code> algorithm:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">spectral_analysis.m</span></div>
+<pre><span class="cm">% Synthesize composite signal with additive Gaussian white noise</span>
+fs = 1000;                     <span class="cm">% Sampling rate: 1000 Hz (dt = 1 ms)</span>
+T = 1 / fs;                    <span class="cm">% Sample interval</span>
+L = 1500;                      <span class="cm">% Sample count</span>
+t = (0:L-1) * T;               <span class="cm">% Time base vector</span>
+
+<span class="cm">% Two sinusoids (50 Hz and 120 Hz) immersed in zero-mean noise</span>
+S = 0.7 * sin(2*pi*50*t) + sin(2*pi*120*t);
+X = S + 2.0 * randn(size(t));
+
+<span class="cm">% Fast Fourier Transform</span>
+Y = fft(X);
+
+<span class="cm">% Compute two-sided and single-sided amplitude spectrum</span>
+P2 = abs(Y / L);
+P1 = P2(1:floor(L/2)+1);
+P1(2:<span class="kw">end</span>-1) = 2 * P1(2:<span class="kw">end</span>-1);
+f = fs * (0:(L/2)) / L;        <span class="cm">% Frequency vector up to Nyquist (500 Hz)</span>
+
+figure;
+plot(f, P1, <span class="st">'LineWidth'</span>, 1.5, <span class="st">'Color'</span>, [0 0.447 0.741]);
+title(<span class="st">'Single-Sided Amplitude Spectrum of X(t)'</span>);
+xlabel(<span class="st">'Frequency (Hz)'</span>);
+ylabel(<span class="st">'|P1(f)|'</span>);
+grid on;</pre>
+</div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li><strong>Zero-Padding for Smooth Spectra:</strong> Use <code>n = 2^nextpow2(L); Y = fft(X, n);</code> to pad with trailing zeros up to the next power of 2. This maximizes radix-2 FFT algorithm speed and interpolates frequency bins smoothly.</li><li><strong>Frequency Resolution:</strong> Remember that physical bin resolution depends strictly on duration: &Delta;f = 1 / T_total = fs / L. Zero-padding improves visual interpolation, not physical resolution.</li></ul></div>
+
+<h2>2. Digital Filter Design: Butterworth Lowpass &amp; filtfilt</h2>
+<p>Filters eliminate out-of-band noise while preserving desired harmonics. In biomedical and telemetry applications, phase distortion can ruin peak timing.</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">filter_design.m</span></div>
+<pre><span class="cm">% Design a 4th-order Butterworth low-pass filter</span>
+fc = 80;                       <span class="cm">% Cutoff frequency in Hz</span>
+order = 4;
+Wn = fc / (fs / 2);            <span class="cm">% Normalized frequency (1.0 = Nyquist)</span>
+
+[b, a] = butter(order, Wn, <span class="st">'low'</span>);
+
+<span class="cm">% Standard causal filter: introduces phase delay</span>
+y_causal = filter(b, a, X);
+
+<span class="cm">% Zero-phase forward-reverse filter: ZERO phase delay!</span>
+y_zerophase = filtfilt(b, a, X);
+
+<span class="cm">% Verify magnitude &amp; phase response</span>
+figure;
+freqz(b, a, 512, fs);
+title(<span class="st">'4th-Order Butterworth Frequency Response'</span>);</pre>
+</div>
+
+<div class="box warn"><div class="box-title">&#9888;&#65039; Common Mistakes</div><ul><li><strong>Using filter() when timing matters:</strong> Standard <code>filter(b, a, X)</code> introduces phase delay that shifts peaks in the time domain. Always use <code>filtfilt</code> when processing offline/recorded telemetry to maintain exact peak positions.</li><li><strong>Specifying cutoff above Nyquist:</strong> Cutoff frequencies in MATLAB filter design functions must satisfy <code>0 &lt; Wn &lt; 1</code> (where 1 corresponds to Nyquist = fs / 2). Exceeding 1 throws an error.</li></ul></div>
+
+<h2>3. 2D Image Processing: Spatial Convolutions &amp; Segmentation</h2>
+<p>In MATLAB, a monochrome image is a 2D matrix of intensity values, while RGB images are 3D arrays of dimension M &times; N &times; 3:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">image_pipeline.m</span></div>
+<pre><span class="cm">% Load test image and convert to double precision [0.0, 1.0]</span>
+img = imread(<span class="st">'cameraman.tif'</span>);
+img_d = im2double(img);
+
+<span class="cm">% 1. Spatial Gaussian Smoothing Filter</span>
+h_gaussian = fspecial(<span class="st">'gaussian'</span>, [5 5], 1.2);
+smoothed = imfilter(img_d, h_gaussian, <span class="st">'replicate'</span>);
+
+<span class="cm">% 2. Edge Detection via Sobel Gradient Kernels</span>
+sobel_x = [-1 0 1; -2 0 2; -1 0 1];
+sobel_y = sobel_x';
+
+Gx = imfilter(smoothed, sobel_x, <span class="st">'replicate'</span>);
+Gy = imfilter(smoothed, sobel_y, <span class="st">'replicate'</span>);
+grad_mag = hypot(Gx, Gy);
+
+<span class="cm">% 3. Automated Thresholding via Otsu's Method</span>
+thresh = graythresh(smoothed);
+binary_mask = imbinarize(smoothed, thresh);
+
+<span class="cm">% 4. Morphological Cleaning: Remove small isolated speckles</span>
+se = strel(<span class="st">'disk'</span>, 2);
+cleaned_mask = imopen(binary_mask, se);</pre>
+</div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Biomedical Peak Detection</div>
+<p>Given a 500 Hz sampled ECG vector <code>ecg</code> with baseline drift and powerline noise:</p>
+<ol>
+  <li>Design an 8-th order bandpass Butterworth filter with passband <code>[0.5, 45]</code> Hz.</li>
+  <li>Filter the data with <code>filtfilt</code>.</li>
+  <li>Use <code>[pks, locs] = findpeaks(filtered, 'MinPeakHeight', 0.6, 'MinPeakDistance', 0.3 * fs);</code> to identify R-peaks and compute instantaneous heart rate in beats per minute (BPM).</li>
+</ol>
+</div>
+
+<div class="quiz-block" data-quiz="matlab-l12">
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">Why is `filtfilt` essential over standard `filter` for offline biomedical signal processing?</p><ol class="quiz-options"><li>It speeds up execution by avoiding complex arithmetic</li><li>It executes a forward pass followed by a reverse pass, canceling out all phase delay and distortion</li><li>It allows filtering frequencies that exceed the Nyquist frequency</li><li>It converts recursive IIR filters into FIR structures automatically</li></ol><p class="quiz-explain">`filtfilt` applies the filter in the forward direction, reverses the filtered sequence, and runs it back through the filter. This results in precisely zero phase distortion while squaring the magnitude response.</p></div>
+<div class="quiz-q" data-answer="2"><p class="quiz-prompt">According to the Nyquist-Shannon theorem, what is the minimum sampling frequency needed to avoid aliasing for a signal containing components up to 6 kHz?</p><ol class="quiz-options"><li>3 kHz</li><li>6 kHz</li><li>12 kHz</li><li>24 kHz</li></ol><p class="quiz-explain">The Nyquist rate is at least twice the highest frequency present: fs &ge; 2 * 6 kHz = 12 kHz. Sampling below 12 kHz introduces irreversible aliasing distortion.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the mathematical operation performed by `imopen` on a binary image?</p><ol class="quiz-options"><li>Dilation followed by erosion with a structuring element</li><li>Erosion followed by dilation with a structuring element</li><li>Direct matrix inversion of foreground pixels</li><li>Gaussian smoothing applied to intensity levels</li></ol><p class="quiz-explain">Morphological opening is an erosion followed by a dilation. It eliminates small isolated foreground noise specks while preserving the shape and size of larger foreground objects.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(11)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(13)">Next Lecture &rarr;</button>
+</div>
+</div>
 
         <!-- ===================== LECTURE 14 ===================== -->
-        <div class="lecture" id="lec-13">
-            <div class="lecture-tag">Lecture 14 · Professional</div>
-            <h1>Final Project — Engineering Simulation</h1>
-            <div class="lecture-meta">
-                <span class="meta-badge">Requires: All Previous</span>
-            </div>
-            <p><em>Content coming soon...</em></p>
-            <div class="lecture-nav">
-                <button class="nav-btn" onclick="showLecture(12)">← Previous</button>
-                <button class="nav-btn primary" onclick="showLecture(0)">↺ Back to Start</button>
-            </div>
-        </div>
+        <div class="lecture" id="lec-13" data-reviewed="2026-10-08">
+<div class="lecture-tag">Lecture 14 &middot; Professional</div>
+<h1>Final Project &mdash; Engineering Simulation</h1>
+<div class="lecture-meta"><span class="meta-badge">&#9201; ~50 min</span><span class="meta-badge level-beginner">Professional</span><span class="meta-badge">Requires: All Previous Lectures</span></div>
+<p class="lecture-intro">Real-world dynamic systems &mdash; from aerospace flight dynamics and robotics to multi-body vehicle suspensions &mdash; require solving coupled non-linear differential equations under parameter uncertainty. In this capstone, you will formulate state-space equations, solve them with adaptive Runge-Kutta integrators, perform Monte Carlo sensitivity analysis, and create dynamic visualizations.</p>
+<h2>1. State-Space Formulation for ODE Solvers</h2>
+<p>Higher-order ordinary differential equations cannot be passed directly into numerical integrators like <code>ode45</code> or <code>ode15s</code>. They must first be decomposed into an equivalent system of coupled first-order state variables:</p>
+
+<p>Consider a damped pendulum driven by an external sinusoidal torque:</p>
+<p style="text-align:center; font-size:1.1em; margin: 12px 0;"><strong>&theta;'' + (b / (m L<sup>2</sup>)) &theta;' + (g / L) sin(&theta;) = &tau;(t) / (m L<sup>2</sup>)</strong></p>
+
+<p>We define the state vector <strong>x = [x<sub>1</sub>, x<sub>2</sub>]<sup>T</sup> = [&theta;, &omega;]<sup>T</sup></strong> where x<sub>1</sub> is angular position and x<sub>2</sub> is angular velocity:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">pendulum_ode.m</span></div>
+<pre><span class="kw">function</span> dxdt = pendulum_ode(t, x, p)
+    <span class="cm">% x(1) = theta (angle in rad)</span>
+    <span class="cm">% x(2) = omega (angular velocity in rad/s)</span>
+    theta = x(1);
+    omega = x(2);
+    
+    <span class="cm">% External driving torque</span>
+    tau = p.tau0 * cos(p.wd * t);
+    
+    dxdt = zeros(2, 1);
+    dxdt(1) = omega;
+    dxdt(2) = -(p.b / (p.m * p.L^2)) * omega - (p.g / p.L) * sin(theta) + tau / (p.m * p.L^2);
+<span class="kw">end</span></pre>
+</div>
+
+<h2>2. Adaptive Numerical Integration &amp; Event Detection</h2>
+<p>Using <code>odeset</code>, we configure integration tolerances and define event functions to halt the solver when physical limits are reached:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">simulate_pendulum.m</span></div>
+<pre><span class="cm">% Physical and environmental parameters</span>
+p.g = 9.81;        <span class="cm">% Gravity (m/s^2)</span>
+p.L = 1.2;         <span class="cm">% Length (m)</span>
+p.m = 0.8;         <span class="cm">% Mass (kg)</span>
+p.b = 0.15;        <span class="cm">% Viscous damping (N*s/m)</span>
+p.tau0 = 0.45;     <span class="cm">% Driving torque amplitude</span>
+p.wd = 2.0;        <span class="cm">% Driving angular frequency (rad/s)</span>
+
+<span class="cm">% Initial conditions: [angle = 45 deg, angular velocity = 0]</span>
+x0 = [pi/4; 0];
+tspan = [0 25];
+
+<span class="cm">% Configure adaptive solver with relative tolerance 1e-6 and event detection</span>
+opts = odeset(<span class="st">'RelTol'</span>, 1e-6, <span class="st">'AbsTol'</span>, 1e-8, ...
+              <span class="st">'Events'</span>, @(t, x) swing_event(t, x));
+
+[t, x, te, xe, ie] = ode45(@(t, x) pendulum_ode(t, x, p), tspan, x0, opts);
+
+<span class="cm">% Event function: detect if angle exceeds +-pi (loop over the top)</span>
+<span class="kw">function</span> [val, isterminal, dir] = swing_event(~, x)
+    val = abs(x(1)) - pi;   <span class="cm">% Triggers when |theta| == pi</span>
+    isterminal = 1;         <span class="cm">% 1 = stop solver immediately</span>
+    dir = 0;                <span class="cm">% Detect any crossing direction</span>
+<span class="kw">end</span></pre>
+</div>
+
+<div class="box tip"><div class="box-title">&#128161; Pro Tips</div><ul><li><strong>Stiff Solvers:</strong> If your system models rapid electrical transitions coupled with slow mechanical inertia, <code>ode45</code> (explicit Runge-Kutta) will crawl or crash due to step size stagnation. Switch to <code>ode15s</code> or <code>ode23s</code> (implicit multistep numerical differentiation formulas).</li><li><strong>Vectorized Output Evaluation:</strong> To sample trajectories on exact, evenly spaced timestamps for rendering or video generation, supply a vector to tspan: <code>tspan = linspace(0, 20, 1000);</code>.</li></ul></div>
+
+<h2>3. Monte Carlo Parameter Uncertainty &amp; Sensitivity Analysis</h2>
+<p>Real hardware suffers from manufacturing tolerances and operating temperature fluctuations. We simulate 400 parameter variations to establish statistical confidence intervals:</p>
+
+<div class="code-block">
+<div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><span class="filename">monte_carlo_analysis.m</span></div>
+<pre><span class="cm">% Monte Carlo dispersion study</span>
+N = 400;
+t_eval = linspace(0, 15, 300);
+theta_matrix = zeros(N, length(t_eval));
+
+rng(42); <span class="cm">% Reproducible random seed</span>
+m_samples = normrnd(p.m, 0.08, [N, 1]); <span class="cm">% 10% mass variance</span>
+b_samples = normrnd(p.b, 0.02, [N, 1]); <span class="cm">% Damping variance</span>
+
+<span class="kw">for</span> i = 1:N
+    p_trial = p;
+    p_trial.m = max(0.2, m_samples(i));
+    p_trial.b = max(0.01, b_samples(i));
+    
+    [~, x_sim] = ode45(@(t, x) pendulum_ode(t, x, p_trial), t_eval, x0);
+    theta_matrix(i, :) = x_sim(:, 1);
+<span class="kw">end</span>
+
+<span class="cm">% Statistical envelope</span>
+mu = mean(theta_matrix, 1);
+sigma = std(theta_matrix, 0, 1);
+
+<span class="cm">% Multi-panel Visualization</span>
+figure(<span class="st">'Position'</span>, [100 100 850 550]);
+
+subplot(2, 1, 1);
+plot(t_eval, theta_matrix(1:20, :), <span class="st">'Color'</span>, [0.8 0.8 0.8], <span class="st">'LineWidth'</span>, 0.5);
+hold on;
+plot(t_eval, mu, <span class="st">'b-'</span>, <span class="st">'LineWidth'</span>, 2, <span class="st">'DisplayName'</span>, <span class="st">'Mean \theta(t)'</span>);
+fill([t_eval, fliplr(t_eval)], [mu + 2*sigma, fliplr(mu - 2*sigma)], ...
+     <span class="st">'b'</span>, <span class="st">'FaceAlpha'</span>, 0.15, <span class="st">'EdgeColor'</span>, <span class="st">'none'</span>, <span class="st">'DisplayName'</span>, <span class="st">'95% Confidence Band'</span>);
+xlabel(<span class="st">'Time (s)'</span>); ylabel(<span class="st">'Angle \theta (rad)'</span>);
+title(<span class="st">'Monte Carlo Dynamic Trajectory Envelope'</span>);
+legend(<span class="st">'Location'</span>, <span class="st">'best'</span>); grid on;
+
+subplot(2, 1, 2);
+histogram(theta_matrix(:, <span class="kw">end</span>), 25, <span class="st">'FaceColor'</span>, [0.2 0.6 0.5], <span class="st">'EdgeColor'</span>, <span class="st">'k'</span>);
+xlabel(<span class="st">'Terminal Angle \theta(t=15s) (rad)'</span>); ylabel(<span class="st">'Count'</span>);
+title(<span class="st">'Terminal State Distribution'</span>); grid on;</pre>
+</div>
+
+<div class="exercise"><div class="exercise-title">&#127919; Capstone Engineering Deliverables</div>
+<p>To finalize your MATLAB certification, package your simulation project into a standalone module:</p>
+<ol>
+  <li>Package the simulation into a parameterized function <code>[t, x, metrics] = run_sim(p, x0, tspan)</code>.</li>
+  <li>Add kinetic and potential energy computation to verify energy conservation when damping <code>p.b = 0</code>.</li>
+  <li>Use <code>exportgraphics(gcf, 'simulation_report.png', 'Resolution', 300)</code> to generate publication-grade figures.</li>
+</ol>
+</div>
+
+<div class="quiz-block" data-quiz="matlab-l13">
+<div class="quiz-q" data-answer="2"><p class="quiz-prompt">How many first-order state variables are required to formulate a 3rd-order differential equation for ode45?</p><ol class="quiz-options"><li>1 variable</li><li>2 variables</li><li>3 variables (the state, 1st derivative, and 2nd derivative)</li><li>6 variables (one for each degree of freedom)</li></ol><p class="quiz-explain">An n-th order ordinary differential equation requires exactly n state variables: x1 = y, x2 = y', ..., xn = y^(n-1). This translates the equation into a system of n first-order equations dx/dt = f(t, x).</p></div>
+<div class="quiz-q" data-answer="2"><p class="quiz-prompt">Which MATLAB ODE solver is designed for stiff differential equations with widely divergent time scales?</p><ol class="quiz-options"><li>ode45 (Dormand-Prince explicit method)</li><li>ode23 (Bogacki-Shampine method)</li><li>ode15s (Variable-order implicit multistep solver)</li><li>ode113 (Adams-Bashforth-Moulton predictor-corrector)</li></ol><p class="quiz-explain">ode15s is MATLAB's primary variable-order solver based on numerical differentiation formulas (NDFs/BDFs), engineered specifically for stiff systems where explicit solvers stall due to tiny step sizes.</p></div>
+<div class="quiz-q" data-answer="1"><p class="quiz-prompt">What is the effect of setting `isterminal = 1` inside an ODE event function?</p><ol class="quiz-options"><li>It prints debug variables to the command window</li><li>It halts numerical integration as soon as the event function crosses zero</li><li>It restarts the integration from t = 0 with smaller time steps</li><li>It converts double-precision floats to single-precision</li></ol><p class="quiz-explain">`isterminal = 1` commands the ODE solver to stop integration immediately when the event condition is satisfied. Setting it to 0 records the event timestamp and state vector while continuing the simulation.</p></div>
+</div>
+<div class="lecture-nav">
+<button class="nav-btn" onclick="showLecture(12)">&larr; Previous</button>
+<button class="nav-btn primary" onclick="showLecture(14)">Hands-on Projects &rarr;</button>
+</div>
+</div>
 
             </div>
 

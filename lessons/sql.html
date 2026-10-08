@@ -594,7 +594,7 @@ $res  = $stmt-&gt;fetchAll();</pre>
                 <input type="radio" name="q2" value="b"> Auto‑increments an integer and creates a sequence. <br>
                 <input type="radio" name="q2" value="c"> Stores a fixed-length string of 20 characters.
             </li>
-            <li>True or False – <code>DROP TABLE</code> can be rolled back inside a transaction in PostgreSQL.</li>
+            <li>True or False – <code>DROP TABLE</code> can be rolled back inside a transaction in PostgreSQL. (PostgreSQL supports transactional DDL).</li>
             <li>Which of the following is a **safe** way to guard against SQL injection?<br>
                 <input type="radio" name="q4" value="a"> Escape single quotes manually. <br>
                 <input type="radio" name="q4" value="b"> Use a prepared statement / parameterised query. <br>
@@ -608,7 +608,7 @@ $res  = $stmt-&gt;fetchAll();</pre>
             <ol>
                 <li><strong>B</strong> – <code>JOIN</code> combines rows from two tables based on a condition.</li>
                 <li><strong>B</strong> – <code>SERIAL</code> creates an auto‑increment integer backed by a sequence.</li>
-                <li><strong>False</strong> – Dropping a table is DDL and cannot be rolled back in PostgreSQL (unless using a schema‑level transaction in recent versions, but standard practice treats it as non‑reversible).</li>
+                <li><strong>True</strong> – Unlike MySQL and Oracle, PostgreSQL supports <strong>transactional DDL</strong>, meaning operations like <code>DROP TABLE</code>, <code>CREATE TABLE</code>, and <code>ALTER TABLE</code> can be safely rolled back within a <code>BEGIN ... ROLLBACK</code> block.</li>
                 <li><strong>B</strong> – Parameterised queries are the industry‑standard defense.</li>
                 <li>An <code>INDEX</code> provides a fast lookup mechanism (typically a B‑tree) that reduces the amount of data scanned for queries that filter, sort, or join on the indexed column(s).</li>
             </ol>
