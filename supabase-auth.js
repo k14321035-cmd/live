@@ -390,7 +390,7 @@ function updateNavbarState(user) {
       userDropdown.id = 'nav-user-dropdown';
       
       userDropdown.innerHTML = `
-        <button class="nav-cta" id="nav-user-dropdown-btn" onclick="toggleUserDropdown(event)">user_session()</button>
+        <button class="nav-cta" id="nav-user-dropdown-btn" onclick="toggleUserDropdown(event)" style="border: none !important; outline: none !important; box-shadow: none !important; background: transparent; cursor: pointer;">user_session()</button>
         <div class="dropdown-menu" id="dropdown-menu">
           <div class="dropdown-email" id="dropdown-email" title="${cleanEmail}"></div>
           <div class="dropdown-divider"></div>
@@ -445,7 +445,7 @@ function updateNavbarState(user) {
         </div>
         <a href="/profile" class="nav-cta" style="width: 100%; text-align: center; display: block; margin-bottom: 0.6rem;" onclick="toggleMenu();">view_profile()</a>
         <a href="/profile#assignments" class="nav-cta" style="width: 100%; text-align: center; display: block; margin-bottom: 0.6rem;" onclick="toggleMenu();">my_assignments()</a>
-        <button class="nav-cta" style="width: 100%; text-align: center;" onclick="handleSignOut(); toggleMenu();">log_out()</button>
+        <button class="nav-cta" style="width: 100%; text-align: center; border: none; outline: none; background: transparent; cursor: pointer;" onclick="handleSignOut(); toggleMenu();">log_out()</button>
       `;
     } else {
       mobileAuthArea.innerHTML = `

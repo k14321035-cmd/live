@@ -97,6 +97,25 @@ const searchIndex = [
   { title: 'C — Structures & Unions', desc: 'struct, typedef, accessing members, pointers to structs, union, nested structures, arrays of structs.', url: '', icon: '🧭', tag: 'C' },
   { title: 'C — File I/O', desc: 'fopen, fclose, fread, fwrite, fprintf, fscanf, fgets, fputs, fseek, ftell, binary files, file modes.', url: '', icon: '🧭', tag: 'C' },
   { title: 'C — Dynamic Memory', desc: 'malloc, calloc, realloc, free, heap vs stack, memory leaks, dangling pointers.', url: '', icon: '🧭', tag: 'C' },
+  // ─── REACT ───────────────────────────────────────────────
+  { title: 'React — Why React & Core Mental Model', desc: 'Virtual DOM, reconciliation, component architecture, declarative UI vs imperative DOM.', url: 'lessons/react.html#lec-0', icon: '⚛️', tag: 'React' },
+  { title: 'React — Vite Setup & Project Anatomy', desc: 'Bootstrap React with Vite, main.jsx, App.jsx, index.html, dev server, HMR.', url: 'lessons/react.html#lec-1', icon: '⚛️', tag: 'React' },
+  { title: 'React — JSX Syntax & Rendering Rules', desc: 'JavaScript XML, expressions in curly braces, className, htmlFor, fragments, self-closing tags.', url: 'lessons/react.html#lec-2', icon: '⚛️', tag: 'React' },
+  { title: 'React — Components & Architecture', desc: 'Functional components, uppercase naming, composition, pure functions, directory structure.', url: 'lessons/react.html#lec-3', icon: '⚛️', tag: 'React' },
+  { title: 'React — Props & Unidirectional Data Flow', desc: 'Passing props, destructuring, default fallback values, children prop, immutable data.', url: 'lessons/react.html#lec-4', icon: '⚛️', tag: 'React' },
+  { title: 'React — State with useState Hook', desc: 'useState, updater function, batching, re-renders, immutability with object and array spread.', url: 'lessons/react.html#lec-5', icon: '⚛️', tag: 'React' },
+  { title: 'React — Events & SyntheticEvents', desc: 'onClick, onChange, onSubmit, SyntheticEvent, preventDefault, function references vs immediate call.', url: 'lessons/react.html#lec-6', icon: '⚛️', tag: 'React' },
+  { title: 'React — Conditional Rendering', desc: 'Ternary operator, logical AND short-circuiting, guard clauses, multi-state object mapping.', url: 'lessons/react.html#lec-7', icon: '⚛️', tag: 'React' },
+  { title: 'React — Lists & The Key Prop', desc: 'Array map, unique keys, reconciliation diffing, pitfalls of array index as key.', url: 'lessons/react.html#lec-8', icon: '⚛️', tag: 'React' },
+  { title: 'React — Forms & Controlled Components', desc: 'Controlled vs uncontrolled inputs, multi-field form state, validation, checkboxes, select.', url: 'lessons/react.html#lec-9', icon: '⚛️', tag: 'React' },
+  { title: 'React — The useEffect Hook & Lifecycle', desc: 'Side effects, mount, update, unmount, dependency array rules, cleanup timers and listeners.', url: 'lessons/react.html#lec-11', icon: '⚛️', tag: 'React' },
+  { title: 'React — Data Fetching & REST APIs', desc: 'fetch with async/await, loading, error, and data states, AbortController cancellation.', url: 'lessons/react.html#lec-12', icon: '⚛️', tag: 'React' },
+  { title: 'React — DOM Refs with useRef', desc: 'Accessing DOM elements, input focus, storing mutable values without triggering re-renders.', url: 'lessons/react.html#lec-13', icon: '⚛️', tag: 'React' },
+  { title: 'React — Building Custom Hooks', desc: 'Rules of hooks, extracting reusable logic: useLocalStorage, useFetch, useDebounce, useToggle.', url: 'lessons/react.html#lec-14', icon: '⚛️', tag: 'React' },
+  { title: 'React — Lifting State & Context API', desc: 'Prop drilling problem, createContext, Provider, useContext, global auth and theme state.', url: 'lessons/react.html#lec-16', icon: '⚛️', tag: 'React' },
+  { title: 'React — Routing with React Router v6+', desc: 'BrowserRouter, Routes, Route, Link, NavLink, useParams, useNavigate, 404 pages.', url: 'lessons/react.html#lec-17', icon: '⚛️', tag: 'React' },
+  { title: 'React — Performance: useMemo & useCallback', desc: 'Memoizing calculations with useMemo, stable callbacks with useCallback, React.memo, Suspense lazy.', url: 'lessons/react.html#lec-18', icon: '⚛️', tag: 'React' },
+  { title: 'React — Capstone: Full E-Commerce Store', desc: 'Full capstone app: catalog, search, cart context, localStorage, routing, responsive UI.', url: 'lessons/react.html#lec-19', icon: '⚛️', tag: 'React' },
   // ─── MATPLOTLIB ───────────────────────────────────────────
   { title: 'Matplotlib — Complete Course', desc: 'Master data visualization in Python: line charts, bar charts, scatter plots, customization, subplots, NumPy & Pandas integration.', url: 'lessons/matplotlib.html', icon: '📈', tag: 'Matplotlib' },
 ];
@@ -104,6 +123,7 @@ const searchIndex = [
 // ─── Tag colour map ───────────────────────────────────────
 const tagColors = {
   Python:     { bg: 'rgba(255,212,59,0.12)',  border: 'rgba(255,212,59,0.3)',  text: '#ffd43b' },
+  React:      { bg: 'rgba(0,216,254,0.12)',   border: 'rgba(0,216,254,0.3)',   text: '#00d8fe' },
   'C++':      { bg: 'rgba(100,149,237,0.12)', border: 'rgba(100,149,237,0.3)', text: '#6495ed' },
   HTML:       { bg: 'rgba(255,107,53,0.12)',  border: 'rgba(255,107,53,0.3)',  text: '#ff6b35' },
   CSS:        { bg: 'rgba(41,182,246,0.12)',  border: 'rgba(41,182,246,0.3)',  text: '#29b6f6' },

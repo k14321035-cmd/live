@@ -10,6 +10,7 @@
     --swift-a:#fa7343; --php-a:#8892bf; --sql-a:#4d90c4; --r-a:#276dc3;
     --bash-a:#4eaa25; --dart-a:#26c1e0; --ruby-a:#e0555f; --matlab-a:#e16737;
     --vb-a:#9457c7; --shell-a:#7ecb5f; --eth-a:#ff5c5c; --matplotlib-a:#1f77b4;
+    --react-a:#00d8fe;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -44,8 +45,11 @@
     font-family:'JetBrains Mono', monospace; font-size:0.82rem;
     padding:0.5rem 1rem;  color:var(--text); text-decoration:none;
     transition:background .15s; background:none;
+    border:none; outline:none; cursor:pointer;
   }
   .nav-cta:hover{background:var(--accent-dim);}
+  .nav-cta:focus,
+  .nav-cta:focus-visible{outline:none; border:none; box-shadow:none;}
 
   /* course subheader */
   .subheader{
@@ -291,6 +295,30 @@
   .nav-user-dropdown {
     position: relative;
     display: inline-block;
+    border: none;
+    outline: none;
+  }
+  #nav-user-dropdown-btn,
+  .nav-user-dropdown-btn {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  #nav-user-dropdown-btn:hover {
+    background: var(--accent-dim) !important;
+    border: none !important;
+    outline: none !important;
+  }
+  #nav-user-dropdown-btn:focus,
+  #nav-user-dropdown-btn:focus-visible,
+  #nav-user-dropdown-btn:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
   }
   .dropdown-menu {
     display: none;
